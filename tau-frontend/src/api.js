@@ -1,31 +1,38 @@
 import axios from 'axios';
 
-// Ensure this matches your backend URL/Port
 const API_URL = 'http://localhost:8000/api';
-// NOTE: User mentioned 5001 ("http://localhost:5001"), but FastAPI default is 8000. 
-// I will stick to 8000 unless I change the backend run command. 
-// I'll create a variable.
-
-const api = axios.create({
-    baseURL: API_URL,
-});
 
 export const getContacts = async () => {
-    const response = await api.get('/contacts');
+    const response = await axios.get(`${API_URL}/contacts`);
     return response.data;
 };
 
 export const updateContact = async (id, data) => {
-    const response = await api.put(`/contacts/${id}`, data);
+    const response = await axios.put(`${API_URL}/contacts/${id}`, data);
+    return response.data;
+};
+
+export const createContact = async (data) => {
+    const response = await axios.post(`${API_URL}/contacts`, data);
     return response.data;
 };
 
 export const getOpportunities = async () => {
-    const response = await api.get('/opportunities');
+    const response = await axios.get(`${API_URL}/opportunities`);
     return response.data;
 };
 
 export const updateOpportunity = async (id, data) => {
-    const response = await api.put(`/opportunities/${id}`, data);
+    const response = await axios.put(`${API_URL}/opportunities/${id}`, data);
+    return response.data;
+};
+
+export const createOpportunity = async (data) => {
+    const response = await axios.post(`${API_URL}/opportunities`, data);
+    return response.data;
+};
+
+export const getUsers = async () => {
+    const response = await axios.get(`${API_URL}/users`);
     return response.data;
 };
