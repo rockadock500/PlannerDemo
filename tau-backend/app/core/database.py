@@ -5,6 +5,11 @@ from sqlalchemy.orm import sessionmaker, declarative_base
 # Check for DATABASE_URL (Railway/Prod) or fallback to SQLite (Local)
 SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./tau.db")
 
+import logging
+logger = logging.getLogger(__name__)
+logger.info(f"Database URL detected: {SQLALCHEMY_DATABASE_URL.split('://')[0]}://...")
+
+
 connect_args = {}
 if SQLALCHEMY_DATABASE_URL.startswith("sqlite"):
     connect_args = {"check_same_thread": False}

@@ -1,4 +1,4 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Optional, List
 from datetime import datetime
 
@@ -10,8 +10,7 @@ class UserBase(BaseModel):
 class UserOut(UserBase):
     id: int
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 class ContactBase(BaseModel):
     name: Optional[str] = None
@@ -31,8 +30,7 @@ class ContactOut(ContactBase):
     id: int
     last_contact_date: Optional[datetime] = None
     
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
 
 class OpportunityBase(BaseModel):
     name: Optional[str] = None
@@ -56,5 +54,4 @@ class OpportunityOut(OpportunityBase):
     contact: Optional[ContactOut] = None
     owner: Optional[UserOut] = None
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
