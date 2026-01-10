@@ -37,7 +37,11 @@ def startup_event():
     try:
         # Create Tables if they don't exist
         from app.core.database import engine, Base
-        from app.models import models # Ensure models are registered
+        # Explicitly import models to register them
+        from app.models.models import Contact, Opportunity, User, Activity
+        
+        logger.info(f"Registered tables: {list(Base.metadata.tables.keys())}")
+        
         Base.metadata.create_all(bind=engine)
         logger.info("Database tables created.")
 
