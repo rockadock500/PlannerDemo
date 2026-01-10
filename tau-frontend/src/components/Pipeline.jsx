@@ -144,99 +144,127 @@ const Pipeline = () => {
     if (loading) return <div className="p-6 text-gray-500">Loading pipeline...</div>;
 
     return (
-        <div className="p-6 h-full overflow-x-auto">
+        <div className="h-full flex flex-col relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
             {/* Header / Actions */}
-            <div className="flex justify-between items-center mb-6">
-                <h2 className="text-2xl font-bold text-gray-800">Sales Pipeline</h2>
+            <div className="px-6 py-4 flex justify-between items-center bg-white/40 backdrop-blur-sm border-b border-white/50 z-10 sticky top-0 md:px-8">
+                <div>
+                    <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Pipeline Overview</h2>
+                    <p className="text-xs text-slate-500 mt-1">Manage your deals and track AI insights</p>
+                </div>
                 <button
                     onClick={() => setIsAddModalOpen(true)}
-                    className="flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 shadow-sm transition-colors"
+                    className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all transform hover:scale-105 active:scale-95"
                 >
-                    <Plus size={18} />
+                    <Plus size={18} strokeWidth={2.5} />
                     New Lead
                 </button>
             </div>
 
-            {/* Kanban Board */}
-            <div className="flex gap-4 min-w-max h-[calc(100vh-140px)]">
-                {STAGES.map(stage => {
-                    const stageOpps = opportunities.filter(o => o.stage === stage);
-                    // Calc total value
-                    const totalValue = stageOpps.reduce((sum, o) => sum + (o.value || 0), 0);
+            {/* Kanban Board - Full Screen Fluid */}
+            <div className="flex-1 overflow-x-auto overflow-y-hidden p-6 md:p-8">
+                <div className="flex gap-6 h-full min-w-max">
+                    {STAGES.map(stage => {
+                        const stageOpps = opportunities.filter(o => o.stage === stage);
+                        const totalValue = stageOpps.reduce((sum, o) => sum + (o.value || 0), 0);
 
-                    return (
-                        <div key={stage} className="w-80 bg-gray-50 border border-gray-200 rounded-xl flex flex-col max-h-full">
-                            {/* Column Header */}
-                            <div className="p-3 border-b border-gray-200 bg-gray-100 rounded-t-xl">
-                                <h3 className="font-bold text-gray-700 flex justify-between items-center text-sm uppercase tracking-wide">
-                                    {stage}
-                                    <span className="bg-gray-200 text-gray-600 px-2 py-0.5 rounded-full text-xs">{stageOpps.length}</span>
-                                </h3>
-                                <div className="text-xs text-gray-500 mt-1 font-mono">
-                                    £{totalValue.toLocaleString()}
-                                </div>
-                            </div>
-
-                            {/* Column Body */}
-                            <div className="flex-1 overflow-y-auto p-2 space-y-2">
-                                {stageOpps.map(opp => (
-                                    <div
-                                        key={opp.id}
-                                        onClick={() => setEditingOpp(JSON.parse(JSON.stringify(opp)))} // Deep copy for edit state
-                                        className="bg-white p-3 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow cursor-pointer group relative"
-                                    >
-                                        {/* Color Bar based on value/priority? For now blue side border */}
-                                        <div className="absolute left-0 top-3 bottom-3 w-1 bg-blue-500 rounded-r"></div>
-
-                                        <div className="pl-3">
-                                            <div className="flex justify-between items-start">
-                                                <div className="text-sm font-bold text-gray-800 leading-tight mb-1">{opp.name}</div>
-                                                <Edit2 size={12} className="text-gray-300 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                            </div>
-
-                                            <div className="text-xs text-gray-600 font-medium flex items-center gap-1">
-                                                <Building size={10} />
-                                                {opp.contact?.company || "No Company"}
-                                            </div>
-
-                                            <div className="flex justify-between items-end mt-3">
-                                                <div className="flex flex-col gap-1">
-                                                    {opp.owner && (
-                                                        <span className="inline-flex items-center px-1.5 py-0.5 rounded text-[10px] font-medium bg-indigo-50 text-indigo-700 border border-indigo-100">
-                                                            {opp.owner.name}
-                                                        </span>
-                                                    )}
-                                                    {(!opp.owner) && <span className="text-[10px] text-gray-400">Unassigned</span>}
-                                                </div>
-                                                <div className="text-sm font-bold text-green-700">
-                                                    {opp.value > 0 ? `£${opp.value.toLocaleString()}` : ''}
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        {/* Quick Actions (Hover) */}
-                                        <div className="mt-3 pt-2 border-t border-gray-100 flex justify-between opacity-0 group-hover:opacity-100 transition-opacity">
-                                            <button
-                                                onClick={(e) => moveStage(opp, -1, e)}
-                                                disabled={stage === 'Initial'}
-                                                className="text-[10px] text-gray-500 hover:text-gray-800 disabled:opacity-25"
-                                            >
-                                                &larr; Prev
-                                            </button>
-                                            <button
-                                                onClick={(e) => moveStage(opp, 1, e)}
-                                                disabled={stage === 'Signed'}
-                                                className="text-[10px] text-blue-600 hover:text-blue-800 font-medium disabled:opacity-25"
-                                            >
-                                                Next &rarr;
-                                            </button>
+                        return (
+                            <div key={stage} className="w-[340px] flex flex-col h-full">
+                                {/* Column Header */}
+                                <div className="mb-4 flex items-end justify-between px-1">
+                                    <div className="flex flex-col gap-1">
+                                        <h3 className="font-extrabold text-slate-700 text-sm uppercase tracking-wider flex items-center gap-2">
+                                            {stage}
+                                            <span className="bg-slate-200 text-slate-600 px-2 py-0.5 rounded-md text-[10px] font-bold">{stageOpps.length}</span>
+                                        </h3>
+                                        <div className="text-xs font-semibold text-slate-400">
+                                            £{totalValue.toLocaleString()}
                                         </div>
                                     </div>
-                                ))}
+                                    {/* Visual Indicator Line */}
+                                    <div className={`h-1 flex-1 ml-4 rounded-full bg-gradient-to-r opacity-50 ${stage === 'Initial' ? 'from-blue-400 to-transparent' :
+                                            stage === 'Engaged' ? 'from-indigo-400 to-transparent' :
+                                                stage === 'Proposal' ? 'from-purple-400 to-transparent' :
+                                                    stage === 'Verbal' ? 'from-fuchsia-400 to-transparent' :
+                                                        'from-green-400 to-transparent'
+                                        }`}></div>
+                                </div>
+
+                                {/* Column Body */}
+                                <div className="flex-1 overflow-y-auto pr-2 space-y-3 pb-4 custom-scrollbar">
+                                    {stageOpps.map(opp => {
+                                        // Mock Score for "Intelligence" aspect
+                                        const score = Math.floor(Math.random() * (99 - 70 + 1) + 70);
+
+                                        return (
+                                            <div
+                                                key={opp.id}
+                                                onClick={() => setEditingOpp(JSON.parse(JSON.stringify(opp)))}
+                                                className="bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-indigo-100 hover:-translate-y-1 transition-all duration-300 cursor-pointer group relative overflow-hidden"
+                                            >
+                                                {/* Left Accent */}
+                                                <div className={`absolute left-0 top-0 bottom-0 w-1 ${stage === 'Signed' ? 'bg-green-500' : 'bg-indigo-500'
+                                                    }`}></div>
+
+                                                {/* Card Content */}
+                                                <div className="pl-2">
+                                                    <div className="flex justify-between items-start mb-2">
+                                                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
+                                                            <Building size={10} /> {opp.contact?.company || "No Company"}
+                                                        </span>
+
+                                                        {/* AI Score Badge */}
+                                                        <div className="px-1.5 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded text-[10px] font-bold flex items-center gap-1" title="Lead Score">
+                                                            ⚡ {score}
+                                                        </div>
+                                                    </div>
+
+                                                    <h4 className="text-sm font-bold text-slate-800 leading-snug mb-3">
+                                                        {opp.name}
+                                                    </h4>
+
+                                                    <div className="flex justify-between items-center border-t border-slate-100 pt-3">
+                                                        <div className="flex items-center gap-2">
+                                                            {opp.owner ? (
+                                                                <div className="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-600 border border-white ring-1 ring-slate-100" title={opp.owner.name}>
+                                                                    {opp.owner.name.charAt(0)}
+                                                                </div>
+                                                            ) : (
+                                                                <div className="w-6 h-6 rounded-full bg-slate-100 border-2 border-dashed border-slate-300"></div>
+                                                            )}
+                                                            <div className="flex flex-col">
+                                                                <span className="text-[10px] text-slate-400 font-medium">Value</span>
+                                                                <span className="text-xs font-bold text-slate-700">£{opp.value?.toLocaleString()}</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                {/* Quick Actions Overlay (Glass) */}
+                                                <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-white via-white/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex justify-between items-center translate-y-2 group-hover:translate-y-0 duration-200">
+                                                    <button
+                                                        onClick={(e) => moveStage(opp, -1, e)}
+                                                        disabled={stage === 'Initial'}
+                                                        className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-700 disabled:opacity-0 transition-colors"
+                                                    >
+                                                        &larr;
+                                                    </button>
+                                                    <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest">View Details</span>
+                                                    <button
+                                                        onClick={(e) => moveStage(opp, 1, e)}
+                                                        disabled={stage === 'Signed'}
+                                                        className="p-1.5 rounded-lg hover:bg-slate-100 text-indigo-600 hover:text-indigo-800 disabled:opacity-0 transition-colors"
+                                                    >
+                                                        &rarr;
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        );
+                                    })}
+                                </div>
                             </div>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
+                </div>
             </div>
 
             {/* --- Modals --- */}

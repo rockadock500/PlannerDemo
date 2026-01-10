@@ -19,13 +19,21 @@ def seed():
     print(f"Targeting API: {API_URL}")
     
     # 0. Create Users (We need them for owner_id=1)
-    # We don't have a POST /users endpoint in the schema shown earlier?
-    # Wait, Step 338 (routes.py) only has GET /users.
-    # It does NOT have POST /users.
-    # So we cannot create users via API?
-    # If so, we are stuck.
-    # Check routes.py again.
-    pass
+    for u in initial_users:
+        user_payload = {
+            "name": u['name'],
+            "role": u['role']
+        }
+        try:
+            res = requests.post(f"{API_URL}/users", json=user_payload)
+            if res.status_code in [200, 201]:
+                print(f"Created User: {u['name']}")
+            elif res.status_code == 400:
+                print(f"User already exists: {u['name']}")
+            else:
+                print(f"Failed User {u['name']}: {res.text}")
+        except Exception as e:
+            print(f"Error creating user {u['name']}: {e}")
 
     # 1. Create Contacts & Opportunities
     for c in initial_contacts:
