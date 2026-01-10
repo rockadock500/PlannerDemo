@@ -60,3 +60,13 @@ def health_check():
         "status": "active",
         "configs_loaded": ConfigEngine.get_all_config_names()
     }
+
+@app.get("/debug-env")
+def debug_env():
+    import os
+    db_url = os.getenv("DATABASE_URL", "Not Set")
+    return {
+        "database_url_prefix": db_url.split("://")[0] if "://" in db_url else db_url,
+        "is_sqlite": "sqlite" in db_url,
+        "cwd": os.getcwd()
+    }
