@@ -17,6 +17,7 @@ origins = [
     "http://localhost:5173", # Vite Default
     "http://localhost:3000",
     "http://127.0.0.1:5173",
+    "https://tau-crm-frontend-production.up.railway.app", # Production Frontend
     "*" # For local dev ease
 ]
 
