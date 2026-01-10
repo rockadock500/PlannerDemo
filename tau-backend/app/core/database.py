@@ -12,6 +12,9 @@ else:
     # Fix for Postgres URLs in SQLAlchemy < 1.4/2.0 compat (Railway returns postgres:// sometimes)
     if SQLALCHEMY_DATABASE_URL.startswith("postgres://"):
         SQLALCHEMY_DATABASE_URL = SQLALCHEMY_DATABASE_URL.replace("postgres://", "postgresql://", 1)
+    
+    # Force SSL for Postgres (required by many cloud providers including Railway)
+    connect_args = {"sslmode": "require"}
 
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, connect_args=connect_args
