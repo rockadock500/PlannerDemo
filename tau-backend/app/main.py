@@ -35,6 +35,12 @@ app.include_router(api_router, prefix="/api")
 def startup_event():
     logger.info("Starting up Tau CRM Backend...")
     try:
+        # Create Tables if they don't exist
+        from app.core.database import engine, Base
+        from app.models import models # Ensure models are registered
+        Base.metadata.create_all(bind=engine)
+        logger.info("Database tables created.")
+
         # Load configs from the 'configs' directory relative to where the app is run
         # Expecting to run from 'tau-backend' root
         ConfigEngine.load("configs")
