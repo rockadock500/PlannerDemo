@@ -12,6 +12,9 @@ class UserOut(UserBase):
 
     model_config = ConfigDict(from_attributes=True)
 
+class UserCreate(UserBase):
+    pass
+
 class ContactBase(BaseModel):
     name: Optional[str] = None
     email: Optional[str] = None
