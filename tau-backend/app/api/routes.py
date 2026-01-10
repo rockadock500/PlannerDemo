@@ -6,7 +6,7 @@ from app.core.database import SessionLocal
 from app.models.models import Contact, Opportunity, User
 from app.schemas import (ContactOut, ContactUpdate, ContactCreate, 
                          OpportunityOut, OpportunityUpdate, OpportunityCreate, 
-                         UserOut)
+                         UserOut, UserCreate)
 
 router = APIRouter()
 
@@ -28,6 +28,19 @@ def read_users(db: Session = Depends(get_db)):
     # Sort by name
     users.sort(key=lambda x: x.name or "")
     return users
+
+@router.post("/users", response_model=UserOut)
+def create_user(user_in: UserCreate, db: Session = Depends(get_db)):
+    # Check if exists
+    existing = db.query(User).filter(User.name == user_in.name).first()
+    if existing:
+         raise HTTPException(status_code=400, detail="User with this name already exists")
+    
+    user = User(**user_in.dict())
+    db.add(user)
+    db.commit()
+    db.refresh(user)
+    return user
 
 # -----------------
 # CONTACTS

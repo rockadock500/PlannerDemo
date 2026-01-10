@@ -18,6 +18,15 @@ initial_users = [
 def seed():
     print(f"Targeting API: {API_URL}")
     
+    # 0. Create Users (We need them for owner_id=1)
+    # We don't have a POST /users endpoint in the schema shown earlier?
+    # Wait, Step 338 (routes.py) only has GET /users.
+    # It does NOT have POST /users.
+    # So we cannot create users via API?
+    # If so, we are stuck.
+    # Check routes.py again.
+    pass
+
     # 1. Create Contacts & Opportunities
     for c in initial_contacts:
         contact_payload = {
@@ -26,20 +35,34 @@ def seed():
             "company": c['company'],
             "role": c['role']
         }
+        contact_id = None
         try:
             # Create Contact
             res = requests.post(f"{API_URL}/contacts", json=contact_payload)
             if res.status_code in [200, 201]:
                 contact_data = res.json()
                 print(f"Created Contact: {contact_data['name']}")
-                
+                contact_id = contact_data['id']
+            elif res.status_code == 400:
+                # Assuming it exists, try to find it (we don't have a direct search by email endpoint exposed publicly? 
+                # actually we do have GET /contacts, let's filter client side or just skip)
+                # Let's just create a new one with a random email to force it for demo purposes, OR fetch all.
+                # Fetching all is safer.
+                all_contacts = requests.get(f"{API_URL}/contacts").json()
+                for c_existing in all_contacts:
+                    if c_existing['email'] == c['email']:
+                        contact_id = c_existing['id']
+                        print(f"Found existing contact: {c_existing['name']}")
+                        break
+            
+            if contact_id:
                 # Create Opportunity
                 opp_payload = {
-                    "title": f"{c['company']} - Initial Deal",
+                    "name": f"{c['company']} - Initial Deal",   # Fixed: title -> name
                     "value": c['value'],
                     "stage": "Initial",
                     "owner_id": 1, 
-                    "contact_id": contact_data['id']
+                    "contact_id": contact_id
                 }
                 res_opp = requests.post(f"{API_URL}/opportunities", json=opp_payload)
                 if res_opp.status_code in [200, 201]:
@@ -47,7 +70,7 @@ def seed():
                 else:
                     print(f"  -> Failed Opp ({res_opp.status_code}): {res_opp.text}")
             else:
-                print(f"Failed Contact {c['name']} ({res.status_code}): {res.text}")
+                print(f"Failed to get/create contact {c['name']}")
         except Exception as e:
             print(f"Error: {e}")
 
