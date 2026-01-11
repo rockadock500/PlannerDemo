@@ -160,37 +160,37 @@ const Pipeline = () => {
                 </button>
             </div>
 
-            {/* Kanban Board - Full Screen Fluid */}
-            <div className="flex-1 overflow-x-auto overflow-y-hidden p-6 md:p-8">
-                <div className="flex gap-6 h-full min-w-max">
+            {/* Kanban Board - Full Screen Fluid Optimized */}
+            <div className="flex-1 overflow-x-auto overflow-y-hidden p-4 scrollbar-hide">
+                <div className="flex gap-4 h-full min-w-full">
                     {STAGES.map(stage => {
                         const stageOpps = opportunities.filter(o => o.stage === stage);
                         const totalValue = stageOpps.reduce((sum, o) => sum + (o.value || 0), 0);
 
                         return (
-                            <div key={stage} className="w-[340px] flex flex-col h-full">
+                            <div key={stage} className="flex-1 min-w-[260px] max-w-[350px] flex flex-col h-full bg-white/30 rounded-xl border border-white/40 shadow-sm backdrop-blur-sm">
                                 {/* Column Header */}
-                                <div className="mb-4 flex items-end justify-between px-1">
-                                    <div className="flex flex-col gap-1">
-                                        <h3 className="font-extrabold text-slate-700 text-sm uppercase tracking-wider flex items-center gap-2">
+                                <div className="p-3 mb-1 flex items-end justify-between bg-white/40 rounded-t-xl border-b border-white/50">
+                                    <div className="flex flex-col">
+                                        <h3 className="font-extrabold text-slate-700 text-xs uppercase tracking-wider flex items-center gap-2">
                                             {stage}
-                                            <span className="bg-slate-200 text-slate-600 px-2 py-0.5 rounded-md text-[10px] font-bold">{stageOpps.length}</span>
+                                            <span className="bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded-md text-[9px] font-bold">{stageOpps.length}</span>
                                         </h3>
-                                        <div className="text-xs font-semibold text-slate-400">
+                                        <div className="text-[10px] font-semibold text-slate-400 mt-1">
                                             £{totalValue.toLocaleString()}
                                         </div>
                                     </div>
-                                    {/* Visual Indicator Line */}
-                                    <div className={`h-1 flex-1 ml-4 rounded-full bg-gradient-to-r opacity-50 ${stage === 'Initial' ? 'from-blue-400 to-transparent' :
-                                            stage === 'Engaged' ? 'from-indigo-400 to-transparent' :
-                                                stage === 'Proposal' ? 'from-purple-400 to-transparent' :
-                                                    stage === 'Verbal' ? 'from-fuchsia-400 to-transparent' :
-                                                        'from-green-400 to-transparent'
+                                    {/* Visual Indicator Line - Compact */}
+                                    <div className={`w-12 h-1 rounded-full opacity-60 ${stage === 'Initial' ? 'bg-blue-400' :
+                                        stage === 'Engaged' ? 'bg-indigo-400' :
+                                            stage === 'Proposal' ? 'bg-purple-400' :
+                                                stage === 'Verbal' ? 'bg-fuchsia-400' :
+                                                    'bg-green-400'
                                         }`}></div>
                                 </div>
 
                                 {/* Column Body */}
-                                <div className="flex-1 overflow-y-auto pr-2 space-y-3 pb-4 custom-scrollbar">
+                                <div className="flex-1 overflow-y-auto px-2 pb-2 space-y-2 custom-scrollbar">
                                     {stageOpps.map(opp => {
                                         // Mock Score for "Intelligence" aspect
                                         const score = Math.floor(Math.random() * (99 - 70 + 1) + 70);
@@ -199,60 +199,64 @@ const Pipeline = () => {
                                             <div
                                                 key={opp.id}
                                                 onClick={() => setEditingOpp(JSON.parse(JSON.stringify(opp)))}
-                                                className="bg-white/80 backdrop-blur-sm p-4 rounded-xl shadow-sm border border-slate-100 hover:shadow-xl hover:border-indigo-100 hover:-translate-y-1 transition-all duration-300 cursor-pointer group relative overflow-hidden"
+                                                className="bg-white p-3 rounded-lg shadow-sm border border-slate-100 hover:shadow-lg hover:border-indigo-200 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group relative overflow-hidden"
                                             >
                                                 {/* Left Accent */}
-                                                <div className={`absolute left-0 top-0 bottom-0 w-1 ${stage === 'Signed' ? 'bg-green-500' : 'bg-indigo-500'
+                                                <div className={`absolute left-0 top-0 bottom-0 w-[3px] ${stage === 'Signed' ? 'bg-green-500' : 'bg-indigo-500'
                                                     }`}></div>
 
                                                 {/* Card Content */}
                                                 <div className="pl-2">
-                                                    <div className="flex justify-between items-start mb-2">
-                                                        <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1">
-                                                            <Building size={10} /> {opp.contact?.company || "No Company"}
-                                                        </span>
+                                                    <div className="flex justify-between items-start mb-1">
+                                                        {opp.contact?.company ? (
+                                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 truncate max-w-[70%]">
+                                                                <Building size={9} /> {opp.contact.company}
+                                                            </span>
+                                                        ) : <span className="w-1"></span>}
 
-                                                        {/* AI Score Badge */}
-                                                        <div className="px-1.5 py-0.5 bg-emerald-50 text-emerald-700 border border-emerald-100 rounded text-[10px] font-bold flex items-center gap-1" title="Lead Score">
-                                                            ⚡ {score}
+                                                        {/* AI Score Badge - Compact */}
+                                                        <div className={`px-1 rounded text-[9px] font-bold flex items-center gap-0.5 ${score > 90 ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600'}`} title="Cognito Score">
+                                                            ⚡{score}
                                                         </div>
                                                     </div>
 
-                                                    <h4 className="text-sm font-bold text-slate-800 leading-snug mb-3">
+                                                    <h4 className="text-sm font-bold text-slate-800 leading-tight mb-2 truncate">
                                                         {opp.name}
                                                     </h4>
 
-                                                    <div className="flex justify-between items-center border-t border-slate-100 pt-3">
+                                                    <div className="flex justify-between items-center pt-2 border-t border-slate-50">
                                                         <div className="flex items-center gap-2">
                                                             {opp.owner ? (
-                                                                <div className="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center text-[10px] font-bold text-slate-600 border border-white ring-1 ring-slate-100" title={opp.owner.name}>
+                                                                <div className="w-5 h-5 rounded-full bg-slate-200 flex items-center justify-center text-[9px] font-bold text-slate-600 border border-white ring-1 ring-slate-100" title={opp.owner.name}>
                                                                     {opp.owner.name.charAt(0)}
                                                                 </div>
                                                             ) : (
-                                                                <div className="w-6 h-6 rounded-full bg-slate-100 border-2 border-dashed border-slate-300"></div>
+                                                                <div className="w-5 h-5 rounded-full bg-slate-100 border-2 border-dashed border-slate-300"></div>
                                                             )}
-                                                            <div className="flex flex-col">
-                                                                <span className="text-[10px] text-slate-400 font-medium">Value</span>
-                                                                <span className="text-xs font-bold text-slate-700">£{opp.value?.toLocaleString()}</span>
-                                                            </div>
+                                                            <span className="text-xs font-bold text-slate-700">£{opp.value?.toLocaleString()}</span>
                                                         </div>
                                                     </div>
                                                 </div>
 
-                                                {/* Quick Actions Overlay (Glass) */}
-                                                <div className="absolute inset-x-0 bottom-0 p-2 bg-gradient-to-t from-white via-white/90 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex justify-between items-center translate-y-2 group-hover:translate-y-0 duration-200">
+                                                {/* Quick Actions Overlay (Glass) - appearing on hover */}
+                                                <div className="absolute inset-0 bg-white/90 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 z-10">
                                                     <button
                                                         onClick={(e) => moveStage(opp, -1, e)}
                                                         disabled={stage === 'Initial'}
-                                                        className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-700 disabled:opacity-0 transition-colors"
+                                                        className="p-1.5 rounded-full bg-slate-100 hover:bg-white border border-slate-200 shadow-sm text-slate-500 hover:text-indigo-600 disabled:opacity-50 transition-all hover:scale-110"
+                                                        title="Previous Stage"
                                                     >
                                                         &larr;
                                                     </button>
-                                                    <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest">View Details</span>
+                                                    <div className="flex flex-col items-center">
+                                                        <span className="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-1">ACTION</span>
+                                                        <span className="text-xs font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">View</span>
+                                                    </div>
                                                     <button
                                                         onClick={(e) => moveStage(opp, 1, e)}
                                                         disabled={stage === 'Signed'}
-                                                        className="p-1.5 rounded-lg hover:bg-slate-100 text-indigo-600 hover:text-indigo-800 disabled:opacity-0 transition-colors"
+                                                        className="p-1.5 rounded-full bg-indigo-50 hover:bg-indigo-600 border border-indigo-100 shadow-sm text-indigo-600 hover:text-white disabled:opacity-50 transition-all hover:scale-110"
+                                                        title="Next Stage"
                                                     >
                                                         &rarr;
                                                     </button>
