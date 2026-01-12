@@ -168,7 +168,7 @@ const Pipeline = () => {
                         const totalValue = stageOpps.reduce((sum, o) => sum + (o.value || 0), 0);
 
                         return (
-                            <div key={stage} className="flex-1 min-w-[260px] max-w-[350px] flex flex-col h-full bg-white/30 rounded-xl border border-white/40 shadow-sm backdrop-blur-sm">
+                            <div key={stage} className="w-[19%] min-w-[220px] flex flex-col h-full bg-white/30 rounded-xl border border-white/40 shadow-sm backdrop-blur-sm transition-all duration-300 hover:bg-white/40">
                                 {/* Column Header */}
                                 <div className="p-3 mb-1 flex items-end justify-between bg-white/40 rounded-t-xl border-b border-white/50">
                                     <div className="flex flex-col">
