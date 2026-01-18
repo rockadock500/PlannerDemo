@@ -1,24 +1,42 @@
 import React, { useState, useEffect } from 'react';
-import { getOpportunities, updateOpportunity, createOpportunity, getUsers, getContacts, createContact, updateContact } from '../api';
-import { Edit2, Plus, User as UserIcon, Building, Mail, Phone, ExternalLink } from 'lucide-react';
+import { getOpportunities, updateOpportunity, createOpportunity, deleteOpportunity, getUsers, getContacts, createContact, updateContact, getErrorMessage } from '../api';
+import { Edit2, Plus, User as UserIcon, Building, Mail, Trash2, AlertCircle, Calendar } from 'lucide-react';
 
 const STAGES = ['Initial', 'Engaged', 'Proposal', 'Verbal', 'Signed'];
+
+const STAGE_PROBABILITIES = {
+    'Initial': 0,
+    'Engaged': 25,
+    'Proposal': 50,
+    'Verbal': 80,
+    'Signed': 100
+};
+
+const PROCUREMENT_DELAYS = [
+    { value: 'low', label: 'Low', description: 'Standard process' },
+    { value: 'medium', label: 'Medium', description: '+1 month buffer' },
+    { value: 'high', label: 'High', description: '+3 months buffer' }
+];
 
 const Pipeline = () => {
     // Data State
     const [opportunities, setOpportunities] = useState([]);
     const [users, setUsers] = useState([]);
-    const [contacts, setContacts] = useState([]); // For dropdowns
+    const [contacts, setContacts] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     // UI State
     const [editingOpp, setEditingOpp] = useState(null);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [deleteConfirm, setDeleteConfirm] = useState(null);
+    const [saving, setSaving] = useState(false);
 
     // Form State (Add New)
     const [newOppData, setNewOppData] = useState({
         name: '', value: 0, stage: 'Initial', owner_id: '', contact_mode: 'existing', contact_id: '',
-        new_contact_name: '', new_contact_email: '', new_contact_company: ''
+        new_contact_name: '', new_contact_email: '', new_contact_company: '',
+        expected_start_date: '', duration_months: 1, procurement_delay: 'low'
     });
 
     useEffect(() => {
@@ -26,6 +44,7 @@ const Pipeline = () => {
     }, []);
 
     const fetchAllData = async () => {
+        setError(null);
         try {
             const [oppsData, usersData, contactsData] = await Promise.all([
                 getOpportunities(),
@@ -36,13 +55,14 @@ const Pipeline = () => {
             setUsers(usersData);
             setContacts(contactsData);
 
-            // Set default owner to "Rob" or first user if available logic needed
+            // Set default owner to "Rob" or first user if available
             const defaultOwner = usersData.find(u => u.name === 'Rob') || usersData[0];
             if (defaultOwner) {
                 setNewOppData(prev => ({ ...prev, owner_id: defaultOwner.id }));
             }
         } catch (e) {
             console.error(e);
+            setError(getErrorMessage(e));
         } finally {
             setLoading(false);
         }
@@ -73,6 +93,7 @@ const Pipeline = () => {
 
     const handleCreate = async (e) => {
         e.preventDefault();
+        setSaving(true);
         try {
             let finalContactId = newOppData.contact_id;
 
@@ -85,7 +106,6 @@ const Pipeline = () => {
                     is_primary: true
                 });
                 finalContactId = newContact.id;
-                // Add to local list
                 setContacts(prev => [...prev, newContact]);
             }
 
@@ -95,17 +115,33 @@ const Pipeline = () => {
                 value: parseInt(newOppData.value || 0),
                 stage: newOppData.stage,
                 owner_id: newOppData.owner_id ? parseInt(newOppData.owner_id) : null,
-                contact_id: finalContactId ? parseInt(finalContactId) : null
+                contact_id: finalContactId ? parseInt(finalContactId) : null,
+                expected_start_date: newOppData.expected_start_date || null,
+                duration_months: parseInt(newOppData.duration_months) || 1,
+                procurement_delay: newOppData.procurement_delay || 'low'
             });
 
             setIsAddModalOpen(false);
-            setNewOppData({ // Reset
+            setNewOppData({
                 name: '', value: 0, stage: 'Initial', owner_id: newOppData.owner_id, contact_mode: 'existing', contact_id: '',
-                new_contact_name: '', new_contact_email: '', new_contact_company: ''
+                new_contact_name: '', new_contact_email: '', new_contact_company: '',
+                expected_start_date: '', duration_months: 1, procurement_delay: 'low'
             });
-            fetchAllData(); // Refresh to catch all links
+            fetchAllData();
         } catch (err) {
-            alert("Failed to create opportunity: " + (err.response?.data?.detail || err.message));
+            alert("Failed to create opportunity: " + getErrorMessage(err));
+        } finally {
+            setSaving(false);
+        }
+    };
+
+    const handleDelete = async (opp) => {
+        try {
+            await deleteOpportunity(opp.id);
+            setDeleteConfirm(null);
+            setOpportunities(prev => prev.filter(o => o.id !== opp.id));
+        } catch (err) {
+            alert("Failed to delete: " + getErrorMessage(err));
         }
     };
 
@@ -113,18 +149,21 @@ const Pipeline = () => {
         e.preventDefault();
         if (!editingOpp) return;
 
+        setSaving(true);
         try {
             // Update Opportunity Fields
             await updateOpportunity(editingOpp.id, {
                 name: editingOpp.name,
                 value: parseInt(editingOpp.value || 0),
                 stage: editingOpp.stage,
-                owner_id: editingOpp.owner_id ? parseInt(editingOpp.owner_id) : null
+                owner_id: editingOpp.owner_id ? parseInt(editingOpp.owner_id) : null,
+                expected_start_date: editingOpp.expected_start_date || null,
+                duration_months: parseInt(editingOpp.duration_months) || 1,
+                procurement_delay: editingOpp.procurement_delay || 'low'
             });
 
             // Update Linked Contact Fields (if changed)
             if (editingOpp.contact && editingOpp.contact.id) {
-                // Check if dirty? For now just send update is safer/easier
                 await updateContact(editingOpp.contact.id, {
                     name: editingOpp.contact.name,
                     email: editingOpp.contact.email,
@@ -135,13 +174,25 @@ const Pipeline = () => {
             setEditingOpp(null);
             fetchAllData();
         } catch (err) {
-            alert("Failed to save changes");
+            alert("Failed to save: " + getErrorMessage(err));
+        } finally {
+            setSaving(false);
         }
     };
 
     // --- Render Helpers ---
 
     if (loading) return <div className="p-6 text-gray-500">Loading pipeline...</div>;
+
+    if (error) return (
+        <div className="p-6">
+            <div className="p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-700">
+                <AlertCircle className="h-5 w-5" />
+                <span>{error}</span>
+                <button onClick={fetchAllData} className="ml-auto px-3 py-1 bg-red-100 rounded hover:bg-red-200">Retry</button>
+            </div>
+        </div>
+    );
 
     return (
         <div className="h-full flex flex-col relative overflow-hidden bg-gradient-to-br from-slate-50 to-slate-100">
@@ -166,6 +217,8 @@ const Pipeline = () => {
                     {STAGES.map(stage => {
                         const stageOpps = opportunities.filter(o => o.stage === stage);
                         const totalValue = stageOpps.reduce((sum, o) => sum + (o.value || 0), 0);
+                        const probability = STAGE_PROBABILITIES[stage];
+                        const weightedValue = Math.round(totalValue * probability / 100);
 
                         return (
                             <div key={stage} className="w-[19%] min-w-[220px] flex flex-col h-full bg-white/30 rounded-xl border border-white/40 shadow-sm backdrop-blur-sm transition-all duration-300 hover:bg-white/40">
@@ -175,9 +228,11 @@ const Pipeline = () => {
                                         <h3 className="font-extrabold text-slate-700 text-xs uppercase tracking-wider flex items-center gap-2">
                                             {stage}
                                             <span className="bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded-md text-[9px] font-bold">{stageOpps.length}</span>
+                                            <span className="bg-indigo-100 text-indigo-600 px-1.5 py-0.5 rounded-md text-[9px] font-bold">{probability}%</span>
                                         </h3>
-                                        <div className="text-[10px] font-semibold text-slate-400 mt-1">
-                                            £{totalValue.toLocaleString()}
+                                        <div className="text-[10px] font-semibold text-slate-400 mt-1 flex gap-2">
+                                            <span>£{totalValue.toLocaleString()}</span>
+                                            <span className="text-indigo-500">W: £{weightedValue.toLocaleString()}</span>
                                         </div>
                                     </div>
                                     {/* Visual Indicator Line - Compact */}
@@ -233,8 +288,17 @@ const Pipeline = () => {
                                                             ) : (
                                                                 <div className="w-5 h-5 rounded-full bg-slate-100 border-2 border-dashed border-slate-300"></div>
                                                             )}
-                                                            <span className="text-xs font-bold text-slate-700">£{opp.value?.toLocaleString()}</span>
+                                                            <div className="flex flex-col">
+                                                                <span className="text-xs font-bold text-slate-700">£{opp.value?.toLocaleString()}</span>
+                                                                <span className="text-[9px] text-indigo-500">W: £{Math.round((opp.value || 0) * STAGE_PROBABILITIES[stage] / 100).toLocaleString()}</span>
+                                                            </div>
                                                         </div>
+                                                        {opp.expected_start_date && (
+                                                            <div className="text-[9px] text-slate-400 flex items-center gap-0.5">
+                                                                <Calendar size={9} />
+                                                                {new Date(opp.expected_start_date).toLocaleDateString('en-GB', { month: 'short', year: '2-digit' })}
+                                                            </div>
+                                                        )}
                                                     </div>
                                                 </div>
 
@@ -320,6 +384,34 @@ const Pipeline = () => {
 
                             <hr className="border-gray-100 my-2" />
 
+                            {/* Forecast Fields */}
+                            <div className="bg-indigo-50 p-3 rounded-lg border border-indigo-100">
+                                <h4 className="text-xs font-bold text-indigo-700 uppercase mb-3 flex items-center gap-1">
+                                    <Calendar size={12} /> Forecast Details
+                                </h4>
+                                <div className="grid grid-cols-3 gap-3">
+                                    <div>
+                                        <label className="block text-xs font-bold text-gray-500 uppercase">Expected Start</label>
+                                        <input type="date" className="w-full mt-1 border rounded p-2 text-sm"
+                                            value={newOppData.expected_start_date} onChange={e => setNewOppData({ ...newOppData, expected_start_date: e.target.value })} />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-bold text-gray-500 uppercase">Duration (mo)</label>
+                                        <input type="number" min="1" className="w-full mt-1 border rounded p-2 text-sm"
+                                            value={newOppData.duration_months} onChange={e => setNewOppData({ ...newOppData, duration_months: e.target.value })} />
+                                    </div>
+                                    <div>
+                                        <label className="block text-xs font-bold text-gray-500 uppercase">Procurement</label>
+                                        <select className="w-full mt-1 border rounded p-2 text-sm"
+                                            value={newOppData.procurement_delay} onChange={e => setNewOppData({ ...newOppData, procurement_delay: e.target.value })}>
+                                            {PROCUREMENT_DELAYS.map(d => <option key={d.value} value={d.value}>{d.label}</option>)}
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <hr className="border-gray-100 my-2" />
+
                             {/* Contact Section */}
                             <div>
                                 <div className="flex gap-4 mb-2">
@@ -355,7 +447,13 @@ const Pipeline = () => {
 
                             <div className="pt-4 border-t flex justify-end gap-2">
                                 <button type="button" onClick={() => setIsAddModalOpen(false)} className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded">Cancel</button>
-                                <button type="submit" className="px-6 py-2 bg-blue-600 text-white rounded font-medium hover:bg-blue-700">Create Deal</button>
+                                <button
+                                    type="submit"
+                                    disabled={saving}
+                                    className="px-6 py-2 bg-blue-600 text-white rounded font-medium hover:bg-blue-700 disabled:opacity-50"
+                                >
+                                    {saving ? 'Creating...' : 'Create Deal'}
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -413,6 +511,47 @@ const Pipeline = () => {
                                         </select>
                                     </div>
                                 </div>
+
+                                {/* Forecast Fields */}
+                                <div className="mt-4 pt-4 border-t border-gray-200">
+                                    <h4 className="font-bold text-indigo-700 text-sm mb-3 flex items-center gap-2">
+                                        <Calendar size={14} /> Forecast
+                                    </h4>
+                                    <div className="space-y-3">
+                                        <div>
+                                            <label className="block text-xs font-bold text-gray-500 uppercase">Expected Start Date</label>
+                                            <input type="date" className="w-full mt-1 border border-gray-300 rounded p-2"
+                                                value={editingOpp.expected_start_date ? editingOpp.expected_start_date.split('T')[0] : ''}
+                                                onChange={e => setEditingOpp({ ...editingOpp, expected_start_date: e.target.value })} />
+                                        </div>
+                                        <div className="grid grid-cols-2 gap-2">
+                                            <div>
+                                                <label className="block text-xs font-bold text-gray-500 uppercase">Duration (months)</label>
+                                                <input type="number" min="1" className="w-full mt-1 border border-gray-300 rounded p-2"
+                                                    value={editingOpp.duration_months || 1}
+                                                    onChange={e => setEditingOpp({ ...editingOpp, duration_months: e.target.value })} />
+                                            </div>
+                                            <div>
+                                                <label className="block text-xs font-bold text-gray-500 uppercase">Procurement Delay</label>
+                                                <select className="w-full mt-1 border border-gray-300 rounded p-2"
+                                                    value={editingOpp.procurement_delay || 'low'}
+                                                    onChange={e => setEditingOpp({ ...editingOpp, procurement_delay: e.target.value })}>
+                                                    {PROCUREMENT_DELAYS.map(d => (
+                                                        <option key={d.value} value={d.value}>{d.label} - {d.description}</option>
+                                                    ))}
+                                                </select>
+                                            </div>
+                                        </div>
+                                        {editingOpp.value && editingOpp.duration_months > 0 && (
+                                            <div className="bg-indigo-50 p-2 rounded text-xs text-indigo-700">
+                                                <span className="font-bold">Monthly: </span>
+                                                £{Math.round((editingOpp.value || 0) / (editingOpp.duration_months || 1)).toLocaleString()}
+                                                <span className="ml-2 font-bold">Weighted: </span>
+                                                £{Math.round((editingOpp.value || 0) * STAGE_PROBABILITIES[editingOpp.stage] / 100).toLocaleString()}
+                                            </div>
+                                        )}
+                                    </div>
+                                </div>
                             </div>
 
                             {/* Right Column: Contact Info */}
@@ -462,9 +601,53 @@ const Pipeline = () => {
 
                         </form>
 
-                        <div className="p-4 border-t bg-gray-50 flex justify-end gap-3">
-                            <button onClick={() => setEditingOpp(null)} className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded font-medium">Cancel</button>
-                            <button onClick={handleUpdate} className="px-6 py-2 bg-green-600 text-white rounded font-bold hover:bg-green-700 shadow shadow-green-200">Save Changes</button>
+                        <div className="p-4 border-t bg-gray-50 flex justify-between">
+                            <button
+                                onClick={() => setDeleteConfirm(editingOpp)}
+                                className="px-4 py-2 text-red-600 hover:bg-red-50 rounded font-medium flex items-center gap-1"
+                            >
+                                <Trash2 size={16} /> Delete
+                            </button>
+                            <div className="flex gap-3">
+                                <button onClick={() => setEditingOpp(null)} className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded font-medium">Cancel</button>
+                                <button
+                                    onClick={handleUpdate}
+                                    disabled={saving}
+                                    className="px-6 py-2 bg-green-600 text-white rounded font-bold hover:bg-green-700 shadow shadow-green-200 disabled:opacity-50"
+                                >
+                                    {saving ? 'Saving...' : 'Save Changes'}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* DELETE CONFIRMATION MODAL */}
+            {deleteConfirm && (
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
+                    <div className="bg-white rounded-xl shadow-2xl w-full max-w-sm p-6">
+                        <h3 className="text-lg font-bold text-gray-900 mb-2">Delete Opportunity</h3>
+                        <p className="text-gray-600 mb-4">
+                            Are you sure you want to delete <strong>{deleteConfirm.name}</strong>?
+                            This cannot be undone.
+                        </p>
+                        <div className="flex justify-end gap-2">
+                            <button
+                                onClick={() => setDeleteConfirm(null)}
+                                className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded font-medium"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={() => {
+                                    handleDelete(deleteConfirm);
+                                    setEditingOpp(null);
+                                }}
+                                className="px-4 py-2 bg-red-600 text-white rounded font-bold hover:bg-red-700"
+                            >
+                                Delete
+                            </button>
                         </div>
                     </div>
                 </div>

@@ -2,6 +2,10 @@ from fastapi import FastAPI
 from app.core.config_loader import ConfigEngine
 import sys
 import logging
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -9,6 +13,7 @@ logger = logging.getLogger(__name__)
 
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import router as api_router
+from app.api.cognito_routes import router as cognito_router
 
 app = FastAPI(title="Tau CRM Backend")
 
@@ -30,6 +35,7 @@ app.add_middleware(
 )
 
 app.include_router(api_router, prefix="/api")
+app.include_router(cognito_router, prefix="/api")
 
 @app.on_event("startup")
 def startup_event():
@@ -38,7 +44,7 @@ def startup_event():
         # Create Tables if they don't exist
         from app.core.database import engine, Base
         # Explicitly import models to register them
-        from app.models.models import Contact, Opportunity, User, Activity
+        from app.models.models import Contact, Opportunity, User, Activity, Company
         
         logger.info(f"Registered tables: {list(Base.metadata.tables.keys())}")
         

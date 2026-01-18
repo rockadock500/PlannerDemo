@@ -1,12 +1,15 @@
 import React, { useState, useEffect } from 'react';
-import { getContacts, updateContact } from '../api';
-import { Edit2, ShieldAlert, CheckCircle, Search } from 'lucide-react';
+import { getContacts, updateContact, deleteContact, getErrorMessage } from '../api';
+import { Edit2, Trash2, Search, AlertCircle } from 'lucide-react';
 
 const DataCleaner = () => {
     const [contacts, setContacts] = useState([]);
     const [filter, setFilter] = useState('');
     const [editingContact, setEditingContact] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
+    const [saving, setSaving] = useState(false);
+    const [deleteConfirm, setDeleteConfirm] = useState(null);
 
     useEffect(() => {
         fetchContacts();
@@ -14,11 +17,13 @@ const DataCleaner = () => {
 
     const fetchContacts = async () => {
         setLoading(true);
+        setError(null);
         try {
             const data = await getContacts();
             setContacts(data);
         } catch (error) {
             console.error("Error fetching contacts:", error);
+            setError(getErrorMessage(error));
         } finally {
             setLoading(false);
         }
@@ -28,6 +33,7 @@ const DataCleaner = () => {
         e.preventDefault();
         if (!editingContact) return;
 
+        setSaving(true);
         try {
             await updateContact(editingContact.id, {
                 name: editingContact.name,
@@ -36,9 +42,21 @@ const DataCleaner = () => {
                 is_primary: editingContact.is_primary
             });
             setEditingContact(null);
-            fetchContacts(); // Refresh
+            fetchContacts();
         } catch (err) {
-            alert("Failed to save update");
+            alert("Failed to save: " + getErrorMessage(err));
+        } finally {
+            setSaving(false);
+        }
+    };
+
+    const handleDelete = async (contact) => {
+        try {
+            await deleteContact(contact.id);
+            setDeleteConfirm(null);
+            fetchContacts();
+        } catch (err) {
+            alert("Failed to delete: " + getErrorMessage(err));
         }
     };
 
@@ -105,12 +123,20 @@ const DataCleaner = () => {
                                         )}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                        <button
-                                            onClick={() => setEditingContact(contact)}
-                                            className="text-indigo-600 hover:text-indigo-900 flex items-center justify-end gap-1 ml-auto"
-                                        >
-                                            <Edit2 className="h-4 w-4" /> Edit
-                                        </button>
+                                        <div className="flex items-center justify-end gap-2">
+                                            <button
+                                                onClick={() => setEditingContact(contact)}
+                                                className="text-indigo-600 hover:text-indigo-900 flex items-center gap-1"
+                                            >
+                                                <Edit2 className="h-4 w-4" /> Edit
+                                            </button>
+                                            <button
+                                                onClick={() => setDeleteConfirm(contact)}
+                                                className="text-red-600 hover:text-red-900 flex items-center gap-1"
+                                            >
+                                                <Trash2 className="h-4 w-4" />
+                                            </button>
+                                        </div>
                                     </td>
                                 </tr>
                             );
@@ -119,9 +145,18 @@ const DataCleaner = () => {
                 </table>
             </div>
 
+            {/* Error Display */}
+            {error && (
+                <div className="mt-4 p-4 bg-red-50 border border-red-200 rounded-lg flex items-center gap-2 text-red-700">
+                    <AlertCircle className="h-5 w-5" />
+                    <span>{error}</span>
+                    <button onClick={fetchContacts} className="ml-auto text-sm underline">Retry</button>
+                </div>
+            )}
+
             {/* Edit Modal */}
             {editingContact && (
-                <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center">
+                <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
                     <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-md">
                         <h3 className="text-lg font-medium text-gray-900 mb-4">Edit Contact</h3>
                         <form onSubmit={handleSave} className="space-y-4">
@@ -137,7 +172,7 @@ const DataCleaner = () => {
                             <div>
                                 <label className="block text-sm font-medium text-gray-700">Email</label>
                                 <input
-                                    type="text"
+                                    type="email"
                                     value={editingContact.email || ''}
                                     onChange={e => setEditingContact({ ...editingContact, email: e.target.value })}
                                     className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2"
@@ -171,12 +206,40 @@ const DataCleaner = () => {
                                 </button>
                                 <button
                                     type="submit"
-                                    className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700"
+                                    disabled={saving}
+                                    className="px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 disabled:opacity-50"
                                 >
-                                    Save
+                                    {saving ? 'Saving...' : 'Save'}
                                 </button>
                             </div>
                         </form>
+                    </div>
+                </div>
+            )}
+
+            {/* Delete Confirmation Modal */}
+            {deleteConfirm && (
+                <div className="fixed inset-0 bg-gray-600 bg-opacity-50 flex items-center justify-center z-50">
+                    <div className="bg-white rounded-lg shadow-xl p-6 w-full max-w-sm">
+                        <h3 className="text-lg font-medium text-gray-900 mb-2">Delete Contact</h3>
+                        <p className="text-gray-600 mb-4">
+                            Are you sure you want to delete <strong>{deleteConfirm.name}</strong>?
+                            This cannot be undone.
+                        </p>
+                        <div className="flex justify-end gap-2">
+                            <button
+                                onClick={() => setDeleteConfirm(null)}
+                                className="px-4 py-2 border border-gray-300 rounded-md text-sm font-medium text-gray-700 bg-white hover:bg-gray-50"
+                            >
+                                Cancel
+                            </button>
+                            <button
+                                onClick={() => handleDelete(deleteConfirm)}
+                                className="px-4 py-2 border border-transparent rounded-md text-sm font-medium text-white bg-red-600 hover:bg-red-700"
+                            >
+                                Delete
+                            </button>
+                        </div>
                     </div>
                 </div>
             )}

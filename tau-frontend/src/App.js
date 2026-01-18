@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import DataCleaner from './components/DataCleaner';
 import Pipeline from './components/Pipeline';
-import { LayoutDashboard, Database } from 'lucide-react';
+import Forecast from './components/Forecast';
+import Companies from './components/Companies';
+import Cognito from './components/Cognito';
+import { LayoutDashboard, Database, TrendingUp, Building2, Bot } from 'lucide-react';
 
 function App() {
   const [view, setView] = useState('pipeline');
@@ -38,6 +41,36 @@ function App() {
                 Pipeline
               </button>
               <button
+                onClick={() => setView('forecast')}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${view === 'forecast'
+                  ? 'bg-white text-indigo-600 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-700'
+                  }`}
+              >
+                <TrendingUp size={16} />
+                Forecast
+              </button>
+              <button
+                onClick={() => setView('companies')}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${view === 'companies'
+                  ? 'bg-white text-indigo-600 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-700'
+                  }`}
+              >
+                <Building2 size={16} />
+                Companies
+              </button>
+              <button
+                onClick={() => setView('cognito')}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${view === 'cognito'
+                  ? 'bg-white text-indigo-600 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-700'
+                  }`}
+              >
+                <Bot size={16} />
+                Cognito
+              </button>
+              <button
                 onClick={() => setView('cleaner')}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${view === 'cleaner'
                   ? 'bg-white text-indigo-600 shadow-sm'
@@ -45,7 +78,7 @@ function App() {
                   }`}
               >
                 <Database size={16} />
-                Data Cleaner
+                Data
               </button>
             </div>
 
@@ -75,7 +108,11 @@ function App() {
 
       {/* Main Content - Full Width */}
       <main className="flex-1 w-full overflow-hidden flex flex-col">
-        {view === 'pipeline' ? <Pipeline /> : <DataCleaner />}
+        {view === 'pipeline' && <Pipeline />}
+        {view === 'forecast' && <Forecast />}
+        {view === 'companies' && <Companies />}
+        {view === 'cognito' && <Cognito />}
+        {view === 'cleaner' && <DataCleaner />}
       </main>
     </div>
   );
