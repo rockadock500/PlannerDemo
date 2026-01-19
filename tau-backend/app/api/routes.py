@@ -444,9 +444,14 @@ def read_opportunities(
     limit: int = Query(100, ge=1, le=1000, description="Max records to return"),
     stage: Optional[str] = Query(None, description="Filter by stage"),
     owner_id: Optional[int] = Query(None, description="Filter by owner"),
+    include_archived: bool = Query(False, description="Include archived opportunities"),
     db: Session = Depends(get_db)
 ):
     query = db.query(Opportunity)
+
+    # Exclude archived by default
+    if not include_archived:
+        query = query.filter((Opportunity.is_archived == False) | (Opportunity.is_archived == None))
 
     if stage:
         query = query.filter(Opportunity.stage == stage)
@@ -490,6 +495,48 @@ def delete_opportunity(opp_id: int, db: Session = Depends(get_db)):
     db.delete(opp)
     db.commit()
     return {"message": "Opportunity deleted successfully", "id": opp_id}
+
+
+# -----------------
+# ARCHIVE OPERATIONS
+# -----------------
+
+@router.get("/opportunities/archived", response_model=List[OpportunityOut])
+def read_archived_opportunities(
+    skip: int = Query(0, ge=0, description="Number of records to skip"),
+    limit: int = Query(100, ge=1, le=1000, description="Max records to return"),
+    db: Session = Depends(get_db)
+):
+    """Get all archived opportunities."""
+    query = db.query(Opportunity).filter(Opportunity.is_archived == True)
+    query = query.order_by(Opportunity.archived_at.desc())
+    return query.offset(skip).limit(limit).all()
+
+@router.post("/opportunities/{opp_id}/archive", response_model=OpportunityOut)
+def archive_opportunity(opp_id: int, db: Session = Depends(get_db)):
+    """Archive an opportunity (move to archived state)."""
+    opp = db.query(Opportunity).filter(Opportunity.id == opp_id).first()
+    if not opp:
+        raise HTTPException(status_code=404, detail="Opportunity not found")
+
+    opp.is_archived = True
+    opp.archived_at = datetime.utcnow()
+    db.commit()
+    db.refresh(opp)
+    return opp
+
+@router.post("/opportunities/{opp_id}/unarchive", response_model=OpportunityOut)
+def unarchive_opportunity(opp_id: int, db: Session = Depends(get_db)):
+    """Unarchive an opportunity (restore to active pipeline)."""
+    opp = db.query(Opportunity).filter(Opportunity.id == opp_id).first()
+    if not opp:
+        raise HTTPException(status_code=404, detail="Opportunity not found")
+
+    opp.is_archived = False
+    opp.archived_at = None
+    db.commit()
+    db.refresh(opp)
+    return opp
 
 
 # -----------------

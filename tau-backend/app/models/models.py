@@ -76,6 +76,10 @@ class Opportunity(Base):
     duration_months = Column(Integer, default=1)
     procurement_delay = Column(String, default="low")  # low/medium/high
 
+    # Archive fields
+    is_archived = Column(Boolean, default=False)
+    archived_at = Column(DateTime, nullable=True)
+
     # Audit fields
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)

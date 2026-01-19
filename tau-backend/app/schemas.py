@@ -114,6 +114,10 @@ class OpportunityOut(OpportunityBase):
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
 
+    # Archive fields
+    is_archived: bool = False
+    archived_at: Optional[datetime] = None
+
     # Computed fields for weighted pipeline
     weighted_value: Optional[int] = None
     stage_probability: Optional[float] = None

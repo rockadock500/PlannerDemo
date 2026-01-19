@@ -4,7 +4,8 @@ import Pipeline from './components/Pipeline';
 import Forecast from './components/Forecast';
 import Companies from './components/Companies';
 import Cognito from './components/Cognito';
-import { LayoutDashboard, Database, TrendingUp, Building2, Bot } from 'lucide-react';
+import Archive from './components/Archive';
+import { LayoutDashboard, Database, TrendingUp, Building2, Bot, Archive as ArchiveIcon } from 'lucide-react';
 
 function App() {
   const [view, setView] = useState('pipeline');
@@ -61,6 +62,16 @@ function App() {
                 Companies
               </button>
               <button
+                onClick={() => setView('archive')}
+                className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${view === 'archive'
+                  ? 'bg-white text-amber-600 shadow-sm'
+                  : 'text-slate-500 hover:text-slate-700'
+                  }`}
+              >
+                <ArchiveIcon size={16} />
+                Archive
+              </button>
+              <button
                 onClick={() => setView('cognito')}
                 className={`flex items-center gap-2 px-3 py-1.5 rounded-md text-sm font-medium transition-all ${view === 'cognito'
                   ? 'bg-white text-indigo-600 shadow-sm'
@@ -111,6 +122,7 @@ function App() {
         {view === 'pipeline' && <Pipeline />}
         {view === 'forecast' && <Forecast />}
         {view === 'companies' && <Companies />}
+        {view === 'archive' && <Archive />}
         {view === 'cognito' && <Cognito />}
         {view === 'cleaner' && <DataCleaner />}
       </main>

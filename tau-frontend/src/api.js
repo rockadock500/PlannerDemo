@@ -79,6 +79,21 @@ export const deleteOpportunity = async (id) => {
     return response.data;
 };
 
+export const getArchivedOpportunities = async (params = {}) => {
+    const response = await api.get('/opportunities/archived', { params });
+    return response.data;
+};
+
+export const archiveOpportunity = async (id) => {
+    const response = await api.post(`/opportunities/${id}/archive`);
+    return response.data;
+};
+
+export const unarchiveOpportunity = async (id) => {
+    const response = await api.post(`/opportunities/${id}/unarchive`);
+    return response.data;
+};
+
 // -----------------
 // USERS
 // -----------------

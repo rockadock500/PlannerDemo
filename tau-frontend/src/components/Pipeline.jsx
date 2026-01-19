@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getOpportunities, updateOpportunity, createOpportunity, deleteOpportunity, getUsers, getContacts, createContact, updateContact, getErrorMessage } from '../api';
-import { Edit2, Plus, User as UserIcon, Building, Mail, Trash2, AlertCircle, Calendar } from 'lucide-react';
+import { getOpportunities, updateOpportunity, createOpportunity, deleteOpportunity, archiveOpportunity, getUsers, getContacts, createContact, updateContact, getErrorMessage } from '../api';
+import { Edit2, Plus, User as UserIcon, Building, Mail, Trash2, AlertCircle, Calendar, Archive } from 'lucide-react';
 
 const STAGES = ['Initial', 'Engaged', 'Proposal', 'Verbal', 'Signed'];
 
@@ -145,6 +145,16 @@ const Pipeline = () => {
         }
     };
 
+    const handleArchive = async (opp) => {
+        try {
+            await archiveOpportunity(opp.id);
+            setEditingOpp(null);
+            setOpportunities(prev => prev.filter(o => o.id !== opp.id));
+        } catch (err) {
+            alert("Failed to archive: " + getErrorMessage(err));
+        }
+    };
+
     const handleUpdate = async (e) => {
         e.preventDefault();
         if (!editingOpp) return;
@@ -225,12 +235,12 @@ const Pipeline = () => {
                                 {/* Column Header */}
                                 <div className="p-3 mb-1 flex items-end justify-between bg-white/40 rounded-t-xl border-b border-white/50">
                                     <div className="flex flex-col">
-                                        <h3 className="font-extrabold text-slate-700 text-xs uppercase tracking-wider flex items-center gap-2">
+                                        <h3 className="font-extrabold text-slate-700 text-sm uppercase tracking-wider flex items-center gap-2">
                                             {stage}
-                                            <span className="bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded-md text-[9px] font-bold">{stageOpps.length}</span>
-                                            <span className="bg-indigo-100 text-indigo-600 px-1.5 py-0.5 rounded-md text-[9px] font-bold">{probability}%</span>
+                                            <span className="bg-slate-200 text-slate-600 px-1.5 py-0.5 rounded-md text-xs font-bold">{stageOpps.length}</span>
+                                            <span className="bg-indigo-100 text-indigo-600 px-1.5 py-0.5 rounded-md text-xs font-bold">{probability}%</span>
                                         </h3>
-                                        <div className="text-[10px] font-semibold text-slate-400 mt-1 flex gap-2">
+                                        <div className="text-sm font-semibold text-slate-400 mt-1 flex gap-2">
                                             <span>£{totalValue.toLocaleString()}</span>
                                             <span className="text-indigo-500">W: £{weightedValue.toLocaleString()}</span>
                                         </div>
@@ -254,7 +264,7 @@ const Pipeline = () => {
                                             <div
                                                 key={opp.id}
                                                 onClick={() => setEditingOpp(JSON.parse(JSON.stringify(opp)))}
-                                                className="bg-white p-3 rounded-lg shadow-sm border border-slate-100 hover:shadow-lg hover:border-indigo-200 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group relative overflow-hidden"
+                                                className="bg-white p-3.5 rounded-lg shadow-sm border border-slate-100 hover:shadow-lg hover:border-indigo-200 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group relative overflow-hidden"
                                             >
                                                 {/* Left Accent */}
                                                 <div className={`absolute left-0 top-0 bottom-0 w-[3px] ${stage === 'Signed' ? 'bg-green-500' : 'bg-indigo-500'
@@ -264,38 +274,38 @@ const Pipeline = () => {
                                                 <div className="pl-2">
                                                     <div className="flex justify-between items-start mb-1">
                                                         {opp.contact?.company ? (
-                                                            <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 truncate max-w-[70%]">
-                                                                <Building size={9} /> {opp.contact.company}
+                                                            <span className="text-xs font-bold text-slate-400 uppercase tracking-wider flex items-center gap-1 truncate max-w-[70%]">
+                                                                <Building size={10} /> {opp.contact.company}
                                                             </span>
                                                         ) : <span className="w-1"></span>}
 
-                                                        {/* AI Score Badge - Compact */}
-                                                        <div className={`px-1 rounded text-[9px] font-bold flex items-center gap-0.5 ${score > 90 ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600'}`} title="Cognito Score">
+                                                        {/* AI Score Badge */}
+                                                        <div className={`px-1.5 rounded text-xs font-bold flex items-center gap-0.5 ${score > 90 ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-600'}`} title="Cognito Score">
                                                             ⚡{score}
                                                         </div>
                                                     </div>
 
-                                                    <h4 className="text-sm font-bold text-slate-800 leading-tight mb-2 truncate">
+                                                    <h4 className="text-base font-bold text-slate-800 leading-tight mb-2 truncate">
                                                         {opp.name}
                                                     </h4>
 
                                                     <div className="flex justify-between items-center pt-2 border-t border-slate-50">
                                                         <div className="flex items-center gap-2">
                                                             {opp.owner ? (
-                                                                <div className="w-5 h-5 rounded-full bg-slate-200 flex items-center justify-center text-[9px] font-bold text-slate-600 border border-white ring-1 ring-slate-100" title={opp.owner.name}>
+                                                                <div className="w-6 h-6 rounded-full bg-slate-200 flex items-center justify-center text-xs font-bold text-slate-600 border border-white ring-1 ring-slate-100" title={opp.owner.name}>
                                                                     {opp.owner.name.charAt(0)}
                                                                 </div>
                                                             ) : (
-                                                                <div className="w-5 h-5 rounded-full bg-slate-100 border-2 border-dashed border-slate-300"></div>
+                                                                <div className="w-6 h-6 rounded-full bg-slate-100 border-2 border-dashed border-slate-300"></div>
                                                             )}
                                                             <div className="flex flex-col">
-                                                                <span className="text-xs font-bold text-slate-700">£{opp.value?.toLocaleString()}</span>
-                                                                <span className="text-[9px] text-indigo-500">W: £{Math.round((opp.value || 0) * STAGE_PROBABILITIES[stage] / 100).toLocaleString()}</span>
+                                                                <span className="text-sm font-semibold text-slate-700">£{opp.value?.toLocaleString()}</span>
+                                                                <span className="text-xs text-indigo-500">W: £{Math.round((opp.value || 0) * STAGE_PROBABILITIES[stage] / 100).toLocaleString()}</span>
                                                             </div>
                                                         </div>
                                                         {opp.expected_start_date && (
-                                                            <div className="text-[9px] text-slate-400 flex items-center gap-0.5">
-                                                                <Calendar size={9} />
+                                                            <div className="text-xs text-slate-400 flex items-center gap-0.5">
+                                                                <Calendar size={11} />
                                                                 {new Date(opp.expected_start_date).toLocaleDateString('en-GB', { month: 'short', year: '2-digit' })}
                                                             </div>
                                                         )}
@@ -303,23 +313,23 @@ const Pipeline = () => {
                                                 </div>
 
                                                 {/* Quick Actions Overlay (Glass) - appearing on hover */}
-                                                <div className="absolute inset-0 bg-white/90 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2 z-10">
+                                                <div className="absolute inset-0 bg-white/90 backdrop-blur-[1px] opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-3 z-10">
                                                     <button
                                                         onClick={(e) => moveStage(opp, -1, e)}
                                                         disabled={stage === 'Initial'}
-                                                        className="p-1.5 rounded-full bg-slate-100 hover:bg-white border border-slate-200 shadow-sm text-slate-500 hover:text-indigo-600 disabled:opacity-50 transition-all hover:scale-110"
+                                                        className="p-2 rounded-full bg-slate-100 hover:bg-white border border-slate-200 shadow-sm text-slate-500 hover:text-indigo-600 disabled:opacity-50 transition-all hover:scale-110"
                                                         title="Previous Stage"
                                                     >
                                                         &larr;
                                                     </button>
                                                     <div className="flex flex-col items-center">
-                                                        <span className="text-[9px] font-black text-slate-300 uppercase tracking-widest mb-1">ACTION</span>
-                                                        <span className="text-xs font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">View</span>
+                                                        <span className="text-xs font-black text-slate-300 uppercase tracking-widest mb-1">ACTION</span>
+                                                        <span className="text-sm font-bold text-slate-800 bg-slate-100 px-2 py-0.5 rounded">View</span>
                                                     </div>
                                                     <button
                                                         onClick={(e) => moveStage(opp, 1, e)}
                                                         disabled={stage === 'Signed'}
-                                                        className="p-1.5 rounded-full bg-indigo-50 hover:bg-indigo-600 border border-indigo-100 shadow-sm text-indigo-600 hover:text-white disabled:opacity-50 transition-all hover:scale-110"
+                                                        className="p-2 rounded-full bg-indigo-50 hover:bg-indigo-600 border border-indigo-100 shadow-sm text-indigo-600 hover:text-white disabled:opacity-50 transition-all hover:scale-110"
                                                         title="Next Stage"
                                                     >
                                                         &rarr;
@@ -602,12 +612,23 @@ const Pipeline = () => {
                         </form>
 
                         <div className="p-4 border-t bg-gray-50 flex justify-between">
-                            <button
-                                onClick={() => setDeleteConfirm(editingOpp)}
-                                className="px-4 py-2 text-red-600 hover:bg-red-50 rounded font-medium flex items-center gap-1"
-                            >
-                                <Trash2 size={16} /> Delete
-                            </button>
+                            <div className="flex gap-2">
+                                <button
+                                    onClick={() => setDeleteConfirm(editingOpp)}
+                                    className="px-4 py-2 text-red-600 hover:bg-red-50 rounded font-medium flex items-center gap-1"
+                                >
+                                    <Trash2 size={16} /> Delete
+                                </button>
+                                {editingOpp.stage === 'Signed' && (
+                                    <button
+                                        onClick={() => handleArchive(editingOpp)}
+                                        className="px-4 py-2 text-amber-600 hover:bg-amber-50 rounded font-medium flex items-center gap-1"
+                                        title="Archive this completed deal"
+                                    >
+                                        <Archive size={16} /> Archive
+                                    </button>
+                                )}
+                            </div>
                             <div className="flex gap-3">
                                 <button onClick={() => setEditingOpp(null)} className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded font-medium">Cancel</button>
                                 <button
