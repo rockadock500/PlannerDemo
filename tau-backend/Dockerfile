@@ -2,6 +2,7 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
+# Cache bust: 2026-01-19
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
