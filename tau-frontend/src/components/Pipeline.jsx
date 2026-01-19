@@ -31,6 +31,7 @@ const Pipeline = () => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [deleteConfirm, setDeleteConfirm] = useState(null);
     const [saving, setSaving] = useState(false);
+    const [filterOwner, setFilterOwner] = useState('all');
 
     // Form State (Add New)
     const [newOppData, setNewOppData] = useState({
@@ -212,20 +213,39 @@ const Pipeline = () => {
                     <h2 className="text-2xl font-bold text-slate-800 tracking-tight">Pipeline Overview</h2>
                     <p className="text-xs text-slate-500 mt-1">Manage your deals and track AI insights</p>
                 </div>
-                <button
-                    onClick={() => setIsAddModalOpen(true)}
-                    className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all transform hover:scale-105 active:scale-95"
-                >
-                    <Plus size={18} strokeWidth={2.5} />
-                    New Lead
-                </button>
+                <div className="flex items-center gap-4">
+                    {/* Owner Filter */}
+                    <div className="flex items-center gap-2">
+                        <UserIcon size={16} className="text-slate-400" />
+                        <select
+                            value={filterOwner}
+                            onChange={(e) => setFilterOwner(e.target.value)}
+                            className="bg-white/70 border border-slate-200 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                        >
+                            <option value="all">All Owners</option>
+                            {users.map(u => (
+                                <option key={u.id} value={u.id}>{u.name}</option>
+                            ))}
+                        </select>
+                    </div>
+                    <button
+                        onClick={() => setIsAddModalOpen(true)}
+                        className="flex items-center gap-2 px-5 py-2.5 bg-indigo-600 text-white rounded-xl font-semibold hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all transform hover:scale-105 active:scale-95"
+                    >
+                        <Plus size={18} strokeWidth={2.5} />
+                        New Lead
+                    </button>
+                </div>
             </div>
 
             {/* Kanban Board - Full Screen Fluid Optimized */}
             <div className="flex-1 overflow-x-auto overflow-y-hidden p-4 scrollbar-hide">
                 <div className="flex gap-4 h-full min-w-full">
                     {STAGES.map(stage => {
-                        const stageOpps = opportunities.filter(o => o.stage === stage);
+                        const filteredOpps = filterOwner === 'all'
+                            ? opportunities
+                            : opportunities.filter(o => o.owner_id === parseInt(filterOwner));
+                        const stageOpps = filteredOpps.filter(o => o.stage === stage);
                         const totalValue = stageOpps.reduce((sum, o) => sum + (o.value || 0), 0);
                         const probability = STAGE_PROBABILITIES[stage];
                         const weightedValue = Math.round(totalValue * probability / 100);

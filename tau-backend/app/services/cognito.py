@@ -22,7 +22,7 @@ def get_grok_api_key():
     return os.getenv("GROK_API_KEY", "")
 
 GROK_API_URL = "https://api.x.ai/v1/chat/completions"
-GROK_MODEL = "grok-beta"
+GROK_MODEL = "grok-3-fast"  # Grok 3 fast reasoning model
 
 # Session storage for pending actions (in production, use Redis or similar)
 pending_actions: Dict[str, Dict] = {}
