@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-// Use Environment Variable or Default to Localhost
-const BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:8000';
+// Production API URL - fallback to localhost for local dev
+const BASE_URL = process.env.NODE_ENV === 'production'
+    ? 'https://tau-crm-production.up.railway.app'
+    : 'http://localhost:8000';
 const API_URL = `${BASE_URL}/api`;
 
 // Create axios instance with default config
