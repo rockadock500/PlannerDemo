@@ -51,6 +51,17 @@ def startup_event():
         Base.metadata.create_all(bind=engine)
         logger.info("Database tables created.")
 
+        # Run migrations for new columns
+        from sqlalchemy import text
+        with engine.connect() as conn:
+            try:
+                conn.execute(text('ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS is_archived BOOLEAN DEFAULT FALSE'))
+                conn.execute(text('ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS archived_at TIMESTAMP'))
+                conn.commit()
+                logger.info("Database migrations applied.")
+            except Exception as e:
+                logger.warning(f"Migration note: {e}")
+
         # Load configs from the 'configs' directory relative to where the app is run
         # Expecting to run from 'tau-backend' root
         ConfigEngine.load("configs")
