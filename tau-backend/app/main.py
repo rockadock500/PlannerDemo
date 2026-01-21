@@ -55,8 +55,20 @@ def startup_event():
         from sqlalchemy import text
         with engine.connect() as conn:
             try:
-                conn.execute(text('ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS is_archived BOOLEAN DEFAULT FALSE'))
-                conn.execute(text('ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS archived_at TIMESTAMP'))
+                # Add all potentially missing columns
+                migrations = [
+                    'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS company_id INTEGER',
+                    'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS is_archived BOOLEAN DEFAULT FALSE',
+                    'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS archived_at TIMESTAMP',
+                    'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS expected_start_date TIMESTAMP',
+                    'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS duration_months INTEGER DEFAULT 1',
+                    'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS procurement_delay VARCHAR(10) DEFAULT \'low\'',
+                ]
+                for sql in migrations:
+                    try:
+                        conn.execute(text(sql))
+                    except Exception as e:
+                        logger.warning(f"Migration skipped: {e}")
                 conn.commit()
                 logger.info("Database migrations applied.")
             except Exception as e:
