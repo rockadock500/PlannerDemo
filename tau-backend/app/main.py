@@ -63,6 +63,8 @@ def startup_event():
                     'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS expected_start_date TIMESTAMP',
                     'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS duration_months INTEGER DEFAULT 1',
                     'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS procurement_delay VARCHAR(10) DEFAULT \'low\'',
+                    'ALTER TABLE contacts ADD COLUMN IF NOT EXISTS company_id INTEGER',
+                    'ALTER TABLE contacts ADD COLUMN IF NOT EXISTS is_primary BOOLEAN DEFAULT FALSE',
                 ]
                 for sql in migrations:
                     try:
