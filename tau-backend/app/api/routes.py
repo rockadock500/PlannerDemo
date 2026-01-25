@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
-from sqlalchemy.orm import Session
+from sqlalchemy.orm import Session, joinedload
 from typing import List, Optional
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
@@ -147,14 +147,18 @@ def read_company_contacts(company_id: int, db: Session = Depends(get_db)):
     company = db.query(Company).filter(Company.id == company_id).first()
     if not company:
         raise HTTPException(status_code=404, detail="Company not found")
-    return db.query(Contact).filter(Contact.company_id == company_id).all()
+    return db.query(Contact).options(joinedload(Contact.company_rel)).filter(Contact.company_id == company_id).all()
 
 @router.get("/companies/{company_id}/opportunities", response_model=List[OpportunityOut])
 def read_company_opportunities(company_id: int, db: Session = Depends(get_db)):
     company = db.query(Company).filter(Company.id == company_id).first()
     if not company:
         raise HTTPException(status_code=404, detail="Company not found")
-    return db.query(Opportunity).filter(Opportunity.company_id == company_id).all()
+    return db.query(Opportunity).options(
+        joinedload(Opportunity.contact).joinedload(Contact.company_rel),
+        joinedload(Opportunity.owner),
+        joinedload(Opportunity.company_rel)
+    ).filter(Opportunity.company_id == company_id).all()
 
 
 # -----------------
@@ -354,7 +358,7 @@ def read_contacts(
     company: Optional[str] = Query(None, description="Filter by company name"),
     db: Session = Depends(get_db)
 ):
-    query = db.query(Contact)
+    query = db.query(Contact).options(joinedload(Contact.company_rel))
 
     # Apply search filter
     if search:
@@ -378,7 +382,7 @@ def read_contacts(
 
 @router.get("/contacts/{contact_id}", response_model=ContactOut)
 def read_contact(contact_id: int, db: Session = Depends(get_db)):
-    contact = db.query(Contact).filter(Contact.id == contact_id).first()
+    contact = db.query(Contact).options(joinedload(Contact.company_rel)).filter(Contact.id == contact_id).first()
     if not contact:
         raise HTTPException(status_code=404, detail="Contact not found")
     return contact
@@ -447,7 +451,11 @@ def read_opportunities(
     include_archived: bool = Query(False, description="Include archived opportunities"),
     db: Session = Depends(get_db)
 ):
-    query = db.query(Opportunity)
+    query = db.query(Opportunity).options(
+        joinedload(Opportunity.contact).joinedload(Contact.company_rel),
+        joinedload(Opportunity.owner),
+        joinedload(Opportunity.company_rel)
+    )
 
     # Exclude archived by default
     if not include_archived:
@@ -463,7 +471,11 @@ def read_opportunities(
 
 @router.get("/opportunities/{opp_id}", response_model=OpportunityOut)
 def read_opportunity(opp_id: int, db: Session = Depends(get_db)):
-    opp = db.query(Opportunity).filter(Opportunity.id == opp_id).first()
+    opp = db.query(Opportunity).options(
+        joinedload(Opportunity.contact).joinedload(Contact.company_rel),
+        joinedload(Opportunity.owner),
+        joinedload(Opportunity.company_rel)
+    ).filter(Opportunity.id == opp_id).first()
     if not opp:
         raise HTTPException(status_code=404, detail="Opportunity not found")
     return opp
@@ -508,7 +520,11 @@ def read_archived_opportunities(
     db: Session = Depends(get_db)
 ):
     """Get all archived opportunities."""
-    query = db.query(Opportunity).filter(Opportunity.is_archived == True)
+    query = db.query(Opportunity).options(
+        joinedload(Opportunity.contact).joinedload(Contact.company_rel),
+        joinedload(Opportunity.owner),
+        joinedload(Opportunity.company_rel)
+    ).filter(Opportunity.is_archived == True)
     query = query.order_by(Opportunity.archived_at.desc())
     return query.offset(skip).limit(limit).all()
 
