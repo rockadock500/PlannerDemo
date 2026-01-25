@@ -99,3 +99,21 @@ def debug_env():
         "is_sqlite": "sqlite" in db_url,
         "cwd": os.getcwd()
     }
+
+@app.get("/debug-contacts")
+def debug_contacts():
+    """Debug endpoint to catch contact loading errors."""
+    try:
+        from app.core.database import SessionLocal
+        from app.models.models import Contact
+        from sqlalchemy.orm import joinedload
+
+        db = SessionLocal()
+        try:
+            contacts = db.query(Contact).options(joinedload(Contact.company_rel)).limit(5).all()
+            return {"status": "ok", "count": len(contacts), "first": contacts[0].name if contacts else None}
+        finally:
+            db.close()
+    except Exception as e:
+        import traceback
+        return {"status": "error", "error": str(e), "traceback": traceback.format_exc()}
