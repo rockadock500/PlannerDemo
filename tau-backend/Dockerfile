@@ -2,9 +2,12 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Cache bust: 2026-01-19
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Force Docker cache invalidation - change CACHEBUST value to rebuild
+ARG CACHEBUST=1
+RUN echo "Build timestamp: $CACHEBUST"
 
 COPY . .
 

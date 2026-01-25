@@ -5,6 +5,10 @@ WORKDIR /app
 COPY package*.json ./
 RUN npm install
 
+# Force Docker cache invalidation - change CACHEBUST value to rebuild
+ARG CACHEBUST=1
+RUN echo "Build timestamp: $CACHEBUST"
+
 COPY . .
 RUN npm run build
 
