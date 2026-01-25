@@ -63,6 +63,8 @@ def startup_event():
                     'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS expected_start_date TIMESTAMP',
                     'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS duration_months INTEGER DEFAULT 1',
                     'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS procurement_delay VARCHAR(10) DEFAULT \'low\'',
+                    'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT NOW()',
+                    'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP DEFAULT NOW()',
                     'ALTER TABLE contacts ADD COLUMN IF NOT EXISTS company_id INTEGER',
                     'ALTER TABLE contacts ADD COLUMN IF NOT EXISTS is_primary BOOLEAN DEFAULT FALSE',
                 ]
@@ -94,7 +96,41 @@ def health_check():
 
 @app.get("/version")
 def get_version():
-    return {"version": "2025-01-25-v2", "deployed": True}
+    return {"version": "2025-01-25-v3", "deployed": True}
+
+@app.get("/run-migrations")
+def run_migrations():
+    """Manually run migrations and report results."""
+    from app.core.database import engine
+    from sqlalchemy import text, inspect
+
+    results = []
+    inspector = inspect(engine)
+
+    # Get current columns
+    opp_cols = [c['name'] for c in inspector.get_columns('opportunities')]
+    results.append(f"Current opportunity columns: {opp_cols}")
+
+    migrations = [
+        'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS created_at TIMESTAMP DEFAULT NOW()',
+        'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP DEFAULT NOW()',
+    ]
+
+    with engine.connect() as conn:
+        for sql in migrations:
+            try:
+                conn.execute(text(sql))
+                results.append(f"OK: {sql[:50]}...")
+            except Exception as e:
+                results.append(f"FAIL: {sql[:50]}... - {e}")
+        conn.commit()
+
+    # Check again
+    inspector = inspect(engine)
+    opp_cols_after = [c['name'] for c in inspector.get_columns('opportunities')]
+    results.append(f"After migration columns: {opp_cols_after}")
+
+    return {"results": results}
 
 @app.get("/debug-env")
 def debug_env():
