@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 // Production API URL - fallback to localhost for local dev
-const BASE_URL = import.meta.env.PROD
+const BASE_URL = process.env.NODE_ENV === 'production'
     ? 'https://tau-crm-production.up.railway.app'
     : 'http://localhost:8000';
 const API_URL = `${BASE_URL}/api`;
