@@ -18,6 +18,21 @@ const PROCUREMENT_DELAYS = [
     { value: 'high', label: 'High', description: '+3 months buffer' }
 ];
 
+// Subtle owner color coding - pastel backgrounds
+const OWNER_COLORS = {
+    1: 'bg-blue-50 border-l-blue-300',      // Rob
+    2: 'bg-emerald-50 border-l-emerald-300', // User 2
+    3: 'bg-amber-50 border-l-amber-300',     // Jill
+    4: 'bg-rose-50 border-l-rose-300',       // David
+    5: 'bg-violet-50 border-l-violet-300',   // Zuzanna
+    6: 'bg-cyan-50 border-l-cyan-300',       // Ruarri
+    7: 'bg-orange-50 border-l-orange-300',   // Andy
+};
+
+const getOwnerColor = (ownerId) => {
+    return OWNER_COLORS[ownerId] || 'bg-white border-l-slate-300';
+};
+
 const Pipeline = () => {
     // Data State
     const [opportunities, setOpportunities] = useState([]);
@@ -284,11 +299,10 @@ const Pipeline = () => {
                                             <div
                                                 key={opp.id}
                                                 onClick={() => setEditingOpp(JSON.parse(JSON.stringify(opp)))}
-                                                className="bg-white p-3.5 rounded-lg shadow-sm border border-slate-100 hover:shadow-lg hover:border-indigo-200 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group relative overflow-hidden"
+                                                className={`${getOwnerColor(opp.owner_id).split(' ')[0]} p-3.5 rounded-lg shadow-sm border border-slate-100 hover:shadow-lg hover:border-indigo-200 hover:-translate-y-0.5 transition-all duration-200 cursor-pointer group relative overflow-hidden`}
                                             >
-                                                {/* Left Accent */}
-                                                <div className={`absolute left-0 top-0 bottom-0 w-[3px] ${stage === 'Signed' ? 'bg-green-500' : 'bg-indigo-500'
-                                                    }`}></div>
+                                                {/* Left Accent - Owner Color */}
+                                                <div className={`absolute left-0 top-0 bottom-0 w-[3px] ${getOwnerColor(opp.owner_id).split(' ')[1]?.replace('border-l-', 'bg-') || (stage === 'Signed' ? 'bg-green-500' : 'bg-indigo-500')}`}></div>
 
                                                 {/* Card Content */}
                                                 <div className="pl-2">
