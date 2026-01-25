@@ -90,6 +90,10 @@ def health_check():
         "configs_loaded": ConfigEngine.get_all_config_names()
     }
 
+@app.get("/version")
+def get_version():
+    return {"version": "2025-01-25-v2", "deployed": True}
+
 @app.get("/debug-env")
 def debug_env():
     import os
