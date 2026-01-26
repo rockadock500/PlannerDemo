@@ -39,7 +39,7 @@ class Contact(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, index=True)
-    email = Column(String, unique=True, index=True)
+    email = Column(String, index=True)  # Removed unique constraint - allow duplicate/empty emails
     company = Column(String, index=True)  # Legacy string field for backwards compat
     company_id = Column(Integer, ForeignKey("companies.id"), nullable=True)
     phone = Column(String, nullable=True)

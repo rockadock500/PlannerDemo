@@ -67,6 +67,7 @@ def startup_event():
                     'ALTER TABLE opportunities ADD COLUMN IF NOT EXISTS updated_at TIMESTAMP DEFAULT NOW()',
                     'ALTER TABLE contacts ADD COLUMN IF NOT EXISTS company_id INTEGER',
                     'ALTER TABLE contacts ADD COLUMN IF NOT EXISTS is_primary BOOLEAN DEFAULT FALSE',
+                    'DROP INDEX IF EXISTS ix_contacts_email',  # Remove unique email constraint
                 ]
                 for sql in migrations:
                     try:
