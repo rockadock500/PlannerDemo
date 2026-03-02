@@ -68,6 +68,8 @@ def startup_event():
                     'ALTER TABLE contacts ADD COLUMN IF NOT EXISTS company_id INTEGER',
                     'ALTER TABLE contacts ADD COLUMN IF NOT EXISTS is_primary BOOLEAN DEFAULT FALSE',
                     'DROP INDEX IF EXISTS ix_contacts_email',  # Remove unique email constraint
+                    'ALTER TABLE contacts DROP CONSTRAINT IF EXISTS contacts_email_key',  # Remove PG unique constraint
+                    'ALTER TABLE contacts DROP CONSTRAINT IF EXISTS uq_contacts_email',  # Alternative constraint name
                 ]
                 for sql in migrations:
                     try:

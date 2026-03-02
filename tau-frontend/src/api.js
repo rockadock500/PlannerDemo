@@ -12,10 +12,47 @@ const api = axios.create({
     timeout: 10000,
 });
 
+// Error logging interceptor - captures all API errors with context
+api.interceptors.response.use(
+    (response) => response,
+    (error) => {
+        const logEntry = {
+            timestamp: new Date().toISOString(),
+            method: error.config?.method?.toUpperCase(),
+            url: error.config?.url,
+            status: error.response?.status,
+            statusText: error.response?.statusText,
+            detail: error.response?.data?.detail,
+            requestData: error.config?.data ? JSON.parse(error.config.data) : undefined,
+        };
+        console.error('[TAU CRM API Error]', logEntry);
+
+        // Store recent errors for debugging (keep last 50)
+        const stored = JSON.parse(localStorage.getItem('tau_crm_error_log') || '[]');
+        stored.push(logEntry);
+        if (stored.length > 50) stored.splice(0, stored.length - 50);
+        localStorage.setItem('tau_crm_error_log', JSON.stringify(stored));
+
+        return Promise.reject(error);
+    }
+);
+
 // Helper to extract error message
 const getErrorMessage = (error) => {
     if (error.response?.data?.detail) {
-        return error.response.data.detail;
+        const detail = error.response.data.detail;
+        // Handle Pydantic validation error arrays (422 responses)
+        if (Array.isArray(detail)) {
+            return detail.map(d => {
+                const field = d.loc ? d.loc[d.loc.length - 1] : 'unknown';
+                return `${field}: ${d.msg || 'invalid'}`;
+            }).join('; ');
+        }
+        // Handle structured error objects (e.g. 409 conflict with existing_contact)
+        if (typeof detail === 'object' && detail.message) {
+            return detail.message;
+        }
+        return typeof detail === 'string' ? detail : JSON.stringify(detail);
     }
     if (error.message) {
         return error.message;
@@ -49,6 +86,11 @@ export const updateContact = async (id, data) => {
 
 export const deleteContact = async (id) => {
     const response = await api.delete(`/contacts/${id}`);
+    return response.data;
+};
+
+export const searchContactsByEmail = async (email) => {
+    const response = await api.get('/contacts/search-email', { params: { email } });
     return response.data;
 };
 

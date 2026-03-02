@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getOpportunities, updateOpportunity, createOpportunity, deleteOpportunity, archiveOpportunity, getUsers, getContacts, createContact, updateContact, getErrorMessage } from '../api';
-import { Edit2, Plus, User as UserIcon, Building, Mail, Trash2, AlertCircle, Calendar, Archive } from 'lucide-react';
+import { getOpportunities, updateOpportunity, createOpportunity, deleteOpportunity, archiveOpportunity, getUsers, getContacts, createContact, updateContact, searchContactsByEmail, getErrorMessage } from '../api';
+import { Edit2, Plus, User as UserIcon, Building, Mail, Trash2, AlertCircle, Calendar, Archive, AlertTriangle } from 'lucide-react';
 
 const STAGES = ['Initial', 'Engaged', 'Proposal', 'Verbal', 'Signed'];
 
@@ -33,6 +33,25 @@ const getOwnerColor = (ownerId) => {
     return OWNER_COLORS[ownerId] || 'bg-white border-l-slate-300';
 };
 
+// Convert date-only string to ISO datetime for the backend
+const toISODateTime = (dateStr) => {
+    if (!dateStr) return null;
+    if (dateStr.includes('T')) return dateStr;
+    return dateStr + 'T00:00:00';
+};
+
+// Safe date display - parses date string directly to avoid timezone issues with new Date()
+const formatDateDisplay = (dateStr, options = { month: 'short', year: '2-digit' }) => {
+    if (!dateStr) return '';
+    const datePart = dateStr.split('T')[0]; // "2026-03-15"
+    const [year, month, day] = datePart.split('-').map(Number);
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    if (options.month === 'short' && options.year === '2-digit') {
+        return `${months[month - 1]} ${String(year).slice(-2)}`;
+    }
+    return `${day} ${months[month - 1]} ${year}`;
+};
+
 const Pipeline = () => {
     // Data State
     const [opportunities, setOpportunities] = useState([]);
@@ -54,6 +73,9 @@ const Pipeline = () => {
         new_contact_name: '', new_contact_email: '', new_contact_company: '',
         expected_start_date: '', duration_months: 1, procurement_delay: 'low'
     });
+
+    // Contact conflict resolution state
+    const [emailConflict, setEmailConflict] = useState(null); // { matches: [...], pendingOppData: {...} }
 
     useEffect(() => {
         fetchAllData();
@@ -107,6 +129,28 @@ const Pipeline = () => {
         }
     };
 
+    // Create opportunity with a given contact ID (used after conflict resolution too)
+    const createOppWithContact = async (finalContactId) => {
+        await createOpportunity({
+            name: newOppData.name,
+            value: parseInt(newOppData.value) || 0,
+            stage: newOppData.stage,
+            owner_id: newOppData.owner_id ? parseInt(newOppData.owner_id) : null,
+            contact_id: finalContactId ? parseInt(finalContactId) : null,
+            expected_start_date: toISODateTime(newOppData.expected_start_date),
+            duration_months: parseInt(newOppData.duration_months) || 1,
+            procurement_delay: newOppData.procurement_delay || 'low'
+        });
+        setIsAddModalOpen(false);
+        setEmailConflict(null);
+        setNewOppData({
+            name: '', value: 0, stage: 'Initial', owner_id: newOppData.owner_id, contact_mode: 'existing', contact_id: '',
+            new_contact_name: '', new_contact_email: '', new_contact_company: '',
+            expected_start_date: '', duration_months: 1, procurement_delay: 'low'
+        });
+        fetchAllData();
+    };
+
     const handleCreate = async (e) => {
         e.preventDefault();
         setSaving(true);
@@ -115,9 +159,27 @@ const Pipeline = () => {
 
             // Create Contact if New
             if (newOppData.contact_mode === 'new') {
+                const email = newOppData.new_contact_email?.trim();
+
+                // Check for existing contacts with same email before creating
+                if (email) {
+                    try {
+                        const matches = await searchContactsByEmail(email);
+                        if (matches.length > 0) {
+                            // Show conflict resolution UI
+                            setEmailConflict({ matches });
+                            setSaving(false);
+                            return;
+                        }
+                    } catch (searchErr) {
+                        // If search fails, proceed with creation anyway
+                        console.warn('Email search failed, proceeding with creation:', searchErr);
+                    }
+                }
+
                 const newContact = await createContact({
                     name: newOppData.new_contact_name,
-                    email: newOppData.new_contact_email,
+                    email: email,
                     company: newOppData.new_contact_company,
                     is_primary: true
                 });
@@ -125,27 +187,46 @@ const Pipeline = () => {
                 setContacts(prev => [...prev, newContact]);
             }
 
-            // Create Opportunity
-            await createOpportunity({
-                name: newOppData.name,
-                value: parseInt(newOppData.value || 0),
-                stage: newOppData.stage,
-                owner_id: newOppData.owner_id ? parseInt(newOppData.owner_id) : null,
-                contact_id: finalContactId ? parseInt(finalContactId) : null,
-                expected_start_date: newOppData.expected_start_date || null,
-                duration_months: parseInt(newOppData.duration_months) || 1,
-                procurement_delay: newOppData.procurement_delay || 'low'
-            });
+            await createOppWithContact(finalContactId);
+        } catch (err) {
+            // Handle 409 conflict from backend as fallback
+            if (err.response?.status === 409 && err.response?.data?.detail?.existing_contact) {
+                const existing = err.response.data.detail.existing_contact;
+                setEmailConflict({ matches: [existing] });
+            } else {
+                alert("Failed to create opportunity: " + getErrorMessage(err));
+            }
+        } finally {
+            setSaving(false);
+        }
+    };
 
-            setIsAddModalOpen(false);
-            setNewOppData({
-                name: '', value: 0, stage: 'Initial', owner_id: newOppData.owner_id, contact_mode: 'existing', contact_id: '',
-                new_contact_name: '', new_contact_email: '', new_contact_company: '',
-                expected_start_date: '', duration_months: 1, procurement_delay: 'low'
-            });
-            fetchAllData();
+    // Resolve email conflict: use an existing contact
+    const resolveConflictUseExisting = async (contactId) => {
+        setSaving(true);
+        try {
+            await createOppWithContact(contactId);
         } catch (err) {
             alert("Failed to create opportunity: " + getErrorMessage(err));
+        } finally {
+            setSaving(false);
+        }
+    };
+
+    // Resolve email conflict: create new contact anyway
+    const resolveConflictCreateNew = async () => {
+        setSaving(true);
+        try {
+            const newContact = await createContact({
+                name: newOppData.new_contact_name,
+                email: newOppData.new_contact_email?.trim(),
+                company: newOppData.new_contact_company,
+                is_primary: true
+            });
+            setContacts(prev => [...prev, newContact]);
+            await createOppWithContact(newContact.id);
+        } catch (err) {
+            alert("Failed to create contact: " + getErrorMessage(err));
         } finally {
             setSaving(false);
         }
@@ -172,7 +253,7 @@ const Pipeline = () => {
     };
 
     const handleUpdate = async (e) => {
-        e.preventDefault();
+        if (e && e.preventDefault) e.preventDefault();
         if (!editingOpp) return;
 
         setSaving(true);
@@ -180,10 +261,10 @@ const Pipeline = () => {
             // Update Opportunity Fields
             await updateOpportunity(editingOpp.id, {
                 name: editingOpp.name,
-                value: parseInt(editingOpp.value || 0),
+                value: parseInt(editingOpp.value) || 0,
                 stage: editingOpp.stage,
                 owner_id: editingOpp.owner_id ? parseInt(editingOpp.owner_id) : null,
-                expected_start_date: editingOpp.expected_start_date || null,
+                expected_start_date: toISODateTime(editingOpp.expected_start_date),
                 duration_months: parseInt(editingOpp.duration_months) || 1,
                 procurement_delay: editingOpp.procurement_delay || 'low'
             });
@@ -340,7 +421,7 @@ const Pipeline = () => {
                                                         {opp.expected_start_date && (
                                                             <div className="text-xs text-slate-400 flex items-center gap-0.5">
                                                                 <Calendar size={11} />
-                                                                {new Date(opp.expected_start_date).toLocaleDateString('en-GB', { month: 'short', year: '2-digit' })}
+                                                                {formatDateDisplay(opp.expected_start_date)}
                                                             </div>
                                                         )}
                                                     </div>
@@ -703,6 +784,61 @@ const Pipeline = () => {
                             >
                                 Delete
                             </button>
+                        </div>
+                    </div>
+                </div>
+            )}
+
+            {/* CONTACT EMAIL CONFLICT RESOLUTION MODAL */}
+            {emailConflict && (
+                <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 backdrop-blur-sm">
+                    <div className="bg-white rounded-xl shadow-2xl w-full max-w-md overflow-hidden">
+                        <div className="bg-amber-500 px-6 py-4 flex items-center gap-3">
+                            <AlertTriangle size={20} className="text-white" />
+                            <h3 className="text-white font-bold text-lg">Contact Already Exists</h3>
+                        </div>
+
+                        <div className="p-6 space-y-4">
+                            <p className="text-gray-600 text-sm">
+                                A contact with the email <strong>{newOppData.new_contact_email}</strong> already exists.
+                                How would you like to proceed?
+                            </p>
+
+                            {/* Existing matches */}
+                            <div className="space-y-2">
+                                <p className="text-xs font-bold text-gray-500 uppercase">Existing Contact(s):</p>
+                                {emailConflict.matches.map((match) => (
+                                    <div key={match.id} className="flex items-center justify-between p-3 bg-blue-50 border border-blue-200 rounded-lg">
+                                        <div>
+                                            <div className="font-semibold text-gray-800">{match.name || 'Unnamed'}</div>
+                                            <div className="text-xs text-gray-500">{match.email} {match.company ? `- ${match.company}` : ''}</div>
+                                        </div>
+                                        <button
+                                            onClick={() => resolveConflictUseExisting(match.id)}
+                                            disabled={saving}
+                                            className="px-3 py-1.5 bg-blue-600 text-white text-sm rounded font-medium hover:bg-blue-700 disabled:opacity-50"
+                                        >
+                                            Use This
+                                        </button>
+                                    </div>
+                                ))}
+                            </div>
+
+                            <div className="border-t pt-4 flex justify-between items-center">
+                                <button
+                                    onClick={resolveConflictCreateNew}
+                                    disabled={saving}
+                                    className="px-4 py-2 text-amber-700 bg-amber-50 border border-amber-200 rounded font-medium hover:bg-amber-100 disabled:opacity-50 text-sm"
+                                >
+                                    Create New Anyway
+                                </button>
+                                <button
+                                    onClick={() => setEmailConflict(null)}
+                                    className="px-4 py-2 text-gray-600 hover:bg-gray-100 rounded font-medium text-sm"
+                                >
+                                    Cancel
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

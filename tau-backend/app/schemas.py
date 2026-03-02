@@ -1,6 +1,6 @@
-from pydantic import BaseModel, ConfigDict, Field, computed_field
-from typing import Optional, List, Literal
-from datetime import datetime
+from pydantic import BaseModel, ConfigDict, Field, computed_field, field_validator
+from typing import Optional, List, Literal, Any
+from datetime import datetime, date
 from enum import Enum
 
 
@@ -88,6 +88,25 @@ class OpportunityBase(BaseModel):
     expected_start_date: Optional[datetime] = None
     duration_months: Optional[int] = None
     procurement_delay: Optional[str] = None  # low/medium/high
+
+    @field_validator('expected_start_date', mode='before')
+    @classmethod
+    def parse_date(cls, v: Any) -> Any:
+        if v is None or v == '':
+            return None
+        if isinstance(v, datetime):
+            return v
+        if isinstance(v, date):
+            return datetime(v.year, v.month, v.day)
+        if isinstance(v, str):
+            # Handle date-only strings like "2026-03-15"
+            v = v.strip()
+            if not v:
+                return None
+            if 'T' not in v and len(v) == 10:
+                return datetime.fromisoformat(v + 'T00:00:00')
+            return datetime.fromisoformat(v)
+        return v
 
 class OpportunityCreate(OpportunityBase):
     name: str

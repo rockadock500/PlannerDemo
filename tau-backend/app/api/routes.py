@@ -1,9 +1,12 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session, joinedload
+from sqlalchemy.exc import IntegrityError
 from typing import List, Optional
 from datetime import datetime
 from dateutil.relativedelta import relativedelta
 from collections import defaultdict
+import logging
+import traceback
 
 from app.core.database import SessionLocal
 from app.models.models import Contact, Opportunity, User, Activity, Company, STAGE_PROBABILITIES, PROCUREMENT_DELAY_BUFFERS
@@ -13,6 +16,8 @@ from app.schemas import (ContactOut, ContactUpdate, ContactCreate,
                          ActivityOut, ActivityCreate, ActivityUpdate,
                          CompanyOut, CompanyCreate, CompanyUpdate,
                          ForecastSummary, ForecastPeriod, StageSummary)
+
+logger = logging.getLogger("tau_crm.api")
 
 router = APIRouter()
 
@@ -337,18 +342,48 @@ def get_forecast_quarterly(
 
 @router.post("/contacts", response_model=ContactOut)
 def create_contact(contact_in: ContactCreate, db: Session = Depends(get_db)):
-    # Check dupes? Simple email check
-    if contact_in.email:
+    try:
+        contact = Contact(**contact_in.dict())
+        db.add(contact)
+        db.commit()
+        db.refresh(contact)
+        return contact
+    except IntegrityError as e:
+        db.rollback()
+        logger.error(f"Contact creation integrity error: email={contact_in.email}, error={e}")
+        # Check if it's a duplicate email issue
         existing = db.query(Contact).filter(Contact.email == contact_in.email).first()
         if existing:
-            # Just return existing? Or error? Error is safer for explicit create.
-            raise HTTPException(status_code=400, detail="Contact with this email already exists")
-            
-    contact = Contact(**contact_in.dict())
-    db.add(contact)
-    db.commit()
-    db.refresh(contact)
-    return contact
+            raise HTTPException(
+                status_code=409,
+                detail={
+                    "message": f"A contact with email '{contact_in.email}' already exists",
+                    "existing_contact": {
+                        "id": existing.id,
+                        "name": existing.name,
+                        "email": existing.email,
+                        "company": existing.company
+                    }
+                }
+            )
+        raise HTTPException(status_code=400, detail=f"Failed to create contact: {str(e)}")
+    except Exception as e:
+        db.rollback()
+        logger.error(f"Contact creation failed: email={contact_in.email}, error={e}\n{traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=f"Failed to create contact: {str(e)}")
+
+@router.get("/contacts/search-email", response_model=List[ContactOut])
+def search_contacts_by_email(
+    email: str = Query(..., description="Email to search for"),
+    db: Session = Depends(get_db)
+):
+    """Search for existing contacts by email (case-insensitive partial match)."""
+    contacts = db.query(Contact).options(
+        joinedload(Contact.company_rel)
+    ).filter(
+        Contact.email.ilike(f"%{email}%")
+    ).limit(10).all()
+    return contacts
 
 @router.get("/contacts", response_model=List[ContactOut])
 def read_contacts(
@@ -429,18 +464,32 @@ def delete_contact(contact_id: int, db: Session = Depends(get_db)):
 
 @router.post("/opportunities", response_model=OpportunityOut)
 def create_opportunity(opp_in: OpportunityCreate, db: Session = Depends(get_db)):
-    # Optional Validation: linked contact exists?
-    if opp_in.contact_id:
-        contact = db.query(Contact).filter(Contact.id == opp_in.contact_id).first()
-        if not contact:
-             # If contact ID provided but not found, 404
-             raise HTTPException(status_code=404, detail=f"Contact with id {opp_in.contact_id} not found")
-             
-    opp = Opportunity(**opp_in.dict())
-    db.add(opp)
-    db.commit()
-    db.refresh(opp)
-    return opp
+    try:
+        # Optional Validation: linked contact exists?
+        if opp_in.contact_id:
+            contact = db.query(Contact).filter(Contact.id == opp_in.contact_id).first()
+            if not contact:
+                logger.warning(f"Opportunity creation: contact_id={opp_in.contact_id} not found")
+                raise HTTPException(status_code=404, detail=f"Contact with id {opp_in.contact_id} not found")
+
+        opp = Opportunity(**opp_in.dict())
+        db.add(opp)
+        db.commit()
+        db.refresh(opp)
+        # Re-query with eager loading for response serialization
+        opp = db.query(Opportunity).options(
+            joinedload(Opportunity.contact).joinedload(Contact.company_rel),
+            joinedload(Opportunity.owner),
+            joinedload(Opportunity.company_rel)
+        ).filter(Opportunity.id == opp.id).first()
+        logger.info(f"Opportunity created: id={opp.id}, name={opp.name}, contact_id={opp.contact_id}")
+        return opp
+    except HTTPException:
+        raise
+    except Exception as e:
+        db.rollback()
+        logger.error(f"Opportunity creation failed: name={opp_in.name}, error={e}\n{traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=f"Failed to create opportunity: {str(e)}")
 
 @router.get("/opportunities", response_model=List[OpportunityOut])
 def read_opportunities(
@@ -469,6 +518,22 @@ def read_opportunities(
     opps = query.offset(skip).limit(limit).all()
     return opps
 
+# Archive routes MUST come before /{opp_id} routes to prevent path conflicts
+@router.get("/opportunities/archived", response_model=List[OpportunityOut])
+def read_archived_opportunities(
+    skip: int = Query(0, ge=0, description="Number of records to skip"),
+    limit: int = Query(100, ge=1, le=1000, description="Max records to return"),
+    db: Session = Depends(get_db)
+):
+    """Get all archived opportunities."""
+    query = db.query(Opportunity).options(
+        joinedload(Opportunity.contact).joinedload(Contact.company_rel),
+        joinedload(Opportunity.owner),
+        joinedload(Opportunity.company_rel)
+    ).filter(Opportunity.is_archived == True)
+    query = query.order_by(Opportunity.archived_at.desc())
+    return query.offset(skip).limit(limit).all()
+
 @router.get("/opportunities/{opp_id}", response_model=OpportunityOut)
 def read_opportunity(opp_id: int, db: Session = Depends(get_db)):
     opp = db.query(Opportunity).options(
@@ -484,16 +549,29 @@ def read_opportunity(opp_id: int, db: Session = Depends(get_db)):
 def update_opportunity(opp_id: int, opp_in: OpportunityUpdate, db: Session = Depends(get_db)):
     opp = db.query(Opportunity).filter(Opportunity.id == opp_id).first()
     if not opp:
+        logger.warning(f"Opportunity update: id={opp_id} not found")
         raise HTTPException(status_code=404, detail="Opportunity not found")
 
-    update_data = opp_in.dict(exclude_unset=True)
-    for key, value in update_data.items():
-        setattr(opp, key, value)
+    try:
+        update_data = opp_in.dict(exclude_unset=True)
+        for key, value in update_data.items():
+            setattr(opp, key, value)
 
-    db.add(opp)
-    db.commit()
-    db.refresh(opp)
-    return opp
+        db.add(opp)
+        db.commit()
+        db.refresh(opp)
+        # Re-query with eager loading for response serialization
+        opp = db.query(Opportunity).options(
+            joinedload(Opportunity.contact).joinedload(Contact.company_rel),
+            joinedload(Opportunity.owner),
+            joinedload(Opportunity.company_rel)
+        ).filter(Opportunity.id == opp.id).first()
+        logger.info(f"Opportunity updated: id={opp_id}, fields={list(update_data.keys())}")
+        return opp
+    except Exception as e:
+        db.rollback()
+        logger.error(f"Opportunity update failed: id={opp_id}, error={e}\n{traceback.format_exc()}")
+        raise HTTPException(status_code=500, detail=f"Failed to update opportunity: {str(e)}")
 
 @router.delete("/opportunities/{opp_id}")
 def delete_opportunity(opp_id: int, db: Session = Depends(get_db)):
@@ -512,21 +590,6 @@ def delete_opportunity(opp_id: int, db: Session = Depends(get_db)):
 # -----------------
 # ARCHIVE OPERATIONS
 # -----------------
-
-@router.get("/opportunities/archived", response_model=List[OpportunityOut])
-def read_archived_opportunities(
-    skip: int = Query(0, ge=0, description="Number of records to skip"),
-    limit: int = Query(100, ge=1, le=1000, description="Max records to return"),
-    db: Session = Depends(get_db)
-):
-    """Get all archived opportunities."""
-    query = db.query(Opportunity).options(
-        joinedload(Opportunity.contact).joinedload(Contact.company_rel),
-        joinedload(Opportunity.owner),
-        joinedload(Opportunity.company_rel)
-    ).filter(Opportunity.is_archived == True)
-    query = query.order_by(Opportunity.archived_at.desc())
-    return query.offset(skip).limit(limit).all()
 
 @router.post("/opportunities/{opp_id}/archive", response_model=OpportunityOut)
 def archive_opportunity(opp_id: int, db: Session = Depends(get_db)):
