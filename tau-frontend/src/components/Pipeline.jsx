@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { getOpportunities, updateOpportunity, createOpportunity, deleteOpportunity, archiveOpportunity, getUsers, getContacts, createContact, updateContact, searchContactsByEmail, getErrorMessage } from '../api';
+import { getOpportunities, updateOpportunity, createOpportunity, deleteOpportunity, archiveOpportunity, getUsers, getContacts, createContact, updateContact, searchContactsByEmail, getCompanies, createCompany, getErrorMessage } from '../api';
 import { Edit2, Plus, User as UserIcon, Building, Mail, Trash2, AlertCircle, Calendar, Archive, AlertTriangle } from 'lucide-react';
+import SearchableSelect from './SearchableSelect';
 
 const STAGES = ['Initial', 'Engaged', 'Proposal', 'Verbal', 'Signed'];
 
@@ -57,6 +58,7 @@ const Pipeline = () => {
     const [opportunities, setOpportunities] = useState([]);
     const [users, setUsers] = useState([]);
     const [contacts, setContacts] = useState([]);
+    const [companies, setCompanies] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
@@ -68,11 +70,14 @@ const Pipeline = () => {
     const [filterOwner, setFilterOwner] = useState('all');
 
     // Form State (Add New)
-    const [newOppData, setNewOppData] = useState({
-        name: '', value: 0, stage: 'Initial', owner_id: '', contact_mode: 'existing', contact_id: '',
-        new_contact_name: '', new_contact_email: '', new_contact_company: '',
+    const blankNewOpp = (ownerId = '') => ({
+        name: '', value: 0, stage: 'Initial', owner_id: ownerId,
+        company_mode: 'existing', company_id: '', new_company_name: '',
+        contact_mode: 'existing', contact_id: '',
+        new_contact_name: '', new_contact_email: '',
         expected_start_date: '', duration_months: 1, procurement_delay: 'low'
     });
+    const [newOppData, setNewOppData] = useState(blankNewOpp());
 
     // Contact conflict resolution state
     const [emailConflict, setEmailConflict] = useState(null); // { matches: [...], pendingOppData: {...} }
@@ -84,14 +89,16 @@ const Pipeline = () => {
     const fetchAllData = async () => {
         setError(null);
         try {
-            const [oppsData, usersData, contactsData] = await Promise.all([
-                getOpportunities(),
+            const [oppsData, usersData, contactsData, companiesData] = await Promise.all([
+                getOpportunities({ limit: 1000 }),
                 getUsers(),
-                getContacts()
+                getContacts({ limit: 1000 }),
+                getCompanies({ limit: 1000 })
             ]);
             setOpportunities(oppsData);
             setUsers(usersData);
             setContacts(contactsData);
+            setCompanies(companiesData);
 
             // Set default owner to "Rob" or first user if available
             const defaultOwner = usersData.find(u => u.name === 'Rob') || usersData[0];
@@ -130,31 +137,66 @@ const Pipeline = () => {
     };
 
     // Create opportunity with a given contact ID (used after conflict resolution too)
-    const createOppWithContact = async (finalContactId) => {
+    const createOppWithContact = async (finalContactId, companyId) => {
         await createOpportunity({
             name: newOppData.name,
             value: parseInt(newOppData.value) || 0,
             stage: newOppData.stage,
             owner_id: newOppData.owner_id ? parseInt(newOppData.owner_id) : null,
             contact_id: finalContactId ? parseInt(finalContactId) : null,
+            company_id: companyId ? parseInt(companyId) : null,
             expected_start_date: toISODateTime(newOppData.expected_start_date),
             duration_months: parseInt(newOppData.duration_months) || 1,
             procurement_delay: newOppData.procurement_delay || 'low'
         });
         setIsAddModalOpen(false);
         setEmailConflict(null);
-        setNewOppData({
-            name: '', value: 0, stage: 'Initial', owner_id: newOppData.owner_id, contact_mode: 'existing', contact_id: '',
-            new_contact_name: '', new_contact_email: '', new_contact_company: '',
-            expected_start_date: '', duration_months: 1, procurement_delay: 'low'
-        });
+        setNewOppData(blankNewOpp(newOppData.owner_id));
         fetchAllData();
+    };
+
+    const resolveCompanyId = async () => {
+        if (newOppData.company_mode === 'existing') {
+            if (!newOppData.company_id) {
+                throw new Error('Please select a company');
+            }
+            return parseInt(newOppData.company_id, 10);
+        }
+        const name = newOppData.new_company_name?.trim();
+        if (!name) {
+            throw new Error('Please enter a company name');
+        }
+        const existing = companies.find(c => c.name.toLowerCase() === name.toLowerCase());
+        if (existing) {
+            return existing.id;
+        }
+        const created = await createCompany({ name });
+        setCompanies(prev => [...prev, created].sort((a, b) => a.name.localeCompare(b.name)));
+        return created.id;
+    };
+
+    const companyNameForId = (companyId) => {
+        const company = companies.find(c => c.id === parseInt(companyId, 10));
+        return company?.name || newOppData.new_company_name?.trim() || '';
+    };
+
+    const contactsForSelectedCompany = () => {
+        if (newOppData.company_mode !== 'existing' || !newOppData.company_id) {
+            return contacts;
+        }
+        const cid = parseInt(newOppData.company_id, 10);
+        const cname = companyNameForId(cid).toLowerCase();
+        return contacts.filter(c =>
+            c.company_id === cid ||
+            (c.company && c.company.trim().toLowerCase() === cname)
+        );
     };
 
     const handleCreate = async (e) => {
         e.preventDefault();
         setSaving(true);
         try {
+            const companyId = await resolveCompanyId();
             let finalContactId = newOppData.contact_id;
 
             // Create Contact if New
@@ -167,7 +209,7 @@ const Pipeline = () => {
                         const matches = await searchContactsByEmail(email);
                         if (matches.length > 0) {
                             // Show conflict resolution UI
-                            setEmailConflict({ matches });
+                            setEmailConflict({ matches, companyId });
                             setSaving(false);
                             return;
                         }
@@ -180,21 +222,22 @@ const Pipeline = () => {
                 const newContact = await createContact({
                     name: newOppData.new_contact_name,
                     email: email,
-                    company: newOppData.new_contact_company,
+                    company: companyNameForId(companyId) || newOppData.new_company_name?.trim(),
+                    company_id: companyId,
                     is_primary: true
                 });
                 finalContactId = newContact.id;
                 setContacts(prev => [...prev, newContact]);
             }
 
-            await createOppWithContact(finalContactId);
+            await createOppWithContact(finalContactId, companyId);
         } catch (err) {
             // Handle 409 conflict from backend as fallback
             if (err.response?.status === 409 && err.response?.data?.detail?.existing_contact) {
                 const existing = err.response.data.detail.existing_contact;
                 setEmailConflict({ matches: [existing] });
             } else {
-                alert("Failed to create opportunity: " + getErrorMessage(err));
+                alert("Failed to create opportunity: " + (err.message || getErrorMessage(err)));
             }
         } finally {
             setSaving(false);
@@ -205,7 +248,8 @@ const Pipeline = () => {
     const resolveConflictUseExisting = async (contactId) => {
         setSaving(true);
         try {
-            await createOppWithContact(contactId);
+            const companyId = emailConflict?.companyId || await resolveCompanyId();
+            await createOppWithContact(contactId, companyId);
         } catch (err) {
             alert("Failed to create opportunity: " + getErrorMessage(err));
         } finally {
@@ -217,14 +261,16 @@ const Pipeline = () => {
     const resolveConflictCreateNew = async () => {
         setSaving(true);
         try {
+            const companyId = emailConflict?.companyId || await resolveCompanyId();
             const newContact = await createContact({
                 name: newOppData.new_contact_name,
                 email: newOppData.new_contact_email?.trim(),
-                company: newOppData.new_contact_company,
+                company: companyNameForId(companyId) || newOppData.new_company_name?.trim(),
+                company_id: companyId,
                 is_primary: true
             });
             setContacts(prev => [...prev, newContact]);
-            await createOppWithContact(newContact.id);
+            await createOppWithContact(newContact.id, companyId);
         } catch (err) {
             alert("Failed to create contact: " + getErrorMessage(err));
         } finally {
@@ -498,12 +544,19 @@ const Pipeline = () => {
                             <div>
                                 <label className="block text-xs font-bold text-gray-500 uppercase">Owner</label>
                                 <div className="flex items-center gap-2 mt-1">
-                                    <UserIcon size={16} className="text-gray-400" />
-                                    <select className="flex-1 border rounded p-2 text-sm"
-                                        value={newOppData.owner_id} onChange={e => setNewOppData({ ...newOppData, owner_id: e.target.value })}>
-                                        <option value="">Select Owner...</option>
-                                        {users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
-                                    </select>
+                                    <SearchableSelect
+                                        icon={<UserIcon size={16} className="text-gray-400 shrink-0" />}
+                                        options={users.map(u => ({
+                                            value: u.id,
+                                            label: u.name,
+                                            searchText: u.name,
+                                        }))}
+                                        value={newOppData.owner_id}
+                                        onChange={(ownerId) => setNewOppData({ ...newOppData, owner_id: ownerId })}
+                                        placeholder="Select Owner…"
+                                        searchPlaceholder="Search owners…"
+                                        emptyLabel="No owners match"
+                                    />
                                 </div>
                             </div>
 
@@ -537,31 +590,121 @@ const Pipeline = () => {
 
                             <hr className="border-gray-100 my-2" />
 
-                            {/* Contact Section */}
+                            {/* Company Section */}
                             <div>
                                 <div className="flex gap-4 mb-2">
                                     <label className="flex items-center gap-2 text-sm cursor-pointer">
-                                        <input type="radio" name="contactMode" checked={newOppData.contact_mode === 'existing'}
-                                            onChange={() => setNewOppData({ ...newOppData, contact_mode: 'existing' })} />
+                                        <input type="radio" name="companyMode" checked={newOppData.company_mode === 'existing'}
+                                            onChange={() => setNewOppData({
+                                                ...newOppData,
+                                                company_mode: 'existing',
+                                                new_company_name: '',
+                                            })} />
+                                        Existing Company
+                                    </label>
+                                    <label className="flex items-center gap-2 text-sm cursor-pointer">
+                                        <input type="radio" name="companyMode" checked={newOppData.company_mode === 'new'}
+                                            onChange={() => setNewOppData({
+                                                ...newOppData,
+                                                company_mode: 'new',
+                                                company_id: '',
+                                                contact_mode: 'new',
+                                                contact_id: '',
+                                            })} />
+                                        New Company
+                                    </label>
+                                </div>
+
+                                {newOppData.company_mode === 'existing' ? (
+                                    <SearchableSelect
+                                        required
+                                        icon={<Building size={16} className="text-gray-400 shrink-0" />}
+                                        options={companies.map(c => ({
+                                            value: c.id,
+                                            label: c.name,
+                                            searchText: c.name,
+                                        }))}
+                                        value={newOppData.company_id}
+                                        onChange={(companyId) => {
+                                            setNewOppData(prev => {
+                                                const next = { ...prev, company_id: companyId };
+                                                if (prev.contact_id) {
+                                                    const contact = contacts.find(c => String(c.id) === String(prev.contact_id));
+                                                    const stillValid = contact && (
+                                                        String(contact.company_id) === String(companyId) ||
+                                                        (contact.company && companies.find(co => String(co.id) === String(companyId))?.name?.toLowerCase() === contact.company.trim().toLowerCase())
+                                                    );
+                                                    if (!stillValid) next.contact_id = '';
+                                                }
+                                                return next;
+                                            });
+                                        }}
+                                        placeholder="-- Search Companies --"
+                                        searchPlaceholder="Search companies…"
+                                        emptyLabel="No companies match"
+                                    />
+                                ) : (
+                                    <div className="space-y-3 bg-gray-50 p-3 rounded border border-gray-200">
+                                        <input
+                                            required
+                                            type="text"
+                                            placeholder="Company Name"
+                                            className="w-full border rounded p-2 text-sm"
+                                            value={newOppData.new_company_name}
+                                            onChange={e => setNewOppData({ ...newOppData, new_company_name: e.target.value })}
+                                        />
+                                    </div>
+                                )}
+                            </div>
+
+                            <hr className="border-gray-100 my-2" />
+
+                            {/* Contact Section */}
+                            <div>
+                                <div className="flex gap-4 mb-2">
+                                    <label className={`flex items-center gap-2 text-sm cursor-pointer ${newOppData.company_mode === 'new' ? 'opacity-50' : ''}`}>
+                                        <input
+                                            type="radio"
+                                            name="contactMode"
+                                            disabled={newOppData.company_mode === 'new'}
+                                            checked={newOppData.contact_mode === 'existing'}
+                                            onChange={() => setNewOppData({ ...newOppData, contact_mode: 'existing' })}
+                                        />
                                         Existing Contact
                                     </label>
                                     <label className="flex items-center gap-2 text-sm cursor-pointer">
                                         <input type="radio" name="contactMode" checked={newOppData.contact_mode === 'new'}
-                                            onChange={() => setNewOppData({ ...newOppData, contact_mode: 'new' })} />
+                                            onChange={() => setNewOppData({ ...newOppData, contact_mode: 'new', contact_id: '' })} />
                                         New Contact
                                     </label>
                                 </div>
 
                                 {newOppData.contact_mode === 'existing' ? (
-                                    <select className="w-full border rounded p-2 text-sm"
-                                        value={newOppData.contact_id} onChange={e => setNewOppData({ ...newOppData, contact_id: e.target.value })}>
-                                        <option value="">-- Search Contacts --</option>
-                                        {contacts.map(c => <option key={c.id} value={c.id}>{c.company} - {c.name}</option>)}
-                                    </select>
+                                    <SearchableSelect
+                                        options={contactsForSelectedCompany().map(c => ({
+                                            value: c.id,
+                                            label: `${c.company || 'No company'} - ${c.name}`,
+                                            searchText: `${c.company || ''} ${c.name} ${c.email || ''}`,
+                                            meta: c.email || undefined,
+                                        }))}
+                                        value={newOppData.contact_id}
+                                        onChange={(contactId) => {
+                                            const contact = contacts.find(c => String(c.id) === String(contactId));
+                                            setNewOppData(prev => {
+                                                const next = { ...prev, contact_id: contactId };
+                                                if (contact?.company_id) {
+                                                    next.company_mode = 'existing';
+                                                    next.company_id = String(contact.company_id);
+                                                }
+                                                return next;
+                                            });
+                                        }}
+                                        placeholder="-- Search Contacts --"
+                                        searchPlaceholder="Search contacts…"
+                                        emptyLabel="No contacts match"
+                                    />
                                 ) : (
                                     <div className="space-y-3 bg-gray-50 p-3 rounded border border-gray-200">
-                                        <input required type="text" placeholder="Company Name" className="w-full border rounded p-2 text-sm"
-                                            value={newOppData.new_contact_company} onChange={e => setNewOppData({ ...newOppData, new_contact_company: e.target.value })} />
                                         <input required type="text" placeholder="Contact Name" className="w-full border rounded p-2 text-sm"
                                             value={newOppData.new_contact_name} onChange={e => setNewOppData({ ...newOppData, new_contact_name: e.target.value })} />
                                         <input type="email" placeholder="Email" className="w-full border rounded p-2 text-sm"
