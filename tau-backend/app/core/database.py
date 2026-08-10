@@ -3,7 +3,8 @@ from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker, declarative_base
 
 # Check for DATABASE_URL (Railway/Prod) or fallback to SQLite (Local)
-SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL", "sqlite:///./tau.db")
+# Treat empty string as unset (common when .env has DATABASE_URL= placeholder)
+SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL") or "sqlite:///./tau.db"
 
 import logging
 logger = logging.getLogger(__name__)

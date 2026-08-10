@@ -1,3 +1,4 @@
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from app.core.config_loader import ConfigEngine
 import sys
@@ -14,40 +15,18 @@ logger = logging.getLogger(__name__)
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import router as api_router
 from app.api.cognito_routes import router as cognito_router
+from app.mcp.server import CognitoAPIKeyMiddleware, mcp_app
 
-app = FastAPI(title="Tau CRM Backend")
-
-# CORS Configuration
-origins = [
-    "http://localhost:5173", # Vite Default
-    "http://localhost:3000",
-    "http://127.0.0.1:5173",
-    "https://tau-crm-frontend-production.up.railway.app", # Production Frontend
-    "*" # For local dev ease
-]
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=origins,
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
-
-app.include_router(api_router, prefix="/api")
-app.include_router(cognito_router, prefix="/api")
-
-@app.on_event("startup")
-def startup_event():
+def _run_startup():
     logger.info("Starting up Tau CRM Backend...")
     try:
         # Create Tables if they don't exist
         from app.core.database import engine, Base
         # Explicitly import models to register them
         from app.models.models import Contact, Opportunity, User, Activity, Company
-        
+
         logger.info(f"Registered tables: {list(Base.metadata.tables.keys())}")
-        
+
         Base.metadata.create_all(bind=engine)
         logger.info("Database tables created.")
 
@@ -89,6 +68,45 @@ def startup_event():
         # In a real deployment, we might let the exception bubble up to crash the worker
         # But we can also sys.exit to be explicit
         sys.exit(1)
+
+
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    # Existing DB/config startup, then FastMCP session manager lifespan
+    _run_startup()
+    async with mcp_app.lifespan(app):
+        yield
+
+
+# Merge MCP routes at /mcp (avoids Mount redirect /mcp -> /mcp/ that can drop auth headers)
+app = FastAPI(
+    title="Tau CRM Backend",
+    lifespan=lifespan,
+    routes=[*mcp_app.routes],
+)
+
+# CORS Configuration
+origins = [
+    "http://localhost:5173", # Vite Default
+    "http://localhost:3000",
+    "http://127.0.0.1:5173",
+    "https://tau-crm-frontend-production.up.railway.app", # Production Frontend
+    "*" # For local dev ease
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+# MCP auth (fail-closed). Must be after CORS so it runs closer to the app
+# (Starlette executes middleware in reverse add order).
+app.add_middleware(CognitoAPIKeyMiddleware)
+
+app.include_router(api_router, prefix="/api")
+app.include_router(cognito_router, prefix="/api")
 
 @app.get("/health")
 def health_check():

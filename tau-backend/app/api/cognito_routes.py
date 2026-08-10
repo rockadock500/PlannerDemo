@@ -3,18 +3,15 @@ Cognito AI Agent API Routes
 """
 import os
 import uuid
-from fastapi import APIRouter, Depends, HTTPException, Header
+from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
-from typing import Optional
 
+from app.core.auth import AuthPrincipal, verify_cognito_api_key
 from app.core.database import SessionLocal
 from app.schemas import CognitoMessage, CognitoResponse, CognitoConfirm
 from app.services.cognito import chat_with_grok, CognitoService, pending_actions
 
 router = APIRouter(prefix="/cognito", tags=["cognito"])
-
-# API Key for external access (optional)
-COGNITO_API_KEY = os.getenv("COGNITO_API_KEY", "")
 
 
 def get_db():
@@ -25,23 +22,11 @@ def get_db():
         db.close()
 
 
-def verify_api_key(x_api_key: Optional[str] = Header(None)):
-    """Optional API key verification for external access."""
-    # If no API key is configured, allow all requests (internal use)
-    if not COGNITO_API_KEY:
-        return True
-
-    # If API key is configured, verify it
-    if x_api_key != COGNITO_API_KEY:
-        raise HTTPException(status_code=401, detail="Invalid API key")
-    return True
-
-
 @router.post("/chat", response_model=CognitoResponse)
 async def chat(
     message: CognitoMessage,
     db: Session = Depends(get_db),
-    _: bool = Depends(verify_api_key)
+    _: AuthPrincipal = Depends(verify_cognito_api_key)
 ):
     """
     Send a message to Cognito AI agent.
@@ -78,7 +63,7 @@ async def chat(
 async def confirm_action(
     confirm: CognitoConfirm,
     db: Session = Depends(get_db),
-    _: bool = Depends(verify_api_key)
+    _: AuthPrincipal = Depends(verify_cognito_api_key)
 ):
     """
     Confirm a pending destructive action (like delete).
