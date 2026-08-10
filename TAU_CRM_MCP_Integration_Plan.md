@@ -1,8 +1,9 @@
 # TAU CRM MCP Integration Plan
 
-**Status:** Phase 1 implemented locally (API key auth, read-only tools). Railway deploy + Entra OAuth later.
+**Status:** Phase 1 + Phase 2 write tools implemented (API key auth). Railway deploy + Entra OAuth later.
 **Author:** Ethan Buckley (drafted with Claude Code)
 **Date:** 2026-08-08
+**Updated:** 2026-08-10 — Phase 2 write tools (archive instead of delete)
 
 ## Overview
 
@@ -88,17 +89,26 @@ get_forecast           → CognitoService._get_forecast()
 Every one of these already exists and is already used by the Grok chat path. This phase
 is a translation exercise, not new development.
 
-### Phase 2 — Write tools (gated — do not build until Section 6 is answered)
+### Phase 2 — Write tools (implemented 2026-08-10)
+
+Ethan go-ahead: shared `COGNITO_API_KEY` OK for now (OAuth later). **No hard delete on MCP.**
 
 ```
-update_opportunity   → CognitoService._update_opportunity()   [already implemented]
-delete_opportunity    → CognitoService._prepare_delete_opportunity() + confirm flow
-create_contact         → new — does not exist in CognitoService today
+update_opportunity      → CognitoService._update_opportunity()
+create_opportunity      → CognitoService._create_opportunity()      [new]
+archive_opportunity     → CognitoService._archive_opportunity()     [new; uses existing is_archived]
+unarchive_opportunity   → CognitoService._unarchive_opportunity()   [new]
+create_contact         → CognitoService._create_contact()         [new]
+update_contact         → CognitoService._update_contact()         [new]
+list_activities        → CognitoService._list_activities()        [new]
+create_activity        → CognitoService._create_activity()        [new]
+update_activity        → CognitoService._update_activity()        [new]
 ```
 
-`update_opportunity` and `delete_opportunity` already exist in the dispatcher, so Phase 2
-is also smaller than it first appears — but the CRM holds 79 real opportunities and ~69
-real contacts, so shipping write access needs Rob's explicit go-ahead, not a default.
+**Not on MCP:** `delete_opportunity` (and any other hard deletes). Use `archive_opportunity` /
+`unarchive_opportunity` instead — soft-remove from the active pipeline via existing
+`opportunities.is_archived` / `archived_at` (no new migration). Archive applies to
+**opportunities only**; activities have create/update but no archive/delete via MCP.
 
 ---
 

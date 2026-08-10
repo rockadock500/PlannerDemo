@@ -60,8 +60,15 @@ CRM_FUNCTIONS = [
             "type": "object",
             "properties": {
                 "id": {"type": "integer", "description": "The opportunity ID"},
+                "name": {"type": "string", "description": "New opportunity name"},
                 "stage": {"type": "string", "description": "New stage: Initial, Engaged, Proposal, Verbal, Signed"},
-                "value": {"type": "integer", "description": "New deal value"}
+                "value": {"type": "integer", "description": "New deal value"},
+                "contact_id": {"type": "integer", "description": "Linked contact ID"},
+                "owner_id": {"type": "integer", "description": "Owner user ID"},
+                "company_id": {"type": "integer", "description": "Company ID"},
+                "expected_start_date": {"type": "string", "description": "Expected start date (YYYY-MM-DD)"},
+                "duration_months": {"type": "integer", "description": "Duration in months"},
+                "procurement_delay": {"type": "string", "description": "low, medium, or high"}
             },
             "required": ["id"]
         }
@@ -73,6 +80,122 @@ CRM_FUNCTIONS = [
             "type": "object",
             "properties": {
                 "id": {"type": "integer", "description": "The opportunity ID to delete"}
+            },
+            "required": ["id"]
+        }
+    },
+    {
+        "name": "archive_opportunity",
+        "description": "Archive an opportunity (soft-remove from active pipeline; reversible via unarchive)",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "id": {"type": "integer", "description": "The opportunity ID to archive"}
+            },
+            "required": ["id"]
+        }
+    },
+    {
+        "name": "unarchive_opportunity",
+        "description": "Restore an archived opportunity to the active pipeline",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "id": {"type": "integer", "description": "The opportunity ID to unarchive"}
+            },
+            "required": ["id"]
+        }
+    },
+    {
+        "name": "create_opportunity",
+        "description": "Create a new opportunity in the pipeline",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string", "description": "Opportunity name"},
+                "stage": {"type": "string", "description": "Stage: Initial, Engaged, Proposal, Verbal, Signed"},
+                "value": {"type": "integer", "description": "Deal value"},
+                "contact_id": {"type": "integer", "description": "Linked contact ID"},
+                "owner_id": {"type": "integer", "description": "Owner user ID"},
+                "company_id": {"type": "integer", "description": "Company ID"},
+                "expected_start_date": {"type": "string", "description": "Expected start date (YYYY-MM-DD)"},
+                "duration_months": {"type": "integer", "description": "Duration in months"},
+                "procurement_delay": {"type": "string", "description": "low, medium, or high"}
+            },
+            "required": ["name"]
+        }
+    },
+    {
+        "name": "create_contact",
+        "description": "Create a new contact",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string", "description": "Contact name"},
+                "email": {"type": "string", "description": "Contact email"},
+                "company": {"type": "string", "description": "Company name (legacy string field)"},
+                "company_id": {"type": "integer", "description": "Company ID"},
+                "phone": {"type": "string", "description": "Phone number"},
+                "is_primary": {"type": "boolean", "description": "Whether this is the primary contact"}
+            },
+            "required": ["name", "email"]
+        }
+    },
+    {
+        "name": "update_contact",
+        "description": "Update an existing contact",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "id": {"type": "integer", "description": "Contact ID"},
+                "name": {"type": "string", "description": "Contact name"},
+                "email": {"type": "string", "description": "Contact email"},
+                "company": {"type": "string", "description": "Company name (legacy string field)"},
+                "company_id": {"type": "integer", "description": "Company ID"},
+                "phone": {"type": "string", "description": "Phone number"},
+                "is_primary": {"type": "boolean", "description": "Whether this is the primary contact"}
+            },
+            "required": ["id"]
+        }
+    },
+    {
+        "name": "list_activities",
+        "description": "List activities, optionally filtered by contact, opportunity, or type",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "contact_id": {"type": "integer", "description": "Filter by contact ID"},
+                "opportunity_id": {"type": "integer", "description": "Filter by opportunity ID"},
+                "activity_type": {"type": "string", "description": "Filter by type (Email, Call, Meeting, Note, etc.)"},
+                "limit": {"type": "integer", "description": "Max records to return (default 20)"}
+            }
+        }
+    },
+    {
+        "name": "create_activity",
+        "description": "Create an activity (Email, Call, Meeting, Note, etc.) linked to a contact",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "type": {"type": "string", "description": "Activity type: Email, Call, Meeting, Note, etc."},
+                "content": {"type": "string", "description": "Activity notes/content"},
+                "contact_id": {"type": "integer", "description": "Contact ID (required)"},
+                "opportunity_id": {"type": "integer", "description": "Optional linked opportunity ID"}
+            },
+            "required": ["type", "contact_id"]
+        }
+    },
+    {
+        "name": "update_activity",
+        "description": "Update an existing activity's type, content, or links",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "id": {"type": "integer", "description": "Activity ID"},
+                "type": {"type": "string", "description": "Activity type"},
+                "content": {"type": "string", "description": "Activity notes/content"},
+                "contact_id": {"type": "integer", "description": "Contact ID"},
+                "opportunity_id": {"type": "integer", "description": "Opportunity ID"}
             },
             "required": ["id"]
         }
@@ -108,6 +231,25 @@ CRM_FUNCTIONS = [
         "parameters": {"type": "object", "properties": {}}
     }
 ]
+
+VALID_STAGES = frozenset(STAGE_PROBABILITIES.keys())
+VALID_PROCUREMENT_DELAYS = frozenset({"low", "medium", "high"})
+
+
+def _parse_optional_datetime(value: Any) -> Optional[datetime]:
+    """Parse YYYY-MM-DD or ISO datetime strings; pass through datetime; None for empty."""
+    if value is None or value == "":
+        return None
+    if isinstance(value, datetime):
+        return value
+    if isinstance(value, str):
+        value = value.strip()
+        if not value:
+            return None
+        if "T" not in value and len(value) == 10:
+            return datetime.fromisoformat(value + "T00:00:00")
+        return datetime.fromisoformat(value)
+    return value
 
 
 def get_system_prompt() -> str:
@@ -145,21 +287,50 @@ class CognitoService:
         """Execute a CRM function and return results."""
 
         if function_name == "list_opportunities":
-            return self._list_opportunities(arguments.get("stage"), arguments.get("owner_name"))
+            return self._list_opportunities(
+                arguments.get("stage"),
+                arguments.get("owner_name"),
+                include_archived=bool(arguments.get("include_archived", False)),
+            )
 
         elif function_name == "get_opportunity":
             return self._get_opportunity(arguments.get("id"), arguments.get("name"))
 
         elif function_name == "update_opportunity":
-            return self._update_opportunity(
-                arguments["id"],
-                arguments.get("stage"),
-                arguments.get("value")
-            )
+            return self._update_opportunity(arguments["id"], arguments)
 
         elif function_name == "delete_opportunity":
             # This returns a pending action, not executed immediately
             return self._prepare_delete_opportunity(arguments["id"])
+
+        elif function_name == "archive_opportunity":
+            return self._archive_opportunity(arguments["id"])
+
+        elif function_name == "unarchive_opportunity":
+            return self._unarchive_opportunity(arguments["id"])
+
+        elif function_name == "create_opportunity":
+            return self._create_opportunity(arguments)
+
+        elif function_name == "create_contact":
+            return self._create_contact(arguments)
+
+        elif function_name == "update_contact":
+            return self._update_contact(arguments["id"], arguments)
+
+        elif function_name == "list_activities":
+            return self._list_activities(
+                arguments.get("contact_id"),
+                arguments.get("opportunity_id"),
+                arguments.get("activity_type"),
+                arguments.get("limit"),
+            )
+
+        elif function_name == "create_activity":
+            return self._create_activity(arguments)
+
+        elif function_name == "update_activity":
+            return self._update_activity(arguments["id"], arguments)
 
         elif function_name == "get_pipeline_summary":
             return self._get_pipeline_summary()
@@ -176,8 +347,40 @@ class CognitoService:
         else:
             return {"error": f"Unknown function: {function_name}"}
 
-    def _list_opportunities(self, stage: Optional[str] = None, owner_name: Optional[str] = None) -> Dict:
+    def _opportunity_payload(self, opp: Opportunity) -> Dict[str, Any]:
+        return {
+            "id": opp.id,
+            "name": opp.name,
+            "stage": opp.stage,
+            "value": opp.value,
+            "weighted_value": opp.weighted_value,
+            "owner": opp.owner.name if opp.owner else None,
+            "owner_id": opp.owner_id,
+            "contact_id": opp.contact_id,
+            "company_id": opp.company_id,
+            "company": (
+                opp.company_rel.name if opp.company_rel
+                else (opp.contact.company if opp.contact else None)
+            ),
+            "expected_start_date": str(opp.expected_start_date) if opp.expected_start_date else None,
+            "duration_months": opp.duration_months,
+            "procurement_delay": opp.procurement_delay,
+            "is_archived": bool(opp.is_archived),
+            "archived_at": str(opp.archived_at) if opp.archived_at else None,
+        }
+
+    def _list_opportunities(
+        self,
+        stage: Optional[str] = None,
+        owner_name: Optional[str] = None,
+        include_archived: bool = False,
+    ) -> Dict:
         query = self.db.query(Opportunity)
+
+        if not include_archived:
+            query = query.filter(
+                (Opportunity.is_archived == False) | (Opportunity.is_archived == None)  # noqa: E712
+            )
 
         if stage:
             query = query.filter(Opportunity.stage == stage)
@@ -198,7 +401,8 @@ class CognitoService:
                     "value": o.value,
                     "weighted_value": o.weighted_value,
                     "owner": o.owner.name if o.owner else None,
-                    "company": o.contact.company if o.contact else None
+                    "company": o.contact.company if o.contact else None,
+                    "is_archived": bool(o.is_archived),
                 }
                 for o in opportunities
             ]
@@ -215,47 +419,405 @@ class CognitoService:
         if not opp:
             return {"error": "Opportunity not found"}
 
-        return {
-            "id": opp.id,
-            "name": opp.name,
-            "stage": opp.stage,
-            "value": opp.value,
-            "weighted_value": opp.weighted_value,
-            "probability": f"{int(STAGE_PROBABILITIES.get(opp.stage, 0) * 100)}%",
-            "owner": opp.owner.name if opp.owner else None,
-            "company": opp.contact.company if opp.contact else None,
-            "expected_start_date": str(opp.expected_start_date) if opp.expected_start_date else None,
-            "duration_months": opp.duration_months
-        }
+        payload = self._opportunity_payload(opp)
+        payload["probability"] = f"{int(STAGE_PROBABILITIES.get(opp.stage, 0) * 100)}%"
+        return payload
 
-    def _update_opportunity(self, opp_id: int, stage: Optional[str] = None, value: Optional[int] = None) -> Dict:
+    def _update_opportunity(self, opp_id: int, fields: Dict[str, Any]) -> Dict:
         opp = self.db.query(Opportunity).filter(Opportunity.id == opp_id).first()
         if not opp:
             return {"error": "Opportunity not found"}
 
+        allowed = {
+            "name", "stage", "value", "contact_id", "owner_id", "company_id",
+            "expected_start_date", "duration_months", "procurement_delay",
+        }
+        # Skip None so optional MCP args don't wipe fields; value=0 is still applied.
+        provided = {k: fields[k] for k in allowed if k in fields and fields[k] is not None}
+        if "value" in fields and fields["value"] is not None:
+            provided["value"] = fields["value"]
         changes = []
-        if stage:
-            old_stage = opp.stage
-            opp.stage = stage
-            changes.append(f"stage: {old_stage} -> {stage}")
-        if value is not None:
-            old_value = opp.value
-            opp.value = value
-            changes.append(f"value: £{old_value:,} -> £{value:,}")
 
+        for key, new_val in provided.items():
+            if key == "stage":
+                if new_val not in VALID_STAGES:
+                    return {
+                        "error": f"Invalid stage '{new_val}'. Must be one of: {', '.join(sorted(VALID_STAGES))}"
+                    }
+                old = opp.stage
+                opp.stage = new_val
+                changes.append(f"stage: {old} -> {new_val}")
+            elif key == "value":
+                old = opp.value
+                opp.value = new_val
+                changes.append(f"value: £{old or 0:,} -> £{new_val:,}")
+            elif key == "name":
+                old = opp.name
+                opp.name = new_val
+                changes.append(f"name: {old} -> {new_val}")
+            elif key == "expected_start_date":
+                try:
+                    parsed = _parse_optional_datetime(new_val)
+                except ValueError as e:
+                    return {"error": f"Invalid expected_start_date: {e}"}
+                old = opp.expected_start_date
+                opp.expected_start_date = parsed
+                changes.append(f"expected_start_date: {old} -> {parsed}")
+            elif key == "procurement_delay":
+                if new_val not in VALID_PROCUREMENT_DELAYS:
+                    return {
+                        "error": (
+                            f"Invalid procurement_delay '{new_val}'. "
+                            f"Must be one of: {', '.join(sorted(VALID_PROCUREMENT_DELAYS))}"
+                        )
+                    }
+                old = opp.procurement_delay
+                opp.procurement_delay = new_val
+                changes.append(f"procurement_delay: {old} -> {new_val}")
+            elif key == "contact_id":
+                contact = self.db.query(Contact).filter(Contact.id == new_val).first()
+                if not contact:
+                    return {"error": f"Contact with id {new_val} not found"}
+                old = opp.contact_id
+                opp.contact_id = new_val
+                changes.append(f"contact_id: {old} -> {new_val}")
+            elif key == "owner_id":
+                user = self.db.query(User).filter(User.id == new_val).first()
+                if not user:
+                    return {"error": f"User with id {new_val} not found"}
+                old = opp.owner_id
+                opp.owner_id = new_val
+                changes.append(f"owner_id: {old} -> {new_val}")
+            elif key == "company_id":
+                company = self.db.query(Company).filter(Company.id == new_val).first()
+                if not company:
+                    return {"error": f"Company with id {new_val} not found"}
+                old = opp.company_id
+                opp.company_id = new_val
+                changes.append(f"company_id: {old} -> {new_val}")
+            elif key == "duration_months":
+                old = opp.duration_months
+                opp.duration_months = new_val
+                changes.append(f"duration_months: {old} -> {new_val}")
+
+        if not changes:
+            return {"error": "No valid fields provided to update"}
+
+        opp.updated_at = datetime.utcnow()
         self.db.commit()
         self.db.refresh(opp)
 
         return {
             "success": True,
             "message": f"Updated '{opp.name}': {', '.join(changes)}",
-            "opportunity": {
-                "id": opp.id,
-                "name": opp.name,
-                "stage": opp.stage,
-                "value": opp.value,
-                "weighted_value": opp.weighted_value
+            "opportunity": self._opportunity_payload(opp),
+        }
+
+    def _create_opportunity(self, fields: Dict[str, Any]) -> Dict:
+        name = fields.get("name")
+        if not name:
+            return {"error": "name is required"}
+
+        stage = fields.get("stage") or "Initial"
+        if stage not in VALID_STAGES:
+            return {"error": f"Invalid stage '{stage}'. Must be one of: {', '.join(sorted(VALID_STAGES))}"}
+
+        contact_id = fields.get("contact_id")
+        if contact_id is not None:
+            contact = self.db.query(Contact).filter(Contact.id == contact_id).first()
+            if not contact:
+                return {"error": f"Contact with id {contact_id} not found"}
+
+        owner_id = fields.get("owner_id")
+        if owner_id is not None:
+            user = self.db.query(User).filter(User.id == owner_id).first()
+            if not user:
+                return {"error": f"User with id {owner_id} not found"}
+
+        company_id = fields.get("company_id")
+        if company_id is not None:
+            company = self.db.query(Company).filter(Company.id == company_id).first()
+            if not company:
+                return {"error": f"Company with id {company_id} not found"}
+
+        procurement_delay = fields.get("procurement_delay") or "low"
+        if procurement_delay not in VALID_PROCUREMENT_DELAYS:
+            return {
+                "error": (
+                    f"Invalid procurement_delay '{procurement_delay}'. "
+                    f"Must be one of: {', '.join(sorted(VALID_PROCUREMENT_DELAYS))}"
+                )
             }
+
+        try:
+            expected_start_date = _parse_optional_datetime(fields.get("expected_start_date"))
+        except ValueError as e:
+            return {"error": f"Invalid expected_start_date: {e}"}
+
+        opp = Opportunity(
+            name=name,
+            stage=stage,
+            value=fields.get("value") or 0,
+            contact_id=contact_id,
+            owner_id=owner_id,
+            company_id=company_id,
+            expected_start_date=expected_start_date,
+            duration_months=fields.get("duration_months") or 1,
+            procurement_delay=procurement_delay,
+            is_archived=False,
+        )
+        self.db.add(opp)
+        self.db.commit()
+        self.db.refresh(opp)
+
+        return {
+            "success": True,
+            "message": f"Created opportunity '{opp.name}'",
+            "opportunity": self._opportunity_payload(opp),
+        }
+
+    def _archive_opportunity(self, opp_id: int) -> Dict:
+        """Soft-remove an opportunity from the active pipeline (reversible)."""
+        opp = self.db.query(Opportunity).filter(Opportunity.id == opp_id).first()
+        if not opp:
+            return {"error": "Opportunity not found"}
+
+        if opp.is_archived:
+            return {
+                "success": True,
+                "message": f"Opportunity '{opp.name}' is already archived",
+                "entity": "opportunity",
+                "opportunity": self._opportunity_payload(opp),
+            }
+
+        opp.is_archived = True
+        opp.archived_at = datetime.utcnow()
+        opp.updated_at = datetime.utcnow()
+        self.db.commit()
+        self.db.refresh(opp)
+
+        return {
+            "success": True,
+            "message": (
+                f"Archived opportunity '{opp.name}'. "
+                "It is hidden from the active pipeline; use unarchive_opportunity to restore."
+            ),
+            "entity": "opportunity",
+            "opportunity": self._opportunity_payload(opp),
+        }
+
+    def _unarchive_opportunity(self, opp_id: int) -> Dict:
+        """Restore an archived opportunity to the active pipeline."""
+        opp = self.db.query(Opportunity).filter(Opportunity.id == opp_id).first()
+        if not opp:
+            return {"error": "Opportunity not found"}
+
+        if not opp.is_archived:
+            return {
+                "success": True,
+                "message": f"Opportunity '{opp.name}' is not archived",
+                "entity": "opportunity",
+                "opportunity": self._opportunity_payload(opp),
+            }
+
+        opp.is_archived = False
+        opp.archived_at = None
+        opp.updated_at = datetime.utcnow()
+        self.db.commit()
+        self.db.refresh(opp)
+
+        return {
+            "success": True,
+            "message": f"Unarchived opportunity '{opp.name}'. It is back in the active pipeline.",
+            "entity": "opportunity",
+            "opportunity": self._opportunity_payload(opp),
+        }
+
+    def _create_contact(self, fields: Dict[str, Any]) -> Dict:
+        name = fields.get("name")
+        email = fields.get("email")
+        if not name:
+            return {"error": "name is required"}
+        if not email:
+            return {"error": "email is required"}
+
+        company_id = fields.get("company_id")
+        if company_id is not None:
+            company = self.db.query(Company).filter(Company.id == company_id).first()
+            if not company:
+                return {"error": f"Company with id {company_id} not found"}
+
+        contact = Contact(
+            name=name,
+            email=email,
+            company=fields.get("company"),
+            company_id=company_id,
+            phone=fields.get("phone"),
+            is_primary=bool(fields.get("is_primary", False)),
+        )
+        self.db.add(contact)
+        self.db.commit()
+        self.db.refresh(contact)
+
+        return {
+            "success": True,
+            "message": f"Created contact '{contact.name}'",
+            "contact": {
+                "id": contact.id,
+                "name": contact.name,
+                "email": contact.email,
+                "company": contact.company,
+                "company_id": contact.company_id,
+                "phone": contact.phone,
+                "is_primary": contact.is_primary,
+            },
+        }
+
+    def _update_contact(self, contact_id: int, fields: Dict[str, Any]) -> Dict:
+        contact = self.db.query(Contact).filter(Contact.id == contact_id).first()
+        if not contact:
+            return {"error": "Contact not found"}
+
+        allowed = {"name", "email", "company", "company_id", "phone", "is_primary"}
+        provided = {k: fields[k] for k in allowed if k in fields and fields[k] is not None}
+        if "is_primary" in fields and fields["is_primary"] is not None:
+            provided["is_primary"] = bool(fields["is_primary"])
+        changes = []
+
+        for key, new_val in provided.items():
+            if key == "company_id":
+                company = self.db.query(Company).filter(Company.id == new_val).first()
+                if not company:
+                    return {"error": f"Company with id {new_val} not found"}
+
+            old = getattr(contact, key)
+            setattr(contact, key, new_val)
+            changes.append(f"{key}: {old} -> {new_val}")
+
+        if not changes:
+            return {"error": "No valid fields provided to update"}
+
+        self.db.commit()
+        self.db.refresh(contact)
+
+        return {
+            "success": True,
+            "message": f"Updated contact '{contact.name}': {', '.join(changes)}",
+            "contact": {
+                "id": contact.id,
+                "name": contact.name,
+                "email": contact.email,
+                "company": contact.company,
+                "company_id": contact.company_id,
+                "phone": contact.phone,
+                "is_primary": contact.is_primary,
+            },
+        }
+
+    def _activity_payload(self, activity: Activity) -> Dict[str, Any]:
+        return {
+            "id": activity.id,
+            "type": activity.type,
+            "content": activity.content,
+            "timestamp": str(activity.timestamp) if activity.timestamp else None,
+            "contact_id": activity.contact_id,
+            "opportunity_id": activity.opportunity_id,
+        }
+
+    def _list_activities(
+        self,
+        contact_id: Optional[int] = None,
+        opportunity_id: Optional[int] = None,
+        activity_type: Optional[str] = None,
+        limit: Optional[int] = None,
+    ) -> Dict:
+        query = self.db.query(Activity)
+
+        if contact_id is not None:
+            query = query.filter(Activity.contact_id == contact_id)
+        if opportunity_id is not None:
+            query = query.filter(Activity.opportunity_id == opportunity_id)
+        if activity_type:
+            query = query.filter(Activity.type == activity_type)
+
+        query = query.order_by(Activity.timestamp.desc())
+        cap = min(max(limit or 20, 1), 100)
+        activities = query.limit(cap).all()
+
+        return {
+            "count": len(activities),
+            "activities": [self._activity_payload(a) for a in activities],
+        }
+
+    def _create_activity(self, fields: Dict[str, Any]) -> Dict:
+        activity_type = fields.get("type")
+        contact_id = fields.get("contact_id")
+        if not activity_type:
+            return {"error": "type is required"}
+        if contact_id is None:
+            return {"error": "contact_id is required"}
+
+        contact = self.db.query(Contact).filter(Contact.id == contact_id).first()
+        if not contact:
+            return {"error": f"Contact with id {contact_id} not found"}
+
+        opportunity_id = fields.get("opportunity_id")
+        if opportunity_id is not None:
+            opp = self.db.query(Opportunity).filter(Opportunity.id == opportunity_id).first()
+            if not opp:
+                return {"error": f"Opportunity with id {opportunity_id} not found"}
+
+        activity = Activity(
+            type=activity_type,
+            content=fields.get("content"),
+            contact_id=contact_id,
+            opportunity_id=opportunity_id,
+        )
+        self.db.add(activity)
+        self.db.commit()
+        self.db.refresh(activity)
+
+        return {
+            "success": True,
+            "message": f"Created {activity.type} activity (id={activity.id})",
+            "activity": self._activity_payload(activity),
+        }
+
+    def _update_activity(self, activity_id: int, fields: Dict[str, Any]) -> Dict:
+        activity = self.db.query(Activity).filter(Activity.id == activity_id).first()
+        if not activity:
+            return {"error": "Activity not found"}
+
+        allowed = {"type", "content", "contact_id", "opportunity_id"}
+        changes = []
+
+        for key in allowed:
+            if key not in fields or fields[key] is None:
+                continue
+
+            if key == "contact_id":
+                contact = self.db.query(Contact).filter(Contact.id == fields["contact_id"]).first()
+                if not contact:
+                    return {"error": f"Contact with id {fields['contact_id']} not found"}
+            elif key == "opportunity_id":
+                opp = self.db.query(Opportunity).filter(Opportunity.id == fields["opportunity_id"]).first()
+                if not opp:
+                    return {"error": f"Opportunity with id {fields['opportunity_id']} not found"}
+
+            old = getattr(activity, key)
+            setattr(activity, key, fields[key])
+            changes.append(f"{key}: {old} -> {fields[key]}")
+
+        if not changes:
+            return {"error": "No valid fields provided to update"}
+
+        self.db.commit()
+        self.db.refresh(activity)
+
+        return {
+            "success": True,
+            "message": f"Updated activity id={activity.id}: {', '.join(changes)}",
+            "activity": self._activity_payload(activity),
         }
 
     def _prepare_delete_opportunity(self, opp_id: int) -> Dict:
@@ -299,7 +861,9 @@ class CognitoService:
         return {"error": "Unknown action type"}
 
     def _get_pipeline_summary(self) -> Dict:
-        opportunities = self.db.query(Opportunity).all()
+        opportunities = self.db.query(Opportunity).filter(
+            (Opportunity.is_archived == False) | (Opportunity.is_archived == None)  # noqa: E712
+        ).all()
 
         by_stage = {}
         total_value = 0
