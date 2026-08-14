@@ -1,5 +1,5 @@
 from contextlib import asynccontextmanager
-from fastapi import FastAPI
+from fastapi import Depends, FastAPI
 from app.core.config_loader import ConfigEngine
 import os
 import secrets
@@ -19,6 +19,7 @@ from starlette.middleware.sessions import SessionMiddleware
 from app.api.routes import router as api_router
 from app.api.cognito_routes import router as cognito_router
 from app.api.auth_routes import auth_api_router, web_auth_router
+from app.core.auth import require_session
 from app.mcp.server import mcp_app
 
 def _run_startup():
@@ -157,7 +158,14 @@ app.add_middleware(
 # guards the MCP routes itself, and a blanket middleware would 401 its own
 # /authorize, /token, /register and /.well-known/* endpoints before they ran.
 
-app.include_router(api_router, prefix="/api")
+# /api requires a signed-in browser session. Attached to the router rather than to
+# each route so a new endpoint is protected by default instead of by remembering.
+# NOT applied to cognito_router (it has its own COGNITO_API_KEY dependency) or to
+# auth_api_router below (/api/auth/me is how the frontend discovers whether it is
+# signed in, so gating it would make the check impossible).
+# NOTE: the debug routes defined on `app` further down (/version, /run-migrations,
+# /debug-env, /debug-contacts) sit outside /api and are therefore NOT covered.
+app.include_router(api_router, prefix="/api", dependencies=[Depends(require_session)])
 app.include_router(cognito_router, prefix="/api")
 # Web login. /auth/web/* sits at the root so the callback matches the URI
 # registered on the Google client; /api/auth/* is mounted separately so it stays
