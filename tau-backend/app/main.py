@@ -86,11 +86,17 @@ async def lifespan(app: FastAPI):
         yield
 
 
-# Merge MCP routes at /mcp (avoids Mount redirect /mcp -> /mcp/ that can drop auth headers)
+# Merge MCP routes at /mcp (avoids Mount redirect /mcp -> /mcp/ that can drop auth headers).
+# mcp_app's middleware must come across with its routes: FastMCP installs the
+# bearer-token authentication middleware at the app level, while the /mcp route
+# itself only carries the require-auth guard. Copying routes alone keeps the guard
+# but loses the verifier, so every authenticated request 401s with invalid_token
+# before check_mcp_allowlist is ever reached.
 app = FastAPI(
     title="Tau CRM Backend",
     lifespan=lifespan,
     routes=[*mcp_app.routes],
+    middleware=[*mcp_app.user_middleware],
 )
 
 # CORS Configuration
