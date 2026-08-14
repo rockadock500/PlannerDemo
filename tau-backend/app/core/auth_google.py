@@ -7,9 +7,13 @@ Two separate concerns, deliberately kept apart:
     proxies the OAuth handshake to Google, verifies the resulting token against
     Google's tokeninfo endpoint, and resolves the caller's email claim.
   * Authorization — *are they allowed?*  Handled here by check_mcp_allowlist(),
-    which looks the email up in the existing `users` table and requires the
-    explicit `mcp_authorized` flag. Unknown emails are rejected; there is no
-    auto-provisioning.
+    which requires the caller's Google email to be an ALLOWED_EMAIL_DOMAIN
+    address AND to match a row in the existing `users` table. Unknown emails are
+    rejected; there is no auto-provisioning.
+
+    Access is gated on those two things alone — the old per-user
+    `mcp_authorized` opt-in has been removed. Any `users` row carrying a TAU
+    email can use the connector, including one that arrives via a backfill.
 
 Replaces the shared-COGNITO_API_KEY middleware that previously guarded /mcp*.
 COGNITO_API_KEY is still used by /api/cognito/* — see app/core/auth.py.
@@ -33,6 +37,14 @@ DEFAULT_PUBLIC_BASE_URL = "https://tau-crm-production.up.railway.app"
 # Jack registered this path on the Google client; GoogleProvider defaults to
 # /auth/callback, so it must be passed explicitly.
 GOOGLE_REDIRECT_PATH = "/auth/redirect"
+
+# Policy floor, checked before `users` is consulted: only TAU addresses may use
+# the connector, whatever the table says. This is the enforced counterpart to the
+# extra_authorize_params `hd` hint below, which only steers Google's account
+# chooser and is not a security control. It matters because authorization is now
+# `email is not null` — without this, a stray non-TAU address on any users row
+# would be enough.
+ALLOWED_EMAIL_DOMAIN = "taums.ai"
 
 # The allowlist is checked once per component per listing — 16 tools means 16
 # checks on a single tools/list. Cache the DB answer briefly so that is one
@@ -92,19 +104,26 @@ def build_google_auth_provider():
 
 
 def is_email_authorized(email: str) -> bool:
-    """True if `email` belongs to a user row explicitly flagged for MCP access."""
+    """
+    True if `email` is a TAU address belonging to any user row.
+
+    Presence of the email IS the grant; ALLOWED_EMAIL_DOMAIN is the floor under
+    it. Note the domain test is on "@" + domain, so a lookalike like
+    someone@nottaums.ai does not pass.
+    """
     normalized = (email or "").strip().lower()
     if not normalized:
+        return False
+
+    if not normalized.endswith(f"@{ALLOWED_EMAIL_DOMAIN}"):
+        logger.warning("MCP auth denied for %s: not an @%s address", normalized, ALLOWED_EMAIL_DOMAIN)
         return False
 
     db = SessionLocal()
     try:
         user = (
             db.query(User)
-            .filter(
-                func.lower(User.email) == normalized,
-                User.mcp_authorized.is_(True),
-            )
+            .filter(func.lower(User.email) == normalized)
             .first()
         )
         return user is not None
@@ -128,8 +147,7 @@ def check_mcp_allowlist(ctx) -> bool:
     FastMCP AuthCheck: gate every tool/resource/prompt on the users allowlist.
 
     Google having authenticated someone is not enough — any Google account can
-    complete the handshake. Access requires a matching row in `users` with
-    mcp_authorized set.
+    complete the handshake. Access requires a matching email in `users`.
 
     run_auth_checks() treats a raised exception as denial, so failures here fail
     closed by default.
@@ -154,5 +172,5 @@ def check_mcp_allowlist(ctx) -> bool:
     normalized = email.strip().lower()
     allowed = _is_email_authorized_cached(normalized)
     if not allowed:
-        logger.warning("MCP auth denied for %s: not on the users allowlist", normalized)
+        logger.warning("MCP auth denied for %s: no users row with that email", normalized)
     return allowed

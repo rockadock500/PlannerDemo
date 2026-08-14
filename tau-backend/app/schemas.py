@@ -27,11 +27,11 @@ class UserBase(BaseModel):
 class UserOut(UserBase):
     id: int
     # Read-only. Deliberately NOT on UserBase/UserCreate: POST /users is
-    # unauthenticated and splats the body into the model, so an mcp_authorized
-    # field there would let anyone grant themselves MCP access. Manage the
-    # allowlist via scripts/add_mcp_authorized_user.py.
+    # unauthenticated and splats the body into the model. This matters MORE now
+    # that MCP access is granted by `email` alone — adding email to UserCreate
+    # would let anyone grant themselves the connector. Manage access via
+    # scripts/add_mcp_authorized_user.py.
     email: Optional[str] = None
-    mcp_authorized: Optional[bool] = False
     hidden_from_owners: Optional[bool] = False
 
     model_config = ConfigDict(from_attributes=True)

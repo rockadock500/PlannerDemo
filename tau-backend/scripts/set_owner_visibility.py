@@ -5,7 +5,7 @@ Rows that exist only to hold an MCP identity clutter the owner dropdowns in the
 pipeline view. Setting users.hidden_from_owners omits them from those pickers.
 It is presentation only: a hidden user who already owns opportunities still
 resolves and renders normally on them, and nothing about MCP access changes —
-that is users.mcp_authorized, managed by add_mcp_authorized_user.py.
+that is granted by users.email, managed by add_mcp_authorized_user.py.
 
 Like that script, this is the supported way to set the flag: hidden_from_owners
 is exposed read-only on UserOut and deliberately absent from UserCreate, because

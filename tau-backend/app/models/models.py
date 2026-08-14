@@ -58,13 +58,12 @@ class User(Base):
     role = Column(String, default="Member")
     allocation = Column(Integer, default=0) # e.g. 40, 20
 
-    # Google OAuth identity for the MCP server. Nullable — existing rows predate
-    # this and have no email. Store lowercased; Postgres allows many NULLs under
-    # a unique index.
+    # Google OAuth identity for the MCP server, and the MCP grant itself: a row
+    # with a TAU email can use the connector (app/core/auth_google.py). Setting
+    # this — including via a backfill — therefore grants access. Nullable:
+    # existing rows predate it and have no email. Store lowercased; Postgres
+    # allows many NULLs under a unique index.
     email = Column(String, unique=True, index=True, nullable=True)
-    # Explicit opt-in for MCP access. Kept separate from `email` so backfilling
-    # emails later never silently grants anyone the connector.
-    mcp_authorized = Column(Boolean, nullable=False, server_default="false", default=False)
     # Presentation only: omit this person from the frontend's owner pickers.
     # For rows that exist to hold an MCP identity rather than to own pipeline.
     # Does not affect who can be an owner in the data — an already-assigned

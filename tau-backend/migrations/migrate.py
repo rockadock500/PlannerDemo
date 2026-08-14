@@ -79,13 +79,12 @@ def run_migration():
         else:
             print("   Column company_id already exists.")
 
-        # Step 4: Add Google OAuth identity + MCP allowlist flag to users
+        # Step 4: Add Google OAuth identity to users
         # NOTE: app/main.py runs the equivalent ALTERs on every boot — that is what
         # actually applies on Railway. Keep the two in sync.
         print("\n4. Updating users table...")
         user_columns = {
             'email': 'VARCHAR',
-            'mcp_authorized': 'BOOLEAN DEFAULT 0' if is_sqlite else 'BOOLEAN DEFAULT FALSE',
         }
 
         for col_name, col_type in user_columns.items():
@@ -100,10 +99,11 @@ def run_migration():
                 print(f"   Column {col_name} already exists.")
 
         try:
-            conn.execute(text("UPDATE users SET mcp_authorized = 0 WHERE mcp_authorized IS NULL")
-                         if is_sqlite else
-                         text("UPDATE users SET mcp_authorized = FALSE WHERE mcp_authorized IS NULL"))
             conn.execute(text("CREATE UNIQUE INDEX IF NOT EXISTS ix_users_email ON users (email)"))
+            # mcp_authorized is gone: access is users.email plus the domain floor in
+            # app/core/auth_google.py. sqlite cannot DROP COLUMN on older versions,
+            # so tolerate failure here — only Postgres matters on Railway.
+            conn.execute(text("ALTER TABLE users DROP COLUMN IF EXISTS mcp_authorized"))
             conn.commit()
         except Exception as e:
             print(f"   Warning: Could not finalise users columns: {e}")

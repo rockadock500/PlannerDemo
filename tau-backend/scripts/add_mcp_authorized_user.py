@@ -1,10 +1,14 @@
 """
 Grant (or revoke) MCP connector access for a TAU email address.
 
-The MCP server authenticates with Google OAuth but authorizes against this
-allowlist: a `users` row whose email matches and whose mcp_authorized flag is
-set. This script is the supported way to manage that — the REST /users endpoint
-is unauthenticated and deliberately cannot set the flag.
+The MCP server authenticates with Google OAuth but authorizes against the
+`users` table: any row whose email matches the caller's Google address may use
+the connector, provided that address is on ALLOWED_EMAIL_DOMAIN. The email IS
+the grant (the old per-user mcp_authorized flag has been removed), so granting
+means setting an email and revoking means clearing it.
+
+This script is the supported way to manage that — the REST /users endpoint is
+unauthenticated and deliberately cannot set the email.
 
 Adding a user here does NOT make them the owner of any opportunity;
 opportunities.owner_id is a nullable FK, so a row that nothing points at is
@@ -34,6 +38,7 @@ load_dotenv(os.path.join(_BACKEND_ROOT, ".env"))
 from sqlalchemy import func  # noqa: E402
 from sqlalchemy.orm import Session  # noqa: E402
 
+from app.core.auth_google import ALLOWED_EMAIL_DOMAIN  # noqa: E402
 from app.core.database import SQLALCHEMY_DATABASE_URL, SessionLocal  # noqa: E402
 from app.models.models import User  # noqa: E402
 
@@ -61,13 +66,37 @@ def list_authorized(db: Session) -> None:
     if not rows:
         logger.info("No users have an email set.")
         return
-    logger.info("%-28s %-34s %s", "NAME", "EMAIL", "MCP")
+    # Every row listed here has connector access, because the email is the grant —
+    # provided it is an ALLOWED_EMAIL_DOMAIN address, which auth_google.py enforces.
+    logger.info("%-28s %-34s %s", "NAME", "EMAIL", "ACCESS")
     for user in rows:
-        logger.info("%-28s %-34s %s", user.name, user.email, "yes" if user.mcp_authorized else "no")
+        domain_ok = (user.email or "").lower().endswith(f"@{ALLOWED_EMAIL_DOMAIN}")
+        logger.info(
+            "%-28s %-34s %s",
+            user.name, user.email, "yes" if domain_ok else "no (wrong domain)",
+        )
 
 
 def apply_change(db: Session, email: str, name: str | None, authorized: bool, dry_run: bool) -> None:
     user = find_by_email(db, email)
+
+    if not authorized:
+        # Revoking means clearing the email, because the email is what grants
+        # access. This must NOT fall through to the create branch below: creating
+        # a row carrying this email would GRANT access, not remove it.
+        if user is None:
+            logger.info("No change needed: no user carries %s", email)
+            return
+        if dry_run:
+            logger.info(
+                "[dry-run] Would clear email %s on user %r (id=%s)",
+                email, user.name, user.id,
+            )
+            return
+        user.email = None
+        db.commit()
+        logger.info("Revoked %s: cleared email on user %r (id=%s)", email, user.name, user.id)
+        return
 
     if user is None:
         display_name = name or derive_name(email)
@@ -81,35 +110,34 @@ def apply_change(db: Session, email: str, name: str | None, authorized: bool, dr
             if dry_run:
                 logger.info("[dry-run] Would create user %r with email %s", display_name, email)
                 return
-            user = User(name=display_name, email=email, mcp_authorized=authorized)
+            user = User(name=display_name, email=email)
             db.add(user)
             db.commit()
             db.refresh(user)
-            logger.info("Created user %r (id=%s), mcp_authorized=%s", user.name, user.id, authorized)
+            logger.info("Created user %r (id=%s) with email %s", user.name, user.id, email)
             return
 
-    if user.email == email and bool(user.mcp_authorized) == authorized:
-        logger.info("No change needed: %s already mcp_authorized=%s", email, authorized)
+    if user.email == email:
+        logger.info("No change needed: %s already has connector access", email)
         return
 
     if dry_run:
         logger.info(
-            "[dry-run] Would set email=%s mcp_authorized=%s on user %r (id=%s)",
-            email, authorized, user.name, user.id,
+            "[dry-run] Would set email=%s on user %r (id=%s)",
+            email, user.name, user.id,
         )
         return
 
     user.email = email
-    user.mcp_authorized = authorized
     db.commit()
-    logger.info("Updated user %r (id=%s): mcp_authorized=%s", user.name, user.id, authorized)
+    logger.info("Updated user %r (id=%s): email=%s", user.name, user.id, email)
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Manage the MCP allowlist in the users table.")
     parser.add_argument("--email", help="Email address to authorize (case-insensitive).")
     parser.add_argument("--name", help="Display name for a new user row. Derived from the email if omitted.")
-    parser.add_argument("--revoke", action="store_true", help="Clear mcp_authorized instead of setting it.")
+    parser.add_argument("--revoke", action="store_true", help="Clear the email, removing connector access.")
     parser.add_argument("--list", action="store_true", help="Show every user that has an email set.")
     parser.add_argument("--dry-run", action="store_true", help="Report what would change without writing.")
     args = parser.parse_args()
