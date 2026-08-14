@@ -1,6 +1,8 @@
 from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from app.core.config_loader import ConfigEngine
+import os
+import secrets
 import sys
 import logging
 from dotenv import load_dotenv
@@ -13,8 +15,10 @@ logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.sessions import SessionMiddleware
 from app.api.routes import router as api_router
 from app.api.cognito_routes import router as cognito_router
+from app.api.auth_routes import auth_api_router, web_auth_router
 from app.mcp.server import mcp_app
 
 def _run_startup():
@@ -109,12 +113,15 @@ app = FastAPI(
 )
 
 # CORS Configuration
+# No "*" here, deliberately: allow_credentials=True below, and browsers refuse to
+# send credentials to a wildcard origin. The web login's session cookie is
+# cross-site (frontend and backend are different hosts), so a wildcard would break
+# sign-in while looking like a server fault.
 origins = [
     "http://localhost:5173", # Vite Default
     "http://localhost:3000",
     "http://127.0.0.1:5173",
     "https://tau-crm-frontend-production.up.railway.app", # Production Frontend
-    "*" # For local dev ease
 ]
 
 app.add_middleware(
@@ -124,12 +131,40 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Signed-cookie session for the web login. same_site="none" because the frontend
+# and backend are different hosts (and up.railway.app is a public suffix, so a
+# shared parent-domain cookie is impossible) — the cookie belongs to this host and
+# travels on credentialed XHR. A missing SESSION_SECRET must not stop the app from
+# booting, so fall back to an ephemeral key and let auth_web's
+# is_web_login_configured() refuse logins instead: sessions would not survive a
+# restart, and silently signing them with a throwaway key is worse than a 503.
+_session_secret = os.getenv("SESSION_SECRET", "").strip()
+if not _session_secret:
+    logger.critical(
+        "SESSION_SECRET is not set — the web login at /auth/web/login will return 503. "
+        "The REST API and MCP are unaffected."
+    )
+    _session_secret = secrets.token_urlsafe(32)
+
+app.add_middleware(
+    SessionMiddleware,
+    secret_key=_session_secret,
+    same_site="none",
+    https_only=True,
+)
 # NOTE: /mcp* auth is no longer an HTTP middleware here. FastMCP's GoogleProvider
 # guards the MCP routes itself, and a blanket middleware would 401 its own
 # /authorize, /token, /register and /.well-known/* endpoints before they ran.
 
 app.include_router(api_router, prefix="/api")
 app.include_router(cognito_router, prefix="/api")
+# Web login. /auth/web/* sits at the root so the callback matches the URI
+# registered on the Google client; /api/auth/* is mounted separately so it stays
+# reachable when /api gets its session guard — it is how the frontend checks
+# whether it is signed in.
+app.include_router(web_auth_router)
+app.include_router(auth_api_router, prefix="/api")
 
 @app.get("/health")
 def health_check():
