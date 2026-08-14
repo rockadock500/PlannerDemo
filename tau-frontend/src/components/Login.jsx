@@ -52,10 +52,6 @@ const Login = () => {
                         Sign in with Google
                     </a>
                 </div>
-
-                <p className="mt-4 text-center text-xs text-slate-400">
-                    Access is limited to @taums.ai accounts.
-                </p>
             </div>
         </div>
     );
