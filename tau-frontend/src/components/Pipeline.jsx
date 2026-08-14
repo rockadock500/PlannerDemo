@@ -62,6 +62,11 @@ const Pipeline = () => {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
+    // Owner pickers exclude rows flagged hidden_from_owners (they exist to hold an
+    // MCP identity, not to own pipeline). `users` stays complete on purpose, so an
+    // opportunity already assigned to a hidden user still resolves to their name.
+    const ownerOptions = users.filter(u => !u.hidden_from_owners);
+
     // UI State
     const [editingOpp, setEditingOpp] = useState(null);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
@@ -101,7 +106,8 @@ const Pipeline = () => {
             setCompanies(companiesData);
 
             // Set default owner to "Rob" or first user if available
-            const defaultOwner = usersData.find(u => u.name === 'Rob') || usersData[0];
+            const selectableUsers = usersData.filter(u => !u.hidden_from_owners);
+            const defaultOwner = selectableUsers.find(u => u.name === 'Rob') || selectableUsers[0];
             if (defaultOwner) {
                 setNewOppData(prev => ({ ...prev, owner_id: defaultOwner.id }));
             }
@@ -365,7 +371,7 @@ const Pipeline = () => {
                             className="bg-white/70 border border-slate-200 rounded-lg px-3 py-2 text-sm font-medium text-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
                         >
                             <option value="all">All Owners</option>
-                            {users.map(u => (
+                            {ownerOptions.map(u => (
                                 <option key={u.id} value={u.id}>{u.name}</option>
                             ))}
                         </select>
@@ -546,7 +552,7 @@ const Pipeline = () => {
                                 <div className="flex items-center gap-2 mt-1">
                                     <SearchableSelect
                                         icon={<UserIcon size={16} className="text-gray-400 shrink-0" />}
-                                        options={users.map(u => ({
+                                        options={ownerOptions.map(u => ({
                                             value: u.id,
                                             label: u.name,
                                             searchText: u.name,
@@ -775,7 +781,7 @@ const Pipeline = () => {
                                         <select className="flex-1 border border-gray-300 rounded p-2 bg-white"
                                             value={editingOpp.owner_id || ''} onChange={e => setEditingOpp({ ...editingOpp, owner_id: e.target.value })}>
                                             <option value="">Unassigned</option>
-                                            {users.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
+                                            {ownerOptions.map(u => <option key={u.id} value={u.id}>{u.name}</option>)}
                                         </select>
                                     </div>
                                 </div>

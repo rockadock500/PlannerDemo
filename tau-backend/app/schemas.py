@@ -32,6 +32,7 @@ class UserOut(UserBase):
     # allowlist via scripts/add_mcp_authorized_user.py.
     email: Optional[str] = None
     mcp_authorized: Optional[bool] = False
+    hidden_from_owners: Optional[bool] = False
 
     model_config = ConfigDict(from_attributes=True)
 

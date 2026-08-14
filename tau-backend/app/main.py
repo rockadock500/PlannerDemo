@@ -57,6 +57,11 @@ def _run_startup():
                     'ALTER TABLE users ADD COLUMN IF NOT EXISTS mcp_authorized BOOLEAN DEFAULT FALSE',
                     'UPDATE users SET mcp_authorized = FALSE WHERE mcp_authorized IS NULL',
                     'CREATE UNIQUE INDEX IF NOT EXISTS ix_users_email ON users (email)',
+                    # Hides MCP-only rows from the frontend's owner pickers. Same
+                    # reasoning as above: the User model selects this column, so it
+                    # must exist before any users query runs.
+                    'ALTER TABLE users ADD COLUMN IF NOT EXISTS hidden_from_owners BOOLEAN DEFAULT FALSE',
+                    'UPDATE users SET hidden_from_owners = FALSE WHERE hidden_from_owners IS NULL',
                 ]
                 for sql in migrations:
                     try:

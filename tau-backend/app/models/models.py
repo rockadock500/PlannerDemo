@@ -65,6 +65,11 @@ class User(Base):
     # Explicit opt-in for MCP access. Kept separate from `email` so backfilling
     # emails later never silently grants anyone the connector.
     mcp_authorized = Column(Boolean, nullable=False, server_default="false", default=False)
+    # Presentation only: omit this person from the frontend's owner pickers.
+    # For rows that exist to hold an MCP identity rather than to own pipeline.
+    # Does not affect who can be an owner in the data — an already-assigned
+    # hidden user still resolves and renders on their opportunities.
+    hidden_from_owners = Column(Boolean, nullable=False, server_default="false", default=False)
 
     opportunities = relationship("Opportunity", back_populates="owner")
 
