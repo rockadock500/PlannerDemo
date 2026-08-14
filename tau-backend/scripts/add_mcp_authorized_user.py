@@ -21,13 +21,21 @@ import logging
 import os
 import sys
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+_BACKEND_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(_BACKEND_ROOT)
 
-from sqlalchemy import func
-from sqlalchemy.orm import Session
+# app.core.database reads DATABASE_URL at import time and silently falls back to
+# a local sqlite file if it is unset — so .env must be loaded BEFORE that import,
+# or this script quietly edits the wrong database.
+from dotenv import load_dotenv  # noqa: E402
 
-from app.core.database import SessionLocal
-from app.models.models import User
+load_dotenv(os.path.join(_BACKEND_ROOT, ".env"))
+
+from sqlalchemy import func  # noqa: E402
+from sqlalchemy.orm import Session  # noqa: E402
+
+from app.core.database import SQLALCHEMY_DATABASE_URL, SessionLocal  # noqa: E402
+from app.models.models import User  # noqa: E402
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("AddMcpAuthorizedUser")
@@ -108,6 +116,14 @@ def main() -> None:
 
     if not args.list and not args.email:
         parser.error("one of --email or --list is required")
+
+    # Always say which database is about to be touched — the sqlite fallback is
+    # silent otherwise.
+    scheme, _, rest = SQLALCHEMY_DATABASE_URL.partition("://")
+    host = rest.split("@")[-1] if "@" in rest else rest
+    logger.info("Database: %s://%s", scheme, host)
+    if scheme.startswith("sqlite"):
+        logger.warning("This is a LOCAL sqlite database, not production.")
 
     db = SessionLocal()
     try:
