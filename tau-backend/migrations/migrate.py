@@ -79,8 +79,37 @@ def run_migration():
         else:
             print("   Column company_id already exists.")
 
-        # Step 4: Set default values for existing records
-        print("\n4. Setting default values for existing records...")
+        # Step 4: Add Google OAuth identity + MCP allowlist flag to users
+        # NOTE: app/main.py runs the equivalent ALTERs on every boot — that is what
+        # actually applies on Railway. Keep the two in sync.
+        print("\n4. Updating users table...")
+        user_columns = {
+            'email': 'VARCHAR',
+            'mcp_authorized': 'BOOLEAN DEFAULT 0' if is_sqlite else 'BOOLEAN DEFAULT FALSE',
+        }
+
+        for col_name, col_type in user_columns.items():
+            if not column_exists(inspector, 'users', col_name):
+                try:
+                    print(f"   Adding column: {col_name}")
+                    conn.execute(text(f"ALTER TABLE users ADD COLUMN {col_name} {col_type}"))
+                    conn.commit()
+                except Exception as e:
+                    print(f"   Warning: Could not add {col_name}: {e}")
+            else:
+                print(f"   Column {col_name} already exists.")
+
+        try:
+            conn.execute(text("UPDATE users SET mcp_authorized = 0 WHERE mcp_authorized IS NULL")
+                         if is_sqlite else
+                         text("UPDATE users SET mcp_authorized = FALSE WHERE mcp_authorized IS NULL"))
+            conn.execute(text("CREATE UNIQUE INDEX IF NOT EXISTS ix_users_email ON users (email)"))
+            conn.commit()
+        except Exception as e:
+            print(f"   Warning: Could not finalise users columns: {e}")
+
+        # Step 5: Set default values for existing records
+        print("\n5. Setting default values for existing records...")
         try:
             conn.execute(text("UPDATE opportunities SET duration_months = 1 WHERE duration_months IS NULL"))
             conn.execute(text("UPDATE opportunities SET procurement_delay = 'low' WHERE procurement_delay IS NULL"))

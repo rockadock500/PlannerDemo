@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 from fastapi.middleware.cors import CORSMiddleware
 from app.api.routes import router as api_router
 from app.api.cognito_routes import router as cognito_router
-from app.mcp.server import CognitoAPIKeyMiddleware, mcp_app
+from app.mcp.server import mcp_app
 
 def _run_startup():
     logger.info("Starting up Tau CRM Backend...")
@@ -49,6 +49,14 @@ def _run_startup():
                     'DROP INDEX IF EXISTS ix_contacts_email',  # Remove unique email constraint
                     'ALTER TABLE contacts DROP CONSTRAINT IF EXISTS contacts_email_key',  # Remove PG unique constraint
                     'ALTER TABLE contacts DROP CONSTRAINT IF EXISTS uq_contacts_email',  # Alternative constraint name
+                    # Google OAuth identity + MCP allowlist flag. Must run here (not
+                    # only in migrations/migrate.py, which nothing invokes on deploy) —
+                    # the User model selects these columns, so a boot without them
+                    # breaks every users query, not just MCP.
+                    'ALTER TABLE users ADD COLUMN IF NOT EXISTS email VARCHAR',
+                    'ALTER TABLE users ADD COLUMN IF NOT EXISTS mcp_authorized BOOLEAN DEFAULT FALSE',
+                    'UPDATE users SET mcp_authorized = FALSE WHERE mcp_authorized IS NULL',
+                    'CREATE UNIQUE INDEX IF NOT EXISTS ix_users_email ON users (email)',
                 ]
                 for sql in migrations:
                     try:
@@ -101,9 +109,9 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-# MCP auth (fail-closed). Must be after CORS so it runs closer to the app
-# (Starlette executes middleware in reverse add order).
-app.add_middleware(CognitoAPIKeyMiddleware)
+# NOTE: /mcp* auth is no longer an HTTP middleware here. FastMCP's GoogleProvider
+# guards the MCP routes itself, and a blanket middleware would 401 its own
+# /authorize, /token, /register and /.well-known/* endpoints before they ran.
 
 app.include_router(api_router, prefix="/api")
 app.include_router(cognito_router, prefix="/api")

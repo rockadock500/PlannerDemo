@@ -52,12 +52,20 @@ class Contact(Base):
 
 class User(Base):
     __tablename__ = "users"
-    
+
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True, index=True)
     role = Column(String, default="Member")
     allocation = Column(Integer, default=0) # e.g. 40, 20
-    
+
+    # Google OAuth identity for the MCP server. Nullable — existing rows predate
+    # this and have no email. Store lowercased; Postgres allows many NULLs under
+    # a unique index.
+    email = Column(String, unique=True, index=True, nullable=True)
+    # Explicit opt-in for MCP access. Kept separate from `email` so backfilling
+    # emails later never silently grants anyone the connector.
+    mcp_authorized = Column(Boolean, nullable=False, server_default="false", default=False)
+
     opportunities = relationship("Opportunity", back_populates="owner")
 
 class Opportunity(Base):

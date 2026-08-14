@@ -4,8 +4,9 @@ Cognito CRM MCP server — Phase 1 read + Phase 2 write tools.
 Served at /mcp on the FastAPI app (Streamable HTTP).
 Tools call CognitoService.execute_function(); no duplicated CRM logic.
 
-Auth: applied in app.main via CognitoAPIKeyMiddleware (fail-closed).
-OAuth/Entra can replace ApiKeyAuthProvider without changing these tools.
+Auth: Google OAuth (FastMCP GoogleProvider) for authentication, plus an
+allowlist check against the `users` table for authorization — both wired up in
+app.core.auth_google. The old shared-COGNITO_API_KEY middleware is gone.
 
 Hard deletes are intentionally NOT exposed via MCP (use archive_opportunity).
 """
@@ -15,11 +16,9 @@ import logging
 from typing import Any, Dict, Optional
 
 from fastmcp import FastMCP
-from starlette.middleware.base import BaseHTTPMiddleware
-from starlette.requests import Request
-from starlette.responses import JSONResponse
+from fastmcp.server.middleware.authorization import AuthMiddleware
 
-from app.core.auth import get_mcp_auth_provider
+from app.core.auth_google import build_google_auth_provider, check_mcp_allowlist
 from app.core.database import SessionLocal
 from app.services.cognito import CognitoService
 
@@ -49,36 +48,14 @@ MCP_ALLOWED_FUNCTIONS = frozenset(
 )
 
 
-class CognitoAPIKeyMiddleware(BaseHTTPMiddleware):
-    """
-    HTTP-layer auth for /mcp* — fail closed if COGNITO_API_KEY is unset.
+def _deny_all(ctx) -> bool:
+    """Used when OAuth is unconfigured — refuse every component."""
+    return False
 
-    Attached on the parent FastAPI app (not only the MCP ASGI sub-app) so auth
-    still applies when MCP routes are merged into the main app.
-    """
 
-    async def dispatch(self, request: Request, call_next):
-        path = request.url.path
-        if not (path == "/mcp" or path.startswith("/mcp/")):
-            return await call_next(request)
-
-        # Allow CORS preflight through; CORSMiddleware handles headers.
-        if request.method == "OPTIONS":
-            return await call_next(request)
-
-        provider = get_mcp_auth_provider()
-        try:
-            provider.authenticate(
-                authorization=request.headers.get("authorization"),
-                x_api_key=request.headers.get("x-api-key"),
-            )
-        except Exception as exc:
-            status = getattr(exc, "status_code", 401)
-            detail = getattr(exc, "detail", "Unauthorized")
-            return JSONResponse({"detail": detail}, status_code=status)
-
-        return await call_next(request)
-
+# None when GOOGLE_OAUTH_* is unconfigured. In that case the server still
+# imports cleanly (so the REST API keeps running) but exposes no tools.
+_auth_provider = build_google_auth_provider()
 
 mcp = FastMCP(
     name="Cognito CRM",
@@ -89,6 +66,12 @@ mcp = FastMCP(
         "archive/unarchive opportunities (soft-remove from pipeline — no hard delete). "
         "Archive applies to opportunities only."
     ),
+    auth=_auth_provider,
+    # Fail closed: with no OAuth provider there is no identity to check, so deny
+    # everything rather than leaving /mcp open.
+    middleware=[
+        AuthMiddleware(auth=check_mcp_allowlist if _auth_provider else _deny_all)
+    ],
 )
 
 

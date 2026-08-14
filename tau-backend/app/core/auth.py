@@ -1,13 +1,12 @@
 """
-Cognito authentication seam.
+Cognito REST authentication seam.
 
-v1: shared API key via COGNITO_API_KEY.
-  Accepts the same credentials Cognito REST uses:
+Shared API key via COGNITO_API_KEY, for /api/cognito/* only:
     - X-API-Key: <key>
     - Authorization: Bearer <key>
 
-Later: replace ApiKeyAuthProvider (or swap get_auth_provider()) with an
-Entra OAuth provider without rewriting MCP tools or Cognito routes.
+The MCP server no longer uses this — it authenticates per user via Google
+OAuth and authorizes against the users table (app/core/auth_google.py).
 """
 from __future__ import annotations
 
@@ -92,14 +91,8 @@ class ApiKeyAuthProvider(AuthProvider):
         return AuthPrincipal(subject="api_key", auth_method="api_key")
 
 
-# Default providers — swap MCP_AUTH_PROVIDER later for Entra without tool changes.
+# REST only. The MCP server moved to Google OAuth — see app/core/auth_google.py.
 REST_AUTH_PROVIDER = ApiKeyAuthProvider(fail_closed=False)
-MCP_AUTH_PROVIDER = ApiKeyAuthProvider(fail_closed=True)
-
-
-def get_mcp_auth_provider() -> AuthProvider:
-    """Indirection point for future Entra OAuth swap-in."""
-    return MCP_AUTH_PROVIDER
 
 
 def verify_cognito_api_key(
