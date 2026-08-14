@@ -101,9 +101,8 @@ def run_migration():
         try:
             conn.execute(text("CREATE UNIQUE INDEX IF NOT EXISTS ix_users_email ON users (email)"))
             # mcp_authorized is gone: access is users.email plus the domain floor in
-            # app/core/auth_google.py. sqlite cannot DROP COLUMN on older versions,
-            # so tolerate failure here — only Postgres matters on Railway.
-            conn.execute(text("ALTER TABLE users DROP COLUMN IF EXISTS mcp_authorized"))
+            # app/core/auth_google.py. The one-shot DROP has been removed here too,
+            # to stay in sync with app/main.py per the note above.
             conn.commit()
         except Exception as e:
             print(f"   Warning: Could not finalise users columns: {e}")

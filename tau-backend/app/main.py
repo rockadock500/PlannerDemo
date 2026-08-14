@@ -55,10 +55,12 @@ def _run_startup():
                     # breaks every users query, not just MCP.
                     'ALTER TABLE users ADD COLUMN IF NOT EXISTS email VARCHAR',
                     'CREATE UNIQUE INDEX IF NOT EXISTS ix_users_email ON users (email)',
-                    # mcp_authorized removed: MCP access is now users.email plus the
-                    # domain floor in auth_google.py. Dropped here rather than in a
-                    # one-off script so a restored backup converges on the same shape.
-                    'ALTER TABLE users DROP COLUMN IF EXISTS mcp_authorized',
+                    # NOTE: users.mcp_authorized was dropped from production by a
+                    # one-shot 'ALTER TABLE ... DROP COLUMN' that lived here in
+                    # 7bde814 and was removed once it had run. MCP access is
+                    # users.email plus the domain floor in auth_google.py. A database
+                    # restored from before that commit will keep a vestigial
+                    # mcp_authorized column; nothing reads it, so it is harmless.
                     # Hides MCP-only rows from the frontend's owner pickers. Same
                     # reasoning as above: the User model selects this column, so it
                     # must exist before any users query runs.
