@@ -7,10 +7,18 @@ const BASE_URL = process.env.NODE_ENV === 'production'
 const API_URL = `${BASE_URL}/api`;
 
 // Create axios instance with default config
+// withCredentials sends the backend's session cookie. It is required, not
+// optional: the frontend and backend are different hosts, so the cookie is
+// cross-site and the browser omits it without this.
 const api = axios.create({
     baseURL: API_URL,
     timeout: 10000,
+    withCredentials: true,
 });
+
+// Where to send the browser to start the Google login. Not on `api` because it is
+// a full-page navigation, not an XHR, and it sits outside the /api prefix.
+export const LOGIN_URL = `${BASE_URL}/auth/web/login`;
 
 // Error logging interceptor - captures all API errors with context
 api.interceptors.response.use(
@@ -58,6 +66,31 @@ const getErrorMessage = (error) => {
         return error.message;
     }
     return 'An unexpected error occurred';
+};
+
+// -----------------
+// AUTH
+// -----------------
+
+/**
+ * Who is signed in, or null when not authenticated.
+ *
+ * Returns null on 401 rather than throwing, because "not signed in" is a normal
+ * state on first load, not an error the caller should handle as a failure.
+ */
+export const getMe = async () => {
+    try {
+        const response = await api.get('/auth/me');
+        return response.data;
+    } catch (error) {
+        if (error.response?.status === 401) return null;
+        throw error;
+    }
+};
+
+export const logout = async () => {
+    // Outside the /api prefix, so it bypasses the shared instance's baseURL.
+    await axios.post(`${BASE_URL}/auth/web/logout`, null, { withCredentials: true });
 };
 
 // -----------------

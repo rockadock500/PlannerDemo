@@ -1,14 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DataCleaner from './components/DataCleaner';
 import Pipeline from './components/Pipeline';
 import Forecast from './components/Forecast';
 import Companies from './components/Companies';
 import Cognito from './components/Cognito';
 import Archive from './components/Archive';
-import { LayoutDashboard, Database, TrendingUp, Building2, Bot, Archive as ArchiveIcon } from 'lucide-react';
+import Login from './components/Login';
+import { getMe, logout } from './api';
+import { LayoutDashboard, Database, TrendingUp, Building2, Bot, Archive as ArchiveIcon, LogOut } from 'lucide-react';
 
 function App() {
   const [view, setView] = useState('pipeline');
+  // undefined = still checking, null = signed out, object = signed in. The three
+  // states are distinct on purpose: rendering the login screen while the check is
+  // in flight would flash it at an already-authenticated user on every load.
+  const [user, setUser] = useState(undefined);
+
+  useEffect(() => {
+    getMe()
+      .then(setUser)
+      .catch(() => setUser(null)); // network/5xx — treat as signed out
+  }, []);
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+    } finally {
+      // Clear locally even if the request failed, so the user isn't stuck looking
+      // at a session they've asked to end.
+      setUser(null);
+    }
+  };
+
+  if (user === undefined) {
+    return (
+      <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="h-8 w-8 rounded-full border-2 border-slate-200 border-t-indigo-600 animate-spin" />
+      </div>
+    );
+  }
+
+  if (user === null) {
+    return <Login />;
+  }
 
   return (
     <div className="min-h-screen bg-slate-50 flex flex-col font-sans text-slate-900">
@@ -107,12 +141,20 @@ function App() {
             </button>
 
             <div className="flex items-center gap-2 px-3 py-1.5 bg-indigo-50 text-indigo-700 rounded-full border border-indigo-100 text-xs font-bold shadow-sm">
-              <div className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-indigo-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-indigo-500"></span>
+              <div className="w-5 h-5 rounded-full bg-indigo-600 text-white flex items-center justify-center text-[10px]">
+                {(user.name || user.email || '?').charAt(0).toUpperCase()}
               </div>
-              AI Agent Active
+              <span title={user.email}>{user.name || user.email}</span>
             </div>
+
+            <button
+              onClick={handleLogout}
+              title="Sign out"
+              className="flex items-center gap-1.5 text-slate-400 hover:text-slate-700 text-sm font-medium transition-colors"
+            >
+              <LogOut size={16} />
+              Sign out
+            </button>
           </div>
         </div>
       </nav>
