@@ -42,7 +42,7 @@ const logicChallenges = [
   {
     area: "Objective Function",
     title: "What is the plan really optimising?",
-    body: "V1 balances acquisitions, CPA, LTV proxy and strategic audience weight. The client needs to confirm whether final optimisation is acquisitions, CPA, LTV-weighted value, draw participation or a blended score.",
+    body: "V1 balances acquisitions, CPA, LTV proxy and strategic audience weight. The client needs to confirm whether final optimisation is acquisitions, CPA, LTV-weighted value, quote-to-policy conversion or a blended score.",
     status: "big",
   },
   {
@@ -86,7 +86,7 @@ const agentNodes = [
   {
     name: "Evidence Pack",
     type: "code",
-    body: "Loads scoped budget, draw, geo, BARB, benchmark and source context.",
+    body: "Loads scoped budget, calendar, geo, BARB, benchmark and source context.",
   },
   {
     name: "Scenario Interpreter",
@@ -111,7 +111,7 @@ const agentNodes = [
   {
     name: "Approval",
     type: "state",
-    body: "Tracks PL sign-off now, with room for finance or t7s later.",
+    body: "Tracks Admiral sign-off now, with room for finance or the media agency later.",
   },
   {
     name: "Future Channel Agents",
@@ -186,7 +186,7 @@ const state = {
   annualBriefFilename: null,
   annualGenerateStatus: "idle",
   annualGenerateError: null,
-  viewingAs: "Dave Singleton",
+  viewingAs: "Admiral Planner",
   liveSources: null,
   liveSourcesLoading: false,
   liveSourcesError: null,
@@ -281,15 +281,11 @@ const MAPPED_SOURCE_CHANNELS = new Set(CHANNEL_GROUPS.flatMap((g) => g.sourceCha
 // login exists, setting state.viewingAs to the logged-in person's name is
 // all that's needed to get the right functionality for their role.
 const ROLE_PEOPLE_DEFAULT = [
-  { name: "Dave Singleton", org: "PL", role: "admin" },
-  { name: "Sarah Healy", org: "PL", role: "admin" },
-  { name: "Nick Barret", org: "PL", role: "user" },
-  { name: "Lauren Fishwick", org: "the7stars", role: "user" },
-  { name: "Tommy Gleadell", org: "the7stars", role: "user" },
-  { name: "Chris Gilfoy", org: "the7stars", role: "user" },
-  { name: "Rob Letham", org: "PL", role: "viewer" },
-  { name: "Lauren Watson", org: "PL", role: "viewer" },
-  { name: "Ryan Whitaker", org: "PL", role: "viewer" },
+  { name: "Admiral Planner", org: "Admiral", role: "user" },
+  { name: "Admiral Approver", org: "Admiral", role: "admin" },
+  { name: "Media Agency Strategist", org: "Media Agency", role: "user" },
+  { name: "Data Steward", org: "Admiral", role: "admin" },
+  { name: "Read-only Viewer", org: "Admiral", role: "viewer" },
 ];
 const ROLE_LABELS = { admin: "Admin", user: "User", viewer: "Viewer" };
 state.rolePeople = ROLE_PEOPLE_DEFAULT.map((person) => ({ ...person }));
@@ -1822,7 +1818,7 @@ function renderScenarioBuilder() {
       </div>
       <div>
         <label class="field-label" for="scenarioFreeText">Additional scenario (free text)</label>
-        <textarea id="scenarioFreeText" rows="3" placeholder="e.g. Grow Greater London hard this year, protect heartland response, cap OOH at 8%."></textarea>
+        <textarea id="scenarioFreeText" rows="3" placeholder="e.g. Grow EV and telematics quote demand hard this year, protect brand-search share, cap OOH at 8%."></textarea>
         <button class="secondary-button" type="button" id="proposeScenario" ${disabled}>Propose scenario</button>
       </div>
     </div>
@@ -2730,7 +2726,7 @@ function renderEventsCalendar() {
             <strong>Monthly overview: ${monthLabel}</strong>
             <button class="secondary-button" type="button" id="generateCalendarOverview">${state.calendarOverviewAi[monthStr] ? "Regenerate" : "Generate"} AI overview</button>
           </div>
-          <p class="table-hint">Deterministic summary of scheduled draws, holidays and context for this month, filtered to the categories selected above.</p>
+          <p class="table-hint">Deterministic summary of scheduled motoring moments, holidays and context for this month, filtered to the categories selected above.</p>
           ${renderCalendarAiOverview(monthStr)}
           ${renderCalendarOverviewGroups(monthItems)}
         </div>
@@ -2923,7 +2919,7 @@ function renderChannelGuardrails() {
         <tbody>${groupRowsHtml}</tbody>
       </table>
     </div>
-    <p class="table-hint">Strategic Index (0-100, 50 = neutral) is a qualitative channel-value score - e.g. a halo effect or brand-confidence signal - that CPA and reach evidence don't capture. It tilts the model's own weighting rather than forcing an outcome, unlike Min/Max %. This is entered by a the7stars strategist, drawing on the7stars' own institutional planning experience and client history for this account - it is deliberately not derived from MMM or CPA data. Defaults to 50 (neutral) until a strategist overrides it.</p>
+    <p class="table-hint">Strategic Index (0-100, 50 = neutral) is a qualitative channel-value score - e.g. a halo effect or brand-confidence signal - that CPA and reach evidence don't capture. It tilts the model's own weighting rather than forcing an outcome, unlike Min/Max %. This is entered by a media agency strategist, drawing on the agency's own institutional planning experience and client history for this account - it is deliberately not derived from MMM or CPA data. Defaults to 50 (neutral) until a strategist overrides it.</p>
   `;
   renderGenerateGate();
 }
@@ -2983,7 +2979,7 @@ function renderAdminUsersSection() {
       <div class="config-actions" style="margin-top:12px;">
         <input type="text" id="newPersonName" placeholder="Name" />
         <input type="email" id="newPersonEmail" placeholder="Email address" />
-        <input type="text" id="newPersonOrg" placeholder="Org (e.g. PL, the7stars)" />
+        <input type="text" id="newPersonOrg" placeholder="Org (e.g. Admiral, Media Agency)" />
         <select id="newPersonRole">
           ${Object.keys(ROLE_LABELS).map((role) => `<option value="${role}">${ROLE_LABELS[role]}</option>`).join("")}
         </select>
@@ -3464,7 +3460,7 @@ function removeStoredPlan(key) {
 function addRolePerson(name, email, org, role) {
   const trimmedName = name.trim();
   if (!trimmedName || state.rolePeople.some((person) => person.name === trimmedName)) return;
-  state.rolePeople = [...state.rolePeople, { name: trimmedName, email: email.trim(), org: org.trim() || "PL", role }];
+  state.rolePeople = [...state.rolePeople, { name: trimmedName, email: email.trim(), org: org.trim() || "Admiral", role }];
   saveLocalJson("ppl_role_people", state.rolePeople);
   renderAdmin();
 }
@@ -3548,7 +3544,7 @@ function renderApproval() {
   const plan = current.plan;
   const isCurrentApproved = versionId === state.currentApprovedVersionId;
   const approvalStatus = version?.approval_status || "draft";
-  const statusLabels = { draft: "Draft plan", review: "Ready for PL review", approved: "Approved version" };
+  const statusLabels = { draft: "Draft plan", review: "Ready for Admiral review", approved: "Approved version" };
   const events = approvalEventsForVersion(versionId);
   const isAdmin = currentRole() === "admin";
   const clearsTicket = Boolean(plan.brief_test?.clears_ticket_target);
@@ -3606,7 +3602,7 @@ function renderApproval() {
     <div class="approval-card wide">
       ${isAdmin ? `
         <strong>Approval comments</strong>
-        <textarea id="approvalComment" rows="4" placeholder="Capture PL, finance or the7stars review comments for this plan version."></textarea>
+        <textarea id="approvalComment" rows="4" placeholder="Capture Admiral, finance or media agency review comments for this plan version."></textarea>
         <div class="config-actions">
           <button class="primary-button" type="button" id="submitApproval">Approve plan</button>
         </div>
@@ -4338,7 +4334,7 @@ function downloadPlanExcel() {
   const chunkSize = 30000;
   const chunks = [];
   for (let i = 0; i < payload.length; i += chunkSize) chunks.push([payload.slice(i, i + chunkSize)]);
-  const dataSheet = XLSX.utils.aoa_to_sheet([["PPL_PLAN_EXPORT_V1"], ...chunks]);
+  const dataSheet = XLSX.utils.aoa_to_sheet([["ADMIRAL_PLAN_EXPORT_V1"], ...chunks]);
   XLSX.utils.book_append_sheet(wb, dataSheet, "_PlanData");
   const dataSheetIndex = wb.SheetNames.indexOf("_PlanData");
   wb.Workbook = wb.Workbook || {};
@@ -4504,7 +4500,7 @@ loadData()
     document.body.innerHTML = `<main style="font-family: system-ui, sans-serif; padding: 32px; max-width: 760px;">
       <h1>Prototype failed to load</h1>
       <p><strong>${error.message}</strong></p>
-      <p>This usually means the local server is not running from <code>ppl_prototype_v1</code>, or the page was opened as a file instead of via <code>http://127.0.0.1:&lt;port&gt;/prototype/</code>.</p>
-      <p>Try the fresh local URL provided in the Codex response, then hard refresh Chrome if needed.</p>
+      <p>This usually means the page was opened directly as a file instead of served over <code>http://</code> - the demo fetches its data files (<code>../data/*.json</code>) and needs a local web server, not a <code>file://</code> URL.</p>
+      <p>Try the local URL provided for this demo, then hard refresh if needed.</p>
     </main>`;
   });
