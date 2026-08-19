@@ -1,0 +1,161 @@
+{
+  "client_id": "fanduel",
+  "engine_version": "0.2.0",
+  "generated_at": "2026-07-13T15:08:55.966Z",
+  "seed": 1042,
+  "mode": "synthetic",
+  "display_flag": "SYNTHETIC",
+  "data_status": "synthetic-simulated",
+  "brand_dr_split": [
+    0.5,
+    0.5
+  ],
+  "benchmark_file": "online-gambling-us.json",
+  "coherence_report": {
+    "path": "coherence_report.json",
+    "passed": true
+  },
+  "sources": [
+    {
+      "source": "plans",
+      "mode": "synthetic",
+      "display_flag": "SYNTHETIC",
+      "generated_at": "2026-07-13T15:08:55.966Z",
+      "seed": 1042,
+      "engine_version": "0.2.0",
+      "real_data": null,
+      "data_status": "synthetic-simulated",
+      "files": [
+        "plans/monthly_plan.csv",
+        "plans/monthly_plan.json"
+      ],
+      "row_count": 338,
+      "summary": {
+        "month_count": 26
+      }
+    },
+    {
+      "source": "ga4",
+      "mode": "synthetic",
+      "display_flag": "SYNTHETIC",
+      "generated_at": "2026-07-13T15:08:55.966Z",
+      "seed": 1042,
+      "engine_version": "0.2.0",
+      "real_data": null,
+      "data_status": "synthetic-simulated",
+      "files": [
+        "ga4/daily_acquisition.csv",
+        "ga4/daily_acquisition_summary.json"
+      ],
+      "row_count": 6552,
+      "summary": {
+        "sessions": 113175365,
+        "conversions": 2024868.35
+      }
+    },
+    {
+      "source": "google_ads",
+      "mode": "synthetic",
+      "display_flag": "SYNTHETIC",
+      "generated_at": "2026-07-13T15:08:55.966Z",
+      "seed": 1042,
+      "engine_version": "0.2.0",
+      "real_data": null,
+      "data_status": "synthetic-simulated",
+      "files": [
+        "google_ads/campaign_daily.csv",
+        "google_ads/campaign_daily_summary.json"
+      ],
+      "row_count": 7098,
+      "summary": {
+        "cost": 130798342.48,
+        "clicks": 29514775,
+        "conversions": 510709.02,
+        "by_campaign_type": {
+          "Search": 65747283.44,
+          "Video": 45586868.37,
+          "Performance Max": 0,
+          "Display": 19464190.67
+        }
+      }
+    },
+    {
+      "source": "meta",
+      "mode": "synthetic",
+      "display_flag": "SYNTHETIC",
+      "generated_at": "2026-07-13T15:08:55.966Z",
+      "seed": 1042,
+      "engine_version": "0.2.0",
+      "real_data": null,
+      "data_status": "synthetic-simulated",
+      "files": [
+        "meta/ad_daily.csv",
+        "meta/ad_daily_summary.json"
+      ],
+      "row_count": 8736,
+      "summary": {
+        "spend": 50703006.72,
+        "conversions": 169030.32
+      }
+    },
+    {
+      "source": "atl",
+      "mode": "synthetic",
+      "display_flag": "SYNTHETIC",
+      "generated_at": "2026-07-13T15:08:55.966Z",
+      "seed": 1042,
+      "engine_version": "0.2.0",
+      "real_data": null,
+      "data_status": "synthetic-simulated",
+      "files": [
+        "atl/weekly_delivery.csv",
+        "atl/weekly_delivery_summary.json"
+      ],
+      "row_count": 237,
+      "summary": {
+        "delivered_spend": 274860766.33
+      }
+    },
+    {
+      "source": "creative",
+      "mode": "synthetic",
+      "display_flag": "SYNTHETIC",
+      "generated_at": "2026-07-13T15:08:55.966Z",
+      "seed": 1042,
+      "engine_version": "0.2.0",
+      "real_data": null,
+      "data_status": "synthetic-simulated",
+      "files": [
+        "creative/weekly_creative.csv",
+        "creative/weekly_creative_summary.json"
+      ],
+      "row_count": 948,
+      "summary": {
+        "creative_assets": 12
+      }
+    },
+    {
+      "source": "sales_splits",
+      "mode": "synthetic",
+      "display_flag": "SYNTHETIC",
+      "generated_at": "2026-07-13T15:08:55.966Z",
+      "seed": 1042,
+      "engine_version": "0.2.0",
+      "real_data": null,
+      "data_status": "synthetic-simulated",
+      "files": [
+        "sales_splits/product_persona_monthly.csv",
+        "sales_splits/product_persona_monthly_summary.json"
+      ],
+      "row_count": 15912,
+      "summary": {
+        "conversions": 2024868.35,
+        "revenue": 420123600.46,
+        "promo_cost": 143788274.91,
+        "tx_sportsbook_conversions": 0
+      }
+    }
+  ],
+  "engine_out_dir": "C:/Users/rober/Documents/Codex/projects/planner-template-v2/sde/out/fanduel",
+  "bridge_status": "planner-demo-compact-json"
+}

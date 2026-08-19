@@ -1,0 +1,2809 @@
+{
+  "created_at": "2026-07-09",
+  "baseline_id": "fanduel_us_working_media_baseline_2026_v2",
+  "source_id": "fanduel_media_spend_baseline_v2_final_2026_07_09",
+  "status": "inferred public-source envelope",
+  "category_label": "working_media",
+  "use": "Synthetic 2026 FanDuel US working-media planning prior. Not FanDuel internal data.",
+  "annual_total_usd": 450000000,
+  "annual_media_spend_usd": 450000000,
+  "headline": {
+    "annual_estimate_usd": 450000000,
+    "low_estimate_usd": 400000000,
+    "high_estimate_usd": 500000000,
+    "category_label": "working_media",
+    "confidence": "medium-low for annual range; low for channel split",
+    "filed_us_sales_marketing": {
+      "value_usd": 1319000000,
+      "category_label": "envelope",
+      "note": "Filed FY2025 US segment S&M. Broader than media and not consumed by generation."
+    },
+    "public_tracker_floor": {
+      "value_usd": 100000000,
+      "comparator": "greater_than",
+      "category_label": "working_media",
+      "note": "MediaRadar current partial coverage across identified digital, print and national TV; not total media."
+    }
+  },
+  "input_gate": {
+    "definition_passed": true,
+    "definition": "Paid media and paid acquisition activation only; excludes promo, sponsorship rights, operational costs, market access, people, research, amortisation and the Predicts EBITDA investment.",
+    "human_signoff": "Rob pre-approved direct rescale in the supplied work order dated 2026-07-10; post-hoc review.",
+    "reality_anchors": [
+      "sbj_horizon_next_fanduel_200m_2023",
+      "edo_adengage_fanduel_90d_2025",
+      "mediaradar_fanduel_profile_2026",
+      "flutter_2025_10k_us_sales_marketing"
+    ]
+  },
+  "triangle": {
+    "media_envelope_usd": {
+      "low": 400000000,
+      "selected": 450000000,
+      "high": 500000000,
+      "category_label": "working_media"
+    },
+    "blended_media_cpa_usd": {
+      "low": 200,
+      "high": 450,
+      "category_label": "working_media"
+    },
+    "annual_ftd_proxy": {
+      "low": 900000,
+      "high": 2500000
+    },
+    "expected_selected_mix": {
+      "blended_media_cpa_usd": 341,
+      "annual_ftd_proxy": 1320000
+    },
+    "identity": "working_media / blended_media_cpa = annual_ftd_proxy"
+  },
+  "methodology": [
+    "Use filed US S&M only as a broad envelope ceiling, never as media.",
+    "Anchor observable media with the 2023 $200M TV/OTT/OOH agency remit, EDO and iSpot TV windows, and current MediaRadar partial coverage.",
+    "Exclude sponsorship, promotional incentives, personnel, market research, amortisation, market access, operating costs and the FanDuel Predicts adjusted-EBITDA investment.",
+    "Normalize the prior public-source channel shape to the $450M working-media midpoint and retain sports-calendar phasing.",
+    "Require the plan and SDE to pass the $200-$450 blended-media-CPA band and 0.9M-2.5M annual-FTD band."
+  ],
+  "caveats": [
+    "Inferred public-source envelope; not FanDuel internal data and not an external factual claim.",
+    "Channel split and monthly phasing are synthetic planning priors, not verified media-flight data.",
+    "Public trackers have different coverage and proprietary estimation methods.",
+    "Client finance, media-plan, agency, MMM and platform evidence supersede this baseline."
+  ],
+  "do_not_claim": [
+    "$450M is actual, disclosed or verified FanDuel spend.",
+    "Filed US sales and marketing is a media budget.",
+    "The $45.3M 90-day estimate came from iSpot; it was EDO AdEnGage.",
+    "The $200M-$300M FanDuel Predicts adjusted-EBITDA impact is a media earmark.",
+    "Free bets, bonuses, sponsorship rights or operational costs are working media."
+  ],
+  "sources": [
+    {
+      "source_id": "fanduel_media_spend_baseline_v2_final_2026_07_09",
+      "name": "FanDuel US Media Spend Baseline v2 FINAL",
+      "url": "C:/Users/rober/Documents/Fanduel/docs/33_media_spend_baseline_v2_FINAL.md",
+      "use": "Input-gate decision, receipts, exclusions and reconciliation triangle."
+    },
+    {
+      "source_id": "flutter_2025_10k_us_sales_marketing",
+      "name": "Flutter Entertainment 2025 Form 10-K",
+      "url": "https://www.sec.gov/Archives/edgar/data/1635327/000163532726000005/flut-20251231.htm",
+      "use": "Filed US S&M ceiling, category definition and promo accounting."
+    },
+    {
+      "source_id": "sbj_horizon_next_fanduel_200m_2023",
+      "name": "SBJ: Horizon Next expands FanDuel account",
+      "url": "https://www.sportsbusinessjournal.com/Daily/Issues/2023/03/10/Marketing-and-Sponsorship/fanduel-horizon-next-expansion/",
+      "use": "$200M TV/OTT/OOH agency-remit anchor and named excluded channels."
+    },
+    {
+      "source_id": "edo_adengage_fanduel_90d_2025",
+      "name": "MediaPost report of EDO AdEnGage",
+      "url": "https://www.mediapost.com/publications/article/404177/sports-betting-tv-spend-1308m-fanduel-and-draf.html",
+      "use": "FanDuel 90-day and category national-TV tracker estimates."
+    },
+    {
+      "source_id": "ispot_fanduel_nfl_window_2024",
+      "name": "Marketing Brew report of iSpot",
+      "url": "https://www.marketingbrew.com/stories/2024/10/04/sportsbooks-TV-ad-spend-NFL--DraftKings-FanDuel-BetMGM",
+      "use": "Independent narrow NFL linear-TV window."
+    },
+    {
+      "source_id": "mediaradar_fanduel_profile_2026",
+      "name": "MediaRadar FanDuel profile",
+      "url": "https://advertisers.mediaradar.com/fanduel-advertising-profile",
+      "use": "Current partial tracker floor and scope."
+    }
+  ],
+  "annual_channels": [
+    {
+      "channel": "Linear TV",
+      "total": 112500000,
+      "confidence": "low-medium",
+      "accounting_note": "Inferred working-media allocation. EDO and iSpot observations cover only measured TV windows; this is not a disclosed FanDuel line item.",
+      "category_label": "working_media",
+      "share_pct": 25,
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "channel": "CTV / Streaming",
+      "total": 49500000,
+      "confidence": "low",
+      "accounting_note": "Inferred working-media allocation; FanDuel-specific CTV spend is not publicly disclosed.",
+      "category_label": "working_media",
+      "share_pct": 11,
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "channel": "Paid Search",
+      "total": 45000000,
+      "confidence": "low",
+      "accounting_note": "Inferred working-media allocation; the scoped paid-SERP cut does not validate spend, targeting or efficiency.",
+      "category_label": "working_media",
+      "share_pct": 10,
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "channel": "Affiliate / Comparison",
+      "total": 49500000,
+      "confidence": "low",
+      "accounting_note": "Inferred working-media/acquisition allocation; replace with partner invoices and finance classification.",
+      "category_label": "working_media",
+      "share_pct": 11,
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "channel": "Paid Social",
+      "total": 36000000,
+      "confidence": "low",
+      "accounting_note": "Inferred working-media allocation; walled-garden spend is not visible in the public evidence pack.",
+      "category_label": "working_media",
+      "share_pct": 8,
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "channel": "YouTube / Online Video",
+      "total": 31500000,
+      "confidence": "low",
+      "accounting_note": "Inferred working-media allocation; public trackers do not disclose a complete FanDuel video split.",
+      "category_label": "working_media",
+      "share_pct": 7,
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "channel": "CRM / Retention Media",
+      "total": 58500000,
+      "confidence": "low",
+      "accounting_note": "Paid retention activation only. Free bets, bonuses and other customer incentives are excluded as promo.",
+      "category_label": "working_media",
+      "share_pct": 13,
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "channel": "App Store / ASA",
+      "total": 18000000,
+      "confidence": "low",
+      "accounting_note": "Inferred working-media allocation; needs Apple Search Ads and app-store receipts.",
+      "category_label": "working_media",
+      "share_pct": 4,
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "channel": "Influencer / Creator",
+      "total": 18000000,
+      "confidence": "low",
+      "accounting_note": "Inferred paid-activation allowance; talent sponsorship rights and long-term partnerships are excluded.",
+      "category_label": "working_media",
+      "share_pct": 4,
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "channel": "OOH / Audio / Experiential",
+      "total": 18000000,
+      "confidence": "low",
+      "accounting_note": "Inferred working-media allocation; sponsorship rights and operational event costs are excluded.",
+      "category_label": "working_media",
+      "share_pct": 4,
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "channel": "Display",
+      "total": 13500000,
+      "confidence": "low",
+      "accounting_note": "Inferred working-media allocation; replace with platform and agency delivery data.",
+      "category_label": "working_media",
+      "share_pct": 3,
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    }
+  ],
+  "monthly_totals": [
+    {
+      "month": "2026-01",
+      "event_note": "NFL playoffs",
+      "spend_usd": 40672857,
+      "category_label": "working_media",
+      "top_channels": [
+        {
+          "channel": "Linear TV",
+          "spend_usd": 11126374,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CRM / Retention Media",
+          "spend_usd": 5298113,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CTV / Streaming",
+          "spend_usd": 4662773,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Affiliate / Comparison",
+          "spend_usd": 4188462,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Paid Search",
+          "spend_usd": 3882353,
+          "category_label": "working_media"
+        }
+      ]
+    },
+    {
+      "month": "2026-02",
+      "event_note": "Super Bowl lead-in",
+      "spend_usd": 46496822,
+      "category_label": "working_media",
+      "top_channels": [
+        {
+          "channel": "Linear TV",
+          "spend_usd": 13186813,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CRM / Retention Media",
+          "spend_usd": 5960377,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CTV / Streaming",
+          "spend_usd": 5408817,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Affiliate / Comparison",
+          "spend_usd": 4759615,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Paid Search",
+          "spend_usd": 4235294,
+          "category_label": "working_media"
+        }
+      ]
+    },
+    {
+      "month": "2026-03",
+      "event_note": "March Madness",
+      "spend_usd": 40529776,
+      "category_label": "working_media",
+      "top_channels": [
+        {
+          "channel": "Linear TV",
+          "spend_usd": 9478022,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CRM / Retention Media",
+          "spend_usd": 5518868,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Affiliate / Comparison",
+          "spend_usd": 4569231,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Paid Search",
+          "spend_usd": 4411765,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CTV / Streaming",
+          "spend_usd": 4289751,
+          "category_label": "working_media"
+        }
+      ]
+    },
+    {
+      "month": "2026-04",
+      "event_note": "NBA and NHL playoffs",
+      "spend_usd": 30807870,
+      "category_label": "working_media",
+      "top_channels": [
+        {
+          "channel": "Linear TV",
+          "spend_usd": 6593407,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CRM / Retention Media",
+          "spend_usd": 4194340,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Affiliate / Comparison",
+          "spend_usd": 3426923,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Paid Search",
+          "spend_usd": 3352941,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CTV / Streaming",
+          "spend_usd": 3282592,
+          "category_label": "working_media"
+        }
+      ]
+    },
+    {
+      "month": "2026-05",
+      "event_note": "Spring sports baseline",
+      "spend_usd": 28146016,
+      "category_label": "working_media",
+      "top_channels": [
+        {
+          "channel": "Linear TV",
+          "spend_usd": 5357143,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CRM / Retention Media",
+          "spend_usd": 3973585,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Affiliate / Comparison",
+          "spend_usd": 3236538,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Paid Search",
+          "spend_usd": 3176471,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CTV / Streaming",
+          "spend_usd": 2909570,
+          "category_label": "working_media"
+        }
+      ]
+    },
+    {
+      "month": "2026-06",
+      "event_note": "NBA finals and MLB",
+      "spend_usd": 29000754,
+      "category_label": "working_media",
+      "top_channels": [
+        {
+          "channel": "Linear TV",
+          "spend_usd": 5769231,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CRM / Retention Media",
+          "spend_usd": 3973585,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Affiliate / Comparison",
+          "spend_usd": 3236538,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Paid Search",
+          "spend_usd": 3176471,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CTV / Streaming",
+          "spend_usd": 3170686,
+          "category_label": "working_media"
+        }
+      ]
+    },
+    {
+      "month": "2026-07",
+      "event_note": "Lower national sports intensity",
+      "spend_usd": 27229403,
+      "category_label": "working_media",
+      "top_channels": [
+        {
+          "channel": "Linear TV",
+          "spend_usd": 5357143,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CRM / Retention Media",
+          "spend_usd": 3752830,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Affiliate / Comparison",
+          "spend_usd": 3046154,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Paid Search",
+          "spend_usd": 3000000,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CTV / Streaming",
+          "spend_usd": 2909570,
+          "category_label": "working_media"
+        }
+      ]
+    },
+    {
+      "month": "2026-08",
+      "event_note": "Football preseason",
+      "spend_usd": 36994195,
+      "category_label": "working_media",
+      "top_channels": [
+        {
+          "channel": "Linear TV",
+          "spend_usd": 9478022,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CRM / Retention Media",
+          "spend_usd": 4635849,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Affiliate / Comparison",
+          "spend_usd": 4188462,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CTV / Streaming",
+          "spend_usd": 4103240,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Paid Search",
+          "spend_usd": 3529412,
+          "category_label": "working_media"
+        }
+      ]
+    },
+    {
+      "month": "2026-09",
+      "event_note": "NFL kickoff",
+      "spend_usd": 48901400,
+      "category_label": "working_media",
+      "top_channels": [
+        {
+          "channel": "Linear TV",
+          "spend_usd": 13598901,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CRM / Retention Media",
+          "spend_usd": 5960377,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Affiliate / Comparison",
+          "spend_usd": 5521154,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CTV / Streaming",
+          "spend_usd": 5408817,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Paid Search",
+          "spend_usd": 4411765,
+          "category_label": "working_media"
+        }
+      ]
+    },
+    {
+      "month": "2026-10",
+      "event_note": "NFL and MLB postseason",
+      "spend_usd": 44327989,
+      "category_label": "working_media",
+      "top_channels": [
+        {
+          "channel": "Linear TV",
+          "spend_usd": 11950549,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CRM / Retention Media",
+          "spend_usd": 5518868,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Affiliate / Comparison",
+          "spend_usd": 4950000,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CTV / Streaming",
+          "spend_usd": 4849284,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Paid Search",
+          "spend_usd": 4235294,
+          "category_label": "working_media"
+        }
+      ]
+    },
+    {
+      "month": "2026-11",
+      "event_note": "Football peak",
+      "spend_usd": 39835606,
+      "category_label": "working_media",
+      "top_channels": [
+        {
+          "channel": "Linear TV",
+          "spend_usd": 10714286,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CRM / Retention Media",
+          "spend_usd": 4944906,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CTV / Streaming",
+          "spend_usd": 4401658,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Affiliate / Comparison",
+          "spend_usd": 4378846,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Paid Search",
+          "spend_usd": 3882353,
+          "category_label": "working_media"
+        }
+      ]
+    },
+    {
+      "month": "2026-12",
+      "event_note": "Holiday sport and NFL run-in",
+      "spend_usd": 37057312,
+      "category_label": "working_media",
+      "top_channels": [
+        {
+          "channel": "Linear TV",
+          "spend_usd": 9890109,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CRM / Retention Media",
+          "spend_usd": 4768302,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "CTV / Streaming",
+          "spend_usd": 4103242,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Affiliate / Comparison",
+          "spend_usd": 3998077,
+          "category_label": "working_media"
+        },
+        {
+          "channel": "Paid Search",
+          "spend_usd": 3705881,
+          "category_label": "working_media"
+        }
+      ]
+    }
+  ],
+  "monthly_by_channel": [
+    {
+      "month": "2026-01",
+      "event_note": "NFL playoffs",
+      "channel": "Linear TV",
+      "spend_usd": 11126374,
+      "category_label": "working_media",
+      "confidence": "low-medium",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "event_note": "Super Bowl lead-in",
+      "channel": "Linear TV",
+      "spend_usd": 13186813,
+      "category_label": "working_media",
+      "confidence": "low-medium",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "event_note": "March Madness",
+      "channel": "Linear TV",
+      "spend_usd": 9478022,
+      "category_label": "working_media",
+      "confidence": "low-medium",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "event_note": "NBA and NHL playoffs",
+      "channel": "Linear TV",
+      "spend_usd": 6593407,
+      "category_label": "working_media",
+      "confidence": "low-medium",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "event_note": "Spring sports baseline",
+      "channel": "Linear TV",
+      "spend_usd": 5357143,
+      "category_label": "working_media",
+      "confidence": "low-medium",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "event_note": "NBA finals and MLB",
+      "channel": "Linear TV",
+      "spend_usd": 5769231,
+      "category_label": "working_media",
+      "confidence": "low-medium",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "event_note": "Lower national sports intensity",
+      "channel": "Linear TV",
+      "spend_usd": 5357143,
+      "category_label": "working_media",
+      "confidence": "low-medium",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "event_note": "Football preseason",
+      "channel": "Linear TV",
+      "spend_usd": 9478022,
+      "category_label": "working_media",
+      "confidence": "low-medium",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "event_note": "NFL kickoff",
+      "channel": "Linear TV",
+      "spend_usd": 13598901,
+      "category_label": "working_media",
+      "confidence": "low-medium",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "event_note": "NFL and MLB postseason",
+      "channel": "Linear TV",
+      "spend_usd": 11950549,
+      "category_label": "working_media",
+      "confidence": "low-medium",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "event_note": "Football peak",
+      "channel": "Linear TV",
+      "spend_usd": 10714286,
+      "category_label": "working_media",
+      "confidence": "low-medium",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "event_note": "Holiday sport and NFL run-in",
+      "channel": "Linear TV",
+      "spend_usd": 9890109,
+      "category_label": "working_media",
+      "confidence": "low-medium",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "event_note": "NFL playoffs",
+      "channel": "CTV / Streaming",
+      "spend_usd": 4662773,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "event_note": "Super Bowl lead-in",
+      "channel": "CTV / Streaming",
+      "spend_usd": 5408817,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "event_note": "March Madness",
+      "channel": "CTV / Streaming",
+      "spend_usd": 4289751,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "event_note": "NBA and NHL playoffs",
+      "channel": "CTV / Streaming",
+      "spend_usd": 3282592,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "event_note": "Spring sports baseline",
+      "channel": "CTV / Streaming",
+      "spend_usd": 2909570,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "event_note": "NBA finals and MLB",
+      "channel": "CTV / Streaming",
+      "spend_usd": 3170686,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "event_note": "Lower national sports intensity",
+      "channel": "CTV / Streaming",
+      "spend_usd": 2909570,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "event_note": "Football preseason",
+      "channel": "CTV / Streaming",
+      "spend_usd": 4103240,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "event_note": "NFL kickoff",
+      "channel": "CTV / Streaming",
+      "spend_usd": 5408817,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "event_note": "NFL and MLB postseason",
+      "channel": "CTV / Streaming",
+      "spend_usd": 4849284,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "event_note": "Football peak",
+      "channel": "CTV / Streaming",
+      "spend_usd": 4401658,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "event_note": "Holiday sport and NFL run-in",
+      "channel": "CTV / Streaming",
+      "spend_usd": 4103242,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "event_note": "NFL playoffs",
+      "channel": "Paid Search",
+      "spend_usd": 3882353,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "event_note": "Super Bowl lead-in",
+      "channel": "Paid Search",
+      "spend_usd": 4235294,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "event_note": "March Madness",
+      "channel": "Paid Search",
+      "spend_usd": 4411765,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "event_note": "NBA and NHL playoffs",
+      "channel": "Paid Search",
+      "spend_usd": 3352941,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "event_note": "Spring sports baseline",
+      "channel": "Paid Search",
+      "spend_usd": 3176471,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "event_note": "NBA finals and MLB",
+      "channel": "Paid Search",
+      "spend_usd": 3176471,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "event_note": "Lower national sports intensity",
+      "channel": "Paid Search",
+      "spend_usd": 3000000,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "event_note": "Football preseason",
+      "channel": "Paid Search",
+      "spend_usd": 3529412,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "event_note": "NFL kickoff",
+      "channel": "Paid Search",
+      "spend_usd": 4411765,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "event_note": "NFL and MLB postseason",
+      "channel": "Paid Search",
+      "spend_usd": 4235294,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "event_note": "Football peak",
+      "channel": "Paid Search",
+      "spend_usd": 3882353,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "event_note": "Holiday sport and NFL run-in",
+      "channel": "Paid Search",
+      "spend_usd": 3705881,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "event_note": "NFL playoffs",
+      "channel": "Affiliate / Comparison",
+      "spend_usd": 4188462,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "event_note": "Super Bowl lead-in",
+      "channel": "Affiliate / Comparison",
+      "spend_usd": 4759615,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "event_note": "March Madness",
+      "channel": "Affiliate / Comparison",
+      "spend_usd": 4569231,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "event_note": "NBA and NHL playoffs",
+      "channel": "Affiliate / Comparison",
+      "spend_usd": 3426923,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "event_note": "Spring sports baseline",
+      "channel": "Affiliate / Comparison",
+      "spend_usd": 3236538,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "event_note": "NBA finals and MLB",
+      "channel": "Affiliate / Comparison",
+      "spend_usd": 3236538,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "event_note": "Lower national sports intensity",
+      "channel": "Affiliate / Comparison",
+      "spend_usd": 3046154,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "event_note": "Football preseason",
+      "channel": "Affiliate / Comparison",
+      "spend_usd": 4188462,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "event_note": "NFL kickoff",
+      "channel": "Affiliate / Comparison",
+      "spend_usd": 5521154,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "event_note": "NFL and MLB postseason",
+      "channel": "Affiliate / Comparison",
+      "spend_usd": 4950000,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "event_note": "Football peak",
+      "channel": "Affiliate / Comparison",
+      "spend_usd": 4378846,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "event_note": "Holiday sport and NFL run-in",
+      "channel": "Affiliate / Comparison",
+      "spend_usd": 3998077,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "event_note": "NFL playoffs",
+      "channel": "Paid Social",
+      "spend_usd": 3043812,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "event_note": "Super Bowl lead-in",
+      "channel": "Paid Social",
+      "spend_usd": 3375865,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "event_note": "March Madness",
+      "channel": "Paid Social",
+      "spend_usd": 3265181,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "event_note": "NBA and NHL playoffs",
+      "channel": "Paid Social",
+      "spend_usd": 2656418,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "event_note": "Spring sports baseline",
+      "channel": "Paid Social",
+      "spend_usd": 2545734,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "event_note": "NBA finals and MLB",
+      "channel": "Paid Social",
+      "spend_usd": 2601076,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "event_note": "Lower national sports intensity",
+      "channel": "Paid Social",
+      "spend_usd": 2490392,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "event_note": "Football preseason",
+      "channel": "Paid Social",
+      "spend_usd": 2988470,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "event_note": "NFL kickoff",
+      "channel": "Paid Social",
+      "spend_usd": 3735588,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "event_note": "NFL and MLB postseason",
+      "channel": "Paid Social",
+      "spend_usd": 3431207,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "event_note": "Football peak",
+      "channel": "Paid Social",
+      "spend_usd": 3099154,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "event_note": "Holiday sport and NFL run-in",
+      "channel": "Paid Social",
+      "spend_usd": 2767103,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "event_note": "NFL playoffs",
+      "channel": "YouTube / Online Video",
+      "spend_usd": 2775862,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "event_note": "Super Bowl lead-in",
+      "channel": "YouTube / Online Video",
+      "spend_usd": 3089655,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "event_note": "March Madness",
+      "channel": "YouTube / Online Video",
+      "spend_usd": 2944828,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "event_note": "NBA and NHL playoffs",
+      "channel": "YouTube / Online Video",
+      "spend_usd": 2293103,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "event_note": "Spring sports baseline",
+      "channel": "YouTube / Online Video",
+      "spend_usd": 2172414,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "event_note": "NBA finals and MLB",
+      "channel": "YouTube / Online Video",
+      "spend_usd": 2220690,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "event_note": "Lower national sports intensity",
+      "channel": "YouTube / Online Video",
+      "spend_usd": 2075862,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "event_note": "Football preseason",
+      "channel": "YouTube / Online Video",
+      "spend_usd": 2534483,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "event_note": "NFL kickoff",
+      "channel": "YouTube / Online Video",
+      "spend_usd": 3258621,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "event_note": "NFL and MLB postseason",
+      "channel": "YouTube / Online Video",
+      "spend_usd": 3017241,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "event_note": "Football peak",
+      "channel": "YouTube / Online Video",
+      "spend_usd": 2655172,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "event_note": "Holiday sport and NFL run-in",
+      "channel": "YouTube / Online Video",
+      "spend_usd": 2462069,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "event_note": "NFL playoffs",
+      "channel": "CRM / Retention Media",
+      "spend_usd": 5298113,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "event_note": "Super Bowl lead-in",
+      "channel": "CRM / Retention Media",
+      "spend_usd": 5960377,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "event_note": "March Madness",
+      "channel": "CRM / Retention Media",
+      "spend_usd": 5518868,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "event_note": "NBA and NHL playoffs",
+      "channel": "CRM / Retention Media",
+      "spend_usd": 4194340,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "event_note": "Spring sports baseline",
+      "channel": "CRM / Retention Media",
+      "spend_usd": 3973585,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "event_note": "NBA finals and MLB",
+      "channel": "CRM / Retention Media",
+      "spend_usd": 3973585,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "event_note": "Lower national sports intensity",
+      "channel": "CRM / Retention Media",
+      "spend_usd": 3752830,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "event_note": "Football preseason",
+      "channel": "CRM / Retention Media",
+      "spend_usd": 4635849,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "event_note": "NFL kickoff",
+      "channel": "CRM / Retention Media",
+      "spend_usd": 5960377,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "event_note": "NFL and MLB postseason",
+      "channel": "CRM / Retention Media",
+      "spend_usd": 5518868,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "event_note": "Football peak",
+      "channel": "CRM / Retention Media",
+      "spend_usd": 4944906,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "event_note": "Holiday sport and NFL run-in",
+      "channel": "CRM / Retention Media",
+      "spend_usd": 4768302,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "event_note": "NFL playoffs",
+      "channel": "App Store / ASA",
+      "spend_usd": 1530709,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "event_note": "Super Bowl lead-in",
+      "channel": "App Store / ASA",
+      "spend_usd": 1644094,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "event_note": "March Madness",
+      "channel": "App Store / ASA",
+      "spend_usd": 1672441,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "event_note": "NBA and NHL playoffs",
+      "channel": "App Store / ASA",
+      "spend_usd": 1388976,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "event_note": "Spring sports baseline",
+      "channel": "App Store / ASA",
+      "spend_usd": 1332283,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "event_note": "NBA finals and MLB",
+      "channel": "App Store / ASA",
+      "spend_usd": 1332283,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "event_note": "Lower national sports intensity",
+      "channel": "App Store / ASA",
+      "spend_usd": 1275591,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "event_note": "Football preseason",
+      "channel": "App Store / ASA",
+      "spend_usd": 1445669,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "event_note": "NFL kickoff",
+      "channel": "App Store / ASA",
+      "spend_usd": 1729134,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "event_note": "NFL and MLB postseason",
+      "channel": "App Store / ASA",
+      "spend_usd": 1672441,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "event_note": "Football peak",
+      "channel": "App Store / ASA",
+      "spend_usd": 1530709,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "event_note": "Holiday sport and NFL run-in",
+      "channel": "App Store / ASA",
+      "spend_usd": 1445670,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "event_note": "NFL playoffs",
+      "channel": "Influencer / Creator",
+      "spend_usd": 1519937,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "event_note": "Super Bowl lead-in",
+      "channel": "Influencer / Creator",
+      "spend_usd": 1899922,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "event_note": "March Madness",
+      "channel": "Influencer / Creator",
+      "spend_usd": 1618452,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "event_note": "NBA and NHL playoffs",
+      "channel": "Influencer / Creator",
+      "spend_usd": 1266615,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "event_note": "Spring sports baseline",
+      "channel": "Influencer / Creator",
+      "spend_usd": 1210321,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "event_note": "NBA finals and MLB",
+      "channel": "Influencer / Creator",
+      "spend_usd": 1238468,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "event_note": "Lower national sports intensity",
+      "channel": "Influencer / Creator",
+      "spend_usd": 1154027,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "event_note": "Football preseason",
+      "channel": "Influencer / Creator",
+      "spend_usd": 1477717,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "event_note": "NFL kickoff",
+      "channel": "Influencer / Creator",
+      "spend_usd": 1970289,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "event_note": "NFL and MLB postseason",
+      "channel": "Influencer / Creator",
+      "spend_usd": 1716966,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "event_note": "Football peak",
+      "channel": "Influencer / Creator",
+      "spend_usd": 1519937,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "event_note": "Holiday sport and NFL run-in",
+      "channel": "Influencer / Creator",
+      "spend_usd": 1407349,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "event_note": "NFL playoffs",
+      "channel": "OOH / Audio / Experiential",
+      "spend_usd": 1507177,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "event_note": "Super Bowl lead-in",
+      "channel": "OOH / Audio / Experiential",
+      "spend_usd": 1693780,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "event_note": "March Madness",
+      "channel": "OOH / Audio / Experiential",
+      "spend_usd": 1550239,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "event_note": "NBA and NHL playoffs",
+      "channel": "OOH / Audio / Experiential",
+      "spend_usd": 1320574,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "event_note": "Spring sports baseline",
+      "channel": "OOH / Audio / Experiential",
+      "spend_usd": 1263158,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "event_note": "NBA finals and MLB",
+      "channel": "OOH / Audio / Experiential",
+      "spend_usd": 1291866,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "event_note": "Lower national sports intensity",
+      "channel": "OOH / Audio / Experiential",
+      "spend_usd": 1220096,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "event_note": "Football preseason",
+      "channel": "OOH / Audio / Experiential",
+      "spend_usd": 1507177,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "event_note": "NFL kickoff",
+      "channel": "OOH / Audio / Experiential",
+      "spend_usd": 1937799,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "event_note": "NFL and MLB postseason",
+      "channel": "OOH / Audio / Experiential",
+      "spend_usd": 1722488,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "event_note": "Football peak",
+      "channel": "OOH / Audio / Experiential",
+      "spend_usd": 1550239,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "event_note": "Holiday sport and NFL run-in",
+      "channel": "OOH / Audio / Experiential",
+      "spend_usd": 1435407,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "event_note": "NFL playoffs",
+      "channel": "Display",
+      "spend_usd": 1137285,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "event_note": "Super Bowl lead-in",
+      "channel": "Display",
+      "spend_usd": 1242590,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "event_note": "March Madness",
+      "channel": "Display",
+      "spend_usd": 1210998,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "event_note": "NBA and NHL playoffs",
+      "channel": "Display",
+      "spend_usd": 1031981,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "event_note": "Spring sports baseline",
+      "channel": "Display",
+      "spend_usd": 968799,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "event_note": "NBA finals and MLB",
+      "channel": "Display",
+      "spend_usd": 989860,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "event_note": "Lower national sports intensity",
+      "channel": "Display",
+      "spend_usd": 947738,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "event_note": "Football preseason",
+      "channel": "Display",
+      "spend_usd": 1105694,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "event_note": "NFL kickoff",
+      "channel": "Display",
+      "spend_usd": 1368955,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "event_note": "NFL and MLB postseason",
+      "channel": "Display",
+      "spend_usd": 1263651,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "event_note": "Football peak",
+      "channel": "Display",
+      "spend_usd": 1158346,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "event_note": "Holiday sport and NFL run-in",
+      "channel": "Display",
+      "spend_usd": 1074103,
+      "category_label": "working_media",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "flutter_2025_10k_us_sales_marketing",
+        "sbj_horizon_next_fanduel_200m_2023",
+        "edo_adengage_fanduel_90d_2025",
+        "ispot_fanduel_nfl_window_2024",
+        "mediaradar_fanduel_profile_2026"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "manifest_id": "fanduel_reporting_connector_manifest_v1",
+  "created_at": "2026-07-05",
+  "status": "connector_slots_declared",
+  "current_mode": "synthetic_sde_bridge",
+  "display_flag": "SYNTHETIC connector bridge",
+  "source_ids": [
+    "fanduel_sde_actuals_manifest_v1",
+    "fanduel_reporting_line_items_2026"
+  ],
+  "connector_slots": [
+    {
+      "slot_id": "google_ads_search",
+      "label": "Google Ads Search",
+      "current_source": "reporting_line_items_2026.json",
+      "current_status": "synthetic-simulated",
+      "future_replacement": "Google Ads search export or API connector",
+      "grain": "day/month x campaign x ad group x keyword/match type"
+    },
+    {
+      "slot_id": "google_ads_video_youtube",
+      "label": "Google Ads Video / YouTube",
+      "current_source": "SDE Google Ads video rows",
+      "current_status": "synthetic-simulated",
+      "future_replacement": "Google Ads video export or API connector",
+      "grain": "day/month x campaign x ad group x placement/content bundle"
+    },
+    {
+      "slot_id": "meta_paid_social",
+      "label": "Meta Paid Social",
+      "current_source": "reporting_line_items_2026.json",
+      "current_status": "synthetic-simulated",
+      "future_replacement": "Meta Ads export or API connector",
+      "grain": "day/month x campaign x ad set x ad"
+    },
+    {
+      "slot_id": "tv_ctv_delivery",
+      "label": "TV / CTV delivery",
+      "current_source": "fanduel_marketing_spend_baseline_2026.json plus fixture overlay",
+      "current_status": "inferred/modelled",
+      "future_replacement": "Agency flowchart, publisher delivery, iSpot/VideoAmp/MediaRadar/Nielsen export",
+      "grain": "month/week x network/platform x sport window x DMA/state where available"
+    },
+    {
+      "slot_id": "web_app_analytics",
+      "label": "Web/App analytics",
+      "current_source": "SDE GA4 actuals manifest",
+      "current_status": "synthetic-simulated",
+      "future_replacement": "GA4, app analytics or clean-room export",
+      "grain": "day/month x source/medium x campaign x product"
+    },
+    {
+      "slot_id": "finance_promo_costs",
+      "label": "Finance and promo costs",
+      "current_source": "SDE promo-cost model",
+      "current_status": "synthetic-simulated",
+      "future_replacement": "Finance, promo and product economics exports",
+      "grain": "month x product x state/channel where available"
+    }
+  ],
+  "client_safe_rules": [
+    "Synthetic rows must remain visibly labelled until replaced.",
+    "Connector replacements should preserve the current Reporting data model.",
+    "Do not infer legality from media delivery.",
+    "The T059 DataForSEO provider cut is loaded; priority-query live SERPs and client account data remain required before spend, targeting or efficiency claims."
+  ]
+}

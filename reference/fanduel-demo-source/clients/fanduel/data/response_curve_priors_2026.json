@@ -1,0 +1,417 @@
+{
+  "_note": "Synthetic demo response curves. base_cpa_gbp and threshold field names are inherited from the engine; values are USD-equivalent. T183 retains T111 channel economics against the input-gated $450M working-media envelope.",
+  "channels": [
+    {
+      "channel": "Paid Search",
+      "curve": {
+        "base_cpa_gbp": 306.67,
+        "cpa_penalty_at_2x_threshold": 1.22,
+        "cpa_penalty_cap": 1.55,
+        "confidence_band_pct": 24,
+        "curve_type": "synthetic diminishing returns"
+      },
+      "external_shape_prior": {
+        "summary": "High-intent paid search prior; the scoped paid-SERP provider cut does not validate the CPA. CPA retuned to the active T111 benchmark and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 900000,
+        "adstock_half_life_weeks": 1,
+        "category_label": "working_media"
+      },
+      "agree_conflict": {
+        "status": "working",
+        "note": "Media-only FTD proxy. Promo cost excluded. T113 provisional FTD guardrail calibration applied."
+      },
+      "mmm_anchor": {
+        "summary": "No FanDuel MMM loaded; synthetic demo prior."
+      },
+      "classification": "t183_input_gated_working_media_prior",
+      "confidence": "low",
+      "source_ids": [
+        "missing_paid_serp_pass",
+        "fanduel_demo_media_priors_2026",
+        "online_gambling_us_t111_provisional_2026_07_04",
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09"
+      ],
+      "in_current_plan": true,
+      "buyable": true,
+      "line_type": "buyable_media"
+    },
+    {
+      "channel": "Organic Search",
+      "curve": {
+        "base_cpa_gbp": 0,
+        "cpa_penalty_at_2x_threshold": 1.12,
+        "cpa_penalty_cap": 1.35,
+        "confidence_band_pct": 18,
+        "curve_type": "content capacity curve"
+      },
+      "external_shape_prior": {
+        "summary": "Organic Search is retained as a non-buyable demand line; planned media spend stays at $0 unless a resource-cost option is explicitly enabled.",
+        "soft_saturation_threshold_monthly_gbp": 420000,
+        "adstock_half_life_weeks": 6,
+        "category_label": "operational"
+      },
+      "agree_conflict": {
+        "status": "working",
+        "note": "CPA is not a paid-media buying benchmark for Organic Search."
+      },
+      "mmm_anchor": {
+        "summary": "No FanDuel MMM loaded; synthetic demo prior."
+      },
+      "classification": "non_buyable_demand_line",
+      "confidence": "medium",
+      "source_ids": [
+        "signal_seo_100_organic_0_paid_2026_07_03",
+        "fanduel_demo_media_priors_2026",
+        "online_gambling_us_t111_provisional_2026_07_04",
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09"
+      ],
+      "in_current_plan": true,
+      "buyable": false,
+      "line_type": "non_buyable_demand"
+    },
+    {
+      "channel": "Paid Social",
+      "curve": {
+        "base_cpa_gbp": 360,
+        "cpa_penalty_at_2x_threshold": 1.28,
+        "cpa_penalty_cap": 1.7,
+        "confidence_band_pct": 30,
+        "curve_type": "synthetic diminishing returns"
+      },
+      "external_shape_prior": {
+        "summary": "Prospecting channel requiring creative, audience and state compliance review. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 850000,
+        "adstock_half_life_weeks": 2,
+        "category_label": "working_media"
+      },
+      "agree_conflict": {
+        "status": "working",
+        "note": "T113 provisional FTD guardrail calibration applied."
+      },
+      "mmm_anchor": {
+        "summary": "Synthetic demo prior."
+      },
+      "classification": "t183_input_gated_working_media_prior",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_demo_media_priors_2026",
+        "online_gambling_us_t111_provisional_2026_07_04",
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09"
+      ],
+      "in_current_plan": true,
+      "buyable": true,
+      "line_type": "buyable_media"
+    },
+    {
+      "channel": "Affiliate",
+      "curve": {
+        "base_cpa_gbp": 333.33,
+        "cpa_penalty_at_2x_threshold": 1.2,
+        "cpa_penalty_cap": 1.5,
+        "confidence_band_pct": 28,
+        "curve_type": "synthetic partner capacity curve"
+      },
+      "external_shape_prior": {
+        "summary": "Affiliate supply and offer sensitivity require state/product governance. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 500000,
+        "adstock_half_life_weeks": 1,
+        "category_label": "working_media"
+      },
+      "agree_conflict": {
+        "status": "working",
+        "note": "T113 provisional FTD guardrail calibration applied."
+      },
+      "mmm_anchor": {
+        "summary": "Synthetic demo prior."
+      },
+      "classification": "t183_input_gated_working_media_prior",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_demo_media_priors_2026",
+        "us_state_governance_working_research_2026_07_03",
+        "online_gambling_us_t111_provisional_2026_07_04",
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09"
+      ],
+      "in_current_plan": true,
+      "buyable": true,
+      "line_type": "buyable_media"
+    },
+    {
+      "channel": "Display",
+      "curve": {
+        "base_cpa_gbp": 533.33,
+        "cpa_penalty_at_2x_threshold": 1.35,
+        "cpa_penalty_cap": 1.85,
+        "confidence_band_pct": 34,
+        "curve_type": "synthetic retargeting/support curve"
+      },
+      "external_shape_prior": {
+        "summary": "Support layer around search and conversion paths. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 450000,
+        "adstock_half_life_weeks": 2,
+        "category_label": "working_media"
+      },
+      "agree_conflict": {
+        "status": "working",
+        "note": "T113 provisional FTD guardrail calibration applied."
+      },
+      "mmm_anchor": {
+        "summary": "Synthetic demo prior."
+      },
+      "classification": "t183_input_gated_working_media_prior",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_demo_media_priors_2026",
+        "online_gambling_us_t111_provisional_2026_07_04",
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09"
+      ],
+      "in_current_plan": true,
+      "buyable": true,
+      "line_type": "buyable_media"
+    },
+    {
+      "channel": "YouTube",
+      "curve": {
+        "base_cpa_gbp": 346.67,
+        "cpa_penalty_at_2x_threshold": 1.3,
+        "cpa_penalty_cap": 1.75,
+        "confidence_band_pct": 32,
+        "curve_type": "synthetic video response curve"
+      },
+      "external_shape_prior": {
+        "summary": "Video reach with search handoff around sports moments. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 700000,
+        "adstock_half_life_weeks": 3,
+        "category_label": "working_media"
+      },
+      "agree_conflict": {
+        "status": "working",
+        "note": "T113 provisional FTD guardrail calibration applied."
+      },
+      "mmm_anchor": {
+        "summary": "Synthetic demo prior."
+      },
+      "classification": "t183_input_gated_working_media_prior",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_demo_media_priors_2026",
+        "online_gambling_us_t111_provisional_2026_07_04",
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09"
+      ],
+      "in_current_plan": true,
+      "buyable": true,
+      "line_type": "buyable_media"
+    },
+    {
+      "channel": "CTV",
+      "curve": {
+        "base_cpa_gbp": 533.33,
+        "cpa_penalty_at_2x_threshold": 1.32,
+        "cpa_penalty_cap": 1.8,
+        "confidence_band_pct": 36,
+        "curve_type": "synthetic reach curve"
+      },
+      "external_shape_prior": {
+        "summary": "Incremental reach in sports-viewing households; TV/CTV research still pending. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 950000,
+        "adstock_half_life_weeks": 4,
+        "category_label": "working_media"
+      },
+      "agree_conflict": {
+        "status": "working",
+        "note": "T113 provisional FTD guardrail calibration applied."
+      },
+      "mmm_anchor": {
+        "summary": "Synthetic demo prior."
+      },
+      "classification": "t183_input_gated_working_media_prior",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_reach_curve_synthetic_demo_2026",
+        "online_gambling_us_t111_provisional_2026_07_04",
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09"
+      ],
+      "in_current_plan": true,
+      "buyable": true,
+      "line_type": "buyable_media"
+    },
+    {
+      "channel": "Linear TV",
+      "curve": {
+        "base_cpa_gbp": 466.67,
+        "cpa_penalty_at_2x_threshold": 1.3,
+        "cpa_penalty_cap": 1.75,
+        "confidence_band_pct": 38,
+        "curve_type": "synthetic reach curve"
+      },
+      "external_shape_prior": {
+        "summary": "Mass-reach sports property adjacency; client investment data needed. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 1200000,
+        "adstock_half_life_weeks": 5,
+        "category_label": "working_media"
+      },
+      "agree_conflict": {
+        "status": "working",
+        "note": "T113 provisional FTD guardrail calibration applied."
+      },
+      "mmm_anchor": {
+        "summary": "Synthetic demo prior."
+      },
+      "classification": "t183_input_gated_working_media_prior",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_reach_curve_synthetic_demo_2026",
+        "online_gambling_us_t111_provisional_2026_07_04",
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09"
+      ],
+      "in_current_plan": true,
+      "buyable": true,
+      "line_type": "buyable_media"
+    },
+    {
+      "channel": "Radio/Audio",
+      "curve": {
+        "base_cpa_gbp": 400,
+        "cpa_penalty_at_2x_threshold": 1.25,
+        "cpa_penalty_cap": 1.65,
+        "confidence_band_pct": 35,
+        "curve_type": "synthetic local reach curve"
+      },
+      "external_shape_prior": {
+        "summary": "Local sports audio and commute moments. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 300000,
+        "adstock_half_life_weeks": 2,
+        "category_label": "working_media"
+      },
+      "agree_conflict": {
+        "status": "working",
+        "note": "T113 provisional FTD guardrail calibration applied."
+      },
+      "mmm_anchor": {
+        "summary": "Synthetic demo prior."
+      },
+      "classification": "t183_input_gated_working_media_prior",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_reach_curve_synthetic_demo_2026",
+        "online_gambling_us_t111_provisional_2026_07_04",
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09"
+      ],
+      "in_current_plan": true,
+      "buyable": true,
+      "line_type": "buyable_media"
+    },
+    {
+      "channel": "CRM",
+      "curve": {
+        "base_cpa_gbp": 213.33,
+        "cpa_penalty_at_2x_threshold": 1.1,
+        "cpa_penalty_cap": 1.3,
+        "confidence_band_pct": 22,
+        "curve_type": "synthetic owned-channel curve"
+      },
+      "external_shape_prior": {
+        "summary": "Owned reactivation and retention path; needs FanDuel first-party data. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 240000,
+        "adstock_half_life_weeks": 1,
+        "category_label": "working_media"
+      },
+      "agree_conflict": {
+        "status": "working",
+        "note": "T113 provisional FTD guardrail calibration applied."
+      },
+      "mmm_anchor": {
+        "summary": "Synthetic demo prior."
+      },
+      "classification": "t183_input_gated_working_media_prior",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_demo_media_priors_2026",
+        "online_gambling_us_t111_provisional_2026_07_04",
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09"
+      ],
+      "in_current_plan": true,
+      "buyable": true,
+      "line_type": "buyable_media"
+    },
+    {
+      "channel": "App Store",
+      "curve": {
+        "base_cpa_gbp": 160,
+        "cpa_penalty_at_2x_threshold": 1.16,
+        "cpa_penalty_cap": 1.4,
+        "confidence_band_pct": 24,
+        "curve_type": "synthetic app-intent curve"
+      },
+      "external_shape_prior": {
+        "summary": "App-intent conversion support and store optimisation. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": 3,
+        "category_label": "working_media"
+      },
+      "agree_conflict": {
+        "status": "working",
+        "note": "T113 provisional FTD guardrail calibration applied."
+      },
+      "mmm_anchor": {
+        "summary": "Synthetic demo prior."
+      },
+      "classification": "t183_input_gated_working_media_prior",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_demo_media_priors_2026",
+        "online_gambling_us_t111_provisional_2026_07_04",
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09"
+      ],
+      "in_current_plan": true,
+      "buyable": true,
+      "line_type": "buyable_media"
+    },
+    {
+      "channel": "Influencer/Creator",
+      "curve": {
+        "base_cpa_gbp": 426.67,
+        "cpa_penalty_at_2x_threshold": 1.4,
+        "cpa_penalty_cap": 1.9,
+        "confidence_band_pct": 42,
+        "curve_type": "synthetic creator response curve"
+      },
+      "external_shape_prior": {
+        "summary": "Creator-led sports culture and trust; high compliance sensitivity. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 220000,
+        "adstock_half_life_weeks": 2,
+        "category_label": "working_media"
+      },
+      "agree_conflict": {
+        "status": "working",
+        "note": "T113 provisional FTD guardrail calibration applied."
+      },
+      "mmm_anchor": {
+        "summary": "Synthetic demo prior."
+      },
+      "classification": "t183_input_gated_working_media_prior",
+      "confidence": "low",
+      "source_ids": [
+        "fanduel_demo_media_priors_2026",
+        "us_state_governance_working_research_2026_07_03",
+        "online_gambling_us_t111_provisional_2026_07_04",
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09"
+      ],
+      "in_current_plan": true,
+      "buyable": true,
+      "line_type": "buyable_media"
+    }
+  ]
+}

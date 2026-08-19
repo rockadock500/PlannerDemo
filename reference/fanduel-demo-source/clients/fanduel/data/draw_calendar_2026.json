@@ -1,0 +1,17 @@
+{
+  "_note": "Sports-calendar proxy used by the inherited planner draw-weight mechanism.",
+  "draws": [
+    {"month": "2026-01", "weight": 1.15, "event_note": "NFL playoffs"},
+    {"month": "2026-02", "weight": 1.25, "event_note": "Super Bowl lead-in"},
+    {"month": "2026-03", "weight": 1.3, "event_note": "March Madness"},
+    {"month": "2026-04", "weight": 1.08, "event_note": "NBA and NHL playoffs"},
+    {"month": "2026-05", "weight": 1.02, "event_note": "Spring sports baseline"},
+    {"month": "2026-06", "weight": 1.05, "event_note": "NBA finals and MLB"},
+    {"month": "2026-07", "weight": 0.9, "event_note": "Lower national sports intensity"},
+    {"month": "2026-08", "weight": 1.1, "event_note": "Football preseason"},
+    {"month": "2026-09", "weight": 1.35, "event_note": "NFL kickoff"},
+    {"month": "2026-10", "weight": 1.25, "event_note": "NFL and MLB postseason"},
+    {"month": "2026-11", "weight": 1.2, "event_note": "Football peak"},
+    {"month": "2026-12", "weight": 1.18, "event_note": "Holiday sport and NFL run-in"}
+  ]
+}

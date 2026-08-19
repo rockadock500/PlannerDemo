@@ -1,0 +1,60 @@
+{
+  "model_id": "fanduel_fixture_heat_model_v1",
+  "generated_at": "2026-07-05T00:00:00.000Z",
+  "status": "modelled-working",
+  "display_flag": "MODELLED_HEAT",
+  "inputs": {
+    "fixture_source": "clients/fanduel/data/fixture_calendar/fixtures_2025_2027.json",
+    "trend_source": "C:/Users/rober/Documents/Fanduel/config/fanduel_state_trends_and_geo.json scan_context.nationalTrendComparison",
+    "actuals_reference": "clients/fanduel/actuals/monthly_summary.json"
+  },
+  "formula": {
+    "trend_index": "Weekly FanDuel value from the comparative Trends series; future dates use real month averages from the same 53-week curve.",
+    "fixture_load": "sum(heat_weight x tier_multiplier) for the day's fixtures",
+    "fixture_score": "20 + 80 x (1 - exp(-fixture_load / 85)), clamped to 0..100",
+    "daily_heat_score": "0.52 x trend_index + 0.48 x fixture_score + named-moment boost, clamped to 0..100",
+    "timeslot_heat_score": "0.48 x daily_heat_score + 0.52 x slot fixture score",
+    "state_activation_heat": "national demand heat plus local fixture boost, minus a governance penalty only when college fixtures are restricted in that state"
+  },
+  "tier_multipliers": {
+    "1": 1.35,
+    "2": 1,
+    "3": 0.72,
+    "4": 0.45
+  },
+  "named_moment_boosts": {
+    "super_bowl": 22,
+    "nfl_kickoff": 16,
+    "march_madness_opening_rounds": 17,
+    "march_madness_other_rounds": 12,
+    "thanksgiving": 9,
+    "nba_christmas": 7,
+    "july_summer_trough": -8
+  },
+  "bands": {
+    "blazing": ">=85",
+    "hot": "70-84.99",
+    "warm": "50-69.99",
+    "cool": "30-49.99",
+    "cold": "<30"
+  },
+  "status_notes": [
+    "Modelled heat is a planning prior, not a real fixture-feed forecast.",
+    "Fixture labels remain structural until a schedule connector replaces them.",
+    "College governance badges reduce activation heat, not underlying consumer demand."
+  ],
+  "trend_month_averages": {
+    "10": 75.25,
+    "11": 65.2,
+    "12": 55.5,
+    "06": 38.4,
+    "07": 27.5,
+    "08": 38.6,
+    "09": 59.5,
+    "01": 50,
+    "02": 42.25,
+    "03": 46.2,
+    "04": 46.75,
+    "05": 40.2
+  }
+}

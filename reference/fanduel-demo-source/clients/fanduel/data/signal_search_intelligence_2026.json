@@ -1,0 +1,780 @@
+
+{
+  "provenance": {
+    "generated_by": "scripts/pull_fanduel_signal_search_intelligence.mjs",
+    "connector": "/Users/robwebster/Documents/Signal V2/packages/source-connectors",
+    "provider": "DataForSEO",
+    "layer": "Observed provider data only; no synthetic rows.",
+    "location": "United States",
+    "started_at": "2026-07-25T20:17:40.536Z",
+    "completed_at": "2026-07-25T20:19:38.406Z",
+    "domains_requested": 8,
+    "organic_limit_per_domain": 200,
+    "phrase_panel_size": 81,
+    "priority_live_serps_requested": 16,
+    "caveat": "Rankings and volumes are provider snapshots. Missing rows are not evidence of inactivity. Opportunity scores rank gaps for review; they do not predict traffic or revenue."
+  },
+  "summary": {
+    "domains_with_organic_rows": 8,
+    "total_organic_rows": 1600,
+    "total_intersection_rows": 1362,
+    "keyword_metric_rows": 30,
+    "live_serp_queries": 12,
+    "opportunity_rows": 20,
+    "error_count": 0
+  },
+  "keyword_metrics": [
+    {
+      "keyword": "sportsbook",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 27100,
+      "cpc_usd": 17.74,
+      "competition": "low",
+      "competition_index": 24
+    },
+    {
+      "keyword": "online sportsbook",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 9900,
+      "cpc_usd": 23.7,
+      "competition": "low",
+      "competition_index": 2
+    },
+    {
+      "keyword": "best sportsbook",
+      "intent": "consideration",
+      "product": "Sportsbook",
+      "search_volume": 590,
+      "cpc_usd": 33.95,
+      "competition": "medium",
+      "competition_index": 48
+    },
+    {
+      "keyword": "sports betting",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 60500,
+      "cpc_usd": 34.95,
+      "competition": "medium",
+      "competition_index": 43
+    },
+    {
+      "keyword": "online sports betting",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 18100,
+      "cpc_usd": 35.76,
+      "competition": "low",
+      "competition_index": 5
+    },
+    {
+      "keyword": "sports betting app",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 27100,
+      "cpc_usd": 51.59,
+      "competition": "medium",
+      "competition_index": 50
+    },
+    {
+      "keyword": "best sports betting app",
+      "intent": "consideration",
+      "product": "Sportsbook",
+      "search_volume": 14800,
+      "cpc_usd": 54.98,
+      "competition": "medium",
+      "competition_index": 55
+    },
+    {
+      "keyword": "legal sports betting apps",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 260,
+      "cpc_usd": 53.47,
+      "competition": "low",
+      "competition_index": 11
+    },
+    {
+      "keyword": "live betting",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 2900,
+      "cpc_usd": 23.17,
+      "competition": "low",
+      "competition_index": 22
+    },
+    {
+      "keyword": "in game betting",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 90,
+      "cpc_usd": 17.74,
+      "competition": "low",
+      "competition_index": 28
+    },
+    {
+      "keyword": "same game parlay",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 1600,
+      "cpc_usd": 23.16,
+      "competition": "low",
+      "competition_index": 15
+    },
+    {
+      "keyword": "sportsbook promo code",
+      "intent": "offer",
+      "product": "Sportsbook",
+      "search_volume": 720,
+      "cpc_usd": 15.59,
+      "competition": "low",
+      "competition_index": 4
+    },
+    {
+      "keyword": "sports betting bonus",
+      "intent": "offer",
+      "product": "Sportsbook",
+      "search_volume": 1000,
+      "cpc_usd": 33.8,
+      "competition": "medium",
+      "competition_index": 54
+    },
+    {
+      "keyword": "new sportsbook bonus",
+      "intent": "offer",
+      "product": "Sportsbook",
+      "search_volume": 0,
+      "cpc_usd": 0,
+      "competition": "low",
+      "competition_index": 0
+    },
+    {
+      "keyword": "no sweat bet",
+      "intent": "offer",
+      "product": "Sportsbook",
+      "search_volume": 480,
+      "cpc_usd": 23.37,
+      "competition": "medium",
+      "competition_index": 40
+    },
+    {
+      "keyword": "bonus bets",
+      "intent": "offer",
+      "product": "Sportsbook",
+      "search_volume": 3600,
+      "cpc_usd": 36.2,
+      "competition": "medium",
+      "competition_index": 60
+    },
+    {
+      "keyword": "sports betting odds",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 5400,
+      "cpc_usd": 12.32,
+      "competition": "low",
+      "competition_index": 11
+    },
+    {
+      "keyword": "betting lines",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 4400,
+      "cpc_usd": 9.19,
+      "competition": "low",
+      "competition_index": 9
+    },
+    {
+      "keyword": "NFL betting",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 8100,
+      "cpc_usd": 11.36,
+      "competition": "low",
+      "competition_index": 13
+    },
+    {
+      "keyword": "NFL odds",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 135000,
+      "cpc_usd": 4.3,
+      "competition": "low",
+      "competition_index": 2
+    },
+    {
+      "keyword": "NFL prop bets",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 5400,
+      "cpc_usd": 7.33,
+      "competition": "low",
+      "competition_index": 4
+    },
+    {
+      "keyword": "NFL same game parlay",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 70,
+      "cpc_usd": 0,
+      "competition": "low",
+      "competition_index": 0
+    },
+    {
+      "keyword": "Super Bowl betting",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 9900,
+      "cpc_usd": 25.83,
+      "competition": "low",
+      "competition_index": 8
+    },
+    {
+      "keyword": "NBA betting",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 4400,
+      "cpc_usd": 20.09,
+      "competition": "low",
+      "competition_index": 21
+    },
+    {
+      "keyword": "NBA odds",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 49500,
+      "cpc_usd": 3.83,
+      "competition": "low",
+      "competition_index": 5
+    },
+    {
+      "keyword": "NBA prop bets",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 3600,
+      "cpc_usd": 5.62,
+      "competition": "low",
+      "competition_index": 4
+    },
+    {
+      "keyword": "NBA same game parlay",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 70,
+      "cpc_usd": 7.94,
+      "competition": "low",
+      "competition_index": 10
+    },
+    {
+      "keyword": "March Madness betting",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 720,
+      "cpc_usd": 0,
+      "competition": "low",
+      "competition_index": 0
+    },
+    {
+      "keyword": "MLB betting",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 8100,
+      "cpc_usd": 14.11,
+      "competition": "low",
+      "competition_index": 4
+    },
+    {
+      "keyword": "MLB odds",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 40500,
+      "cpc_usd": 1,
+      "competition": "low",
+      "competition_index": 2
+    }
+  ],
+  "priority_serps": {
+    "sportsbook": [
+      {
+        "keyword": "sportsbook",
+        "position": 1,
+        "url": "https://sportsbook.fanduel.com/",
+        "title": "Sports Betting and Online Sportsbook at FanDuel Sportsbook",
+        "domain": "sportsbook.fanduel.com"
+      },
+      {
+        "keyword": "sportsbook",
+        "position": 2,
+        "url": "https://sportsbook.draftkings.com/",
+        "title": "Sports Betting | Bet Online Legally with DraftKings Sportsbook",
+        "domain": "sportsbook.draftkings.com"
+      },
+      {
+        "keyword": "sportsbook",
+        "position": 3,
+        "url": "https://en.wikipedia.org/wiki/Sportsbook",
+        "title": "Sportsbook",
+        "domain": "en.wikipedia.org"
+      }
+    ],
+    "best sportsbook": [
+      {
+        "keyword": "best sportsbook",
+        "position": 1,
+        "url": "https://sportsbook.fanduel.com/",
+        "title": "Sports Betting and Online Sportsbook at FanDuel Sportsbook",
+        "domain": "sportsbook.fanduel.com"
+      },
+      {
+        "keyword": "best sportsbook",
+        "position": 2,
+        "url": "https://www.rivierasports.com/",
+        "title": "Best Offshore Sportsbooks 2026 | Top Sites for US Bettors",
+        "domain": "www.rivierasports.com"
+      },
+      {
+        "keyword": "best sportsbook",
+        "position": 3,
+        "url": "https://www.reddit.com/r/sportsbook/comments/1bs20pz/which_online_sportsbook_is_your_favorite_and_why/",
+        "title": "Which online sportsbook is your favorite and why?",
+        "domain": "www.reddit.com"
+      }
+    ],
+    "sports betting app": [
+      {
+        "keyword": "sports betting app",
+        "position": 1,
+        "url": "https://apps.apple.com/us/app/fanduel-sportsbook-casino/id1413721906",
+        "title": "FanDuel Sportsbook & Casino - App Store",
+        "domain": "apps.apple.com"
+      },
+      {
+        "keyword": "sports betting app",
+        "position": 2,
+        "url": "https://play.google.com/store/apps/details?id=com.fanduel.sportsbook&hl=en_US",
+        "title": "FanDuel Sportsbook & Casino - Apps on Google Play",
+        "domain": "play.google.com"
+      },
+      {
+        "keyword": "sports betting app",
+        "position": 3,
+        "url": "https://sportsbook.fanduel.com/",
+        "title": "Sports Betting and Online Sportsbook at FanDuel Sportsbook",
+        "domain": "sportsbook.fanduel.com"
+      }
+    ],
+    "live betting": [
+      {
+        "keyword": "live betting",
+        "position": 1,
+        "url": "https://sportsbook.draftkings.com/live",
+        "title": "Live Bets and Odds",
+        "domain": "sportsbook.draftkings.com"
+      },
+      {
+        "keyword": "live betting",
+        "position": 2,
+        "url": "https://www.betmgm.com/en/sports/live/betting",
+        "title": "Live Sports Betting | Live Betting - BetMGM",
+        "domain": "www.betmgm.com"
+      },
+      {
+        "keyword": "live betting",
+        "position": 3,
+        "url": "https://www.investopedia.com/live-betting-definition-5217206",
+        "title": "Understanding Live Betting: In-Play Gambling and Its Impacts",
+        "domain": "www.investopedia.com"
+      }
+    ],
+    "same game parlay": [
+      {
+        "keyword": "same game parlay",
+        "position": 1,
+        "url": "https://www.fanduel.com/same-game-parlay",
+        "title": "Same Game Parlay",
+        "domain": "www.fanduel.com"
+      },
+      {
+        "keyword": "same game parlay",
+        "position": 2,
+        "url": "https://sportsbook.draftkings.com/same-game-parlay",
+        "title": "Same Game Parlay",
+        "domain": "sportsbook.draftkings.com"
+      },
+      {
+        "keyword": "same game parlay",
+        "position": 3,
+        "url": "https://www.betsperts.com/news/sports-betting-guides/same-game-parlay/",
+        "title": "What are Same Game Parlays?",
+        "domain": "www.betsperts.com"
+      }
+    ],
+    "sportsbook promo code": [
+      {
+        "keyword": "sportsbook promo code",
+        "position": 1,
+        "url": "https://www.sportsline.com/sportsbooks/promos/",
+        "title": "Best sportsbook promos: July 2026 sports betting bonuses ...",
+        "domain": "www.sportsline.com"
+      },
+      {
+        "keyword": "sportsbook promo code",
+        "position": 2,
+        "url": "https://www.covers.com/betting/bonuses",
+        "title": "Best sportsbook promos for July 2026",
+        "domain": "www.covers.com"
+      },
+      {
+        "keyword": "sportsbook promo code",
+        "position": 3,
+        "url": "https://sportsbook.draftkings.com/promos",
+        "title": "Sportsbook and Casino Promotions",
+        "domain": "sportsbook.draftkings.com"
+      }
+    ],
+    "NFL betting": [
+      {
+        "keyword": "NFL betting",
+        "position": 1,
+        "url": "https://sportsbook.draftkings.com/leagues/football/nfl",
+        "title": "NFL Odds, Spreads & Lines",
+        "domain": "sportsbook.draftkings.com"
+      },
+      {
+        "keyword": "NFL betting",
+        "position": 2,
+        "url": "https://www.betonline.ag/sportsbook/football/nfl",
+        "title": "NFL Betting Odds",
+        "domain": "www.betonline.ag"
+      },
+      {
+        "keyword": "NFL betting",
+        "position": 3,
+        "url": "https://www.espn.com/nfl/odds",
+        "title": "NFL Game Odds with Spread, Moneyline, and More",
+        "domain": "www.espn.com"
+      }
+    ],
+    "NBA betting": [
+      {
+        "keyword": "NBA betting",
+        "position": 1,
+        "url": "https://sportsbook.draftkings.com/leagues/basketball/nba",
+        "title": "NBA Odds, Spreads & Lines",
+        "domain": "sportsbook.draftkings.com"
+      },
+      {
+        "keyword": "NBA betting",
+        "position": 2,
+        "url": "https://www.espn.com/nba/odds",
+        "title": "NBA Game Odds with Spread, Moneyline, and More",
+        "domain": "www.espn.com"
+      },
+      {
+        "keyword": "NBA betting",
+        "position": 3,
+        "url": "https://www.nba.com/nbabet",
+        "title": "NBABet - Latest news",
+        "domain": "www.nba.com"
+      }
+    ],
+    "MLB betting": [
+      {
+        "keyword": "MLB betting",
+        "position": 1,
+        "url": "https://sportsbook.draftkings.com/leagues/baseball/mlb",
+        "title": "MLB Betting Odds & Lines | DraftKings Sportsbook",
+        "domain": "sportsbook.draftkings.com"
+      },
+      {
+        "keyword": "MLB betting",
+        "position": 2,
+        "url": "https://www.espn.com/mlb/odds",
+        "title": "MLB Game Odds with Spread, Moneyline, and More",
+        "domain": "www.espn.com"
+      },
+      {
+        "keyword": "MLB betting",
+        "position": 3,
+        "url": "https://www.cbssports.com/mlb/expert-picks/",
+        "title": "MLB Expert Picks",
+        "domain": "www.cbssports.com"
+      }
+    ],
+    "sportsbook New Jersey": [
+      {
+        "keyword": "sportsbook New Jersey",
+        "position": 1,
+        "url": "https://www.cbssports.com/betting/news/nj/",
+        "title": "Best Legal NJ Sportsbooks & Betting Apps",
+        "domain": "www.cbssports.com"
+      },
+      {
+        "keyword": "sportsbook New Jersey",
+        "position": 2,
+        "url": "https://www.crossingbroad.com/sports-betting/new-jersey/",
+        "title": "NJ Sports Betting Apps & Sportsbook Promos 2026",
+        "domain": "www.crossingbroad.com"
+      },
+      {
+        "keyword": "sportsbook New Jersey",
+        "position": 3,
+        "url": "https://www.covers.com/betting/usa/new-jersey",
+        "title": "New Jersey Sports Betting - Best NJ Sportsbooks 2026",
+        "domain": "www.covers.com"
+      }
+    ],
+    "sportsbook Pennsylvania": [
+      {
+        "keyword": "sportsbook Pennsylvania",
+        "position": 1,
+        "url": "https://www.foxsports.com/stories/betting/pennsylvania-sports-betting",
+        "title": "Pennsylvania Sports Betting: Best Legal PA Sportsbooks & ...",
+        "domain": "www.foxsports.com"
+      },
+      {
+        "keyword": "sportsbook Pennsylvania",
+        "position": 2,
+        "url": "https://www.crossingbroad.com/sports-betting/pa/",
+        "title": "Best PA Online Sports Betting Promos",
+        "domain": "www.crossingbroad.com"
+      },
+      {
+        "keyword": "sportsbook Pennsylvania",
+        "position": 3,
+        "url": "https://moheganpa.com/poi/venues/sportsbook.html",
+        "title": "Sports Betting in Pennsylvania | Casino Sportsbook",
+        "domain": "moheganpa.com"
+      }
+    ],
+    "sportsbook North Carolina": [
+      {
+        "keyword": "sportsbook North Carolina",
+        "position": 1,
+        "url": "https://www.betcarolina.com/",
+        "title": "North Carolina Sports Betting: Best NC Sportsbooks in July 2026",
+        "domain": "www.betcarolina.com"
+      },
+      {
+        "keyword": "sportsbook North Carolina",
+        "position": 2,
+        "url": "https://www.cbssports.com/betting/news/north-carolina/",
+        "title": "North Carolina Sports Betting Apps 2026: Best NC ...",
+        "domain": "www.cbssports.com"
+      },
+      {
+        "keyword": "sportsbook North Carolina",
+        "position": 3,
+        "url": "https://www.fanduel.com/sportsbook-nc",
+        "title": "FanDuel Sportsbook North Carolina – Legal Online Sports ...",
+        "domain": "www.fanduel.com"
+      }
+    ]
+  },
+  "seo_opportunities": [
+    {
+      "keyword": "chicago cubs standings",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 1000000,
+      "competitor": "DraftKings",
+      "competitor_position": 3,
+      "fanduel_position": null,
+      "opportunity_score": 735
+    },
+    {
+      "keyword": "seattle mariners standing",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 673000,
+      "competitor": "DraftKings",
+      "competitor_position": 4,
+      "fanduel_position": null,
+      "opportunity_score": 707
+    },
+    {
+      "keyword": "brewers standings",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 823000,
+      "competitor": "DraftKings",
+      "competitor_position": 6,
+      "fanduel_position": null,
+      "opportunity_score": 702
+    },
+    {
+      "keyword": "mariners standings",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 673000,
+      "competitor": "DraftKings",
+      "competitor_position": 5,
+      "fanduel_position": null,
+      "opportunity_score": 699
+    },
+    {
+      "keyword": "seattle mariners standings",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 673000,
+      "competitor": "DraftKings",
+      "competitor_position": 5,
+      "fanduel_position": null,
+      "opportunity_score": 699
+    },
+    {
+      "keyword": "cubs standings",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 1000000,
+      "competitor": "DraftKings",
+      "competitor_position": 8,
+      "fanduel_position": null,
+      "opportunity_score": 698
+    },
+    {
+      "keyword": "online gaming",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 550000,
+      "competitor": "DraftKings",
+      "competitor_position": 4,
+      "fanduel_position": null,
+      "opportunity_score": 696
+    },
+    {
+      "keyword": "astros standing",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 550000,
+      "competitor": "DraftKings",
+      "competitor_position": 5,
+      "fanduel_position": null,
+      "opportunity_score": 689
+    },
+    {
+      "keyword": "astros standings",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 550000,
+      "competitor": "DraftKings",
+      "competitor_position": 5,
+      "fanduel_position": null,
+      "opportunity_score": 689
+    },
+    {
+      "keyword": "lakers standings",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 673000,
+      "competitor": "DraftKings",
+      "competitor_position": 8,
+      "fanduel_position": null,
+      "opportunity_score": 678
+    },
+    {
+      "keyword": "bet3.65",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 246000,
+      "competitor": "bet365",
+      "competitor_position": 1,
+      "fanduel_position": null,
+      "opportunity_score": 674
+    },
+    {
+      "keyword": "bet365",
+      "intent": "brand_or_conquest",
+      "product": "Sportsbook",
+      "search_volume": 246000,
+      "competitor": "bet365",
+      "competitor_position": 1,
+      "fanduel_position": null,
+      "opportunity_score": 674
+    },
+    {
+      "keyword": "mariner standings",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 673000,
+      "competitor": "DraftKings",
+      "competitor_position": 9,
+      "fanduel_position": null,
+      "opportunity_score": 670
+    },
+    {
+      "keyword": "mariners baseball standings",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 673000,
+      "competitor": "DraftKings",
+      "competitor_position": 9,
+      "fanduel_position": null,
+      "opportunity_score": 670
+    },
+    {
+      "keyword": "bats 365",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 246000,
+      "competitor": "bet365",
+      "competitor_position": 3,
+      "fanduel_position": null,
+      "opportunity_score": 660
+    },
+    {
+      "keyword": "houston astros standings",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 550000,
+      "competitor": "DraftKings",
+      "competitor_position": 10,
+      "fanduel_position": null,
+      "opportunity_score": 653
+    },
+    {
+      "keyword": "nhl postseason bracket",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 301000,
+      "competitor": "BetMGM",
+      "competitor_position": 7,
+      "fanduel_position": null,
+      "opportunity_score": 644
+    },
+    {
+      "keyword": "betmgm",
+      "intent": "brand_or_conquest",
+      "product": "Sportsbook",
+      "search_volume": 135000,
+      "competitor": "BetMGM",
+      "competitor_position": 1,
+      "fanduel_position": null,
+      "opportunity_score": 641
+    },
+    {
+      "keyword": "mlb baseball playoffs bracket",
+      "intent": "sport_or_event",
+      "product": "Sportsbook",
+      "search_volume": 201000,
+      "competitor": "BetMGM",
+      "competitor_position": 7,
+      "fanduel_position": null,
+      "opportunity_score": 623
+    },
+    {
+      "keyword": "odds on heisman trophy",
+      "intent": "generic_commercial",
+      "product": "Sportsbook",
+      "search_volume": 90500,
+      "competitor": "BetMGM",
+      "competitor_position": 1,
+      "fanduel_position": null,
+      "opportunity_score": 620
+    }
+  ],
+  "errors": [],
+  "scope_note": "This restored client-visible cut retains provider aggregates plus decision-useful keyword economics, priority SERPs and SEO opportunities for FanDuel and the corrected competitor set. It is observed search evidence, not traffic, revenue, spend or market share."
+}

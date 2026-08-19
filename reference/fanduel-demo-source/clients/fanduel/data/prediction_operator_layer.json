@@ -1,0 +1,100 @@
+{
+  "dataset_id": "fanduel_prediction_operator_layer_t180_v1",
+  "created_at": "2026-07-09",
+  "last_checked": "2026-07-09",
+  "status": "research-support",
+  "display_flag": "WORKING RESEARCH",
+  "legal_note": "Geographic indexing support for planning discovery, not legal advice or an activation permission matrix.",
+  "separation_rule": "Prediction operators are never blended with the sportsbook competitor set, share-of-search series, state pressure scores or persona affinity.",
+  "headline_set": [
+    "Kalshi",
+    "Polymarket US",
+    "FanDuel Predicts"
+  ],
+  "operators": [
+    {
+      "operator_id": "fanduel_predicts",
+      "label": "FanDuel Predicts",
+      "operator_type": "prediction_market",
+      "indexing_model": "product_split",
+      "regulatory_index": "CFTC-regulated contracts delivered with CME Group; product availability differs by contract type.",
+      "geographic_summary": "Financial, economic and commodities contracts were reported in all 50 states. Sports contracts were reported in 18 non-sportsbook states, including California, Texas and Florida; the filing does not enumerate the other 15.",
+      "non_sports_state_mode": "all_50_reported",
+      "sports_state_mode": "18_non_sportsbook_states_reported_not_enumerated",
+      "verified_sports_state_examples": ["CA", "TX", "FL"],
+      "sports_switch_rule": "FanDuel says Predicts sports event contracts cease when a state legalizes online sports betting.",
+      "source_ids": [
+        "flutter_q1_2026_10q_predicts_availability",
+        "flutter_fanduel_cme_predicts_launch"
+      ]
+    },
+    {
+      "operator_id": "kalshi",
+      "label": "Kalshi",
+      "operator_type": "prediction_market",
+      "indexing_model": "federal_nationwide_claim",
+      "regulatory_index": "CFTC Designated Contract Market since 2020.",
+      "geographic_summary": "Kalshi describes its event-contract exchange as available in all 50 states. State-level disputes and product-specific restrictions remain a review layer, not a reason to model sportsbook-style state market share.",
+      "state_mode": "all_50_operator_claim_with_state_review",
+      "source_ids": [
+        "cftc_kalshi_dcm_designation",
+        "kalshi_nationwide_event_contract_claim"
+      ]
+    },
+    {
+      "operator_id": "polymarket_us",
+      "label": "Polymarket US",
+      "operator_type": "prediction_market",
+      "indexing_model": "federal_dcm_state_matrix_missing",
+      "regulatory_index": "QCX LLC d/b/a Polymarket US is listed by the CFTC as a Designated Contract Market from 2025.",
+      "geographic_summary": "The reviewed CFTC designation establishes the federal exchange status but does not publish a current product-by-state availability matrix. State cells therefore remain unenumerated rather than being assumed live.",
+      "state_mode": "no_public_state_matrix",
+      "optional_future_feed": "Live Polymarket market data can be added later as an optional wow; it must not be used to infer US state reach without a separate geographic receipt.",
+      "source_ids": [
+        "cftc_polymarket_us_dcm_designation"
+      ]
+    }
+  ],
+  "sources": [
+    {
+      "source_id": "flutter_q1_2026_10q_predicts_availability",
+      "name": "Flutter Q1 2026 Form 10-Q",
+      "url": "https://flutter.com/media/luvnolq3/q1-2026-10-q-form.pdf",
+      "source_type": "primary filing",
+      "supporting_excerpt": "non-sports contract were made available in all 50 states",
+      "confidence": "high"
+    },
+    {
+      "source_id": "flutter_fanduel_cme_predicts_launch",
+      "name": "FanDuel and CME Group launch FanDuel Predicts",
+      "url": "https://flutter.com/news-media/press-releases/fanduel-and-cme-group-launch-fanduel-predicts/",
+      "source_type": "primary company release",
+      "supporting_excerpt": "states where online sports betting is not yet legal",
+      "confidence": "high"
+    },
+    {
+      "source_id": "cftc_kalshi_dcm_designation",
+      "name": "CFTC Kalshi Designated Contract Market filing",
+      "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizations/42993",
+      "source_type": "primary regulator",
+      "supporting_excerpt": "Status: Designated",
+      "confidence": "high"
+    },
+    {
+      "source_id": "kalshi_nationwide_event_contract_claim",
+      "name": "Kalshi: trading the big football game",
+      "url": "https://news.kalshi.com/p/how-to-trade-the-big-game-philadelphia-kansas-city",
+      "source_type": "primary operator statement",
+      "supporting_excerpt": "available in all 50 states",
+      "confidence": "medium"
+    },
+    {
+      "source_id": "cftc_polymarket_us_dcm_designation",
+      "name": "CFTC designated contract markets list",
+      "url": "https://www.cftc.gov/IndustryOversight/IndustryFilings/TradingOrganizations?Status=Designated&col=AssociatedDocuments&dir=DESC",
+      "source_type": "primary regulator",
+      "supporting_excerpt": "QCX LLC d/b/a Polymarket US | Designated",
+      "confidence": "high"
+    }
+  ]
+}

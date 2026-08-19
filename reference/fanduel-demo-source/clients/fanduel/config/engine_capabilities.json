@@ -1,0 +1,126 @@
+{
+  "id": "fanduel_planning_engine_capabilities_v1",
+  "status": "working_demo_contract",
+  "display_flag": "WORKING_CAPABILITY_CONTRACT",
+  "updated_at": "2026-07-05",
+  "scope": "FanDuel Planning OS demo",
+  "rules": [
+    "The LLM can extract briefs, ask clarifying questions and narrate computed outputs.",
+    "Deterministic tools own accepted budgets, forecasts, governance and saved plan numbers.",
+    "Unavailable capabilities must be stated as unavailable rather than silently approximated."
+  ],
+  "modes": {
+    "year": {
+      "label": "Year planning",
+      "status": "available",
+      "visible_chips": [
+        { "label": "Engine: annual plan", "className": "status-working" },
+        { "label": "Save: Flightpath", "className": "status-working" }
+      ],
+      "available_paths": [
+        {
+          "id": "annual_plan_from_user_budget",
+          "tool": "computeYearPlanFromExtraction",
+          "status": "available",
+          "inputs_required": ["budget_usd"],
+          "save_path": "saveLastYearPlanToFlightpath",
+          "claim": "Can create an annual plan from a user-provided budget using the active T111 baseline channel shape."
+        }
+      ],
+      "blocked_paths": [],
+      "llm_guardrails": [
+        "Never assume a budget.",
+        "Describe state and product selections as scope context unless a deterministic reweighting path is explicitly present."
+      ]
+    },
+    "month": {
+      "label": "Monthly replan",
+      "status": "available_inside_active_year",
+      "visible_chips": [
+        { "label": "Engine: month-in-year replan", "className": "status-working" },
+        { "label": "Standalone month: not built", "className": "status-review" }
+      ],
+      "available_paths": [
+        {
+          "id": "replan_month_inside_active_year",
+          "tool": "buildRevisionDraft",
+          "status": "available",
+          "inputs_required": ["month"],
+          "save_path": "saveRevisionDraft",
+          "claim": "Can freeze earlier months, replan the selected month onward inside the active annual plan, show old-vs-new deltas and save a revised in-memory plan version."
+        }
+      ],
+      "blocked_paths": [
+        {
+          "id": "standalone_month_from_scratch",
+          "status": "not_available",
+          "claim": "Do not claim a standalone month-from-scratch planner. Ask for an active annual plan or route to Year planning first."
+        }
+      ],
+      "llm_guardrails": [
+        "Use replan_month only inside the active annual plan.",
+        "Ask for a target month when missing.",
+        "Do not invent a standalone monthly budget or fresh month plan."
+      ]
+    },
+    "oneoff": {
+      "label": "One-off campaign",
+      "status": "available_demo_campaign_store",
+      "visible_chips": [
+        { "label": "Engine: campaign subset", "className": "status-working" },
+        { "label": "Save: Flightpath campaign", "className": "status-working" }
+      ],
+      "available_paths": [
+        {
+          "id": "campaign_subset_plan",
+          "tool": "buildOneOffPlan",
+          "status": "available_demo",
+          "inputs_required": ["budget_usd", "incrementality_basis"],
+          "save_path": "saveOneOffCampaign -> fanduel_campaign_store_v1 -> Flightpath overlay",
+          "claim": "Can create a governed one-off campaign plan with budget, product, month/state scope, incrementality basis, channel allocation, product/state guardrails and Flightpath overlay rows."
+        }
+      ],
+      "blocked_paths": [
+        {
+          "id": "server_backed_campaign_store",
+          "status": "not_available",
+          "claim": "Campaigns persist in the local demo store. Server/API-backed campaign storage is not part of this demo pass."
+        }
+      ],
+      "llm_guardrails": [
+        "A campaign cannot be accepted without budget_usd and incrementality_basis.",
+        "Run governance before accepting or saving a campaign.",
+        "Say when save is demo-local rather than server/API backed."
+      ]
+    },
+    "free": {
+      "label": "Free chat",
+      "status": "lookup_only",
+      "visible_chips": [
+        { "label": "Free: lookup and reasoning", "className": "status-working" },
+        { "label": "No plan generation", "className": "status-review" }
+      ],
+      "available_paths": [
+        {
+          "id": "grounded_free_answer",
+          "tool": "runFreeQuestionLlmService",
+          "status": "available_when_llm_connected",
+          "inputs_required": ["question"],
+          "save_path": "ideasCanvas",
+          "claim": "Can answer grounded questions and draft ideas canvas notes from the dossier."
+        }
+      ],
+      "blocked_paths": [
+        {
+          "id": "free_mode_plan_generation",
+          "status": "not_available",
+          "claim": "Free mode should hand off to Year, Month or One-off rather than accepting a plan directly."
+        }
+      ],
+      "llm_guardrails": [
+        "Do not generate or accept plans in Free mode.",
+        "Offer a handoff to a planning mode when the user wants action."
+      ]
+    }
+  }
+}

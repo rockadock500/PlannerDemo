@@ -1,0 +1,13 @@
+{
+  "key": "launch",
+  "label": "Launch",
+  "group": "Launch planning",
+  "description": "Plan a new-product launch or layer new money around existing activity.",
+  "prompt": "Describe the launch",
+  "allowed_dinks": ["period", "budget", "geo", "audience", "channels", "goal", "kpi"],
+  "allowed_tools": ["classify_launch_path", "add_product", "plan_oneoff", "governance_check", "save_campaign"],
+  "deterministic_handler": "launchGate",
+  "custom_instructions": "Launch is a standalone planning flow. Ask whether this is a new product or layered activity before generating a plan.",
+  "cold_load": { "title": "Launch mode is ready" },
+  "cold_load_prompts": []
+}

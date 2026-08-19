@@ -1,0 +1,84 @@
+{
+  "schema": "fanduel_recommendation_action_manifest_v1",
+  "created_at": "2026-07-30",
+  "status": "preview_only",
+  "display_flag": "ACTION PREVIEW — NO LIVE PLATFORM WRITE",
+  "rules": [
+    "No recommendation may move directly from suggested to applied.",
+    "Every platform change requires a human-reviewed before/after diff.",
+    "A live write requires an authenticated, allow-listed account connector and a fresh platform read.",
+    "Country, state, product and publisher-policy checks must pass before activation.",
+    "Every write must use an idempotency key, create an audit receipt and retain a rollback value.",
+    "Synthetic or working evidence can produce a recommendation preview but cannot authorise a live write."
+  ],
+  "workflow_states": [
+    "suggested",
+    "reviewing",
+    "queued_for_approval",
+    "connector_pending",
+    "applied",
+    "rejected"
+  ],
+  "connectors": [
+    {
+      "connector_id": "google_ads",
+      "label": "Google Ads API",
+      "status": "not_connected_for_write",
+      "preview_enabled": true,
+      "write_enabled": false,
+      "supported_preview_actions": [
+        "campaign_budget.update",
+        "campaign_criterion.remove",
+        "campaign_negative_keyword.create",
+        "ad.final_url.update",
+        "ad.status.update"
+      ],
+      "required_live_checks": [
+        "customer account allow-listed",
+        "current object re-read",
+        "policy and geo validation",
+        "human approval",
+        "idempotency key",
+        "rollback value stored"
+      ]
+    },
+    {
+      "connector_id": "meta_marketing",
+      "label": "Meta Marketing API",
+      "status": "not_connected_for_write",
+      "preview_enabled": true,
+      "write_enabled": false,
+      "supported_preview_actions": [
+        "adset.targeting.update",
+        "adset.daily_budget.update",
+        "ad.status.update",
+        "adset.status.update"
+      ],
+      "required_live_checks": [
+        "ad account allow-listed",
+        "current object re-read",
+        "special-ad and gambling-policy validation",
+        "human approval",
+        "idempotency key",
+        "rollback value stored"
+      ]
+    },
+    {
+      "connector_id": "planning_os",
+      "label": "Planning OS workflow",
+      "status": "available_in_demo",
+      "preview_enabled": true,
+      "write_enabled": false,
+      "supported_preview_actions": [
+        "open_month_replan",
+        "open_year_replan",
+        "open_launch_workflow"
+      ],
+      "required_live_checks": [
+        "active plan selected",
+        "working-media category retained",
+        "human save and activation"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,45 @@
+{
+  "created_at": "2026-07-03",
+  "status": "client_safe_organic_plus_working_paid_serp_observations",
+  "source": "Signal v2 scan pipeline-operator-fanduel-us-1783081930407 plus DataForSEO via TAU Signal Railway production",
+  "seo_domain": "fanduel.com",
+  "search_brand": "FanDuel",
+  "organic_keywords_count": 100,
+  "paid_keywords_count": 15,
+  "paid_serp_source_id": "dataforseo_paid_serp_fanduel_2026_07_09",
+  "paid_serp_last_checked": "2026-07-09",
+  "paid_serp_latest_observed_at": "2026-06-16 02:17:56 +00:00",
+  "paid_serp_summary": "15 weekly DataForSEO paid-SERP observations were returned across the corrected set: 13 FanDuel rows promoting FDTVx streaming and 2 DraftKings sportsbook rows. No rows were returned for BetMGM, Bet365 or Fanatics Sportsbook in this snapshot; that is not proof of no paid activity.",
+  "paid_serp_evidence_boundary": "Observed ad copy and rankings only; not proof of spend, budget, targeting, campaign intent or efficiency.",
+  "brand_coverage_signal": "0% brand coverage in Signal SEO summary",
+  "keyword_seed_clusters": [
+    "fanduel",
+    "fanduel sportsbook",
+    "fanduel casino",
+    "fanduel promo code",
+    "sports betting app",
+    "online sportsbook",
+    "best sportsbook",
+    "draftkings vs fanduel",
+    "betmgm sportsbook",
+    "fanatics sportsbook",
+    "fanduel odds",
+    "fanduel app"
+  ],
+  "demo_use": [
+    "Show organic-first evidence for Stage 1 search POC.",
+    "Show the DataForSEO paid-domain cut as working provider evidence and separate FDTVx streaming rows from sportsbook ads.",
+    "Treat zero returned rows as provider-snapshot gaps, not zero advertiser activity.",
+    "Use state governance before recommending paid search by product/state."
+  ],
+  "next_data_needed": [
+    "Live paid SERP pull by priority state and governed keyword cluster",
+    "Search Console or SEO landing-page data if FanDuel can provide it",
+    "Paid search account data if Karl wants investment-efficiency findings"
+  ],
+  "input_gate": {
+    "category_definition_check": "passed",
+    "generation_or_tuning_consumption": "blocked pending human sign-off",
+    "reason": "The provider cut is suitable for ad-copy and conquest discovery, but not for spend, allocation, CPA or efficiency tuning."
+  }
+}

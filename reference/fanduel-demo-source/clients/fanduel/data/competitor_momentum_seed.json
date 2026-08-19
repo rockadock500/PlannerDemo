@@ -1,0 +1,93 @@
+{
+  "created_at": "2026-07-09",
+  "status": "working_data",
+  "source": "config/fanduel_state_trends_and_geo.json plus Signal sourced news summary",
+  "national_trend_strength_index": {
+    "FanDuel": 100,
+    "DraftKings": 85,
+    "Bet365": 41,
+    "BetMGM": 19,
+    "Fanatics Sportsbook": 6
+  },
+  "top_fanduel_state_interest": [
+    {
+      "state_code": "MI",
+      "index": 100
+    },
+    {
+      "state_code": "NJ",
+      "index": 88
+    },
+    {
+      "state_code": "PA",
+      "index": 80
+    },
+    {
+      "state_code": "MO",
+      "index": 76
+    },
+    {
+      "state_code": "WV",
+      "index": 63
+    },
+    {
+      "state_code": "LA",
+      "index": 62
+    },
+    {
+      "state_code": "MD",
+      "index": 59
+    },
+    {
+      "state_code": "NY",
+      "index": 59
+    },
+    {
+      "state_code": "DC",
+      "index": 56
+    },
+    {
+      "state_code": "OH",
+      "index": 56
+    }
+  ],
+  "sourced_news_signals": [
+    {
+      "title": "Formula 1 announces FanDuel as new Official Betting Operator in multi-year deal",
+      "source_label": "Formula One World Championship Limited via Signal news",
+      "demo_use": "Premium sports-property partnership proof point."
+    },
+    {
+      "title": "FanDuel named Official Betting Operator of Formula 1",
+      "source_label": "Flutter Entertainment via Signal news",
+      "demo_use": "Parent/company confirmation of the partnership."
+    },
+    {
+      "title": "FanDuel Is Latest Gambling Company to Cut Jobs",
+      "source_label": "Front Office Sports via Signal news",
+      "demo_use": "Portfolio pressure and market focus context; use carefully, not as a strategy claim."
+    }
+  ],
+  "demo_caveats": [
+    "Comparative Trends indices are relative search-interest signals, not market share.",
+    "The cross-brand chart uses only one comparative Trends request, not separate per-keyword normalisation.",
+    "Own-baseline momentum values are kept separate and must not be ranked against the comparative chart.",
+    "Use only sourced news items in the demo.",
+    "Do not use degraded deep-research narrative as client evidence."
+  ],
+  "national_trend_comparative_method": {
+    "label": "Search interest comparative index (12m)",
+    "source_field": "config/fanduel_state_trends_and_geo.json scan_context.nationalTrendComparison",
+    "calculation": "Average each brand in the single-request 12-month comparative Google Trends series, then scale the leading brand to 100.",
+    "data_points": 53,
+    "included_brands": [
+      "FanDuel",
+      "DraftKings",
+      "BetMGM",
+      "Bet365",
+      "Fanatics Sportsbook"
+    ],
+    "state_comparative_rows": 51,
+    "state_method": "One FanDuel-anchored five-keyword DataForSEO Trends request per state; raw levels are not compared across states."
+  }
+}

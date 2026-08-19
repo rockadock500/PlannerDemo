@@ -1,0 +1,42 @@
+{
+  "created_at": "2026-07-03",
+  "statuses": [
+    {
+      "status": "allowed",
+      "meaning": "No source evidence in the current rule record blocks the planned use.",
+      "client_facing_rule": "Only client-facing when source URL and source date are present."
+    },
+    {
+      "status": "restricted",
+      "meaning": "Allowed only under specific constraints, such as product, age, offer, channel, sport or copy rules.",
+      "client_facing_rule": "Must show the restriction and source receipt."
+    },
+    {
+      "status": "blocked",
+      "meaning": "Do not recommend activation for this product/state/channel combination.",
+      "client_facing_rule": "Must show source receipt and avoid legal finality unless regulator verified."
+    },
+    {
+      "status": "not_listed",
+      "meaning": "The product is not listed in the current FanDuel-owned availability source.",
+      "client_facing_rule": "Exclude from activation planning pending regulator verification; do not present as a legal block."
+    },
+    {
+      "status": "unknown",
+      "meaning": "Insufficient evidence to make a planning decision.",
+      "client_facing_rule": "Show as a research gap, not a recommendation."
+    },
+    {
+      "status": "legal-review",
+      "meaning": "Sensitive or ambiguous; requires legal/compliance review before activation.",
+      "client_facing_rule": "Use for demo firewall moments and do not convert into an allowed/blocked claim without review."
+    }
+  ],
+  "verification_levels": [
+    "synthetic-demo",
+    "working-source",
+    "fanduel-owned-source",
+    "regulator-verified",
+    "legal-reviewed"
+  ]
+}

@@ -1,0 +1,398 @@
+{
+  "generated_at": "2026-07-05T00:00:00.000Z",
+  "status": "modelled-working",
+  "display_flag": "MODELLED_HEAT",
+  "source_ids": [
+    "fanduel_fixture_calendar_manifest_v1",
+    "fanduel_fixture_heat_model_v1",
+    "fanduel_sde_actuals_manifest_v1"
+  ],
+  "periods": [
+    {
+      "period_id": "nfl_kickoff_2026",
+      "label": "NFL Kickoff",
+      "start_date": "2026-09-07",
+      "end_date": "2026-09-13",
+      "sports": [
+        "NFL"
+      ],
+      "status": "modelled-working",
+      "display_flag": "MODELLED_HEAT",
+      "source_ids": [
+        "fanduel_fixture_calendar_manifest_v1",
+        "fanduel_fixture_heat_model_v1",
+        "dataforseo_google_trends_fanduel_series"
+      ],
+      "peak_date": "2026-09-10",
+      "peak_heat_score": 86.03,
+      "peak_heat_band": "blazing",
+      "average_heat_score": 59.95,
+      "baseline_heat_score": 32.09,
+      "expected_demand_lift_pct": 86.8,
+      "fixture_count": 4,
+      "fixture_ids": [
+        "nfl_20260907_monday_night",
+        "nfl_2026_kickoff_structural_anchor",
+        "nfl_20260913_sunday_night",
+        "nfl_20260913_sunday_slate"
+      ],
+      "actuals_reference": {
+        "month": "2026-09",
+        "actual_spend": 0,
+        "conversions": 0,
+        "sessions": 0,
+        "display_flag": "SYNTHETIC",
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1"
+        ]
+      },
+      "channel_actions": [
+        "Raise CTV, Linear TV, YouTube and Paid Search around kickoff week.",
+        "Use state-safe copy variants before localising offers.",
+        "Hold CRM/app pushes for game-day reminders rather than broad prospecting."
+      ],
+      "inventory_notes": [
+        "Prime video and football inventory should be reserved before final creative locks.",
+        "Expect CPM pressure in football windows."
+      ],
+      "governance_notes": [
+        "Professional football moment; state product eligibility still applies."
+      ],
+      "one_off_brief": "Plan an incremental NFL kickoff-week awareness burst for Sportsbook in selected live states, with state-safe copy and CTV/YouTube/Paid Search focus.",
+      "insight": "The first football week is the cleanest reach-and-intent moment in the calendar."
+    },
+    {
+      "period_id": "super_bowl_2026",
+      "label": "Super Bowl",
+      "start_date": "2026-02-01",
+      "end_date": "2026-02-08",
+      "sports": [
+        "NFL"
+      ],
+      "status": "modelled-working",
+      "display_flag": "MODELLED_HEAT",
+      "source_ids": [
+        "fanduel_fixture_calendar_manifest_v1",
+        "fanduel_fixture_heat_model_v1",
+        "dataforseo_google_trends_fanduel_series"
+      ],
+      "peak_date": "2026-02-08",
+      "peak_heat_score": 92.45,
+      "peak_heat_band": "blazing",
+      "average_heat_score": 46.2,
+      "baseline_heat_score": 44.6,
+      "expected_demand_lift_pct": 3.6,
+      "fixture_count": 1,
+      "fixture_ids": [
+        "nfl_20260208_super_bowl_lx"
+      ],
+      "actuals_reference": {
+        "month": "2026-02",
+        "actual_spend": 145979013.3,
+        "conversions": 559766.36,
+        "sessions": 26741141,
+        "display_flag": "SYNTHETIC",
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1"
+        ]
+      },
+      "channel_actions": [
+        "Use national TV/CTV/YouTube for reach and Paid Search for capture.",
+        "Separate pre-kick campaign claims from in-game ad claims.",
+        "Keep affiliate and promo language in legal review."
+      ],
+      "inventory_notes": [
+        "Premium inventory and creative approvals need early lock dates.",
+        "Use fallback digital video if TV cost inflation clears the guardrail."
+      ],
+      "governance_notes": [
+        "Professional football moment; responsible-gambling copy review remains mandatory."
+      ],
+      "one_off_brief": "Draft a Super Bowl lead-in one-off plan for Sportsbook with national reach, CTV/Linear TV/YouTube emphasis and Paid Search capture.",
+      "insight": "The Super Bowl is the sharpest national heat spike; use it for attention, not unsupported conversion certainty."
+    },
+    {
+      "period_id": "march_madness_2026",
+      "label": "March Madness",
+      "start_date": "2026-03-17",
+      "end_date": "2026-04-06",
+      "sports": [
+        "College"
+      ],
+      "status": "modelled-working",
+      "display_flag": "MODELLED_HEAT",
+      "source_ids": [
+        "fanduel_fixture_calendar_manifest_v1",
+        "fanduel_fixture_heat_model_v1",
+        "dataforseo_google_trends_fanduel_series"
+      ],
+      "peak_date": "2026-03-19",
+      "peak_heat_score": 81.51,
+      "peak_heat_band": "hot",
+      "average_heat_score": 61.18,
+      "baseline_heat_score": 31.51,
+      "expected_demand_lift_pct": 94.2,
+      "fixture_count": 13,
+      "fixture_ids": [
+        "college_basketball_20260317_march_madness_first_four_window",
+        "college_basketball_20260318_march_madness_first_four_window",
+        "college_basketball_20260319_march_madness_opening_rounds",
+        "college_basketball_20260320_march_madness_opening_rounds",
+        "college_basketball_20260321_march_madness_opening_rounds",
+        "college_basketball_20260322_march_madness_opening_rounds",
+        "college_basketball_20260326_march_madness_regional_rounds",
+        "college_basketball_20260327_march_madness_regional_rounds",
+        "college_basketball_20260328_march_madness_regional_rounds",
+        "college_basketball_20260329_march_madness_regional_rounds",
+        "college_basketball_20260404_march_madness_final_four_window",
+        "college_basketball_20260405_march_madness_final_four_window",
+        "college_basketball_20260406_march_madness_final_four_window"
+      ],
+      "actuals_reference": {
+        "month": "2026-03",
+        "actual_spend": 131531748.2,
+        "conversions": 505032.82,
+        "sessions": 25699062,
+        "display_flag": "SYNTHETIC",
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1"
+        ]
+      },
+      "channel_actions": [
+        "Use search/social intent capture where college-market rules clear.",
+        "Shift restricted states toward generic brand or non-college messages.",
+        "Keep YouTube/CTV context exclusions visible."
+      ],
+      "inventory_notes": [
+        "Bracket and highlights adjacency should be treated as review inventory.",
+        "Use structural labels until the official schedule feed lands."
+      ],
+      "governance_notes": [
+        "College review required in MA, NY, OH, PA and TN in this demo source."
+      ],
+      "one_off_brief": "Build a March Madness one-off plan that separates unrestricted states from MA/NY/OH/PA/TN college-review states and keeps claims state-safe.",
+      "insight": "Demand rises, but the governance layer is the point: college restrictions shape where and how the spend can land."
+    },
+    {
+      "period_id": "nba_finals_2026",
+      "label": "NBA Finals",
+      "start_date": "2026-06-04",
+      "end_date": "2026-06-18",
+      "sports": [
+        "NBA"
+      ],
+      "status": "modelled-working",
+      "display_flag": "MODELLED_HEAT",
+      "source_ids": [
+        "fanduel_fixture_calendar_manifest_v1",
+        "fanduel_fixture_heat_model_v1",
+        "dataforseo_google_trends_fanduel_series"
+      ],
+      "peak_date": "2026-06-07",
+      "peak_heat_score": 63.68,
+      "peak_heat_band": "warm",
+      "average_heat_score": 55.06,
+      "baseline_heat_score": 46.31,
+      "expected_demand_lift_pct": 18.9,
+      "fixture_count": 9,
+      "fixture_ids": [
+        "nba_20260604_finals_window",
+        "nba_20260606_finals_window",
+        "nba_20260607_finals_window",
+        "nba_20260609_finals_window",
+        "nba_20260611_finals_window",
+        "nba_20260613_finals_window",
+        "nba_20260614_finals_window",
+        "nba_20260616_finals_window",
+        "nba_20260618_finals_window"
+      ],
+      "actuals_reference": {
+        "month": "2026-06",
+        "actual_spend": 99161238.21,
+        "conversions": 346731.1,
+        "sessions": 17604834,
+        "display_flag": "SYNTHETIC",
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1"
+        ]
+      },
+      "channel_actions": [
+        "Use CTV/YouTube for reach, Paid Search for intent capture and CRM/app prompts for existing customers.",
+        "Avoid treating Finals heat as football-scale demand."
+      ],
+      "inventory_notes": [
+        "Primetime basketball inventory can be tested as a controlled video pulse."
+      ],
+      "governance_notes": [
+        "Professional sports moment; normal state product eligibility applies."
+      ],
+      "one_off_brief": "Draft an NBA Finals video-led pulse for Sportsbook with CTV/YouTube support and Paid Search capture.",
+      "insight": "NBA Finals gives a compact primetime video window after the football peak fades."
+    },
+    {
+      "period_id": "mlb_opening_2026",
+      "label": "MLB Opening",
+      "start_date": "2026-03-26",
+      "end_date": "2026-03-29",
+      "sports": [
+        "MLB"
+      ],
+      "status": "modelled-working",
+      "display_flag": "MODELLED_HEAT",
+      "source_ids": [
+        "fanduel_fixture_calendar_manifest_v1",
+        "fanduel_fixture_heat_model_v1",
+        "dataforseo_google_trends_fanduel_series"
+      ],
+      "peak_date": "2026-03-26",
+      "peak_heat_score": 80.45,
+      "peak_heat_band": "hot",
+      "average_heat_score": 77.23,
+      "baseline_heat_score": 31.51,
+      "expected_demand_lift_pct": 145.1,
+      "fixture_count": 3,
+      "fixture_ids": [
+        "mlb_20260326_opening_day_window",
+        "mlb_20260327_daily_background",
+        "mlb_20260329_daily_background"
+      ],
+      "actuals_reference": {
+        "month": "2026-03",
+        "actual_spend": 131531748.2,
+        "conversions": 505032.82,
+        "sessions": 25699062,
+        "display_flag": "SYNTHETIC",
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1"
+        ]
+      },
+      "channel_actions": [
+        "Use paid search and app store capture for baseball intent.",
+        "Keep broader video spend subordinated to March Madness unless evidence says otherwise."
+      ],
+      "inventory_notes": [
+        "Opening Day is a short window; use lightweight copy refreshes rather than full campaign rebuilds."
+      ],
+      "governance_notes": [
+        "Professional sports moment; normal state product eligibility applies."
+      ],
+      "one_off_brief": "Create a compact MLB Opening intent-capture pulse for Sportsbook around Paid Search and App Store.",
+      "insight": "MLB Opening adds useful texture inside March, but it should not overwhelm March Madness governance planning."
+    },
+    {
+      "period_id": "masters_derby_spring_2026",
+      "label": "Masters and Derby",
+      "start_date": "2026-04-09",
+      "end_date": "2026-05-02",
+      "sports": [
+        "Golf",
+        "Racing"
+      ],
+      "status": "modelled-working",
+      "display_flag": "MODELLED_HEAT",
+      "source_ids": [
+        "fanduel_fixture_calendar_manifest_v1",
+        "fanduel_fixture_heat_model_v1",
+        "dataforseo_google_trends_fanduel_series"
+      ],
+      "peak_date": "2026-05-02",
+      "peak_heat_score": 65.68,
+      "peak_heat_band": "warm",
+      "average_heat_score": 49.34,
+      "baseline_heat_score": 50.89,
+      "expected_demand_lift_pct": -3,
+      "fixture_count": 5,
+      "fixture_ids": [
+        "golf_20260409_masters_week",
+        "golf_20260410_masters_week",
+        "golf_20260411_masters_week",
+        "golf_20260412_masters_week",
+        "racing_20260502_kentucky_derby_window"
+      ],
+      "actuals_reference": {
+        "month": "2026-04",
+        "actual_spend": 100701804.83,
+        "conversions": 358394.31,
+        "sessions": 17996385,
+        "display_flag": "SYNTHETIC",
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1"
+        ]
+      },
+      "channel_actions": [
+        "Use audience targeting and affiliates rather than broad national TV.",
+        "Test creator/contextual placements if compliant inventory is available."
+      ],
+      "inventory_notes": [
+        "Inventory is event-specific; keep scale expectations modest."
+      ],
+      "governance_notes": [
+        "Check racing availability and state claims before any horse-racing message."
+      ],
+      "one_off_brief": "Draft a targeted spring tentpole pulse around Masters and Derby audiences with modest paid-social/video support.",
+      "insight": "Spring niche tentpoles are better as audience-specific pulses than national scale moments."
+    },
+    {
+      "period_id": "summer_trough_2026",
+      "label": "Summer trough",
+      "start_date": "2026-07-01",
+      "end_date": "2026-07-31",
+      "sports": [
+        "MLB",
+        "Holiday"
+      ],
+      "status": "modelled-working",
+      "display_flag": "MODELLED_HEAT",
+      "source_ids": [
+        "fanduel_fixture_calendar_manifest_v1",
+        "fanduel_fixture_heat_model_v1",
+        "dataforseo_google_trends_fanduel_series"
+      ],
+      "peak_date": "2026-07-04",
+      "peak_heat_score": 27.85,
+      "peak_heat_band": "cold",
+      "average_heat_score": 18.65,
+      "baseline_heat_score": 59.95,
+      "expected_demand_lift_pct": -68.9,
+      "fixture_count": 14,
+      "fixture_ids": [
+        "mlb_20260703_daily_background",
+        "holiday_20260704_july_4_sports_and_leisure_demand_anchor",
+        "mlb_20260705_daily_background",
+        "mlb_20260707_daily_background",
+        "mlb_20260710_daily_background",
+        "mlb_20260712_daily_background",
+        "mlb_20260714_daily_background",
+        "mlb_20260717_daily_background",
+        "mlb_20260719_daily_background",
+        "mlb_20260721_daily_background",
+        "mlb_20260724_daily_background",
+        "mlb_20260726_daily_background",
+        "mlb_20260728_daily_background",
+        "mlb_20260731_daily_background"
+      ],
+      "actuals_reference": {
+        "month": "2026-07",
+        "actual_spend": 0,
+        "conversions": 0,
+        "sessions": 0,
+        "display_flag": "SYNTHETIC",
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1"
+        ]
+      },
+      "channel_actions": [
+        "Lean into CRM, Organic Search and App Store hygiene.",
+        "Avoid forcing football-scale reach spend into a low-intensity month."
+      ],
+      "inventory_notes": [
+        "Use the trough for testing and clean measurement rather than big-reach buys."
+      ],
+      "governance_notes": [
+        "No special college badge; normal product eligibility applies."
+      ],
+      "one_off_brief": "Create a July efficiency plan focused on CRM, Organic Search and App Store rather than broad reach.",
+      "insight": "The cold story matters: lower heat is the window for owned, organic and efficiency work."
+    }
+  ]
+}

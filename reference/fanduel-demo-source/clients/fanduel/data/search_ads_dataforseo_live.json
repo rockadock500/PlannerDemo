@@ -1,0 +1,551 @@
+
+{
+  "provenance": {
+    "generated_by": "scripts/pull_fanduel_dataforseo_ads.mjs",
+    "layer": "REAL observed provider evidence only; no synthetic ad records.",
+    "started_at": "2026-07-25T19:36:55.273Z",
+    "completed_at": "2026-07-25T19:37:20.279Z",
+    "location": {
+      "code": 2840,
+      "name": "United States"
+    },
+    "language": "en",
+    "api_calls": 22,
+    "metered_cost_usd": 0.2092,
+    "actual_spend_usd": 0.2092,
+    "spend_cap_usd": 6,
+    "endpoint_ledger": {
+      "/v3/appendix/user_data": {
+        "calls": 2,
+        "cost_usd": 0
+      },
+      "/v3/serp/google/ads_advertisers/live/advanced": {
+        "calls": 8,
+        "cost_usd": 0.016
+      },
+      "/v3/serp/google/ads_search/live/advanced": {
+        "calls": 3,
+        "cost_usd": 0.006
+      },
+      "/v3/dataforseo_labs/google/ranked_keywords/live": {
+        "calls": 8,
+        "cost_usd": 0.0972
+      },
+      "/v3/keywords_data/google_ads/search_volume/live": {
+        "calls": 1,
+        "cost_usd": 0.09
+      }
+    },
+    "evidence_note": "A zero provider row is not evidence that an advertiser is inactive. Transparency images prove creative activity but are not treated as machine-readable copy.",
+    "cpc_note": "CPC and top-of-page bid values are raw USD DataForSEO outputs."
+  },
+  "route_yield": {
+    "ads_transparency": {
+      "advertisers_found": 5,
+      "creatives_returned": 0
+    },
+    "labs_paid_index": {
+      "targets_queried": 5,
+      "targets_with_rows": 2,
+      "total_rows": 10,
+      "total_rows_with_copy": 10,
+      "per_target": [
+        {
+          "brand": "FanDuel",
+          "domain": "fanduel.com",
+          "product": "Sportsbook",
+          "tier": "client",
+          "rows_returned": 4,
+          "rows_with_copy": 4,
+          "zero_row_meaning": null
+        },
+        {
+          "brand": "DraftKings",
+          "domain": "draftkings.com",
+          "product": "Sportsbook",
+          "tier": "core-competitor",
+          "rows_returned": 6,
+          "rows_with_copy": 6,
+          "zero_row_meaning": null
+        },
+        {
+          "brand": "BetMGM",
+          "domain": "betmgm.com",
+          "product": "Sportsbook",
+          "tier": "core-competitor",
+          "rows_returned": 0,
+          "rows_with_copy": 0,
+          "zero_row_meaning": "Zero rows returned by this API; this is not evidence of inactivity."
+        },
+        {
+          "brand": "Fanatics Sportsbook",
+          "domain": "sportsbook.fanatics.com",
+          "product": "Sportsbook",
+          "tier": "core-competitor",
+          "rows_returned": 0,
+          "rows_with_copy": 0,
+          "zero_row_meaning": "Zero rows returned by this API; this is not evidence of inactivity."
+        },
+        {
+          "brand": "bet365",
+          "domain": "bet365.com",
+          "product": "Sportsbook",
+          "tier": "core-competitor",
+          "rows_returned": 0,
+          "rows_with_copy": 0,
+          "zero_row_meaning": "Zero rows returned by this API; this is not evidence of inactivity."
+        }
+      ]
+    },
+    "keyword_economics": {
+      "keywords_returned": 17
+    }
+  },
+  "advertiser_index": [
+    {
+      "brand": "FanDuel",
+      "query": "FanDuel",
+      "advertisers": [
+        {
+          "advertiser_id": "AR09732039513529647105",
+          "advertiser_name": "FANDUEL CANADA ULC",
+          "verified": true,
+          "location": "CA",
+          "approx_ads_count": 30
+        }
+      ]
+    },
+    {
+      "brand": "DraftKings",
+      "query": "DraftKings",
+      "advertisers": [
+        {
+          "advertiser_id": "AR02703464810825121793",
+          "advertiser_name": "DRAFTKINGS INC.",
+          "verified": true,
+          "location": "US",
+          "approx_ads_count": 1
+        }
+      ]
+    },
+    {
+      "brand": "BetMGM",
+      "query": "BetMGM",
+      "advertisers": []
+    },
+    {
+      "brand": "Fanatics Sportsbook",
+      "query": "Fanatics Sportsbook",
+      "advertisers": []
+    },
+    {
+      "brand": "bet365",
+      "query": "bet365",
+      "advertisers": [
+        {
+          "advertiser_id": "AR14703038922527604737",
+          "advertiser_name": "bet365",
+          "verified": true,
+          "location": "US",
+          "approx_ads_count": 3000
+        },
+        {
+          "advertiser_id": "AR10215722237730750465",
+          "advertiser_name": "bet365",
+          "verified": true,
+          "location": "GI",
+          "approx_ads_count": 5
+        },
+        {
+          "advertiser_id": "AR14088544963507781633",
+          "advertiser_name": "bet365",
+          "verified": true,
+          "location": "MT",
+          "approx_ads_count": 1
+        }
+      ]
+    }
+  ],
+  "keyword_economics": [
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "sportsbook",
+      "search_volume": 27100,
+      "competition": "LOW",
+      "competition_index": 24,
+      "cpc_usd": 17.74,
+      "low_top_of_page_bid_usd": 3.67,
+      "high_top_of_page_bid_usd": 24.73
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "online sportsbook",
+      "search_volume": 9900,
+      "competition": "LOW",
+      "competition_index": 2,
+      "cpc_usd": 23.7,
+      "low_top_of_page_bid_usd": 5.94,
+      "high_top_of_page_bid_usd": 36.35
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "sports betting app",
+      "search_volume": 27100,
+      "competition": "MEDIUM",
+      "competition_index": 50,
+      "cpc_usd": 51.59,
+      "low_top_of_page_bid_usd": 10.68,
+      "high_top_of_page_bid_usd": 55.09
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "best sportsbook",
+      "search_volume": 590,
+      "competition": "MEDIUM",
+      "competition_index": 48,
+      "cpc_usd": 33.95,
+      "low_top_of_page_bid_usd": 7.46,
+      "high_top_of_page_bid_usd": 47.57
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "sportsbook promo code",
+      "search_volume": 720,
+      "competition": "LOW",
+      "competition_index": 4,
+      "cpc_usd": 15.59,
+      "low_top_of_page_bid_usd": 4.28,
+      "high_top_of_page_bid_usd": 29.62
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "live betting",
+      "search_volume": 2900,
+      "competition": "LOW",
+      "competition_index": 22,
+      "cpc_usd": 23.17,
+      "low_top_of_page_bid_usd": 4.3,
+      "high_top_of_page_bid_usd": 26.36
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "same game parlay",
+      "search_volume": 1600,
+      "competition": "LOW",
+      "competition_index": 15,
+      "cpc_usd": 23.16,
+      "low_top_of_page_bid_usd": 6.17,
+      "high_top_of_page_bid_usd": 31.96
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "NFL betting",
+      "search_volume": 8100,
+      "competition": "LOW",
+      "competition_index": 13,
+      "cpc_usd": 11.36,
+      "low_top_of_page_bid_usd": 4.26,
+      "high_top_of_page_bid_usd": 28.7
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "NBA betting",
+      "search_volume": 4400,
+      "competition": "LOW",
+      "competition_index": 21,
+      "cpc_usd": 20.09,
+      "low_top_of_page_bid_usd": 3.19,
+      "high_top_of_page_bid_usd": 23.53
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "MLB betting",
+      "search_volume": 8100,
+      "competition": "LOW",
+      "competition_index": 4,
+      "cpc_usd": 14.11,
+      "low_top_of_page_bid_usd": 4.46,
+      "high_top_of_page_bid_usd": 25
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "college football betting",
+      "search_volume": 4400,
+      "competition": "LOW",
+      "competition_index": 16,
+      "cpc_usd": 28.97,
+      "low_top_of_page_bid_usd": 5.53,
+      "high_top_of_page_bid_usd": 37.87
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "online casino",
+      "search_volume": 201000,
+      "competition": "MEDIUM",
+      "competition_index": 60,
+      "cpc_usd": 24.62,
+      "low_top_of_page_bid_usd": 4.68,
+      "high_top_of_page_bid_usd": 27
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "casino bonus",
+      "search_volume": 6600,
+      "competition": "LOW",
+      "competition_index": 30,
+      "cpc_usd": 37.34,
+      "low_top_of_page_bid_usd": 3.36,
+      "high_top_of_page_bid_usd": 42.01
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "FanDuel",
+      "search_volume": 450000,
+      "competition": "LOW",
+      "competition_index": 28,
+      "cpc_usd": 17.43,
+      "low_top_of_page_bid_usd": 4.67,
+      "high_top_of_page_bid_usd": 25.53
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "DraftKings",
+      "search_volume": 450000,
+      "competition": "MEDIUM",
+      "competition_index": 35,
+      "cpc_usd": 6.87,
+      "low_top_of_page_bid_usd": 2.06,
+      "high_top_of_page_bid_usd": 22.03
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "BetMGM",
+      "search_volume": 135000,
+      "competition": "MEDIUM",
+      "competition_index": 39,
+      "cpc_usd": 12.85,
+      "low_top_of_page_bid_usd": 4.85,
+      "high_top_of_page_bid_usd": 27.61
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:20.118Z",
+      "keyword": "Fanatics Sportsbook",
+      "search_volume": 49500,
+      "competition": "MEDIUM",
+      "competition_index": 49,
+      "cpc_usd": 13.55,
+      "low_top_of_page_bid_usd": 6.13,
+      "high_top_of_page_bid_usd": 27.94
+    }
+  ],
+  "ad_records": [
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:16.457Z",
+      "source": "DataForSEO Labs paid keyword index",
+      "brand": "FanDuel",
+      "target_domain": "fanduel.com",
+      "competitor_tier": "client",
+      "product": "Streaming",
+      "keyword": "watch league pass nba",
+      "title": "Free EuroLeague Streaming - Watch Your Game on FDTVx",
+      "description": "Stream EuroLeague Games Live and Free. No Cable Needed. On FanDuel TV Extra.",
+      "display_url": "https://www.fanduel.com",
+      "destination_url": "https://fanduel.com/watch/video/event-fanduel-tv-extra-5f78?lite=true",
+      "rank_group": 1,
+      "search_volume": 260,
+      "competition_level": "LOW",
+      "cpc_usd": 1.5299999713897705,
+      "copy_status": "observed"
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:16.458Z",
+      "source": "DataForSEO Labs paid keyword index",
+      "brand": "FanDuel",
+      "target_domain": "fanduel.com",
+      "competitor_tier": "client",
+      "product": "Streaming",
+      "keyword": "how to watch euroleague basketball in usa",
+      "title": "Free EuroLeague Streaming - Watch EuroLeague Live Free",
+      "description": "Stream EuroLeague Games Live and Free. No Cable Needed. On FanDuel TV Extra. Europe’s Elite Basketball, Streaming Free All Season.",
+      "display_url": "https://www.fanduel.com",
+      "destination_url": "https://fanduel.com/watch/video/event-fanduel-tv-extra-5f78?lite=true",
+      "rank_group": 1,
+      "search_volume": 70,
+      "competition_level": "LOW",
+      "cpc_usd": null,
+      "copy_status": "observed"
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:16.458Z",
+      "source": "DataForSEO Labs paid keyword index",
+      "brand": "FanDuel",
+      "target_domain": "fanduel.com",
+      "competitor_tier": "client",
+      "product": "Streaming",
+      "keyword": "euroleague free stream",
+      "title": "Free EuroLeague Streaming - Watch EuroLeague Live Free",
+      "description": "Catch EuroLeague Action Anywhere, Anytime, Free. Watch the Championship Games on FDTVx.",
+      "display_url": "https://www.fanduel.com",
+      "destination_url": "https://fanduel.com/watch/video/event-fanduel-tv-extra-5f78?lite=true",
+      "rank_group": 1,
+      "search_volume": 40,
+      "competition_level": "LOW",
+      "cpc_usd": 6.360000133514404,
+      "copy_status": "observed"
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:16.458Z",
+      "source": "DataForSEO Labs paid keyword index",
+      "brand": "FanDuel",
+      "target_domain": "fanduel.com",
+      "competitor_tier": "client",
+      "product": "Streaming",
+      "keyword": "fanduel sports network plus",
+      "title": "Watch EuroLeague Live Free - Free EuroLeague Streaming",
+      "description": "Stream EuroLeague Games Live and Free. No Cable Needed. On FanDuel TV Extra.",
+      "display_url": "https://www.fanduel.com",
+      "destination_url": "https://fanduel.com/watch/video/event-fanduel-tv-extra-5f78?lite=true",
+      "rank_group": 1,
+      "search_volume": 30,
+      "competition_level": "MEDIUM",
+      "cpc_usd": null,
+      "copy_status": "observed"
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:17.139Z",
+      "source": "DataForSEO Labs paid keyword index",
+      "brand": "DraftKings",
+      "target_domain": "draftkings.com",
+      "competitor_tier": "core-competitor",
+      "product": "Sportsbook",
+      "keyword": "draftkings missouri",
+      "title": "Spend $5, Get $200 in Bonuses - Get $200 in Bonuses",
+      "description": "New DraftKings Customers—Spend $5 on Soccer & Get $200 Instantly in Bonuses. Join DraftKings...",
+      "display_url": "https://sportsbook.draftkings.com › soccer",
+      "destination_url": "https://sportsbook.draftkings.com/sportsbook-sem",
+      "rank_group": 1,
+      "search_volume": 2400,
+      "competition_level": "LOW",
+      "cpc_usd": 2.0399999618530273,
+      "copy_status": "observed"
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:17.139Z",
+      "source": "DataForSEO Labs paid keyword index",
+      "brand": "DraftKings",
+      "target_domain": "draftkings.com",
+      "competitor_tier": "core-competitor",
+      "product": "Sportsbook",
+      "keyword": "fanduel arkansas",
+      "title": "Arkansas, Score $300 Instantly | Place a Bet in Arkansas",
+      "description": "Bet $5 on Any Sport to Get $300 in Bonus Bets Instantly on DraftKings. New Customers Only. Hey AR, DraftKings Is Here. New Players Bet $5 to Get...",
+      "display_url": "https://sportsbook.draftkings.com › ar-sportsbook",
+      "destination_url": "https://sportsbook.draftkings.com/ar-sports-betting",
+      "rank_group": 1,
+      "search_volume": 880,
+      "competition_level": "MEDIUM",
+      "cpc_usd": 49.349998474121094,
+      "copy_status": "observed"
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:17.139Z",
+      "source": "DataForSEO Labs paid keyword index",
+      "brand": "DraftKings",
+      "target_domain": "draftkings.com",
+      "competitor_tier": "core-competitor",
+      "product": "Sportsbook",
+      "keyword": "draftkings sportsbook arizona",
+      "title": "Spend $5, Get $200 in Bonuses - DraftKings® Soccer",
+      "description": "New DraftKings Customers—Spend $5 on Soccer & Get $200 Instantly in Bonuses.",
+      "display_url": "https://sportsbook.draftkings.com › soccer",
+      "destination_url": "https://sportsbook.draftkings.com/sportsbook-sem",
+      "rank_group": 1,
+      "search_volume": 390,
+      "competition_level": "LOW",
+      "cpc_usd": null,
+      "copy_status": "observed"
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:17.139Z",
+      "source": "DataForSEO Labs paid keyword index",
+      "brand": "DraftKings",
+      "target_domain": "draftkings.com",
+      "competitor_tier": "core-competitor",
+      "product": "Sportsbook",
+      "keyword": "foxwoods draftkings",
+      "title": "DraftKings® Soccer | Spend $5, Get $200 in Bonuses",
+      "description": "New DraftKings Customers—Spend $5 on Soccer & Get $200 Instantly in Bonuses. Bet the Cup at the Speed of Sports. Get the Latest Odds & Lines at DraftKings Sports. Free Pools. Advanced Security. Bet Legally. Same Game Parlays.",
+      "display_url": "https://sportsbook.draftkings.com › soccer",
+      "destination_url": "https://sportsbook.draftkings.com/sportsbook-sem",
+      "rank_group": 1,
+      "search_volume": 210,
+      "competition_level": "LOW",
+      "cpc_usd": 9.460000038146973,
+      "copy_status": "observed"
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:17.139Z",
+      "source": "DataForSEO Labs paid keyword index",
+      "brand": "DraftKings",
+      "target_domain": "draftkings.com",
+      "competitor_tier": "core-competitor",
+      "product": "Sportsbook",
+      "keyword": "us betting sites",
+      "title": "Spend $5, Get $200 in Bonuses | $200 to Spend on the Cup",
+      "description": "New DraftKings Customers—Spend $5 on Soccer & Get $200 Instantly in Bonuses. Bet Your Favorite Sports Across NBA, Baseball, Soccer & More.",
+      "display_url": "https://sportsbook.draftkings.com › soccer",
+      "destination_url": "https://sportsbook.draftkings.com/sportsbook-sem",
+      "rank_group": 1,
+      "search_volume": 210,
+      "competition_level": "MEDIUM",
+      "cpc_usd": 28.8700008392334,
+      "copy_status": "observed"
+    },
+    {
+      "evidence_status": "observed-dataforseo",
+      "retrieved_at": "2026-07-25T19:37:17.140Z",
+      "source": "DataForSEO Labs paid keyword index",
+      "brand": "DraftKings",
+      "target_domain": "draftkings.com",
+      "competitor_tier": "core-competitor",
+      "product": "Sportsbook",
+      "keyword": "legal sports betting apps in arkansas",
+      "title": "#1 Sportsbook for Live Betting | Bet Soccer on DraftKings®",
+      "description": "New DraftKings Customers—Spend $5 on Soccer & Get $200 Instantly in Bonuses. Join DraftKings Today & Bet Soccer this Summer with America's...",
+      "display_url": "https://sportsbook.draftkings.com › soccer",
+      "destination_url": "https://sportsbook.draftkings.com/sportsbook-sem",
+      "rank_group": 1,
+      "search_volume": 30,
+      "competition_level": "MEDIUM",
+      "cpc_usd": null,
+      "copy_status": "observed"
+    }
+  ],
+  "scope_note": "Observed paid-search evidence is limited to FanDuel and the corrected comparison set: DraftKings, BetMGM, Bet365 and Fanatics Sportsbook. Zero rows do not prove inactivity."
+}

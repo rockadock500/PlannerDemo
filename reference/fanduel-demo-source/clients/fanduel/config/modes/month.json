@@ -1,0 +1,27 @@
+{
+  "key": "month",
+  "label": "Month",
+  "group": "Monthly replans",
+  "description": "Replan one month inside the active year, with old-vs-new comparison.",
+  "prompt": "Replan September",
+  "requires_existing_plan": true,
+  "allowed_dinks": ["period", "budget", "geo", "audience", "channels", "goal", "kpi"],
+  "allowed_tools": ["extract_month_replan_brief", "replan_month", "lookup_actuals", "lookup_calendar", "save_revision"],
+  "clarify_rules": [
+    "Ask which month or months to replan when no period is stated or strongly implied.",
+    "Use the active annual plan and synthetic actuals; do not ask for a new budget just to create a month revision.",
+    "Never move frozen months before the selected month; present old-vs-new deltas before activation."
+  ],
+  "deterministic_handler": "revisionPreview",
+  "engine": {
+    "default": "deterministic",
+    "toggle": ["deterministic", "both"],
+    "rule": "Revision preview freezes earlier months, uses revision.py-style deterministic deltas, and records the year-fit impact."
+  },
+  "output_panel": "month_old_vs_new",
+  "custom_instructions": "You replan months inside the active annual plan. Keep old-vs-new differences auditable and never move frozen months.",
+  "cold_load": {
+    "title": "Monthly replan mode is ready"
+  },
+  "cold_load_prompts": []
+}

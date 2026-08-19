@@ -1,0 +1,32 @@
+{
+  "_note": "Synthetic owner splits for demo allocation output. Replace with FanDuel media plan and partner data.",
+  "owners": [
+    {"channel": "Paid Search", "owner": "Google Ads", "default_split_pct": 78, "role": "Search demand capture", "confidence": "low"},
+    {"channel": "Paid Search", "owner": "Microsoft Ads", "default_split_pct": 22, "role": "Secondary search demand capture", "confidence": "low"},
+    {"channel": "Organic Search", "owner": "FanDuel owned web", "default_split_pct": 70, "role": "SEO landing pages", "confidence": "medium"},
+    {"channel": "Organic Search", "owner": "Content operations", "default_split_pct": 30, "role": "Sports and state content", "confidence": "medium"},
+    {"channel": "Paid Social", "owner": "Meta", "default_split_pct": 45, "role": "Prospecting and retargeting", "confidence": "low"},
+    {"channel": "Paid Social", "owner": "TikTok", "default_split_pct": 25, "role": "Sports culture reach", "confidence": "low"},
+    {"channel": "Paid Social", "owner": "X", "default_split_pct": 15, "role": "Live sports conversation", "confidence": "low"},
+    {"channel": "Paid Social", "owner": "Snap", "default_split_pct": 15, "role": "Younger adult reach", "confidence": "low"},
+    {"channel": "Affiliate", "owner": "Odds comparison partners", "default_split_pct": 55, "role": "Comparison intent", "confidence": "low"},
+    {"channel": "Affiliate", "owner": "Sports media affiliates", "default_split_pct": 45, "role": "Editorial and offer discovery", "confidence": "low"},
+    {"channel": "Display", "owner": "Programmatic display", "default_split_pct": 70, "role": "Retargeting and prospecting", "confidence": "low"},
+    {"channel": "Display", "owner": "Premium sports publishers", "default_split_pct": 30, "role": "Contextual support", "confidence": "low"},
+    {"channel": "YouTube", "owner": "YouTube Reserve", "default_split_pct": 45, "role": "Sports video reach", "confidence": "low"},
+    {"channel": "YouTube", "owner": "YouTube auction", "default_split_pct": 55, "role": "Intent and retargeting", "confidence": "low"},
+    {"channel": "CTV", "owner": "Programmatic CTV", "default_split_pct": 50, "role": "Incremental reach", "confidence": "low"},
+    {"channel": "CTV", "owner": "Sports streaming partners", "default_split_pct": 50, "role": "Sports-viewing households", "confidence": "low"},
+    {"channel": "Linear TV", "owner": "National sports TV", "default_split_pct": 55, "role": "Tentpole reach", "confidence": "low"},
+    {"channel": "Linear TV", "owner": "Local sports TV", "default_split_pct": 45, "role": "State-level reach", "confidence": "low"},
+    {"channel": "Radio/Audio", "owner": "Sports radio", "default_split_pct": 55, "role": "Local sports context", "confidence": "low"},
+    {"channel": "Radio/Audio", "owner": "Podcast/audio networks", "default_split_pct": 45, "role": "Audience targeting", "confidence": "low"},
+    {"channel": "CRM", "owner": "Email", "default_split_pct": 45, "role": "Owned reactivation", "confidence": "low"},
+    {"channel": "CRM", "owner": "Push notifications", "default_split_pct": 35, "role": "App engagement", "confidence": "low"},
+    {"channel": "CRM", "owner": "In-app messaging", "default_split_pct": 20, "role": "Owned conversion support", "confidence": "low"},
+    {"channel": "App Store", "owner": "Apple App Store", "default_split_pct": 65, "role": "iOS app-intent capture", "confidence": "low"},
+    {"channel": "App Store", "owner": "Google Play", "default_split_pct": 35, "role": "Android app-intent capture", "confidence": "low"},
+    {"channel": "Influencer/Creator", "owner": "Sports creators", "default_split_pct": 65, "role": "Creator trust and culture", "confidence": "low"},
+    {"channel": "Influencer/Creator", "owner": "Podcast hosts", "default_split_pct": 35, "role": "Host-read credibility", "confidence": "low"}
+  ]
+}

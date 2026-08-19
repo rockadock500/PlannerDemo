@@ -1,0 +1,31 @@
+{
+  "key": "free",
+  "label": "Free chat",
+  "group": "Questions",
+  "description": "Ask grounded questions and capture ideas without changing the plan.",
+  "prompt": "What data is simulated?",
+  "requires_existing_plan": false,
+  "allowed_dinks": [],
+  "allowed_tools": ["lookup_plan", "lookup_actuals", "lookup_governance", "lookup_calendar", "lookup_reporting", "lookup_sources"],
+  "clarify_rules": [
+    "Answer directly from the dossier and lookup tools; do not generate or accept a plan.",
+    "If evidence is missing, say what is missing and keep the caveat visible.",
+    "Use the labelled understudy only when the URL includes understudy=on."
+  ],
+  "deterministic_handler": "freeQuestion",
+  "engine": {
+    "default": "llm",
+    "toggle": ["deterministic", "llm", "both"],
+    "rule": "Free mode is LLM-first when enabled; deterministic facts remain the safety floor."
+  },
+  "output_panel": "ideas_canvas",
+  "custom_instructions": "You answer FanDuel planning questions using the deterministic dossier first. When LLM is available, use it for narration and idea shaping only.",
+  "cold_load": {
+    "title": "Ask mode is ready"
+  },
+  "cold_load_prompts": [
+    "What data is simulated?",
+    "What does the paid SERP cut prove?",
+    "Explain the state value index"
+  ]
+}

@@ -1,56 +1,24 @@
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-wheels/
-*.egg-info/
-.installed.cfg
-*.egg
-.pytest_cache/
-.coverage
-htmlcov/
-.env
-.venv
-venv/
-ENV/
-
 # Node
 node_modules/
 dist/
-.DS_Store
-coverage/
+build/
 .npm
 .yarn
 
-# Database
-*.db
-*.sqlite3
+# Python (kept in case the eventual backend is Python)
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.pytest_cache/
+
+# Env / secrets
+.env
+.env.local
+
+# OS / editor
+.DS_Store
+.vscode/
 
 # Logs
 *.log
-
-# VS Code
-.vscode/
-
-# Local Uploads (Keep the folder structure but maybe not all big csvs? User provided CSVs... 
-# usually we don't commit big data CSVs. I'll ignore CSVs in uploads/ but keep JSON?)
-# Actually, for this "CRM setup", the user might want the CSVs. I'll leave them in unless >100MB.
-# User's my_emils.csv was 52MB. GitHub limit is 100MB. It's safe-ish, but bad practice.
-# I'll ignore .csv in uploaded folders to be safe and clean.
-tau-backend/uploads/*.csv
-tau-backend/uploads/*.json
-!tau-backend/uploads/.keep

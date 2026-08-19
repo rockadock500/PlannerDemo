@@ -1,0 +1,27 @@
+{
+  "key": "oneoff",
+  "label": "One-off",
+  "group": "Campaigns",
+  "description": "Plan one campaign after incrementality and governance checks.",
+  "prompt": "Describe the campaign",
+  "requires_existing_plan": true,
+  "allowed_dinks": ["period", "budget", "geo", "audience", "channels", "goal", "kpi"],
+  "allowed_tools": ["extract_one_off_campaign_brief", "plan_oneoff", "governance_check", "lookup_calendar", "save_campaign"],
+  "clarify_rules": [
+    "Ask for budget_usd when missing; never inherit a stale budget for a one-off campaign.",
+    "Ask whether the campaign is incremental on existing activity or standalone unless the user's wording clearly states it.",
+    "Challenge unsupported product/state combinations with the rule receipt before a campaign can be accepted."
+  ],
+  "deterministic_handler": "oneOffGate",
+  "engine": {
+    "default": "deterministic",
+    "toggle": ["deterministic", "both"],
+    "rule": "One-off planning must pass the incrementality gate and product governance before any campaign output is accepted."
+  },
+  "output_panel": "one_off_gate",
+  "custom_instructions": "You convert one-off campaign briefs into governed plans. Refuse to produce an accepted plan until incrementality is selected and state/product firewall receipts are visible.",
+  "cold_load": {
+    "title": "One-off campaign mode is ready"
+  },
+  "cold_load_prompts": []
+}

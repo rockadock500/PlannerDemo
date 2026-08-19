@@ -1,0 +1,392 @@
+{
+  "schema_version": "publisher_gambling_policies_v1",
+  "as_of": "2026-07-10",
+  "scope": "United States publisher and platform advertising rules for sportsbook, online casino, daily fantasy sports and prediction markets.",
+  "research_boundary": "Primary-source policy verification for planning support. A verified row describes published acceptance rules; it is not campaign approval, legal advice, activation permission or evidence that inventory is currently available.",
+  "product_keys": [
+    "sportsbook",
+    "casino",
+    "dfs",
+    "prediction_markets"
+  ],
+  "counts": {
+    "platform_rows": 11,
+    "verified_primary": 8,
+    "partial_primary": 1,
+    "not_publicly_verified": 2
+  },
+  "rows": [
+    {
+      "platform_id": "google_youtube",
+      "platform": "Google Ads / YouTube",
+      "owner_aliases": ["Google Ads", "YouTube Reserve", "YouTube auction"],
+      "inventory_scope": "Google Ads, YouTube, Display & Video 360 and Authorized Buyers subject to the linked policy and inventory-specific restrictions.",
+      "verification_status": "verified_primary",
+      "planning_status": "usable_with_restrictions",
+      "acceptance": "Accepted with certification and product, state and inventory restrictions.",
+      "certification_requirements": "Google certification is required; the advertiser must hold applicable state licensing and keep it valid.",
+      "geo_restrictions": "Sportsbook and casino ads may target only licensed states. Prediction-market ads may target the United States excluding Nevada and Ohio, subject to separate certification.",
+      "age_targeting": "Sportsbook and casino ads may not target users under 21; DFS may not target users under 18.",
+      "creative_rules": "Legal-state disclosure, adult eligibility and promotion terms must be clear; DFS cannot imply school or university affiliation.",
+      "responsible_gambling": "Sportsbook and casino creative or landing pages must include addiction warning and assistance information; DFS requires problem-gambling information.",
+      "product_rules": {
+        "sportsbook": {"status": "accepted_with_restrictions", "note": "State licence, Google certification, 21+ targeting and licensed-state delivery required."},
+        "casino": {"status": "accepted_with_restrictions", "note": "State licence, Google certification, 21+ targeting and licensed-state delivery required."},
+        "dfs": {"status": "accepted_with_restrictions", "note": "Separate DFS certification rules apply, including an 18+ floor and state licensing where required."},
+        "prediction_markets": {"status": "accepted_with_restrictions", "note": "Separate certification; limited to qualifying CFTC DCMs or NFA brokerages and excludes Nevada and Ohio."}
+      },
+      "policy_url": "https://support.google.com/adspolicy/answer/15132179?hl=en",
+      "supporting_excerpt": "Advertisers of horse racing, sports betting and online casinos must be licensed by the state entity",
+      "last_checked": "2026-07-10",
+      "receipts": [
+        {
+          "source_id": "google_ads_gambling_games",
+          "url": "https://support.google.com/adspolicy/answer/15132179?hl=en",
+          "supporting_excerpt": "Advertisers of horse racing, sports betting and online casinos must be licensed by the state entity",
+          "last_checked": "2026-07-10"
+        },
+        {
+          "source_id": "google_ads_prediction_markets",
+          "url": "https://support.google.com/adspolicy/answer/16757872?hl=en",
+          "supporting_excerpt": "United States (excluding Nevada and Ohio)",
+          "last_checked": "2026-07-10"
+        }
+      ],
+      "confidence": "high",
+      "review_status": "research_support_verified_primary"
+    },
+    {
+      "platform_id": "meta",
+      "platform": "Meta (Facebook / Instagram)",
+      "owner_aliases": ["Meta"],
+      "inventory_scope": "Meta advertising products covered by the Online gambling and games Advertising Standard.",
+      "verification_status": "verified_primary",
+      "planning_status": "usable_with_restrictions",
+      "acceptance": "Online gambling and gaming ads are accepted only after account authorisation.",
+      "certification_requirements": "Request authorisation in Meta Business Suite and provide evidence that the activity is licensed or otherwise lawful in the target territory.",
+      "geo_restrictions": "Advertisers must declare new jurisdictions, avoid unsupported markets and advertise only where legally permitted.",
+      "age_targeting": "Online gambling and gaming ads may not target people under 18.",
+      "creative_rules": "The rule also covers destination pages that promote gambling, including affiliate and aggregator pages.",
+      "responsible_gambling": "No separate public responsible-gambling creative requirement was stated on the checked policy page; local-law duties still apply.",
+      "product_rules": {
+        "sportsbook": {"status": "accepted_with_restrictions", "note": "Betting is expressly within the authorisation-required category."},
+        "casino": {"status": "accepted_with_restrictions", "note": "Casino games are expressly within the authorisation-required category."},
+        "dfs": {"status": "accepted_with_restrictions", "note": "Fantasy sports are expressly within the authorisation-required category."},
+        "prediction_markets": {"status": "case_by_case", "note": "The public page does not separately classify regulated event contracts; route for Meta authorisation and legal review."}
+      },
+      "policy_url": "https://transparency.meta.com/policies/ad-standards/restricted-goods-services/gambling-games",
+      "supporting_excerpt": "Ads that promote online gambling and gaming are only allowed once an ad account has obtained authorisation.",
+      "last_checked": "2026-07-10",
+      "receipts": [
+        {
+          "source_id": "meta_online_gambling_games",
+          "url": "https://transparency.meta.com/policies/ad-standards/restricted-goods-services/gambling-games",
+          "supporting_excerpt": "Ads that promote online gambling and gaming are only allowed once an ad account has obtained authorisation.",
+          "last_checked": "2026-07-10"
+        }
+      ],
+      "confidence": "high",
+      "review_status": "research_support_verified_primary"
+    },
+    {
+      "platform_id": "amazon_ads",
+      "platform": "Amazon Ads / DSP / CTV",
+      "owner_aliases": [],
+      "inventory_scope": "Amazon Ads gambling and games policy, including Streaming TV, Prime Video, IMDb, Fire tablet, Amazon Music, Live Sports, Twitch and Open Internet subject to supply restrictions.",
+      "verification_status": "verified_primary",
+      "planning_status": "usable_with_restrictions",
+      "acceptance": "Real-money gambling categories are accepted on specified supply with Amazon authorisation and restrictions.",
+      "certification_requirements": "Initial Amazon authorisation and evidence of regulator licensing or other lawful status are required and must remain current.",
+      "geo_restrictions": "Ads may target only approved countries or locales permitted by the advertiser's licensing and registration.",
+      "age_targeting": "Ads must not target or appeal to people below the legal gambling age; models or actors under 25 are prohibited.",
+      "creative_rules": "No irresponsible gambling, deceptive claims or misleading offers; supply, placement and scheduling restrictions apply.",
+      "responsible_gambling": "Where required by law, ads must include problem-gambling resources, responsible-gaming messages and disclosures.",
+      "product_rules": {
+        "sportsbook": {"status": "accepted_with_restrictions", "note": "Expressly included in policy scope; Amazon authorisation, lawful status and supply restrictions apply."},
+        "casino": {"status": "accepted_with_restrictions", "note": "Expressly included in policy scope; Amazon authorisation, lawful status and supply restrictions apply."},
+        "dfs": {"status": "accepted_with_restrictions", "note": "Fantasy sports are expressly included in policy scope."},
+        "prediction_markets": {"status": "accepted_with_restrictions", "note": "Prediction markets are expressly included in policy scope; lawful status and Amazon authorisation remain required."}
+      },
+      "policy_url": "https://advertising.amazon.com/help/GYN86Z5STCSCPDLJ",
+      "supporting_excerpt": "All gambling and games advertisers must obtain initial authorization from Amazon",
+      "last_checked": "2026-07-10",
+      "receipts": [
+        {
+          "source_id": "amazon_ads_gambling_games",
+          "url": "https://advertising.amazon.com/help/GYN86Z5STCSCPDLJ",
+          "supporting_excerpt": "All gambling and games advertisers must obtain initial authorization from Amazon",
+          "last_checked": "2026-07-10"
+        }
+      ],
+      "confidence": "high",
+      "review_status": "research_support_verified_primary"
+    },
+    {
+      "platform_id": "tiktok",
+      "platform": "TikTok",
+      "owner_aliases": ["TikTok"],
+      "inventory_scope": "TikTok advertising; TikTok Shop has separate rules and is not inferred from this row.",
+      "verification_status": "verified_primary",
+      "planning_status": "usable_with_restrictions",
+      "acceptance": "Gambling ads require certification and are allowed only in specified legal markets.",
+      "certification_requirements": "TikTok certification requires licence and legal-compliance documents for the target market.",
+      "geo_restrictions": "Only specified markets where gambling is legal and local requirements are met; the public page does not expose a complete US state table.",
+      "age_targeting": "Age-appropriate audiences only; minors may not be targeted or featured.",
+      "creative_rules": "No unlicensed services, false offers, failed transparency or youth-directed creative; promotion terms must be clear.",
+      "responsible_gambling": "Include risk warnings and required disclaimers; provide addiction-support links or hotlines where possible.",
+      "product_rules": {
+        "sportsbook": {"status": "case_by_case", "note": "Defined by the policy, but market eligibility must be confirmed through certification."},
+        "casino": {"status": "case_by_case", "note": "Defined by the policy, but market eligibility must be confirmed through certification."},
+        "dfs": {"status": "case_by_case", "note": "Fantasy sports are defined as gambling-like activity; no public US acceptance table was visible."},
+        "prediction_markets": {"status": "not_stated", "note": "Regulated prediction markets are not separately addressed on the checked page."}
+      },
+      "policy_url": "https://ads.tiktok.com/help/article/tiktok-ads-policy-gambling-and-games?lang=en",
+      "supporting_excerpt": "To advertise gambling services, you must go through our certification process.",
+      "last_checked": "2026-07-10",
+      "receipts": [
+        {
+          "source_id": "tiktok_gambling_games",
+          "url": "https://ads.tiktok.com/help/article/tiktok-ads-policy-gambling-and-games?lang=en",
+          "supporting_excerpt": "To advertise gambling services, you must go through our certification process.",
+          "last_checked": "2026-07-10"
+        }
+      ],
+      "confidence": "high",
+      "review_status": "research_support_verified_primary"
+    },
+    {
+      "platform_id": "snap",
+      "platform": "Snapchat",
+      "owner_aliases": ["Snap"],
+      "inventory_scope": "Advertisements served by Snap under its Gaming, Gambling and Lotteries category requirements.",
+      "verification_status": "verified_primary",
+      "planning_status": "usable_with_restrictions",
+      "acceptance": "Gaming and gambling services require pre-approval and current licensing or registration.",
+      "certification_requirements": "Provide Snap proof of current licensing or registration and obtain pre-approval.",
+      "geo_restrictions": "Do not target territories where the advertiser is not authorised to operate.",
+      "age_targeting": "Do not target or particularly appeal to people under the legal gambling age in the delivery territory.",
+      "creative_rules": "Do not glorify gambling, misrepresent benefits, encourage play beyond means or promote tipster services.",
+      "responsible_gambling": "The checked page prohibits irresponsible framing but does not state a separate hotline or disclosure formula.",
+      "product_rules": {
+        "sportsbook": {"status": "accepted_with_restrictions", "note": "Covered as a gaming and gambling service, subject to pre-approval and authorisation."},
+        "casino": {"status": "accepted_with_restrictions", "note": "Online casinos are expressly in scope."},
+        "dfs": {"status": "accepted_with_restrictions", "note": "Daily fantasy sports are expressly in scope."},
+        "prediction_markets": {"status": "not_stated", "note": "Regulated prediction markets are not separately addressed on the checked page."}
+      },
+      "policy_url": "https://values.snap.com/policy/ads-category-requirements/gaming-gambling-lotteries",
+      "supporting_excerpt": "All Gaming and Gambling Services advertisers must be pre-approved by Snap.",
+      "last_checked": "2026-07-10",
+      "receipts": [
+        {
+          "source_id": "snap_gaming_gambling_lotteries",
+          "url": "https://values.snap.com/policy/ads-category-requirements/gaming-gambling-lotteries",
+          "supporting_excerpt": "All Gaming and Gambling Services advertisers must be pre-approved by Snap.",
+          "last_checked": "2026-07-10"
+        }
+      ],
+      "confidence": "high",
+      "review_status": "research_support_verified_primary"
+    },
+    {
+      "platform_id": "hulu_disney",
+      "platform": "Hulu / Disney Advertising",
+      "owner_aliases": [],
+      "inventory_scope": "US Hulu Advertising Inventory sold direct, programmatically or through Disney Campaign Manager under the July 2024 public guidelines.",
+      "verification_status": "verified_primary",
+      "planning_status": "usable_with_restrictions",
+      "acceptance": "Gambling, casinos, sports betting and fantasy leagues are reviewed case by case.",
+      "certification_requirements": "Hulu reserves case-by-case review and may request further information; the public document does not publish a gambling-specific certification checklist.",
+      "geo_restrictions": "Age and location targeting restrictions are factors in case-by-case review; no public US state whitelist is stated.",
+      "age_targeting": "Age targeting is a review factor; no gambling-specific minimum is published in the checked document.",
+      "creative_rules": "Case-by-case content, product, programming, age and location review applies.",
+      "responsible_gambling": "No gambling-specific responsible-gambling formula is published in the checked document.",
+      "product_rules": {
+        "sportsbook": {"status": "case_by_case", "note": "Sports betting is expressly listed for case-by-case review."},
+        "casino": {"status": "case_by_case", "note": "Gambling and casinos are expressly listed for case-by-case review."},
+        "dfs": {"status": "case_by_case", "note": "Fantasy leagues are expressly listed for case-by-case review."},
+        "prediction_markets": {"status": "not_stated", "note": "Regulated prediction markets are not separately addressed."}
+      },
+      "policy_url": "https://files.disneyadvertising.com/MediaKit/TWDC-Digital-Ad-Guidelines/hulu_advertising_inventory_guidlines.pdf",
+      "supporting_excerpt": "Gambling, casinos, and sports betting",
+      "last_checked": "2026-07-10",
+      "receipts": [
+        {
+          "source_id": "hulu_advertising_inventory_guidelines_2024",
+          "url": "https://files.disneyadvertising.com/MediaKit/TWDC-Digital-Ad-Guidelines/hulu_advertising_inventory_guidlines.pdf",
+          "supporting_excerpt": "Gambling, casinos, and sports betting",
+          "last_checked": "2026-07-10"
+        }
+      ],
+      "confidence": "high",
+      "review_status": "research_support_verified_primary"
+    },
+    {
+      "platform_id": "netflix_ads",
+      "platform": "Netflix Ads",
+      "owner_aliases": [],
+      "inventory_scope": "Netflix ad-supported experience; no public gambling-specific advertising policy was located.",
+      "verification_status": "not_publicly_verified",
+      "planning_status": "review_only",
+      "acceptance": "Not publicly verified for gambling advertising.",
+      "certification_requirements": "Not publicly verified.",
+      "geo_restrictions": "General ads may use city and state location, but no gambling-specific state rule is published on the checked page.",
+      "age_targeting": "Netflix may use date of birth for ad selection and does not show ads on Kids profiles; no gambling-specific age rule is published.",
+      "creative_rules": "Not publicly verified.",
+      "responsible_gambling": "Not publicly verified.",
+      "product_rules": {
+        "sportsbook": {"status": "not_publicly_verified", "note": "No public Netflix gambling-ad acceptance rule located."},
+        "casino": {"status": "not_publicly_verified", "note": "No public Netflix gambling-ad acceptance rule located."},
+        "dfs": {"status": "not_publicly_verified", "note": "No public Netflix gambling-ad acceptance rule located."},
+        "prediction_markets": {"status": "not_publicly_verified", "note": "No public Netflix prediction-market ad rule located."}
+      },
+      "policy_url": "https://help.netflix.com/go/ads",
+      "supporting_excerpt": "Ads are not currently shown on Kids profiles.",
+      "last_checked": "2026-07-10",
+      "receipts": [
+        {
+          "source_id": "netflix_ads_help_general_only",
+          "url": "https://help.netflix.com/go/ads",
+          "supporting_excerpt": "Ads are not currently shown on Kids profiles.",
+          "last_checked": "2026-07-10",
+          "verification_note": "General ad-experience page only; it does not establish gambling acceptance."
+        }
+      ],
+      "confidence": "low",
+      "review_status": "research_support_not_publicly_verified"
+    },
+    {
+      "platform_id": "roku_advertising",
+      "platform": "Roku Advertising",
+      "owner_aliases": [],
+      "inventory_scope": "Roku advertising products; first-party DraftKings case study observed, but no public gambling acceptance policy was located.",
+      "verification_status": "not_publicly_verified",
+      "planning_status": "review_only",
+      "acceptance": "Past sportsbook execution is observable; current acceptance rules are not publicly verified.",
+      "certification_requirements": "Not publicly verified.",
+      "geo_restrictions": "The case study describes granular state targeting, but it is not a current policy rule or state whitelist.",
+      "age_targeting": "Not publicly verified.",
+      "creative_rules": "Not publicly verified.",
+      "responsible_gambling": "Not publicly verified.",
+      "product_rules": {
+        "sportsbook": {"status": "observed_commercial_use_not_policy", "note": "Roku documents a DraftKings streaming campaign relationship; sales approval is still required."},
+        "casino": {"status": "not_publicly_verified", "note": "No public Roku casino-ad policy located."},
+        "dfs": {"status": "not_publicly_verified", "note": "The case study names DraftKings and DFS context but does not publish an acceptance rule."},
+        "prediction_markets": {"status": "not_publicly_verified", "note": "No public Roku prediction-market ad rule located."}
+      },
+      "policy_url": "https://advertising.roku.com/learn/resources/partner-spotlight-why-draftkings-bet-big-on-tv-streaming-advertising-with-roku",
+      "supporting_excerpt": "DraftKings began a successful relationship with Roku for streaming video ad campaigns",
+      "last_checked": "2026-07-10",
+      "receipts": [
+        {
+          "source_id": "roku_draftkings_case_study_not_policy",
+          "url": "https://advertising.roku.com/learn/resources/partner-spotlight-why-draftkings-bet-big-on-tv-streaming-advertising-with-roku",
+          "supporting_excerpt": "DraftKings began a successful relationship with Roku for streaming video ad campaigns",
+          "last_checked": "2026-07-10",
+          "verification_note": "Commercial case study only; it does not establish current category policy."
+        }
+      ],
+      "confidence": "low",
+      "review_status": "research_support_not_publicly_verified"
+    },
+    {
+      "platform_id": "paramount",
+      "platform": "Paramount Advertising / Paramount+",
+      "owner_aliases": [],
+      "inventory_scope": "Paramount Global US adult-directed digital properties under the May 2025 Domestic Digital Advertising Guidelines.",
+      "verification_status": "verified_primary",
+      "planning_status": "usable_with_restrictions",
+      "acceptance": "Gambling products are accepted on adult-directed inventory; fee-based gambling, sportsbook and DFS are case by case.",
+      "certification_requirements": "Services must be licensed and lawful; a signed Advertising Standards agreement is required for fee-based gambling, sportsbook and DFS.",
+      "geo_restrictions": "Participation and creative must be restricted to licensed states; state whitelist disclosure is required.",
+      "age_targeting": "Inventory audience must reasonably be expected to be 21 or older; creative requires a 21+ super.",
+      "creative_rules": "State whitelist, eligibility and responsible-gambling supers are required; further time, programme and targeting restrictions may apply.",
+      "responsible_gambling": "Creative must include 1-800-GAMBLER and relevant state responsible-gambling resources.",
+      "product_rules": {
+        "sportsbook": {"status": "case_by_case", "note": "Expressly case by case with licensing, signed agreement, state and creative requirements."},
+        "casino": {"status": "case_by_case", "note": "Online fee-based gambling is case by case; casino imagery has additional restrictions."},
+        "dfs": {"status": "case_by_case", "note": "Expressly case by case with the same signed-agreement and state restrictions."},
+        "prediction_markets": {"status": "not_stated", "note": "Regulated prediction markets are not separately addressed."}
+      },
+      "policy_url": "https://adsmanager.paramount.com/terms/domestic-digital-advertising-standards",
+      "supporting_excerpt": "Sportsbook services, & Fantasy Sports services are considered on a case by case basis",
+      "last_checked": "2026-07-10",
+      "receipts": [
+        {
+          "source_id": "paramount_domestic_digital_advertising_guidelines",
+          "url": "https://adsmanager.paramount.com/terms/domestic-digital-advertising-standards",
+          "supporting_excerpt": "Sportsbook services, & Fantasy Sports services are considered on a case by case basis",
+          "last_checked": "2026-07-10"
+        }
+      ],
+      "confidence": "high",
+      "review_status": "research_support_verified_primary"
+    },
+    {
+      "platform_id": "nbcu_peacock",
+      "platform": "NBCUniversal / Peacock",
+      "owner_aliases": [],
+      "inventory_scope": "NBCUniversal linear, syndication and billboard guidance. Peacock-specific digital acceptance is not established by the checked document.",
+      "verification_status": "partial_primary",
+      "planning_status": "review_only",
+      "acceptance": "Fantasy sports and gambling categories require Advertising Standards review on covered inventory; Peacock remains sales-review only.",
+      "certification_requirements": "Advertising Standards review and approval are required for named sensitive categories before air.",
+      "geo_restrictions": "The checked document requires compliance with gambling law but does not publish a state whitelist.",
+      "age_targeting": "No gambling-specific age rule was located in the checked public document.",
+      "creative_rules": "Fantasy sports and sportsbook billboards require a 'Void where prohibited' graphic; gambling billboards must comply with applicable rules.",
+      "responsible_gambling": "No separate public responsible-gambling formula was located in the checked document.",
+      "product_rules": {
+        "sportsbook": {"status": "case_by_case", "note": "Named for billboard requirements and sensitive-category review on covered inventory; Peacock not verified."},
+        "casino": {"status": "case_by_case", "note": "Gambling and games of chance are named review categories on covered inventory; Peacock not verified."},
+        "dfs": {"status": "case_by_case", "note": "Fantasy sports is a named review category; Peacock not verified."},
+        "prediction_markets": {"status": "not_stated", "note": "Regulated prediction markets are not separately addressed."}
+      },
+      "policy_url": "https://together.nbcuni.com/wp-content/uploads/sites/3/2024/01/Linear-NBCU-Commercial-Guidelines-Feb-24.pdf",
+      "supporting_excerpt": "Advertising Standards must review and approve commercials in the following seven categories before they can air",
+      "last_checked": "2026-07-10",
+      "receipts": [
+        {
+          "source_id": "nbcu_linear_commercial_guidelines_feb_2024",
+          "url": "https://together.nbcuni.com/wp-content/uploads/sites/3/2024/01/Linear-NBCU-Commercial-Guidelines-Feb-24.pdf",
+          "supporting_excerpt": "Advertising Standards must review and approve commercials in the following seven categories before they can air",
+          "last_checked": "2026-07-10",
+          "verification_note": "Primary receipt covers linear, syndication and billboard guidance, not a Peacock-specific digital policy."
+        }
+      ],
+      "confidence": "medium",
+      "review_status": "research_support_partial_primary"
+    },
+    {
+      "platform_id": "espn",
+      "platform": "ESPN",
+      "owner_aliases": [],
+      "inventory_scope": "ESPN programming networks, digital and mobile platforms, social applications and other media under its all-media guidelines.",
+      "verification_status": "verified_primary",
+      "planning_status": "usable_with_restrictions",
+      "acceptance": "Sportsbook, daily fantasy and state-licensed iGaming are accepted with detailed legal, geo, creative and programming restrictions.",
+      "certification_requirements": "Current state licence, Sports Betting Rider, promotion terms and ESPN internal legal and creative approval are required for sportsbook.",
+      "geo_restrictions": "Digital and streaming sportsbook ads must be geo-fenced to legal states; intrastate iGaming must be geo-gated to legal states.",
+      "age_targeting": "Creative must state minimum wagering age; the document does not set one national numeric threshold.",
+      "creative_rules": "State disclosure, prominent terms, league and college restrictions, no flashing solicitation and programme restrictions apply.",
+      "responsible_gambling": "Sportsbook creative must include responsible-gaming messaging.",
+      "product_rules": {
+        "sportsbook": {"status": "accepted_with_restrictions", "note": "Accepted with state licensing, geo-fencing, rider, internal approval and detailed creative rules."},
+        "casino": {"status": "accepted_with_restrictions", "note": "State-licensed iGaming is allowed on local/digital inventory with state geo-gating; casino-property ads have separate rules."},
+        "dfs": {"status": "accepted_with_restrictions", "note": "Daily fantasy is permitted with product, college-programming and placement restrictions."},
+        "prediction_markets": {"status": "not_stated", "note": "The policy rejects unregulated wagering but does not separately address regulated event contracts."}
+      },
+      "policy_url": "https://files.disneyadvertising.com/MediaKit/TWDC-Digital-Ad-Guidelines/ESPN_AdStandardsGuidelines.pdf",
+      "supporting_excerpt": "Sports betting advertising on digital sites and streaming services must be geo-fenced",
+      "last_checked": "2026-07-10",
+      "receipts": [
+        {
+          "source_id": "espn_advertising_standards_all_media",
+          "url": "https://files.disneyadvertising.com/MediaKit/TWDC-Digital-Ad-Guidelines/ESPN_AdStandardsGuidelines.pdf",
+          "supporting_excerpt": "Sports betting advertising on digital sites and streaming services must be geo-fenced",
+          "last_checked": "2026-07-10"
+        }
+      ],
+      "confidence": "high",
+      "review_status": "research_support_verified_primary"
+    }
+  ]
+}

@@ -1,0 +1,66 @@
+{
+  "schema_version": "1.0.0",
+  "created_at": "2026-07-15",
+  "status": "pinned-working-references",
+  "tau_skills": {
+    "source_id": "tau_skills_snapshot_2026_06_14",
+    "snapshot_date": "2026-06-14",
+    "source_note": "Local TAU skills snapshot. Its .git pointer targets a non-portable Linux worktree, so each consumed file is pinned by SHA-256 rather than by an unverifiable commit claim.",
+    "skills": {
+      "marketing_psychology": {
+        "source_path": "marketing-psychology/SKILL.md",
+        "sha256": "6125afcd674e88956dc55e008e4ba9dc6968ae5634200a18c90016fe6cdb3237",
+        "consumed_principles": ["Define the target behaviour, journey point and blocker before selecting a model.", "Score behavioural leverage, context fit, implementation ease, speed to signal and ethical safety.", "Translate the selected model into an action, test and ethical guardrail."]
+      },
+      "marketing_ideas": {
+        "source_path": "marketing-ideas/SKILL.md",
+        "sha256": "1cb3b147f25615b64e05058ddda6c323ac340588e28401a1df777719683cb3b9",
+        "consumed_principles": ["Shortlist relevant options rather than dumping ideas.", "Score impact, effort, cost, speed to signal and fit.", "Select a small number, operationalise them and call out execution risk."]
+      },
+      "data_storytelling": {
+        "source_path": "data-storytelling/SKILL.md",
+        "sha256": "01f8f0a827f154906ef31418db079c9a2a5e156f471c45be1b4225df688fb9d0",
+        "consumed_principles": ["Structure a decision narrative as setup, conflict and resolution.", "Keep data, narrative and recommendation connected.", "End with a decision or call to action rather than an unranked summary."]
+      },
+      "data_quality_frameworks": {
+        "source_path": "data-quality-frameworks/SKILL.md",
+        "sha256": "4c69cde07eb2cf917924781af3e9e3b85130a943da4bd82afeca99a8461fd795",
+        "consumed_principles": ["Identify critical datasets and quality dimensions.", "Define validation expectations and contract rules.", "State ownership, alerting and remediation for unresolved gaps."]
+      },
+      "kpi_dashboard_design": {
+        "source_path": "kpi-dashboard-design/SKILL.md",
+        "sha256": "aeeda3c23f830c259e75c7a3ac1ceec258ceaa4a7fd40fb99dd434329e7d2add",
+        "consumed_principles": ["Place a compact executive KPI summary before tactical and operational drilldowns.", "Show trend indicators before detailed root-cause rows.", "Keep metric definitions and governance visible."]
+      }
+    },
+    "frame_map": {
+      "ritson": {
+        "source_skill_ids": ["data_storytelling", "data_quality_frameworks"],
+        "prompt": "Use the requested Ritson brand-building frame without imitating a real person's exact wording: separate broad brand investment from activation and test ESOV logic. Then apply the pinned TAU data-storytelling skill as setup -> conflict -> resolution, and the data-quality skill by naming the SOV, SOM and client-economics inputs that are absent. Do not calculate or assert ESOV unless both SOV and SOM are actually in the dossier."
+      },
+      "sutherland": {
+        "source_skill_ids": ["marketing_psychology", "data_quality_frameworks"],
+        "prompt": "Apply the pinned TAU marketing-psychology skill: define the target behaviour, journey point and blocker; shortlist only relevant reframings; compare behavioural leverage, context fit, implementation ease, speed to signal and ethical safety; recommend the best test with an ethical guardrail. Use the requested behavioural-economics/Sutherland frame without imitating a real person's exact wording and without inventing performance evidence."
+      },
+      "strategy": {
+        "source_skill_ids": ["marketing_ideas", "data_storytelling", "data_quality_frameworks"],
+        "prompt": "Apply the pinned TAU marketing-ideas and data-storytelling skills: shortlist evidence-supported options, compare impact, effort, cost, speed to signal and fit, then choose one recommendation. Structure the answer as competitive setup, decision conflict, resolution, trade-offs and next test. Use the data-quality skill to name any input that prevents execution rather than filling it with an assumption."
+      },
+      "evidence": {
+        "source_skill_ids": ["data_quality_frameworks", "data_storytelling"],
+        "prompt": "Apply the pinned TAU data-quality skill: identify the critical datasets, classify verified/working/synthetic/missing evidence, state the validation or contract rule, and name the owner/remediation needed for gaps. Use the data-storytelling skill to turn that boundary into a concise decision, not a source dump."
+      }
+    }
+  },
+  "intermedia": {
+    "source_id": "intermedia_reporting_reference_2d01b655",
+    "repository": "R2-Intermedia-Phase2",
+    "commit": "2d01b6554cd90e010a0271a898cc5953199d7c5e",
+    "commit_date": "2026-05-18T10:14:11+03:00",
+    "source_files": [
+      {"path": "frontend/src/App.jsx", "git_blob": "9797eef9275a9e7b52a87e2f35ebbaa56d29150e", "sha256": "06ba7a75d85bd67d7ac179a2a5c439d6f2bfeb4e856acc409531418e7ee062ef"},
+      {"path": "docs/intermedia-data-agreement.md", "git_blob": "911f466d115a1ec9a4a8608432a835d274550b52", "sha256": "991ee90b3e604196044a76f8eaba64753f7c9ee37ca7a56e7f1a46aebde83499"}
+    ],
+    "applied_patterns": ["Executive metric group before detailed reporting.", "Trend and channel/sub-channel drill flow.", "Inline source-of-truth and missing-connector status.", "Read-only reporting boundary with no campaign write-back."]
+  }
+}

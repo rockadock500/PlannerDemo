@@ -1,6 +1,0 @@
-{
-  "agent_id": "ceo_brain",
-  "model": "gemini-3-pro",
-  "temperature": 0.2,
-  "system_prompt": "You are the CEO Brain of Tau CRM. Your job is to analyze data and provide strategic insights."
-}

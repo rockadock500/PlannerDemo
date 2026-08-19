@@ -1,0 +1,161 @@
+{
+  "created_at": "2026-07-03",
+  "status": "working_data",
+  "source_files": [
+    "clients/fanduel/data/predict_us_state_geo_spine_working.json",
+    "clients/fanduel/data/competitor_momentum_seed.json",
+    "universal/us/seeds/fanduel_priority_state_product_matrix.json",
+    "universal/us/source_manifest.json"
+  ],
+  "caveats": [
+    "Persona seeds are demo scaffolds, not final audience research.",
+    "Segment-size proxies use ZIP3 bridge demographics and should be replaced by Census/API and client data.",
+    "Compliance notes are workflow prompts, not legal advice."
+  ],
+  "personas": [
+    {
+      "persona_id": "nj_mature_multi_product_optimizer",
+      "label": "Mature Multi-Product Optimizer",
+      "state_codes": ["NJ"],
+      "primary_state": "New Jersey",
+      "market_role": "Mature sportsbook and casino state",
+      "geo_signals": {
+        "population": 9759748,
+        "households": 2312493,
+        "income_100k_plus_pct": 42.99,
+        "age_25_44_pct": 25.99,
+        "zip3_count": 21
+      },
+      "fan_interest_signal": {
+        "google_trends_state_index": 87,
+        "relative_rank_note": "Second-highest FanDuel state interest in the working state Trends set."
+      },
+      "product_governance": {
+        "sportsbook": "allowed-working-source",
+        "casino": "allowed-working-source",
+        "predicts": "legal-review",
+        "dfs": "allowed-working-source"
+      },
+      "planning_use": [
+        "Show how the planner separates Sportsbook and Casino reporting.",
+        "Use as the safest mature-market proof point once regulator verification is complete.",
+        "Demonstrate search and CRM handoff for a multi-product state."
+      ],
+      "recommended_demo_channels": ["Paid Search", "Organic Search", "CRM", "App Store", "Affiliate"],
+      "segment_size_proxy": {
+        "method": "population x 25-44 share x high-income index",
+        "value": 1090000,
+        "status": "working"
+      }
+    },
+    {
+      "persona_id": "nc_new_market_football_converter",
+      "label": "New-Market Football Converter",
+      "state_codes": ["NC"],
+      "primary_state": "North Carolina",
+      "market_role": "Recent online sportsbook growth state",
+      "geo_signals": {
+        "population": 10584400,
+        "households": 2717961,
+        "income_100k_plus_pct": 19.76,
+        "age_25_44_pct": 26.18,
+        "zip3_count": 20
+      },
+      "fan_interest_signal": {
+        "google_trends_state_index": null,
+        "relative_rank_note": "Use as growth-market persona; Trends overlay should be refreshed before client use."
+      },
+      "product_governance": {
+        "sportsbook": "allowed-working-source",
+        "casino": "blocked-working-source",
+        "predicts": "legal-review",
+        "dfs": "allowed-working-source"
+      },
+      "planning_use": [
+        "Show launch-to-scale planning in a newer online sportsbook market.",
+        "Keep Casino excluded from product messaging.",
+        "Use sports-calendar heartbeat around football season and March Madness with state review."
+      ],
+      "recommended_demo_channels": ["Paid Search", "Paid Social", "YouTube", "CTV", "App Store"],
+      "segment_size_proxy": {
+        "method": "population x 25-44 share x growth-state factor",
+        "value": 1385000,
+        "status": "working"
+      }
+    },
+    {
+      "persona_id": "mi_pa_multi_product_value_switcher",
+      "label": "Multi-Product Value Switcher",
+      "state_codes": ["MI", "PA"],
+      "primary_state": "Michigan and Pennsylvania",
+      "market_role": "Large multi-product sportsbook plus casino states",
+      "geo_signals": {
+        "combined_population": 23038095,
+        "combined_households": 6499952,
+        "weighted_income_100k_plus_pct": 24.49,
+        "weighted_age_25_44_pct": 25.2,
+        "zip3_count": 66
+      },
+      "fan_interest_signal": {
+        "google_trends_state_index": {
+          "MI": 100,
+          "PA": 77
+        },
+        "relative_rank_note": "Michigan is the strongest FanDuel state interest signal in the working Trends set; Pennsylvania is also high-priority."
+      },
+      "product_governance": {
+        "sportsbook": "allowed-working-source",
+        "casino": "allowed-working-source",
+        "predicts": "legal-review",
+        "dfs": "restricted-in-pa-working-source"
+      },
+      "planning_use": [
+        "Show budget shifting between two multi-product states.",
+        "Demonstrate separate Sportsbook and Casino reporting lines.",
+        "Show PA college fantasy exclusion as a state-specific modifier."
+      ],
+      "recommended_demo_channels": ["Paid Search", "Organic Search", "CTV", "CRM", "Affiliate"],
+      "segment_size_proxy": {
+        "method": "combined population x 25-44 share x multi-product factor",
+        "value": 2902000,
+        "status": "working"
+      }
+    },
+    {
+      "persona_id": "tx_holdout_predicts_watchlist",
+      "label": "Holdout Watchlist Bettor",
+      "state_codes": ["TX"],
+      "primary_state": "Texas",
+      "market_role": "High-interest holdout state",
+      "geo_signals": {
+        "population": 29639682,
+        "households": 6545669,
+        "income_100k_plus_pct": 25.4,
+        "age_25_44_pct": 28.49,
+        "zip3_count": 49
+      },
+      "fan_interest_signal": {
+        "google_trends_state_index": null,
+        "relative_rank_note": "Use as firewall demo state, not an activation recommendation."
+      },
+      "product_governance": {
+        "sportsbook": "blocked-working-source",
+        "casino": "blocked-working-source",
+        "predicts": "legal-review",
+        "dfs": "legal-review"
+      },
+      "planning_use": [
+        "Trigger the Compliance Firewall by moving a Sportsbook brief from NJ to TX.",
+        "Show how the system suppresses blocked Sportsbook planning and routes Predicts/DFS to review.",
+        "Use education or watchlist logic only if legal/compliance owner approves."
+      ],
+      "recommended_demo_channels": ["Organic Search", "CRM", "App Store"],
+      "suppressed_demo_channels": ["Paid Search", "Paid Social", "Affiliate", "Influencer/Creator"],
+      "segment_size_proxy": {
+        "method": "population x 25-44 share x holdout-watchlist factor",
+        "value": 3377000,
+        "status": "working"
+      }
+    }
+  ]
+}

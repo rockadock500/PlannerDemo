@@ -1,0 +1,117 @@
+{
+  "_note": "Generated from fixture_calendar/key_periods.json. Do not maintain a second calendar by hand.",
+  "generated_at": "2026-07-05T00:00:00.000Z",
+  "base": 1,
+  "source": "clients/fanduel/data/fixture_calendar/key_periods.json",
+  "rules": [
+    {
+      "id": "march_madness_search_social",
+      "key_period_id": "march_madness_2026",
+      "fixture_source": "clients/fanduel/data/fixture_calendar/fixtures_2025_2027.json",
+      "heat_source": "clients/fanduel/data/fixture_calendar/daily_heat.json",
+      "when": {
+        "month_suffix": "-03"
+      },
+      "channels": [
+        "Paid Search",
+        "Organic Search",
+        "Paid Social",
+        "YouTube"
+      ],
+      "add": 0.12,
+      "note": "March Madness raises sports-betting demand, but college restrictions must be checked before state-level activation.",
+      "status": "modelled-working",
+      "display_flag": "MODELLED_HEAT",
+      "source_ids": [
+        "fanduel_calendar_modifiers_v1",
+        "fanduel_fixture_calendar_manifest_v1",
+        "fanduel_fixture_heat_model_v1",
+        "dataforseo_google_trends_fanduel_series"
+      ]
+    },
+    {
+      "id": "nfl_kickoff_reach",
+      "key_period_id": "nfl_kickoff_2026",
+      "fixture_source": "clients/fanduel/data/fixture_calendar/fixtures_2025_2027.json",
+      "heat_source": "clients/fanduel/data/fixture_calendar/daily_heat.json",
+      "when": {
+        "month_suffix_in": [
+          "-09",
+          "-10"
+        ]
+      },
+      "channels": [
+        "Paid Search",
+        "CTV",
+        "Linear TV",
+        "YouTube",
+        "Radio/Audio",
+        "Paid Social"
+      ],
+      "add": 0.15,
+      "note": "NFL kickoff and early-season demand from the fixture heat model.",
+      "status": "modelled-working",
+      "display_flag": "MODELLED_HEAT",
+      "source_ids": [
+        "fanduel_calendar_modifiers_v1",
+        "fanduel_fixture_calendar_manifest_v1",
+        "fanduel_fixture_heat_model_v1",
+        "dataforseo_google_trends_fanduel_series"
+      ]
+    },
+    {
+      "id": "super_bowl_full_funnel",
+      "key_period_id": "super_bowl_2026",
+      "fixture_source": "clients/fanduel/data/fixture_calendar/fixtures_2025_2027.json",
+      "heat_source": "clients/fanduel/data/fixture_calendar/daily_heat.json",
+      "when": {
+        "month_suffix": "-02"
+      },
+      "channels": [
+        "Paid Search",
+        "CTV",
+        "Linear TV",
+        "YouTube",
+        "Paid Social",
+        "Affiliate"
+      ],
+      "add": 0.14,
+      "note": "Super Bowl lead-in from fixture heat; offer and creative copy still need state review.",
+      "status": "modelled-working",
+      "display_flag": "MODELLED_HEAT",
+      "source_ids": [
+        "fanduel_calendar_modifiers_v1",
+        "fanduel_fixture_calendar_manifest_v1",
+        "fanduel_fixture_heat_model_v1",
+        "dataforseo_google_trends_fanduel_series"
+      ]
+    },
+    {
+      "id": "low_sports_summer_efficiency",
+      "key_period_id": "summer_trough_2026",
+      "fixture_source": "clients/fanduel/data/fixture_calendar/fixtures_2025_2027.json",
+      "heat_source": "clients/fanduel/data/fixture_calendar/daily_heat.json",
+      "when": {
+        "month_suffix_in": [
+          "-06",
+          "-07"
+        ]
+      },
+      "channels": [
+        "Organic Search",
+        "CRM",
+        "App Store"
+      ],
+      "add": 0.06,
+      "note": "Lower national sports intensity shifts value to owned and organic optimisation.",
+      "status": "modelled-working",
+      "display_flag": "MODELLED_HEAT",
+      "source_ids": [
+        "fanduel_calendar_modifiers_v1",
+        "fanduel_fixture_calendar_manifest_v1",
+        "fanduel_fixture_heat_model_v1",
+        "dataforseo_google_trends_fanduel_series"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,541 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>FanDuel Planning OS Demo</title>
+    <link rel="stylesheet" href="./styles.css?v=97">
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-title">
+          <div class="brand-chip-row" aria-label="Demo brands">
+            <span class="brand-chip fanduel-chip"><img src="./assets/fanduel-logo-hrz-white.svg" alt="FanDuel"></span>
+            <span class="brand-chip tau-chip"><img src="./assets/TAU_Logo.png" alt="TAU"></span>
+          </div>
+          <div>
+            <p class="eyebrow">FanDuel US</p>
+            <h1>Product Surface</h1>
+          </div>
+        </div>
+        <div id="teamTestBadge" class="team-test-badge is-hidden" aria-live="polite"></div>
+      </header>
+
+      <nav class="surface-tabs" aria-label="Product surface tabs">
+        <button class="surface-tab is-active" data-surface="planning" type="button">Planning OS</button>
+        <button class="surface-tab" data-surface="flightpath" type="button">Flightpath</button>
+        <button class="surface-tab" data-surface="calendar" type="button">Calendar</button>
+        <button class="surface-tab" data-surface="reporting" type="button">Reporting</button>
+        <button class="surface-tab" data-surface="recommendations" type="button">Recommendations</button>
+        <button class="surface-tab" data-surface="attribution" type="button">Attribution &amp; Incrementality</button>
+        <button class="surface-tab" data-surface="insights" type="button">Insights</button>
+        <button class="surface-tab" data-surface="creative" type="button">Creative Intelligence</button>
+        <button class="surface-tab" data-surface="audience" type="button">Audience</button>
+        <button class="surface-tab" data-surface="regulation" type="button">Regulation</button>
+      </nav>
+
+      <main>
+        <section class="surface is-active" data-surface-panel="planning">
+          <section id="planningChatShell" class="chat-shell planning-chat-shell" aria-label="Planning OS chat"></section>
+
+          <div class="planning-legacy is-hidden" aria-hidden="true">
+          <section id="planStoreBar" class="plan-store-bar" aria-label="Active plan and planning modes"></section>
+
+          <section class="control-band" aria-label="Brief controls">
+            <label class="brief-field">
+              <span>Live brief</span>
+              <textarea id="briefInput" rows="3"></textarea>
+            </label>
+            <div class="control-grid">
+              <label>
+                <span>Planning scope</span>
+                <select id="stateSelect"></select>
+              </label>
+              <label>
+                <span>Product</span>
+                <select id="productSelect">
+                  <option value="sportsbook">Sportsbook</option>
+                  <option value="casino">Casino</option>
+                  <option value="predicts">Predicts</option>
+                  <option value="dfs">DFS</option>
+                </select>
+              </label>
+              <label>
+                <span>Scenario</span>
+                <select id="scenarioSelect">
+                  <option value="search">Stage 1 Search POC</option>
+                  <option value="growth">Sportsbook Growth</option>
+                  <option value="hold">Compliance Hold</option>
+                </select>
+              </label>
+              <label>
+                <span>Curve channel</span>
+                <select id="channelSelect"></select>
+              </label>
+            </div>
+            <div id="stateScopeControl" class="state-scope-control"></div>
+          </section>
+
+          <section id="planningBriefOutput" class="brief-output-panel"></section>
+          <section id="modeWorkspace" class="content-band mode-workspace"></section>
+
+          <div class="tile-row-heading">
+            <div>
+              <p class="eyebrow">Plan metrics</p>
+              <h2>Current planning summary</h2>
+            </div>
+            <button class="icon-button" type="button" data-collapse-target="summaryMetrics" aria-expanded="true" title="Minimise plan metrics">-</button>
+          </div>
+          <section id="summaryMetrics" class="summary-grid collapsible-row" aria-label="Current plan summary">
+            <article class="metric-panel">
+              <span class="metric-label">Budget</span>
+              <strong id="budgetMetric">$0</strong>
+              <small>working USD-equivalent</small>
+            </article>
+            <article class="metric-panel">
+              <span class="metric-label">Forecast FTDs</span>
+              <strong id="ftdMetric">0</strong>
+              <small>synthetic demo model</small>
+            </article>
+            <article class="metric-panel">
+              <span class="metric-label">Forecast CPA</span>
+              <strong id="cpaMetric">$0</strong>
+              <small>USD-labelled economics</small>
+            </article>
+            <article class="metric-panel alert-panel">
+              <span class="metric-label">Paid SERP</span>
+              <strong id="paidMetric">missing</strong>
+              <small>show gap, not efficiency claim</small>
+            </article>
+          </section>
+          <section id="reallocationDelta" class="delta-strip is-hidden" aria-live="polite"></section>
+
+          <section class="content-band time-machine-section" aria-label="Planning time machine">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Planning time machine</p>
+                <h2>Months x channels</h2>
+              </div>
+              <div class="panel-actions">
+                <button class="small-action" type="button" data-download="flightpath-grid">CSV</button>
+                <button class="small-action" type="button" data-download="flightpath-note">Text</button>
+                <span class="status status-working">plan store v1</span>
+              </div>
+            </div>
+            <div id="timeMachineGrid"></div>
+          </section>
+
+          <section class="decision-grid">
+            <article class="panel firewall-panel">
+              <div class="panel-heading">
+                <p class="eyebrow">Compliance firewall</p>
+                <h2 id="firewallTitle">State check</h2>
+              </div>
+              <label class="compact-select firewall-state-field">
+                <span>Firewall state</span>
+                <select id="firewallStateSelect"></select>
+              </label>
+              <div id="firewallVerdict" class="verdict"></div>
+              <div id="productStatuses" class="product-grid"></div>
+              <div id="restrictionList" class="note-list"></div>
+              <div class="panel-actions firewall-actions">
+                <button class="small-action" type="button" data-download="firewall">CSV</button>
+                <button class="small-action" type="button" data-rule-update>Update rule</button>
+              </div>
+              <div id="firewallApprovalNotice" class="notice-line is-hidden"></div>
+            </article>
+
+            <article class="panel plan-panel">
+              <div class="panel-heading">
+                <p class="eyebrow">Allocation engine</p>
+                <h2 id="planTitle">Channel plan</h2>
+                <button class="small-action" type="button" data-download="allocation">CSV</button>
+              </div>
+              <div id="channelBars" class="channel-bars"></div>
+            </article>
+          </section>
+
+          <section class="planning-grid">
+            <article class="panel map-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">US map</p>
+                  <h2>State planning view</h2>
+                </div>
+                <label class="compact-select">
+                  <span>Layer</span>
+                  <select id="mapLayerSelect">
+                    <option value="zip3">ZIP3 product media</option>
+                    <option value="strength">FanDuel search index</option>
+                    <option value="legislation">Legislation toughness</option>
+                    <option value="budget">State budget</option>
+                  </select>
+                </label>
+              </div>
+              <div id="planningMap" class="state-map" aria-label="State map"></div>
+              <div id="mapLegend" class="map-legend"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">State budgets</p>
+                  <h2>Activation allocation</h2>
+                </div>
+                <div class="panel-actions">
+                  <label class="compact-select value-mode-field">
+                    <span>Optimise</span>
+                    <select id="budgetOptimisationSelect">
+                      <option value="volume">Volume</option>
+                      <option value="value">Post-tax value</option>
+                    </select>
+                  </label>
+                  <button class="small-action" type="button" data-download="state-budget">CSV</button>
+                  <span class="status status-synthetic">synthetic-working</span>
+                </div>
+              </div>
+              <div id="stateBudgetTable" class="state-budget-table"></div>
+            </article>
+          </section>
+
+          <section class="content-band curve-section">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Reach curve</p>
+                <h2 id="curveTitle">Synthetic economics</h2>
+              </div>
+              <label class="compact-select">
+                <span>State lens</span>
+                <select id="curveStateSelect"></select>
+              </label>
+              <span class="status status-synthetic">response priors</span>
+            </div>
+            <div class="curve-guide">
+              <strong>How to read this curve</strong>
+              <span>The line is the modelled response index, not a fitted FanDuel MMM curve. The dashed line is soft saturation; the dot is the selected monthly input; the shaded band shows uncertainty in the working prior.</span>
+            </div>
+            <label class="range-label">
+              <span>Monthly spend</span>
+              <input id="spendRange" type="range" min="50000" max="2000000" step="50000" value="900000">
+            </label>
+            <div id="curveReadout" class="curve-readout"></div>
+            <canvas id="curveCanvas" class="curve-canvas" width="960" height="300" aria-label="Synthetic response curve with uncertainty, selected spend and soft saturation"></canvas>
+            <div id="curveDetail" class="curve-detail"></div>
+          </section>
+
+          <section class="content-band">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">State planning set</p>
+                <h2>Where this plan can work hardest</h2>
+              </div>
+              <span class="status status-working">FanDuel-owned source</span>
+            </div>
+            <div id="statePlanningSummary"></div>
+          </section>
+          </div>
+        </section>
+
+        <section class="surface" data-surface-panel="flightpath">
+          <section class="content-band flightpath-hero">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Flightpath</p>
+                <h2>Plan vs actual across time</h2>
+              </div>
+              <div class="panel-actions">
+                <label class="compact-select">
+                  <span>Plan version</span>
+                  <select id="flightpathPlanSelect"></select>
+                </label>
+                <label class="compact-select">
+                  <span>Start</span>
+                  <select id="flightpathStartMonth"></select>
+                </label>
+                <label class="compact-select">
+                  <span>End</span>
+                  <select id="flightpathEndMonth"></select>
+                </label>
+                <button class="small-action" type="button" data-download="planning-grid">CSV</button>
+                <button class="small-action" type="button" data-download="planning-note">Text</button>
+                <button class="drawer-button" type="button" data-ask-grid>Ask about this grid</button>
+              </div>
+            </div>
+            <div id="flightpathHeader"></div>
+          </section>
+
+          <section class="content-band time-machine-section" aria-label="Flightpath plan history grid">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Plan history</p>
+                <h2>Months x channels</h2>
+              </div>
+              <span class="status status-synthetic">SDE synthetic actuals</span>
+            </div>
+            <div id="flightpathGrid"></div>
+            <div id="flightpathCampaignOverlay"></div>
+          </section>
+
+          <section class="content-band curve-section">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Reach curve</p>
+                <h2 id="flightpathCurveTitle">Synthetic economics</h2>
+              </div>
+              <label class="compact-select">
+                <span>Channel</span>
+                <select id="flightpathChannelSelect"></select>
+              </label>
+              <label class="compact-select">
+                <span>State lens</span>
+                <select id="flightpathCurveStateSelect"></select>
+              </label>
+            </div>
+            <div class="curve-guide">
+              <strong>How to read this curve</strong>
+              <span>The line is the modelled response index, not a fitted FanDuel MMM curve. The dashed line is soft saturation; the dot is the selected monthly input; the shaded band shows uncertainty in the working prior.</span>
+            </div>
+            <label class="range-label">
+              <span>Monthly spend</span>
+              <input id="flightpathSpendRange" type="range" min="50000" max="2000000" step="50000" value="900000">
+            </label>
+            <div id="flightpathCurveReadout" class="curve-readout"></div>
+            <canvas id="flightpathCurveCanvas" class="curve-canvas" width="960" height="300" aria-label="Flightpath response curve with uncertainty, selected spend and soft saturation"></canvas>
+            <div id="flightpathCurveDetail" class="curve-detail"></div>
+          </section>
+        </section>
+
+        <section class="surface" data-surface-panel="calendar">
+          <section class="control-band calendar-control-band" aria-label="Calendar filters">
+            <div>
+              <p class="eyebrow">Fixture calendar</p>
+              <div class="control-grid">
+                <label>
+                  <span>View</span>
+                  <select id="calendarViewSelect">
+                    <option value="quarter">Quarter</option>
+                    <option value="month">Month</option>
+                    <option value="week">Week</option>
+                    <option value="day">Day</option>
+                  </select>
+                </label>
+                <label>
+                  <span>Month</span>
+                  <select id="calendarMonthSelect"></select>
+                </label>
+                <label>
+                  <span>State</span>
+                  <select id="calendarStateSelect"></select>
+                </label>
+                <label>
+                  <span>Product</span>
+                  <select id="calendarProductSelect"></select>
+                </label>
+              </div>
+            </div>
+            <div class="calendar-filter-actions">
+              <div class="calendar-period-nav" aria-label="Calendar period navigation">
+                <button class="small-action" type="button" data-calendar-nav="prev">Previous</button>
+                <button class="small-action" type="button" data-calendar-nav="next">Next</button>
+              </div>
+              <div id="calendarSportTabs" class="calendar-sport-tabs" role="tablist" aria-label="Sport filter"></div>
+              <div class="panel-actions">
+                <button class="small-action" type="button" data-download="calendar-ics">ICS</button>
+                <button class="small-action" type="button" data-download="calendar-heat">Heat CSV</button>
+              </div>
+            </div>
+          </section>
+
+          <section class="summary-grid calendar-summary-grid" aria-label="Calendar summary">
+            <article class="metric-panel">
+              <span class="metric-label">Selected heat</span>
+              <strong id="calendarBudgetMetric">0</strong>
+              <small id="calendarHeatNote">modelled demand</small>
+            </article>
+            <article class="metric-panel">
+              <span class="metric-label">Fixtures</span>
+              <strong id="calendarMonthMetric">0</strong>
+              <small id="calendarMonthNote">visible in filter</small>
+            </article>
+            <article class="metric-panel">
+              <span class="metric-label">State activation</span>
+              <strong id="calendarStateMetric">0</strong>
+              <small id="calendarStateNote">state fit</small>
+            </article>
+            <article class="metric-panel alert-panel">
+              <span class="metric-label">Source status</span>
+              <strong id="calendarSourceMetric">modelled</strong>
+              <small>fixture source v1</small>
+            </article>
+          </section>
+
+          <section class="calendar-main-grid">
+            <article class="panel calendar-timeline-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Demand heat</p>
+                  <h2 id="calendarViewTitle">Fixture heat calendar</h2>
+                </div>
+                <span class="status status-synthetic">modelled heat</span>
+              </div>
+              <div id="calendarTimeline"></div>
+            </article>
+            <details class="panel calendar-drawer-dropdown" open>
+              <summary>
+                <div>
+                  <p class="eyebrow">Day drawer</p>
+                  <h2 id="calendarStateTitle">Selected day</h2>
+                </div>
+                <span class="status status-working">authored/working fixtures</span>
+              </summary>
+              <div id="calendarStateFit"></div>
+            </details>
+          </section>
+
+          <section class="content-band calendar-custom-section">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Custom dates</p>
+                <h2>Add planning moments</h2>
+              </div>
+              <span class="status status-working">authored working dates</span>
+            </div>
+            <form id="calendarCustomForm" class="calendar-custom-form">
+              <label>
+                <span>Name</span>
+                <input id="calendarCustomName" type="text" placeholder="e.g. NFL launch push">
+              </label>
+              <label>
+                <span>Date</span>
+                <input id="calendarCustomDate" type="date" value="2026-09-10">
+              </label>
+              <label>
+                <span>Sport / theme</span>
+                <input id="calendarCustomSport" type="text" placeholder="NFL, NBA, brand, custom">
+              </label>
+              <label class="calendar-custom-note">
+                <span>Note</span>
+                <input id="calendarCustomNote" type="text" placeholder="Why this matters for planning">
+              </label>
+              <button class="small-action" type="submit">Add date</button>
+              <button class="small-action" type="button" data-trigger-calendar-upload>Upload text</button>
+              <input id="calendarCustomUploadInput" type="file" accept=".txt,.md,.csv,.docx,.pdf,text/plain,text/markdown,text/csv,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document" hidden>
+            </form>
+            <p id="calendarCustomNotice" class="muted-copy"></p>
+            <div id="calendarCustomEntries" class="calendar-custom-list"></div>
+          </section>
+
+          <section class="content-band calendar-key-period-section">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Key periods</p>
+                <h2>What the calendar says to do</h2>
+              </div>
+              <span class="status status-synthetic">modelled heat + SDE actuals</span>
+            </div>
+            <div id="calendarKeyPeriods"></div>
+          </section>
+
+          <section id="calendarPlanBar" class="output-plan-bar" aria-label="Active plan quick view"></section>
+        </section>
+
+        <section class="surface" data-surface-panel="reporting">
+          <section class="content-band">
+            <div class="panel-heading">
+              <div>
+                <p class="eyebrow">Reporting</p>
+                <h2>Channel delivery intelligence</h2>
+              </div>
+              <div class="panel-actions">
+                <button class="small-action" type="button" data-download="reporting">CSV</button>
+                <button class="small-action" type="button" data-download="reporting-note">Text</button>
+                <span class="status status-synthetic">synthetic SDE ready</span>
+              </div>
+            </div>
+            <div id="reportingContent"></div>
+          </section>
+          <section id="reportingPlanBar" class="output-plan-bar" aria-label="Active plan quick view"></section>
+        </section>
+
+        <section class="surface" data-surface-panel="recommendations">
+          <section id="recommendationsContent" class="content-band recommendations-surface" aria-live="polite"></section>
+        </section>
+
+        <section class="surface" data-surface-panel="attribution">
+          <section id="attributionContent" class="content-band attribution-surface" aria-live="polite"></section>
+        </section>
+
+        <section class="surface" data-surface-panel="insights">
+          <section id="insightsContent" class="content-band" aria-live="polite"></section>
+        </section>
+
+        <section class="surface" data-surface-panel="creative">
+          <section id="creativeIntelligenceContent" class="creative-intelligence-surface" aria-live="polite"></section>
+        </section>
+
+        <section class="surface" data-surface-panel="audience">
+          <section id="audienceContent" class="content-band" aria-live="polite"></section>
+        </section>
+
+        <section class="surface" data-surface-panel="regulation">
+          <section class="content-band regulation-banner">
+            <strong>Working research, not legal advice.</strong>
+            <span>Regulator verification pending under Q003.</span>
+          </section>
+          <section class="planning-grid">
+            <article class="panel map-panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">Regulation map</p>
+                  <h2>Product availability layer</h2>
+                </div>
+                <label class="compact-select">
+                  <span>Product</span>
+                  <select id="regulationProductSelect">
+                    <option value="sportsbook">Sportsbook</option>
+                    <option value="casino">Casino</option>
+                    <option value="predicts">Predicts</option>
+                    <option value="dfs">DFS</option>
+                  </select>
+                </label>
+              </div>
+              <div id="regulationMap" class="state-map" aria-label="Regulation map"></div>
+              <div id="regulationLegend" class="map-legend"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-heading">
+                <div>
+                  <p class="eyebrow">State receipts</p>
+                  <h2 id="regulationTitle">Selected state</h2>
+                </div>
+              </div>
+              <div id="regulationContent"></div>
+            </article>
+          </section>
+        </section>
+      </main>
+
+      <footer class="demo-disclosure">Synthetic demo system — media figures are working values, not FanDuel data. Receipts and methods are available on every figure.</footer>
+
+      <aside id="evidenceDrawer" class="evidence-drawer" aria-hidden="true">
+        <div class="drawer-panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Evidence drawer</p>
+              <h2>Receipts and methods</h2>
+            </div>
+            <button id="closeEvidenceButton" class="drawer-button" type="button">Close</button>
+          </div>
+          <div id="evidenceDrawerBody"></div>
+        </div>
+      </aside>
+      <div id="commandPaletteRoot"></div>
+    </div>
+
+    <script src="./vendor/marked.min.js?v=37"></script>
+    <script src="./runtime-config.js?v=1"></script>
+    <script src="./lib/extractText.js?v=37"></script>
+    <script src="./reasons.js?v=67"></script>
+    <script src="./app.js?v=99"></script>
+  </body>
+</html>

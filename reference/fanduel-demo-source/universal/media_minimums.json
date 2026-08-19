@@ -1,0 +1,13 @@
+{
+  "_note": "UNIVERSAL minimum viable monthly spend per channel type. Extracted from run_allocation_engine.py:52-61 (MIN_MONTHLY_SPEND). These are UK media-market floors (a sub-threshold AV/OOH buy is operationally pointless), not PPL strategy. Keyed by the shared channel taxonomy. Consumed by the six-allocator constraint solver (run_allocation_engine.py), NOT by the deterministic planner — so it does not affect the snapshot. Wired in when that engine module is extracted (MIGRATION_STATUS.md).",
+  "min_monthly_spend_gbp": {
+    "AV": 250000,
+    "OOH": 100000,
+    "Direct Mail": 150000,
+    "CTV/YouTube": 75000,
+    "Paid Search": 40000,
+    "Paid Social": 40000,
+    "Audio": 50000,
+    "Display/Programmatic": 35000
+  }
+}

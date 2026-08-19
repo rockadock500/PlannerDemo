@@ -1,0 +1,30 @@
+{
+  "schema_version": "fanduel_demo_reset_v1",
+  "enabled": true,
+  "reset_id": "reset-20260709224416",
+  "reset_at": "2026-07-09T22:44:16.026Z",
+  "active_plan_id": "FD_US_2026_ANNUAL_T183_MEDIA_v2",
+  "active_plan_note": "Active plan restored from clients/fanduel/plans/manifest.json on next page load.",
+  "actions": [
+    "Reset file/API chat sessions",
+    "Clear saved briefs",
+    "Clear custom audiences",
+    "Clear custom calendar entries",
+    "Clear browser localStorage demo overrides on next load",
+    "Remove understudy/LLM query flags from the URL on next load"
+  ],
+  "clear_local_storage_keys": [
+    "fanduel_planning_chat_sessions_v7",
+    "fanduel_custom_products_v1",
+    "fanduel_campaign_store_v1",
+    "fanduel_zip3_map_view_v1",
+    "fanduel_llm_enabled"
+  ],
+  "clear_query_flags": [
+    "understudy",
+    "llm",
+    "llmEndpoint",
+    "llmModel",
+    "llmTimeoutMs"
+  ]
+}

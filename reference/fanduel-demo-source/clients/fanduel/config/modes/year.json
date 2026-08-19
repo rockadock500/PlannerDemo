@@ -1,0 +1,27 @@
+{
+  "key": "year",
+  "label": "Year",
+  "group": "Annual plans",
+  "description": "Create and interrogate the annual plan with deterministic numbers.",
+  "prompt": "Describe the period, budget, product, audience and channel scope",
+  "requires_existing_plan": false,
+  "allowed_dinks": ["period", "budget", "geo", "audience", "channels", "goal", "kpi"],
+  "allowed_tools": ["extract_year_plan_brief", "plan_annual", "governance_check", "lookup_calendar", "lookup_state_scope"],
+  "clarify_rules": [
+    "Ask for budget_usd and planning period when missing; never assume or inherit either for a new Year plan.",
+    "Challenge unsupported product/state requests with the product/state rule receipt before planning.",
+    "Use country=US from client config; dates, states, product, audience, channel scope, goal and KPI must come from the user or remain empty."
+  ],
+  "deterministic_handler": "annualPlanAnswer",
+  "engine": {
+    "default": "deterministic",
+    "toggle": ["deterministic", "both"],
+    "rule": "Deterministic planner owns all annual plan numbers; Both may narrate but cannot replace computed figures."
+  },
+  "output_panel": "year_plan_materialising",
+  "custom_instructions": "You are helping a CMO shape an annual FanDuel media plan. Use deterministic plan-store facts for every number, surface source/status chips, and avoid unsupported claims.",
+  "cold_load": {
+    "title": "Year planning mode is ready"
+  },
+  "cold_load_prompts": []
+}

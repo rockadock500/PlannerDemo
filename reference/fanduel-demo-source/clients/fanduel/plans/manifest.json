@@ -1,0 +1,283 @@
+{
+  "created_at": "2026-07-09",
+  "manifest_name": "fanduel_plan_store_manifest_v1",
+  "status": "working_plan_store_t183_rescaled_active",
+  "active_annual": "FD_US_2026_ANNUAL_T183_MEDIA_v2",
+  "demo_today": "2026-07-03",
+  "rules": [
+    "File-based first; version schema mirrors PPL plan_versions enough for a later DB swap.",
+    "Only one active annual plan is allowed in the manifest.",
+    "Existing generated plans are copied into immutable plan folders; SDE history is stored as an archived record; revisions create new folders.",
+    "Internal engine currency fields are displayed as working USD-equivalent in the demo; client-safe alias files are emitted under clients/fanduel/client_safe/ with USD naming.",
+    "Organic Search is a non-buyable demand line: $0 planned media spend unless a resource-cost option is explicitly enabled.",
+    "T183/T150 active annual plans must pass the $400M-$500M working-media envelope, 0.9M-2.5M annual FTD and $200-$450 blended media-CPA guardrails before use.",
+    "The active baseline must always be labelled inferred public-source envelope; it is not FanDuel internal spend.",
+    "Draft comparison options preserve the signed-off working-media envelope; the engine computes every changed value."
+  ],
+  "plans": [
+    {
+      "plan_id": "FD_US_2026_ANNUAL_T183_MEDIA_v2",
+      "label": "2026 inferred public-source media baseline",
+      "horizon": "annual",
+      "period": {
+        "start": "2026-01",
+        "end": "2026-12"
+      },
+      "scenario_id": "t183_working_media_baseline",
+      "scenario_key": "baseline",
+      "version": 2,
+      "parent_version": 1,
+      "parent_plan_id": "FD_US_2026_ANNUAL_T111_BASELINE_v1",
+      "status": "active",
+      "created_at": "2026-07-09",
+      "approved_by": "demo operator",
+      "notes": "Active T183 baseline: $450M working_media midpoint, always labelled inferred public-source envelope. Sponsorship, promo, operational costs and Predicts investment excluded; Organic Search has $0 planned media spend.",
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ],
+      "plan_path": "FD_US_2026_ANNUAL_T183_MEDIA_v2/plan.json",
+      "meta_path": "FD_US_2026_ANNUAL_T183_MEDIA_v2/meta.json"
+    },
+    {
+      "plan_id": "FD_US_2026_ANNUAL_EFFICIENCY_v2",
+      "label": "2026 Data-driven efficiency option",
+      "horizon": "annual",
+      "period": {
+        "start": "2026-01",
+        "end": "2026-12"
+      },
+      "scenario_id": "data_driven_efficiency_v2",
+      "scenario_key": "efficiency_v2",
+      "version": 2,
+      "parent_version": 2,
+      "parent_plan_id": "FD_US_2026_ANNUAL_T183_MEDIA_v2",
+      "status": "draft",
+      "created_at": "2026-07-09",
+      "approved_by": null,
+      "notes": "Engine scenario: rebalance toward intent and accountable acquisition while preserving the signed-off annual working-media envelope. SYNTHETIC option; inferred public-source working-media envelope.",
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ],
+      "plan_path": "FD_US_2026_ANNUAL_EFFICIENCY_v2/plan.json",
+      "meta_path": "FD_US_2026_ANNUAL_EFFICIENCY_v2/meta.json"
+    },
+    {
+      "plan_id": "FD_US_2026_ANNUAL_INNOVATION_v2",
+      "label": "2026 Innovation brief option",
+      "horizon": "annual",
+      "period": {
+        "start": "2026-01",
+        "end": "2026-12"
+      },
+      "scenario_id": "innovation_brief_v2",
+      "scenario_key": "innovation_v2",
+      "version": 2,
+      "parent_version": 2,
+      "parent_plan_id": "FD_US_2026_ANNUAL_T183_MEDIA_v2",
+      "status": "draft",
+      "created_at": "2026-07-09",
+      "approved_by": null,
+      "notes": "LLM may author the brief; deterministic engine scenario expands CTV, YouTube, social and creator emphasis while preserving the annual envelope. SYNTHETIC option; inferred public-source working-media envelope.",
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ],
+      "plan_path": "FD_US_2026_ANNUAL_INNOVATION_v2/plan.json",
+      "meta_path": "FD_US_2026_ANNUAL_INNOVATION_v2/meta.json"
+    },
+    {
+      "plan_id": "FD_US_2026_ANNUAL_SEARCH_ONLY_v2",
+      "label": "2026 Search-only option",
+      "horizon": "annual",
+      "period": {
+        "start": "2026-01",
+        "end": "2026-12"
+      },
+      "scenario_id": "search_only_v2",
+      "scenario_key": "search_only_v2",
+      "version": 2,
+      "parent_version": 2,
+      "parent_plan_id": "FD_US_2026_ANNUAL_T183_MEDIA_v2",
+      "status": "draft",
+      "created_at": "2026-07-09",
+      "approved_by": null,
+      "notes": "Deterministic engine subset: fund Paid Search and App Store only; Organic Search remains a zero-cost demand line. SYNTHETIC option; inferred public-source working-media envelope.",
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ],
+      "plan_path": "FD_US_2026_ANNUAL_SEARCH_ONLY_v2/plan.json",
+      "meta_path": "FD_US_2026_ANNUAL_SEARCH_ONLY_v2/meta.json"
+    },
+    {
+      "plan_id": "FD_US_SDE_HISTORY_2025_2026_v2",
+      "label": "SDE synthetic history: Jan 2025-Jun 2026 (rescaled)",
+      "horizon": "history",
+      "period": {
+        "start": "2025-01",
+        "end": "2026-06"
+      },
+      "scenario_id": "sde_history_t183_rescaled",
+      "scenario_key": "history_rescaled",
+      "version": 2,
+      "parent_version": 1,
+      "parent_plan_id": "FD_US_SDE_HISTORY_2025_2026_v1",
+      "status": "archived",
+      "created_at": "2026-07-09",
+      "approved_by": null,
+      "notes": "SYNTHETIC history regenerated at the inferred public-source working-media envelope; not internal actuals.",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09"
+      ],
+      "plan_path": "FD_US_SDE_HISTORY_2025_2026_v2/plan.json",
+      "meta_path": "FD_US_SDE_HISTORY_2025_2026_v2/meta.json"
+    },
+    {
+      "plan_id": "FD_US_2026_ANNUAL_T111_BASELINE_v1",
+      "label": "2026 T111 scaled annual baseline",
+      "horizon": "annual",
+      "period": {
+        "start": "2026-01",
+        "end": "2026-12"
+      },
+      "scenario_id": "t111_scaled_baseline",
+      "scenario_key": "search",
+      "version": 1,
+      "parent_version": null,
+      "parent_plan_id": "FD_US_2026_ANNUAL_SEARCH_v1",
+      "status": "archived",
+      "created_at": "2026-07-05",
+      "approved_by": "demo operator",
+      "notes": "Active Wave A baseline. Built from SDE planned 2026 rows at $1.43925B and T111 benchmark economics; Organic Search is non-buyable with $0 planned spend. Archived as pre-scale history by T150 on 2026-07-09. Archived as pre-rescale history by T183/T150 on 2026-07-09.",
+      "source_ids": [
+        "online_gambling_us_t111_provisional_2026_07_04",
+        "fanduel_marketing_spend_baseline_2026",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ],
+      "plan_path": "FD_US_2026_ANNUAL_T111_BASELINE_v1/plan.json",
+      "meta_path": "FD_US_2026_ANNUAL_T111_BASELINE_v1/meta.json"
+    },
+    {
+      "plan_id": "FD_US_2026_ANNUAL_SEARCH_v1",
+      "label": "2026 Stage 1 Search POC",
+      "horizon": "annual",
+      "period": {
+        "start": "2026-01",
+        "end": "2026-12"
+      },
+      "scenario_id": "search_poc",
+      "scenario_key": "search_legacy",
+      "version": 1,
+      "parent_version": null,
+      "status": "archived",
+      "created_at": "2026-07-04",
+      "approved_by": "demo operator",
+      "notes": "Active demo baseline for the first Planning Time Machine cut. Archived as pre-scale history by T150 on 2026-07-05. Archived as pre-scale history by T150 on 2026-07-09. Archived as pre-rescale history by T183/T150 on 2026-07-09.",
+      "source_ids": [
+        "fanduel_demo_media_owner_priors_2026",
+        "fanduel_demo_media_priors_2026",
+        "fanduel_reach_curve_synthetic_demo_2026",
+        "missing_paid_serp_pass",
+        "sig_scan_fanduel_us_2026_07_03",
+        "signal_seo_100_organic_0_paid_2026_07_03",
+        "us_state_governance_working_research_2026_07_03"
+      ],
+      "plan_path": "FD_US_2026_ANNUAL_SEARCH_v1/plan.json",
+      "meta_path": "FD_US_2026_ANNUAL_SEARCH_v1/meta.json"
+    },
+    {
+      "plan_id": "FD_US_2026_ANNUAL_GROWTH_v1",
+      "label": "2026 Sportsbook Growth",
+      "horizon": "annual",
+      "period": {
+        "start": "2026-01",
+        "end": "2026-12"
+      },
+      "scenario_id": "sportsbook_growth",
+      "scenario_key": "growth",
+      "version": 1,
+      "parent_version": null,
+      "status": "archived",
+      "created_at": "2026-07-04",
+      "approved_by": null,
+      "notes": "Draft alternate annual scenario migrated from the existing generated output. Archived as pre-scale history by T150 on 2026-07-05. Archived as pre-scale history by T150 on 2026-07-09. Archived as pre-rescale history by T183/T150 on 2026-07-09.",
+      "source_ids": [
+        "fanduel_demo_media_owner_priors_2026",
+        "fanduel_demo_media_priors_2026",
+        "fanduel_reach_curve_synthetic_demo_2026",
+        "missing_paid_serp_pass",
+        "sig_scan_fanduel_us_2026_07_03",
+        "signal_seo_100_organic_0_paid_2026_07_03",
+        "us_state_governance_working_research_2026_07_03"
+      ],
+      "plan_path": "FD_US_2026_ANNUAL_GROWTH_v1/plan.json",
+      "meta_path": "FD_US_2026_ANNUAL_GROWTH_v1/meta.json"
+    },
+    {
+      "plan_id": "FD_US_2026_ANNUAL_HOLD_v1",
+      "label": "2026 Compliance Hold",
+      "horizon": "annual",
+      "period": {
+        "start": "2026-01",
+        "end": "2026-12"
+      },
+      "scenario_id": "compliance_hold",
+      "scenario_key": "hold",
+      "version": 1,
+      "parent_version": null,
+      "status": "archived",
+      "created_at": "2026-07-04",
+      "approved_by": null,
+      "notes": "Draft compliance-heavy annual scenario migrated from the existing generated output. Archived as pre-scale history by T150 on 2026-07-05. Archived as pre-scale history by T150 on 2026-07-09. Archived as pre-rescale history by T183/T150 on 2026-07-09.",
+      "source_ids": [
+        "fanduel_demo_media_owner_priors_2026",
+        "fanduel_demo_media_priors_2026",
+        "fanduel_reach_curve_synthetic_demo_2026",
+        "missing_paid_serp_pass",
+        "sig_scan_fanduel_us_2026_07_03",
+        "signal_seo_100_organic_0_paid_2026_07_03",
+        "us_state_governance_working_research_2026_07_03"
+      ],
+      "plan_path": "FD_US_2026_ANNUAL_HOLD_v1/plan.json",
+      "meta_path": "FD_US_2026_ANNUAL_HOLD_v1/meta.json"
+    },
+    {
+      "plan_id": "FD_US_SDE_HISTORY_2025_2026_v1",
+      "label": "SDE synthetic history: Jan 2025-Jun 2026",
+      "horizon": "history",
+      "period": {
+        "start": "2025-01",
+        "end": "2026-06"
+      },
+      "scenario_id": "sde_history",
+      "scenario_key": "history",
+      "version": 1,
+      "parent_version": null,
+      "status": "archived",
+      "created_at": "2026-07-04",
+      "approved_by": null,
+      "notes": "SDE 18-month compact monthly history migrated into the file-based plan store for the time-machine baseline.",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ],
+      "plan_path": "FD_US_SDE_HISTORY_2025_2026_v1/plan.json",
+      "meta_path": "FD_US_SDE_HISTORY_2025_2026_v1/meta.json"
+    }
+  ]
+}

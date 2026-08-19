@@ -1,0 +1,267 @@
+{
+  "generated_at": "2026-07-05T00:00:00.000Z",
+  "status": "modelled-working",
+  "display_flag": "MODELLED_HEAT",
+  "source_ids": [
+    "dataforseo_google_trends_fanduel_series",
+    "fanduel_fixture_calendar_manifest_v1",
+    "fanduel_sde_actuals_manifest_v1"
+  ],
+  "trend_checks": [
+    {
+      "id": "real_trends_september_kickoff_lift",
+      "expectation": "September football weeks lift above the August pre-season baseline.",
+      "pass": true,
+      "values": {
+        "august_avg": 38.6,
+        "september_avg": 59.5
+      }
+    },
+    {
+      "id": "real_trends_super_bowl_week_local_peak",
+      "expectation": "Super Bowl week is the February local peak in the real Trends series.",
+      "pass": true,
+      "values": {
+        "feb_points": [
+          {
+            "date": "2026-02-01",
+            "fanduel": 45,
+            "comparison_values": [
+              45,
+              18,
+              43,
+              10,
+              2
+            ]
+          },
+          {
+            "date": "2026-02-08",
+            "fanduel": 55,
+            "comparison_values": [
+              55,
+              20,
+              61,
+              10,
+              2
+            ]
+          },
+          {
+            "date": "2026-02-15",
+            "fanduel": 32,
+            "comparison_values": [
+              32,
+              20,
+              28,
+              8,
+              1
+            ]
+          },
+          {
+            "date": "2026-02-22",
+            "fanduel": 37,
+            "comparison_values": [
+              37,
+              20,
+              30,
+              9,
+              1
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "id": "real_trends_march_madness_local_peak",
+      "expectation": "March Madness opening week lifts above early March in the real Trends series.",
+      "pass": true,
+      "values": {
+        "early_march": [
+          {
+            "date": "2026-03-01",
+            "fanduel": 42,
+            "comparison_values": [
+              42,
+              20,
+              37,
+              10,
+              1
+            ]
+          },
+          {
+            "date": "2026-03-08",
+            "fanduel": 43,
+            "comparison_values": [
+              43,
+              21,
+              36,
+              10,
+              1
+            ]
+          }
+        ],
+        "madness_window": [
+          {
+            "date": "2026-03-15",
+            "fanduel": 50,
+            "comparison_values": [
+              50,
+              24,
+              47,
+              10,
+              2
+            ]
+          },
+          {
+            "date": "2026-03-22",
+            "fanduel": 49,
+            "comparison_values": [
+              49,
+              22,
+              41,
+              10,
+              1
+            ]
+          },
+          {
+            "date": "2026-03-29",
+            "fanduel": 47,
+            "comparison_values": [
+              47,
+              20,
+              37,
+              10,
+              1
+            ]
+          }
+        ]
+      }
+    }
+  ],
+  "heat_checks": [
+    {
+      "id": "heat_september_kickoff_blazing",
+      "expectation": "NFL kickoff day in September 2026 is blazing/hot and above the month baseline.",
+      "pass": true,
+      "values": {
+        "kickoff_day": {
+          "date": "2026-09-10",
+          "month": "2026-09",
+          "trend_index": 59.5,
+          "fixture_load": 124.2,
+          "fixture_count": 1,
+          "top_fixture_ids": [
+            "nfl_2026_kickoff_structural_anchor"
+          ],
+          "sport_mix": {
+            "NFL": 1
+          },
+          "college_governance_count": 0,
+          "college_restricted_states": [],
+          "heat_score": 86.03,
+          "heat_band": "blazing",
+          "data_status": "modelled-working",
+          "display_flag": "MODELLED_HEAT",
+          "source_ids": [
+            "dataforseo_google_trends_fanduel_series",
+            "fanduel_fixture_calendar_manifest_v1"
+          ]
+        },
+        "september_avg": 55.99
+      }
+    },
+    {
+      "id": "heat_super_bowl_blazing",
+      "expectation": "Super Bowl day is the February 2026 heat peak.",
+      "pass": true,
+      "values": {
+        "super_bowl_day": {
+          "date": "2026-02-08",
+          "month": "2026-02",
+          "trend_index": 55,
+          "fixture_load": 155.7,
+          "fixture_count": 2,
+          "top_fixture_ids": [
+            "nfl_20260208_super_bowl_lx",
+            "nba_20260208_national_window"
+          ],
+          "sport_mix": {
+            "NBA": 1,
+            "NFL": 1
+          },
+          "college_governance_count": 0,
+          "college_restricted_states": [],
+          "heat_score": 92.45,
+          "heat_band": "blazing",
+          "data_status": "modelled-working",
+          "display_flag": "MODELLED_HEAT",
+          "source_ids": [
+            "dataforseo_google_trends_fanduel_series",
+            "fanduel_fixture_calendar_manifest_v1"
+          ]
+        },
+        "feb_peak_date": "2026-02-08"
+      }
+    },
+    {
+      "id": "heat_march_madness_hot",
+      "expectation": "March Madness opening rounds produce the March 2026 heat peak.",
+      "pass": true,
+      "values": {
+        "march_peak_date": "2026-03-19",
+        "march_peak": {
+          "date": "2026-03-19",
+          "month": "2026-03",
+          "trend_index": 50,
+          "fixture_load": 118.8,
+          "fixture_count": 1,
+          "top_fixture_ids": [
+            "college_basketball_20260319_march_madness_opening_rounds"
+          ],
+          "sport_mix": {
+            "College": 1
+          },
+          "college_governance_count": 1,
+          "college_restricted_states": [
+            "MA",
+            "NY",
+            "OH",
+            "PA",
+            "TN"
+          ],
+          "heat_score": 81.51,
+          "heat_band": "hot",
+          "data_status": "modelled-working",
+          "display_flag": "MODELLED_HEAT",
+          "source_ids": [
+            "dataforseo_google_trends_fanduel_series",
+            "fanduel_fixture_calendar_manifest_v1"
+          ]
+        }
+      }
+    }
+  ],
+  "actuals_reference": {
+    "2026-02": {
+      "actual_spend": 145979013.3,
+      "conversions": 559766.36,
+      "sessions": 26741141,
+      "display_flag": "SYNTHETIC",
+      "source": "sde"
+    },
+    "2026-03": {
+      "actual_spend": 131531748.2,
+      "conversions": 505032.82,
+      "sessions": 25699062,
+      "display_flag": "SYNTHETIC",
+      "source": "sde"
+    },
+    "2026-09": {
+      "actual_spend": 0,
+      "conversions": 0,
+      "sessions": 0,
+      "display_flag": "SYNTHETIC",
+      "source": "sde"
+    }
+  },
+  "pass": true
+}
