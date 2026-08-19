@@ -1,0 +1,363 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <title>Admiral AI Media Planner Prototype</title>
+    <link rel="icon" href="./favicon.svg?v=2" type="image/svg+xml" />
+    <link rel="stylesheet" href="./styles.css?v=25" />
+    <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script defer src="https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script defer src="./app.js?v=51"></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark" aria-hidden="true">
+            <img src="./assets/admiral-logo-white.svg" alt="" style="width:100%;height:100%;object-fit:contain;">
+          </div>
+          <div>
+            <strong>ADMIRAL</strong>
+            <span>AI Media Planner &middot; Prototype V1</span>
+          </div>
+        </div>
+
+        <nav class="nav-list" aria-label="Prototype views">
+          <button class="nav-item active" type="button" data-view="current-plan">
+            <i data-lucide="shield-check"></i>
+            Current Plan
+          </button>
+          <button class="nav-item" type="button" data-view="annual">
+            <i data-lucide="calendar-range"></i>
+            Annual Planning
+          </button>
+          <button class="nav-item" type="button" data-view="scenarios">
+            <i data-lucide="split"></i>
+            Scenarios
+          </button>
+          <button class="nav-item" type="button" data-view="monthly">
+            <i data-lucide="refresh-cw"></i>
+            Monthly Revision
+          </button>
+          <button class="nav-item" type="button" data-view="chat">
+            <i data-lucide="message-square-text"></i>
+            Plan Interrogation
+          </button>
+          <button class="nav-item" type="button" data-view="events">
+            <i data-lucide="calendar-days"></i>
+            Events Calendar
+          </button>
+          <button class="nav-item" type="button" data-view="approval">
+            <i data-lucide="badge-check"></i>
+            Approval
+          </button>
+          <button class="nav-item" type="button" data-view="briefing">
+            <i data-lucide="file-pen-line"></i>
+            Briefing Forms
+          </button>
+          <button class="nav-item" type="button" data-view="admin">
+            <i data-lucide="settings"></i>
+            Admin
+          </button>
+        </nav>
+
+        <div class="sidebar-note">
+          <span>Synthetic V1</span>
+          <p>Numbers are for workflow and architecture testing only.</p>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Admiral UK</p>
+            <h1>Planning Workspace</h1>
+          </div>
+          <div class="agency-credit" title="In partnership with TAU">
+            <span>In partnership with</span>
+            <img class="agency-logo" src="./assets/TAU_Logo.png" alt="TAU" />
+          </div>
+        </header>
+
+        <section class="view active" id="view-current-plan">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Current Plan</p>
+                <h2>Approved Annual Plan</h2>
+              </div>
+            </div>
+            <div id="currentPlanView"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-annual">
+          <section class="panel brief-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Step 1</p>
+                <h2>Brief &amp; Budget Intake</h2>
+              </div>
+              <span class="status-pill warning" id="briefStatusPill">Awaiting upload</span>
+            </div>
+
+            <p class="table-hint">Both a budget file <strong>and</strong> a strategy source are required to generate a plan - upload the annual budget file below, plus either an annual brief file or typed context. This applies even if your brief document already contains the budget figures; the budget still needs to be uploaded separately so the engine can read it as structured data.</p>
+
+            <div class="grid two-column" id="uploadControls">
+              <div>
+                <label class="field-label" for="budgetFileInput">Annual budget (.csv or .xlsx), required</label>
+                <input type="file" id="budgetFileInput" accept=".csv,.xlsx" />
+
+                <label class="field-label" for="briefFileInput">Annual brief (.docx, .pdf or .txt), strategy - one of brief file or context required</label>
+                <input type="file" id="briefFileInput" accept=".docx,.pdf,.txt" />
+
+                <div class="assumption-box" id="viewerRestrictedNotice" style="display:none;">
+                  <strong>Viewer access</strong>
+                  <p class="table-hint">Viewers can review the approved plan and ask questions in Plan Interrogation, but cannot upload a budget or generate a new plan. Switch to an Admin or User role to do that.</p>
+                </div>
+
+                <ul class="check-list" id="briefChecks"></ul>
+
+                <div class="assumption-box" id="briefContextBox" style="display:none;">
+                  <strong>Uploaded brief context</strong>
+                  <p class="table-hint" id="briefTextPreview"></p>
+                </div>
+              </div>
+              <div class="context-column">
+                <label class="field-label" for="briefTextContext">Additional context (free text), strategy - one of brief file or context required</label>
+                <textarea id="briefTextContext" placeholder="e.g. strategic priorities, guardrails, or notes not captured in an uploaded brief document"></textarea>
+              </div>
+            </div>
+          </section>
+
+          <section class="panel scenario-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Step 2</p>
+                <h2>Channel Investment Guardrails</h2>
+              </div>
+              <button class="secondary-button" id="resetChannelGuardrails" type="button">Reset guardrails</button>
+            </div>
+            <p class="table-hint">Set a minimum and maximum share of budget each channel is allowed for this run, regardless of what the model would otherwise allocate.</p>
+            <div id="channelGuardrails" class="admin-readiness"></div>
+          </section>
+
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Step 3</p>
+                <h2>Data Readiness</h2>
+              </div>
+              <button class="icon-button" id="refreshDataReadiness" type="button" title="Refresh">
+                <i data-lucide="refresh-cw"></i>
+              </button>
+            </div>
+            <div id="dataReadinessTableWrap"></div>
+          </section>
+
+          <section class="panel plan-panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Step 4</p>
+                <h2>Base Plan - Budget By Channel By Month</h2>
+              </div>
+              <div class="view-toggle" aria-label="Table display">
+                <button class="toggle active" type="button" data-table-mode="budget">Budget</button>
+                <button class="toggle" type="button" data-table-mode="cpa">CPA</button>
+                <button class="toggle" type="button" data-table-mode="share">Share %</button>
+                <button class="toggle" type="button" data-table-mode="confidence">Confidence</button>
+              </div>
+              <button class="secondary-button" id="exportAnnualPlan" type="button">Export plan (CSV)</button>
+              <button class="secondary-button" id="downloadPlanExcel" type="button">Download plan (Excel)</button>
+            </div>
+            <div id="generateControls">
+              <button class="primary-button" id="generateAnnualPlan" type="button">Generate base plan</button>
+              <p class="table-hint warning-text" id="generateGateMessage"></p>
+              <p class="table-hint" id="generateStatus"></p>
+            </div>
+            <section class="status-strip" aria-label="Current plan status">
+              <div>
+                <span>Total Budget</span>
+                <strong id="totalBudget">-</strong>
+              </div>
+              <div>
+                <span>Forecast Acquisitions</span>
+                <strong id="totalAcquisitions">-</strong>
+              </div>
+              <div>
+                <span>Forecast CPA</span>
+                <strong id="forecastCpa">-</strong>
+              </div>
+              <div>
+                <span>Budget Check</span>
+                <strong id="budgetCheck">-</strong>
+              </div>
+              <div>
+                <span>Brief Test</span>
+                <strong id="briefTest">-</strong>
+              </div>
+            </section>
+            <div class="table-wrap">
+              <table class="plan-table" id="planTable"></table>
+            </div>
+            <p class="table-hint">Select a cell to inspect evidence, rationale and questions raised. Rows are still shown per the underlying planning channel; grouped totals are in the summary below.</p>
+          </section>
+
+          <section class="panel evidence-panel">
+            <div class="section-heading compact">
+              <h2>Evidence Inspector</h2>
+              <span id="selectedCellLabel" class="muted">No cell selected</span>
+            </div>
+            <div id="evidenceInspector" class="empty-state">
+              Select a month/channel cell to see the rationale.
+            </div>
+          </section>
+
+          <section class="panel">
+            <div class="section-heading compact">
+              <h2>Annual Channel Summary</h2>
+              <span class="muted">Grouped to v1 channel granularity</span>
+              <div class="view-toggle" id="summaryChartToggle" aria-label="Chart display">
+                <button class="toggle active" type="button" data-summary-chart-mode="monthly">Monthly bars</button>
+                <button class="toggle" type="button" data-summary-chart-mode="bubble">Bubble</button>
+              </div>
+            </div>
+            <div id="channelSummary" class="summary-list"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-logic">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Workshop Surface</p>
+                <h2>Questions This Prototype Is Designed To Lock Down</h2>
+              </div>
+            </div>
+            <div id="logicHarness" class="logic-harness"></div>
+            <div id="logicChallenges" class="challenge-list"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-scenarios">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Scenario Centre</p>
+                <h2>Compare Strategic Options</h2>
+              </div>
+              <span class="status-pill good">Deterministic</span>
+            </div>
+            <div id="scenarioBaselineNotice"></div>
+            <div id="scenarioBuilder" class="scenario-builder"></div>
+            <div id="preferredScenarioPanel" class="preferred-scenario-panel"></div>
+            <div id="scenarioComparison" class="scenario-comparison"></div>
+          </section>
+          <section class="panel" id="scenarioDrilldownPanel" style="display:none;"></section>
+        </section>
+
+        <section class="view" id="view-monthly">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Monthly Revision</p>
+                <h2>Monthly Revision Loop</h2>
+              </div>
+              <span class="status-pill warning">Synthetic actuals</span>
+            </div>
+            <div id="monthlyRevision" class="monthly-revision"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-chat">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Plan Interrogation</p>
+                <h2>Plan Interrogation</h2>
+              </div>
+              <span class="status-pill warning">LLM explain boundary</span>
+            </div>
+            <div id="planChat" class="plan-chat"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-events">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Calendar</p>
+                <h2>Draws, Holidays, Media Moments And Context</h2>
+              </div>
+              <span class="status-pill good">Research enriched</span>
+            </div>
+            <div id="eventsCalendar"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-briefing">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Output Draft</p>
+                <h2>Channel Briefing Forms</h2>
+              </div>
+              <button class="secondary-button" id="exportBriefs" type="button">Export briefs</button>
+            </div>
+            <div id="briefingForms"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-admin">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Admin</p>
+                <h2>Tool Configuration</h2>
+              </div>
+            </div>
+            <div id="adminPage" class="approval-state"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-architecture">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Experimental Mode</p>
+                <h2>Agent Traces And Logic Guardrails</h2>
+              </div>
+              <span class="status-pill warning">LLM bounded</span>
+            </div>
+            <div id="agentModeSummary" class="agent-mode-summary"></div>
+            <div id="agentTracePanel" class="agent-trace-panel"></div>
+            <div class="section-heading compact agent-graph-heading">
+              <h2>Agent Logic Configurator</h2>
+              <span class="muted">Prototype saves local overrides only</span>
+            </div>
+            <div id="agentLogicConfigurator" class="agent-configurator"></div>
+            <div class="section-heading compact agent-graph-heading">
+              <h2>Agent Graph Shape</h2>
+              <span class="muted">Same plan object, different reasoning layer</span>
+            </div>
+            <div class="agent-flow" id="agentFlow"></div>
+          </section>
+        </section>
+
+        <section class="view" id="view-approval">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Approval</p>
+                <h2>Approve A Stored Plan</h2>
+              </div>
+            </div>
+            <div class="approval-state" id="approvalState"></div>
+          </section>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>

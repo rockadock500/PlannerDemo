@@ -1,0 +1,57 @@
+{
+  "source_id": "ppl_2026_media_briefing_docx",
+  "source_file": "/Users/robwebster/Documents/PPL Planner/2026 Media Briefing.docx",
+  "objective": "Exceed annual ticket sales target and reduce CPA",
+  "ticket_target": 1000000,
+  "brief_budget_gbp": 65000000,
+  "brief_cpa_gbp": 65,
+  "targeting": "RTN plus growth personas",
+  "planning_priorities": [
+    {
+      "priority_id": "april_december_tentpoles",
+      "label": "April and December draw tentpoles",
+      "brief_text_summary": "Maximise sales impact of April and December draw tentpole campaigns; plan activations early and focus on efficiency, attention and incremental sales."
+    },
+    {
+      "priority_id": "july_august_football_context",
+      "label": "July/August football-themed context",
+      "brief_text_summary": "No third FIFA World Cup tentpole; combine July and August budgets/prize plan with contextual football-themed TV creative and prize message."
+    },
+    {
+      "priority_id": "may_new_creative_platform",
+      "label": "May new creative platform",
+      "brief_text_summary": "Support launch without fundamental media strategy change; maintain phasing towards deadline week and proven campaign tactics."
+    },
+    {
+      "priority_id": "greater_london_growth",
+      "label": "Greater London growth opportunity",
+      "brief_text_summary": "Demonstrate a combined strategic comms and media approach for incremental ticket sales in Greater London within the existing budget."
+    },
+    {
+      "priority_id": "gameshow_series_two",
+      "label": "Gameshow return",
+      "brief_text_summary": "Series two is planned as incremental budget above the media budget, with in-break BAU activation; consider improvements for 2026."
+    },
+    {
+      "priority_id": "free_ticket_tactical_only",
+      "label": "Free ticket tactical use only",
+      "brief_text_summary": "No broad free ticket promotion expected in 2026, but can be used tactically within high-profile partnerships such as Amazon or Google."
+    },
+    {
+      "priority_id": "channel_role_clarity",
+      "label": "Channel role clarity",
+      "brief_text_summary": "Provide clarity on OOH, audio, cinema, Sky Sports, Amazon, Display, Social and Search roles."
+    },
+    {
+      "priority_id": "commercial_deals",
+      "label": "Commercial opportunity strategy",
+      "brief_text_summary": "Review media savings/value beyond guarantees and consider Global, Channel 4 and direct ITV deal opportunities."
+    },
+    {
+      "priority_id": "testing_framework",
+      "label": "2026 testing framework",
+      "brief_text_summary": "Agree a testing framework based on growth opportunities in collaboration with media investment and insight teams."
+    }
+  ]
+}
+

@@ -1,0 +1,59 @@
+{
+  "brief_id": "annual_brief_2026_ppl_source_v1",
+  "client": "Postcode Lottery Group",
+  "planning_year": 2026,
+  "brief_type": "annual",
+  "prototype_status": "ppl_source_plus_synthetic_v1",
+  "total_budget_gbp": 65674851,
+  "brief_stated_budget_gbp": 65000000,
+  "total_acquisition_target": 1000000,
+  "primary_kpi": "new_ticket_holders",
+  "secondary_kpi": "CPA",
+  "plan_scope": {
+    "dr_and_atl": "combined",
+    "annual_plan": true,
+    "future_month_revisions_allowed": true,
+    "monthly_planner_in_scope_v1": false,
+    "excel_export_in_scope_v1": false
+  },
+  "required_inputs": [
+    "budget_by_month",
+    "acquisition_targets_by_month",
+    "draw_calendar",
+    "brand_guardrails",
+    "strategy_prompt"
+  ],
+  "brand_guardrails": [
+    "No under-25 skewed environments",
+    "Avoid gambling adjacency",
+    "Avoid sensitive political adjacency",
+    "Avoid children's content adjacency",
+    "Maintain charitable/community positioning"
+  ],
+  "default_strategy_prompt": "Create an annual plan that exceeds the ticket sales target, reduces CPA, protects RTN performance, and develops growth personas with specific attention to April/December tentpoles and Greater London.",
+  "brief_priorities": [
+    "April and December draw tentpoles",
+    "Greater London incremental ticket opportunity",
+    "July/August football-themed TV creative and prize plan context",
+    "May new creative platform",
+    "OOH, audio, cinema, Sky Sports, Amazon, Display, Social and Search role clarity",
+    "Global, Channel 4 and ITV direct commercial opportunities",
+    "2026 growth testing framework"
+  ],
+  "source_ids": [
+    "ppl_2026_media_briefing_docx",
+    "ppl_2026_budget_targets_xlsx",
+    "ppl_mmm_june22_april23_pptx",
+    "scope_pdf_page_17",
+    "scope_pdf_page_22",
+    "agent_architecture_blueprint",
+    "user_clarification_2026_06_26"
+  ],
+  "caveats": [
+    "PPL sample brief, budget workbook and MMM deck are now connected as local extracted sources.",
+    "Roivenue, Redshift, Snowflake, Experian, live Kanso updates and ratecard data are not connected.",
+    "Draw calendar remains synthetic beyond the month/draw labels in the budget workbook.",
+    "Media-owner cost and response assumptions are synthetic.",
+    "Prototype should be used to test workflow, architecture and evidence mechanics, not final investment advice."
+  ]
+}

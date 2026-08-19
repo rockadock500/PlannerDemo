@@ -1,0 +1,63 @@
+{
+  "weather_id": "ppl_weather_intelligence_v1",
+  "created_for": "Postcode Lottery Group 2026 planning prototype",
+  "source_status": "long_term_average_proxy_not_live_weather",
+  "source_ids": ["met_office_climate_averages", "ppl_2026_brief_priorities", "ppl_planning_evidence_rules_2026"],
+  "principles": [
+    "Weather should usually change creative, copy, channel phasing or tactical triggers before it changes annual budget.",
+    "Average monthly weather is planning context, not a forecast.",
+    "Live weather should only trigger action when a production connector, threshold and approval rule exist.",
+    "Weather logic must distinguish national AV/CTV consumption effects from local OOH and postcode-level effects."
+  ],
+  "monthly_averages": [
+    {"month": "2026-01", "season": "winter", "temperature_band": "cold", "rainfall_band": "wet", "daylight_band": "low", "planning_read": "Indoor family media and evening co-viewing are relatively strong.", "recommended_actions": ["AV continuity", "CTV co-viewing copy", "Avoid weather-led OOH claims"], "source_ids": ["met_office_climate_averages"]},
+    {"month": "2026-02", "season": "winter", "temperature_band": "cold", "rainfall_band": "moderate", "daylight_band": "low", "planning_read": "Half-term and indoor routines can lift daytime family media availability.", "recommended_actions": ["Family creative variant", "CTV/YouTube family test", "Paid Social parent segments"], "source_ids": ["met_office_climate_averages"]},
+    {"month": "2026-03", "season": "spring", "temperature_band": "cool", "rainfall_band": "moderate", "daylight_band": "rising", "planning_read": "Spring optimism can support prize storytelling, but weather is variable.", "recommended_actions": ["Audio earlier-month support", "AV emotional reach", "Search deadline triggers"], "source_ids": ["met_office_climate_averages", "ppl_planning_evidence_rules_2026"]},
+    {"month": "2026-04", "season": "spring", "temperature_band": "mild", "rainfall_band": "showery", "daylight_band": "rising", "planning_read": "Easter and changeable spring weather make flexible creative useful.", "recommended_actions": ["Weather-adaptive social copy", "OOH London test only with local context", "Long-weekend AV"], "source_ids": ["met_office_climate_averages", "ppl_2026_brief_priorities"]},
+    {"month": "2026-05", "season": "spring", "temperature_band": "mild", "rainfall_band": "moderate", "daylight_band": "high", "planning_read": "A good month for creative learning because outdoor optimism rises but budget is lower.", "recommended_actions": ["Creative platform testing", "Social weather copy variants", "Do not over-read performance"], "source_ids": ["met_office_climate_averages", "ppl_2026_brief_priorities"]},
+    {"month": "2026-06", "season": "summer", "temperature_band": "warm", "rainfall_band": "moderate", "daylight_band": "high", "planning_read": "Warmer weather and World Cup viewing can shift attention between outdoor activity and screen moments.", "recommended_actions": ["Fixture-aware AV", "CTV football-context test", "Mobile/social sunny-day creative"], "source_ids": ["met_office_climate_averages", "ppl_planning_evidence_rules_2026"]},
+    {"month": "2026-07", "season": "summer", "temperature_band": "warm", "rainfall_band": "moderate", "daylight_band": "high", "planning_read": "Summer holidays and warm spells can reduce routine media but create outdoor/mobile moments.", "recommended_actions": ["Avoid broad AV overpay", "Mobile social creative", "Search deadline capture"], "source_ids": ["met_office_climate_averages"]},
+    {"month": "2026-08", "season": "summer", "temperature_band": "warm", "rainfall_band": "moderate", "daylight_band": "high", "planning_read": "Late summer and bank holiday weather can create strong local mobility but weaker routine response.", "recommended_actions": ["Local OOH weather check", "Paid Social family reset", "Keep deterministic budget lean"], "source_ids": ["met_office_climate_averages"]},
+    {"month": "2026-09", "season": "autumn", "temperature_band": "mild", "rainfall_band": "moderate", "daylight_band": "falling", "planning_read": "Back-to-school routine reset makes weather less important than habit re-entry.", "recommended_actions": ["Routine reset messaging", "London OOH learning", "Display prospecting"], "source_ids": ["met_office_climate_averages", "ppl_2026_brief_priorities"]},
+    {"month": "2026-10", "season": "autumn", "temperature_band": "cool", "rainfall_band": "wet", "daylight_band": "falling", "planning_read": "Darker evenings and wetter weather can support indoor media, but approval governance is the bigger job.", "recommended_actions": ["QA review", "CTV/AV readiness", "November trigger thresholds"], "source_ids": ["met_office_climate_averages"]},
+    {"month": "2026-11", "season": "autumn", "temperature_band": "cool", "rainfall_band": "wet", "daylight_band": "low", "planning_read": "Wet, dark evenings suit AV and indoor channels, but retail noise and November budget scale need discipline.", "recommended_actions": ["AV bedrock", "Audio earlier support", "Search deadline triggers", "Do not let weather justify weak evidence"], "source_ids": ["met_office_climate_averages", "ppl_planning_evidence_rules_2026"]},
+    {"month": "2026-12", "season": "winter", "temperature_band": "cold", "rainfall_band": "wet", "daylight_band": "low", "planning_read": "Festive indoor co-viewing is strong, but disruption and short deadlines need caveats.", "recommended_actions": ["AV festive reach", "Paid Search deadline capture", "Direct Mail delivery caution"], "source_ids": ["met_office_climate_averages", "ppl_planning_evidence_rules_2026"]}
+  ],
+  "live_weather_triggers": [
+    {
+      "trigger_id": "heavy_rain_or_storm",
+      "condition": "Sustained heavy rain, named storm or transport disruption in priority regions",
+      "default_action": "Move from outdoor optimism to indoor/family/TV copy. Check OOH delivery and avoid insensitive creative.",
+      "channel_actions": ["CTV/AV indoor copy", "Paid Social weather-safe copy", "OOH delivery check"],
+      "approval_rule": "Requires planner review before any budget movement."
+    },
+    {
+      "trigger_id": "heatwave_or_hot_spell",
+      "condition": "Extended high-temperature spell or public health heat alert",
+      "default_action": "Use light creative and mobile/social timing carefully. Avoid pressure-heavy messaging during discomfort.",
+      "channel_actions": ["Mobile social daypart check", "OOH shade/location check", "Avoid generic urgency copy"],
+      "approval_rule": "Creative and phasing changes only unless deterministic re-plan is approved."
+    },
+    {
+      "trigger_id": "sunny_bank_holiday",
+      "condition": "Sunny forecast around a bank holiday or school holiday window",
+      "default_action": "Consider local mobility and family-outing creative, especially in London test areas.",
+      "channel_actions": ["OOH local context", "Paid Social family-outing variant", "Search deadline capture"],
+      "approval_rule": "No automatic budget increase."
+    },
+    {
+      "trigger_id": "cold_snap",
+      "condition": "Below-average cold snap with high indoor media consumption likelihood",
+      "default_action": "Lean into home, family and evening co-viewing creative.",
+      "channel_actions": ["AV/CTV co-viewing", "Audio commute/weather context", "Paid Social home creative"],
+      "approval_rule": "Creative switch can be pre-approved; budget remains deterministic."
+    }
+  ],
+  "agent_questions": [
+    "Which weather conditions should change creative only versus phasing or budget?",
+    "Which geographies need weather-sensitive OOH rules?",
+    "Who approves a weather-triggered change during a live draw window?",
+    "What live weather source and threshold should production use?",
+    "How should weather effects be measured without confusing them with draw timing?"
+  ]
+}

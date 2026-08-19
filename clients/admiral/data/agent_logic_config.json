@@ -1,0 +1,84 @@
+{
+  "config_id": "ppl_agent_logic_config_v1",
+  "config_status": "demo_editable",
+  "storage_model": "Static defaults with browser localStorage overrides in the prototype. Production should store immutable config versions.",
+  "one_way_door_rules": [
+    "Agents cannot mutate numeric plan state.",
+    "Agents cannot mark approval complete.",
+    "Agents cannot create source truth.",
+    "Suggested changes require deterministic re-planning.",
+    "Warnings are terminal and must not loop."
+  ],
+  "agents": [
+    {
+      "agent_id": "rationale_agent",
+      "label": "Rationale Agent",
+      "mode": "live_llm_bounded",
+      "owns": "Explains deterministic plan choices using structured plan rows, source IDs and calendar context.",
+      "must_not": "Change budgets, forecasts, channel allocation, approval state or evidence strength.",
+      "input_objects": ["plan_version", "source_registry", "enriched_calendar", "eval_summary"],
+      "output_schema": ["status", "summary", "findings.type", "findings.title", "findings.detail", "findings.source_ids", "findings.source_status"],
+      "allowed_finding_types": ["rationale", "risk", "missing_data", "suggested_change", "question"],
+      "max_findings": 4,
+      "detail_word_limit": 45,
+      "retry_policy": "json_mode_then_minified_repair_once",
+      "eval_checks": ["typed_findings", "source_id_resolves", "no_forbidden_state_change", "no_budget_mutation"]
+    },
+    {
+      "agent_id": "qa_agent",
+      "label": "QA Agent",
+      "mode": "live_llm_bounded",
+      "owns": "Critiques plan risk, missing evidence, target gaps, weak sources and contradictions.",
+      "must_not": "Block a warning-state plan unless deterministic checks mark it blocked.",
+      "input_objects": ["plan_version", "brief_test", "qa_report", "source_registry", "agent_traces"],
+      "output_schema": ["status", "summary", "findings.type", "findings.title", "findings.detail", "findings.source_ids", "findings.source_status"],
+      "allowed_finding_types": ["risk", "missing_data", "suggested_change", "question"],
+      "max_findings": 4,
+      "detail_word_limit": 45,
+      "retry_policy": "json_mode_then_minified_repair_once",
+      "eval_checks": ["target_gap_called_out", "missing_sources_tagged", "no_looping_warning", "no_approval_mutation"]
+    },
+    {
+      "agent_id": "question_agent",
+      "label": "Question Agent",
+      "mode": "live_llm_bounded",
+      "owns": "Asks the planning team precise questions needed to improve logic, data and approval design.",
+      "must_not": "Ask generic questions or repeat known missing-data warnings without a next decision.",
+      "input_objects": ["plan_version", "workshop_questions", "eval_summary", "calendar_questions"],
+      "output_schema": ["status", "summary", "findings.type", "findings.title", "findings.detail", "findings.source_ids", "findings.source_status"],
+      "allowed_finding_types": ["question", "risk", "missing_data"],
+      "max_findings": 4,
+      "detail_word_limit": 45,
+      "retry_policy": "json_mode_then_minified_repair_once",
+      "eval_checks": ["specific_questions", "decision_owner_visible", "no_state_mutation"]
+    },
+    {
+      "agent_id": "calendar_agent",
+      "label": "Calendar Agent",
+      "mode": "represented_ready",
+      "owns": "Explains whether calendar moments should change creative, phasing, channel mix or just context.",
+      "must_not": "Treat proxy calendar events, weather averages or seasonal assumptions as confirmed live triggers.",
+      "input_objects": ["enriched_calendar", "weather_intelligence", "plan_version", "source_registry"],
+      "output_schema": ["status", "summary", "findings.type", "findings.title", "findings.detail", "findings.source_ids", "findings.source_status"],
+      "allowed_finding_types": ["rationale", "risk", "missing_data", "suggested_change", "question"],
+      "max_findings": 5,
+      "detail_word_limit": 45,
+      "retry_policy": "json_mode_then_minified_repair_once",
+      "eval_checks": ["proxy_marked", "weather_not_live_overclaimed", "suggested_changes_require_replan"]
+    },
+    {
+      "agent_id": "scenario_agent",
+      "label": "Scenario Agent",
+      "mode": "represented_ready",
+      "owns": "Turns human strategy intent into proposed scenario weights and constraints.",
+      "must_not": "Directly edit generated allocations or bypass deterministic scenario generation.",
+      "input_objects": ["scenario_config", "plan_version", "brief_test", "source_registry"],
+      "output_schema": ["status", "summary", "proposed_weights", "constraints", "source_ids", "source_status"],
+      "allowed_finding_types": ["suggested_change", "risk", "question"],
+      "max_findings": 4,
+      "detail_word_limit": 45,
+      "retry_policy": "json_mode_then_minified_repair_once",
+      "eval_checks": ["weights_in_range", "requires_replan", "no_allocation_mutation"]
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+{
+  "source_id": "uk_sports_events_2026_curated",
+  "note": "Hand-curated list of major UK-relevant sports events for 2026, deliberately maintained by hand rather than pulled from a live sports API - low cardinality and stability make a live feed poor value versus a short maintained list (see conversation). Verified against public event calendars 2026-07-13. Does not duplicate the FIFA World Cup 2026 windows already covered in ppl_enriched_calendar_2026.json.",
+  "curated_on": "2026-07-13",
+  "events": [
+    {
+      "event_id": "winter_olympics_2026",
+      "name": "Winter Olympics (Milano Cortina)",
+      "date_start": "2026-02-06",
+      "date_end": "2026-02-22",
+      "planning_implication": "UK broadcast audience but not a home Games - some AV/CTV attention-share shift through February, lower cultural salience than a home event.",
+      "source_ids": ["winter_olympics_milano_cortina_2026"]
+    },
+    {
+      "event_id": "six_nations_2026",
+      "name": "Six Nations Rugby",
+      "date_start": "2026-02-05",
+      "date_end": "2026-03-14",
+      "planning_implication": "Recurring weekend AV audience spikes through Feb-Mar with strong home-nations pull, particularly around Wales and Scotland fixture weekends.",
+      "source_ids": ["six_nations_rugby_2026"]
+    },
+    {
+      "event_id": "fa_cup_final_2026",
+      "name": "FA Cup Final",
+      "date_start": "2026-05-16",
+      "date_end": "2026-05-16",
+      "planning_implication": "Single-day mass-audience AV moment with UK-wide reach - a moment to avoid competing broadly for attention rather than a spend trigger.",
+      "source_ids": ["fa_cup_final_2026"]
+    },
+    {
+      "event_id": "royal_ascot_2026",
+      "name": "Royal Ascot",
+      "date_start": "2026-06-16",
+      "date_end": "2026-06-20",
+      "planning_implication": "Niche but affluent-skewing racing week - limited relevance outside targeted OOH or press context.",
+      "source_ids": ["royal_ascot_2026"]
+    },
+    {
+      "event_id": "wimbledon_2026",
+      "name": "Wimbledon",
+      "date_start": "2026-06-29",
+      "date_end": "2026-07-12",
+      "planning_implication": "High-reach national AV moment, especially finals weekend - fragments daytime TV attention across the fortnight.",
+      "source_ids": ["wimbledon_2026"]
+    },
+    {
+      "event_id": "british_grand_prix_2026",
+      "name": "British Grand Prix (Silverstone)",
+      "date_start": "2026-07-02",
+      "date_end": "2026-07-05",
+      "planning_implication": "Motorsport-skewing national attention moment, single race weekend - modest AV/social context, not a mass tentpole.",
+      "source_ids": ["british_grand_prix_2026"]
+    },
+    {
+      "event_id": "open_championship_2026",
+      "name": "The Open Championship (Royal Birkdale)",
+      "date_start": "2026-07-12",
+      "date_end": "2026-07-19",
+      "planning_implication": "Golf-skewing older/affluent AV audience week - limited mass-market relevance.",
+      "source_ids": ["open_championship_2026"]
+    },
+    {
+      "event_id": "commonwealth_games_glasgow_2026",
+      "name": "Commonwealth Games (Glasgow)",
+      "date_start": "2026-07-23",
+      "date_end": "2026-08-02",
+      "planning_implication": "Home Games in Scotland - meaningful national pride and AV/CTV attention moment, with particular relevance for Scotland-specific creative or geo weighting.",
+      "source_ids": ["commonwealth_games_glasgow_2026"]
+    }
+  ]
+}

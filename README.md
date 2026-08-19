@@ -1,88 +1,81 @@
 # Planner Demo
 
-A client-facing media planner dashboard, built fresh for customization — separate from
-[David OS App](https://github.com/rockadock500/David-OS-App), but using the same tooling
-(Claude Code, Vercel, Railway).
+A client-facing media planner dashboard for **Admiral** (car insurance), built for customization —
+separate from [David OS App](https://github.com/rockadock500/David-OS-App), but using the same
+tooling (Claude Code, Vercel, Railway).
 
-## Status: working demo, running locally
+## Status: working demo, running locally and deployed
 
 ```bash
 npm install
 npm run dev:server
-# → http://localhost:4000/clients/fanduel/demo/
+# → http://localhost:4000/clients/admiral/demo/
 ```
 
-This serves the full FanDuel Planning OS reconstruction end to end — Planning OS, Flightpath,
-Calendar, Reporting, Recommendations, Attribution & Incrementality, Insights, Creative
-Intelligence, Audience, Regulation — all reading real data files, no database required. The one
-thing intentionally not built yet is the AI chat backend (see below) — everything else works.
+Deployed at `https://planner-demo-production.up.railway.app/clients/admiral/demo/` (Railway,
+auto-deploys on push to `main`).
+
+## Foundation: rebuilt from the PPL prototype, not FanDuel
+
+This went through two false starts before landing on the current foundation:
+
+1. Cloned `TAURob-1/COGNITO` (a sales CRM, unrelated domain and stack) — moved to
+   `reference/cognito-crm-source/`.
+2. Reconstructed the FanDuel Planning OS demo from its live static assets — worked, but its
+   `app.js` turned out to have ~250+ hardcoded sportsbook/gambling-specific strings baked
+   directly into the data layer (product labels, state betting-availability tables, source
+   registry notes). Too much to rebrand cleanly. Moved to `reference/fanduel-attempt/`.
+3. **Current foundation**: reconstructed from the live PPL (Postcode Lottery) prototype at
+   `https://ppl-planner-web-production.up.railway.app/prototype/`, the same way — pulling every
+   static asset and data file. This one is domain-neutral: its ~4,500-line `app.js` has only 2
+   incidental PPL-specific strings in the entire file (an API URL and a download filename), both
+   fixed. Its views — Current Plan, Annual Planning, Scenarios, Monthly Revision, Plan
+   Interrogation, Events Calendar, Approval, Briefing Forms, Admin — are generic media-planning
+   concepts that apply to any client.
 
 ## Structure
 
 ```
-apps/server/          # Express app — serves the static client tree below. No DB, no chat yet.
-clients/fanduel/       # The live demo content (currently FanDuel's, as reconstructed placeholder data)
-  demo/                #   index.html, app.js, styles.css, etc. — static, no build step
-  data/                #   working data: curves, calendars, benchmarks, recommendations, etc.
-  config/              #   engine capabilities, planning modes, connector manifests
-  output/              #   generated_plan_*.json — pre-computed plan scenarios
-  plans/                #   plan manifest + one folder per plan_id (plan.json + meta.json)
-  actuals/             #   actuals manifest + monthly summary + coherence report
-universal/             # Shared cross-client reference data (US regulation, media minimums, etc.)
+apps/server/            # Express app — serves the static client tree below. No DB, no live API.
+clients/admiral/         # The live demo
+  demo/                  #   index.html, app.js, styles.css — static, no build step
+  data/                  #   PPL's bundled data files (plan scenarios, calendar, evidence rules,
+                         #   source registry) — still PPL's placeholder numbers, not Admiral's
 reference/
-  cognito-crm-source/  # Old COGNITO CRM code — not active, kept in case any of it is reusable
+  cognito-crm-source/    # Old CRM code — inactive, kept in case any of it is reusable
+  fanduel-attempt/       # First working demo, superseded — kept for reference only
 ```
 
-Swapping in a real client's numbers later is mostly a matter of replacing the JSON under
-`clients/<name>/` — the frontend has no build step, so there's nothing to recompile.
+## Branding
 
-## Where this repo came from
-
-This repo started as a clone of [`TAURob-1/COGNITO`](https://github.com/TAURob-1/COGNITO), on
-the assumption that repo held the architecture behind the media planner demo. It didn't —
-COGNITO is a sales CRM (pipeline, forecasting, companies), unrelated in domain and in stack. That
-code now lives in `reference/cognito-crm-source/` rather than being deleted, in case any of the
-plumbing (Docker setup, Google OAuth + session-cookie login pattern, config-per-agent loader) is
-useful later. None of it is wired up or active.
-
-The real target is the FanDuel Planning OS demo:
-`https://web-production-f21d6.up.railway.app/clients/fanduel/demo/`. No source repo for it was
-available, so `clients/fanduel/` and `universal/` were reconstructed by pulling every static
-asset and data file the live app's `app.js` references (including the plan-store files it
-fetches dynamically per `plans/manifest.json`).
-
-One clue surfaced during reconstruction worth chasing: `actuals/manifest.json` records its
-origin as `.../projects/planner-template-v2/sde/out/fanduel`, and the app's own error message
-(when data is missing) says *"Serve this folder from the planner-template-v2 root"* — meaning a
-complete real source repo called `planner-template-v2` likely exists (built by Rob per the file
-path). A few guessed repo names under `TAURob-1` weren't found — worth asking Rob directly if
-that repo can be located, since it would include the actual chat backend implementation we're
-currently missing.
-
-## What's genuinely reusable from COGNITO
-
-- `reference/cognito-crm-source/tau-backend/Dockerfile` / `tau-frontend/Dockerfile` — generic
-  container recipes.
-- `reference/cognito-crm-source/tau-backend/app/core/auth_web.py` +
-  `auth_routes.py` — Google OAuth + signed session-cookie login pattern (currently coupled to
-  the CRM's `users` table; would need adapting, not copying as-is).
-- `DEVELOPMENT_PRINCIPLES.md` (root) — TAU's general engineering rules (config-per-agent, split
-  frontend/backend, modularize), not CRM-specific.
+Colors and logo pulled directly from admiral.com:
+- **Magenta `#C20060`** and **navy `#0045A0`** — lifted from Admiral's own logo SVG.
+- The layout's `--red`/`--red-dark` variables (in `clients/admiral/demo/styles.css`) keep their
+  original names from the PPL layout — only the hex values changed, to Admiral's magenta. This is
+  the single primary-brand-color variable driving the sidebar masthead, active nav item, primary
+  buttons, and status pills — one change cascades everywhere, so future re-brands are a two-line
+  edit.
+- Admiral's real logo (white-recolored for the colored masthead) sits in
+  `clients/admiral/demo/assets/admiral-logo-white.svg`.
+- TAU's logo appears as the "in partnership with" credit in the top-right of the workspace header
+  (swapped in for PPL's original the7stars credit).
 
 ## Deliberately not built yet
 
-- **Chat backend** (`/api/chat`, `/api/sessions`) — `runtime-config.js` has the LLM flag turned
-  off, so the UI falls back to its deterministic/local narration mode instead of erroring. Flip
-  `enabled` back to `true` once a real endpoint exists.
-- **Real client data** — everything currently under `clients/fanduel/` is FanDuel's reconstructed
-  placeholder data, standing in until the actual client's numbers are ready.
-- **Deployment** — runs locally only so far; Railway/Vercel wiring is next.
+- **Live planning/chat API** — the real PPL prototype calls out to a separate live backend
+  (`ppl-planner-api-production.up.railway.app`) for scenario generation, chat, and plan import.
+  That's real generative logic, not just static data, and isn't replicated here. The static views
+  render fully without it; only the interactive/generative actions (e.g. "Generate base plan",
+  chat) would need it.
+- **Real Admiral data** — everything under `clients/admiral/data/` is still PPL's reconstructed
+  placeholder data (UK lottery draw calendars, PPL scenario names, etc.), standing in until
+  Admiral's actual numbers are ready.
+- **Deployment auth** — the Railway URL is public with no password gate. Worth adding before this
+  goes anywhere near an actual client review.
 
 ## Next steps
 
-1. Deploy `apps/server` to Railway (root directory `apps/server`, no env vars required yet).
-2. Decide the real client name and rename `clients/fanduel/` → `clients/<real-client>/` when its
-   data is ready.
-3. Build the chat backend when that becomes a priority.
-4. Try to track down `planner-template-v2` (see above) — a real source repo would save a lot of
-   rebuilding, and includes the chat implementation.
+1. Swap `clients/admiral/data/*.json` for Admiral's real planning data.
+2. Add a password gate before sharing the link externally.
+3. Decide whether the live planning/chat API is worth building, and if so, scope it separately —
+   it's a real backend service, not a small addition.

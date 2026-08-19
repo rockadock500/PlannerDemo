@@ -1,0 +1,276 @@
+{
+  "dictionary_version": "v1",
+  "source_file": "PL Media Planner Data.xlsx (Data Dictionary_Current sheet)",
+  "status": "work_in_progress",
+  "note": "This is the client's canonical list of data sources for the planner, not yet reconciled with the live-ingested Postgres source_records. Most Description/Data-quality fields are still blank in the source file - only Prior Month Draw Analysis, Event Calendar and Kanso have Description filled in so far. How-used fields have now been added by Claude for every source: they describe how each source WOULD feed the deterministic engine if it were fully wired in, grounded in the engine's existing mechanics (channel scoring, response curves, MMM evidence, brief-hooks tagging, guardrails). They are forward-looking / intended-use descriptions, not confirmations that the source is live today - as of this writing only Kanso (MMM reports), the Step 1 budget upload and the Step 1 strategy text actually drive the plan's numbers; Draw Analysis, Strategic Responses, ThinkBox and ActiveVoice have real documents ingested into Postgres but are not yet consumed by the engine's calculations; everything else has no live document at all. Categories below are Claude's own grouping (not present in the source spreadsheet, which is a flat list). The source spreadsheet had two near-duplicate rows, 'Historic Media Plans' and 'Historical Media Plans' - merged into the single 'Historic Media Plans' entry below.",
+  "categories": [
+    {
+      "category_id": "mmm_modelling",
+      "label": "MMM & Modelling",
+      "sources": [
+        {
+          "name": "Kanso",
+          "description": "Mixed Media Modelling for Postcode Lottery in PDF or Powerpoint",
+          "how_used": "Live today. Used to create the initial base plan, taking the high-level figures for a breakdown of budget per channel, and to add context to the LLM's and agents. Concretely: refresh_mmm_notes.py reads the newest report and writes mmm_note (analyst commentary) and mmm_optimal_share_pct (per-channel target share) into channel_evidence_notes, which the engine pulls live on every plan generation.",
+          "data_quality": "Most recent document no older than 6 months old, contains channel level granularity exported.",
+          "match_hints": ["mmm", "kanso", "ooh mmm data"]
+        },
+        {
+          "name": "LTV Model",
+          "description": "",
+          "how_used": "Would feed a lifetime-value weighting into channel scoring, so channels are ranked by the value of the customers they acquire rather than by upfront CPA alone - today the engine only optimises for cost-per-acquisition via the response_curve_priors fixture, with no lifetime-value adjustment.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Aquisition Model (see above)",
+          "description": "",
+          "how_used": "Would replace the response_curve_priors_2026 fixture as the live budget-to-acquisitions and budget-to-CPA transformation per channel and month, giving forecasts grounded in the client's own acquisition model instead of a static saturation curve.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Churn Model",
+          "description": "",
+          "how_used": "Would let channel scoring downweight channels that acquire higher-churn subscribers and upweight channels that acquire durable ones, sitting alongside MMM ROI and strategic weight in the per-channel score.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Attribution Model",
+          "description": "",
+          "how_used": "Would calibrate the MMM's channel ROI indices against real multi-touch attribution, and could replace prior_year_channel_mix_2025.csv as the starting 'prior' channel mix with an attribution-based cross-channel credit split instead of last year's raw spend mix.",
+          "data_quality": "",
+          "match_hints": []
+        }
+      ]
+    },
+    {
+      "category_id": "draw_sales_performance",
+      "label": "Draw & Sales Performance",
+      "sources": [
+        {
+          "name": "Prior Month Draw Analysis",
+          "description": "Powerpoint document containing analysis of the previous months draw",
+          "how_used": "Would feed the month-by-month draw_weight used to phase budget and channel scoring across the year - today that phasing comes from the static draw_calendar_2026 fixture, so real analysis of what drove the prior month's draw would let phasing react to actual recent performance instead of a fixed annual calendar.",
+          "data_quality": "Most recent document no older than 2 months, full coverage for the prior full year (Jan-Jan)",
+          "match_hints": ["draw analysis"]
+        },
+        {
+          "name": "Annual Draw Calendar",
+          "description": "",
+          "how_used": "Would replace the draw_calendar_2026 fixture directly, supplying the real per-month draw weight/importance figure used to scale channel scores by month.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Sales by day + postcode",
+          "description": "",
+          "how_used": "Would build a genuine geo/audience response signal in place of the synthetic geo_audience_proxy.csv, letting plans tilt toward postcodes and regions with the strongest current sales response - directly useful for scenarios like a Greater London growth tilt.",
+          "data_quality": "",
+          "match_hints": []
+        }
+      ]
+    },
+    {
+      "category_id": "briefs_plans_budgets",
+      "label": "Briefs, Plans & Budgets",
+      "sources": [
+        {
+          "name": "Historical Media Briefs",
+          "description": "",
+          "how_used": "Would give the brief-hooks tagger (the Gemini step that reads the Step 1 strategy text) a taxonomy of priorities and tags drawn from real past briefs, rather than the current fixed known-tag list in planning_evidence_rules_2026 - so recurring priorities are recognised consistently run over run instead of the model inventing a fresh tag each time.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Historic Media Plans",
+          "description": "",
+          "how_used": "Would let a newly generated plan's channel mix be checked against what was actually approved and run in prior years, as a QA sanity check on engine output - today the only historical reference is the prior_year_channel_mix_2025.csv fixture used to seed the starting channel 'prior'.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Current Annual Budget by Channel",
+          "description": "",
+          "how_used": "Live today, per run. This is what the user uploads in Step 1 of Annual Planning; plan_upload.py parses it directly into the plan's total budget, monthly split and (where present) acquisition/CPA targets.",
+          "data_quality": "",
+          "match_hints": [],
+          "flagged_in_source": true
+        },
+        {
+          "name": "Campaign Cycle",
+          "description": "",
+          "how_used": "Would define the client's actual recurring draw/campaign rhythm (e.g. weekly vs rollover draws) so month-level phasing reflects the real campaign calendar rather than a generic monthly draw weight.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Budget Targets/Campaign Pillars",
+          "description": "",
+          "how_used": "The budget/target half is live today via the Step 1 upload's acquisition_target and cpa_target_gbp columns, which set the plan's objective. The campaign-pillars half would give the brief-hooks tagger the client's own authoritative pillar names to match against, instead of inferring them from free text alone.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Sales Targets (incl stretch targets)",
+          "description": "",
+          "how_used": "Would set the plan's ticket_target and any stretch objective from a formal source - today that target is derived only from whichever acquisition_target column happens to be present in the uploaded budget file.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Briefing Form",
+          "description": "",
+          "how_used": "Live today, per run. This is the Step 1 strategy field (typed text or uploaded brief file); its text is sent to Gemini each generate to produce the brief_hooks tags attached to every channel/month row.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Previous Stategic Responses",
+          "description": "",
+          "how_used": "Documents already ingested (2025 and 2026 strategic media response) but not yet consumed by the engine. Would give the brief-hooks tagger real examples of how similar priorities were interpreted into channel tags in previous planning cycles, improving tag consistency year over year.",
+          "data_quality": "",
+          "match_hints": ["strategic media response"]
+        }
+      ]
+    },
+    {
+      "category_id": "audience_persona",
+      "label": "Audience & Persona Data",
+      "sources": [
+        {
+          "name": "Mosaic Descriptors",
+          "description": "",
+          "how_used": "Would let the engine identify which persona types are being targeted by postcode, feeding channel weighting when a brief specifies an audience-based priority (e.g. weighting AV/OOH higher for broad-reach personas, Paid Social higher for younger-skewing acquisition personas).",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "PPL Persona Type Descriptors",
+          "description": "",
+          "how_used": "Would ground brief_hooks and channel weighting in PPL's own bespoke persona definitions rather than generic Mosaic categories, so tags like heartland_audience map to a concrete, client-defined segment instead of an inferred one.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "MacCode",
+          "description": "Persona data.",
+          "how_used": "Would supply the postcode-to-persona lookup underlying the geo/audience proxy used in scenario tilts (e.g. Greater London growth), replacing the synthetic geo_audience_proxy.csv with the client's real persona distribution by postcode.",
+          "data_quality": "",
+          "match_hints": []
+        }
+      ]
+    },
+    {
+      "category_id": "context_signals",
+      "label": "Context & Signals",
+      "sources": [
+        {
+          "name": "Event Calendar",
+          "description": "API which provides visibility on events",
+          "how_used": "Would adjust month-level channel scoring around known event dates (e.g. major news cycles or sporting events affecting AV inventory and cost), letting the plan anticipate and route around or into high-attention periods - today phasing only accounts for draw_calendar weighting, not external events.",
+          "data_quality": "Updated within the last 2 weeks",
+          "match_hints": [],
+          "flagged_in_source": true
+        }
+      ]
+    },
+    {
+      "category_id": "digital_platform_data",
+      "label": "Digital Platform Data",
+      "sources": [
+        {
+          "name": "Google Analytics",
+          "description": "",
+          "how_used": "Would supply real on-site conversion behaviour per channel/campaign, letting response-curve assumptions be calibrated from actual site data instead of the static response_curve_priors_2026 fixture.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Google Ads (SA360)",
+          "description": "",
+          "how_used": "Would feed live Paid Search delivery, CPC and conversion data directly into that channel's benchmark and response curve, replacing the fixture's static Paid Search assumptions.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "YouTube",
+          "description": "",
+          "how_used": "Would feed live CTV/YouTube delivery and response data into that channel's benchmark, replacing fixture assumptions with actual platform performance.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Meta",
+          "description": "",
+          "how_used": "Would feed live Paid Social delivery and response data into that channel's benchmark and response curve.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Tiktok",
+          "description": "",
+          "how_used": "Would feed live delivery and response data into Paid Social (or a split-out short-form video channel, if the taxonomy is ever split that way).",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Amazon DSP",
+          "description": "",
+          "how_used": "Would feed live Display/Programmatic delivery and response data into that channel's benchmark and response curve.",
+          "data_quality": "",
+          "match_hints": []
+        }
+      ]
+    },
+    {
+      "category_id": "media_owner_channel",
+      "label": "Media Owner & Channel Data",
+      "sources": [
+        {
+          "name": "ThinkBox",
+          "description": "",
+          "how_used": "Documents already ingested (TV viewing and TV advertising effectiveness charts) but not yet consumed by the engine. Would calibrate the AV channel's mmm_roi_index and response curve with real TV market benchmarks instead of the static channel_performance_benchmarks fixture.",
+          "data_quality": "",
+          "match_hints": ["thinkbox", "tv_advertisings", "tv_viewing"]
+        },
+        {
+          "name": "Touchpoints",
+          "description": "Data from every interaction a customer has with the brand, revealing what a customer responds to at each stage. Key interaction types: Paid Media (ad clicks, video views, sponsored social posts), Owned Assets (website visits, app opens, email newsletters), Earned/Organic (organic search, word-of-mouth, reviews), Direct/In-Store (cash register scans, customer service calls, physical visits).",
+          "how_used": "Would map which touchpoints acquirers pass through before converting, letting the engine weight channels by their role in the acquisition path (upper-funnel reach vs direct-response close) instead of treating every channel as an independent, direct driver of acquisitions.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "ActiveVoice",
+          "description": "",
+          "how_used": "Documents already ingested (Q1 2026, Summer 2025) but not yet consumed by the engine. Would supply live audio/AV inventory availability and pricing to adjust the Audio or AV channel's cost assumptions and response curve in-season.",
+          "data_quality": "",
+          "match_hints": ["active voice"]
+        },
+        {
+          "name": "Talon",
+          "description": "",
+          "how_used": "Would supply live OOH inventory, pricing and audience-delivery data to calibrate the OOH channel's benchmark and response curve, replacing the fixture's static OOH assumptions.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "JICRIT",
+          "description": "",
+          "how_used": "Would supply industry-standard OOH audience measurement (impacts, reach) to validate or calibrate the OOH response curve alongside Talon's inventory data.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "BARB",
+          "description": "TV audience measurement data.",
+          "how_used": "Currently only cited as a static fixture source_id (barb_local_predict_2025_2026) attached to AV and CTV/YouTube evidence rows. Live BARB data would replace that fixture citation with real, current audience measurement, recalibrating the AV and CTV/YouTube response curves and confidence ratings run over run instead of a fixed citation.",
+          "data_quality": "",
+          "match_hints": []
+        }
+      ]
+    }
+  ]
+}

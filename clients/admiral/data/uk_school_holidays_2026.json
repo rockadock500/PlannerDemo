@@ -1,0 +1,143 @@
+{
+  "source_id": "uk_school_holidays_2026_composite",
+  "note": "There is no single UK-wide official school-holiday source - England alone has 150+ local authorities setting their own dates. This is a hand-maintained composite: Wales' own centralised Welsh Government dates (a genuine national source), Northern Ireland's Education Authority dates, one representative Scottish council (Glasgow - chosen for its Commonwealth Games 2026 relevance) since Scotland's 32 councils each set their own, and one representative English region outside London (Birmingham) to complement the existing London/Tower Hamlets proxy already used elsewhere in this calendar. Entries marked confidence 'estimated' are pattern-based extrapolations where an exact date for that specific region/period was not found in a public source as of 2026-07-13 - flagged rather than fabricated as fact.",
+  "curated_on": "2026-07-13",
+  "holiday_windows": [
+    {
+      "name": "February half term (Wales & England, Birmingham)",
+      "date_start": "2026-02-16",
+      "date_end": "2026-02-20",
+      "regions": ["wales", "england_birmingham"],
+      "confidence": "confirmed",
+      "source_ids": ["wales_school_term_dates_2026", "birmingham_school_term_dates_2026"]
+    },
+    {
+      "name": "February half term (Northern Ireland)",
+      "date_start": "2026-02-12",
+      "date_end": "2026-02-13",
+      "regions": ["northern_ireland"],
+      "confidence": "confirmed",
+      "source_ids": ["ni_school_holidays_2026"]
+    },
+    {
+      "name": "February mid-term (Scotland, Glasgow - representative)",
+      "date_start": "2026-02-16",
+      "date_end": "2026-02-20",
+      "regions": ["scotland"],
+      "confidence": "estimated",
+      "source_ids": ["glasgow_school_term_dates_2026"]
+    },
+    {
+      "name": "Easter holidays (Wales)",
+      "date_start": "2026-03-28",
+      "date_end": "2026-04-12",
+      "regions": ["wales"],
+      "confidence": "confirmed",
+      "source_ids": ["wales_school_term_dates_2026"]
+    },
+    {
+      "name": "Easter holidays (England, Birmingham)",
+      "date_start": "2026-03-29",
+      "date_end": "2026-04-12",
+      "regions": ["england_birmingham"],
+      "confidence": "confirmed",
+      "source_ids": ["birmingham_school_term_dates_2026"]
+    },
+    {
+      "name": "Spring break (Scotland, Glasgow - representative)",
+      "date_start": "2026-04-06",
+      "date_end": "2026-04-19",
+      "regions": ["scotland"],
+      "confidence": "confirmed",
+      "source_ids": ["glasgow_school_term_dates_2026"]
+    },
+    {
+      "name": "Easter holidays (Northern Ireland)",
+      "date_start": "2026-04-02",
+      "date_end": "2026-04-10",
+      "regions": ["northern_ireland"],
+      "confidence": "confirmed",
+      "source_ids": ["ni_school_holidays_2026"]
+    },
+    {
+      "name": "May half term (Wales & England, Birmingham)",
+      "date_start": "2026-05-25",
+      "date_end": "2026-05-29",
+      "regions": ["wales", "england_birmingham"],
+      "confidence": "confirmed",
+      "source_ids": ["wales_school_term_dates_2026", "birmingham_school_term_dates_2026"]
+    },
+    {
+      "name": "May holiday (Scotland, Glasgow - representative)",
+      "date_start": "2026-05-22",
+      "date_end": "2026-05-25",
+      "regions": ["scotland"],
+      "confidence": "confirmed",
+      "source_ids": ["glasgow_school_term_dates_2026"]
+    },
+    {
+      "name": "Summer holidays (Wales & England, Birmingham)",
+      "date_start": "2026-07-21",
+      "date_end": "2026-08-31",
+      "regions": ["wales", "england_birmingham"],
+      "confidence": "confirmed",
+      "source_ids": ["wales_school_term_dates_2026", "birmingham_school_term_dates_2026"]
+    },
+    {
+      "name": "Summer holidays (Northern Ireland)",
+      "date_start": "2026-07-01",
+      "date_end": "2026-08-31",
+      "regions": ["northern_ireland"],
+      "confidence": "confirmed",
+      "source_ids": ["ni_school_holidays_2026"]
+    },
+    {
+      "name": "Summer holidays (Scotland, Glasgow - representative)",
+      "date_start": "2026-06-26",
+      "date_end": "2026-08-16",
+      "regions": ["scotland"],
+      "confidence": "estimated",
+      "source_ids": ["glasgow_school_term_dates_2026"]
+    },
+    {
+      "name": "October half term (Wales)",
+      "date_start": "2026-10-26",
+      "date_end": "2026-10-30",
+      "regions": ["wales"],
+      "confidence": "confirmed",
+      "source_ids": ["wales_school_term_dates_2026"]
+    },
+    {
+      "name": "October week (Scotland, Glasgow - representative)",
+      "date_start": "2026-10-12",
+      "date_end": "2026-10-16",
+      "regions": ["scotland"],
+      "confidence": "confirmed",
+      "source_ids": ["glasgow_school_term_dates_2026"]
+    },
+    {
+      "name": "October half term / Halloween break (Northern Ireland)",
+      "date_start": "2026-10-29",
+      "date_end": "2026-10-30",
+      "regions": ["northern_ireland"],
+      "confidence": "confirmed",
+      "source_ids": ["ni_school_holidays_2026"]
+    },
+    {
+      "name": "Christmas holidays begin (Wales)",
+      "date_start": "2026-12-19",
+      "date_end": "2026-12-31",
+      "regions": ["wales"],
+      "confidence": "confirmed",
+      "source_ids": ["wales_school_term_dates_2026"]
+    },
+    {
+      "name": "Christmas holidays begin (Northern Ireland)",
+      "date_start": "2026-12-21",
+      "date_end": "2026-12-31",
+      "regions": ["northern_ireland"],
+      "confidence": "confirmed",
+      "source_ids": ["ni_school_holidays_2026"]
+    }
+  ]
+}

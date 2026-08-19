@@ -1,0 +1,19 @@
+{
+  "source_id": "synthetic_draw_calendar_v1",
+  "assumption": "One major monthly draw/deadline window with stronger strategic weight in March and November, based on the example annual budget profile.",
+  "draws": [
+    {"draw_id": "draw_2026_01", "month": "2026-01", "deadline_date": "2026-01-23", "draw_date": "2026-01-31", "weight": 1.0, "notes": "standard monthly draw"},
+    {"draw_id": "draw_2026_02", "month": "2026-02", "deadline_date": "2026-02-20", "draw_date": "2026-02-28", "weight": 1.0, "notes": "standard monthly draw"},
+    {"draw_id": "draw_2026_03", "month": "2026-03", "deadline_date": "2026-03-20", "draw_date": "2026-03-28", "weight": 1.4, "notes": "larger spring draw assumption"},
+    {"draw_id": "draw_2026_04", "month": "2026-04", "deadline_date": "2026-04-17", "draw_date": "2026-04-25", "weight": 1.0, "notes": "standard monthly draw"},
+    {"draw_id": "draw_2026_05", "month": "2026-05", "deadline_date": "2026-05-22", "draw_date": "2026-05-30", "weight": 0.8, "notes": "lower budget month"},
+    {"draw_id": "draw_2026_06", "month": "2026-06", "deadline_date": "2026-06-19", "draw_date": "2026-06-27", "weight": 0.9, "notes": "summer efficiency pressure"},
+    {"draw_id": "draw_2026_07", "month": "2026-07", "deadline_date": "2026-07-24", "draw_date": "2026-07-31", "weight": 0.7, "notes": "low budget month"},
+    {"draw_id": "draw_2026_08", "month": "2026-08", "deadline_date": "2026-08-21", "draw_date": "2026-08-29", "weight": 0.75, "notes": "low budget month"},
+    {"draw_id": "draw_2026_09", "month": "2026-09", "deadline_date": "2026-09-18", "draw_date": "2026-09-26", "weight": 0.95, "notes": "annual plan may be drafted around this period"},
+    {"draw_id": "draw_2026_10", "month": "2026-10", "deadline_date": "2026-10-23", "draw_date": "2026-10-31", "weight": 1.0, "notes": "sign-off period assumption"},
+    {"draw_id": "draw_2026_11", "month": "2026-11", "deadline_date": "2026-11-20", "draw_date": "2026-11-28", "weight": 2.0, "notes": "largest annual push"},
+    {"draw_id": "draw_2026_12", "month": "2026-12", "deadline_date": "2026-12-18", "draw_date": "2026-12-24", "weight": 0.85, "notes": "short month / festive context"}
+  ]
+}
+

@@ -1,0 +1,174 @@
+{
+  "trace_set_id": "ppl_agent_demo_efficiency_recovery_ppl-agent-demo-bounded-v1",
+  "scenario_id": "efficiency_recovery",
+  "plan_id": "ppl_annual_2026_efficiency_recovery_mmm_brief_v2",
+  "created_at": "2026-06-27T09:58:34.033682+00:00",
+  "one_way_door_guards": [
+    "LLM agents cannot mutate numeric state",
+    "LLM agents cannot mark approval complete",
+    "Suggested changes require deterministic re-planning",
+    "Every claim needs source_ids or missing status",
+    "Warnings are terminal and must not loop"
+  ],
+  "traces": [
+    {
+      "agent_id": "rationale_agent",
+      "mode": "live_llm",
+      "model": "gemini-2.5-flash",
+      "prompt_version": "ppl-agent-demo-bounded-v1",
+      "plan_id": "ppl_annual_2026_efficiency_recovery_mmm_brief_v2",
+      "scenario_id": "efficiency_recovery",
+      "started_at": "2026-06-27T09:57:52.011723+00:00",
+      "completed_at": "2026-06-27T09:58:05.771443+00:00",
+      "status": "warning",
+      "summary": "The \"Efficiency Recovery\" plan prioritizes improving CPA performance by applying a 0.97 forecast CPA factor and upweighting performance channels like Direct Mail and Paid Search, which have strong MMM support. It also reduces exposure to lower-confidence test channels such as CTV/YouTube and OOH, aligning with the brief's focus on protecting strong channels and reducing test exposure. However, the plan does not fully clear the brief's acquisition target or CPA goal.",
+      "findings": [
+        {
+          "type": "rationale",
+          "title": "Plan prioritizes CPA recovery with a deterministic factor",
+          "detail": "The plan applies a 0.97 forecast CPA factor to improve efficiency, aligning with the \"Efficiency Recovery\" scenario's primary goal.",
+          "source_ids": [
+            "agent_demo_trace_v1"
+          ],
+          "source_status": "missing"
+        },
+        {
+          "type": "rationale",
+          "title": "Investment weighted towards high-confidence MMM channels",
+          "detail": "Channels like AV and Direct Mail, with strong MMM evidence, receive significant budget shares (47.63% and 33.61% respectively) and positive channel multipliers.",
+          "source_ids": [
+            "agent_demo_trace_v1"
+          ],
+          "source_status": "missing"
+        },
+        {
+          "type": "rationale",
+          "title": "Reduced allocation for low-confidence and test channels",
+          "detail": "Channels like CTV/YouTube and OOH, identified as low-confidence or test-required, have lower channel multipliers (0.7 and 0.72) and smaller budget shares.",
+          "source_ids": [
+            "agent_demo_trace_v1"
+          ],
+          "source_status": "missing"
+        },
+        {
+          "type": "risk",
+          "title": "Forecasts do not meet brief acquisition or CPA targets",
+          "detail": "Despite efficiency efforts, the plan's forecast acquisitions (984,492) are below the 1,000,000 target, and the forecast CPA (GBP 66.71) exceeds the GBP 65 brief CPA.",
+          "source_ids": [
+            "agent_demo_trace_v1"
+          ],
+          "source_status": "missing"
+        }
+      ],
+      "forbidden_state_change_attempted": false
+    },
+    {
+      "agent_id": "qa_agent",
+      "mode": "live_llm",
+      "model": "gemini-2.5-flash",
+      "prompt_version": "ppl-agent-demo-bounded-v1",
+      "plan_id": "ppl_annual_2026_efficiency_recovery_mmm_brief_v2",
+      "scenario_id": "efficiency_recovery",
+      "started_at": "2026-06-27T09:58:05.772502+00:00",
+      "completed_at": "2026-06-27T09:58:20.608421+00:00",
+      "status": "warning",
+      "summary": "The deterministic plan for 'Efficiency Recovery' is in a warning state as it does not achieve the brief's CPA or acquisition targets. Key findings highlight risks in channel allocations, particularly for Paid Search exceeding its MMM-recommended saturation point. Furthermore, OOH and CTV/YouTube investments are based on low-confidence MMM evidence or are brief-required tests, necessitating careful measurement and validation.",
+      "findings": [
+        {
+          "type": "risk",
+          "title": "Plan Fails to Meet Brief CPA and Acquisition Targets",
+          "detail": "The forecast CPA of GBP 66.71 exceeds the brief target of GBP 65.00, and forecast acquisitions of 984,492 fall short of the 1,000,000 target.",
+          "source_ids": [
+            "ppl_planning_evidence_rules_2026"
+          ],
+          "source_status": "confirmed"
+        },
+        {
+          "type": "missing_data",
+          "title": "OOH Allocation Lacks MMM Evidence Base",
+          "detail": "OOH is allocated budget as a brief requirement but is absent from the MMM optimal channel table, making it a strategic/measurement-led allocation with low confidence.",
+          "source_ids": [
+            "ppl_mmm_broad_channel_rollup_2023",
+            "ppl_2026_brief_priorities"
+          ],
+          "source_status": "mixed"
+        },
+        {
+          "type": "risk",
+          "title": "Paid Search Budget Exceeds MMM Optimal Share and Saturation Point",
+          "detail": "Paid Search budget is 2.94% share, significantly above the MMM optimal 1.51%. MMM notes PPC Generic/Brand are maxed, indicating a risk of overspending beyond saturation.",
+          "source_ids": [
+            "ppl_mmm_june22_april23_pptx",
+            "ppl_mmm_broad_channel_rollup_2023"
+          ],
+          "source_status": "confirmed"
+        },
+        {
+          "type": "rationale",
+          "title": "CTV/YouTube Investment is a Controlled Test Due to Weak MMM Evidence",
+          "detail": "Despite an allocation, CTV/YouTube remains a controlled test. MMM evidence for YouTube was historically weak and worse than average, leading to low confidence in its response curve.",
+          "source_ids": [
+            "ppl_mmm_june22_april23_pptx",
+            "ppl_mmm_broad_channel_rollup_2023"
+          ],
+          "source_status": "confirmed"
+        }
+      ],
+      "forbidden_state_change_attempted": false
+    },
+    {
+      "agent_id": "question_agent",
+      "mode": "live_llm",
+      "model": "gemini-2.5-flash",
+      "prompt_version": "ppl-agent-demo-bounded-v1",
+      "plan_id": "ppl_annual_2026_efficiency_recovery_mmm_brief_v2",
+      "scenario_id": "efficiency_recovery",
+      "started_at": "2026-06-27T09:58:20.609491+00:00",
+      "completed_at": "2026-06-27T09:58:34.033642+00:00",
+      "status": "warning",
+      "summary": "The 'Efficiency Recovery' plan, while balancing the budget, does not meet the brief's CPA or acquisition targets. Key channels like OOH and CTV/YouTube are allocated budget despite limited or conflicting MMM evidence, requiring further clarification on their strategic role and measurement. Additionally, the underlying calendar data relies on mixed sources, necessitating confirmation of national references and live feed requirements for production.",
+      "findings": [
+        {
+          "type": "risk",
+          "title": "Efficiency Recovery Scenario Misses Brief Targets",
+          "detail": "The current plan's forecast acquisitions (984,492) and CPA (GBP 66.71) do not meet the brief's target of 1,000,000 acquisitions and GBP 65 CPA.",
+          "source_ids": [
+            "ppl_planning_evidence_rules_2026"
+          ],
+          "source_status": "confirmed"
+        },
+        {
+          "type": "missing_data",
+          "title": "OOH Channel Lacks MMM Evidence for Allocation",
+          "detail": "The OOH channel is allocated budget as brief-required, but the MMM optimal channel table provides no direct evidence for its effectiveness or optimal share.",
+          "source_ids": [
+            "ppl_mmm_broad_channel_rollup_2023",
+            "ppl_planning_evidence_rules_2026"
+          ],
+          "source_status": "mixed"
+        },
+        {
+          "type": "question",
+          "title": "Clarify CTV/YouTube Test Objectives and Scale",
+          "detail": "Given the MMM evidence for CTV/YouTube is weak and historically worse than average, what specific learning objectives and success metrics define its continued role as a controlled test?",
+          "source_ids": [
+            "ppl_mmm_june22_april23_pptx",
+            "ppl_mmm_broad_channel_rollup_2023"
+          ],
+          "source_status": "confirmed"
+        },
+        {
+          "type": "missing_data",
+          "title": "Confirm Calendar Event Source Truth for Production",
+          "detail": "The calendar uses mixed confirmed and proxy sources. Which school-holiday source is the national reference, and which claims require a live feed before client export?",
+          "source_ids": [
+            "synthetic_draw_calendar_v1",
+            "ppl_2026_brief_priorities"
+          ],
+          "source_status": "mixed"
+        }
+      ],
+      "forbidden_state_change_attempted": false
+    }
+  ]
+}
