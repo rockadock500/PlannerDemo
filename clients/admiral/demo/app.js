@@ -3327,7 +3327,7 @@ function renderCurrentPlan() {
     container.innerHTML = `
       <div class="approval-card wide">
         <strong>No plan has been approved yet</strong>
-        <p class="table-hint">Approve a plan on the Approval page to see its budget, evidence and audit trail here.</p>
+        <p class="table-hint">Approve a scenario to see its budget, policy-sales forecast, cost per new policy sale, evidence and audit trail here.</p>
       </div>
     `;
     return;
