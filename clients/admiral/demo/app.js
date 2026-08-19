@@ -24,7 +24,67 @@ const CHANNEL_ORDER = [
   "Display/Programmatic",
 ];
 
-const SCENARIOS = ["hold", "heartland", "growth", "london_growth", "efficiency_recovery", "london_efficiency"];
+// Admiral scenario library (research brief section 5). Each id has a
+// matching data/generated_plan_<id>.json fixture with the full month x
+// channel plan for that scenario.
+const SCENARIOS = ["balanced_growth", "brand_trust_build", "pcw_conversion_defence", "multicar_household_growth", "young_driver_telematics", "ev_growth"];
+
+// Qualitative scenario card facts (research brief section 5): objective,
+// what's changed vs the baseline guardrails, which channels move, the
+// EXPECTED DIRECTION (not a number) of brand and sales outcomes, and the key
+// risk a marketing approver should hold in mind. These are deliberately
+// directional/plain-English, not modelled figures - see brief section 2 on
+// avoiding false precision.
+const SCENARIO_META = {
+  balanced_growth: {
+    objective: "Base plan balancing brand building, quote demand and new policy sales across the year, within every commercial guardrail.",
+    changed_constraints: "None beyond the approved Step 2 guardrails - baseline floors, caps and Strategic Index carry forward unchanged.",
+    affected_channels: "No channel is deliberately over- or under-weighted; the MMM-derived channel prior is followed closely.",
+    expected_brand_direction: "Steady - no deliberate shift up or down.",
+    expected_sales_direction: "Steady - in line with the approved base plan.",
+    key_risk: "Read this as an evidence-led balance, not a lack of a point of view - the strongest evidence still gets the most weight.",
+  },
+  brand_trust_build: {
+    objective: "Build trust and consideration around 'Always Looking Out For You', shifting weight from pure demand capture towards brand-building channels.",
+    changed_constraints: "Raised floors/weighting on brand-reach channels; paid search and paid social performance weighting held back within their existing guardrail ranges.",
+    affected_channels: "Up: Linear TV, BVOD/CTV, OOH, radio/digital audio, online video. Held back: paid search, paid social performance.",
+    expected_brand_direction: "Up - broader reach and stronger consideration/trust signal expected.",
+    expected_sales_direction: "Flat to slightly down near-term - less budget is chasing active quote shoppers while brand investment builds.",
+    key_risk: "Needs brand-tracker and consideration evidence to justify sustaining this over multiple months, not just an assumption that brand spend works.",
+  },
+  pcw_conversion_defence: {
+    objective: "Protect new-business quote and policy volumes if price-comparison-site competition or paid-search CPC rises.",
+    changed_constraints: "Paid search and journey-conversion channels weighted up; forecast cost-per-policy factor allowed to flex upward to reflect a tougher CPC environment.",
+    affected_channels: "Up: paid search, retargeting/programmatic. Distribution: PCW visibility monitored separately, not folded into the media mix.",
+    expected_brand_direction: "Broadly unchanged.",
+    expected_sales_direction: "Quote-to-policy conversion defended, but likely at a higher cost per new policy sale than the balanced plan.",
+    key_risk: "PCW economics are distribution, not reach media - any 'improvement' shown here is visibility/conversion, never an unsupported price or savings claim.",
+  },
+  multicar_household_growth: {
+    objective: "Grow qualified demand from households with more than one vehicle or risk (Multi), supporting retention and customer lifetime value.",
+    changed_constraints: "CRM/email kept as an owned-activation overlay (not counted as paid media spend); household-relevant reach and search weighted up.",
+    affected_channels: "Up: household-relevant TV/BVOD/OOH, paid search. Overlay: CRM/email (owned, unpaid unless explicitly costed).",
+    expected_brand_direction: "Modest uplift in relevance among family/household audiences.",
+    expected_sales_direction: "Gradual growth in qualified Multi quote starts and retention-linked policy sales, not an immediate spike.",
+    key_risk: "Must use only approved aggregate household segments - never infer specific household composition or other sensitive attributes.",
+  },
+  young_driver_telematics: {
+    objective: "Grow qualified demand for telematics and young-driver cover using safety-led, creator-style content (see 'Your Ride Your Rules').",
+    changed_constraints: "Creator/social content and online video weighted up; strict data, consent and vulnerability controls apply to this audience.",
+    affected_channels: "Up: creators/partnerships content, online video, paid search (young-driver terms).",
+    expected_brand_direction: "Improved relevance and trust with under-25s.",
+    expected_sales_direction: "Gradual growth in qualified young-driver/telematics quote starts - not an immediate volume spike.",
+    key_risk: "Under-24 audience needs careful consent and vulnerability handling; safety-first creative must not read as a price promotion.",
+  },
+  ev_growth: {
+    objective: "Support Admiral's stated EV strength around switching moments and the March/September plate-change peaks.",
+    changed_constraints: "Search, online video and social weighted up around EV-relevant and plate-change windows; contextual partnerships considered.",
+    affected_channels: "Up: paid search, online video, paid social, contextual partnerships/content.",
+    expected_brand_direction: "Reinforces perception of Admiral's EV leadership.",
+    expected_sales_direction: "Higher EV-related quote starts expected around plate-change peaks.",
+    key_risk: "Must explain EV cover accurately without greenwashing, and must not present estimated market share as a guarantee of future performance.",
+  },
+};
 const LIVE_API_BASE = "https://ppl-planner-api-production.up.railway.app";
 
 // Admiral planning taxonomy (research brief section 4). This groups each
@@ -71,6 +131,23 @@ const DATA_READINESS_GROUP_LABELS = {
   media_owner_channel: "Media Owner & Channel Data",
 };
 
+// Plan Interrogation seed questions (research brief section 3) - a starting
+// point for planners who aren't sure what to ask yet. Clicking one fills the
+// question box and asks it straight away against whichever plan is selected.
+const PLAN_INTERROGATION_SEED_QUESTIONS = [
+  "Why is September weighted above August?",
+  "Which evidence supports the paid-search share?",
+  "How does the plan balance trust and demand capture?",
+  "What changes if paid-search CPC rises 15%?",
+  "Which guardrails are binding?",
+];
+
+// Plain-English boundary copy for the chat assistant (brief section 3): what
+// it can explain from the configured plan evidence, and what it must refuse
+// regardless of how the question is phrased. Written for a marketing
+// approver to act on, not as technical confidence language.
+const PLAN_INTERROGATION_BOUNDARY_COPY = "This assistant can explain the budget, channel and month choices already in the selected plan, using the sources and rationale stored against it. It will not use, reveal or guess at any customer-level data, individual risk or pricing/underwriting detail, and it will not make savings or 'cheapest price' claims. It also won't share confidential model or prompt details - if a question needs any of that, it will say so instead of guessing.";
+
 const CALENDAR_FILTER_DEFS = [
   { key: "draw", label: "Draws & deadlines", color: "var(--red)" },
   { key: "bank_holiday", label: "Bank holidays", color: "var(--blue)" },
@@ -91,7 +168,7 @@ const logicChallenges = [
   },
   {
     area: "Scenario Logic",
-    title: "Are Hold, Heartland and Growth templates or freeform strategies?",
+    title: "Are Balanced Growth, Brand Trust Build and the other stored scenarios templates or freeform strategies?",
     body: "The prototype treats them as strategy weights. The final planner may need locked scenario templates, freeform prompts, or both with approval controls.",
     status: "big",
   },
@@ -216,7 +293,7 @@ const state = {
   monthlyRevisionSubmissions: [],
   chatMessages: [],
   chatInterrogationKey: null,
-  scenario: "hold",
+  scenario: "balanced_growth",
   demoMode: "deterministic",
   tableMode: "budget",
   summaryChartMode: "monthly",
@@ -1630,7 +1707,7 @@ function renderAgentModeSummary() {
       </div>
     </div>
   `).join("") : `
-    <div class="empty-state">Run <code>python3 scripts/run_agent_demo.py hold</code> to create live or fallback agent traces.</div>
+    <div class="empty-state">Run <code>python3 scripts/run_agent_demo.py balanced_growth</code> to create live or fallback agent traces.</div>
   `;
 }
 
@@ -1877,6 +1954,22 @@ function renderScenarioBuilder() {
 
 function scenarioCard({ key, label, plan, pass, body, isBaseline }) {
   const preferred = state.preferredScenario?.scenario_id === key;
+  // The 6 stored Admiral scenarios (brief section 5) carry a qualitative
+  // facts block - objective, changed constraints, affected channels,
+  // expected direction of brand/sales outcomes, key risk. Free-text/chat
+  // proposed scenarios don't have a matching entry, so this is skipped for
+  // those rather than showing something misleading.
+  const meta = SCENARIO_META[plan.scenario?.scenario_id];
+  const factsBlock = meta ? `
+    <dl class="scenario-facts">
+      <div><dt>Objective</dt><dd>${meta.objective}</dd></div>
+      <div><dt>Changed constraints</dt><dd>${meta.changed_constraints}</dd></div>
+      <div><dt>Affected channels</dt><dd>${meta.affected_channels}</dd></div>
+      <div><dt>Expected direction - brand</dt><dd>${meta.expected_brand_direction}</dd></div>
+      <div><dt>Expected direction - sales</dt><dd>${meta.expected_sales_direction}</dd></div>
+      <div><dt>Key risk</dt><dd>${meta.key_risk}</dd></div>
+    </dl>
+  ` : "";
   return `
     <div class="scenario-card ${preferred ? "preferred" : ""}">
       <div class="scenario-card-head">
@@ -1889,6 +1982,7 @@ function scenarioCard({ key, label, plan, pass, body, isBaseline }) {
         <div><span>Gap</span><strong>${number.format(Math.max(0, plan.brief_test.policy_sales_target - plan.forecast_new_policy_sales))}</strong></div>
       </div>
       <div class="scenario-body">${body}</div>
+      ${factsBlock}
       <div class="config-actions">
         <button class="secondary-button" type="button" data-view-scenario="${key}">View full plan</button>
         ${isBaseline ? "" : `<button class="secondary-button" type="button" data-prefer-scenario="${key}" data-prefer-label="${label}">Mark preferred</button>`}
@@ -1949,8 +2043,9 @@ function renderScenarioComparison() {
     // A free-text scenario's specific Gemini rationale ("increased weight for
     // urban growth...") is more useful here than the generic templated
     // scenario_assumption every generated scenario otherwise gets - show it
-    // when we have it, falling back to the generic sentence for stored
-    // scenario templates (Hold/Heartland/...), which don't have one.
+    // when we have it, falling back to the generic sentence for the 6 stored
+    // Admiral scenario templates (Balanced Growth/Brand Trust Build/...),
+    // which don't have one.
     const assumption = entry.rationale || entry.plan.scenario.scenario_assumption || entry.plan.scenario.freeform_prompt;
     const body = `${assumption}
         <div class="delta-list">
@@ -2101,9 +2196,16 @@ function isRevisionMonthEligible(month) {
 // sentence per month.
 function monthlyRevisionCalendarContext(month) {
   const items = calendarItemsForMonth(month, CALENDAR_ALL_FILTERS_ON);
+  // "draw" is the legacy lottery draw/deadline category from the calendar
+  // data source this demo was cloned from - it has no place in a car
+  // insurance media revision (see brief master acceptance criteria: no
+  // draw/lottery references visible anywhere), so it's excluded here
+  // regardless of what the Events Calendar page itself does with that
+  // category/data source.
+  const eligible = items.filter((item) => item.category !== "draw");
   return {
-    weather: items.filter((item) => item.category === "weather"),
-    events: items.filter((item) => item.category !== "weather"),
+    weather: eligible.filter((item) => item.category === "weather"),
+    events: eligible.filter((item) => item.category !== "weather"),
   };
 }
 
@@ -2234,7 +2336,7 @@ function buildMonthlyRevisionCandidate() {
       }),
       all_allocations_have_sources: revisedRows.every((row) => (row.source_ids || []).length > 0),
       warnings: [
-        "Prior-month actuals are a synthetic fixture in this prototype - production would link real Kanso/sales feed records.",
+        "Prior-month actuals are a synthetic fixture in this prototype - production would link the real internal sales and delivery feed.",
         `Deterministic reallocation applies from ${formatMonth(fixture.month)} onward; ${MONTHS.indexOf(fixture.month)} prior month(s) stay frozen from the approved annual plan.`,
       ],
       actuals_are_synthetic: true,
@@ -2336,7 +2438,7 @@ function renderMonthlyRevision() {
       <div class="revision-card">
         <strong>Prior-month rolling performance</strong>
         <dl class="revision-dl">
-          <div><dt>Sales actual</dt><dd>${number.format(fixture.sales_actuals.new_policy_sales)} vs ${number.format(fixture.sales_actuals.target_new_policy_sales)}</dd></div>
+          <div><dt>New policy sales (actual)</dt><dd>${number.format(fixture.sales_actuals.new_policy_sales)} vs ${number.format(fixture.sales_actuals.target_new_policy_sales)}</dd></div>
           <div><dt>Actual Cost per Policy</dt><dd>${costPerPolicyMoney.format(fixture.sales_actuals.cost_per_policy_gbp)} vs ${costPerPolicyMoney.format(fixture.sales_actuals.target_cost_per_policy_gbp)}</dd></div>
           <div><dt>Delivery index</dt><dd>${fixture.sales_actuals.delivery_index}</dd></div>
           ${fixture.sales_actuals.quote_starts ? `<div><dt>Quote starts</dt><dd>${number.format(fixture.sales_actuals.quote_starts)}</dd></div>` : ""}
@@ -2457,13 +2559,9 @@ function chatMessageHtml(message, index) {
 function chatEmptyStateHtml() {
   return `
     <div class="chat-empty-state">
-      <svg viewBox="0 0 236.97 115.49" xmlns="http://www.w3.org/2000/svg" class="chat-empty-logo" aria-hidden="true">
-        <g transform="scale(1,-1) translate(0,-115.49)">
-          <path fill="#e30027" d="M61.86,30.93 L61.86,53.64 L84.56,53.64 C101.64,53.64 115.49,67.48 115.49,84.56 C115.49,101.64 101.64,115.49 84.56,115.49 L61.86,115.49 L10.32,115.49 C4.64,115.49 0.00,110.85 0.00,105.17 L0.00,53.64 L0.00,30.93 C0.00,13.85 13.85,0.00 30.93,0.00 C48.01,0.00 61.86,13.85 61.86,30.93 Z" />
-          <path fill="#e30027" d="M206.04,61.86 L183.33,61.86 L183.33,84.56 C183.33,101.65 169.48,115.49 152.40,115.49 C135.32,115.49 121.47,101.65 121.47,84.56 L121.47,61.86 L121.47,10.32 C121.47,4.65 126.12,0.00 131.80,0.00 L183.33,0.00 L206.04,0.00 C223.12,0.00 236.97,13.85 236.97,30.93 C236.97,48.01 223.12,61.86 206.04,61.86 Z" />
-        </g>
-      </svg>
+      <img src="./assets/admiral-logo.svg" alt="" class="chat-empty-logo" aria-hidden="true" />
       <h2>How can I help you today?</h2>
+      <p class="table-hint">Ask about the plan shown on the left, or try one of the suggested questions there.</p>
     </div>
   `;
 }
@@ -2497,6 +2595,18 @@ function renderPlanChat() {
               </div>
               <p class="table-hint">${current.label} - ${current.plan.scenario.scenario_assumption || current.plan.scenario.freeform_prompt || ""}</p>
             ` : `<p class="table-hint warning-text">No plan available yet - generate a base plan in Annual Planning first.</p>`}
+          </div>
+        </div>
+        <div class="chat-overview-row chat-overview-row-secondary">
+          <div>
+            <strong>Suggested questions</strong>
+            <div class="stored-scenario-buttons">
+              ${PLAN_INTERROGATION_SEED_QUESTIONS.map((question) => `<button class="secondary-button" type="button" data-seed-question="${question.replace(/"/g, "&quot;")}" ${current ? "" : "disabled"}>${question}</button>`).join("")}
+            </div>
+          </div>
+          <div>
+            <strong>What this assistant will and won't do</strong>
+            <p class="table-hint">${PLAN_INTERROGATION_BOUNDARY_COPY}</p>
           </div>
         </div>
       </div>
@@ -3913,7 +4023,7 @@ function attachEvents() {
 
       // Uses the same actor/role-aware event recording as the Approval page,
       // rather than a hand-rolled event hardcoding "demo_user"/"planner".
-      recordApprovalEvent(candidate.version_id, "review", `${candidate.version_label} routed for approval. Synthetic actuals fixture; production would link Kanso/sales feed records.`);
+      recordApprovalEvent(candidate.version_id, "review", `${candidate.version_label} routed for approval. Synthetic actuals fixture; production would link the real internal sales feed.`);
 
       renderMonthlyRevision();
       renderApproval();
@@ -3934,6 +4044,13 @@ function attachEvents() {
     const selectButton = event.target.closest("[data-chat-select]");
     if (selectButton) {
       selectChatInterrogation(selectButton.dataset.chatSelect);
+      return;
+    }
+    const seedButton = event.target.closest("[data-seed-question]");
+    if (seedButton) {
+      const input = document.querySelector("#chatQuestion");
+      if (input) input.value = seedButton.dataset.seedQuestion;
+      askPlanChat();
       return;
     }
     const runButton = event.target.closest("[data-run-chat-scenario]");

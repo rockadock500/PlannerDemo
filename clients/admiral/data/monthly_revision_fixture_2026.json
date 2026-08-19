@@ -1,7 +1,7 @@
 {
   "source_id": "synthetic_monthly_revision_actuals_2026",
   "status": "synthetic_fixture_real_interface_shape",
-  "description": "Demo fixture for the Monthly Revision page. Production should replace this with Kanso/sales/delivery actuals, user context and live monthly context feeds without changing the revision surface.",
+  "description": "Demo fixture for the Monthly Revision page. Production should replace this with real sales/delivery actuals, user context and live monthly context feeds without changing the revision surface.",
   "revision_months": [
     {
       "month": "2026-07",
@@ -70,7 +70,7 @@
       ],
       "user_context": [
         "Planner note: June was weaker than expected after school term and travel disruption affected local response.",
-        "Client note: protect April/December style tentpole logic, but avoid scaling weak June digital tests without measurement."
+        "Client note: protect March/September plate-change tentpole logic, but avoid scaling weak June digital tests without measurement."
       ],
       "monthly_context": {
         "weather": "Warmer, drier summer weeks; outdoor attention improves but response attribution is weak.",

@@ -903,6 +903,39 @@ h2 {
   line-height: 1.45;
 }
 
+.scenario-facts {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0 0;
+  padding-top: 12px;
+  border-top: 1px solid var(--line);
+}
+
+.scenario-facts div {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 10px;
+}
+
+.scenario-facts dt {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}
+
+.scenario-facts dd {
+  margin: 0;
+  line-height: 1.4;
+}
+
+@media (max-width: 720px) {
+  .scenario-facts div {
+    grid-template-columns: 1fr;
+    gap: 2px;
+  }
+}
+
 .delta-list {
   display: grid;
   gap: 8px;
@@ -2188,6 +2221,12 @@ select {
 
 .chat-overview-row .scenario-metrics {
   margin-bottom: 8px;
+}
+
+.chat-overview-row-secondary {
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
 }
 
 @media (max-width: 900px) {
