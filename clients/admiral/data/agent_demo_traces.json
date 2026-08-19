@@ -79,7 +79,7 @@
           "title": "Plan Fails to Meet Brief CPA and Acquisition Targets",
           "detail": "The forecast CPA of GBP 66.71 exceeds the brief target of GBP 65.00, and forecast acquisitions of 984,492 fall short of the 1,000,000 target.",
           "source_ids": [
-            "ppl_planning_evidence_rules_2026"
+            "adm_planning_evidence_rules_2026"
           ],
           "source_status": "confirmed"
         },
@@ -88,8 +88,8 @@
           "title": "OOH Allocation Lacks MMM Evidence Base",
           "detail": "OOH is allocated budget as a brief requirement but is absent from the MMM optimal channel table, making it a strategic/measurement-led allocation with low confidence.",
           "source_ids": [
-            "ppl_mmm_broad_channel_rollup_2023",
-            "ppl_2026_brief_priorities"
+            "adm_mmm_broad_channel_rollup_2023",
+            "adm_brief_priorities_2026"
           ],
           "source_status": "mixed"
         },
@@ -98,8 +98,8 @@
           "title": "Paid Search Budget Exceeds MMM Optimal Share and Saturation Point",
           "detail": "Paid Search budget is 2.94% share, significantly above the MMM optimal 1.51%. MMM notes PPC Generic/Brand are maxed, indicating a risk of overspending beyond saturation.",
           "source_ids": [
-            "ppl_mmm_june22_april23_pptx",
-            "ppl_mmm_broad_channel_rollup_2023"
+            "adm_mmm_deck_2026",
+            "adm_mmm_broad_channel_rollup_2023"
           ],
           "source_status": "confirmed"
         },
@@ -108,8 +108,8 @@
           "title": "CTV/YouTube Investment is a Controlled Test Due to Weak MMM Evidence",
           "detail": "Despite an allocation, CTV/YouTube remains a controlled test. MMM evidence for YouTube was historically weak and worse than average, leading to low confidence in its response curve.",
           "source_ids": [
-            "ppl_mmm_june22_april23_pptx",
-            "ppl_mmm_broad_channel_rollup_2023"
+            "adm_mmm_deck_2026",
+            "adm_mmm_broad_channel_rollup_2023"
           ],
           "source_status": "confirmed"
         }
@@ -133,7 +133,7 @@
           "title": "Efficiency Recovery Scenario Misses Brief Targets",
           "detail": "The current plan's forecast acquisitions (984,492) and CPA (GBP 66.71) do not meet the brief's target of 1,000,000 acquisitions and GBP 65 CPA.",
           "source_ids": [
-            "ppl_planning_evidence_rules_2026"
+            "adm_planning_evidence_rules_2026"
           ],
           "source_status": "confirmed"
         },
@@ -142,8 +142,8 @@
           "title": "OOH Channel Lacks MMM Evidence for Allocation",
           "detail": "The OOH channel is allocated budget as brief-required, but the MMM optimal channel table provides no direct evidence for its effectiveness or optimal share.",
           "source_ids": [
-            "ppl_mmm_broad_channel_rollup_2023",
-            "ppl_planning_evidence_rules_2026"
+            "adm_mmm_broad_channel_rollup_2023",
+            "adm_planning_evidence_rules_2026"
           ],
           "source_status": "mixed"
         },
@@ -152,8 +152,8 @@
           "title": "Clarify CTV/YouTube Test Objectives and Scale",
           "detail": "Given the MMM evidence for CTV/YouTube is weak and historically worse than average, what specific learning objectives and success metrics define its continued role as a controlled test?",
           "source_ids": [
-            "ppl_mmm_june22_april23_pptx",
-            "ppl_mmm_broad_channel_rollup_2023"
+            "adm_mmm_deck_2026",
+            "adm_mmm_broad_channel_rollup_2023"
           ],
           "source_status": "confirmed"
         },
@@ -163,7 +163,7 @@
           "detail": "The calendar uses mixed confirmed and proxy sources. Which school-holiday source is the national reference, and which claims require a live feed before client export?",
           "source_ids": [
             "synthetic_draw_calendar_v1",
-            "ppl_2026_brief_priorities"
+            "adm_brief_priorities_2026"
           ],
           "source_status": "mixed"
         }

@@ -8,21 +8,65 @@
       "prior_month": "2026-06",
       "actuals_status": "synthetic",
       "sales_actuals": {
-        "ticket_holders": 51400,
-        "target_ticket_holders": 55000,
-        "cpa_gbp": 104.28,
-        "target_cpa_gbp": 97.45,
-        "delivery_index": 0.94
+        "new_policy_sales": 51400,
+        "target_new_policy_sales": 55000,
+        "cost_per_policy_gbp": 104.28,
+        "target_cost_per_policy_gbp": 97.45,
+        "delivery_index": 0.94,
+        "quote_starts": 436000,
+        "quote_to_policy_conversion_pct": 11.8,
+        "pcw_visibility_index": 0.97,
+        "brand_search_index": 101
       },
       "channel_performance": [
-        {"channel": "AV", "delivery_index": 0.96, "sales_index": 0.98, "context": "Reach delivery broadly on plan but late-month response softened."},
-        {"channel": "OOH", "delivery_index": 0.88, "sales_index": 0.82, "context": "London panels underdelivered against booked impression proxy."},
-        {"channel": "Direct Mail", "delivery_index": 1.02, "sales_index": 1.08, "context": "Door drops and lapsed segments beat forecast."},
-        {"channel": "CTV/YouTube", "delivery_index": 0.91, "sales_index": 0.86, "context": "Video test delivery under target; keep as capped test."},
-        {"channel": "Paid Search", "delivery_index": 1.04, "sales_index": 1.07, "context": "Search captured demand efficiently but query volume remains capped."},
-        {"channel": "Paid Social", "delivery_index": 0.97, "sales_index": 0.93, "context": "Prospecting CPA drifted high."},
-        {"channel": "Audio", "delivery_index": 1.0, "sales_index": 1.01, "context": "Stable delivery and response."},
-        {"channel": "Display/Programmatic", "delivery_index": 0.95, "sales_index": 0.9, "context": "Prospecting weaker than retargeting; needs split before production."}
+        {
+          "channel": "AV",
+          "delivery_index": 0.96,
+          "sales_index": 0.98,
+          "context": "Reach delivery broadly on plan but late-month response softened."
+        },
+        {
+          "channel": "OOH",
+          "delivery_index": 0.88,
+          "sales_index": 0.82,
+          "context": "London panels underdelivered against booked impression proxy."
+        },
+        {
+          "channel": "Direct Mail",
+          "delivery_index": 1.02,
+          "sales_index": 1.08,
+          "context": "Door drops and lapsed segments beat forecast."
+        },
+        {
+          "channel": "CTV/YouTube",
+          "delivery_index": 0.91,
+          "sales_index": 0.86,
+          "context": "Video test delivery under target; keep as capped test."
+        },
+        {
+          "channel": "Paid Search",
+          "delivery_index": 1.04,
+          "sales_index": 1.07,
+          "context": "Search captured demand efficiently but query volume remains capped."
+        },
+        {
+          "channel": "Paid Social",
+          "delivery_index": 0.97,
+          "sales_index": 0.93,
+          "context": "Prospecting cost per policy drifted high."
+        },
+        {
+          "channel": "Audio",
+          "delivery_index": 1,
+          "sales_index": 1.01,
+          "context": "Stable delivery and response."
+        },
+        {
+          "channel": "Display/Programmatic",
+          "delivery_index": 0.95,
+          "sales_index": 0.9,
+          "context": "Prospecting weaker than retargeting; needs split before production."
+        }
       ],
       "user_context": [
         "Planner note: June was weaker than expected after school term and travel disruption affected local response.",
@@ -31,7 +75,7 @@
       "monthly_context": {
         "weather": "Warmer, drier summer weeks; outdoor attention improves but response attribution is weak.",
         "sports": "Football creative context continues, but no automatic budget movement without performance proof.",
-        "calendar": "Summer holidays begin; review family/charity messaging and local salience."
+        "calendar": "Summer holidays begin; review family messaging and local salience."
       },
       "revision_rules": [
         "Freeze months before the selected revision month.",
@@ -47,34 +91,78 @@
       "prior_month": "2026-10",
       "actuals_status": "synthetic",
       "sales_actuals": {
-        "ticket_holders": 84200,
-        "target_ticket_holders": 80000,
-        "cpa_gbp": 59.38,
-        "target_cpa_gbp": 62.5,
-        "delivery_index": 1.03
+        "new_policy_sales": 84200,
+        "target_new_policy_sales": 80000,
+        "cost_per_policy_gbp": 59.38,
+        "target_cost_per_policy_gbp": 62.5,
+        "delivery_index": 1.03,
+        "quote_starts": 668000,
+        "quote_to_policy_conversion_pct": 12.6,
+        "pcw_visibility_index": 1.04,
+        "brand_search_index": 108
       },
       "channel_performance": [
-        {"channel": "AV", "delivery_index": 1.04, "sales_index": 1.06, "context": "AV demand generation running ahead of target."},
-        {"channel": "OOH", "delivery_index": 0.99, "sales_index": 0.95, "context": "Useful salience but still measurement-led."},
-        {"channel": "Direct Mail", "delivery_index": 1.07, "sales_index": 1.12, "context": "Mail response strong ahead of winter draw."},
-        {"channel": "CTV/YouTube", "delivery_index": 0.98, "sales_index": 0.94, "context": "Keep video test controlled."},
-        {"channel": "Paid Search", "delivery_index": 1.02, "sales_index": 1.04, "context": "Demand capture efficient but capped by query volume."},
-        {"channel": "Paid Social", "delivery_index": 1.01, "sales_index": 0.98, "context": "Creative fatigue risk."},
-        {"channel": "Audio", "delivery_index": 1.03, "sales_index": 1.02, "context": "Steady contextual support."},
-        {"channel": "Display/Programmatic", "delivery_index": 0.96, "sales_index": 0.92, "context": "Retargeting likely better than prospecting."}
+        {
+          "channel": "AV",
+          "delivery_index": 1.04,
+          "sales_index": 1.06,
+          "context": "AV demand generation running ahead of target."
+        },
+        {
+          "channel": "OOH",
+          "delivery_index": 0.99,
+          "sales_index": 0.95,
+          "context": "Useful salience but still measurement-led."
+        },
+        {
+          "channel": "Direct Mail",
+          "delivery_index": 1.07,
+          "sales_index": 1.12,
+          "context": "Mail response strong ahead of the winter renewal peak."
+        },
+        {
+          "channel": "CTV/YouTube",
+          "delivery_index": 0.98,
+          "sales_index": 0.94,
+          "context": "Keep video test controlled."
+        },
+        {
+          "channel": "Paid Search",
+          "delivery_index": 1.02,
+          "sales_index": 1.04,
+          "context": "Demand capture efficient but capped by query volume."
+        },
+        {
+          "channel": "Paid Social",
+          "delivery_index": 1.01,
+          "sales_index": 0.98,
+          "context": "Creative fatigue risk."
+        },
+        {
+          "channel": "Audio",
+          "delivery_index": 1.03,
+          "sales_index": 1.02,
+          "context": "Steady contextual support."
+        },
+        {
+          "channel": "Display/Programmatic",
+          "delivery_index": 0.96,
+          "sales_index": 0.92,
+          "context": "Retargeting likely better than prospecting."
+        }
       ],
       "user_context": [
-        "Planner note: protect December draw support and avoid stripping AV too aggressively.",
-        "Client note: approvals must preserve brand safety and charitable/community positioning."
+        "Planner note: protect December renewal-season support and avoid stripping AV too aggressively.",
+        "Client note: approvals must preserve brand safety and Admiral's trust-led \"Always Looking Out For You\" positioning."
       ],
       "monthly_context": {
         "weather": "Colder, wetter evenings likely increase home media consumption.",
         "sports": "Winter sport context supports AV/audio adjacency checks.",
-        "calendar": "Christmas and December draw preparation; higher attention and higher clutter."
+        "calendar": "Christmas and December renewal-season preparation; higher attention and higher clutter."
       },
       "revision_rules": [
         "Freeze months before November.",
-        "Protect December draw support.",
+        "Protect December renewal-season support.",
         "Use stronger prior-month performance to support proven channels, but keep evidence gaps visible.",
         "Revision output is a new plan version candidate requiring human approval."
       ]

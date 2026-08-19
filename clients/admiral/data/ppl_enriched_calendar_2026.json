@@ -3,8 +3,8 @@
   "created_for": "Postcode Lottery Group 2026 planning prototype",
   "source_ids": [
     "synthetic_draw_calendar_v1",
-    "ppl_2026_brief_priorities",
-    "ppl_planning_evidence_rules_2026",
+    "adm_brief_priorities_2026",
+    "adm_planning_evidence_rules_2026",
     "signal_v2_uk_calendar_seed",
     "signal_v2_uk_geo_seed",
     "signal_v2_uk_media_market_seed",
@@ -60,7 +60,7 @@
       "planning_implication": "The deterministic draw calendar weights March as a larger spring draw. Family/gifting context can support emotional creative, but Mother's Day is a context hook rather than a PPL offer.",
       "channel_actions": ["AV emotional reach", "Audio earlier-month support", "Direct Mail penultimate week"],
       "audience_geo_hooks": ["heartland households", "family households"],
-      "source_ids": ["synthetic_draw_calendar_v1", "signal_v2_uk_calendar_seed", "ppl_planning_evidence_rules_2026"]
+      "source_ids": ["synthetic_draw_calendar_v1", "signal_v2_uk_calendar_seed", "adm_planning_evidence_rules_2026"]
     },
     {
       "event_id": "apr_easter_bank_holiday_marathon",
@@ -86,7 +86,7 @@
       "planning_implication": "May is lower budget in the deterministic plan, but the brief calls for creative-platform development. Use the month for test design, creator/CTV learning and brand platform rehearsal.",
       "channel_actions": ["CTV/YouTube measured test", "Paid Social creative learning", "Display prospecting"],
       "audience_geo_hooks": ["growth audiences", "families", "London proxy"],
-      "source_ids": ["gov_uk_bank_holidays_2026", "tower_hamlets_school_terms_2026", "ppl_2026_brief_priorities"]
+      "source_ids": ["gov_uk_bank_holidays_2026", "tower_hamlets_school_terms_2026", "adm_brief_priorities_2026"]
     },
     {
       "event_id": "jun_world_cup_opening",
@@ -138,7 +138,7 @@
       "planning_implication": "Routine reset can improve planning receptivity. London cultural context supports London growth testing, but requires confirmed event feed before client-facing claims.",
       "channel_actions": ["OOH London learning", "Paid Social urban growth", "Display prospecting"],
       "audience_geo_hooks": ["Greater London", "Urban Optimist", "families"],
-      "source_ids": ["signal_v2_uk_calendar_seed", "signal_geo_demo", "ppl_2026_brief_priorities"]
+      "source_ids": ["signal_v2_uk_calendar_seed", "signal_geo_demo", "adm_brief_priorities_2026"]
     },
     {
       "event_id": "oct_half_term_approval_window",
@@ -164,7 +164,7 @@
       "planning_implication": "November has the highest deterministic budget and supports the December draw build. Retail noise can inflate attention costs, so rationale must show why PPL is present and where it avoids waste.",
       "channel_actions": ["AV bedrock", "Direct Mail penultimate week", "Paid Search always-on plus triggers", "Audio earlier support"],
       "audience_geo_hooks": ["national", "heartland households", "lapsed players"],
-      "source_ids": ["synthetic_draw_calendar_v1", "signal_v2_uk_calendar_seed", "ppl_planning_evidence_rules_2026"]
+      "source_ids": ["synthetic_draw_calendar_v1", "signal_v2_uk_calendar_seed", "adm_planning_evidence_rules_2026"]
     },
     {
       "event_id": "dec_christmas_short_month",

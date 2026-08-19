@@ -1,0 +1,250 @@
+{
+  "generated_data_banner": "SYNTHETIC DEMO DATA - illustrative only, does not represent Admiral's actual budget, forecasts or performance",
+  "generated_on": "2026-08-19",
+  "status": "synthetic_fixture",
+  "source_id": "synthetic_admiral_motor_demo",
+  "description": "Single source-of-truth synthetic fixture for headline planning numbers used across this demo (annual budget, forecast new policy sales, cost per new policy sale, monthly budget weights, channel taxonomy). All figures here are clearly-labelled illustrative placeholders, not Admiral performance data - see brief section 5.",
+  "annual_summary": {
+    "total_media_budget_gbp": 48000000,
+    "forecast_new_policy_sales": 240000,
+    "cost_per_new_policy_sale_gbp": 200,
+    "forecast_quote_starts": 2000000,
+    "quote_to_policy_conversion_pct": 12,
+    "note": "cost_per_new_policy_sale_gbp = total_media_budget_gbp / forecast_new_policy_sales. forecast_quote_starts = forecast_new_policy_sales / (quote_to_policy_conversion_pct / 100). Media budget excludes PCW distribution spend, which is measured separately - see distribution_summary."
+  },
+  "monthly_budget_weights_pct": {
+    "2026-01": 9,
+    "2026-02": 7,
+    "2026-03": 12,
+    "2026-04": 7,
+    "2026-05": 7,
+    "2026-06": 7,
+    "2026-07": 7,
+    "2026-08": 9,
+    "2026-09": 12,
+    "2026-10": 8,
+    "2026-11": 7,
+    "2026-12": 8
+  },
+  "monthly_budget_weights_note": "March and September are illustrative UK plate-change peaks (1 March / 1 September registration changes are a real public UK motoring fact) - the specific weight values are a synthetic planning assumption for this demo, not evidence of Admiral's actual phasing.",
+  "channel_annual_share_pct": {
+    "AV": 30,
+    "OOH": 8,
+    "Audio": 6,
+    "CTV/YouTube": 12,
+    "Display/Programmatic": 10,
+    "Paid Search": 20,
+    "Paid Social": 10,
+    "Direct Mail": 4
+  },
+  "channel_groups": {
+    "brand_reach": {
+      "label": "Brand reach",
+      "description": "Build broad reach, trust and mental availability.",
+      "channels": [
+        "AV",
+        "OOH",
+        "Audio"
+      ]
+    },
+    "video_consideration": {
+      "label": "Video and consideration",
+      "description": "Explain the proposition and create qualified demand.",
+      "channels": [
+        "CTV/YouTube",
+        "Display/Programmatic"
+      ]
+    },
+    "demand_capture": {
+      "label": "Demand capture",
+      "description": "Capture active shoppers and move them into the quote journey.",
+      "channels": [
+        "Paid Search",
+        "Paid Social"
+      ]
+    },
+    "partnerships_content": {
+      "label": "Partnerships and content",
+      "description": "Creators, road-safety content, sponsorships, PR amplification. No channel in this demo's base media mix carries budget under this group yet.",
+      "channels": []
+    },
+    "owned_activation": {
+      "label": "Owned activation",
+      "description": "CRM, email, app, website and SEO/content - shown separately from paid media unless paid activation cost is explicitly in scope. Direct Mail is mapped here as the closest addressable/CRM-adjacent channel in this demo's existing taxonomy; it is not one of section 4's named examples.",
+      "channels": [
+        "Direct Mail"
+      ]
+    },
+    "distribution": {
+      "label": "Distribution",
+      "description": "Price-comparison websites and approved affiliates. Measured on ranking, quote share and sale conversion - kept separate from impression-based media budget and the media-mix chart.",
+      "channels": []
+    }
+  },
+  "monthly_channel_budget_gbp": {
+    "2026-01": {
+      "AV": 1296000,
+      "OOH": 345600,
+      "Audio": 259200,
+      "CTV/YouTube": 518400,
+      "Display/Programmatic": 432000,
+      "Paid Search": 864000,
+      "Paid Social": 432000,
+      "Direct Mail": 172800
+    },
+    "2026-02": {
+      "AV": 1008000,
+      "OOH": 268800,
+      "Audio": 201600,
+      "CTV/YouTube": 403200,
+      "Display/Programmatic": 336000,
+      "Paid Search": 672000,
+      "Paid Social": 336000,
+      "Direct Mail": 134400
+    },
+    "2026-03": {
+      "AV": 1728000,
+      "OOH": 460800,
+      "Audio": 345600,
+      "CTV/YouTube": 691200,
+      "Display/Programmatic": 576000,
+      "Paid Search": 1152000,
+      "Paid Social": 576000,
+      "Direct Mail": 230400
+    },
+    "2026-04": {
+      "AV": 1008000,
+      "OOH": 268800,
+      "Audio": 201600,
+      "CTV/YouTube": 403200,
+      "Display/Programmatic": 336000,
+      "Paid Search": 672000,
+      "Paid Social": 336000,
+      "Direct Mail": 134400
+    },
+    "2026-05": {
+      "AV": 1008000,
+      "OOH": 268800,
+      "Audio": 201600,
+      "CTV/YouTube": 403200,
+      "Display/Programmatic": 336000,
+      "Paid Search": 672000,
+      "Paid Social": 336000,
+      "Direct Mail": 134400
+    },
+    "2026-06": {
+      "AV": 1008000,
+      "OOH": 268800,
+      "Audio": 201600,
+      "CTV/YouTube": 403200,
+      "Display/Programmatic": 336000,
+      "Paid Search": 672000,
+      "Paid Social": 336000,
+      "Direct Mail": 134400
+    },
+    "2026-07": {
+      "AV": 1008000,
+      "OOH": 268800,
+      "Audio": 201600,
+      "CTV/YouTube": 403200,
+      "Display/Programmatic": 336000,
+      "Paid Search": 672000,
+      "Paid Social": 336000,
+      "Direct Mail": 134400
+    },
+    "2026-08": {
+      "AV": 1296000,
+      "OOH": 345600,
+      "Audio": 259200,
+      "CTV/YouTube": 518400,
+      "Display/Programmatic": 432000,
+      "Paid Search": 864000,
+      "Paid Social": 432000,
+      "Direct Mail": 172800
+    },
+    "2026-09": {
+      "AV": 1728000,
+      "OOH": 460800,
+      "Audio": 345600,
+      "CTV/YouTube": 691200,
+      "Display/Programmatic": 576000,
+      "Paid Search": 1152000,
+      "Paid Social": 576000,
+      "Direct Mail": 230400
+    },
+    "2026-10": {
+      "AV": 1152000,
+      "OOH": 307200,
+      "Audio": 230400,
+      "CTV/YouTube": 460800,
+      "Display/Programmatic": 384000,
+      "Paid Search": 768000,
+      "Paid Social": 384000,
+      "Direct Mail": 153600
+    },
+    "2026-11": {
+      "AV": 1008000,
+      "OOH": 268800,
+      "Audio": 201600,
+      "CTV/YouTube": 403200,
+      "Display/Programmatic": 336000,
+      "Paid Search": 672000,
+      "Paid Social": 336000,
+      "Direct Mail": 134400
+    },
+    "2026-12": {
+      "AV": 1152000,
+      "OOH": 307200,
+      "Audio": 230400,
+      "CTV/YouTube": 460800,
+      "Display/Programmatic": 384000,
+      "Paid Search": 768000,
+      "Paid Social": 384000,
+      "Direct Mail": 153600
+    }
+  },
+  "monthly_total_budget_gbp": {
+    "2026-01": 4320000,
+    "2026-02": 3360000,
+    "2026-03": 5760000,
+    "2026-04": 3360000,
+    "2026-05": 3360000,
+    "2026-06": 3360000,
+    "2026-07": 3360000,
+    "2026-08": 4320000,
+    "2026-09": 5760000,
+    "2026-10": 3840000,
+    "2026-11": 3360000,
+    "2026-12": 3840000
+  },
+  "distribution_summary": {
+    "generated_data_banner": "SYNTHETIC DEMO DATA - illustrative only, not Admiral PCW performance",
+    "channel_group": "distribution",
+    "source_id": "adm_pcw_performance",
+    "note": "Price-comparison websites are a distribution channel, not impression-based media - reported separately from the media budget/mix above and measured on ranking, quote share and sale conversion.",
+    "pcw_visibility_index": 1,
+    "quote_share_pct": 38.5,
+    "pcw_to_sale_conversion_pct": 9.4,
+    "approved_partners_illustrative": [
+      "PCW Partner A",
+      "PCW Partner B",
+      "PCW Partner C"
+    ]
+  },
+  "data_readiness_groups": {
+    "effectiveness_modelling": "Effectiveness & Modelling - MMM, incrementality tests, experiments, response curves, attribution, brand lift.",
+    "quote_policy_renewal": "Quote, Policy & Renewal Performance - quote starts, completions, policy sales, cost per policy, product, vehicle, geography, renewals, cancellations.",
+    "pcw_distribution": "PCW & Distribution Performance - position, click, quote and sale feeds, commissions, attribution rules, freshness.",
+    "customer_vehicle_audience": "Customer, Vehicle & Audience Data - approved aggregate segments for MultiCar, young/new drivers, telematics, EV/ICE, life stage, geography.",
+    "pricing_risk_guardrails": "Pricing, Risk & Commercial Guardrails - only approved aggregate constraints or value bands; detailed pricing/underwriting logic stays outside the planner and LLM.",
+    "plans_budgets_creative_approvals": "Plans, Budgets, Creative & Approvals - annual brief, media budget, channel plans, creative matrix, claims substantiation, promotion approvals.",
+    "digital_crm_platform": "Digital, CRM & Platform Data - paid-search, social, programmatic, website analytics, CRM, app reporting.",
+    "market_competitor_context": "Market, Competitor & Context Signals - premiums, search interest, plate changes, weather, road safety, competitor bursts, regulatory changes.",
+    "media_owner_channel": "Media Owner & Channel Data - reach, frequency, delivery, rate cards, inventory, audience availability."
+  },
+  "caveats": [
+    "All figures in this file are synthetic and illustrative. They do not represent Admiral's actual budget, forecasts, quote volumes or cost-per-policy performance.",
+    "The six generated_plan_*.json scenario files carry their own (separately-scaled) synthetic numbers pending the Scenarios workstream's full regeneration onto this fixture's basis.",
+    "PCW distribution figures are illustrative placeholders and must not be read as validated Admiral PCW economics."
+  ]
+}

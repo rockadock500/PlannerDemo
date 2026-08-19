@@ -1,80 +1,103 @@
 {
-  "source_id": "ppl_planning_evidence_rules_2026",
+  "source_id": "adm_planning_evidence_rules_2026",
   "description": "App-channel planning priors and rules derived from the PPL 2026 brief plus the June 2022-April 2023 MMM deck. These rules are for prototype reasoning, not final investment advice.",
   "objective": {
-    "ticket_target": 1000000,
-    "brief_cpa_gbp": 65,
+    "policy_sales_target": 1000000,
+    "brief_cost_per_policy_gbp": 65,
     "budget_guardrail": "Every pound needs to be spent with care; plans should show efficiency rationale and test risk separately."
   },
   "channel_rules": [
     {
       "channel": "AV",
       "mmm_optimal_share_pct": 49.2,
-      "strategic_floor_pct": 35.0,
+      "strategic_floor_pct": 35,
       "planning_role": "National reach, trust, draw-month storytelling and response bedrock.",
       "mmm_note": "MMM recommends reversing the drift from AV into Print/Digital. TV is the bedrock, DRTV has the strongest CPS, and final-week TV can overheat.",
       "phasing_rule": "Use across the draw month, with stronger support in first, second and penultimate weeks rather than over-concentrating in the final week.",
-      "brief_hooks": ["april_december_tentpoles", "july_august_football_context", "may_new_creative_platform", "gameshow_series_two"],
+      "brief_hooks": [
+        "april_december_tentpoles",
+        "july_august_football_context",
+        "may_new_creative_platform",
+        "gameshow_series_two"
+      ],
       "evidence_strength": "primary_mmm"
     },
     {
       "channel": "OOH",
-      "mmm_optimal_share_pct": 0.0,
-      "strategic_floor_pct": 4.0,
+      "mmm_optimal_share_pct": 0,
+      "strategic_floor_pct": 4,
       "planning_role": "Local salience, Greater London opportunity support and community visibility.",
       "mmm_note": "OOH is not present in the MMM optimal channel table, so the prototype should treat it as a brief-led strategic layer requiring measurement design.",
       "phasing_rule": "Concentrate around priority geographies and tentpole windows rather than spreading thinly across all months.",
-      "brief_hooks": ["greater_london_growth", "channel_role_clarity", "testing_framework"],
+      "brief_hooks": [
+        "greater_london_growth",
+        "channel_role_clarity",
+        "testing_framework"
+      ],
       "evidence_strength": "brief_required_gap"
     },
     {
       "channel": "Direct Mail",
       "mmm_optimal_share_pct": 28.33,
-      "strategic_floor_pct": 18.0,
+      "strategic_floor_pct": 18,
       "planning_role": "Propensity-led conversion and deadline response.",
       "mmm_note": "Door drops are strong due to low cost per mailing; partially addressed is weaker on CPS; lapsed performs well but is constrained by available volume.",
       "phasing_rule": "Avoid immediate post-cutoff mailing. Use door drops heavily in the penultimate week and lapsed priority in the final week.",
-      "brief_hooks": ["april_december_tentpoles"],
+      "brief_hooks": [
+        "april_december_tentpoles"
+      ],
       "evidence_strength": "primary_mmm"
     },
     {
       "channel": "CTV/YouTube",
       "mmm_optimal_share_pct": 1.11,
-      "strategic_floor_pct": 3.0,
+      "strategic_floor_pct": 3,
       "planning_role": "Incremental video reach and controlled growth testing.",
       "mmm_note": "YouTube investment was too low for confident MMM conclusions and early evidence suggested worse-than-average CPS, so this should remain a test rather than a large default allocation.",
       "phasing_rule": "Use as measured test support around AV tentpoles and growth audiences.",
-      "brief_hooks": ["july_august_football_context", "testing_framework"],
+      "brief_hooks": [
+        "july_august_football_context",
+        "testing_framework"
+      ],
       "evidence_strength": "test_required"
     },
     {
       "channel": "Paid Search",
       "mmm_optimal_share_pct": 1.51,
-      "strategic_floor_pct": 2.0,
+      "strategic_floor_pct": 2,
       "planning_role": "Intent harvesting and tactical response to demand triggers.",
       "mmm_note": "Generic PPC is reasonably good but limited in scalable scope; brand search is close to maxed out.",
       "phasing_rule": "Keep always-on coverage and add tactical upweights around EuroMillions/prize/news triggers and deadline windows.",
-      "brief_hooks": ["channel_role_clarity", "free_ticket_tactical_only"],
+      "brief_hooks": [
+        "channel_role_clarity",
+        "free_ticket_tactical_only"
+      ],
       "evidence_strength": "primary_mmm_limited_scale"
     },
     {
       "channel": "Paid Social",
       "mmm_optimal_share_pct": 4.21,
-      "strategic_floor_pct": 4.0,
+      "strategic_floor_pct": 4,
       "planning_role": "Audience growth, social proof, retargeting and creative learning.",
       "mmm_note": "Maintain but avoid over-weighting late week without separating prospecting and retargeting logic.",
       "phasing_rule": "Prospecting can work earlier in the draw month; warm audiences should rise nearer cutoff.",
-      "brief_hooks": ["channel_role_clarity", "testing_framework"],
+      "brief_hooks": [
+        "channel_role_clarity",
+        "testing_framework"
+      ],
       "evidence_strength": "primary_mmm"
     },
     {
       "channel": "Audio",
       "mmm_optimal_share_pct": 5.95,
-      "strategic_floor_pct": 4.0,
+      "strategic_floor_pct": 4,
       "planning_role": "Regional reinforcement, attention and efficient reach extension.",
       "mmm_note": "Radio CPS is steady and better than average; MMM recommends testing an earlier upweight before the penultimate week.",
       "phasing_rule": "Do not leave all audio to the final two weeks; test earlier-month support.",
-      "brief_hooks": ["channel_role_clarity", "commercial_deals"],
+      "brief_hooks": [
+        "channel_role_clarity",
+        "commercial_deals"
+      ],
       "evidence_strength": "primary_mmm"
     },
     {
@@ -84,7 +107,11 @@
       "planning_role": "Prospecting, warm retargeting and partnership-led digital value.",
       "mmm_note": "Prospecting should start two to three weeks before cutoff; retargeting is more effective nearer cutoff.",
       "phasing_rule": "Split cold prospecting earlier and warm retargeting later; do not treat display as one undifferentiated last-week pot.",
-      "brief_hooks": ["channel_role_clarity", "free_ticket_tactical_only", "testing_framework"],
+      "brief_hooks": [
+        "channel_role_clarity",
+        "free_ticket_tactical_only",
+        "testing_framework"
+      ],
       "evidence_strength": "primary_mmm"
     }
   ],

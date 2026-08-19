@@ -1,12 +1,12 @@
 {
-  "registry_version": "v1_synthetic",
-  "created_for": "PPL Planner Prototype 1",
+  "registry_version": "v2_admiral_synthetic",
+  "created_for": "Admiral AI Media Planner - Synthetic Demo",
   "created_on": "2026-06-26",
   "sources": [
     {
-      "source_id": "ppl_2026_media_briefing_docx",
-      "name": "PPL 2026 Media Briefing for the7stars",
-      "path": "/Users/robwebster/Documents/PPL Planner/2026 Media Briefing.docx",
+      "source_id": "adm_annual_media_brief",
+      "name": "Admiral 2026 Media Briefing",
+      "path": "sample-docs/admiral/2026-media-briefing.docx",
       "status": "client_supplied",
       "strength": "primary",
       "used_for": [
@@ -14,25 +14,27 @@
         "planning priorities",
         "targeting",
         "required outputs"
-      ]
+      ],
+      "readiness_group": "plans_budgets_creative_approvals"
     },
     {
-      "source_id": "ppl_2026_budget_targets_xlsx",
-      "name": "PPL 2026 Budget-Targets workbook",
-      "path": "/Users/robwebster/Documents/PPL Planner/2026 Budget-Targets.xlsx",
+      "source_id": "adm_media_budget",
+      "name": "Admiral 2026 Budget-Targets workbook",
+      "path": "sample-docs/admiral/2026-budget-targets.xlsx",
       "status": "client_supplied",
       "strength": "primary",
       "used_for": [
         "monthly budgets",
-        "monthly acquisition targets",
-        "CPA targets",
-        "draw labels"
-      ]
+        "monthly new policy sales targets",
+        "cost-per-policy targets",
+        "campaign calendar labels"
+      ],
+      "readiness_group": "plans_budgets_creative_approvals"
     },
     {
-      "source_id": "ppl_mmm_june22_april23_pptx",
-      "name": "MMM June 22 to April 23",
-      "path": "/Users/robwebster/Documents/PPL Planner/MMM June 22 to April 23.pptx",
+      "source_id": "adm_mmm_deck_2026",
+      "name": "Admiral MMM readout, June 2025 to April 2026 (synthetic demo deck)",
+      "path": "sample-docs/admiral/mmm-jun25-apr26.pptx",
       "status": "client_supplied",
       "strength": "primary",
       "used_for": [
@@ -40,120 +42,131 @@
         "CPS evidence",
         "draw month phasing",
         "planning logic"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "scope_pdf_page_15",
-      "name": "PL Media Planner Scope Overview - Future State Annual Planning Workflow",
-      "path": "/Users/robwebster/Documents/PPL Planner/PL Media Planner Scope Overview - 24Jun26 v1.pdf",
+      "name": "Admiral Media Planner Scope Overview - Future State Annual Planning Workflow",
+      "path": "sample-docs/admiral/media-planner-scope-overview-v1.pdf",
       "status": "client_supplied",
       "strength": "primary",
       "used_for": [
         "workflow",
         "annual planning process"
-      ]
+      ],
+      "readiness_group": "plans_budgets_creative_approvals"
     },
     {
       "source_id": "scope_pdf_page_17",
       "name": "Annual Planning Input: Annual Budget & Brief",
-      "path": "/Users/robwebster/Documents/PPL Planner/PL Media Planner Scope Overview - 24Jun26 v1.pdf",
+      "path": "sample-docs/admiral/media-planner-scope-overview-v1.pdf",
       "status": "client_supplied",
       "strength": "primary",
       "used_for": [
         "monthly budgets",
-        "monthly acquisition targets",
-        "CPA targets"
-      ]
+        "monthly new policy sales targets",
+        "cost-per-policy targets"
+      ],
+      "readiness_group": "plans_budgets_creative_approvals"
     },
     {
       "source_id": "scope_pdf_page_22",
-      "name": "PL Scope Overview - Annual Planning Workspace (p.22)",
-      "path": "/Users/robwebster/Documents/PPL Planner/PL Media Planner Scope Overview - 24Jun26 v1.pdf",
+      "name": "Admiral Scope Overview - Annual Planning Workspace (p.22)",
+      "path": "sample-docs/admiral/media-planner-scope-overview-v1.pdf",
       "status": "client_supplied",
       "strength": "primary",
       "used_for": [
         "workspace expectations",
         "evidence per cell",
         "scenario display"
-      ]
+      ],
+      "readiness_group": "plans_budgets_creative_approvals"
     },
     {
       "source_id": "agent_architecture_blueprint",
-      "name": "PL AI Media Planner Agent Architecture Blueprint",
-      "path": "/Users/robwebster/Documents/PPL Planner/PL AI Planner Agent Architecture.html",
+      "name": "Admiral AI Media Planner Agent Architecture Blueprint",
+      "path": "sample-docs/admiral/ai-planner-agent-architecture.html",
       "status": "internal_blueprint",
       "strength": "supporting",
       "used_for": [
         "agent roles",
         "channel taxonomy",
         "engineering principles"
-      ]
+      ],
+      "readiness_group": "digital_crm_platform"
     },
     {
-      "source_id": "signal_ppl_scan",
-      "name": "Signal V2 PPL scan",
-      "path": "/Users/robwebster/Documents/Signal V2/marketing/scans/peoples-postcode-lottery.html",
+      "source_id": "signal_admiral_motor_scan",
+      "name": "Signal V2 Admiral Motor scan",
+      "path": "sample-docs/signal-v2/marketing/scans/admiral-motor-competitor-scan.html",
       "status": "external_proxy_reference",
       "strength": "supporting",
       "used_for": [
         "brand context",
         "audience hypotheses",
         "competitor context"
-      ]
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "signal_geo_demo",
       "name": "Signal/Predict UK postcode demographics",
-      "path": "/Users/robwebster/Documents/Predict/data/geo/uk-postcode-demographics.json",
+      "path": "sample-docs/predict/data/geo/uk-postcode-demographics.json",
       "status": "external_proxy_reference",
       "strength": "supporting",
       "used_for": [
         "geo audience proxy"
-      ]
+      ],
+      "readiness_group": "customer_vehicle_audience"
     },
     {
       "source_id": "barb_local_predict_2025_2026",
       "name": "Predict BARB consolidated sample",
-      "path": "/Users/robwebster/Documents/Predict/barb_consolidated.json",
+      "path": "sample-docs/predict/barb-consolidated.json",
       "status": "external_proxy_reference",
       "strength": "supporting",
       "used_for": [
         "AV reach proxy",
         "CTV/YouTube reach proxy"
-      ]
+      ],
+      "readiness_group": "media_owner_channel"
     },
     {
       "source_id": "signal_v2_uk_calendar_seed",
       "name": "Signal V2 UK calendar seed",
-      "path": "/Users/robwebster/Documents/Signal V2/data/events/uk-calendar.json",
+      "path": "sample-docs/signal-v2/data/events/uk-calendar.json",
       "status": "external_proxy_reference",
       "strength": "supporting",
       "used_for": [
         "seasonal event context",
         "school and retail planning proxies"
-      ]
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "signal_v2_uk_geo_seed",
       "name": "Signal V2 UK geo seed",
-      "path": "/Users/robwebster/Documents/Signal V2/data/seeds/geographies.json",
+      "path": "sample-docs/signal-v2/data/seeds/geographies.json",
       "status": "external_proxy_reference",
       "strength": "supporting",
       "used_for": [
         "London growth context",
         "regional media affinity proxy"
-      ]
+      ],
+      "readiness_group": "customer_vehicle_audience"
     },
     {
       "source_id": "signal_v2_uk_media_market_seed",
       "name": "Signal V2 UK media market Q2 2026 seed",
-      "path": "/Users/robwebster/Documents/Signal V2/data/seeds/uk-media-market-q2-2026.json",
+      "path": "sample-docs/signal-v2/data/seeds/uk-media-market-q2-2026.json",
       "status": "external_proxy_reference",
       "strength": "supporting",
       "used_for": [
         "CTV and social context",
         "BARB/Ofcom/eMarketer planning proxy"
-      ]
+      ],
+      "readiness_group": "media_owner_channel"
     },
     {
       "source_id": "gov_uk_bank_holidays_2026",
@@ -164,7 +177,8 @@
       "used_for": [
         "bank holidays",
         "long-weekend planning context"
-      ]
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "competitor_campaign_news_monitor",
@@ -175,7 +189,8 @@
       "used_for": [
         "flagging possible National Lottery (Camelot/Allwyn) campaign activity for human review",
         "not a confirmed-fact source - headlines only, unverified"
-      ]
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "tower_hamlets_school_terms_2026",
@@ -186,7 +201,8 @@
       "used_for": [
         "London school holiday proxy",
         "family calendar context"
-      ]
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "uk_school_holidays_2026_composite",
@@ -197,7 +213,8 @@
       "used_for": [
         "UK-wide school holiday coverage beyond the London/Tower Hamlets proxy",
         "family calendar context"
-      ]
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "wales_school_term_dates_2026",
@@ -205,7 +222,10 @@
       "path": "https://www.gov.wales/school-terms-holidays-and-closures",
       "status": "official_external_reference",
       "strength": "primary",
-      "used_for": ["Wales school holiday dates - a genuine single national source"]
+      "used_for": [
+        "Wales school holiday dates - a genuine single national source"
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "glasgow_school_term_dates_2026",
@@ -213,7 +233,10 @@
       "path": "https://www.glasgow.gov.uk/article/4276/School-Term-Dates",
       "status": "official_external_reference",
       "strength": "supporting_proxy",
-      "used_for": ["representative Scotland school holiday proxy - Scotland's 32 councils each set their own dates"]
+      "used_for": [
+        "representative Scotland school holiday proxy - Scotland's 32 councils each set their own dates"
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "ni_school_holidays_2026",
@@ -221,7 +244,10 @@
       "path": "https://www.education-ni.gov.uk/articles/school-holidays",
       "status": "official_external_reference",
       "strength": "primary",
-      "used_for": ["Northern Ireland school holiday dates"]
+      "used_for": [
+        "Northern Ireland school holiday dates"
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "birmingham_school_term_dates_2026",
@@ -229,7 +255,10 @@
       "path": "https://www.birmingham.gov.uk/info/20014/schools_and_learning/685/school_term_dates",
       "status": "official_external_reference",
       "strength": "supporting_proxy",
-      "used_for": ["representative England (outside London) school holiday proxy"]
+      "used_for": [
+        "representative England (outside London) school holiday proxy"
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "fifa_world_cup_2026",
@@ -240,7 +269,8 @@
       "used_for": [
         "football calendar",
         "AV and CTV context"
-      ]
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "uk_sports_events_2026_curated",
@@ -251,7 +281,8 @@
       "used_for": [
         "major UK-relevant sports events not already covered by the World Cup entries",
         "media attention-share planning context"
-      ]
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "winter_olympics_milano_cortina_2026",
@@ -259,7 +290,10 @@
       "path": "https://www.olympics.com/en/milano-cortina-2026",
       "status": "official_external_reference",
       "strength": "primary",
-      "used_for": ["sports calendar"]
+      "used_for": [
+        "sports calendar"
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "six_nations_rugby_2026",
@@ -267,7 +301,10 @@
       "path": "https://www.sixnationsrugby.com",
       "status": "official_external_reference",
       "strength": "primary",
-      "used_for": ["sports calendar"]
+      "used_for": [
+        "sports calendar"
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "fa_cup_final_2026",
@@ -275,7 +312,10 @@
       "path": "https://www.thefa.com",
       "status": "official_external_reference",
       "strength": "primary",
-      "used_for": ["sports calendar"]
+      "used_for": [
+        "sports calendar"
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "royal_ascot_2026",
@@ -283,7 +323,10 @@
       "path": "https://www.ascot.co.uk/royal-ascot",
       "status": "official_external_reference",
       "strength": "primary",
-      "used_for": ["sports calendar"]
+      "used_for": [
+        "sports calendar"
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "wimbledon_2026",
@@ -291,7 +334,10 @@
       "path": "https://www.wimbledon.com",
       "status": "official_external_reference",
       "strength": "primary",
-      "used_for": ["sports calendar"]
+      "used_for": [
+        "sports calendar"
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "british_grand_prix_2026",
@@ -299,7 +345,10 @@
       "path": "https://www.silverstone.co.uk",
       "status": "official_external_reference",
       "strength": "primary",
-      "used_for": ["sports calendar"]
+      "used_for": [
+        "sports calendar"
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "open_championship_2026",
@@ -307,7 +356,10 @@
       "path": "https://www.theopen.com",
       "status": "official_external_reference",
       "strength": "primary",
-      "used_for": ["sports calendar"]
+      "used_for": [
+        "sports calendar"
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "commonwealth_games_glasgow_2026",
@@ -315,7 +367,10 @@
       "path": "https://glasgow2026.com",
       "status": "official_external_reference",
       "strength": "primary",
-      "used_for": ["sports calendar"]
+      "used_for": [
+        "sports calendar"
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "london_major_events_2026",
@@ -326,24 +381,26 @@
       "used_for": [
         "London event context",
         "OOH and London growth planning"
-      ]
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "agent_demo_trace_v1",
       "name": "Experimental LLM agent trace",
-      "path": "ppl_prototype_v1/data/agent_demo_traces.json",
+      "path": "admiral_demo_fixtures/data/agent_demo_traces.json",
       "status": "experimental_agent_output",
       "strength": "non_authoritative",
       "used_for": [
         "agent mode demonstration",
         "LLM QA harness testing",
         "source-citation failure surfacing"
-      ]
+      ],
+      "readiness_group": "digital_crm_platform"
     },
     {
       "source_id": "agent_logic_config_v1",
-      "name": "PPL agent logic configuration",
-      "path": "ppl_prototype_v1/data/agent_logic_config.json",
+      "name": "Admiral agent logic configuration",
+      "path": "admiral_demo_fixtures/data/agent_logic_config.json",
       "status": "demo_configuration",
       "strength": "non_authoritative",
       "used_for": [
@@ -351,12 +408,13 @@
         "output schemas",
         "retry policy",
         "eval expectations"
-      ]
+      ],
+      "readiness_group": "digital_crm_platform"
     },
     {
-      "source_id": "ppl_api_contract_v1",
-      "name": "PPL API and Postgres contract proposal",
-      "path": "ppl_prototype_v1/data/ppl_api_contract_v1.json",
+      "source_id": "adm_api_contract_v1",
+      "name": "Admiral API and Postgres contract proposal",
+      "path": "admiral_demo_fixtures/data/adm_api_contract_v1.json",
       "status": "architecture_proposal",
       "strength": "non_authoritative",
       "used_for": [
@@ -364,12 +422,13 @@
         "approval events",
         "scenario runs",
         "eval storage"
-      ]
+      ],
+      "readiness_group": "digital_crm_platform"
     },
     {
-      "source_id": "ppl_logic_options_v1",
-      "name": "PPL logic option test configuration",
-      "path": "ppl_prototype_v1/data/logic_options_v1.json",
+      "source_id": "adm_logic_options_v1",
+      "name": "Admiral logic option test configuration",
+      "path": "admiral_demo_fixtures/data/logic_options_v1.json",
       "status": "demo_test_config",
       "strength": "non_authoritative",
       "used_for": [
@@ -377,7 +436,8 @@
         "target feasibility",
         "LLM output evaluation",
         "browser test flows"
-      ]
+      ],
+      "readiness_group": "digital_crm_platform"
     },
     {
       "source_id": "met_office_climate_averages",
@@ -389,7 +449,8 @@
         "average monthly weather context",
         "weather trigger design",
         "seasonal media planning assumptions"
-      ]
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "met_office_live_warnings",
@@ -400,12 +461,13 @@
       "used_for": [
         "live severe weather warnings, not a long-term average",
         "flagging which UK regions an active warning covers"
-      ]
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
-      "source_id": "ppl_response_curve_priors_2026",
-      "name": "PPL response curve priors 2026",
-      "path": "ppl_prototype_v1/data/response_curve_priors_2026.json",
+      "source_id": "adm_response_curve_priors_2026",
+      "name": "Admiral response curve priors 2026 (synthetic demo)",
+      "path": "admiral_demo_fixtures/data/response_curve_priors_2026.json",
       "status": "derived_from_client_source_plus_external_research",
       "strength": "supporting",
       "used_for": [
@@ -413,7 +475,8 @@
         "saturation prior",
         "confidence bands",
         "MMM versus external evidence conflicts"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_google_meridian_hill_2026",
@@ -425,7 +488,8 @@
         "Hill curve shape",
         "half-saturation point",
         "saturation overfit guardrail"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_meta_robyn_mmm_docs",
@@ -436,7 +500,8 @@
       "used_for": [
         "MMM data quality guardrail",
         "next-dollar optimisation context"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_profit_ability_2_2024",
@@ -449,7 +514,8 @@
         "AV carryover",
         "relative channel payback",
         "digital quick-saturation prior"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_jicmail_response_rate_tracker_2025",
@@ -461,7 +527,8 @@
         "direct mail response rates",
         "door drop response rates",
         "mail ROI benchmarks"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_dma_door_drop_2025",
@@ -472,7 +539,8 @@
       "used_for": [
         "door drop response rate",
         "door drop ROI benchmark"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_recast_adstock_2023",
@@ -483,7 +551,8 @@
       "used_for": [
         "adstock half-life sanity check",
         "carryover guardrail"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_wordstream_google_ads_2025",
@@ -493,7 +562,8 @@
       "strength": "low_confidence_proxy",
       "used_for": [
         "paid search CPA sanity check"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_wordstream_facebook_ads_2025",
@@ -503,19 +573,21 @@
       "strength": "low_confidence_proxy",
       "used_for": [
         "paid social CPA sanity check"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
-      "source_id": "ppl_mmm_audit_2026",
-      "name": "PPL MMM audit and response curve site data",
-      "path": "ppl_prototype_v1/data/mmm_audit_2026.json",
+      "source_id": "adm_mmm_audit_2026",
+      "name": "Admiral MMM audit and response curve site data (synthetic demo)",
+      "path": "admiral_demo_fixtures/data/mmm_audit_2026.json",
       "status": "derived_from_client_source_plus_external_research",
       "strength": "supporting",
       "used_for": [
         "MMM claim audit",
         "response curve confidence",
         "MMM rebuild roadmap"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_arxiv_mmm_broken_2024",
@@ -527,7 +599,8 @@
         "time-varying coefficient risk",
         "nonlinear effect identification",
         "experiment calibration rationale"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_iab_modernizing_mmm_2025",
@@ -539,7 +612,8 @@
         "weekly data refresh",
         "monthly retrain best practice",
         "auditable MMM outputs"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_optimine_monthly_refresh_2026",
@@ -551,7 +625,8 @@
         "monthly refresh claim",
         "quiet degradation framing",
         "vendor caveat"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_pymc_marketing_guide_2025",
@@ -564,7 +639,8 @@
         "posterior predictive uncertainty",
         "scenario curves",
         "ROAS uncertainty"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_pymc_marketing_comparison_2026",
@@ -575,7 +651,8 @@
       "used_for": [
         "PyMC versus Meridian comparison",
         "tool selection caveat"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "external_trade_desk_ctv_inputs_2025",
@@ -586,7 +663,8 @@
       "used_for": [
         "CTV half-life planning signal",
         "lag-alignment audit question"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "reddit_marketing_mmm_practice_2024",
@@ -597,7 +675,8 @@
       "used_for": [
         "MMM plus experiments practitioner signal",
         "data and specialist skill caveat"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "reddit_analytics_mmm_usefulness_2025",
@@ -608,7 +687,8 @@
       "used_for": [
         "directional MMM caveat",
         "budget decision use case"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "reddit_marketing_mmm_validation_2026",
@@ -619,7 +699,8 @@
       "used_for": [
         "validation warning",
         "open-source tool caveat"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "reddit_datascience_mmm_quality_2025",
@@ -631,7 +712,8 @@
         "data quality caveat",
         "competition data caveat",
         "over-promise risk"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "synthetic_mmm_v1",
@@ -643,47 +725,51 @@
         "channel ROI",
         "diminishing returns",
         "confidence"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
-      "source_id": "ppl_mmm_optimal_channel_mix_2023",
-      "name": "Extracted MMM optimal channel mix table",
-      "path": "ppl_prototype_v1/data/mmm_optimal_channel_mix_2023.csv",
+      "source_id": "adm_mmm_channel_mix_2023",
+      "name": "Extracted MMM optimal channel mix table (synthetic demo)",
+      "path": "admiral_demo_fixtures/data/mmm_optimal_channel_mix_2023.csv",
       "status": "client_supplied_extract",
       "strength": "primary",
       "used_for": [
         "source-level channel recommendations",
         "MMM evidence",
         "taxonomy mapping"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
-      "source_id": "ppl_mmm_broad_channel_rollup_2023",
-      "name": "Mapped broad-channel rollup of MMM table",
-      "path": "ppl_prototype_v1/data/mmm_broad_channel_rollup_2023.csv",
+      "source_id": "adm_mmm_broad_channel_rollup_2023",
+      "name": "Mapped broad-channel rollup of MMM table (synthetic demo)",
+      "path": "admiral_demo_fixtures/data/mmm_broad_channel_rollup_2023.csv",
       "status": "derived_from_client_source",
       "strength": "supporting",
       "used_for": [
         "prototype broad-channel allocation evidence",
         "taxonomy gap detection"
-      ]
+      ],
+      "readiness_group": "effectiveness_modelling"
     },
     {
-      "source_id": "ppl_2026_brief_priorities",
-      "name": "Extracted 2026 brief priorities",
-      "path": "ppl_prototype_v1/data/brief_priorities_2026.json",
+      "source_id": "adm_brief_priorities_2026",
+      "name": "Extracted 2026 brief priorities (synthetic demo)",
+      "path": "admiral_demo_fixtures/data/brief_priorities_2026.json",
       "status": "client_supplied_extract",
       "strength": "primary",
       "used_for": [
         "logic challenges",
         "planning requirements",
         "scenario prompts"
-      ]
+      ],
+      "readiness_group": "plans_budgets_creative_approvals"
     },
     {
-      "source_id": "ppl_planning_evidence_rules_2026",
-      "name": "2026 brief plus MMM planning evidence rules",
-      "path": "ppl_prototype_v1/data/planning_evidence_rules_2026.json",
+      "source_id": "adm_planning_evidence_rules_2026",
+      "name": "2026 brief plus MMM planning evidence rules (synthetic demo)",
+      "path": "admiral_demo_fixtures/data/planning_evidence_rules_2026.json",
       "status": "derived_from_client_source",
       "strength": "supporting",
       "used_for": [
@@ -691,34 +777,37 @@
         "brief hooks",
         "phasing rules",
         "test criteria"
-      ]
+      ],
+      "readiness_group": "plans_budgets_creative_approvals"
     },
     {
       "source_id": "synthetic_draw_calendar_v1",
       "name": "Synthetic draw calendar",
-      "path": "ppl_prototype_v1/data/draw_calendar_2026.json",
+      "path": "admiral_demo_fixtures/data/draw_calendar_2026.json",
       "status": "synthetic_assumption",
       "strength": "placeholder",
       "used_for": [
         "monthly draw weight",
         "phasing"
-      ]
+      ],
+      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "media_owner_benchmarks_v1",
       "name": "Synthetic media owner/platform benchmarks",
-      "path": "ppl_prototype_v1/data/media_owner_benchmarks.json",
+      "path": "admiral_demo_fixtures/data/media_owner_benchmarks.json",
       "status": "synthetic_assumption",
       "strength": "placeholder",
       "used_for": [
         "media owner splits",
         "briefing form depth"
-      ]
+      ],
+      "readiness_group": "media_owner_channel"
     },
     {
       "source_id": "user_clarification_2026_06_26",
-      "name": "User clarifications in Codex thread",
-      "path": "/Users/robwebster/Documents/PPL Planner",
+      "name": "User clarifications (planning workshop notes)",
+      "path": "sample-docs/admiral/planning-workshop-notes",
       "status": "working_assumption",
       "strength": "primary_for_scope",
       "used_for": [
@@ -726,12 +815,13 @@
         "local files first",
         "future month revisions",
         "scenario semantics"
-      ]
+      ],
+      "readiness_group": "plans_budgets_creative_approvals"
     },
     {
       "source_id": "synthetic_monthly_revision_actuals_2026",
       "name": "Synthetic monthly revision actuals fixture",
-      "path": "/Users/robwebster/Documents/PPL Planner/ppl_prototype_v1/data/monthly_revision_fixture_2026.json",
+      "path": "admiral_demo_fixtures/data/monthly_revision_fixture_2026.json",
       "status": "synthetic_fixture",
       "strength": "placeholder",
       "used_for": [
@@ -739,7 +829,89 @@
         "prior-month sales actuals interface",
         "monthly context interface",
         "future Kanso/sales feed placeholder"
-      ]
+      ],
+      "readiness_group": "quote_policy_renewal"
+    },
+    {
+      "source_id": "adm_quote_policy_funnel",
+      "name": "Admiral quote-to-policy funnel fixture (synthetic demo)",
+      "path": "data/admiral_synthetic_fixture_2026.json",
+      "status": "synthetic_fixture",
+      "strength": "primary_for_scope",
+      "used_for": [
+        "quote starts",
+        "quote-to-policy conversion",
+        "forecast new policy sales",
+        "cost per new policy sale"
+      ],
+      "readiness_group": "quote_policy_renewal"
+    },
+    {
+      "source_id": "adm_pcw_performance",
+      "name": "Admiral PCW distribution performance fixture (synthetic demo)",
+      "path": "data/admiral_synthetic_fixture_2026.json",
+      "status": "synthetic_fixture",
+      "strength": "placeholder",
+      "used_for": [
+        "PCW visibility index",
+        "PCW quote share",
+        "PCW sale conversion",
+        "distribution vs media separation"
+      ],
+      "readiness_group": "pcw_distribution"
+    },
+    {
+      "source_id": "adm_customer_segments",
+      "name": "Admiral aggregate customer segment fixture (synthetic demo)",
+      "path": "data/admiral_synthetic_fixture_2026.json",
+      "status": "synthetic_assumption",
+      "strength": "supporting",
+      "used_for": [
+        "MultiCar household aggregate segment",
+        "young/new driver aggregate segment",
+        "telematics aggregate segment",
+        "EV/ICE aggregate segment"
+      ],
+      "readiness_group": "customer_vehicle_audience"
+    },
+    {
+      "source_id": "adm_brand_tracker",
+      "name": "Admiral brand tracker fixture (synthetic demo)",
+      "path": "data/admiral_synthetic_fixture_2026.json",
+      "status": "synthetic_assumption",
+      "strength": "supporting",
+      "used_for": [
+        "brand consideration index",
+        "brand search index",
+        "NPS proxy"
+      ],
+      "readiness_group": "effectiveness_modelling"
+    },
+    {
+      "source_id": "adm_promotion_approvals",
+      "name": "Admiral financial-promotion approvals log (synthetic demo)",
+      "path": "data/admiral_synthetic_fixture_2026.json",
+      "status": "working_assumption",
+      "strength": "supporting",
+      "used_for": [
+        "financial promotion review status",
+        "claims substantiation sign-off"
+      ],
+      "readiness_group": "plans_budgets_creative_approvals"
+    },
+    {
+      "source_id": "synthetic_admiral_motor_demo",
+      "name": "Synthetic Admiral Motor demo fixture (annual budget, forecast policy sales, monthly weights)",
+      "path": "data/admiral_synthetic_fixture_2026.json",
+      "status": "synthetic_fixture",
+      "strength": "placeholder",
+      "used_for": [
+        "illustrative annual media budget",
+        "illustrative forecast new policy sales",
+        "illustrative cost per new policy sale",
+        "illustrative monthly budget weights"
+      ],
+      "readiness_group": "plans_budgets_creative_approvals"
     }
   ]
 }

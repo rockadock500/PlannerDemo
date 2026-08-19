@@ -5,15 +5,19 @@
   "note": "This is the client's canonical list of data sources for the planner, not yet reconciled with the live-ingested Postgres source_records. Most Description/Data-quality fields are still blank in the source file - only Prior Month Draw Analysis, Event Calendar and Kanso have Description filled in so far. How-used fields have now been added by Claude for every source: they describe how each source WOULD feed the deterministic engine if it were fully wired in, grounded in the engine's existing mechanics (channel scoring, response curves, MMM evidence, brief-hooks tagging, guardrails). They are forward-looking / intended-use descriptions, not confirmations that the source is live today - as of this writing only Kanso (MMM reports), the Step 1 budget upload and the Step 1 strategy text actually drive the plan's numbers; Draw Analysis, Strategic Responses, ThinkBox and ActiveVoice have real documents ingested into Postgres but are not yet consumed by the engine's calculations; everything else has no live document at all. Categories below are Claude's own grouping (not present in the source spreadsheet, which is a flat list). The source spreadsheet had two near-duplicate rows, 'Historic Media Plans' and 'Historical Media Plans' - merged into the single 'Historic Media Plans' entry below.",
   "categories": [
     {
-      "category_id": "mmm_modelling",
-      "label": "MMM & Modelling",
+      "category_id": "effectiveness_modelling",
+      "label": "Effectiveness & Modelling",
       "sources": [
         {
           "name": "Kanso",
-          "description": "Mixed Media Modelling for Postcode Lottery in PDF or Powerpoint",
+          "description": "Mixed Media Modelling for Admiral Motor in PDF or PowerPoint",
           "how_used": "Live today. Used to create the initial base plan, taking the high-level figures for a breakdown of budget per channel, and to add context to the LLM's and agents. Concretely: refresh_mmm_notes.py reads the newest report and writes mmm_note (analyst commentary) and mmm_optimal_share_pct (per-channel target share) into channel_evidence_notes, which the engine pulls live on every plan generation.",
           "data_quality": "Most recent document no older than 6 months old, contains channel level granularity exported.",
-          "match_hints": ["mmm", "kanso", "ooh mmm data"]
+          "match_hints": [
+            "mmm",
+            "kanso",
+            "ooh mmm data"
+          ]
         },
         {
           "name": "LTV Model",
@@ -46,15 +50,17 @@
       ]
     },
     {
-      "category_id": "draw_sales_performance",
-      "label": "Draw & Sales Performance",
+      "category_id": "quote_policy_renewal",
+      "label": "Quote, Policy & Renewal Performance",
       "sources": [
         {
           "name": "Prior Month Draw Analysis",
           "description": "Powerpoint document containing analysis of the previous months draw",
           "how_used": "Would feed the month-by-month draw_weight used to phase budget and channel scoring across the year - today that phasing comes from the static draw_calendar_2026 fixture, so real analysis of what drove the prior month's draw would let phasing react to actual recent performance instead of a fixed annual calendar.",
           "data_quality": "Most recent document no older than 2 months, full coverage for the prior full year (Jan-Jan)",
-          "match_hints": ["draw analysis"]
+          "match_hints": [
+            "draw analysis"
+          ]
         },
         {
           "name": "Annual Draw Calendar",
@@ -73,8 +79,8 @@
       ]
     },
     {
-      "category_id": "briefs_plans_budgets",
-      "label": "Briefs, Plans & Budgets",
+      "category_id": "plans_budgets_creative_approvals",
+      "label": "Plans, Budgets, Creative & Approvals",
       "sources": [
         {
           "name": "Historical Media Briefs",
@@ -108,14 +114,14 @@
         {
           "name": "Budget Targets/Campaign Pillars",
           "description": "",
-          "how_used": "The budget/target half is live today via the Step 1 upload's acquisition_target and cpa_target_gbp columns, which set the plan's objective. The campaign-pillars half would give the brief-hooks tagger the client's own authoritative pillar names to match against, instead of inferring them from free text alone.",
+          "how_used": "The budget/target half is live today via the Step 1 upload's new_policy_sales_target and cost_per_policy_target_gbp columns, which set the plan's objective. The campaign-pillars half would give the brief-hooks tagger the client's own authoritative pillar names to match against, instead of inferring them from free text alone.",
           "data_quality": "",
           "match_hints": []
         },
         {
           "name": "Sales Targets (incl stretch targets)",
           "description": "",
-          "how_used": "Would set the plan's ticket_target and any stretch objective from a formal source - today that target is derived only from whichever acquisition_target column happens to be present in the uploaded budget file.",
+          "how_used": "Would set the plan's policy_sales_target and any stretch objective from a formal source - today that target is derived only from whichever new_policy_sales_target column happens to be present in the uploaded budget file.",
           "data_quality": "",
           "match_hints": []
         },
@@ -131,13 +137,15 @@
           "description": "",
           "how_used": "Documents already ingested (2025 and 2026 strategic media response) but not yet consumed by the engine. Would give the brief-hooks tagger real examples of how similar priorities were interpreted into channel tags in previous planning cycles, improving tag consistency year over year.",
           "data_quality": "",
-          "match_hints": ["strategic media response"]
+          "match_hints": [
+            "strategic media response"
+          ]
         }
       ]
     },
     {
-      "category_id": "audience_persona",
-      "label": "Audience & Persona Data",
+      "category_id": "customer_vehicle_audience",
+      "label": "Customer, Vehicle & Audience Data",
       "sources": [
         {
           "name": "Mosaic Descriptors",
@@ -147,9 +155,9 @@
           "match_hints": []
         },
         {
-          "name": "PPL Persona Type Descriptors",
+          "name": "Admiral Persona Type Descriptors",
           "description": "",
-          "how_used": "Would ground brief_hooks and channel weighting in PPL's own bespoke persona definitions rather than generic Mosaic categories, so tags like heartland_audience map to a concrete, client-defined segment instead of an inferred one.",
+          "how_used": "Would ground brief_hooks and channel weighting in Admiral's own bespoke persona/segment definitions rather than generic Mosaic categories, so tags like a MultiCar-household or young-driver audience segment map to a concrete, client-defined segment instead of an inferred one.",
           "data_quality": "",
           "match_hints": []
         },
@@ -163,8 +171,8 @@
       ]
     },
     {
-      "category_id": "context_signals",
-      "label": "Context & Signals",
+      "category_id": "market_competitor_context",
+      "label": "Market, Competitor & Context Signals",
       "sources": [
         {
           "name": "Event Calendar",
@@ -177,8 +185,8 @@
       ]
     },
     {
-      "category_id": "digital_platform_data",
-      "label": "Digital Platform Data",
+      "category_id": "digital_crm_platform",
+      "label": "Digital, CRM & Platform Data",
       "sources": [
         {
           "name": "Google Analytics",
@@ -233,7 +241,11 @@
           "description": "",
           "how_used": "Documents already ingested (TV viewing and TV advertising effectiveness charts) but not yet consumed by the engine. Would calibrate the AV channel's mmm_roi_index and response curve with real TV market benchmarks instead of the static channel_performance_benchmarks fixture.",
           "data_quality": "",
-          "match_hints": ["thinkbox", "tv_advertisings", "tv_viewing"]
+          "match_hints": [
+            "thinkbox",
+            "tv_advertisings",
+            "tv_viewing"
+          ]
         },
         {
           "name": "Touchpoints",
@@ -247,7 +259,9 @@
           "description": "",
           "how_used": "Documents already ingested (Q1 2026, Summer 2025) but not yet consumed by the engine. Would supply live audio/AV inventory availability and pricing to adjust the Audio or AV channel's cost assumptions and response curve in-season.",
           "data_quality": "",
-          "match_hints": ["active voice"]
+          "match_hints": [
+            "active voice"
+          ]
         },
         {
           "name": "Talon",

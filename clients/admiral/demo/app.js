@@ -27,6 +27,50 @@ const CHANNEL_ORDER = [
 const SCENARIOS = ["hold", "heartland", "growth", "london_growth", "efficiency_recovery", "london_efficiency"];
 const LIVE_API_BASE = "https://ppl-planner-api-production.up.railway.app";
 
+// Admiral planning taxonomy (research brief section 4). This groups each
+// engine channel by MEDIA ROLE - reach vs consideration vs demand capture,
+// etc - which is a different axis from the display-hierarchy CHANNEL_GROUPS
+// further down (parent/child labelling like "AV" -> "TV / BVOD / Cinema").
+// Distribution (PCW) deliberately has no engine channel here: it is measured
+// and reported separately (plan.distribution_summary) rather than folded
+// into the channel budget/media-mix chart, per the brief.
+const CHANNEL_ROLE_GROUP_LABELS = {
+  brand_reach: "Brand reach",
+  video_consideration: "Video and consideration",
+  demand_capture: "Demand capture",
+  partnerships_content: "Partnerships and content",
+  owned_activation: "Owned activation",
+  distribution: "Distribution (PCW - reported separately from media)",
+};
+const CHANNEL_ROLE_GROUP = {
+  "AV": "brand_reach",
+  "OOH": "brand_reach",
+  "Audio": "brand_reach",
+  "CTV/YouTube": "video_consideration",
+  "Display/Programmatic": "video_consideration",
+  "Paid Search": "demand_capture",
+  "Paid Social": "demand_capture",
+  // Direct Mail isn't one of section 4's named examples; mapped here as the
+  // closest addressable/CRM-adjacent analogue in this demo's 8-channel model.
+  "Direct Mail": "owned_activation",
+};
+
+// Data-readiness groups (research brief section 4) - used to classify
+// data/source_registry.json entries via each source's `readiness_group`
+// field. Admin/registry-driven counts should read source_registry.json
+// directly rather than hard-coding totals here.
+const DATA_READINESS_GROUP_LABELS = {
+  effectiveness_modelling: "Effectiveness & Modelling",
+  quote_policy_renewal: "Quote, Policy & Renewal Performance",
+  pcw_distribution: "PCW & Distribution Performance",
+  customer_vehicle_audience: "Customer, Vehicle & Audience Data",
+  pricing_risk_guardrails: "Pricing, Risk & Commercial Guardrails",
+  plans_budgets_creative_approvals: "Plans, Budgets, Creative & Approvals",
+  digital_crm_platform: "Digital, CRM & Platform Data",
+  market_competitor_context: "Market, Competitor & Context Signals",
+  media_owner_channel: "Media Owner & Channel Data",
+};
+
 const CALENDAR_FILTER_DEFS = [
   { key: "draw", label: "Draws & deadlines", color: "var(--red)" },
   { key: "bank_holiday", label: "Bank holidays", color: "var(--blue)" },
@@ -42,7 +86,7 @@ const logicChallenges = [
   {
     area: "Objective Function",
     title: "What is the plan really optimising?",
-    body: "V1 balances acquisitions, CPA, LTV proxy and strategic audience weight. The client needs to confirm whether final optimisation is acquisitions, CPA, LTV-weighted value, quote-to-policy conversion or a blended score.",
+    body: "V1 balances new policy sales, cost per policy, CLV proxy and strategic audience weight. Admiral needs to confirm whether final optimisation is new policy sales, cost per policy, CLV-weighted value, quote-to-policy conversion or a blended score.",
     status: "big",
   },
   {
@@ -96,7 +140,7 @@ const agentNodes = [
   {
     name: "Deterministic Planner",
     type: "code",
-    body: "Allocates budget, rescales totals, forecasts CPA ranges and validates arithmetic.",
+    body: "Allocates budget, rescales totals, forecasts cost-per-policy ranges and validates arithmetic.",
   },
   {
     name: "Rationale Agent",
@@ -191,6 +235,7 @@ const state = {
   liveSourcesLoading: false,
   liveSourcesError: null,
   dataSourceDictionary: null,
+  syntheticFixture: null,
   dataReadinessExpanded: {},
   dataReadinessSourceExpanded: {},
   rolePeople: null,
@@ -305,9 +350,9 @@ const money = new Intl.NumberFormat("en-GB", {
   maximumFractionDigits: 0,
 });
 
-// Per-acquisition CPA figures need pence precision (£62.50, not £62 or £62.5) -
-// the whole-pound `money` formatter above is for large budget totals.
-const cpaMoney = new Intl.NumberFormat("en-GB", {
+// Cost-per-new-policy-sale figures need pence precision (£62.50, not £62 or
+// £62.5) - the whole-pound `money` formatter above is for large budget totals.
+const costPerPolicyMoney = new Intl.NumberFormat("en-GB", {
   style: "currency",
   currency: "GBP",
   minimumFractionDigits: 2,
@@ -584,8 +629,8 @@ function planSummary(plan) {
   return {
     scenario_id: plan.scenario.scenario_id,
     scenario_label: plan.scenario.label,
-    forecast_acquisitions: plan.forecast_acquisitions,
-    forecast_cpa_gbp: plan.forecast_cpa_gbp,
+    forecast_new_policy_sales: plan.forecast_new_policy_sales,
+    forecast_cost_per_policy_gbp: plan.forecast_cost_per_policy_gbp,
     total_budget_gbp: plan.total_budget_gbp,
     status: plan.state_model?.status || "warning",
   };
@@ -726,7 +771,7 @@ async function loadData() {
       .finally(() => clearTimeout(timeout));
   };
 
-  const [plans, brief, sources, briefPriorities, drawCalendar, enrichedCalendar, bankHolidays, curatedSportsEvents, compositeSchoolHolidays, competitorCampaignSignals, liveWeatherWarnings, weather, monthlyRevisionData, agentConfig, agentTraces, logicEval, evidenceRules, dataSourceDictionary] = await Promise.all([
+  const [plans, brief, sources, briefPriorities, drawCalendar, enrichedCalendar, bankHolidays, curatedSportsEvents, compositeSchoolHolidays, competitorCampaignSignals, liveWeatherWarnings, weather, monthlyRevisionData, agentConfig, agentTraces, logicEval, evidenceRules, dataSourceDictionary, syntheticFixture] = await Promise.all([
     Promise.all(SCENARIOS.map((scenario) => load(`../data/generated_plan_${scenario}.json`))),
     load("../data/annual_brief_2026.json"),
     load("../data/source_registry.json"),
@@ -745,6 +790,7 @@ async function loadData() {
     loadOptional("../output/evals/logic_option_eval_latest.json", null),
     load("../data/planning_evidence_rules_2026.json"),
     load("../data/data_source_dictionary.json"),
+    load("../data/admiral_synthetic_fixture_2026.json"),
   ]);
 
   state.plans = Object.fromEntries(SCENARIOS.map((scenario, index) => [scenario, plans[index]]));
@@ -752,6 +798,7 @@ async function loadData() {
   state.sources = sources;
   state.evidenceRules = evidenceRules;
   state.dataSourceDictionary = dataSourceDictionary;
+  state.syntheticFixture = syntheticFixture;
   state.channelGuardrailOverrides = loadLocalJson("ppl_channel_guardrail_overrides", {});
   state.briefPriorities = briefPriorities;
   state.drawCalendar = drawCalendar;
@@ -815,12 +862,12 @@ function currentPlan() {
 
 function renderStatus() {
   const plan = currentPlan();
-  const acquisitions = plan.channel_totals.reduce((sum, row) => sum + row.forecast_acquisitions, 0);
-  const briefPassed = plan.brief_test?.clears_ticket_target && plan.brief_test?.clears_brief_cpa;
+  const policySales = plan.channel_totals.reduce((sum, row) => sum + row.forecast_new_policy_sales, 0);
+  const briefPassed = plan.brief_test?.clears_policy_sales_target && plan.brief_test?.clears_brief_cost_per_policy;
   const agentLive = state.agentTraces?.traces?.some((trace) => trace.mode === "live_llm");
   document.querySelector("#totalBudget").textContent = money.format(plan.total_budget_gbp);
-  document.querySelector("#totalAcquisitions").textContent = number.format(acquisitions);
-  document.querySelector("#forecastCpa").textContent = `${cpaMoney.format(plan.forecast_cpa_gbp)}`;
+  document.querySelector("#totalPolicySales").textContent = number.format(policySales);
+  document.querySelector("#forecastCostPerPolicy").textContent = `${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}`;
   document.querySelector("#budgetCheck").textContent = plan.qa.budget_balanced && plan.qa.months_balanced ? "Balanced" : "Needs review";
   document.querySelector("#briefTest").textContent = state.demoMode === "agent" ? (agentLive ? "Live agent" : "Agent fallback") : (briefPassed ? "Pass" : "Needs work");
 }
@@ -1055,7 +1102,7 @@ function renderDataReadiness() {
 }
 
 function tableCellValue(row, share = 1) {
-  if (state.tableMode === "cpa") return `${cpaMoney.format(row.forecast_cpa_gbp)}`;
+  if (state.tableMode === "cost_per_policy") return `${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}`;
   if (state.tableMode === "share") return `${Math.round(row.budget_share_pct * share * 100) / 100}%`;
   if (state.tableMode === "confidence") return "";
   return money.format(row.budget_gbp * share);
@@ -1103,11 +1150,12 @@ function renderTable() {
     return `<tr class="category-row"><td colspan="${labelAndMonthsColumnCount}">${group.parent}</td><td class="total-cell category-total">${money.format(groupTotal)}</td></tr>${channelRows}`;
   }).join("");
 
-  // Answers "if I'm giving you £65m, how are you optimising that by
+  // Answers "if I'm giving you this budget, how are you optimising that by
   // month?" directly in the table, rather than only as a single annual
   // figure elsewhere on the page - always shows budget £ regardless of
-  // the current Budget/CPA/Confidence/Share % toggle, since summing a CPA
-  // or a confidence label across channels isn't meaningful.
+  // the current Budget/Cost per Policy/Confidence/Share % toggle, since
+  // summing a cost-per-policy figure or a confidence label across channels
+  // isn't meaningful.
   const monthTotals = MONTHS.map((month) =>
     plan.monthly_allocations.filter((item) => item.month === month).reduce((sum, item) => sum + item.budget_gbp, 0)
   );
@@ -1149,14 +1197,14 @@ function groupChannelTotals(channelTotals) {
           label: row.label,
           share: row.share,
           budget_gbp: source.budget_gbp * row.share,
-          forecast_acquisitions: source.forecast_acquisitions * row.share,
+          forecast_new_policy_sales: source.forecast_new_policy_sales * row.share,
         };
       });
     return {
       parent: group.parent,
       note: group.note,
       budget_gbp: members.reduce((sum, m) => sum + m.budget_gbp, 0),
-      forecast_acquisitions: members.reduce((sum, m) => sum + m.forecast_acquisitions, 0),
+      forecast_new_policy_sales: members.reduce((sum, m) => sum + m.forecast_new_policy_sales, 0),
       members,
     };
   });
@@ -1166,11 +1214,11 @@ function groupChannelTotals(channelTotals) {
 
 function summaryChartRows(channelTotals) {
   const { groups, unmapped } = groupChannelTotals(channelTotals);
-  const rows = groups.map((g) => ({ label: g.parent, spend: g.budget_gbp, acquisitions: g.forecast_acquisitions, note: g.note }));
+  const rows = groups.map((g) => ({ label: g.parent, spend: g.budget_gbp, policySales: g.forecast_new_policy_sales, note: g.note }));
   unmapped.forEach((u) => rows.push({
     label: u.channel,
     spend: u.budget_gbp,
-    acquisitions: u.forecast_acquisitions,
+    policySales: u.forecast_new_policy_sales,
     note: "Unmapped: not yet placed in the v1 channel granularity, flagged rather than dropped.",
     unmapped: true,
   }));
@@ -1190,7 +1238,7 @@ function renderBubbleChart(plan) {
   const viewBoxHeight = topPadding + rows.length * rowHeight + axisHeight;
 
   const maxSpend = Math.max(...rows.map((r) => r.spend)) * 1.1;
-  const maxAcq = Math.max(...rows.map((r) => r.acquisitions));
+  const maxAcq = Math.max(...rows.map((r) => r.policySales));
   const minR = 8;
   const maxR = 26;
 
@@ -1203,14 +1251,14 @@ function renderBubbleChart(plan) {
   const rowEls = rows.map((row, i) => {
     const y = topPadding + i * rowHeight + rowHeight / 2;
     const x = xScale(row.spend);
-    const r = rScale(row.acquisitions);
-    const tooltip = `${row.label}: ${money.format(row.spend)} annual spend, ${number.format(row.acquisitions)} forecast acquisitions.${row.note ? " " + row.note : ""}`;
+    const r = rScale(row.policySales);
+    const tooltip = `${row.label}: ${money.format(row.spend)} annual spend, ${number.format(row.policySales)} forecast new policy sales.${row.note ? " " + row.note : ""}`;
     return `
       <g>
         <line x1="${labelWidth}" y1="${y}" x2="${viewBoxWidth - rightPadding}" y2="${y}" class="bubble-guide" />
         <text x="${labelWidth - 12}" y="${y}" class="bubble-label" text-anchor="end" dominant-baseline="middle">${row.label}</text>
         <circle cx="${x}" cy="${y}" r="${r}" class="bubble-dot${row.unmapped ? " unmapped" : ""}"><title>${tooltip}</title></circle>
-        <text x="${x + r + 8}" y="${y}" class="bubble-value" dominant-baseline="middle">${number.format(row.acquisitions)}</text>
+        <text x="${x + r + 8}" y="${y}" class="bubble-value" dominant-baseline="middle">${number.format(row.policySales)}</text>
       </g>
     `;
   }).join("");
@@ -1224,8 +1272,8 @@ function renderBubbleChart(plan) {
   }).join("");
 
   return `
-    <p class="table-hint">Bubble position (left to right) shows annual spend. Bubble size shows forecast acquisitions. Hover a bubble for exact figures.</p>
-    <svg viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}" class="bubble-chart" role="img" aria-label="Annual spend and forecast acquisitions by channel">
+    <p class="table-hint">Bubble position (left to right) shows annual spend. Bubble size shows forecast new policy sales. Hover a bubble for exact figures.</p>
+    <svg viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}" class="bubble-chart" role="img" aria-label="Annual spend and forecast new policy sales by channel">
       ${rowEls}
       ${axisEls}
     </svg>
@@ -1385,7 +1433,7 @@ function renderEvidence() {
       <div class="metric"><span>Monthly Budget</span><strong>${money.format(row.budget_gbp)}</strong></div>
       <div class="metric"><span>Annual Channel Budget</span><strong>${channelTotal ? money.format(channelTotal.budget_gbp) : "Not available"}</strong></div>
       <div class="metric"><span>% of Monthly Spend</span><strong>${row.budget_share_pct}%</strong></div>
-      <div class="metric"><span>Forecast CPA</span><strong>${cpaMoney.format(row.forecast_cpa_gbp)}</strong></div>
+      <div class="metric"><span>Forecast Cost per Policy</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
       <div class="metric"><span>Confidence</span><strong class="confidence-${row.confidence.replace(" ", "-")}">${row.confidence}</strong></div>
     </div>
     <div>
@@ -1441,8 +1489,8 @@ function renderLogicChallenges() {
         </div>
         <div>
           <span>Best achievable forecast</span>
-          <strong>${number.format(feasibility.best_acquisitions)} at ${cpaMoney.format(feasibility.best_cpa_gbp)}</strong>
-          <p>Gap: ${number.format(feasibility.acquisition_gap)} acquisitions and £${feasibility.cpa_gap_gbp} CPA.</p>
+          <strong>${number.format(feasibility.best_new_policy_sales)} at ${costPerPolicyMoney.format(feasibility.best_cost_per_policy_gbp)}</strong>
+          <p>Gap: ${number.format(feasibility.policy_sales_gap)} new policy sales and £${feasibility.cost_per_policy_gap_gbp} cost per policy.</p>
         </div>
         <div>
           <span>Current top logic</span>
@@ -1711,7 +1759,7 @@ async function generateProposedScenario() {
   const scenario_config = {
     ...state.scenarioProposal.config,
     weights,
-    forecast_cpa_factor: forecastCpaFactor,
+    forecast_cost_per_policy_factor: forecastCpaFactor,
     channel_floors: channelFloors,
     channel_caps: channelCaps,
     channel_index: channelIndex,
@@ -1763,8 +1811,8 @@ function renderScenarioProposalReview() {
         <label><span>Performance</span><input id="proposalPerformance" type="number" step="0.05" value="${config.weights.performance_channels}" /></label>
         <label><span>Test budget</span><input id="proposalTest" type="number" step="0.05" value="${config.weights.test_budget}" /></label>
       </div>
-      <label class="field-label" for="proposalCpaFactor">Forecast CPA factor (1.0 = neutral, lower = more efficient)</label>
-      <input id="proposalCpaFactor" type="number" step="0.01" class="short-input" value="${config.forecast_cpa_factor ?? 1.0}" />
+      <label class="field-label" for="proposalCpaFactor">Forecast cost-per-policy factor (1.0 = neutral, lower = more efficient)</label>
+      <input id="proposalCpaFactor" type="number" step="0.01" class="short-input" value="${config.forecast_cost_per_policy_factor ?? 1.0}" />
       <label class="field-label">Channel guardrails (already include the baseline's own Step 2 settings, carried forward - change any value to override it for this scenario)</label>
       <div class="source-table-wrap">
         <table class="source-table guardrail-table">
@@ -1836,9 +1884,9 @@ function scenarioCard({ key, label, plan, pass, body, isBaseline }) {
         <span class="status-pill ${pass ? "good" : "warning"}">${preferred ? "Preferred" : isBaseline ? "Baseline" : pass ? "Pass" : "Needs work"}</span>
       </div>
       <div class="scenario-metrics">
-        <div><span>Forecast</span><strong>${number.format(plan.forecast_acquisitions)}</strong></div>
-        <div><span>CPA</span><strong>${cpaMoney.format(plan.forecast_cpa_gbp)}</strong></div>
-        <div><span>Gap</span><strong>${number.format(Math.max(0, plan.brief_test.ticket_target - plan.forecast_acquisitions))}</strong></div>
+        <div><span>Forecast</span><strong>${number.format(plan.forecast_new_policy_sales)}</strong></div>
+        <div><span>Cost per Policy</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
+        <div><span>Gap</span><strong>${number.format(Math.max(0, plan.brief_test.policy_sales_target - plan.forecast_new_policy_sales))}</strong></div>
       </div>
       <div class="scenario-body">${body}</div>
       <div class="config-actions">
@@ -1888,7 +1936,7 @@ function renderScenarioComparison() {
     key: "baseline",
     label: "Baseline (stored)",
     plan: baseline,
-    pass: baseline.brief_test.clears_ticket_target && baseline.brief_test.clears_brief_cpa,
+    pass: baseline.brief_test.clears_policy_sales_target && baseline.brief_test.clears_brief_cost_per_policy,
     body: baseline.scenario.scenario_assumption || baseline.scenario.freeform_prompt,
     isBaseline: true,
   });
@@ -1917,7 +1965,7 @@ function renderScenarioComparison() {
       key: entry.stored.version_id,
       label: entry.plan.scenario.label,
       plan: entry.plan,
-      pass: entry.plan.brief_test.clears_ticket_target && entry.plan.brief_test.clears_brief_cpa,
+      pass: entry.plan.brief_test.clears_policy_sales_target && entry.plan.brief_test.clears_brief_cost_per_policy,
       body,
       isBaseline: false,
     });
@@ -2006,7 +2054,7 @@ function renderScenarioDrilldownEvidence() {
       <div class="metric"><span>Monthly Budget</span><strong>${money.format(row.budget_gbp)}</strong></div>
       <div class="metric"><span>Annual Channel Budget</span><strong>${channelTotal ? money.format(channelTotal.budget_gbp) : "Not available"}</strong></div>
       <div class="metric"><span>% of Monthly Spend</span><strong>${row.budget_share_pct}%</strong></div>
-      <div class="metric"><span>Forecast CPA</span><strong>${cpaMoney.format(row.forecast_cpa_gbp)}</strong></div>
+      <div class="metric"><span>Forecast Cost per Policy</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
       <div class="metric"><span>Confidence</span><strong class="confidence-${row.confidence.replace(" ", "-")}">${row.confidence}</strong></div>
     </div>
     <div>
@@ -2110,13 +2158,13 @@ function allocateRevisionMonth(month, baselineRows, fixture, plan) {
     const perf = performance[channel] || {};
     const budget = Math.max(0, rounded[channel]);
     const cpaAdjustment = Math.max(0.88, Math.min(1.18, 1 / (Number(perf.sales_index || 1) || 1)));
-    const forecastCpa = Number((baseRow.forecast_cpa_gbp * cpaAdjustment).toFixed(2));
+    const forecastCpa = Number((baseRow.forecast_cost_per_policy_gbp * cpaAdjustment).toFixed(2));
     return {
       ...baseRow,
       budget_gbp: budget,
       budget_share_pct: Number(((budget / monthBudget) * 100).toFixed(2)),
-      forecast_cpa_gbp: forecastCpa,
-      forecast_acquisitions: Math.round(budget / forecastCpa),
+      forecast_cost_per_policy_gbp: forecastCpa,
+      forecast_new_policy_sales: Math.round(budget / forecastCpa),
       source_ids: Array.from(new Set([...(baseRow.source_ids || []), state.monthlyRevisionData.source_id])),
       revision_reason: `${perf.context || "No channel-specific actuals."} Prior-month sales index ${perf.sales_index || 1}; delivery index ${perf.delivery_index || 1}.`,
       rationale: `${baseRow.rationale} Monthly revision overlay: ${perf.context || "No channel-specific actuals."} This is a deterministic candidate and requires approval before becoming plan truth.`,
@@ -2142,18 +2190,18 @@ function buildMonthlyRevisionCandidate() {
     const baseBudget = channelTotalFromRows(baseline.monthly_allocations, channel);
     const budget = channelTotalFromRows(revisedRows, channel);
     const rows = revisedRows.filter((item) => item.channel === channel);
-    const acquisitions = rows.reduce((sum, item) => sum + item.forecast_acquisitions, 0);
+    const policySales = rows.reduce((sum, item) => sum + item.forecast_new_policy_sales, 0);
     const baseTotal = baseline.channel_totals.find((item) => item.channel === channel);
     return {
       ...baseTotal,
       budget_gbp: budget,
       share_pct: Number(((budget / baseline.total_budget_gbp) * 100).toFixed(2)),
-      forecast_acquisitions: acquisitions,
+      forecast_new_policy_sales: policySales,
       delta_gbp: budget - baseBudget,
       delta_pct: baseBudget ? Number((((budget - baseBudget) / baseBudget) * 100).toFixed(2)) : 0,
     };
   });
-  const totalAcq = revisedRows.reduce((sum, item) => sum + item.forecast_acquisitions, 0);
+  const totalPolicySales = revisedRows.reduce((sum, item) => sum + item.forecast_new_policy_sales, 0);
   const versionId = `local_revision_${fixture.month}_${baseline.scenario.scenario_id}`;
   return {
     plan_id: `${baseline.plan_id}_${fixture.month}_revision_candidate`,
@@ -2164,8 +2212,8 @@ function buildMonthlyRevisionCandidate() {
     revision_month: fixture.month,
     prior_month: fixture.prior_month,
     total_budget_gbp: baseline.total_budget_gbp,
-    forecast_acquisitions: totalAcq,
-    forecast_cpa_gbp: Number((baseline.total_budget_gbp / totalAcq).toFixed(2)),
+    forecast_new_policy_sales: totalPolicySales,
+    forecast_cost_per_policy_gbp: Number((baseline.total_budget_gbp / totalPolicySales).toFixed(2)),
     monthly_allocations: revisedRows,
     channel_totals: channelTotals,
     fixture,
@@ -2288,10 +2336,15 @@ function renderMonthlyRevision() {
       <div class="revision-card">
         <strong>Prior-month rolling performance</strong>
         <dl class="revision-dl">
-          <div><dt>Sales actual</dt><dd>${number.format(fixture.sales_actuals.ticket_holders)} vs ${number.format(fixture.sales_actuals.target_ticket_holders)}</dd></div>
-          <div><dt>Actual CPA</dt><dd>${cpaMoney.format(fixture.sales_actuals.cpa_gbp)} vs ${cpaMoney.format(fixture.sales_actuals.target_cpa_gbp)}</dd></div>
+          <div><dt>Sales actual</dt><dd>${number.format(fixture.sales_actuals.new_policy_sales)} vs ${number.format(fixture.sales_actuals.target_new_policy_sales)}</dd></div>
+          <div><dt>Actual Cost per Policy</dt><dd>${costPerPolicyMoney.format(fixture.sales_actuals.cost_per_policy_gbp)} vs ${costPerPolicyMoney.format(fixture.sales_actuals.target_cost_per_policy_gbp)}</dd></div>
           <div><dt>Delivery index</dt><dd>${fixture.sales_actuals.delivery_index}</dd></div>
+          ${fixture.sales_actuals.quote_starts ? `<div><dt>Quote starts</dt><dd>${number.format(fixture.sales_actuals.quote_starts)}</dd></div>` : ""}
+          ${fixture.sales_actuals.quote_to_policy_conversion_pct ? `<div><dt>Quote-to-policy conversion</dt><dd>${fixture.sales_actuals.quote_to_policy_conversion_pct}%</dd></div>` : ""}
+          ${fixture.sales_actuals.pcw_visibility_index ? `<div><dt>PCW visibility index (context only)</dt><dd>${fixture.sales_actuals.pcw_visibility_index}</dd></div>` : ""}
+          ${fixture.sales_actuals.brand_search_index ? `<div><dt>Brand search index (context only)</dt><dd>${fixture.sales_actuals.brand_search_index}</dd></div>` : ""}
         </dl>
+        <p class="table-hint">Quote starts, conversion, PCW visibility and brand-search index are context signals for planner judgement here - they do not feed the revision calculation itself unless a source/rule is explicitly configured.</p>
       </div>
       <div class="revision-card">
         <strong>Monthly context</strong>
@@ -2363,9 +2416,9 @@ function chatMessageHtml(message, index) {
           <strong>Proposed scenario config</strong>
           <p class="table-hint">${proposal.rationale || ""}</p>
           <div class="scenario-metrics">
-            <div><span>Forecast</span><strong>${number.format(plan.forecast_acquisitions)}</strong></div>
-            <div><span>CPA</span><strong>${cpaMoney.format(plan.forecast_cpa_gbp)}</strong></div>
-            <div><span>vs baseline forecast</span><strong>${plan.forecast_acquisitions >= baseline.forecast_acquisitions ? "+" : ""}${number.format(plan.forecast_acquisitions - baseline.forecast_acquisitions)}</strong></div>
+            <div><span>Forecast</span><strong>${number.format(plan.forecast_new_policy_sales)}</strong></div>
+            <div><span>Cost per Policy</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
+            <div><span>vs baseline forecast</span><strong>${plan.forecast_new_policy_sales >= baseline.forecast_new_policy_sales ? "+" : ""}${number.format(plan.forecast_new_policy_sales - baseline.forecast_new_policy_sales)}</strong></div>
           </div>
           ${message.stored
             ? `<p class="table-hint">Stored as "${plan.scenario.label}" - view it in Scenario Centre.</p>`
@@ -2436,9 +2489,11 @@ function renderPlanChat() {
             <strong>Plan Overview</strong>
             ${current ? `
               <div class="scenario-metrics">
-                <div><span>Forecast</span><strong>${number.format(current.plan.forecast_acquisitions)}</strong></div>
-                <div><span>CPA</span><strong>${cpaMoney.format(current.plan.forecast_cpa_gbp)}</strong></div>
+                <div><span>Forecast</span><strong>${number.format(current.plan.forecast_new_policy_sales)}</strong></div>
+                <div><span>Cost per Policy</span><strong>${costPerPolicyMoney.format(current.plan.forecast_cost_per_policy_gbp)}</strong></div>
                 <div><span>Total Budget</span><strong>${money.format(current.plan.total_budget_gbp)}</strong></div>
+                ${current.plan.forecast_quote_starts ? `<div><span>Quote Starts</span><strong>${number.format(current.plan.forecast_quote_starts)}</strong></div>` : ""}
+                ${current.plan.quote_to_policy_conversion_pct ? `<div><span>Quote-to-Policy Conversion</span><strong>${current.plan.quote_to_policy_conversion_pct}%</strong></div>` : ""}
               </div>
               <p class="table-hint">${current.label} - ${current.plan.scenario.scenario_assumption || current.plan.scenario.freeform_prompt || ""}</p>
             ` : `<p class="table-hint warning-text">No plan available yet - generate a base plan in Annual Planning first.</p>`}
@@ -2919,7 +2974,7 @@ function renderChannelGuardrails() {
         <tbody>${groupRowsHtml}</tbody>
       </table>
     </div>
-    <p class="table-hint">Strategic Index (0-100, 50 = neutral) is a qualitative channel-value score - e.g. a halo effect or brand-confidence signal - that CPA and reach evidence don't capture. It tilts the model's own weighting rather than forcing an outcome, unlike Min/Max %. This is entered by a media agency strategist, drawing on the agency's own institutional planning experience and client history for this account - it is deliberately not derived from MMM or CPA data. Defaults to 50 (neutral) until a strategist overrides it.</p>
+    <p class="table-hint">Strategic Index (0-100, 50 = neutral) is a qualitative channel-value score - e.g. a halo effect or brand-confidence signal - that cost-per-policy and reach evidence don't capture. It tilts the model's own weighting rather than forcing an outcome, unlike Min/Max %. This is entered by a media agency strategist, drawing on the agency's own institutional planning experience and client history for this account - it is deliberately not derived from MMM or cost-per-policy data. Defaults to 50 (neutral) until a strategist overrides it.</p>
   `;
   renderGenerateGate();
 }
@@ -3079,13 +3134,13 @@ function renderAdminPlansSection() {
       ${rows.length ? `
         <div class="source-table-wrap">
           <table class="source-table">
-            <thead><tr><th>Plan</th><th>Forecast</th><th>CPA</th><th></th></tr></thead>
+            <thead><tr><th>Plan</th><th>Forecast</th><th>Cost per Policy</th><th></th></tr></thead>
             <tbody>
               ${rows.map((row) => `
                 <tr>
                   <td><strong>${row.label}</strong></td>
-                  <td>${number.format(row.plan.forecast_acquisitions)}</td>
-                  <td>${cpaMoney.format(row.plan.forecast_cpa_gbp)}</td>
+                  <td>${number.format(row.plan.forecast_new_policy_sales)}</td>
+                  <td>${costPerPolicyMoney.format(row.plan.forecast_cost_per_policy_gbp)}</td>
                   <td><button class="secondary-button" type="button" data-remove-plan="${row.key}">Remove</button></td>
                 </tr>
               `).join("")}
@@ -3183,7 +3238,7 @@ function approvedPlanOption() {
 }
 
 function currentPlanTableCellValue(row, mode, share = 1) {
-  if (mode === "cpa") return cpaMoney.format(row.forecast_cpa_gbp);
+  if (mode === "cost_per_policy") return costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp);
   if (mode === "confidence") return "";
   return money.format(row.budget_gbp * share);
 }
@@ -3238,7 +3293,7 @@ function renderCurrentPlanEvidence(plan, selected) {
         <div class="metric"><span>Monthly Budget</span><strong>${money.format(row.budget_gbp)}</strong></div>
         <div class="metric"><span>Annual Channel Budget</span><strong>${channelTotal ? money.format(channelTotal.budget_gbp) : "Not available"}</strong></div>
         <div class="metric"><span>% of Monthly Spend</span><strong>${row.budget_share_pct}%</strong></div>
-        <div class="metric"><span>Forecast CPA</span><strong>${cpaMoney.format(row.forecast_cpa_gbp)}</strong></div>
+        <div class="metric"><span>Forecast Cost per Policy</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
         <div class="metric"><span>Confidence</span><strong class="confidence-${row.confidence.replace(" ", "-")}">${row.confidence}</strong></div>
       </div>
       <div>
@@ -3299,8 +3354,8 @@ function downloadCurrentPlanExcel(plan) {
     ["Plan ID", plan.plan_id],
     ["Scenario", plan.scenario.label],
     ["Total Budget (GBP)", plan.total_budget_gbp],
-    ["Forecast Acquisitions", plan.forecast_acquisitions],
-    ["Forecast CPA (GBP)", plan.forecast_cpa_gbp],
+    ["Forecast New Policy Sales", plan.forecast_new_policy_sales],
+    ["Forecast Cost per Policy (GBP)", plan.forecast_cost_per_policy_gbp],
   ];
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(summaryRows), "Summary");
   const budgetRows = [["Channel", ...MONTHS.map(formatMonth), "Total"]];
@@ -3333,10 +3388,11 @@ function renderCurrentPlan() {
   const versionId = approvalVersionId(option);
   const events = approvalEventsForVersion(versionId);
   const approvedEvent = events.find((event) => event.event_type === "approved");
-  const acquisitions = plan.channel_totals.reduce((sum, row) => sum + row.forecast_acquisitions, 0);
-  const briefPassed = plan.brief_test?.clears_ticket_target && plan.brief_test?.clears_brief_cpa;
+  const policySales = plan.channel_totals.reduce((sum, row) => sum + row.forecast_new_policy_sales, 0);
+  const briefPassed = plan.brief_test?.clears_policy_sales_target && plan.brief_test?.clears_brief_cost_per_policy;
   const mode = state.currentPlanTableMode;
   const selected = state.currentPlanSelected;
+  const dist = plan.distribution_summary;
 
   container.innerHTML = `
     <div class="approval-card wide ready">
@@ -3348,11 +3404,23 @@ function renderCurrentPlan() {
 
     <section class="status-strip" aria-label="Current plan status">
       <div><span>Total Budget</span><strong>${money.format(plan.total_budget_gbp)}</strong></div>
-      <div><span>Forecast Acquisitions</span><strong>${number.format(acquisitions)}</strong></div>
-      <div><span>Forecast CPA</span><strong>${cpaMoney.format(plan.forecast_cpa_gbp)}</strong></div>
+      <div><span>Forecast New Policy Sales</span><strong>${number.format(policySales)}</strong></div>
+      <div><span>Forecast Cost per Policy</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
+      ${plan.forecast_quote_starts ? `<div><span>Forecast Quote Starts</span><strong>${number.format(plan.forecast_quote_starts)}</strong></div>` : ""}
+      ${plan.quote_to_policy_conversion_pct ? `<div><span>Quote-to-Policy Conversion</span><strong>${plan.quote_to_policy_conversion_pct}%</strong></div>` : ""}
       <div><span>Budget Check</span><strong>${plan.qa.budget_balanced && plan.qa.months_balanced ? "Balanced" : "Needs review"}</strong></div>
-      <div><span>Brief Test</span><strong>${briefPassed ? "Pass" : "Needs work"}</strong></div>
+      <div><span>Brief &amp; Compliance Check</span><strong>${briefPassed ? "Pass" : "Needs work"}</strong></div>
     </section>
+    ${dist ? `
+    <div class="approval-card wide">
+      <strong>Distribution (PCW) - reported separately from media</strong>
+      <p class="table-hint">${dist.note} <em>${dist.generated_data_banner}</em></p>
+      <section class="status-strip" aria-label="PCW distribution status">
+        <div><span>PCW Visibility Index</span><strong>${dist.pcw_visibility_index}</strong></div>
+        <div><span>PCW Quote Share</span><strong>${dist.quote_share_pct}%</strong></div>
+        <div><span>PCW-to-Sale Conversion</span><strong>${dist.pcw_to_sale_conversion_pct}%</strong></div>
+      </section>
+    </div>` : ""}
 
     <div class="approval-card wide">
       <strong>Approval audit trail</strong>
@@ -3369,7 +3437,7 @@ function renderCurrentPlan() {
       </div>
       <div class="view-toggle" aria-label="Table display">
         <button class="toggle ${mode === "budget" ? "active" : ""}" type="button" data-current-plan-mode="budget">Budget</button>
-        <button class="toggle ${mode === "cpa" ? "active" : ""}" type="button" data-current-plan-mode="cpa">CPA</button>
+        <button class="toggle ${mode === "cost_per_policy" ? "active" : ""}" type="button" data-current-plan-mode="cost_per_policy">Cost per Policy</button>
         <button class="toggle ${mode === "confidence" ? "active" : ""}" type="button" data-current-plan-mode="confidence">Confidence</button>
       </div>
       <button class="secondary-button" type="button" id="exportCurrentPlan">Export plan (CSV)</button>
@@ -3547,8 +3615,8 @@ function renderApproval() {
   const statusLabels = { draft: "Draft plan", review: "Ready for Admiral review", approved: "Approved version" };
   const events = approvalEventsForVersion(versionId);
   const isAdmin = currentRole() === "admin";
-  const clearsTicket = Boolean(plan.brief_test?.clears_ticket_target);
-  const clearsCpa = Boolean(plan.brief_test?.clears_brief_cpa);
+  const clearsPolicySalesTarget = Boolean(plan.brief_test?.clears_policy_sales_target);
+  const clearsBriefCostPerPolicy = Boolean(plan.brief_test?.clears_brief_cost_per_policy);
 
   const isPreferred = state.preferredScenario?.scenario_id === current.key;
 
@@ -3577,7 +3645,7 @@ function renderApproval() {
 
     <div class="approval-card ${isCurrentApproved ? "ready" : ""}">
       <strong>${statusLabels[approvalStatus] || approvalStatus}${isCurrentApproved ? " · This is the current approved plan" : ""}</strong>
-      <p>${plan.scenario.label} (${current.kind === "fixture" ? "demo fixture" : "live"}) · ${number.format(plan.forecast_acquisitions)} forecast acquisitions · ${cpaMoney.format(plan.forecast_cpa_gbp)} CPA · ${money.format(plan.total_budget_gbp)} budget.</p>
+      <p>${plan.scenario.label} (${current.kind === "fixture" ? "demo fixture" : "live"}) · ${number.format(plan.forecast_new_policy_sales)} forecast new policy sales · ${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)} cost per policy · ${money.format(plan.total_budget_gbp)} budget.</p>
     </div>
 
     <div class="approval-card">
@@ -3588,8 +3656,8 @@ function renderApproval() {
     <div class="approval-card wide">
       <strong>Active warnings</strong>
       <div class="config-actions" style="margin-bottom:10px;">
-        <span class="status-pill ${clearsTicket ? "good" : "warning"}">${clearsTicket ? "Clears" : "Does not clear"} ticket target</span>
-        <span class="status-pill ${clearsCpa ? "good" : "warning"}">${clearsCpa ? "Clears" : "Does not clear"} brief CPA</span>
+        <span class="status-pill ${clearsPolicySalesTarget ? "good" : "warning"}">${clearsPolicySalesTarget ? "Clears" : "Does not clear"} policy sales target</span>
+        <span class="status-pill ${clearsBriefCostPerPolicy ? "good" : "warning"}">${clearsBriefCostPerPolicy ? "Clears" : "Does not clear"} brief cost per policy</span>
         <span class="status-pill ${plan.state_model?.status === "warning" ? "warning" : "good"}">${plan.state_model?.status || "unknown"} readiness</span>
       </div>
       ${effectiveWarnings(current).length ? `
@@ -3644,7 +3712,7 @@ function applyInitialRoute() {
   const view = params.get("view") || "current-plan";
 
   if (scenario && state.plans[scenario]) state.scenario = scenario;
-  if (["budget", "cpa", "share", "confidence"].includes(tableMode)) state.tableMode = tableMode;
+  if (["budget", "cost_per_policy", "share", "confidence"].includes(tableMode)) state.tableMode = tableMode;
   if (selected && selected.includes("|")) {
     const [month, channel] = selected.split("|");
     if (MONTHS.includes(month) && CHANNEL_ORDER.includes(channel)) {
@@ -4284,13 +4352,13 @@ function downloadPlanExcel() {
     ["Plan ID", plan.plan_id],
     ["Scenario", plan.scenario.label],
     ["Total Budget (GBP)", plan.total_budget_gbp],
-    ["Forecast Acquisitions", plan.forecast_acquisitions],
-    ["Forecast CPA (GBP)", plan.forecast_cpa_gbp],
+    ["Forecast New Policy Sales", plan.forecast_new_policy_sales],
+    ["Forecast Cost per Policy (GBP)", plan.forecast_cost_per_policy_gbp],
     [],
-    ["Ticket Target", plan.brief_test.ticket_target],
-    ["Brief CPA Target (GBP)", plan.brief_test.brief_cpa_gbp],
-    ["Clears Ticket Target", plan.brief_test.clears_ticket_target ? "Yes" : "No"],
-    ["Clears Brief CPA", plan.brief_test.clears_brief_cpa ? "Yes" : "No"],
+    ["Policy Sales Target", plan.brief_test.policy_sales_target],
+    ["Brief Cost per Policy Target (GBP)", plan.brief_test.brief_cost_per_policy_gbp],
+    ["Clears Policy Sales Target", plan.brief_test.clears_policy_sales_target ? "Yes" : "No"],
+    ["Clears Brief Cost per Policy", plan.brief_test.clears_brief_cost_per_policy ? "Yes" : "No"],
     [],
     ["Scenario Assumption", plan.scenario.scenario_assumption || plan.scenario.freeform_prompt || ""],
   ];
@@ -4310,11 +4378,11 @@ function downloadPlanExcel() {
   CHANNEL_ORDER.forEach((channel) => {
     const values = MONTHS.map((month) => {
       const row = plan.monthly_allocations.find((item) => item.month === month && item.channel === channel);
-      return row ? row.forecast_acquisitions : 0;
+      return row ? row.forecast_new_policy_sales : 0;
     });
     acquisitionRows.push([channel, ...values, values.reduce((a, b) => a + b, 0)]);
   });
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(acquisitionRows), "Acquisitions by Channel-Month");
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(acquisitionRows), "New Policy Sales by Channel-Month");
 
   const evidenceRows = [["Month", "Channel", "Budget (GBP)", "Confidence", "Rationale", "Brief Hooks", "Sources"]];
   plan.monthly_allocations.forEach((row) => {
@@ -4357,8 +4425,8 @@ function downloadRevisionExcel(candidate) {
     ["Revision Month", formatMonth(candidate.revision_month)],
     ["Prior Month (actuals basis)", formatMonth(candidate.prior_month)],
     ["Total Budget (GBP)", candidate.total_budget_gbp],
-    ["Forecast Acquisitions", candidate.forecast_acquisitions],
-    ["Forecast CPA (GBP)", candidate.forecast_cpa_gbp],
+    ["Forecast New Policy Sales", candidate.forecast_new_policy_sales],
+    ["Forecast Cost per Policy (GBP)", candidate.forecast_cost_per_policy_gbp],
     [],
     ["Status", "Draft revision candidate - requires approval before becoming plan truth."],
   ];

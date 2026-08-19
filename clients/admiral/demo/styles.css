@@ -13,6 +13,7 @@
      supportive tint for text use) - only the values changed. */
   --red: #c20060;
   --red-dark: #87003f;
+  --nav-active: #2350a0; /* Admiral dark blue, used for the sidebar navigation only */
   --gold: #f9b000;
   --green: #49a300;
   --amber: #f7941d;
@@ -171,7 +172,7 @@ button {
 }
 
 .nav-item.active {
-  background: var(--red);
+  background: var(--nav-active);
   color: #fff;
 }
 

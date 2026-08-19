@@ -6,9 +6,8 @@
   "prototype_status": "ppl_source_plus_synthetic_v1",
   "total_budget_gbp": 65674851,
   "brief_stated_budget_gbp": 65000000,
-  "total_acquisition_target": 1000000,
-  "primary_kpi": "new_ticket_holders",
-  "secondary_kpi": "CPA",
+  "primary_kpi": "new_policy_sales",
+  "secondary_kpi": "cost_per_new_policy_sale",
   "plan_scope": {
     "dr_and_atl": "combined",
     "annual_plan": true,
@@ -18,7 +17,7 @@
   },
   "required_inputs": [
     "budget_by_month",
-    "acquisition_targets_by_month",
+    "new_policy_sales_targets_by_month",
     "draw_calendar",
     "brand_guardrails",
     "strategy_prompt"
@@ -41,9 +40,9 @@
     "2026 growth testing framework"
   ],
   "source_ids": [
-    "ppl_2026_media_briefing_docx",
-    "ppl_2026_budget_targets_xlsx",
-    "ppl_mmm_june22_april23_pptx",
+    "adm_annual_media_brief",
+    "adm_media_budget",
+    "adm_mmm_deck_2026",
     "scope_pdf_page_17",
     "scope_pdf_page_22",
     "agent_architecture_blueprint",
@@ -55,5 +54,6 @@
     "Draw calendar remains synthetic beyond the month/draw labels in the budget workbook.",
     "Media-owner cost and response assumptions are synthetic.",
     "Prototype should be used to test workflow, architecture and evidence mechanics, not final investment advice."
-  ]
+  ],
+  "total_new_policy_sales_target": 1000000
 }
