@@ -3,7 +3,7 @@
     working: "working source",
     synthetic: "synthetic demo",
     modelled: "modelled-working",
-    governance: "FanDuel-owned source",
+    governance: "Admiral-owned source",
     review: "legal review"
   };
 

@@ -3,13 +3,13 @@
   --muted: #637083;
   --line: #dce3ea;
   --surface: #ffffff;
-  --surface-2: #f5f7fa;
+  --surface-2: #f0f0eb; /* Admiral's off-white site background */
   --surface-3: #edf2f6;
-  --blue: #1265e6;
+  --blue: #0045a0; /* Admiral navy (logo wordmark) */
   --green: #0c8a58;
   --red: #b42318;
   --amber: #b35a00;
-  --violet: #6b4bcc;
+  --violet: #c20060; /* Admiral magenta (logo orbit mark) */
   --black: #101820;
   --radius: 8px;
   --shadow: 0 12px 32px rgba(23, 33, 43, 0.08);
@@ -3464,8 +3464,13 @@ button {
   max-width: 112px;
 }
 
-.fanduel-chip img {
-  width: 112px;
+.admiral-chip {
+  background: #ffffff;
+  border: 1px solid var(--line);
+}
+
+.admiral-chip img {
+  width: 96px;
   height: auto;
 }
 

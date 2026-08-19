@@ -133,7 +133,7 @@ const SOURCE_REGISTRY = {
   fanduel_demo_media_priors_2026: {
     label: "FanDuel demo media priors",
     status: "synthetic demo",
-    note: "Working USD-equivalent priors, not FanDuel client performance data."
+    note: "Working USD-equivalent priors, not Admiral client performance data."
   },
   fanduel_reach_curve_synthetic_demo_2026: {
     label: "Synthetic reach curves",
@@ -283,7 +283,7 @@ const SOURCE_REGISTRY = {
   fanduel_recommendations_v1: {
     label: "Recommendations decision set",
     status: "synthetic-working demo",
-    note: "Channel, alert and strategic recommendation examples. They demonstrate the workflow shape and are not FanDuel account findings."
+    note: "Channel, alert and strategic recommendation examples. They demonstrate the workflow shape and are not Admiral account findings."
   },
   fanduel_recommendation_action_manifest_v1: {
     label: "Recommendation action contract",
@@ -957,7 +957,7 @@ async function init() {
     document.body.innerHTML = `
       <main class="app-shell">
         <section class="empty-state">
-          <h1>FanDuel demo data did not load</h1>
+          <h1>Admiral demo data did not load</h1>
           <p>${escapeHtml(error.message)}</p>
           <p>Serve this folder from the planner-template-v2 root so the dashboard can read the local JSON files.</p>
         </section>
@@ -3574,7 +3574,7 @@ function renderPlannerAudienceSizing() {
       <div>
         <span>Audience sizing</span>
         <strong>${formatNumber(totalProxy)} working proxy</strong>
-        <small>${matched.length ? `${formatNumber(matched.length)} matched persona${matched.length === 1 ? "" : "s"}` : "loaded persona proxies"} / not FanDuel audience data</small>
+        <small>${matched.length ? `${formatNumber(matched.length)} matched persona${matched.length === 1 ? "" : "s"}` : "loaded persona proxies"} / not Admiral audience data</small>
       </div>
       <div class="planner-audience-list">
         ${visiblePersonas.map((persona) => `
@@ -5025,7 +5025,7 @@ function buildMonthStateShift(fromCode, toCode, productKey) {
     to: { ...to, value: toValue },
     proposedMove: round2(proposedMove),
     sourceIds: ["fanduel_state_budget_model_2026", fromValue.source_id, toValue.source_id],
-    caveat: `Synthetic-working state allocation move: ${formatNumber(moveShare * 100)}% of the source state's modelled monthly equivalent, proposed for approval; not FanDuel delivery data. ${to.state}'s working value index is ${valueRatio ? `${valueRatio.toFixed(1)}×` : "not comparable to"} ${from.state}'s, so the move follows the higher post-tax-value proxy rather than a market-size claim. The ${formatNumber((1 - moveShare) * 100)}% retained in ${from.state} is a deliberate guardrail until observed delivery validates the proxy.`
+    caveat: `Synthetic-working state allocation move: ${formatNumber(moveShare * 100)}% of the source state's modelled monthly equivalent, proposed for approval; not Admiral delivery data. ${to.state}'s working value index is ${valueRatio ? `${valueRatio.toFixed(1)}×` : "not comparable to"} ${from.state}'s, so the move follows the higher post-tax-value proxy rather than a market-size claim. The ${formatNumber((1 - moveShare) * 100)}% retained in ${from.state} is a deliberate guardrail until observed delivery validates the proxy.`
   };
 }
 
@@ -6414,7 +6414,7 @@ function buildFreeResearchDossier(productKey, selectedCodes = [], question = "")
       method: app.data?.stateValueIndex?.method,
       top_sportsbook_rows: topValueRows,
       query_state_rows: selectedValueRows,
-      boundary: "Working public-source post-tax proxy, not FanDuel internal unit economics."
+      boundary: "Working public-source post-tax proxy, not Admiral internal unit economics."
     },
     evidence_rules: {
       source_id: "fanduel_stage1_demo_evidence_rules_2026",
@@ -6630,7 +6630,7 @@ function buildKnowledgeGapDossier() {
       next_step: "A named owner must verify state compliance claims before client use."
     },
     {
-      label: "FanDuel internal economics",
+      label: "Admiral internal economics",
       status: "not available",
       next_step: "Replace spend, sales, MMM and platform estimates with client data when supplied."
     },
@@ -7029,7 +7029,7 @@ function renderScopeAudienceSizing(selectedStates) {
         </div>
         <span class="pill watermark">working persona proxy</span>
       </div>
-      <p>${escapeHtml(scopeLabel)} for ${escapeHtml(productLabel(app.selectedProduct))}. These are ZIP3/demographic working estimates, not FanDuel audience data.</p>
+      <p>${escapeHtml(scopeLabel)} for ${escapeHtml(productLabel(app.selectedProduct))}. These are ZIP3/demographic working estimates, not Admiral audience data.</p>
       <div class="connector-grid scope-audience-grid">
         ${visiblePersonas.map((persona) => `
           <div class="connector-row">
@@ -8996,7 +8996,7 @@ function getPlanValueLens() {
   return {
     factor,
     stateCount: rows.length,
-    method: `Post-tax value is a working index across ${rows.length} funded state rows (${factor.toFixed(3)}× volume); it is not FanDuel internal economics.`
+    method: `Post-tax value is a working index across ${rows.length} funded state rows (${factor.toFixed(3)}× volume); it is not Admiral internal economics.`
   };
 }
 
@@ -10067,7 +10067,7 @@ function renderStateBudgetTable() {
         ${selectedBudget ? `${escapeHtml(selectedBudget.state_code)} ${formatCurrency(selectedBudget.budget_usd_equivalent)} / ${formatNumber(selectedBudget.forecast_ftds)} FTD proxy` : "unknown"}.
       </article>
       <article class="note-item">
-        Value mode uses ${escapeHtml(app.data.stateValueIndex?.method || "post-tax working index")}. Working source, not FanDuel internal economics.
+        Value mode uses ${escapeHtml(app.data.stateValueIndex?.method || "post-tax working index")}. Working source, not Admiral internal economics.
       </article>
     `;
   $$("#stateBudgetTable .state-budget-row").forEach((button) => {
@@ -11699,7 +11699,7 @@ function renderAudienceSurface() {
       <div class="panel-actions">
         <button class="small-action" type="button" data-audience-new>New audience</button>
         <span class="status status-working">working proxy</span>
-        <span class="status status-synthetic">not FanDuel audience data</span>
+        <span class="status status-synthetic">not Admiral audience data</span>
       </div>
     </div>
 
