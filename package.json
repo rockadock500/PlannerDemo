@@ -5,6 +5,7 @@
     "apps/*"
   ],
   "scripts": {
-    "dev:server": "npm run dev -w apps/server"
+    "dev:server": "npm run dev -w apps/server",
+    "start": "node apps/server/src/index.js"
   }
 }
