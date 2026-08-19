@@ -1,0 +1,27 @@
+{
+  "plan_id": "FD_US_2026_ANNUAL_SEARCH_ONLY_v2",
+  "label": "2026 Search-only option",
+  "horizon": "annual",
+  "period": {
+    "start": "2026-01",
+    "end": "2026-12"
+  },
+  "scenario_id": "search_only_v2",
+  "scenario_key": "search_only_v2",
+  "version": 2,
+  "parent_version": 2,
+  "parent_plan_id": "FD_US_2026_ANNUAL_T183_MEDIA_v2",
+  "status": "draft",
+  "created_at": "2026-07-09",
+  "approved_by": null,
+  "notes": "Deterministic engine subset: fund Paid Search and App Store only; Organic Search remains a zero-cost demand line. SYNTHETIC option; inferred public-source working-media envelope.",
+  "source_ids": [
+    "online_gambling_us_t183_rescaled_2026_07_09",
+    "fanduel_media_spend_baseline_v2_final_2026_07_09",
+    "fanduel_sde_actuals_manifest_v1",
+    "fanduel_sde_history_plan_v1",
+    "fanduel_rescaled_option_engine_v2"
+  ],
+  "plan_path": "FD_US_2026_ANNUAL_SEARCH_ONLY_v2/plan.json",
+  "meta_path": "FD_US_2026_ANNUAL_SEARCH_ONLY_v2/meta.json"
+}

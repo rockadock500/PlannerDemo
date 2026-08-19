@@ -1,0 +1,21 @@
+{
+  "plan_id": "FD_US_SDE_HISTORY_2025_2026_v1",
+  "label": "SDE synthetic history: Jan 2025-Jun 2026",
+  "horizon": "history",
+  "period": {
+    "start": "2025-01",
+    "end": "2026-06"
+  },
+  "scenario_id": "sde_history",
+  "scenario_key": "history",
+  "version": 1,
+  "parent_version": null,
+  "status": "archived",
+  "created_at": "2026-07-04",
+  "approved_by": null,
+  "notes": "SDE 18-month compact monthly history migrated into the file-based plan store for the time-machine baseline.",
+  "source_ids": [
+    "fanduel_sde_actuals_manifest_v1",
+    "fanduel_sde_history_plan_v1"
+  ]
+}

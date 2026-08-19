@@ -4,44 +4,60 @@ A client-facing media planner dashboard, built fresh for customization — separ
 [David OS App](https://github.com/rockadock500/David-OS-App), but using the same tooling
 (Claude Code, Vercel, Railway).
 
+## Status: working demo, running locally
+
+```bash
+npm install
+npm run dev:server
+# → http://localhost:4000/clients/fanduel/demo/
+```
+
+This serves the full FanDuel Planning OS reconstruction end to end — Planning OS, Flightpath,
+Calendar, Reporting, Recommendations, Attribution & Incrementality, Insights, Creative
+Intelligence, Audience, Regulation — all reading real data files, no database required. The one
+thing intentionally not built yet is the AI chat backend (see below) — everything else works.
+
+## Structure
+
+```
+apps/server/          # Express app — serves the static client tree below. No DB, no chat yet.
+clients/fanduel/       # The live demo content (currently FanDuel's, as reconstructed placeholder data)
+  demo/                #   index.html, app.js, styles.css, etc. — static, no build step
+  data/                #   working data: curves, calendars, benchmarks, recommendations, etc.
+  config/              #   engine capabilities, planning modes, connector manifests
+  output/              #   generated_plan_*.json — pre-computed plan scenarios
+  plans/                #   plan manifest + one folder per plan_id (plan.json + meta.json)
+  actuals/             #   actuals manifest + monthly summary + coherence report
+universal/             # Shared cross-client reference data (US regulation, media minimums, etc.)
+reference/
+  cognito-crm-source/  # Old COGNITO CRM code — not active, kept in case any of it is reusable
+```
+
+Swapping in a real client's numbers later is mostly a matter of replacing the JSON under
+`clients/<name>/` — the frontend has no build step, so there's nothing to recompile.
+
 ## Where this repo came from
 
 This repo started as a clone of [`TAURob-1/COGNITO`](https://github.com/TAURob-1/COGNITO), on
 the assumption that repo held the architecture behind the media planner demo. It didn't —
 COGNITO is a sales CRM (pipeline, forecasting, companies), unrelated in domain and in stack. That
-code has been moved to `reference/cognito-crm-source/` rather than deleted, in case any of the
+code now lives in `reference/cognito-crm-source/` rather than being deleted, in case any of the
 plumbing (Docker setup, Google OAuth + session-cookie login pattern, config-per-agent loader) is
 useful later. None of it is wired up or active.
 
-## What we're actually emulating
-
 The real target is the FanDuel Planning OS demo:
-`https://web-production-f21d6.up.railway.app/clients/fanduel/demo/`
+`https://web-production-f21d6.up.railway.app/clients/fanduel/demo/`. No source repo for it was
+available, so `clients/fanduel/` and `universal/` were reconstructed by pulling every static
+asset and data file the live app's `app.js` references (including the plan-store files it
+fetches dynamically per `plans/manifest.json`).
 
-No source repo for it was available, so it was reconstructed by pulling the live static assets
-and every data file `app.js` references. That reconstruction lives in
-`reference/fanduel-demo-source/`, laid out to match the real site structure:
-
-```
-reference/fanduel-demo-source/
-  clients/fanduel/
-    demo/      # index.html, app.js, styles.css, reasons.js, runtime-config.js, vendor/, assets/
-    data/      # working data: curves, calendars, benchmarks, recommendations, etc.
-    config/    # engine capabilities, planning modes, connector manifests
-    output/    # generated_plan_*.json — pre-computed plan scenarios
-    plans/     # plan manifest
-    actuals/   # actuals manifest + monthly summary
-  universal/   # shared cross-client reference data (US regulation, media minimums, etc.)
-```
-
-Key findings from that reconstruction:
-- The frontend is **hand-built static HTML/CSS/vanilla JS** — no React, no build step. `app.js`
-  is ~17k lines of readable (unminified) source.
-- It's served per-client at `/clients/<client>/demo/`, suggesting the real system serves
-  multiple client demos off one app, sharing the `universal/` reference data.
-- `runtime-config.js` shows the one piece we *can't* reconstruct from static files — an AI chat
-  backend at `/api/chat` (model: `claude-haiku-4-5-20251001`) and `/api/sessions`. That's server
-  code, not static assets, and needs to be built new.
+One clue surfaced during reconstruction worth chasing: `actuals/manifest.json` records its
+origin as `.../projects/planner-template-v2/sde/out/fanduel`, and the app's own error message
+(when data is missing) says *"Serve this folder from the planner-template-v2 root"* — meaning a
+complete real source repo called `planner-template-v2` likely exists (built by Rob per the file
+path). A few guessed repo names under `TAURob-1` weren't found — worth asking Rob directly if
+that repo can be located, since it would include the actual chat backend implementation we're
+currently missing.
 
 ## What's genuinely reusable from COGNITO
 
@@ -53,12 +69,20 @@ Key findings from that reconstruction:
 - `DEVELOPMENT_PRINCIPLES.md` (root) — TAU's general engineering rules (config-per-agent, split
   frontend/backend, modularize), not CRM-specific.
 
+## Deliberately not built yet
+
+- **Chat backend** (`/api/chat`, `/api/sessions`) — `runtime-config.js` has the LLM flag turned
+  off, so the UI falls back to its deterministic/local narration mode instead of erroring. Flip
+  `enabled` back to `true` once a real endpoint exists.
+- **Real client data** — everything currently under `clients/fanduel/` is FanDuel's reconstructed
+  placeholder data, standing in until the actual client's numbers are ready.
+- **Deployment** — runs locally only so far; Railway/Vercel wiring is next.
+
 ## Next steps
 
-1. Decide the real client/demo name this repo will serve (currently modeled on `fanduel` as the
-   reference — rename for the actual client).
-2. Stand up a minimal backend: serve the static `clients/<client>/demo/` tree, plus `/api/chat`
-   and `/api/sessions` proxying to Anthropic.
-3. Swap FanDuel-specific data/copy/branding for the real client's.
-4. Wire up Railway (backend) + Vercel or static hosting (frontend) — see `DEPLOY.md` (TODO) once
-   the stack is decided.
+1. Deploy `apps/server` to Railway (root directory `apps/server`, no env vars required yet).
+2. Decide the real client name and rename `clients/fanduel/` → `clients/<real-client>/` when its
+   data is ready.
+3. Build the chat backend when that becomes a priority.
+4. Try to track down `planner-template-v2` (see above) — a real source repo would save a lot of
+   rebuilding, and includes the chat implementation.

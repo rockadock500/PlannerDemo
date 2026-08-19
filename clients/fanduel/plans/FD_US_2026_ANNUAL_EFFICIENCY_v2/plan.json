@@ -1,0 +1,3450 @@
+{
+  "plan_id": "FD_US_2026_ANNUAL_EFFICIENCY_v2",
+  "plan_store_id": "FD_US_2026_ANNUAL_EFFICIENCY_v2",
+  "plan_store_status": "draft",
+  "data_status": "synthetic-simulated",
+  "display_flag": "SYNTHETIC",
+  "scenario": {
+    "scenario_id": "data_driven_efficiency_v2",
+    "label": "2026 Data-driven efficiency option",
+    "scenario_assumption": "Engine scenario: rebalance toward intent and accountable acquisition while preserving the signed-off annual working-media envelope.",
+    "request_vocabulary": "channel_prior_multiplier",
+    "channel_multipliers": {
+      "Paid Search": 1.15,
+      "App Store": 1.2,
+      "Affiliate": 1.1,
+      "CRM": 1.05,
+      "Linear TV": 0.85,
+      "CTV": 0.9,
+      "Influencer/Creator": 0.9
+    },
+    "included_channels": null
+  },
+  "brief_id": "FD_US_T183_WORKING_MEDIA_BASELINE_2026",
+  "category_label": "working_media",
+  "baseline_label": "inferred public-source envelope",
+  "total_budget_gbp": 449999999.99,
+  "total_allocated_gbp": 449999999.99,
+  "forecast_acquisitions": 1358927.76,
+  "forecast_cpa_gbp": 331.14,
+  "paid_media_acquisitions": 1358927.76,
+  "paid_media_cpa_gbp": 331.14,
+  "non_buyable_demand_acquisitions": 0,
+  "channel_totals": [
+    {
+      "channel": "Linear TV",
+      "budget_gbp": 96786437.23,
+      "forecast_acquisitions": 207398.02,
+      "category_label": "working_media",
+      "confidence": "low",
+      "planning_role": "Mass reach and sports property adjacency",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "response_curve": {
+        "curve_id": "fanduel_us_response_curve_linear_tv",
+        "curve_type": "synthetic reach curve",
+        "classification": "t183_input_gated_working_media_prior",
+        "confidence": "low",
+        "mmm_anchor": "Synthetic demo prior.",
+        "external_shape_prior": "Mass-reach sports property adjacency; client investment data needed. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 1200000,
+        "adstock_half_life_weeks": 5,
+        "agree_conflict": "working",
+        "conflict_note": "T113 provisional FTD guardrail calibration applied.",
+        "source_ids": [
+          "fanduel_reach_curve_synthetic_demo_2026",
+          "online_gambling_us_t111_provisional_2026_07_04",
+          "online_gambling_us_t183_rescaled_2026_07_09",
+          "fanduel_media_spend_baseline_v2_final_2026_07_09"
+        ]
+      },
+      "share_pct": 21.508097162222224,
+      "forecast_cpa_gbp": 466.67
+    },
+    {
+      "channel": "CRM",
+      "budget_gbp": 62171052.63,
+      "forecast_acquisitions": 291431.37,
+      "category_label": "working_media",
+      "confidence": "low",
+      "planning_role": "Owned retention and reactivation",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "response_curve": {
+        "curve_id": "fanduel_us_response_curve_crm",
+        "curve_type": "synthetic owned-channel curve",
+        "classification": "t183_input_gated_working_media_prior",
+        "confidence": "low",
+        "mmm_anchor": "Synthetic demo prior.",
+        "external_shape_prior": "Owned reactivation and retention path; needs FanDuel first-party data. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 240000,
+        "adstock_half_life_weeks": 1,
+        "agree_conflict": "working",
+        "conflict_note": "T113 provisional FTD guardrail calibration applied.",
+        "source_ids": [
+          "fanduel_demo_media_priors_2026",
+          "online_gambling_us_t111_provisional_2026_07_04",
+          "online_gambling_us_t183_rescaled_2026_07_09",
+          "fanduel_media_spend_baseline_v2_final_2026_07_09"
+        ]
+      },
+      "share_pct": 13.815789473333334,
+      "forecast_cpa_gbp": 213.33
+    },
+    {
+      "channel": "Affiliate",
+      "budget_gbp": 55111336.04,
+      "forecast_acquisitions": 165335.66,
+      "category_label": "working_media",
+      "confidence": "low",
+      "planning_role": "High-intent comparison and offer discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "response_curve": {
+        "curve_id": "fanduel_us_response_curve_affiliate",
+        "curve_type": "synthetic partner capacity curve",
+        "classification": "t183_input_gated_working_media_prior",
+        "confidence": "low",
+        "mmm_anchor": "Synthetic demo prior.",
+        "external_shape_prior": "Affiliate supply and offer sensitivity require state/product governance. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 500000,
+        "adstock_half_life_weeks": 1,
+        "agree_conflict": "working",
+        "conflict_note": "T113 provisional FTD guardrail calibration applied.",
+        "source_ids": [
+          "fanduel_demo_media_priors_2026",
+          "us_state_governance_working_research_2026_07_03",
+          "online_gambling_us_t111_provisional_2026_07_04",
+          "online_gambling_us_t183_rescaled_2026_07_09",
+          "fanduel_media_spend_baseline_v2_final_2026_07_09"
+        ]
+      },
+      "share_pct": 12.246963564444444,
+      "forecast_cpa_gbp": 333.33
+    },
+    {
+      "channel": "CTV",
+      "budget_gbp": 45091093.11,
+      "forecast_acquisitions": 84546.32,
+      "category_label": "working_media",
+      "confidence": "low",
+      "planning_role": "Incremental reach in sports-viewing households",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "response_curve": {
+        "curve_id": "fanduel_us_response_curve_ctv",
+        "curve_type": "synthetic reach curve",
+        "classification": "t183_input_gated_working_media_prior",
+        "confidence": "low",
+        "mmm_anchor": "Synthetic demo prior.",
+        "external_shape_prior": "Incremental reach in sports-viewing households; TV/CTV research still pending. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 950000,
+        "adstock_half_life_weeks": 4,
+        "agree_conflict": "working",
+        "conflict_note": "T113 provisional FTD guardrail calibration applied.",
+        "source_ids": [
+          "fanduel_reach_curve_synthetic_demo_2026",
+          "online_gambling_us_t111_provisional_2026_07_04",
+          "online_gambling_us_t183_rescaled_2026_07_09",
+          "fanduel_media_spend_baseline_v2_final_2026_07_09"
+        ]
+      },
+      "share_pct": 10.020242913333332,
+      "forecast_cpa_gbp": 533.33
+    },
+    {
+      "channel": "Paid Search",
+      "budget_gbp": 52378542.52,
+      "forecast_acquisitions": 170797.74,
+      "category_label": "working_media",
+      "confidence": "low",
+      "planning_role": "High-intent demand capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "response_curve": {
+        "curve_id": "fanduel_us_response_curve_paid_search",
+        "curve_type": "synthetic diminishing returns",
+        "classification": "t183_input_gated_working_media_prior",
+        "confidence": "low",
+        "mmm_anchor": "No FanDuel MMM loaded; synthetic demo prior.",
+        "external_shape_prior": "High-intent paid search prior, but paid SERP evidence is not yet loaded. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 900000,
+        "adstock_half_life_weeks": 1,
+        "agree_conflict": "working",
+        "conflict_note": "Media-only FTD proxy. Promo cost excluded. T113 provisional FTD guardrail calibration applied.",
+        "source_ids": [
+          "missing_paid_serp_pass",
+          "fanduel_demo_media_priors_2026",
+          "online_gambling_us_t111_provisional_2026_07_04",
+          "online_gambling_us_t183_rescaled_2026_07_09",
+          "fanduel_media_spend_baseline_v2_final_2026_07_09"
+        ]
+      },
+      "share_pct": 11.639676115555556,
+      "forecast_cpa_gbp": 306.67
+    },
+    {
+      "channel": "Paid Social",
+      "budget_gbp": 36437246.99,
+      "forecast_acquisitions": 101214.58,
+      "category_label": "working_media",
+      "confidence": "low",
+      "planning_role": "Prospecting and promo storytelling",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "response_curve": {
+        "curve_id": "fanduel_us_response_curve_paid_social",
+        "curve_type": "synthetic diminishing returns",
+        "classification": "t183_input_gated_working_media_prior",
+        "confidence": "low",
+        "mmm_anchor": "Synthetic demo prior.",
+        "external_shape_prior": "Prospecting channel requiring creative, audience and state compliance review. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 850000,
+        "adstock_half_life_weeks": 2,
+        "agree_conflict": "working",
+        "conflict_note": "T113 provisional FTD guardrail calibration applied.",
+        "source_ids": [
+          "fanduel_demo_media_priors_2026",
+          "online_gambling_us_t111_provisional_2026_07_04",
+          "online_gambling_us_t183_rescaled_2026_07_09",
+          "fanduel_media_spend_baseline_v2_final_2026_07_09"
+        ]
+      },
+      "share_pct": 8.097165997777777,
+      "forecast_cpa_gbp": 360
+    },
+    {
+      "channel": "YouTube",
+      "budget_gbp": 31882591.07,
+      "forecast_acquisitions": 91968.14,
+      "category_label": "working_media",
+      "confidence": "low",
+      "planning_role": "Video reach with intent handoff",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "response_curve": {
+        "curve_id": "fanduel_us_response_curve_youtube",
+        "curve_type": "synthetic video response curve",
+        "classification": "t183_input_gated_working_media_prior",
+        "confidence": "low",
+        "mmm_anchor": "Synthetic demo prior.",
+        "external_shape_prior": "Video reach with search handoff around sports moments. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 700000,
+        "adstock_half_life_weeks": 3,
+        "agree_conflict": "working",
+        "conflict_note": "T113 provisional FTD guardrail calibration applied.",
+        "source_ids": [
+          "fanduel_demo_media_priors_2026",
+          "online_gambling_us_t111_provisional_2026_07_04",
+          "online_gambling_us_t183_rescaled_2026_07_09",
+          "fanduel_media_spend_baseline_v2_final_2026_07_09"
+        ]
+      },
+      "share_pct": 7.085020237777778,
+      "forecast_cpa_gbp": 346.67
+    },
+    {
+      "channel": "App Store",
+      "budget_gbp": 21862348.17,
+      "forecast_acquisitions": 136639.68,
+      "category_label": "working_media",
+      "confidence": "low",
+      "planning_role": "Conversion support and app-intent capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "response_curve": {
+        "curve_id": "fanduel_us_response_curve_app_store",
+        "curve_type": "synthetic app-intent curve",
+        "classification": "t183_input_gated_working_media_prior",
+        "confidence": "low",
+        "mmm_anchor": "Synthetic demo prior.",
+        "external_shape_prior": "App-intent conversion support and store optimisation. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": 3,
+        "agree_conflict": "working",
+        "conflict_note": "T113 provisional FTD guardrail calibration applied.",
+        "source_ids": [
+          "fanduel_demo_media_priors_2026",
+          "online_gambling_us_t111_provisional_2026_07_04",
+          "online_gambling_us_t183_rescaled_2026_07_09",
+          "fanduel_media_spend_baseline_v2_final_2026_07_09"
+        ]
+      },
+      "share_pct": 4.858299593333334,
+      "forecast_cpa_gbp": 160
+    },
+    {
+      "channel": "Influencer/Creator",
+      "budget_gbp": 16396761.14,
+      "forecast_acquisitions": 38429.6,
+      "category_label": "working_media",
+      "confidence": "low",
+      "planning_role": "Trust, sports culture and creator-led discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "response_curve": {
+        "curve_id": "fanduel_us_response_curve_influencer_creator",
+        "curve_type": "synthetic creator response curve",
+        "classification": "t183_input_gated_working_media_prior",
+        "confidence": "low",
+        "mmm_anchor": "Synthetic demo prior.",
+        "external_shape_prior": "Creator-led sports culture and trust; high compliance sensitivity. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 220000,
+        "adstock_half_life_weeks": 2,
+        "agree_conflict": "working",
+        "conflict_note": "T113 provisional FTD guardrail calibration applied.",
+        "source_ids": [
+          "fanduel_demo_media_priors_2026",
+          "us_state_governance_working_research_2026_07_03",
+          "online_gambling_us_t111_provisional_2026_07_04",
+          "online_gambling_us_t183_rescaled_2026_07_09",
+          "fanduel_media_spend_baseline_v2_final_2026_07_09"
+        ]
+      },
+      "share_pct": 3.6437246977777784,
+      "forecast_cpa_gbp": 426.67
+    },
+    {
+      "channel": "Radio/Audio",
+      "budget_gbp": 18218623.47,
+      "forecast_acquisitions": 45546.56,
+      "category_label": "working_media",
+      "confidence": "low",
+      "planning_role": "Local reach and commute moments",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "response_curve": {
+        "curve_id": "fanduel_us_response_curve_radio_audio",
+        "curve_type": "synthetic local reach curve",
+        "classification": "t183_input_gated_working_media_prior",
+        "confidence": "low",
+        "mmm_anchor": "Synthetic demo prior.",
+        "external_shape_prior": "Local sports audio and commute moments. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 300000,
+        "adstock_half_life_weeks": 2,
+        "agree_conflict": "working",
+        "conflict_note": "T113 provisional FTD guardrail calibration applied.",
+        "source_ids": [
+          "fanduel_reach_curve_synthetic_demo_2026",
+          "online_gambling_us_t111_provisional_2026_07_04",
+          "online_gambling_us_t183_rescaled_2026_07_09",
+          "fanduel_media_spend_baseline_v2_final_2026_07_09"
+        ]
+      },
+      "share_pct": 4.048582993333333,
+      "forecast_cpa_gbp": 400
+    },
+    {
+      "channel": "Display",
+      "budget_gbp": 13663967.62,
+      "forecast_acquisitions": 25620.09,
+      "category_label": "working_media",
+      "confidence": "low",
+      "planning_role": "Retargeting and mid-funnel reinforcement",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "response_curve": {
+        "curve_id": "fanduel_us_response_curve_display",
+        "curve_type": "synthetic retargeting/support curve",
+        "classification": "t183_input_gated_working_media_prior",
+        "confidence": "low",
+        "mmm_anchor": "Synthetic demo prior.",
+        "external_shape_prior": "Support layer around search and conversion paths. CPA retuned to the active T111 benchmark. CPA retained from the T111 economics and consumed against the T183 working-media envelope. CPA retained from the T111 economics and consumed against the T183 working-media envelope.",
+        "soft_saturation_threshold_monthly_gbp": 450000,
+        "adstock_half_life_weeks": 2,
+        "agree_conflict": "working",
+        "conflict_note": "T113 provisional FTD guardrail calibration applied.",
+        "source_ids": [
+          "fanduel_demo_media_priors_2026",
+          "online_gambling_us_t111_provisional_2026_07_04",
+          "online_gambling_us_t183_rescaled_2026_07_09",
+          "fanduel_media_spend_baseline_v2_final_2026_07_09"
+        ]
+      },
+      "share_pct": 3.036437248888889,
+      "forecast_cpa_gbp": 533.33
+    },
+    {
+      "channel": "Organic Search",
+      "budget_gbp": 0,
+      "forecast_acquisitions": 0,
+      "category_label": "operational",
+      "confidence": "working",
+      "planning_role": "Non-buyable organic demand capture and content defence",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "non_buyable_demand",
+      "buyable": false,
+      "response_curve": {
+        "curve_id": "fanduel_us_response_curve_organic_search",
+        "curve_type": "content capacity curve",
+        "classification": "non_buyable_demand_line",
+        "confidence": "medium",
+        "mmm_anchor": "No FanDuel MMM loaded; synthetic demo prior.",
+        "external_shape_prior": "Organic Search is retained as a non-buyable demand line; planned media spend stays at $0 unless a resource-cost option is explicitly enabled.",
+        "soft_saturation_threshold_monthly_gbp": 420000,
+        "adstock_half_life_weeks": 6,
+        "agree_conflict": "working",
+        "conflict_note": "CPA is not a paid-media buying benchmark for Organic Search.",
+        "source_ids": [
+          "signal_seo_100_organic_0_paid_2026_07_03",
+          "fanduel_demo_media_priors_2026",
+          "online_gambling_us_t111_provisional_2026_07_04",
+          "online_gambling_us_t183_rescaled_2026_07_09",
+          "fanduel_media_spend_baseline_v2_final_2026_07_09"
+        ]
+      },
+      "share_pct": 0,
+      "forecast_cpa_gbp": 0
+    },
+    {
+      "channel": "RG Messaging Share",
+      "budget_gbp": 0,
+      "forecast_acquisitions": 0,
+      "category_label": "operational",
+      "confidence": "working",
+      "planning_role": "Responsible-gambling share line",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "responsible_gambling_share",
+      "buyable": false,
+      "response_curve": {
+        "curve_id": "fanduel_us_response_curve_rg_messaging_share",
+        "curve_type": "benchmark-derived working curve",
+        "classification": "t183_input_gated_working_media_prior",
+        "confidence": "low",
+        "source_ids": [
+          "online_gambling_us_t183_rescaled_2026_07_09",
+          "fanduel_media_spend_baseline_v2_final_2026_07_09",
+          "fanduel_sde_actuals_manifest_v1",
+          "fanduel_sde_history_plan_v1"
+        ],
+        "conflict_note": "No explicit response-curve row found; benchmark/default CPA used."
+      },
+      "share_pct": 0,
+      "forecast_cpa_gbp": 0
+    }
+  ],
+  "monthly_allocations": [
+    {
+      "month": "2026-01",
+      "channel": "Affiliate",
+      "budget_gbp": 4663267.41,
+      "category_label": "working_media",
+      "forecast_acquisitions": 13989.94,
+      "confidence": "low",
+      "planning_role": "High-intent comparison and offer discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "App Store",
+      "budget_gbp": 1859160.73,
+      "category_label": "working_media",
+      "forecast_acquisitions": 11619.75,
+      "confidence": "low",
+      "planning_role": "Conversion support and app-intent capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "CRM",
+      "budget_gbp": 5630585.68,
+      "category_label": "working_media",
+      "forecast_acquisitions": 26393.78,
+      "confidence": "low",
+      "planning_role": "Owned retention and reactivation",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "CTV",
+      "budget_gbp": 4247465.28,
+      "category_label": "working_media",
+      "forecast_acquisitions": 7964.05,
+      "confidence": "low",
+      "planning_role": "Incremental reach in sports-viewing households",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Display",
+      "budget_gbp": 1151098.18,
+      "category_label": "working_media",
+      "forecast_acquisitions": 2158.32,
+      "confidence": "low",
+      "planning_role": "Retargeting and mid-funnel reinforcement",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 1384558,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3245.03,
+      "confidence": "low",
+      "planning_role": "Trust, sports culture and creator-led discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Linear TV",
+      "budget_gbp": 9572285.32,
+      "category_label": "working_media",
+      "forecast_acquisitions": 20511.89,
+      "confidence": "low",
+      "planning_role": "Mass reach and sports property adjacency",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Organic Search",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Non-buyable organic demand capture and content defence",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "non_buyable_demand",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Paid Search",
+      "budget_gbp": 4518933.15,
+      "category_label": "working_media",
+      "forecast_acquisitions": 14735.49,
+      "confidence": "low",
+      "planning_role": "High-intent demand capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Paid Social",
+      "budget_gbp": 3080781.38,
+      "category_label": "working_media",
+      "forecast_acquisitions": 8557.73,
+      "confidence": "low",
+      "planning_role": "Prospecting and promo storytelling",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Radio/Audio",
+      "budget_gbp": 1525482.79,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3813.71,
+      "confidence": "low",
+      "planning_role": "Local reach and commute moments",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "RG Messaging Share",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Responsible-gambling share line",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "responsible_gambling_share",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "YouTube",
+      "budget_gbp": 2809576.92,
+      "category_label": "working_media",
+      "forecast_acquisitions": 8104.47,
+      "confidence": "low",
+      "planning_role": "Video reach with intent handoff",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Affiliate",
+      "budget_gbp": 5299166.5,
+      "category_label": "working_media",
+      "forecast_acquisitions": 15897.66,
+      "confidence": "low",
+      "planning_role": "High-intent comparison and offer discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "App Store",
+      "budget_gbp": 1996875.3,
+      "category_label": "working_media",
+      "forecast_acquisitions": 12480.47,
+      "confidence": "low",
+      "planning_role": "Conversion support and app-intent capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "CRM",
+      "budget_gbp": 6334408.76,
+      "category_label": "working_media",
+      "forecast_acquisitions": 29693,
+      "confidence": "low",
+      "planning_role": "Owned retention and reactivation",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "CTV",
+      "budget_gbp": 4927060.02,
+      "category_label": "working_media",
+      "forecast_acquisitions": 9238.3,
+      "confidence": "low",
+      "planning_role": "Incremental reach in sports-viewing households",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Display",
+      "budget_gbp": 1257682.19,
+      "category_label": "working_media",
+      "forecast_acquisitions": 2358.17,
+      "confidence": "low",
+      "planning_role": "Retargeting and mid-funnel reinforcement",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 1730698.18,
+      "category_label": "working_media",
+      "forecast_acquisitions": 4056.29,
+      "confidence": "low",
+      "planning_role": "Trust, sports culture and creator-led discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Linear TV",
+      "budget_gbp": 11344930.21,
+      "category_label": "working_media",
+      "forecast_acquisitions": 24310.39,
+      "confidence": "low",
+      "planning_role": "Mass reach and sports property adjacency",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Organic Search",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Non-buyable organic demand capture and content defence",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "non_buyable_demand",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Paid Search",
+      "budget_gbp": 4929745.04,
+      "category_label": "working_media",
+      "forecast_acquisitions": 16075.08,
+      "confidence": "low",
+      "planning_role": "High-intent demand capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Paid Social",
+      "budget_gbp": 3416867.41,
+      "category_label": "working_media",
+      "forecast_acquisitions": 9491.3,
+      "confidence": "low",
+      "planning_role": "Prospecting and promo storytelling",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Radio/Audio",
+      "budget_gbp": 1714352.23,
+      "category_label": "working_media",
+      "forecast_acquisitions": 4285.88,
+      "confidence": "low",
+      "planning_role": "Local reach and commute moments",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "RG Messaging Share",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Responsible-gambling share line",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "responsible_gambling_share",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "YouTube",
+      "budget_gbp": 3127181.17,
+      "category_label": "working_media",
+      "forecast_acquisitions": 9020.63,
+      "confidence": "low",
+      "planning_role": "Video reach with intent handoff",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Affiliate",
+      "budget_gbp": 5087200.51,
+      "category_label": "working_media",
+      "forecast_acquisitions": 15261.75,
+      "confidence": "low",
+      "planning_role": "High-intent comparison and offer discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "App Store",
+      "budget_gbp": 2031304.86,
+      "category_label": "working_media",
+      "forecast_acquisitions": 12695.66,
+      "confidence": "low",
+      "planning_role": "Conversion support and app-intent capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "CRM",
+      "budget_gbp": 5865193.72,
+      "category_label": "working_media",
+      "forecast_acquisitions": 27493.53,
+      "confidence": "low",
+      "planning_role": "Owned retention and reactivation",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "CTV",
+      "budget_gbp": 3907667.91,
+      "category_label": "working_media",
+      "forecast_acquisitions": 7326.92,
+      "confidence": "low",
+      "planning_role": "Incremental reach in sports-viewing households",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Display",
+      "budget_gbp": 1225706.48,
+      "category_label": "working_media",
+      "forecast_acquisitions": 2298.21,
+      "confidence": "low",
+      "planning_role": "Retargeting and mid-funnel reinforcement",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 1474298.38,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3455.36,
+      "confidence": "low",
+      "planning_role": "Trust, sports culture and creator-led discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Linear TV",
+      "budget_gbp": 8154168.72,
+      "category_label": "working_media",
+      "forecast_acquisitions": 17473.09,
+      "confidence": "low",
+      "planning_role": "Mass reach and sports property adjacency",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Organic Search",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Non-buyable organic demand capture and content defence",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "non_buyable_demand",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Paid Search",
+      "budget_gbp": 5135151.57,
+      "category_label": "working_media",
+      "forecast_acquisitions": 16744.88,
+      "confidence": "low",
+      "planning_role": "High-intent demand capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Paid Social",
+      "budget_gbp": 3304839.07,
+      "category_label": "working_media",
+      "forecast_acquisitions": 9180.11,
+      "confidence": "low",
+      "planning_role": "Prospecting and promo storytelling",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Radio/Audio",
+      "budget_gbp": 1569067.81,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3922.67,
+      "confidence": "low",
+      "planning_role": "Local reach and commute moments",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "RG Messaging Share",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Responsible-gambling share line",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "responsible_gambling_share",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "YouTube",
+      "budget_gbp": 2980595.14,
+      "category_label": "working_media",
+      "forecast_acquisitions": 8597.79,
+      "confidence": "low",
+      "planning_role": "Video reach with intent handoff",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Affiliate",
+      "budget_gbp": 3815400.1,
+      "category_label": "working_media",
+      "forecast_acquisitions": 11446.31,
+      "confidence": "low",
+      "planning_role": "High-intent comparison and offer discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "App Store",
+      "budget_gbp": 1687015.38,
+      "category_label": "working_media",
+      "forecast_acquisitions": 10543.85,
+      "confidence": "low",
+      "planning_role": "Conversion support and app-intent capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "CRM",
+      "budget_gbp": 4457547.57,
+      "category_label": "working_media",
+      "forecast_acquisitions": 20895.08,
+      "confidence": "low",
+      "planning_role": "Owned retention and reactivation",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "CTV",
+      "budget_gbp": 2990215.38,
+      "category_label": "working_media",
+      "forecast_acquisitions": 5606.69,
+      "confidence": "low",
+      "planning_role": "Incremental reach in sports-viewing households",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Display",
+      "budget_gbp": 1044515.18,
+      "category_label": "working_media",
+      "forecast_acquisitions": 1958.48,
+      "confidence": "low",
+      "planning_role": "Retargeting and mid-funnel reinforcement",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 1153799.09,
+      "category_label": "working_media",
+      "forecast_acquisitions": 2704.2,
+      "confidence": "low",
+      "planning_role": "Trust, sports culture and creator-led discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Linear TV",
+      "budget_gbp": 5672465.54,
+      "category_label": "working_media",
+      "forecast_acquisitions": 12155.2,
+      "confidence": "low",
+      "planning_role": "Mass reach and sports property adjacency",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Organic Search",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Non-buyable organic demand capture and content defence",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "non_buyable_demand",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Paid Search",
+      "budget_gbp": 3902714.73,
+      "category_label": "working_media",
+      "forecast_acquisitions": 12726.11,
+      "confidence": "low",
+      "planning_role": "High-intent demand capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Paid Social",
+      "budget_gbp": 2688682.19,
+      "category_label": "working_media",
+      "forecast_acquisitions": 7468.56,
+      "confidence": "low",
+      "planning_role": "Prospecting and promo storytelling",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Radio/Audio",
+      "budget_gbp": 1336613.36,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3341.53,
+      "confidence": "low",
+      "planning_role": "Local reach and commute moments",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "RG Messaging Share",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Responsible-gambling share line",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "responsible_gambling_share",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "YouTube",
+      "budget_gbp": 2320954.45,
+      "category_label": "working_media",
+      "forecast_acquisitions": 6695,
+      "confidence": "low",
+      "planning_role": "Video reach with intent handoff",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Affiliate",
+      "budget_gbp": 3603433,
+      "category_label": "working_media",
+      "forecast_acquisitions": 10810.41,
+      "confidence": "low",
+      "planning_role": "High-intent comparison and offer discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "App Store",
+      "budget_gbp": 1618157.49,
+      "category_label": "working_media",
+      "forecast_acquisitions": 10113.48,
+      "confidence": "low",
+      "planning_role": "Conversion support and app-intent capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "CRM",
+      "budget_gbp": 4222939.52,
+      "category_label": "working_media",
+      "forecast_acquisitions": 19795.34,
+      "confidence": "low",
+      "planning_role": "Owned retention and reactivation",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "CTV",
+      "budget_gbp": 2650418.02,
+      "category_label": "working_media",
+      "forecast_acquisitions": 4969.56,
+      "confidence": "low",
+      "planning_role": "Incremental reach in sports-viewing households",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Display",
+      "budget_gbp": 980565.79,
+      "category_label": "working_media",
+      "forecast_acquisitions": 1838.57,
+      "confidence": "low",
+      "planning_role": "Retargeting and mid-funnel reinforcement",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 1102519.13,
+      "category_label": "working_media",
+      "forecast_acquisitions": 2584.01,
+      "confidence": "low",
+      "planning_role": "Trust, sports culture and creator-led discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Linear TV",
+      "budget_gbp": 4608878.09,
+      "category_label": "working_media",
+      "forecast_acquisitions": 9876.1,
+      "confidence": "low",
+      "planning_role": "Mass reach and sports property adjacency",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Organic Search",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Non-buyable organic demand capture and content defence",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "non_buyable_demand",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Paid Search",
+      "budget_gbp": 3697309.36,
+      "category_label": "working_media",
+      "forecast_acquisitions": 12056.31,
+      "confidence": "low",
+      "planning_role": "High-intent demand capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Paid Social",
+      "budget_gbp": 2576653.85,
+      "category_label": "working_media",
+      "forecast_acquisitions": 7157.37,
+      "confidence": "low",
+      "planning_role": "Prospecting and promo storytelling",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Radio/Audio",
+      "budget_gbp": 1278500,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3196.25,
+      "confidence": "low",
+      "planning_role": "Local reach and commute moments",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "RG Messaging Share",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Responsible-gambling share line",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "responsible_gambling_share",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "YouTube",
+      "budget_gbp": 2198799.6,
+      "category_label": "working_media",
+      "forecast_acquisitions": 6342.63,
+      "confidence": "low",
+      "planning_role": "Video reach with intent handoff",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Affiliate",
+      "budget_gbp": 3603433,
+      "category_label": "working_media",
+      "forecast_acquisitions": 10810.41,
+      "confidence": "low",
+      "planning_role": "High-intent comparison and offer discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "App Store",
+      "budget_gbp": 1618157.49,
+      "category_label": "working_media",
+      "forecast_acquisitions": 10113.48,
+      "confidence": "low",
+      "planning_role": "Conversion support and app-intent capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "CRM",
+      "budget_gbp": 4222939.52,
+      "category_label": "working_media",
+      "forecast_acquisitions": 19795.34,
+      "confidence": "low",
+      "planning_role": "Owned retention and reactivation",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "CTV",
+      "budget_gbp": 2888276.72,
+      "category_label": "working_media",
+      "forecast_acquisitions": 5415.55,
+      "confidence": "low",
+      "planning_role": "Incremental reach in sports-viewing households",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Display",
+      "budget_gbp": 1001882.59,
+      "category_label": "working_media",
+      "forecast_acquisitions": 1878.54,
+      "confidence": "low",
+      "planning_role": "Retargeting and mid-funnel reinforcement",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 1128159.11,
+      "category_label": "working_media",
+      "forecast_acquisitions": 2644.1,
+      "confidence": "low",
+      "planning_role": "Trust, sports culture and creator-led discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Linear TV",
+      "budget_gbp": 4963407.24,
+      "category_label": "working_media",
+      "forecast_acquisitions": 10635.8,
+      "confidence": "low",
+      "planning_role": "Mass reach and sports property adjacency",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Organic Search",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Non-buyable organic demand capture and content defence",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "non_buyable_demand",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Paid Search",
+      "budget_gbp": 3697309.36,
+      "category_label": "working_media",
+      "forecast_acquisitions": 12056.31,
+      "confidence": "low",
+      "planning_role": "High-intent demand capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Paid Social",
+      "budget_gbp": 2632668.02,
+      "category_label": "working_media",
+      "forecast_acquisitions": 7312.97,
+      "confidence": "low",
+      "planning_role": "Prospecting and promo storytelling",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Radio/Audio",
+      "budget_gbp": 1307556.68,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3268.89,
+      "confidence": "low",
+      "planning_role": "Local reach and commute moments",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "RG Messaging Share",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Responsible-gambling share line",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "responsible_gambling_share",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "YouTube",
+      "budget_gbp": 2247661.94,
+      "category_label": "working_media",
+      "forecast_acquisitions": 6483.58,
+      "confidence": "low",
+      "planning_role": "Video reach with intent handoff",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Affiliate",
+      "budget_gbp": 3391467,
+      "category_label": "working_media",
+      "forecast_acquisitions": 10174.5,
+      "confidence": "low",
+      "planning_role": "High-intent comparison and offer discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "App Store",
+      "budget_gbp": 1549300.81,
+      "category_label": "working_media",
+      "forecast_acquisitions": 9683.13,
+      "confidence": "low",
+      "planning_role": "Conversion support and app-intent capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "CRM",
+      "budget_gbp": 3988331.48,
+      "category_label": "working_media",
+      "forecast_acquisitions": 18695.6,
+      "confidence": "low",
+      "planning_role": "Owned retention and reactivation",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "CTV",
+      "budget_gbp": 2650418.02,
+      "category_label": "working_media",
+      "forecast_acquisitions": 4969.56,
+      "confidence": "low",
+      "planning_role": "Incremental reach in sports-viewing households",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Display",
+      "budget_gbp": 959248.99,
+      "category_label": "working_media",
+      "forecast_acquisitions": 1798.6,
+      "confidence": "low",
+      "planning_role": "Retargeting and mid-funnel reinforcement",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 1051239.17,
+      "category_label": "working_media",
+      "forecast_acquisitions": 2463.82,
+      "confidence": "low",
+      "planning_role": "Trust, sports culture and creator-led discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Linear TV",
+      "budget_gbp": 4608878.09,
+      "category_label": "working_media",
+      "forecast_acquisitions": 9876.1,
+      "confidence": "low",
+      "planning_role": "Mass reach and sports property adjacency",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Organic Search",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Non-buyable organic demand capture and content defence",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "non_buyable_demand",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Paid Search",
+      "budget_gbp": 3491902.83,
+      "category_label": "working_media",
+      "forecast_acquisitions": 11386.52,
+      "confidence": "low",
+      "planning_role": "High-intent demand capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Paid Social",
+      "budget_gbp": 2520639.68,
+      "category_label": "working_media",
+      "forecast_acquisitions": 7001.78,
+      "confidence": "low",
+      "planning_role": "Prospecting and promo storytelling",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Radio/Audio",
+      "budget_gbp": 1234914.98,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3087.29,
+      "confidence": "low",
+      "planning_role": "Local reach and commute moments",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "RG Messaging Share",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Responsible-gambling share line",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "responsible_gambling_share",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "YouTube",
+      "budget_gbp": 2101074.9,
+      "category_label": "working_media",
+      "forecast_acquisitions": 6060.73,
+      "confidence": "low",
+      "planning_role": "Video reach with intent handoff",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Affiliate",
+      "budget_gbp": 4663267.41,
+      "category_label": "working_media",
+      "forecast_acquisitions": 13989.94,
+      "confidence": "low",
+      "planning_role": "High-intent comparison and offer discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "App Store",
+      "budget_gbp": 1755873.28,
+      "category_label": "working_media",
+      "forecast_acquisitions": 10974.21,
+      "confidence": "low",
+      "planning_role": "Conversion support and app-intent capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "CRM",
+      "budget_gbp": 4926762.6,
+      "category_label": "working_media",
+      "forecast_acquisitions": 23094.56,
+      "confidence": "low",
+      "planning_role": "Owned retention and reactivation",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "CTV",
+      "budget_gbp": 3737769.23,
+      "category_label": "working_media",
+      "forecast_acquisitions": 7008.36,
+      "confidence": "low",
+      "planning_role": "Incremental reach in sports-viewing households",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Display",
+      "budget_gbp": 1119123.48,
+      "category_label": "working_media",
+      "forecast_acquisitions": 2098.37,
+      "confidence": "low",
+      "planning_role": "Retargeting and mid-funnel reinforcement",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 1346098.48,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3154.89,
+      "confidence": "low",
+      "planning_role": "Trust, sports culture and creator-led discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Linear TV",
+      "budget_gbp": 8154168.72,
+      "category_label": "working_media",
+      "forecast_acquisitions": 17473.09,
+      "confidence": "low",
+      "planning_role": "Mass reach and sports property adjacency",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Organic Search",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Non-buyable organic demand capture and content defence",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "non_buyable_demand",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Paid Search",
+      "budget_gbp": 4108121.26,
+      "category_label": "working_media",
+      "forecast_acquisitions": 13395.9,
+      "confidence": "low",
+      "planning_role": "High-intent demand capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Paid Social",
+      "budget_gbp": 3024767.21,
+      "category_label": "working_media",
+      "forecast_acquisitions": 8402.13,
+      "confidence": "low",
+      "planning_role": "Prospecting and promo storytelling",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Radio/Audio",
+      "budget_gbp": 1525482.79,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3813.71,
+      "confidence": "low",
+      "planning_role": "Local reach and commute moments",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "RG Messaging Share",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Responsible-gambling share line",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "responsible_gambling_share",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "YouTube",
+      "budget_gbp": 2565266.19,
+      "category_label": "working_media",
+      "forecast_acquisitions": 7399.74,
+      "confidence": "low",
+      "planning_role": "Video reach with intent handoff",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Affiliate",
+      "budget_gbp": 6147033.81,
+      "category_label": "working_media",
+      "forecast_acquisitions": 18441.29,
+      "confidence": "low",
+      "planning_role": "High-intent comparison and offer discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "App Store",
+      "budget_gbp": 2100162.75,
+      "category_label": "working_media",
+      "forecast_acquisitions": 13126.02,
+      "confidence": "low",
+      "planning_role": "Conversion support and app-intent capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "CRM",
+      "budget_gbp": 6334408.76,
+      "category_label": "working_media",
+      "forecast_acquisitions": 29693,
+      "confidence": "low",
+      "planning_role": "Owned retention and reactivation",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "CTV",
+      "budget_gbp": 4927060.02,
+      "category_label": "working_media",
+      "forecast_acquisitions": 9238.3,
+      "confidence": "low",
+      "planning_role": "Incremental reach in sports-viewing households",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Display",
+      "budget_gbp": 1385581.98,
+      "category_label": "working_media",
+      "forecast_acquisitions": 2597.98,
+      "confidence": "low",
+      "planning_role": "Retargeting and mid-funnel reinforcement",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 1794797.67,
+      "category_label": "working_media",
+      "forecast_acquisitions": 4206.52,
+      "confidence": "low",
+      "planning_role": "Trust, sports culture and creator-led discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Linear TV",
+      "budget_gbp": 11699459.36,
+      "category_label": "working_media",
+      "forecast_acquisitions": 25070.09,
+      "confidence": "low",
+      "planning_role": "Mass reach and sports property adjacency",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Organic Search",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Non-buyable organic demand capture and content defence",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "non_buyable_demand",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Paid Search",
+      "budget_gbp": 5135151.57,
+      "category_label": "working_media",
+      "forecast_acquisitions": 16744.88,
+      "confidence": "low",
+      "planning_role": "High-intent demand capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Paid Social",
+      "budget_gbp": 3780959.51,
+      "category_label": "working_media",
+      "forecast_acquisitions": 10502.67,
+      "confidence": "low",
+      "planning_role": "Prospecting and promo storytelling",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Radio/Audio",
+      "budget_gbp": 1961335.02,
+      "category_label": "working_media",
+      "forecast_acquisitions": 4903.34,
+      "confidence": "low",
+      "planning_role": "Local reach and commute moments",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "RG Messaging Share",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Responsible-gambling share line",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "responsible_gambling_share",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "YouTube",
+      "budget_gbp": 3298199.39,
+      "category_label": "working_media",
+      "forecast_acquisitions": 9513.95,
+      "confidence": "low",
+      "planning_role": "Video reach with intent handoff",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Affiliate",
+      "budget_gbp": 5511133.6,
+      "category_label": "working_media",
+      "forecast_acquisitions": 16533.57,
+      "confidence": "low",
+      "planning_role": "High-intent comparison and offer discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "App Store",
+      "budget_gbp": 2031304.86,
+      "category_label": "working_media",
+      "forecast_acquisitions": 12695.66,
+      "confidence": "low",
+      "planning_role": "Conversion support and app-intent capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "CRM",
+      "budget_gbp": 5865193.72,
+      "category_label": "working_media",
+      "forecast_acquisitions": 27493.53,
+      "confidence": "low",
+      "planning_role": "Owned retention and reactivation",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "CTV",
+      "budget_gbp": 4417363.97,
+      "category_label": "working_media",
+      "forecast_acquisitions": 8282.61,
+      "confidence": "low",
+      "planning_role": "Incremental reach in sports-viewing households",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Display",
+      "budget_gbp": 1278998.99,
+      "category_label": "working_media",
+      "forecast_acquisitions": 2398.14,
+      "confidence": "low",
+      "planning_role": "Retargeting and mid-funnel reinforcement",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 1564037.85,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3665.69,
+      "confidence": "low",
+      "planning_role": "Trust, sports culture and creator-led discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Linear TV",
+      "budget_gbp": 10281342.76,
+      "category_label": "working_media",
+      "forecast_acquisitions": 22031.29,
+      "confidence": "low",
+      "planning_role": "Mass reach and sports property adjacency",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Organic Search",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Non-buyable organic demand capture and content defence",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "non_buyable_demand",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Paid Search",
+      "budget_gbp": 4929745.04,
+      "category_label": "working_media",
+      "forecast_acquisitions": 16075.08,
+      "confidence": "low",
+      "planning_role": "High-intent demand capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Paid Social",
+      "budget_gbp": 3472881.58,
+      "category_label": "working_media",
+      "forecast_acquisitions": 9646.89,
+      "confidence": "low",
+      "planning_role": "Prospecting and promo storytelling",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Radio/Audio",
+      "budget_gbp": 1743408.91,
+      "category_label": "working_media",
+      "forecast_acquisitions": 4358.52,
+      "confidence": "low",
+      "planning_role": "Local reach and commute moments",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "RG Messaging Share",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Responsible-gambling share line",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "responsible_gambling_share",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "YouTube",
+      "budget_gbp": 3053887.65,
+      "category_label": "working_media",
+      "forecast_acquisitions": 8809.21,
+      "confidence": "low",
+      "planning_role": "Video reach with intent handoff",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Affiliate",
+      "budget_gbp": 4875233.4,
+      "category_label": "working_media",
+      "forecast_acquisitions": 14625.85,
+      "confidence": "low",
+      "planning_role": "High-intent comparison and offer discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "App Store",
+      "budget_gbp": 1859160.73,
+      "category_label": "working_media",
+      "forecast_acquisitions": 11619.75,
+      "confidence": "low",
+      "planning_role": "Conversion support and app-intent capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "CRM",
+      "budget_gbp": 5255213.87,
+      "category_label": "working_media",
+      "forecast_acquisitions": 24634.2,
+      "confidence": "low",
+      "planning_role": "Owned retention and reactivation",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "CTV",
+      "budget_gbp": 4009607.49,
+      "category_label": "working_media",
+      "forecast_acquisitions": 7518.06,
+      "confidence": "low",
+      "planning_role": "Incremental reach in sports-viewing households",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Display",
+      "budget_gbp": 1172414.98,
+      "category_label": "working_media",
+      "forecast_acquisitions": 2198.29,
+      "confidence": "low",
+      "planning_role": "Retargeting and mid-funnel reinforcement",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 1384558,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3245.03,
+      "confidence": "low",
+      "planning_role": "Trust, sports culture and creator-led discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Linear TV",
+      "budget_gbp": 9217756.17,
+      "category_label": "working_media",
+      "forecast_acquisitions": 19752.19,
+      "confidence": "low",
+      "planning_role": "Mass reach and sports property adjacency",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Organic Search",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Non-buyable organic demand capture and content defence",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "non_buyable_demand",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Paid Search",
+      "budget_gbp": 4518933.15,
+      "category_label": "working_media",
+      "forecast_acquisitions": 14735.49,
+      "confidence": "low",
+      "planning_role": "High-intent demand capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Paid Social",
+      "budget_gbp": 3136795.55,
+      "category_label": "working_media",
+      "forecast_acquisitions": 8713.32,
+      "confidence": "low",
+      "planning_role": "Prospecting and promo storytelling",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Radio/Audio",
+      "budget_gbp": 1569067.81,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3922.67,
+      "confidence": "low",
+      "planning_role": "Local reach and commute moments",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "RG Messaging Share",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Responsible-gambling share line",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "responsible_gambling_share",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "YouTube",
+      "budget_gbp": 2687421.05,
+      "category_label": "working_media",
+      "forecast_acquisitions": 7752.1,
+      "confidence": "low",
+      "planning_role": "Video reach with intent handoff",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Affiliate",
+      "budget_gbp": 4451300.3,
+      "category_label": "working_media",
+      "forecast_acquisitions": 13354.03,
+      "confidence": "low",
+      "planning_role": "High-intent comparison and offer discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "App Store",
+      "budget_gbp": 1755874.49,
+      "category_label": "working_media",
+      "forecast_acquisitions": 10974.22,
+      "confidence": "low",
+      "planning_role": "Conversion support and app-intent capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "CRM",
+      "budget_gbp": 5067527.43,
+      "category_label": "working_media",
+      "forecast_acquisitions": 23754.41,
+      "confidence": "low",
+      "planning_role": "Owned retention and reactivation",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "CTV",
+      "budget_gbp": 3737771.05,
+      "category_label": "working_media",
+      "forecast_acquisitions": 7008.36,
+      "confidence": "low",
+      "planning_role": "Incremental reach in sports-viewing households",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Display",
+      "budget_gbp": 1087148.79,
+      "category_label": "working_media",
+      "forecast_acquisitions": 2038.42,
+      "confidence": "low",
+      "planning_role": "Retargeting and mid-funnel reinforcement",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 1281998.08,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3004.66,
+      "confidence": "low",
+      "planning_role": "Trust, sports culture and creator-led discovery",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Linear TV",
+      "budget_gbp": 8508697.01,
+      "category_label": "working_media",
+      "forecast_acquisitions": 18232.79,
+      "confidence": "low",
+      "planning_role": "Mass reach and sports property adjacency",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Organic Search",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Non-buyable organic demand capture and content defence",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "non_buyable_demand",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Paid Search",
+      "budget_gbp": 4313525.46,
+      "category_label": "working_media",
+      "forecast_acquisitions": 14065.69,
+      "confidence": "low",
+      "planning_role": "High-intent demand capture",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Paid Social",
+      "budget_gbp": 2800711.54,
+      "category_label": "working_media",
+      "forecast_acquisitions": 7779.75,
+      "confidence": "low",
+      "planning_role": "Prospecting and promo storytelling",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Radio/Audio",
+      "budget_gbp": 1452841.09,
+      "category_label": "working_media",
+      "forecast_acquisitions": 3632.1,
+      "confidence": "low",
+      "planning_role": "Local reach and commute moments",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "RG Messaging Share",
+      "budget_gbp": 0,
+      "category_label": "operational",
+      "forecast_acquisitions": 0,
+      "confidence": "working",
+      "planning_role": "Responsible-gambling share line",
+      "evidence_strength": "synthetic-non-buyable-demand",
+      "line_type": "responsible_gambling_share",
+      "buyable": false,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "YouTube",
+      "budget_gbp": 2491972.67,
+      "category_label": "working_media",
+      "forecast_acquisitions": 7188.31,
+      "confidence": "low",
+      "planning_role": "Video reach with intent handoff",
+      "evidence_strength": "synthetic-demo",
+      "line_type": "buyable_media",
+      "buyable": true,
+      "source_ids": [
+        "online_gambling_us_t183_rescaled_2026_07_09",
+        "fanduel_media_spend_baseline_v2_final_2026_07_09",
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1",
+        "fanduel_rescaled_option_engine_v2"
+      ]
+    }
+  ],
+  "brief_test": {
+    "status": "not_applicable",
+    "note": "Baseline record only. Chat-created plans must use user-provided budget extracted by the LLM."
+  },
+  "state_model": {
+    "status": "unchanged",
+    "note": "State/product planning remains governed by the working FanDuel product matrix and state budget model."
+  },
+  "qa": {
+    "status": "passed",
+    "checks": {
+      "category_label": "working_media",
+      "envelope_guardrail_usd": [
+        400000000,
+        500000000
+      ],
+      "annual_ftd_guardrail": [
+        900000,
+        2500000
+      ],
+      "blended_media_cpa_guardrail": [
+        200,
+        450
+      ],
+      "annual_ftd_total": 1319209.22,
+      "blended_cpa_gbp": 341.11,
+      "paid_media_cpa_gbp": 341.11,
+      "organic_search_budget_gbp": 0,
+      "youtube_budget_gbp": 31500000
+    }
+  },
+  "source_manifest": {
+    "generated_at": "2026-07-09",
+    "generator": "scripts/build_fanduel_rescaled_options.mjs",
+    "benchmark_id": "online_gambling_us_t183_rescaled_2026_07_09",
+    "benchmark_status": "working",
+    "spend_baseline_id": "fanduel_us_working_media_baseline_2026_v2",
+    "actuals_manifest_generated_at": "2026-07-09T22:00:34.898Z",
+    "actuals_coherence_passed": true,
+    "source_ids": [
+      "online_gambling_us_t183_rescaled_2026_07_09",
+      "fanduel_media_spend_baseline_v2_final_2026_07_09",
+      "fanduel_sde_actuals_manifest_v1",
+      "fanduel_sde_history_plan_v1",
+      "fanduel_rescaled_option_engine_v2"
+    ]
+  }
+}

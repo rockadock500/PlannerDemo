@@ -1,0 +1,133 @@
+{
+  "client_id": "fanduel",
+  "generated_at": "2026-07-13T15:08:55.965Z",
+  "passed": true,
+  "checks": [
+    {
+      "id": "impossibility_sweep",
+      "passed": true,
+      "message": "No negative values or conversions > sessions."
+    },
+    {
+      "id": "benchmark_bands",
+      "passed": true,
+      "failures": [],
+      "message": "Aggregate channel CPA is inside benchmark bands."
+    },
+    {
+      "id": "google_ads_cost_reconciliation",
+      "passed": true,
+      "value": {
+        "total_ratio": 1,
+        "channel_ratios": {
+          "Paid Search": 1,
+          "YouTube": 1,
+          "Display": 1
+        }
+      },
+      "message": "Google Ads Search, Video, Performance Max and Display costs reconcile to their mapped plan cells."
+    },
+    {
+      "id": "youtube_video_metric_bands",
+      "passed": true,
+      "failures": [],
+      "message": "YouTube Video view rate and CPV stay inside benchmark bands."
+    },
+    {
+      "id": "google_ads_campaign_surface",
+      "passed": true,
+      "present": [
+        "Search",
+        "Video",
+        "Display"
+      ],
+      "missing": [],
+      "message": "Required Google Ads campaign types are present; Performance Max remains coarsely distributed and opaque."
+    },
+    {
+      "id": "youtube_indexed_vs_flat",
+      "passed": true,
+      "skipped": true,
+      "message": "No indexed-vs-flat YouTube comparison configured."
+    },
+    {
+      "id": "meta_spend_reconciliation",
+      "passed": true,
+      "value": 1,
+      "message": "Meta ad-level spend reconciles to Paid Social spine spend."
+    },
+    {
+      "id": "sales_split_reconciliation",
+      "passed": true,
+      "value": 1,
+      "tx_sportsbook_conversions": 0,
+      "message": "Product/persona/state splits reconcile and Texas Sportsbook is gated out."
+    },
+    {
+      "id": "persona_taxonomy_contract",
+      "passed": true,
+      "skipped": true,
+      "message": "No persona taxonomy allow-list configured."
+    },
+    {
+      "id": "monthly_delivery_reasonableness",
+      "passed": true,
+      "message": "Monthly delivery indices remain in tolerance."
+    },
+    {
+      "id": "annual_ftd_total",
+      "passed": true,
+      "value": 1380741,
+      "range": [
+        900000,
+        2500000
+      ],
+      "months": [
+        "2025-07",
+        "2025-08",
+        "2025-09",
+        "2025-10",
+        "2025-11",
+        "2025-12",
+        "2026-01",
+        "2026-02",
+        "2026-03",
+        "2026-04",
+        "2026-05",
+        "2026-06"
+      ],
+      "message": "Trailing-12-month synthetic FTD total is inside the configured credible range."
+    },
+    {
+      "id": "working_media_triangle",
+      "passed": true,
+      "value": {
+        "planned_working_media_usd": 450000000,
+        "planned_ftd_proxy": 1319209.22,
+        "blended_media_cpa_usd": 341.11,
+        "identity_delta_usd": 0
+      },
+      "ranges": {
+        "working_media_usd": [
+          400000000,
+          500000000
+        ],
+        "blended_media_cpa_usd": [
+          200,
+          450
+        ],
+        "annual_ftd_proxy": [
+          900000,
+          2500000
+        ]
+      },
+      "category_label": "working_media",
+      "source_id": "fanduel_media_spend_baseline_v2_final_2026_07_09",
+      "message": "2026 working-media envelope, blended CPA and annual FTD proxy reconcile."
+    }
+  ],
+  "summary": {
+    "monthly_actual_rows": 234,
+    "daily_channel_rows": 6552
+  }
+}

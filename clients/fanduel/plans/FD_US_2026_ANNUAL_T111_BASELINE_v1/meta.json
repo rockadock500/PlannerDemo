@@ -1,0 +1,26 @@
+{
+  "plan_id": "FD_US_2026_ANNUAL_T111_BASELINE_v1",
+  "label": "2026 T111 scaled annual baseline",
+  "horizon": "annual",
+  "period": {
+    "start": "2026-01",
+    "end": "2026-12"
+  },
+  "scenario_id": "t111_scaled_baseline",
+  "scenario_key": "search",
+  "version": 1,
+  "parent_version": null,
+  "parent_plan_id": "FD_US_2026_ANNUAL_SEARCH_v1",
+  "status": "archived",
+  "created_at": "2026-07-05",
+  "approved_by": "demo operator",
+  "notes": "Active Wave A baseline. Built from SDE planned 2026 rows at $1.43925B and T111 benchmark economics; Organic Search is non-buyable with $0 planned spend. Archived as pre-scale history by T150 on 2026-07-09. Archived as pre-rescale history by T183/T150 on 2026-07-09.",
+  "source_ids": [
+    "online_gambling_us_t111_provisional_2026_07_04",
+    "fanduel_marketing_spend_baseline_2026",
+    "fanduel_sde_actuals_manifest_v1",
+    "fanduel_sde_history_plan_v1"
+  ],
+  "plan_path": "FD_US_2026_ANNUAL_T111_BASELINE_v1/plan.json",
+  "meta_path": "FD_US_2026_ANNUAL_T111_BASELINE_v1/meta.json"
+}

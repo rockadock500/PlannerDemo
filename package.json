@@ -1,0 +1,10 @@
+{
+  "name": "planner-demo",
+  "private": true,
+  "workspaces": [
+    "apps/*"
+  ],
+  "scripts": {
+    "dev:server": "npm run dev -w apps/server"
+  }
+}

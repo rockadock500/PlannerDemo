@@ -1,0 +1,26 @@
+{
+  "plan_id": "FD_US_2026_ANNUAL_T183_MEDIA_v2",
+  "label": "2026 inferred public-source media baseline",
+  "horizon": "annual",
+  "period": {
+    "start": "2026-01",
+    "end": "2026-12"
+  },
+  "scenario_id": "t183_working_media_baseline",
+  "scenario_key": "baseline",
+  "version": 2,
+  "parent_version": 1,
+  "parent_plan_id": "FD_US_2026_ANNUAL_T111_BASELINE_v1",
+  "status": "active",
+  "created_at": "2026-07-09",
+  "approved_by": "demo operator",
+  "notes": "Active T183 baseline: $450M working_media midpoint, always labelled inferred public-source envelope. Sponsorship, promo, operational costs and Predicts investment excluded; Organic Search has $0 planned media spend.",
+  "source_ids": [
+    "online_gambling_us_t183_rescaled_2026_07_09",
+    "fanduel_media_spend_baseline_v2_final_2026_07_09",
+    "fanduel_sde_actuals_manifest_v1",
+    "fanduel_sde_history_plan_v1"
+  ],
+  "plan_path": "FD_US_2026_ANNUAL_T183_MEDIA_v2/plan.json",
+  "meta_path": "FD_US_2026_ANNUAL_T183_MEDIA_v2/meta.json"
+}

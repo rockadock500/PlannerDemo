@@ -1,0 +1,26 @@
+{
+  "plan_id": "FD_US_2026_ANNUAL_SEARCH_v1",
+  "label": "2026 Stage 1 Search POC",
+  "horizon": "annual",
+  "period": {
+    "start": "2026-01",
+    "end": "2026-12"
+  },
+  "scenario_id": "search_poc",
+  "scenario_key": "search_legacy",
+  "version": 1,
+  "parent_version": null,
+  "status": "archived",
+  "created_at": "2026-07-04",
+  "approved_by": "demo operator",
+  "notes": "Active demo baseline for the first Planning Time Machine cut. Archived as pre-scale history by T150 on 2026-07-05. Archived as pre-scale history by T150 on 2026-07-09. Archived as pre-rescale history by T183/T150 on 2026-07-09.",
+  "source_ids": [
+    "fanduel_demo_media_owner_priors_2026",
+    "fanduel_demo_media_priors_2026",
+    "fanduel_reach_curve_synthetic_demo_2026",
+    "missing_paid_serp_pass",
+    "sig_scan_fanduel_us_2026_07_03",
+    "signal_seo_100_organic_0_paid_2026_07_03",
+    "us_state_governance_working_research_2026_07_03"
+  ]
+}

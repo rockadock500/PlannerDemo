@@ -1,0 +1,3769 @@
+{
+  "plan_id": "FD_US_SDE_HISTORY_2025_2026_v1",
+  "plan_store_id": "FD_US_SDE_HISTORY_2025_2026_v1",
+  "plan_store_status": "archived",
+  "data_status": "synthetic-simulated",
+  "display_flag": "SYNTHETIC",
+  "scenario": {
+    "scenario_id": "sde_history",
+    "label": "SDE 18-month synthetic history",
+    "scenario_assumption": "Actualised history bridge for the Planning Time Machine."
+  },
+  "total_budget_gbp": 2060541772.54,
+  "total_allocated_gbp": 2060541772.54,
+  "forecast_acquisitions": 6394142.76,
+  "forecast_cpa_gbp": 322.25,
+  "channel_totals": [
+    {
+      "channel": "Affiliate",
+      "budget_gbp": 170155269.13,
+      "forecast_acquisitions": 550955.71,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "planning_role": "SDE 18-month synthetic history",
+      "response_curve": {
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1",
+          "fanduel_sde_history_plan_v1"
+        ],
+        "conflict_note": "History row from the compact SDE bridge."
+      },
+      "share_pct": 8.257792751284633
+    },
+    {
+      "channel": "App Store",
+      "budget_gbp": 63616641.63,
+      "forecast_acquisitions": 421510.46,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "planning_role": "SDE 18-month synthetic history",
+      "response_curve": {
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1",
+          "fanduel_sde_history_plan_v1"
+        ],
+        "conflict_note": "History row from the compact SDE bridge."
+      },
+      "share_pct": 3.0873745185753108
+    },
+    {
+      "channel": "CRM",
+      "budget_gbp": 316964817.99,
+      "forecast_acquisitions": 1584921.45,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "planning_role": "SDE 18-month synthetic history",
+      "response_curve": {
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1",
+          "fanduel_sde_history_plan_v1"
+        ],
+        "conflict_note": "History row from the compact SDE bridge."
+      },
+      "share_pct": 15.382596082936095
+    },
+    {
+      "channel": "CTV",
+      "budget_gbp": 271693928.24,
+      "forecast_acquisitions": 542086.2,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "planning_role": "SDE 18-month synthetic history",
+      "response_curve": {
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1",
+          "fanduel_sde_history_plan_v1"
+        ],
+        "conflict_note": "History row from the compact SDE bridge."
+      },
+      "share_pct": 13.185557888743348
+    },
+    {
+      "channel": "Display",
+      "budget_gbp": 53447568.15,
+      "forecast_acquisitions": 104425.04,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "planning_role": "SDE 18-month synthetic history",
+      "response_curve": {
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1",
+          "fanduel_sde_history_plan_v1"
+        ],
+        "conflict_note": "History row from the compact SDE bridge."
+      },
+      "share_pct": 2.5938599674257494
+    },
+    {
+      "channel": "Influencer/Creator",
+      "budget_gbp": 63833304.11,
+      "forecast_acquisitions": 152417.76,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "planning_role": "SDE 18-month synthetic history",
+      "response_curve": {
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1",
+          "fanduel_sde_history_plan_v1"
+        ],
+        "conflict_note": "History row from the compact SDE bridge."
+      },
+      "share_pct": 3.0978893493294053
+    },
+    {
+      "channel": "Linear TV",
+      "budget_gbp": 586246951.1,
+      "forecast_acquisitions": 1351782.37,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "planning_role": "SDE 18-month synthetic history",
+      "response_curve": {
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1",
+          "fanduel_sde_history_plan_v1"
+        ],
+        "conflict_note": "History row from the compact SDE bridge."
+      },
+      "share_pct": 28.45110732102955
+    },
+    {
+      "channel": "Paid Search",
+      "budget_gbp": 183836989.38,
+      "forecast_acquisitions": 642111.73,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "planning_role": "SDE 18-month synthetic history",
+      "response_curve": {
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1",
+          "fanduel_sde_history_plan_v1"
+        ],
+        "conflict_note": "History row from the compact SDE bridge."
+      },
+      "share_pct": 8.921779302410686
+    },
+    {
+      "channel": "Paid Social",
+      "budget_gbp": 133799597.77,
+      "forecast_acquisitions": 393938.39,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "planning_role": "SDE 18-month synthetic history",
+      "response_curve": {
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1",
+          "fanduel_sde_history_plan_v1"
+        ],
+        "conflict_note": "History row from the compact SDE bridge."
+      },
+      "share_pct": 6.4934183598261725
+    },
+    {
+      "channel": "Radio/Audio",
+      "budget_gbp": 101170533.16,
+      "forecast_acquisitions": 292845.9,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "planning_role": "SDE 18-month synthetic history",
+      "response_curve": {
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1",
+          "fanduel_sde_history_plan_v1"
+        ],
+        "conflict_note": "History row from the compact SDE bridge."
+      },
+      "share_pct": 4.909899644271155
+    },
+    {
+      "channel": "YouTube",
+      "budget_gbp": 115776171.88,
+      "forecast_acquisitions": 357147.75,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "planning_role": "SDE 18-month synthetic history",
+      "response_curve": {
+        "source_ids": [
+          "fanduel_sde_actuals_manifest_v1",
+          "fanduel_sde_history_plan_v1"
+        ],
+        "conflict_note": "History row from the compact SDE bridge."
+      },
+      "share_pct": 5.618724814167897
+    }
+  ],
+  "monthly_allocations": [
+    {
+      "month": "2025-01",
+      "channel": "Affiliate",
+      "budget_gbp": 8765842.14,
+      "planned_budget_gbp": 9544615.24,
+      "forecast_acquisitions": 28193.1,
+      "planned_acquisitions": 28634.13,
+      "delivery_index": 0.9184,
+      "sales_index": 0.9846,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-01",
+      "channel": "App Store",
+      "budget_gbp": 3676695.59,
+      "planned_budget_gbp": 3597165.68,
+      "forecast_acquisitions": 24433.94,
+      "planned_acquisitions": 22482.29,
+      "delivery_index": 1.0221,
+      "sales_index": 1.0868,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-01",
+      "channel": "CRM",
+      "budget_gbp": 19202086.69,
+      "planned_budget_gbp": 18202523.78,
+      "forecast_acquisitions": 86418.86,
+      "planned_acquisitions": 85325.66,
+      "delivery_index": 1.0549,
+      "sales_index": 1.0128,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-01",
+      "channel": "CTV",
+      "budget_gbp": 17832612.83,
+      "planned_budget_gbp": 16120699.29,
+      "forecast_acquisitions": 34256.72,
+      "planned_acquisitions": 30226.5,
+      "delivery_index": 1.1062,
+      "sales_index": 1.1333,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-01",
+      "channel": "Display",
+      "budget_gbp": 2865007.41,
+      "planned_budget_gbp": 2878750,
+      "forecast_acquisitions": 5201.62,
+      "planned_acquisitions": 5397.69,
+      "delivery_index": 0.9952,
+      "sales_index": 0.9637,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-01",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 3569707.18,
+      "planned_budget_gbp": 3571853.36,
+      "forecast_acquisitions": 8160.56,
+      "planned_acquisitions": 8371.47,
+      "delivery_index": 0.9994,
+      "sales_index": 0.9748,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-01",
+      "channel": "Linear TV",
+      "budget_gbp": 32934980.22,
+      "planned_budget_gbp": 36600604.41,
+      "forecast_acquisitions": 68537.27,
+      "planned_acquisitions": 78429.31,
+      "delivery_index": 0.8998,
+      "sales_index": 0.8739,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-01",
+      "channel": "Paid Search",
+      "budget_gbp": 10072070.64,
+      "planned_budget_gbp": 10154534.24,
+      "forecast_acquisitions": 33721.74,
+      "planned_acquisitions": 33112.25,
+      "delivery_index": 0.9919,
+      "sales_index": 1.0184,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-01",
+      "channel": "Paid Social",
+      "budget_gbp": 7462189.58,
+      "planned_budget_gbp": 7550346.02,
+      "forecast_acquisitions": 21094.62,
+      "planned_acquisitions": 20973.18,
+      "delivery_index": 0.9883,
+      "sales_index": 1.0058,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-01",
+      "channel": "Radio/Audio",
+      "budget_gbp": 5717901.11,
+      "planned_budget_gbp": 5619573.52,
+      "forecast_acquisitions": 15487.32,
+      "planned_acquisitions": 14048.93,
+      "delivery_index": 1.0175,
+      "sales_index": 1.1024,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-01",
+      "channel": "YouTube",
+      "budget_gbp": 7104733.54,
+      "planned_budget_gbp": 6626819.52,
+      "forecast_acquisitions": 21593.62,
+      "planned_acquisitions": 19115.64,
+      "delivery_index": 1.0721,
+      "sales_index": 1.1296,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-02",
+      "channel": "Affiliate",
+      "budget_gbp": 10184476.22,
+      "planned_budget_gbp": 10846154.28,
+      "forecast_acquisitions": 35587.34,
+      "planned_acquisitions": 32538.79,
+      "delivery_index": 0.939,
+      "sales_index": 1.0937,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-02",
+      "channel": "App Store",
+      "budget_gbp": 3879580.34,
+      "planned_budget_gbp": 3863621.84,
+      "forecast_acquisitions": 27408.63,
+      "planned_acquisitions": 24147.64,
+      "delivery_index": 1.0041,
+      "sales_index": 1.135,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-02",
+      "channel": "CRM",
+      "budget_gbp": 21217574.81,
+      "planned_budget_gbp": 20117995.62,
+      "forecast_acquisitions": 122842.45,
+      "planned_acquisitions": 94304.58,
+      "delivery_index": 1.0547,
+      "sales_index": 1.3026,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-02",
+      "channel": "CTV",
+      "budget_gbp": 18634983.51,
+      "planned_budget_gbp": 18228443.62,
+      "forecast_acquisitions": 37644.17,
+      "planned_acquisitions": 34178.55,
+      "delivery_index": 1.0223,
+      "sales_index": 1.1014,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-02",
+      "channel": "Display",
+      "budget_gbp": 2883499.36,
+      "planned_budget_gbp": 2878750,
+      "forecast_acquisitions": 5974.55,
+      "planned_acquisitions": 5397.69,
+      "delivery_index": 1.0016,
+      "sales_index": 1.1069,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-02",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 4585093.73,
+      "planned_budget_gbp": 4464816.7,
+      "forecast_acquisitions": 11764.37,
+      "planned_acquisitions": 10464.33,
+      "delivery_index": 1.0269,
+      "sales_index": 1.1242,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-02",
+      "channel": "Linear TV",
+      "budget_gbp": 41503325.72,
+      "planned_budget_gbp": 42180864.02,
+      "forecast_acquisitions": 106890.78,
+      "planned_acquisitions": 90386.92,
+      "delivery_index": 0.9839,
+      "sales_index": 1.1826,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-02",
+      "channel": "Paid Search",
+      "budget_gbp": 11023418.82,
+      "planned_budget_gbp": 10965514.54,
+      "forecast_acquisitions": 41295.49,
+      "planned_acquisitions": 35756.72,
+      "delivery_index": 1.0053,
+      "sales_index": 1.1549,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-02",
+      "channel": "Paid Social",
+      "budget_gbp": 8481571.97,
+      "planned_budget_gbp": 8374020.08,
+      "forecast_acquisitions": 26564.47,
+      "planned_acquisitions": 23261.17,
+      "delivery_index": 1.0128,
+      "sales_index": 1.142,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-02",
+      "channel": "Radio/Audio",
+      "budget_gbp": 6158256.4,
+      "planned_budget_gbp": 6219091.79,
+      "forecast_acquisitions": 18509,
+      "planned_acquisitions": 15547.73,
+      "delivery_index": 0.9902,
+      "sales_index": 1.1905,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-02",
+      "channel": "YouTube",
+      "budget_gbp": 7620044.3,
+      "planned_budget_gbp": 7375938.42,
+      "forecast_acquisitions": 25458.76,
+      "planned_acquisitions": 21276.54,
+      "delivery_index": 1.0331,
+      "sales_index": 1.1966,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-03",
+      "channel": "Affiliate",
+      "budget_gbp": 10650193.36,
+      "planned_budget_gbp": 10412307.62,
+      "forecast_acquisitions": 37608.01,
+      "planned_acquisitions": 31237.24,
+      "delivery_index": 1.0228,
+      "sales_index": 1.2039,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-03",
+      "channel": "App Store",
+      "budget_gbp": 3670605.64,
+      "planned_budget_gbp": 3930235.88,
+      "forecast_acquisitions": 25512.7,
+      "planned_acquisitions": 24563.97,
+      "delivery_index": 0.9339,
+      "sales_index": 1.0386,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-03",
+      "channel": "CRM",
+      "budget_gbp": 18284873.36,
+      "planned_budget_gbp": 18841014.08,
+      "forecast_acquisitions": 97506.97,
+      "planned_acquisitions": 88318.63,
+      "delivery_index": 0.9705,
+      "sales_index": 1.104,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-03",
+      "channel": "CTV",
+      "budget_gbp": 15293605.55,
+      "planned_budget_gbp": 15379599.72,
+      "forecast_acquisitions": 32138.35,
+      "planned_acquisitions": 28836.93,
+      "delivery_index": 0.9944,
+      "sales_index": 1.1145,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-03",
+      "channel": "Display",
+      "budget_gbp": 2956138.38,
+      "planned_budget_gbp": 2878750,
+      "forecast_acquisitions": 6036.03,
+      "planned_acquisitions": 5397.69,
+      "delivery_index": 1.0269,
+      "sales_index": 1.1183,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-03",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 3854412.44,
+      "planned_budget_gbp": 3803362.2,
+      "forecast_acquisitions": 10063.59,
+      "planned_acquisitions": 8914.06,
+      "delivery_index": 1.0134,
+      "sales_index": 1.129,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-03",
+      "channel": "Linear TV",
+      "budget_gbp": 33028759.51,
+      "planned_budget_gbp": 32964043.7,
+      "forecast_acquisitions": 78857.09,
+      "planned_acquisitions": 70636.73,
+      "delivery_index": 1.002,
+      "sales_index": 1.1164,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-03",
+      "channel": "Paid Search",
+      "budget_gbp": 11194318.56,
+      "planned_budget_gbp": 11371005.16,
+      "forecast_acquisitions": 40624.65,
+      "planned_acquisitions": 37078.96,
+      "delivery_index": 0.9845,
+      "sales_index": 1.0956,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-03",
+      "channel": "Paid Social",
+      "budget_gbp": 7826977.28,
+      "planned_budget_gbp": 8099462.06,
+      "forecast_acquisitions": 24782.57,
+      "planned_acquisitions": 22498.51,
+      "delivery_index": 0.9664,
+      "sales_index": 1.1015,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-03",
+      "channel": "Radio/Audio",
+      "budget_gbp": 5253526.86,
+      "planned_budget_gbp": 5780132.47,
+      "forecast_acquisitions": 16643.53,
+      "planned_acquisitions": 14450.33,
+      "delivery_index": 0.9089,
+      "sales_index": 1.1518,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-03",
+      "channel": "YouTube",
+      "budget_gbp": 7222392.19,
+      "planned_budget_gbp": 7030191.38,
+      "forecast_acquisitions": 24199.07,
+      "planned_acquisitions": 20279.2,
+      "delivery_index": 1.0273,
+      "sales_index": 1.1933,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-04",
+      "channel": "Affiliate",
+      "budget_gbp": 7810509.8,
+      "planned_budget_gbp": 7809230.48,
+      "forecast_acquisitions": 24388.39,
+      "planned_acquisitions": 23427.93,
+      "delivery_index": 1.0002,
+      "sales_index": 1.041,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-04",
+      "channel": "App Store",
+      "budget_gbp": 2788421.1,
+      "planned_budget_gbp": 3264094.54,
+      "forecast_acquisitions": 17554.94,
+      "planned_acquisitions": 20400.59,
+      "delivery_index": 0.8543,
+      "sales_index": 0.8605,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-04",
+      "channel": "CRM",
+      "budget_gbp": 15034802.93,
+      "planned_budget_gbp": 15010070.4,
+      "forecast_acquisitions": 75598.81,
+      "planned_acquisitions": 70360.8,
+      "delivery_index": 1.0016,
+      "sales_index": 1.0744,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-04",
+      "channel": "CTV",
+      "budget_gbp": 11448599.82,
+      "planned_budget_gbp": 12363321.89,
+      "forecast_acquisitions": 21984.02,
+      "planned_acquisitions": 23181.37,
+      "delivery_index": 0.926,
+      "sales_index": 0.9483,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-04",
+      "channel": "Display",
+      "budget_gbp": 2992223.25,
+      "planned_budget_gbp": 2878750,
+      "forecast_acquisitions": 6003.69,
+      "planned_acquisitions": 5397.69,
+      "delivery_index": 1.0394,
+      "sales_index": 1.1123,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-04",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 2885116.87,
+      "planned_budget_gbp": 2976543.84,
+      "forecast_acquisitions": 6919.03,
+      "planned_acquisitions": 6976.22,
+      "delivery_index": 0.9693,
+      "sales_index": 0.9918,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-04",
+      "channel": "Linear TV",
+      "budget_gbp": 25250334.85,
+      "planned_budget_gbp": 24843717.97,
+      "forecast_acquisitions": 55602.73,
+      "planned_acquisitions": 53236.16,
+      "delivery_index": 1.0164,
+      "sales_index": 1.0445,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-04",
+      "channel": "Paid Search",
+      "budget_gbp": 9695558.36,
+      "planned_budget_gbp": 8938063.32,
+      "forecast_acquisitions": 33302.09,
+      "planned_acquisitions": 29145.54,
+      "delivery_index": 1.0847,
+      "sales_index": 1.1426,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-04",
+      "channel": "Paid Social",
+      "budget_gbp": 6072961.88,
+      "planned_budget_gbp": 6589392.48,
+      "forecast_acquisitions": 17509.42,
+      "planned_acquisitions": 18303.87,
+      "delivery_index": 0.9216,
+      "sales_index": 0.9566,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-04",
+      "channel": "Radio/Audio",
+      "budget_gbp": 4749078.16,
+      "planned_budget_gbp": 4971936.08,
+      "forecast_acquisitions": 13980.58,
+      "planned_acquisitions": 12429.84,
+      "delivery_index": 0.9552,
+      "sales_index": 1.1248,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-04",
+      "channel": "YouTube",
+      "budget_gbp": 5806058.97,
+      "planned_budget_gbp": 5474329.7,
+      "forecast_acquisitions": 16281.57,
+      "planned_acquisitions": 15791.18,
+      "delivery_index": 1.0606,
+      "sales_index": 1.0311,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-05",
+      "channel": "Affiliate",
+      "budget_gbp": 7407025,
+      "planned_budget_gbp": 7375384.76,
+      "forecast_acquisitions": 22910.08,
+      "planned_acquisitions": 22126.38,
+      "delivery_index": 1.0043,
+      "sales_index": 1.0354,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-05",
+      "channel": "App Store",
+      "budget_gbp": 3064197.58,
+      "planned_budget_gbp": 3130866.46,
+      "forecast_acquisitions": 19890.93,
+      "planned_acquisitions": 19567.92,
+      "delivery_index": 0.9787,
+      "sales_index": 1.0165,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-05",
+      "channel": "CRM",
+      "budget_gbp": 15883901.91,
+      "planned_budget_gbp": 14371580.1,
+      "forecast_acquisitions": 74720.24,
+      "planned_acquisitions": 67367.83,
+      "delivery_index": 1.1052,
+      "sales_index": 1.1091,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-05",
+      "channel": "CTV",
+      "budget_gbp": 11613912.9,
+      "planned_budget_gbp": 11477865.39,
+      "forecast_acquisitions": 22902.97,
+      "planned_acquisitions": 21521.13,
+      "delivery_index": 1.0119,
+      "sales_index": 1.0642,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-05",
+      "channel": "Display",
+      "budget_gbp": 2872292.27,
+      "planned_budget_gbp": 2878750,
+      "forecast_acquisitions": 5427.98,
+      "planned_acquisitions": 5397.69,
+      "delivery_index": 0.9978,
+      "sales_index": 1.0056,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-05",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 2829282.11,
+      "planned_budget_gbp": 2844252.94,
+      "forecast_acquisitions": 6679.47,
+      "planned_acquisitions": 6666.17,
+      "delivery_index": 0.9947,
+      "sales_index": 1.002,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-05",
+      "channel": "Linear TV",
+      "budget_gbp": 21658670.17,
+      "planned_budget_gbp": 21899762.05,
+      "forecast_acquisitions": 46842.77,
+      "planned_acquisitions": 46927.73,
+      "delivery_index": 0.989,
+      "sales_index": 0.9982,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-05",
+      "channel": "Paid Search",
+      "budget_gbp": 8865576.86,
+      "planned_budget_gbp": 8532573.64,
+      "forecast_acquisitions": 30316.08,
+      "planned_acquisitions": 27823.31,
+      "delivery_index": 1.039,
+      "sales_index": 1.0896,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-05",
+      "channel": "Paid Social",
+      "budget_gbp": 6439128.98,
+      "planned_budget_gbp": 6314834.46,
+      "forecast_acquisitions": 18403.62,
+      "planned_acquisitions": 17541.21,
+      "delivery_index": 1.0197,
+      "sales_index": 1.0492,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-05",
+      "channel": "Radio/Audio",
+      "budget_gbp": 4635959.95,
+      "planned_budget_gbp": 4822015.48,
+      "forecast_acquisitions": 12567.55,
+      "planned_acquisitions": 12055.04,
+      "delivery_index": 0.9614,
+      "sales_index": 1.0425,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-05",
+      "channel": "YouTube",
+      "budget_gbp": 5384680.97,
+      "planned_budget_gbp": 5186206.54,
+      "forecast_acquisitions": 15737.4,
+      "planned_acquisitions": 14960.07,
+      "delivery_index": 1.0383,
+      "sales_index": 1.052,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-06",
+      "channel": "Affiliate",
+      "budget_gbp": 6906114.75,
+      "planned_budget_gbp": 7375384.76,
+      "forecast_acquisitions": 22589.78,
+      "planned_acquisitions": 22126.38,
+      "delivery_index": 0.9364,
+      "sales_index": 1.0209,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-06",
+      "channel": "App Store",
+      "budget_gbp": 3198807.97,
+      "planned_budget_gbp": 3130866.46,
+      "forecast_acquisitions": 20205.41,
+      "planned_acquisitions": 19567.92,
+      "delivery_index": 1.0217,
+      "sales_index": 1.0326,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-06",
+      "channel": "CRM",
+      "budget_gbp": 14443349.19,
+      "planned_budget_gbp": 14371580.1,
+      "forecast_acquisitions": 68734.62,
+      "planned_acquisitions": 67367.83,
+      "delivery_index": 1.005,
+      "sales_index": 1.0203,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-06",
+      "channel": "CTV",
+      "budget_gbp": 11366965.8,
+      "planned_budget_gbp": 12242041.68,
+      "forecast_acquisitions": 21618.79,
+      "planned_acquisitions": 22953.97,
+      "delivery_index": 0.9285,
+      "sales_index": 0.9418,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-06",
+      "channel": "Display",
+      "budget_gbp": 2715772.87,
+      "planned_budget_gbp": 2878750,
+      "forecast_acquisitions": 4993.35,
+      "planned_acquisitions": 5397.69,
+      "delivery_index": 0.9434,
+      "sales_index": 0.9251,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-06",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 3121384.12,
+      "planned_budget_gbp": 2910398.86,
+      "forecast_acquisitions": 7127.37,
+      "planned_acquisitions": 6821.19,
+      "delivery_index": 1.0725,
+      "sales_index": 1.0449,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-06",
+      "channel": "Linear TV",
+      "budget_gbp": 22981142.16,
+      "planned_budget_gbp": 23169795.11,
+      "forecast_acquisitions": 50668.91,
+      "planned_acquisitions": 49649.21,
+      "delivery_index": 0.9919,
+      "sales_index": 1.0205,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-06",
+      "channel": "Paid Search",
+      "budget_gbp": 8501030.6,
+      "planned_budget_gbp": 8532573.64,
+      "forecast_acquisitions": 27210.76,
+      "planned_acquisitions": 27823.31,
+      "delivery_index": 0.9963,
+      "sales_index": 0.978,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-06",
+      "channel": "Paid Social",
+      "budget_gbp": 6536082.64,
+      "planned_budget_gbp": 6452113.94,
+      "forecast_acquisitions": 18408.03,
+      "planned_acquisitions": 17922.54,
+      "delivery_index": 1.013,
+      "sales_index": 1.0271,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-06",
+      "channel": "Radio/Audio",
+      "budget_gbp": 5088467.06,
+      "planned_budget_gbp": 4945094.85,
+      "forecast_acquisitions": 13868.13,
+      "planned_acquisitions": 12362.74,
+      "delivery_index": 1.029,
+      "sales_index": 1.1218,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-06",
+      "channel": "YouTube",
+      "budget_gbp": 5678838.14,
+      "planned_budget_gbp": 5301456.18,
+      "forecast_acquisitions": 16905.33,
+      "planned_acquisitions": 15292.52,
+      "delivery_index": 1.0712,
+      "sales_index": 1.1055,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-07",
+      "channel": "Affiliate",
+      "budget_gbp": 6794501.28,
+      "planned_budget_gbp": 6941538.1,
+      "forecast_acquisitions": 18147.78,
+      "planned_acquisitions": 20824.82,
+      "delivery_index": 0.9788,
+      "sales_index": 0.8714,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-07",
+      "channel": "App Store",
+      "budget_gbp": 2849759.91,
+      "planned_budget_gbp": 2997637.44,
+      "forecast_acquisitions": 16897.81,
+      "planned_acquisitions": 18735.23,
+      "delivery_index": 0.9507,
+      "sales_index": 0.9019,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-07",
+      "channel": "CRM",
+      "budget_gbp": 13162165.17,
+      "planned_budget_gbp": 13733089.8,
+      "forecast_acquisitions": 58959.46,
+      "planned_acquisitions": 64374.86,
+      "delivery_index": 0.9584,
+      "sales_index": 0.9159,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-07",
+      "channel": "CTV",
+      "budget_gbp": 11310860.74,
+      "planned_budget_gbp": 11333508.47,
+      "forecast_acquisitions": 19222.91,
+      "planned_acquisitions": 21250.46,
+      "delivery_index": 0.998,
+      "sales_index": 0.9046,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-07",
+      "channel": "Display",
+      "budget_gbp": 3049240.01,
+      "planned_budget_gbp": 2878750,
+      "forecast_acquisitions": 5173.66,
+      "planned_acquisitions": 5397.69,
+      "delivery_index": 1.0592,
+      "sales_index": 0.9585,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-07",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 2515220.61,
+      "planned_budget_gbp": 2711962.04,
+      "forecast_acquisitions": 5205.64,
+      "planned_acquisitions": 6356.11,
+      "delivery_index": 0.9275,
+      "sales_index": 0.819,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-07",
+      "channel": "Linear TV",
+      "budget_gbp": 21052833.96,
+      "planned_budget_gbp": 21611048.19,
+      "forecast_acquisitions": 42562.97,
+      "planned_acquisitions": 46309.06,
+      "delivery_index": 0.9742,
+      "sales_index": 0.9191,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-07",
+      "channel": "Paid Search",
+      "budget_gbp": 8588408.65,
+      "planned_budget_gbp": 8127083.02,
+      "forecast_acquisitions": 26419.39,
+      "planned_acquisitions": 26501.07,
+      "delivery_index": 1.0568,
+      "sales_index": 0.9969,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-07",
+      "channel": "Paid Social",
+      "budget_gbp": 6434579.7,
+      "planned_budget_gbp": 6177555.92,
+      "forecast_acquisitions": 15996.91,
+      "planned_acquisitions": 17159.88,
+      "delivery_index": 1.0416,
+      "sales_index": 0.9322,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-07",
+      "channel": "Radio/Audio",
+      "budget_gbp": 4536326.1,
+      "planned_budget_gbp": 4661456.52,
+      "forecast_acquisitions": 10774.44,
+      "planned_acquisitions": 11653.64,
+      "delivery_index": 0.9732,
+      "sales_index": 0.9246,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-07",
+      "channel": "YouTube",
+      "budget_gbp": 4962305.15,
+      "planned_budget_gbp": 4955709.14,
+      "forecast_acquisitions": 13008.25,
+      "planned_acquisitions": 14295.18,
+      "delivery_index": 1.0013,
+      "sales_index": 0.91,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-08",
+      "channel": "Affiliate",
+      "budget_gbp": 10248823.28,
+      "planned_budget_gbp": 9544615.24,
+      "forecast_acquisitions": 33519.82,
+      "planned_acquisitions": 28634.13,
+      "delivery_index": 1.0738,
+      "sales_index": 1.1706,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-08",
+      "channel": "App Store",
+      "budget_gbp": 3258899.53,
+      "planned_budget_gbp": 3397322.62,
+      "forecast_acquisitions": 20031.82,
+      "planned_acquisitions": 21233.27,
+      "delivery_index": 0.9593,
+      "sales_index": 0.9434,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-08",
+      "channel": "CRM",
+      "budget_gbp": 15714938.36,
+      "planned_budget_gbp": 16287051.94,
+      "forecast_acquisitions": 76113.78,
+      "planned_acquisitions": 76346.75,
+      "delivery_index": 0.9649,
+      "sales_index": 0.9969,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-08",
+      "channel": "CTV",
+      "budget_gbp": 15183411.31,
+      "planned_budget_gbp": 14792515.01,
+      "forecast_acquisitions": 30526.06,
+      "planned_acquisitions": 27736.14,
+      "delivery_index": 1.0264,
+      "sales_index": 1.1006,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-08",
+      "channel": "Display",
+      "budget_gbp": 3007707.6,
+      "planned_budget_gbp": 2878750,
+      "forecast_acquisitions": 5633.11,
+      "planned_acquisitions": 5397.69,
+      "delivery_index": 1.0448,
+      "sales_index": 1.0436,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-08",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 3315868.19,
+      "planned_budget_gbp": 3472634.48,
+      "forecast_acquisitions": 7587.67,
+      "planned_acquisitions": 8138.92,
+      "delivery_index": 0.9549,
+      "sales_index": 0.9323,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-08",
+      "channel": "Linear TV",
+      "budget_gbp": 33169553.81,
+      "planned_budget_gbp": 32675329.85,
+      "forecast_acquisitions": 71329.84,
+      "planned_acquisitions": 70018.06,
+      "delivery_index": 1.0151,
+      "sales_index": 1.0187,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-08",
+      "channel": "Paid Search",
+      "budget_gbp": 9609046.92,
+      "planned_budget_gbp": 9343553.94,
+      "forecast_acquisitions": 33224,
+      "planned_acquisitions": 30467.78,
+      "delivery_index": 1.0284,
+      "sales_index": 1.0905,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-08",
+      "channel": "Paid Social",
+      "budget_gbp": 7133150.63,
+      "planned_budget_gbp": 7413066.54,
+      "forecast_acquisitions": 20429.04,
+      "planned_acquisitions": 20591.85,
+      "delivery_index": 0.9622,
+      "sales_index": 0.9921,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-08",
+      "channel": "Radio/Audio",
+      "budget_gbp": 5383109.51,
+      "planned_budget_gbp": 5619573.52,
+      "forecast_acquisitions": 16031.43,
+      "planned_acquisitions": 14048.93,
+      "delivery_index": 0.9579,
+      "sales_index": 1.1411,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-08",
+      "channel": "YouTube",
+      "budget_gbp": 5504439.36,
+      "planned_budget_gbp": 6050575.08,
+      "forecast_acquisitions": 15095.16,
+      "planned_acquisitions": 17453.41,
+      "delivery_index": 0.9097,
+      "sales_index": 0.8649,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-09",
+      "channel": "Affiliate",
+      "budget_gbp": 12680497.97,
+      "planned_budget_gbp": 12581538.1,
+      "forecast_acquisitions": 42878.2,
+      "planned_acquisitions": 37744.99,
+      "delivery_index": 1.0079,
+      "sales_index": 1.136,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-09",
+      "channel": "App Store",
+      "budget_gbp": 3858382.26,
+      "planned_budget_gbp": 4063464.9,
+      "forecast_acquisitions": 28277.43,
+      "planned_acquisitions": 25396.66,
+      "delivery_index": 0.9495,
+      "sales_index": 1.1134,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-09",
+      "channel": "CRM",
+      "budget_gbp": 20236495.21,
+      "planned_budget_gbp": 20117995.62,
+      "forecast_acquisitions": 109180.54,
+      "planned_acquisitions": 94304.58,
+      "delivery_index": 1.0059,
+      "sales_index": 1.1577,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-09",
+      "channel": "CTV",
+      "budget_gbp": 17689881.91,
+      "planned_budget_gbp": 18709634.04,
+      "forecast_acquisitions": 37840.15,
+      "planned_acquisitions": 35080.78,
+      "delivery_index": 0.9455,
+      "sales_index": 1.0787,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-09",
+      "channel": "Display",
+      "budget_gbp": 3164987.34,
+      "planned_budget_gbp": 2878750,
+      "forecast_acquisitions": 6555.01,
+      "planned_acquisitions": 5397.69,
+      "delivery_index": 1.0994,
+      "sales_index": 1.2144,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-09",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 4432757.96,
+      "planned_budget_gbp": 4630179.62,
+      "forecast_acquisitions": 11187.54,
+      "planned_acquisitions": 10851.9,
+      "delivery_index": 0.9574,
+      "sales_index": 1.0309,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-09",
+      "channel": "Linear TV",
+      "budget_gbp": 47511959.38,
+      "planned_budget_gbp": 44124563.5,
+      "forecast_acquisitions": 115611.81,
+      "planned_acquisitions": 94551.96,
+      "delivery_index": 1.0768,
+      "sales_index": 1.2227,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-09",
+      "channel": "Paid Search",
+      "budget_gbp": 12482204.6,
+      "planned_budget_gbp": 11371005.16,
+      "forecast_acquisitions": 45806.14,
+      "planned_acquisitions": 37078.96,
+      "delivery_index": 1.0977,
+      "sales_index": 1.2354,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-09",
+      "channel": "Paid Social",
+      "budget_gbp": 9861615.69,
+      "planned_budget_gbp": 9266333.88,
+      "forecast_acquisitions": 31899.02,
+      "planned_acquisitions": 25739.82,
+      "delivery_index": 1.0642,
+      "sales_index": 1.2393,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-09",
+      "channel": "Radio/Audio",
+      "budget_gbp": 6970953.38,
+      "planned_budget_gbp": 7016649.74,
+      "forecast_acquisitions": 21320.18,
+      "planned_acquisitions": 17541.62,
+      "delivery_index": 0.9935,
+      "sales_index": 1.2154,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-09",
+      "channel": "YouTube",
+      "budget_gbp": 8156766.79,
+      "planned_budget_gbp": 7779310.28,
+      "forecast_acquisitions": 26569.26,
+      "planned_acquisitions": 22440.1,
+      "delivery_index": 1.0485,
+      "sales_index": 1.184,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-10",
+      "channel": "Affiliate",
+      "budget_gbp": 11780837.75,
+      "planned_budget_gbp": 11280000,
+      "forecast_acquisitions": 38367.25,
+      "planned_acquisitions": 33840.34,
+      "delivery_index": 1.0444,
+      "sales_index": 1.1338,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-10",
+      "channel": "App Store",
+      "budget_gbp": 4064294.47,
+      "planned_budget_gbp": 3930235.88,
+      "forecast_acquisitions": 30095.93,
+      "planned_acquisitions": 24563.97,
+      "delivery_index": 1.0341,
+      "sales_index": 1.2252,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-10",
+      "channel": "CRM",
+      "budget_gbp": 20064898.16,
+      "planned_budget_gbp": 18841014.08,
+      "forecast_acquisitions": 105361.4,
+      "planned_acquisitions": 88318.63,
+      "delivery_index": 1.065,
+      "sales_index": 1.193,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-10",
+      "channel": "CTV",
+      "budget_gbp": 17782381.66,
+      "planned_budget_gbp": 17188974.7,
+      "forecast_acquisitions": 38228.54,
+      "planned_acquisitions": 32229.53,
+      "delivery_index": 1.0345,
+      "sales_index": 1.1861,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-10",
+      "channel": "Display",
+      "budget_gbp": 2847630.23,
+      "planned_budget_gbp": 2878750,
+      "forecast_acquisitions": 6274.44,
+      "planned_acquisitions": 5397.69,
+      "delivery_index": 0.9892,
+      "sales_index": 1.1624,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-10",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 3855474.9,
+      "planned_budget_gbp": 4034871.04,
+      "forecast_acquisitions": 9590.08,
+      "planned_acquisitions": 9456.66,
+      "delivery_index": 0.9555,
+      "sales_index": 1.0141,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-10",
+      "channel": "Linear TV",
+      "budget_gbp": 42708625.04,
+      "planned_budget_gbp": 39814336.94,
+      "forecast_acquisitions": 97432.72,
+      "planned_acquisitions": 85315.83,
+      "delivery_index": 1.0727,
+      "sales_index": 1.142,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-10",
+      "channel": "Paid Search",
+      "budget_gbp": 11142481.78,
+      "planned_budget_gbp": 10965514.54,
+      "forecast_acquisitions": 39808.11,
+      "planned_acquisitions": 35756.72,
+      "delivery_index": 1.0161,
+      "sales_index": 1.1133,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-10",
+      "channel": "Paid Social",
+      "budget_gbp": 8335043.25,
+      "planned_budget_gbp": 8511298.62,
+      "forecast_acquisitions": 26224.67,
+      "planned_acquisitions": 23642.5,
+      "delivery_index": 0.9793,
+      "sales_index": 1.1092,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-10",
+      "channel": "Radio/Audio",
+      "budget_gbp": 6431527.73,
+      "planned_budget_gbp": 6390290.23,
+      "forecast_acquisitions": 20611.33,
+      "planned_acquisitions": 15975.73,
+      "delivery_index": 1.0065,
+      "sales_index": 1.2902,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-10",
+      "channel": "YouTube",
+      "budget_gbp": 7042434.3,
+      "planned_budget_gbp": 7203064.9,
+      "forecast_acquisitions": 23719.7,
+      "planned_acquisitions": 20777.87,
+      "delivery_index": 0.9777,
+      "sales_index": 1.1416,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-11",
+      "channel": "Affiliate",
+      "budget_gbp": 10174640.02,
+      "planned_budget_gbp": 9978461.9,
+      "forecast_acquisitions": 30781.8,
+      "planned_acquisitions": 29935.69,
+      "delivery_index": 1.0197,
+      "sales_index": 1.0283,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-11",
+      "channel": "App Store",
+      "budget_gbp": 3591363.21,
+      "planned_budget_gbp": 3597165.68,
+      "forecast_acquisitions": 21490.61,
+      "planned_acquisitions": 22482.29,
+      "delivery_index": 0.9984,
+      "sales_index": 0.9559,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-11",
+      "channel": "CRM",
+      "budget_gbp": 16715174.71,
+      "planned_budget_gbp": 17180938.36,
+      "forecast_acquisitions": 79028.81,
+      "planned_acquisitions": 80536.91,
+      "delivery_index": 0.9729,
+      "sales_index": 0.9813,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-11",
+      "channel": "CTV",
+      "budget_gbp": 14692343.03,
+      "planned_budget_gbp": 15645237.14,
+      "forecast_acquisitions": 29525.95,
+      "planned_acquisitions": 29335,
+      "delivery_index": 0.9391,
+      "sales_index": 1.0065,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-11",
+      "channel": "Display",
+      "budget_gbp": 2909771.97,
+      "planned_budget_gbp": 2878750,
+      "forecast_acquisitions": 5648.63,
+      "planned_acquisitions": 5397.69,
+      "delivery_index": 1.0108,
+      "sales_index": 1.0465,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-11",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 3811199.8,
+      "planned_budget_gbp": 3571853.36,
+      "forecast_acquisitions": 8367.71,
+      "planned_acquisitions": 8371.47,
+      "delivery_index": 1.067,
+      "sales_index": 0.9996,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-11",
+      "channel": "Linear TV",
+      "budget_gbp": 35325163.88,
+      "planned_budget_gbp": 35907999.62,
+      "forecast_acquisitions": 74208.77,
+      "planned_acquisitions": 76945.16,
+      "delivery_index": 0.9838,
+      "sales_index": 0.9644,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-11",
+      "channel": "Paid Search",
+      "budget_gbp": 11025365.88,
+      "planned_budget_gbp": 10154534.24,
+      "forecast_acquisitions": 35806.03,
+      "planned_acquisitions": 33112.25,
+      "delivery_index": 1.0858,
+      "sales_index": 1.0814,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-11",
+      "channel": "Paid Social",
+      "budget_gbp": 7376558.65,
+      "planned_budget_gbp": 7687624.56,
+      "forecast_acquisitions": 19894.74,
+      "planned_acquisitions": 21354.51,
+      "delivery_index": 0.9595,
+      "sales_index": 0.9316,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-11",
+      "channel": "Radio/Audio",
+      "budget_gbp": 5610480.31,
+      "planned_budget_gbp": 5780132.47,
+      "forecast_acquisitions": 15453.81,
+      "planned_acquisitions": 14450.33,
+      "delivery_index": 0.9706,
+      "sales_index": 1.0694,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-11",
+      "channel": "YouTube",
+      "budget_gbp": 6687020.44,
+      "planned_budget_gbp": 6338697.3,
+      "forecast_acquisitions": 21208.69,
+      "planned_acquisitions": 18284.53,
+      "delivery_index": 1.055,
+      "sales_index": 1.1599,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-12",
+      "channel": "Affiliate",
+      "budget_gbp": 9778425.45,
+      "planned_budget_gbp": 9110769.52,
+      "forecast_acquisitions": 28163.21,
+      "planned_acquisitions": 27332.58,
+      "delivery_index": 1.0733,
+      "sales_index": 1.0304,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-12",
+      "channel": "App Store",
+      "budget_gbp": 3240405.16,
+      "planned_budget_gbp": 3397322.62,
+      "forecast_acquisitions": 20645.98,
+      "planned_acquisitions": 21233.27,
+      "delivery_index": 0.9538,
+      "sales_index": 0.9723,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-12",
+      "channel": "CRM",
+      "budget_gbp": 18437830.49,
+      "planned_budget_gbp": 16670146.12,
+      "forecast_acquisitions": 88576.48,
+      "planned_acquisitions": 78142.53,
+      "delivery_index": 1.106,
+      "sales_index": 1.1335,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-12",
+      "channel": "CTV",
+      "budget_gbp": 13673351.72,
+      "planned_budget_gbp": 14648159.03,
+      "forecast_acquisitions": 26053.33,
+      "planned_acquisitions": 27465.47,
+      "delivery_index": 0.9335,
+      "sales_index": 0.9486,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-12",
+      "channel": "Display",
+      "budget_gbp": 2957151.33,
+      "planned_budget_gbp": 2878750,
+      "forecast_acquisitions": 5573.83,
+      "planned_acquisitions": 5397.69,
+      "delivery_index": 1.0272,
+      "sales_index": 1.0326,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-12",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 3259320.06,
+      "planned_budget_gbp": 3307271.56,
+      "forecast_acquisitions": 7410.26,
+      "planned_acquisitions": 7751.36,
+      "delivery_index": 0.9855,
+      "sales_index": 0.956,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-12",
+      "channel": "Linear TV",
+      "budget_gbp": 32909202.61,
+      "planned_budget_gbp": 33367934.63,
+      "forecast_acquisitions": 72577.92,
+      "planned_acquisitions": 71502.21,
+      "delivery_index": 0.9863,
+      "sales_index": 1.015,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-12",
+      "channel": "Paid Search",
+      "budget_gbp": 9885003.46,
+      "planned_budget_gbp": 9749044.56,
+      "forecast_acquisitions": 32752.96,
+      "planned_acquisitions": 31790.02,
+      "delivery_index": 1.0139,
+      "sales_index": 1.0303,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-12",
+      "channel": "Paid Social",
+      "budget_gbp": 6725375.77,
+      "planned_budget_gbp": 6863951.44,
+      "forecast_acquisitions": 20089.59,
+      "planned_acquisitions": 19066.53,
+      "delivery_index": 0.9798,
+      "sales_index": 1.0537,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-12",
+      "channel": "Radio/Audio",
+      "budget_gbp": 5575464.43,
+      "planned_budget_gbp": 5384053.32,
+      "forecast_acquisitions": 14953.79,
+      "planned_acquisitions": 13460.13,
+      "delivery_index": 1.0356,
+      "sales_index": 1.111,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2025-12",
+      "channel": "YouTube",
+      "budget_gbp": 5718939.99,
+      "planned_budget_gbp": 5877701.56,
+      "forecast_acquisitions": 17058.87,
+      "planned_acquisitions": 16954.75,
+      "delivery_index": 0.973,
+      "sales_index": 1.0061,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Affiliate",
+      "budget_gbp": 9869838.34,
+      "planned_budget_gbp": 10153846,
+      "forecast_acquisitions": 29644.56,
+      "planned_acquisitions": 30461.84,
+      "delivery_index": 0.972,
+      "sales_index": 0.9732,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "App Store",
+      "budget_gbp": 3698244.42,
+      "planned_budget_gbp": 3826772,
+      "forecast_acquisitions": 23794.26,
+      "planned_acquisitions": 23917.33,
+      "delivery_index": 0.9664,
+      "sales_index": 0.9949,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "CRM",
+      "budget_gbp": 19657561.78,
+      "planned_budget_gbp": 19364387,
+      "forecast_acquisitions": 90665.1,
+      "planned_acquisitions": 90771.98,
+      "delivery_index": 1.0151,
+      "sales_index": 0.9988,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "CTV",
+      "budget_gbp": 17846981.04,
+      "planned_budget_gbp": 17149680.1,
+      "forecast_acquisitions": 35134.43,
+      "planned_acquisitions": 32155.85,
+      "delivery_index": 1.0407,
+      "sales_index": 1.0926,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Display",
+      "budget_gbp": 2916599.86,
+      "planned_budget_gbp": 3062500,
+      "forecast_acquisitions": 5324.81,
+      "planned_acquisitions": 5742.22,
+      "delivery_index": 0.9524,
+      "sales_index": 0.9273,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 3887242.75,
+      "planned_budget_gbp": 3799844,
+      "forecast_acquisitions": 8631.75,
+      "planned_acquisitions": 8905.81,
+      "delivery_index": 1.023,
+      "sales_index": 0.9692,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Linear TV",
+      "budget_gbp": 40397572.52,
+      "planned_budget_gbp": 38936813.2,
+      "forecast_acquisitions": 93872.9,
+      "planned_acquisitions": 83435.43,
+      "delivery_index": 1.0375,
+      "sales_index": 1.1251,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Paid Search",
+      "budget_gbp": 10894306.74,
+      "planned_budget_gbp": 10802696,
+      "forecast_acquisitions": 35200.81,
+      "planned_acquisitions": 35225.8,
+      "delivery_index": 1.0085,
+      "sales_index": 0.9993,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Paid Social",
+      "budget_gbp": 7833699.98,
+      "planned_budget_gbp": 8032283,
+      "forecast_acquisitions": 21332.13,
+      "planned_acquisitions": 22311.9,
+      "delivery_index": 0.9753,
+      "sales_index": 0.9561,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Radio/Audio",
+      "budget_gbp": 6478996.45,
+      "planned_budget_gbp": 5978269.7,
+      "forecast_acquisitions": 18194.98,
+      "planned_acquisitions": 14945.67,
+      "delivery_index": 1.0838,
+      "sales_index": 1.2174,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "YouTube",
+      "budget_gbp": 6949999.01,
+      "planned_budget_gbp": 7049808,
+      "forecast_acquisitions": 20438.59,
+      "planned_acquisitions": 20335.79,
+      "delivery_index": 0.9858,
+      "sales_index": 1.0051,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Affiliate",
+      "budget_gbp": 11297070.08,
+      "planned_budget_gbp": 11538462,
+      "forecast_acquisitions": 41967.37,
+      "planned_acquisitions": 34615.73,
+      "delivery_index": 0.9791,
+      "sales_index": 1.2124,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "App Store",
+      "budget_gbp": 4263361.99,
+      "planned_budget_gbp": 4110236,
+      "forecast_acquisitions": 31336.3,
+      "planned_acquisitions": 25688.98,
+      "delivery_index": 1.0373,
+      "sales_index": 1.2198,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "CRM",
+      "budget_gbp": 21728112.4,
+      "planned_budget_gbp": 21402123,
+      "forecast_acquisitions": 118700.2,
+      "planned_acquisitions": 100324.02,
+      "delivery_index": 1.0152,
+      "sales_index": 1.1832,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "CTV",
+      "budget_gbp": 20028406.05,
+      "planned_budget_gbp": 19391961.3,
+      "forecast_acquisitions": 41856.22,
+      "planned_acquisitions": 36360.15,
+      "delivery_index": 1.0328,
+      "sales_index": 1.1512,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Display",
+      "budget_gbp": 3092284.81,
+      "planned_budget_gbp": 3062500,
+      "forecast_acquisitions": 6865.7,
+      "planned_acquisitions": 5742.22,
+      "delivery_index": 1.0097,
+      "sales_index": 1.1957,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 4763087.49,
+      "planned_budget_gbp": 4749805,
+      "forecast_acquisitions": 12599.73,
+      "planned_acquisitions": 11132.27,
+      "delivery_index": 1.0028,
+      "sales_index": 1.1318,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Linear TV",
+      "budget_gbp": 46018163.94,
+      "planned_budget_gbp": 44873259.6,
+      "forecast_acquisitions": 123877.58,
+      "planned_acquisitions": 96156.3,
+      "delivery_index": 1.0255,
+      "sales_index": 1.2883,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Paid Search",
+      "budget_gbp": 11122622.55,
+      "planned_budget_gbp": 11665441,
+      "forecast_acquisitions": 43407.36,
+      "planned_acquisitions": 38039.07,
+      "delivery_index": 0.9535,
+      "sales_index": 1.1411,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Paid Social",
+      "budget_gbp": 9023954.12,
+      "planned_budget_gbp": 8908532,
+      "forecast_acquisitions": 29139.23,
+      "planned_acquisitions": 24745.92,
+      "delivery_index": 1.013,
+      "sales_index": 1.1775,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Radio/Audio",
+      "budget_gbp": 6793852.97,
+      "planned_budget_gbp": 6616055.1,
+      "forecast_acquisitions": 22421.4,
+      "planned_acquisitions": 16540.14,
+      "delivery_index": 1.0269,
+      "sales_index": 1.3556,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "YouTube",
+      "budget_gbp": 7848096.9,
+      "planned_budget_gbp": 7846743,
+      "forecast_acquisitions": 26227.55,
+      "planned_acquisitions": 22634.62,
+      "delivery_index": 1.0002,
+      "sales_index": 1.1587,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Affiliate",
+      "budget_gbp": 11457462.46,
+      "planned_budget_gbp": 11076923,
+      "forecast_acquisitions": 39881.28,
+      "planned_acquisitions": 33231.1,
+      "delivery_index": 1.0344,
+      "sales_index": 1.2001,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "App Store",
+      "budget_gbp": 4140621.48,
+      "planned_budget_gbp": 4181102,
+      "forecast_acquisitions": 28486.32,
+      "planned_acquisitions": 26131.89,
+      "delivery_index": 0.9903,
+      "sales_index": 1.0901,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "CRM",
+      "budget_gbp": 20736625.62,
+      "planned_budget_gbp": 20043632,
+      "forecast_acquisitions": 112387.07,
+      "planned_acquisitions": 93955.99,
+      "delivery_index": 1.0346,
+      "sales_index": 1.1962,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "CTV",
+      "budget_gbp": 19306306.06,
+      "planned_budget_gbp": 16361276.3,
+      "forecast_acquisitions": 41544.68,
+      "planned_acquisitions": 30677.58,
+      "delivery_index": 1.18,
+      "sales_index": 1.3542,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Display",
+      "budget_gbp": 2778454.01,
+      "planned_budget_gbp": 3062500,
+      "forecast_acquisitions": 5993.97,
+      "planned_acquisitions": 5742.22,
+      "delivery_index": 0.9073,
+      "sales_index": 1.0438,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 3953122.71,
+      "planned_budget_gbp": 4046130,
+      "forecast_acquisitions": 10120.41,
+      "planned_acquisitions": 9483.04,
+      "delivery_index": 0.977,
+      "sales_index": 1.0672,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Linear TV",
+      "budget_gbp": 35051705.33,
+      "planned_budget_gbp": 35068131.6,
+      "forecast_acquisitions": 88520.22,
+      "planned_acquisitions": 75145.46,
+      "delivery_index": 0.9995,
+      "sales_index": 1.178,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Paid Search",
+      "budget_gbp": 12004330.47,
+      "planned_budget_gbp": 12096814,
+      "forecast_acquisitions": 46578.07,
+      "planned_acquisitions": 39445.7,
+      "delivery_index": 0.9924,
+      "sales_index": 1.1808,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Paid Social",
+      "budget_gbp": 8435346.68,
+      "planned_budget_gbp": 8616449,
+      "forecast_acquisitions": 26538.04,
+      "planned_acquisitions": 23934.58,
+      "delivery_index": 0.979,
+      "sales_index": 1.1088,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Radio/Audio",
+      "budget_gbp": 6141005.64,
+      "planned_budget_gbp": 6149077.1,
+      "forecast_acquisitions": 19173.3,
+      "planned_acquisitions": 15372.69,
+      "delivery_index": 0.9987,
+      "sales_index": 1.2472,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "YouTube",
+      "budget_gbp": 7526767.74,
+      "planned_budget_gbp": 7478927,
+      "forecast_acquisitions": 24094.97,
+      "planned_acquisitions": 21573.62,
+      "delivery_index": 1.0064,
+      "sales_index": 1.1169,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Affiliate",
+      "budget_gbp": 8755742.82,
+      "planned_budget_gbp": 8307692,
+      "forecast_acquisitions": 28069.18,
+      "planned_acquisitions": 24923.33,
+      "delivery_index": 1.0539,
+      "sales_index": 1.1262,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "App Store",
+      "budget_gbp": 3465349.02,
+      "planned_budget_gbp": 3472441,
+      "forecast_acquisitions": 22780.99,
+      "planned_acquisitions": 21702.76,
+      "delivery_index": 0.998,
+      "sales_index": 1.0497,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "CRM",
+      "budget_gbp": 15860379.8,
+      "planned_budget_gbp": 15968160,
+      "forecast_acquisitions": 73520.53,
+      "planned_acquisitions": 74851.92,
+      "delivery_index": 0.9933,
+      "sales_index": 0.9822,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "CTV",
+      "budget_gbp": 13322563.91,
+      "planned_budget_gbp": 13152470.1,
+      "forecast_acquisitions": 25555.6,
+      "planned_acquisitions": 24661.04,
+      "delivery_index": 1.0129,
+      "sales_index": 1.0363,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Display",
+      "budget_gbp": 3194115.26,
+      "planned_budget_gbp": 3062500,
+      "forecast_acquisitions": 5521.47,
+      "planned_acquisitions": 5742.22,
+      "delivery_index": 1.043,
+      "sales_index": 0.9616,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 3017276.93,
+      "planned_budget_gbp": 3166536,
+      "forecast_acquisitions": 7096.17,
+      "planned_acquisitions": 7421.51,
+      "delivery_index": 0.9529,
+      "sales_index": 0.9562,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Linear TV",
+      "budget_gbp": 25082675.14,
+      "planned_budget_gbp": 26429487.2,
+      "forecast_acquisitions": 55338.14,
+      "planned_acquisitions": 56634.21,
+      "delivery_index": 0.949,
+      "sales_index": 0.9771,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Paid Search",
+      "budget_gbp": 9894320.22,
+      "planned_budget_gbp": 9508578,
+      "forecast_acquisitions": 35715.43,
+      "planned_acquisitions": 31005.9,
+      "delivery_index": 1.0406,
+      "sales_index": 1.1519,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Paid Social",
+      "budget_gbp": 6454531.46,
+      "planned_budget_gbp": 7009992,
+      "forecast_acquisitions": 17656.9,
+      "planned_acquisitions": 19472.2,
+      "delivery_index": 0.9208,
+      "sales_index": 0.9068,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Radio/Audio",
+      "budget_gbp": 5606384.64,
+      "planned_budget_gbp": 5289293.7,
+      "forecast_acquisitions": 16134.27,
+      "planned_acquisitions": 13223.23,
+      "delivery_index": 1.0599,
+      "sales_index": 1.2201,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "YouTube",
+      "budget_gbp": 6048465.63,
+      "planned_budget_gbp": 5823755,
+      "forecast_acquisitions": 18641.16,
+      "planned_acquisitions": 16799.13,
+      "delivery_index": 1.0386,
+      "sales_index": 1.1097,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Affiliate",
+      "budget_gbp": 7428634.72,
+      "planned_budget_gbp": 7846154,
+      "forecast_acquisitions": 22748.75,
+      "planned_acquisitions": 23538.7,
+      "delivery_index": 0.9468,
+      "sales_index": 0.9664,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "App Store",
+      "budget_gbp": 3488602.43,
+      "planned_budget_gbp": 3330709,
+      "forecast_acquisitions": 21494.73,
+      "planned_acquisitions": 20816.93,
+      "delivery_index": 1.0474,
+      "sales_index": 1.0326,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "CRM",
+      "budget_gbp": 15149836.98,
+      "planned_budget_gbp": 15288915,
+      "forecast_acquisitions": 75818.19,
+      "planned_acquisitions": 71667.91,
+      "delivery_index": 0.9909,
+      "sales_index": 1.0579,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "CTV",
+      "budget_gbp": 12473295.27,
+      "planned_budget_gbp": 12210495.1,
+      "forecast_acquisitions": 22672.78,
+      "planned_acquisitions": 22894.82,
+      "delivery_index": 1.0215,
+      "sales_index": 0.9903,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Display",
+      "budget_gbp": 3141976.47,
+      "planned_budget_gbp": 3062500,
+      "forecast_acquisitions": 6365.29,
+      "planned_acquisitions": 5742.22,
+      "delivery_index": 1.026,
+      "sales_index": 1.1085,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 2976757.71,
+      "planned_budget_gbp": 3025801,
+      "forecast_acquisitions": 6605,
+      "planned_acquisitions": 7091.67,
+      "delivery_index": 0.9838,
+      "sales_index": 0.9314,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Linear TV",
+      "budget_gbp": 22841703.13,
+      "planned_budget_gbp": 23297619.2,
+      "forecast_acquisitions": 51274.52,
+      "planned_acquisitions": 49923.11,
+      "delivery_index": 0.9804,
+      "sales_index": 1.0271,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Paid Search",
+      "budget_gbp": 8540321.55,
+      "planned_budget_gbp": 9077206,
+      "forecast_acquisitions": 28695.53,
+      "planned_acquisitions": 29599.26,
+      "delivery_index": 0.9409,
+      "sales_index": 0.9695,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Paid Social",
+      "budget_gbp": 6284784.66,
+      "planned_budget_gbp": 6717909,
+      "forecast_acquisitions": 17553.63,
+      "planned_acquisitions": 18660.86,
+      "delivery_index": 0.9355,
+      "sales_index": 0.9407,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Radio/Audio",
+      "budget_gbp": 4664287.55,
+      "planned_budget_gbp": 5129803.7,
+      "forecast_acquisitions": 11976.29,
+      "planned_acquisitions": 12824.51,
+      "delivery_index": 0.9093,
+      "sales_index": 0.9339,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "YouTube",
+      "budget_gbp": 5442185.5,
+      "planned_budget_gbp": 5517241,
+      "forecast_acquisitions": 15494.91,
+      "planned_acquisitions": 15914.97,
+      "delivery_index": 0.9864,
+      "sales_index": 0.9736,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Affiliate",
+      "budget_gbp": 8164633.69,
+      "planned_budget_gbp": 7846154,
+      "forecast_acquisitions": 25509.81,
+      "planned_acquisitions": 23538.7,
+      "delivery_index": 1.0406,
+      "sales_index": 1.0837,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "App Store",
+      "budget_gbp": 3419049.53,
+      "planned_budget_gbp": 3330709,
+      "forecast_acquisitions": 21171.73,
+      "planned_acquisitions": 20816.93,
+      "delivery_index": 1.0265,
+      "sales_index": 1.017,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "CRM",
+      "budget_gbp": 15434210.42,
+      "planned_budget_gbp": 15288915,
+      "forecast_acquisitions": 70787.94,
+      "planned_acquisitions": 71667.91,
+      "delivery_index": 1.0095,
+      "sales_index": 0.9877,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "CTV",
+      "budget_gbp": 12193465.13,
+      "planned_budget_gbp": 13023448.6,
+      "forecast_acquisitions": 23380.53,
+      "planned_acquisitions": 24419.12,
+      "delivery_index": 0.9363,
+      "sales_index": 0.9575,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Display",
+      "budget_gbp": 3102715.72,
+      "planned_budget_gbp": 3062500,
+      "forecast_acquisitions": 5857.9,
+      "planned_acquisitions": 5742.22,
+      "delivery_index": 1.0131,
+      "sales_index": 1.0201,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Influencer/Creator",
+      "budget_gbp": 3200978.55,
+      "planned_budget_gbp": 3096169,
+      "forecast_acquisitions": 7301.41,
+      "planned_acquisitions": 7256.59,
+      "delivery_index": 1.0339,
+      "sales_index": 1.0062,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Linear TV",
+      "budget_gbp": 26820579.73,
+      "planned_budget_gbp": 24648718.2,
+      "forecast_acquisitions": 57775.43,
+      "planned_acquisitions": 52818.3,
+      "delivery_index": 1.0881,
+      "sales_index": 1.0939,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Paid Search",
+      "budget_gbp": 9296602.72,
+      "planned_budget_gbp": 9077206,
+      "forecast_acquisitions": 32227.09,
+      "planned_acquisitions": 29599.26,
+      "delivery_index": 1.0242,
+      "sales_index": 1.0888,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Paid Social",
+      "budget_gbp": 7082044.85,
+      "planned_budget_gbp": 6863951,
+      "forecast_acquisitions": 20421.76,
+      "planned_acquisitions": 19066.53,
+      "delivery_index": 1.0318,
+      "sales_index": 1.0711,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Radio/Audio",
+      "budget_gbp": 5374954.91,
+      "planned_budget_gbp": 5260739.2,
+      "forecast_acquisitions": 14744.57,
+      "planned_acquisitions": 13151.85,
+      "delivery_index": 1.0217,
+      "sales_index": 1.1211,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "YouTube",
+      "budget_gbp": 5072002.96,
+      "planned_budget_gbp": 5639847,
+      "forecast_acquisitions": 15414.89,
+      "planned_acquisitions": 16268.63,
+      "delivery_index": 0.8993,
+      "sales_index": 0.9475,
+      "line_type": "buyable_media",
+      "buyable": true,
+      "evidence_strength": "synthetic-demo",
+      "confidence": "synthetic",
+      "source_ids": [
+        "fanduel_sde_actuals_manifest_v1",
+        "fanduel_sde_history_plan_v1"
+      ]
+    }
+  ],
+  "source_manifest": {
+    "generated_at": "2026-07-05T10:06:29.039Z",
+    "engine_version": "0.1.0",
+    "coherence_passed": true,
+    "source_ids": [
+      "fanduel_sde_actuals_manifest_v1",
+      "fanduel_sde_history_plan_v1"
+    ]
+  }
+}

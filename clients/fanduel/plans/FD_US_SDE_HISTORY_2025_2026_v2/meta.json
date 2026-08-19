@@ -1,0 +1,24 @@
+{
+  "plan_id": "FD_US_SDE_HISTORY_2025_2026_v2",
+  "label": "SDE synthetic history: Jan 2025-Jun 2026 (rescaled)",
+  "horizon": "history",
+  "period": {
+    "start": "2025-01",
+    "end": "2026-06"
+  },
+  "scenario_id": "sde_history_t183_rescaled",
+  "scenario_key": "history_rescaled",
+  "version": 2,
+  "parent_version": 1,
+  "parent_plan_id": "FD_US_SDE_HISTORY_2025_2026_v1",
+  "status": "archived",
+  "created_at": "2026-07-09",
+  "approved_by": null,
+  "notes": "SYNTHETIC history regenerated at the inferred public-source working-media envelope; not internal actuals.",
+  "source_ids": [
+    "fanduel_sde_actuals_manifest_v1",
+    "fanduel_media_spend_baseline_v2_final_2026_07_09"
+  ],
+  "plan_path": "FD_US_SDE_HISTORY_2025_2026_v2/plan.json",
+  "meta_path": "FD_US_SDE_HISTORY_2025_2026_v2/meta.json"
+}
