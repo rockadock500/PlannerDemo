@@ -1,6 +1,6 @@
 {
   "source_id": "adm_planning_evidence_rules_2026",
-  "description": "App-channel planning priors and rules derived from the PPL 2026 brief plus the June 2022-April 2023 MMM deck. These rules are for prototype reasoning, not final investment advice.",
+  "description": "Per-channel planning priors and rules derived from the Admiral 2026 brief plus the June 2022-April 2023 MMM deck. These rules are for prototype reasoning, not final investment advice.",
   "objective": {
     "policy_sales_target": 1000000,
     "brief_cost_per_policy_gbp": 65,
@@ -11,14 +11,13 @@
       "channel": "AV",
       "mmm_optimal_share_pct": 49.2,
       "strategic_floor_pct": 35,
-      "planning_role": "National reach, trust, draw-month storytelling and response bedrock.",
-      "mmm_note": "MMM recommends reversing the drift from AV into Print/Digital. TV is the bedrock, DRTV has the strongest CPS, and final-week TV can overheat.",
-      "phasing_rule": "Use across the draw month, with stronger support in first, second and penultimate weeks rather than over-concentrating in the final week.",
+      "planning_role": "National reach, trust, plate-change storytelling and response bedrock.",
+      "mmm_note": "MMM recommends reversing the drift from AV into Print/Digital. TV is the bedrock, DRTV has the strongest cost per policy sale, and final-week TV can overheat.",
+      "phasing_rule": "Use across the plate-change peak month, with stronger support in first, second and penultimate weeks rather than over-concentrating in the final week.",
       "brief_hooks": [
-        "april_december_tentpoles",
-        "july_august_football_context",
-        "may_new_creative_platform",
-        "gameshow_series_two"
+        "march_september_plate_change_peaks",
+        "world_cup_context",
+        "brand_trust_creative_platform"
       ],
       "evidence_strength": "primary_mmm"
     },
@@ -26,11 +25,11 @@
       "channel": "OOH",
       "mmm_optimal_share_pct": 0,
       "strategic_floor_pct": 4,
-      "planning_role": "Local salience, Greater London opportunity support and community visibility.",
+      "planning_role": "Local salience, MultiCar/household opportunity support and community visibility.",
       "mmm_note": "OOH is not present in the MMM optimal channel table, so the prototype should treat it as a brief-led strategic layer requiring measurement design.",
-      "phasing_rule": "Concentrate around priority geographies and tentpole windows rather than spreading thinly across all months.",
+      "phasing_rule": "Concentrate around priority geographies and plate-change peak windows rather than spreading thinly across all months.",
       "brief_hooks": [
-        "greater_london_growth",
+        "multicar_household_growth",
         "channel_role_clarity",
         "testing_framework"
       ],
@@ -40,11 +39,11 @@
       "channel": "Direct Mail",
       "mmm_optimal_share_pct": 28.33,
       "strategic_floor_pct": 18,
-      "planning_role": "Propensity-led conversion and deadline response.",
-      "mmm_note": "Door drops are strong due to low cost per mailing; partially addressed is weaker on CPS; lapsed performs well but is constrained by available volume.",
-      "phasing_rule": "Avoid immediate post-cutoff mailing. Use door drops heavily in the penultimate week and lapsed priority in the final week.",
+      "planning_role": "Propensity-led conversion and renewal-window response.",
+      "mmm_note": "Door drops are strong due to low cost per mailing; partially addressed is weaker on cost per policy sale; lapsed-customer mail performs well but is constrained by available volume.",
+      "phasing_rule": "Avoid immediate post-peak mailing. Use door drops heavily in the penultimate week and lapsed-customer priority in the final week.",
       "brief_hooks": [
-        "april_december_tentpoles"
+        "march_september_plate_change_peaks"
       ],
       "evidence_strength": "primary_mmm"
     },
@@ -53,10 +52,10 @@
       "mmm_optimal_share_pct": 1.11,
       "strategic_floor_pct": 3,
       "planning_role": "Incremental video reach and controlled growth testing.",
-      "mmm_note": "YouTube investment was too low for confident MMM conclusions and early evidence suggested worse-than-average CPS, so this should remain a test rather than a large default allocation.",
-      "phasing_rule": "Use as measured test support around AV tentpoles and growth audiences.",
+      "mmm_note": "YouTube investment was too low for confident MMM conclusions and early evidence suggested worse-than-average cost per policy sale, so this should remain a test rather than a large default allocation.",
+      "phasing_rule": "Use as measured test support around AV brand moments and growth audiences.",
       "brief_hooks": [
-        "july_august_football_context",
+        "world_cup_context",
         "testing_framework"
       ],
       "evidence_strength": "test_required"
@@ -65,12 +64,12 @@
       "channel": "Paid Search",
       "mmm_optimal_share_pct": 1.51,
       "strategic_floor_pct": 2,
-      "planning_role": "Intent harvesting and tactical response to demand triggers.",
+      "planning_role": "Intent harvesting and tactical response to quote-demand triggers.",
       "mmm_note": "Generic PPC is reasonably good but limited in scalable scope; brand search is close to maxed out.",
-      "phasing_rule": "Keep always-on coverage and add tactical upweights around EuroMillions/prize/news triggers and deadline windows.",
+      "phasing_rule": "Keep always-on coverage and add tactical upweights around EV, plate-change and news-trigger moments.",
       "brief_hooks": [
         "channel_role_clarity",
-        "free_ticket_tactical_only"
+        "pcw_conversion_defence"
       ],
       "evidence_strength": "primary_mmm_limited_scale"
     },
@@ -79,8 +78,8 @@
       "mmm_optimal_share_pct": 4.21,
       "strategic_floor_pct": 4,
       "planning_role": "Audience growth, social proof, retargeting and creative learning.",
-      "mmm_note": "Maintain but avoid over-weighting late week without separating prospecting and retargeting logic.",
-      "phasing_rule": "Prospecting can work earlier in the draw month; warm audiences should rise nearer cutoff.",
+      "mmm_note": "Maintain but avoid over-weighting the final week without separating prospecting and retargeting logic.",
+      "phasing_rule": "Prospecting can work earlier in the plate-change peak month; warm audiences should rise nearer the monthly peak.",
       "brief_hooks": [
         "channel_role_clarity",
         "testing_framework"
@@ -92,7 +91,7 @@
       "mmm_optimal_share_pct": 5.95,
       "strategic_floor_pct": 4,
       "planning_role": "Regional reinforcement, attention and efficient reach extension.",
-      "mmm_note": "Radio CPS is steady and better than average; MMM recommends testing an earlier upweight before the penultimate week.",
+      "mmm_note": "Radio cost per policy sale is steady and better than average; MMM recommends testing an earlier upweight before the penultimate week.",
       "phasing_rule": "Do not leave all audio to the final two weeks; test earlier-month support.",
       "brief_hooks": [
         "channel_role_clarity",
@@ -105,11 +104,11 @@
       "mmm_optimal_share_pct": 5.02,
       "strategic_floor_pct": 3.5,
       "planning_role": "Prospecting, warm retargeting and partnership-led digital value.",
-      "mmm_note": "Prospecting should start two to three weeks before cutoff; retargeting is more effective nearer cutoff.",
+      "mmm_note": "Prospecting should start two to three weeks before the monthly peak; retargeting is more effective nearer the peak.",
       "phasing_rule": "Split cold prospecting earlier and warm retargeting later; do not treat display as one undifferentiated last-week pot.",
       "brief_hooks": [
         "channel_role_clarity",
-        "free_ticket_tactical_only",
+        "pcw_conversion_defence",
         "testing_framework"
       ],
       "evidence_strength": "primary_mmm"
@@ -119,7 +118,7 @@
     {
       "criterion_id": "target_and_budget",
       "label": "Hits the sample brief target frame",
-      "requirement": "Generated plan should balance to supplied 2026 budget and show whether forecast acquisitions clear 1,000,000."
+      "requirement": "Generated plan should balance to the supplied 2026 budget and show whether forecast new policy sales clear 1,000,000."
     },
     {
       "criterion_id": "mmm_alignment",
@@ -129,12 +128,12 @@
     {
       "criterion_id": "brief_priorities",
       "label": "Responds to named brief priorities",
-      "requirement": "Plan QA should flag priority areas requiring explicit treatment: tentpoles, Greater London, July/Aug football context, May creative platform, channel role clarity and testing."
+      "requirement": "Plan QA should flag priority areas requiring explicit treatment: plate-change peaks, MultiCar growth, World Cup context, brand-trust creative platform, channel role clarity and testing."
     },
     {
       "criterion_id": "measurement",
       "label": "Separates evidence gaps from confident recommendations",
-      "requirement": "OOH, YouTube/CTV and new partnership/free-ticket opportunities should be tagged as tests or measurement-led choices rather than treated as proven MMM recommendations."
+      "requirement": "OOH, YouTube/CTV and new partnership opportunities should be tagged as tests or measurement-led choices rather than treated as proven MMM recommendations."
     }
   ]
 }

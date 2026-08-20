@@ -1,8 +1,7 @@
 {
-  "calendar_id": "ppl_2026_enriched_calendar_v1",
-  "created_for": "Postcode Lottery Group 2026 planning prototype",
+  "calendar_id": "admiral_2026_enriched_calendar_v1",
+  "created_for": "Admiral UK Motor 2026 planning prototype",
   "source_ids": [
-    "synthetic_draw_calendar_v1",
     "adm_brief_priorities_2026",
     "adm_planning_evidence_rules_2026",
     "signal_v2_uk_calendar_seed",
@@ -16,10 +15,10 @@
   ],
   "source_status": "mixed_confirmed_and_proxy",
   "calendar_principles": [
-    "Treat draw deadlines as conversion-pressure moments and draw dates as response plus storytelling moments.",
+    "Treat the 1 March and 1 September plate-change dates as confirmed UK motoring demand moments; treat any internal renewal-peak curve as client-supplied data, not inferred.",
     "Use bank holidays and school holidays as media-consumption context, not as automatic spend increases.",
     "Use BARB and Signal media-market context to decide whether moments are AV, CTV, social, search or OOH opportunities.",
-    "Use Signal geo context to distinguish heartland postcode activity from London growth testing.",
+    "Use Signal geo context to distinguish regional household activity from MultiCar and urban growth testing.",
     "Flag unconfirmed or proxy events visibly so agents cannot overclaim source truth."
   ],
   "events": [
@@ -31,9 +30,9 @@
       "name": "New Year reset and bank holiday",
       "event_type": "bank_holiday",
       "confidence": "confirmed",
-      "planning_implication": "High availability for family TV, CTV and social consumption, but budget should avoid implying a prize draw event beyond the January draw.",
+      "planning_implication": "High availability for family TV, CTV and social consumption. New Year is a natural moment for renewal/switching consideration messaging, not a promotional spike.",
       "channel_actions": ["AV continuity", "CTV/YouTube test", "Paid Social creative refresh"],
-      "audience_geo_hooks": ["national", "heartland households"],
+      "audience_geo_hooks": ["national", "regional households"],
       "source_ids": ["gov_uk_bank_holidays_2026", "signal_v2_uk_media_market_seed"]
     },
     {
@@ -44,36 +43,36 @@
       "name": "February half-term family window",
       "event_type": "school_holiday",
       "confidence": "confirmed_for_london_proxy_for_uk",
-      "planning_implication": "Family routines change and daytime media availability can rise. Useful context for TV, BVOD, YouTube and social creative that connects prizes to family plans.",
+      "planning_implication": "Family routines change and daytime media availability can rise. Useful context for TV, BVOD, YouTube and social creative built around household and MultiCar relevance.",
       "channel_actions": ["AV family reach", "CTV/YouTube family co-viewing", "Paid Social parent segments"],
-      "audience_geo_hooks": ["family households", "London proxy", "heartland households"],
+      "audience_geo_hooks": ["family households", "London proxy", "regional households"],
       "source_ids": ["tower_hamlets_school_terms_2026", "signal_v2_uk_calendar_seed"]
     },
     {
-      "event_id": "mar_spring_draw_plus_mothers_day",
-      "date_start": "2026-03-15",
+      "event_id": "mar_plate_change_and_mothers_day",
+      "date_start": "2026-03-01",
       "date_end": "2026-03-28",
       "month": "2026-03",
-      "name": "Spring draw build with Mother's Day context",
-      "event_type": "draw_tentpole",
+      "name": "1 March plate change with Mother's Day context",
+      "event_type": "plate_change",
       "confidence": "mixed",
-      "planning_implication": "The deterministic draw calendar weights March as a larger spring draw. Family/gifting context can support emotional creative, but Mother's Day is a context hook rather than a PPL offer.",
+      "planning_implication": "1 March is a confirmed UK plate-change date and a genuine registration/new-car demand moment. Mother's Day gifting context can support emotional creative alongside it, but is a context hook, not planning evidence in itself.",
       "channel_actions": ["AV emotional reach", "Audio earlier-month support", "Direct Mail penultimate week"],
-      "audience_geo_hooks": ["heartland households", "family households"],
-      "source_ids": ["synthetic_draw_calendar_v1", "signal_v2_uk_calendar_seed", "adm_planning_evidence_rules_2026"]
+      "audience_geo_hooks": ["regional households", "family households"],
+      "source_ids": ["signal_v2_uk_calendar_seed", "adm_planning_evidence_rules_2026"]
     },
     {
       "event_id": "apr_easter_bank_holiday_marathon",
       "date_start": "2026-04-03",
       "date_end": "2026-04-26",
       "month": "2026-04",
-      "name": "Easter, London Marathon and April draw",
+      "name": "Easter and London Marathon",
       "event_type": "bank_holiday_and_london_event",
       "confidence": "confirmed_for_holidays_and_london_events",
-      "planning_implication": "Good Friday and Easter Monday create a long weekend. London Marathon gives a large London attention moment for OOH, local social and PR adjacency if the plan is testing Greater London growth.",
+      "planning_implication": "Good Friday and Easter Monday create a long weekend, with higher road-trip and holiday-driving relevance. London Marathon gives a large London attention moment for OOH, local social and PR adjacency if the plan is testing MultiCar or urban growth.",
       "channel_actions": ["OOH London test", "AV long-weekend reach", "Paid Search deadline upweight"],
-      "audience_geo_hooks": ["Greater London", "Urban Optimist", "national"],
-      "source_ids": ["gov_uk_bank_holidays_2026", "london_major_events_2026", "synthetic_draw_calendar_v1", "signal_geo_demo"]
+      "audience_geo_hooks": ["Greater London", "growth audiences", "national"],
+      "source_ids": ["gov_uk_bank_holidays_2026", "london_major_events_2026", "signal_geo_demo"]
     },
     {
       "event_id": "may_bank_holidays_creative_platform",
@@ -83,7 +82,7 @@
       "name": "May bank holidays, half-term and creative platform window",
       "event_type": "bank_holiday_and_school_holiday",
       "confidence": "confirmed",
-      "planning_implication": "May is lower budget in the deterministic plan, but the brief calls for creative-platform development. Use the month for test design, creator/CTV learning and brand platform rehearsal.",
+      "planning_implication": "May is lower budget in the deterministic plan, but the brief calls for creative-platform development. Use the month for test design, creator/CTV learning and brand platform rehearsal around 'Always Looking Out For You'.",
       "channel_actions": ["CTV/YouTube measured test", "Paid Social creative learning", "Display prospecting"],
       "audience_geo_hooks": ["growth audiences", "families", "London proxy"],
       "source_ids": ["gov_uk_bank_holidays_2026", "tower_hamlets_school_terms_2026", "adm_brief_priorities_2026"]
@@ -96,7 +95,7 @@
       "name": "World Cup opening weeks",
       "event_type": "sport",
       "confidence": "confirmed",
-      "planning_implication": "Football attention fragments media pricing, context and viewing. Use AV and CTV carefully around fixtures, with paid search and social ready for prize/news spikes rather than blanket inflation.",
+      "planning_implication": "Football attention fragments media pricing, context and viewing. Use AV and CTV carefully around fixtures, with paid search and social ready for news-driven demand spikes rather than blanket inflation.",
       "channel_actions": ["AV fixture-aware phasing", "CTV/YouTube football-context test", "Paid Search responsive triggers"],
       "audience_geo_hooks": ["national", "younger CTV audiences", "family co-viewing"],
       "source_ids": ["fifa_world_cup_2026", "barb_local_predict_2025_2026", "signal_v2_uk_media_market_seed"]
@@ -109,10 +108,10 @@
       "name": "World Cup knockouts, final and school summer break",
       "event_type": "sport_and_school_holiday",
       "confidence": "confirmed",
-      "planning_implication": "The World Cup final on 19 July and late-July school break create a noisy media month. Keep spend disciplined unless a draw or audience opportunity justifies it.",
+      "planning_implication": "The World Cup final on 19 July and late-July school break create a noisy media month. Keep spend disciplined unless a genuine quote-demand or audience opportunity justifies it.",
       "channel_actions": ["Paid Search deadline capture", "Social short-form test", "Avoid overpaying for broad AV"],
       "audience_geo_hooks": ["younger audiences", "families", "national"],
-      "source_ids": ["fifa_world_cup_2026", "tower_hamlets_school_terms_2026", "synthetic_draw_calendar_v1"]
+      "source_ids": ["fifa_world_cup_2026", "tower_hamlets_school_terms_2026"]
     },
     {
       "event_id": "aug_summer_bank_back_to_school_build",
@@ -122,22 +121,22 @@
       "name": "Back-to-school build and summer bank holiday",
       "event_type": "seasonal_family",
       "confidence": "confirmed_for_bank_holiday_proxy_for_back_to_school",
-      "planning_implication": "Family spending and routine reset rises before September. This is a useful family-context bridge, but the deterministic plan keeps August lean.",
+      "planning_implication": "Family spending and routine reset rises before September, ahead of the 1 September plate change. This is a useful family-context bridge, but the deterministic plan keeps August lean.",
       "channel_actions": ["Paid Social family segments", "Display warm-up", "Direct Mail testing only"],
-      "audience_geo_hooks": ["families", "heartland households"],
+      "audience_geo_hooks": ["families", "regional households"],
       "source_ids": ["gov_uk_bank_holidays_2026", "signal_v2_uk_calendar_seed"]
     },
     {
-      "event_id": "sep_back_to_school_london_design",
+      "event_id": "sep_plate_change_and_back_to_school",
       "date_start": "2026-09-01",
       "date_end": "2026-09-30",
       "month": "2026-09",
-      "name": "Back-to-school reset and London cultural/design season",
-      "event_type": "seasonal_and_london",
+      "name": "1 September plate change, back-to-school reset and London cultural/design season",
+      "event_type": "plate_change_and_seasonal",
       "confidence": "proxy",
-      "planning_implication": "Routine reset can improve planning receptivity. London cultural context supports London growth testing, but requires confirmed event feed before client-facing claims.",
+      "planning_implication": "1 September is the second confirmed UK plate-change date and typically the year's other major registration/new-car demand peak. Back-to-school routine reset can improve planning receptivity; London cultural context supports MultiCar/urban growth testing, but requires a confirmed event feed before client-facing claims.",
       "channel_actions": ["OOH London learning", "Paid Social urban growth", "Display prospecting"],
-      "audience_geo_hooks": ["Greater London", "Urban Optimist", "families"],
+      "audience_geo_hooks": ["Greater London", "growth audiences", "families"],
       "source_ids": ["signal_v2_uk_calendar_seed", "signal_geo_demo", "adm_brief_priorities_2026"]
     },
     {
@@ -154,17 +153,17 @@
       "source_ids": ["tower_hamlets_school_terms_2026", "user_clarification_2026_06_26"]
     },
     {
-      "event_id": "nov_black_friday_december_tentpole_build",
+      "event_id": "nov_black_friday_december_build",
       "date_start": "2026-11-01",
       "date_end": "2026-11-30",
       "month": "2026-11",
-      "name": "Largest annual push, Black Friday noise and December tentpole build",
-      "event_type": "draw_tentpole_and_retail_noise",
+      "name": "Largest annual push, Black Friday noise and December build",
+      "event_type": "retail_noise_tentpole",
       "confidence": "mixed",
-      "planning_implication": "November has the highest deterministic budget and supports the December draw build. Retail noise can inflate attention costs, so rationale must show why PPL is present and where it avoids waste.",
+      "planning_implication": "November has the highest deterministic budget in the plan. Black Friday retail noise can inflate attention costs across all advertisers, so rationale must show why Admiral is present and where spend avoids simply chasing inflated CPMs.",
       "channel_actions": ["AV bedrock", "Direct Mail penultimate week", "Paid Search always-on plus triggers", "Audio earlier support"],
-      "audience_geo_hooks": ["national", "heartland households", "lapsed players"],
-      "source_ids": ["synthetic_draw_calendar_v1", "signal_v2_uk_calendar_seed", "adm_planning_evidence_rules_2026"]
+      "audience_geo_hooks": ["national", "regional households", "lapsed customers"],
+      "source_ids": ["signal_v2_uk_calendar_seed", "adm_planning_evidence_rules_2026"]
     },
     {
       "event_id": "dec_christmas_short_month",
@@ -174,16 +173,16 @@
       "name": "Festive close, Christmas bank holidays and short trading month",
       "event_type": "festive",
       "confidence": "confirmed",
-      "planning_implication": "High emotion and family co-viewing but compressed deadlines. Use strong caveats where draw timing and media delivery collide with Christmas disruption.",
+      "planning_implication": "High emotion and family co-viewing but compressed deadlines and a shorter trading month. Use strong caveats where deadline timing and media delivery collide with Christmas disruption.",
       "channel_actions": ["AV festive reach", "Direct Mail deadline discipline", "Paid Search deadline capture"],
-      "audience_geo_hooks": ["families", "national", "heartland households"],
-      "source_ids": ["gov_uk_bank_holidays_2026", "synthetic_draw_calendar_v1", "barb_local_predict_2025_2026"]
+      "audience_geo_hooks": ["families", "national", "regional households"],
+      "source_ids": ["gov_uk_bank_holidays_2026", "barb_local_predict_2025_2026"]
     }
   ],
   "agent_calendar_questions": [
-    "Which events are genuine PPL planning triggers versus background context?",
+    "Which events are genuine Admiral planning triggers versus background context?",
     "Which school-holiday source should be treated as the national reference for client sign-off?",
-    "Should London event context feed only the London Growth scenario or all OOH planning?",
+    "Should London event context feed only MultiCar/urban growth planning or all OOH planning?",
     "What event types justify incremental budget rather than just creative or channel phasing changes?",
     "Which calendar claims require a live feed before they can appear in a client export?"
   ]

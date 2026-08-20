@@ -149,7 +149,6 @@ const PLAN_INTERROGATION_SEED_QUESTIONS = [
 const PLAN_INTERROGATION_BOUNDARY_COPY = "This assistant can explain the budget, channel and month choices already in the selected plan, using the sources and rationale stored against it. It will not use, reveal or guess at any customer-level data, individual risk or pricing/underwriting detail, and it will not make savings or 'cheapest price' claims. It also won't share confidential model or prompt details - if a question needs any of that, it will say so instead of guessing.";
 
 const CALENDAR_FILTER_DEFS = [
-  { key: "draw", label: "Draws & deadlines", color: "var(--red)" },
   { key: "bank_holiday", label: "Bank holidays", color: "var(--blue)" },
   { key: "school_holiday", label: "School holidays", color: "var(--gold)" },
   { key: "sport", label: "Sport", color: "var(--green)" },
@@ -246,7 +245,6 @@ const state = {
   brief: null,
   sources: null,
   briefPriorities: null,
-  drawCalendar: null,
   enrichedCalendar: null,
   bankHolidays: null,
   curatedSportsEvents: null,
@@ -254,7 +252,7 @@ const state = {
   competitorCampaignSignals: null,
   liveWeatherWarnings: null,
   calendarMonth: "2026-07",
-  calendarFilters: { draw: true, bank_holiday: true, school_holiday: true, sport: true, weather: true, campaign: true, manual: true, other: true },
+  calendarFilters: { bank_holiday: true, school_holiday: true, sport: true, weather: true, campaign: true, manual: true, other: true },
   manualCalendarEvents: [],
   manualEventFormError: null,
   calendarOverviewAi: {},
@@ -497,28 +495,6 @@ function calendarItemsForMonth(monthStr, filters = state.calendarFilters) {
     });
   });
 
-  (state.drawCalendar?.draws || []).forEach((draw) => {
-    if (draw.month !== monthStr || !filters.draw) return;
-    items.push({
-      date: draw.deadline_date,
-      endDate: draw.deadline_date,
-      category: "draw",
-      title: "Draw deadline",
-      detail: draw.notes,
-      weight: draw.weight,
-      sourceIds: ["synthetic_draw_calendar_v1"],
-    });
-    items.push({
-      date: draw.draw_date,
-      endDate: draw.draw_date,
-      category: "draw",
-      title: "Draw date",
-      detail: draw.notes,
-      weight: draw.weight,
-      sourceIds: ["synthetic_draw_calendar_v1"],
-    });
-  });
-
   (state.enrichedCalendar?.events || []).forEach((event) => {
     const classification = classifyEventType(event.event_type);
     const isActive = classification.categories.some((category) => filters[category]);
@@ -726,7 +702,7 @@ function seedPlanVersions(plansByScenario) {
     change_summary: index === 0 ? "Baseline generated from brief, MMM extract and calendar assumptions." : `Scenario comparison generated for ${plan.scenario.label}.`,
     summary: planSummary(plan),
   }));
-  const local = loadLocalJson("ppl_plan_versions", []);
+  const local = loadLocalJson("admiral_plan_versions", []);
   const merged = [...seeded];
   local.forEach((version) => {
     if (!merged.some((item) => item.version_id === version.version_id)) merged.push(version);
@@ -766,7 +742,7 @@ function isFixtureVersionId(versionId) {
 function persistPlanVersions() {
   // Fixture versions are reconstructed fresh every load by seedPlanVersions(),
   // so only versions it wouldn't otherwise recreate need to survive a reload.
-  saveLocalJson("ppl_plan_versions", state.planVersions.filter((version) => !isFixtureVersionId(version.version_id)));
+  saveLocalJson("admiral_plan_versions", state.planVersions.filter((version) => !isFixtureVersionId(version.version_id)));
 }
 
 // Every option chatInterrogationOptions() surfaces (the live baseline, a
@@ -817,7 +793,7 @@ function recordApprovalEvent(versionId, type, comment = "") {
     created_at: nowStamp(),
   };
   state.approvalEvents = [event, ...state.approvalEvents];
-  saveLocalJson("ppl_approval_events", state.approvalEvents);
+  saveLocalJson("admiral_approval_events", state.approvalEvents);
   state.planVersions = state.planVersions.map((item) => item.version_id === event.version_id
     ? { ...item, approval_status: statusFromApprovalEvent(type), updated_at: event.created_at }
     : item);
@@ -848,19 +824,18 @@ async function loadData() {
       .finally(() => clearTimeout(timeout));
   };
 
-  const [plans, brief, sources, briefPriorities, drawCalendar, enrichedCalendar, bankHolidays, curatedSportsEvents, compositeSchoolHolidays, competitorCampaignSignals, liveWeatherWarnings, weather, monthlyRevisionData, agentConfig, agentTraces, logicEval, evidenceRules, dataSourceDictionary, syntheticFixture] = await Promise.all([
+  const [plans, brief, sources, briefPriorities, enrichedCalendar, bankHolidays, curatedSportsEvents, compositeSchoolHolidays, competitorCampaignSignals, liveWeatherWarnings, weather, monthlyRevisionData, agentConfig, agentTraces, logicEval, evidenceRules, dataSourceDictionary, syntheticFixture] = await Promise.all([
     Promise.all(SCENARIOS.map((scenario) => load(`../data/generated_plan_${scenario}.json`))),
     load("../data/annual_brief_2026.json"),
     load("../data/source_registry.json"),
     load("../data/brief_priorities_2026.json"),
-    load("../data/draw_calendar_2026.json"),
-    load("../data/ppl_enriched_calendar_2026.json"),
+    load("../data/admiral_enriched_calendar_2026.json"),
     load("../data/uk_bank_holidays_2026.json"),
     load("../data/uk_sports_events_2026.json"),
     load("../data/uk_school_holidays_2026.json"),
     loadOptional("../data/competitor_campaign_signals_2026.json", null),
     loadOptionalFromApi("/api/weather/live-warnings", null),
-    load("../data/ppl_weather_intelligence_2026.json"),
+    load("../data/admiral_weather_intelligence_2026.json"),
     load("../data/monthly_revision_fixture_2026.json"),
     load("../data/agent_logic_config.json"),
     loadOptional("../data/agent_demo_traces.json", null),
@@ -876,47 +851,46 @@ async function loadData() {
   state.evidenceRules = evidenceRules;
   state.dataSourceDictionary = dataSourceDictionary;
   state.syntheticFixture = syntheticFixture;
-  state.channelGuardrailOverrides = loadLocalJson("ppl_channel_guardrail_overrides", {});
+  state.channelGuardrailOverrides = loadLocalJson("admiral_channel_guardrail_overrides", {});
   state.briefPriorities = briefPriorities;
-  state.drawCalendar = drawCalendar;
   state.enrichedCalendar = enrichedCalendar;
   state.bankHolidays = bankHolidays;
   state.curatedSportsEvents = curatedSportsEvents;
   state.compositeSchoolHolidays = compositeSchoolHolidays;
   state.competitorCampaignSignals = competitorCampaignSignals;
   state.liveWeatherWarnings = liveWeatherWarnings;
-  state.calendarMonth = loadLocalJson("ppl_calendar_month", null) || currentOrDefaultCalendarMonth();
-  state.calendarFilters = { ...state.calendarFilters, ...loadLocalJson("ppl_calendar_filters", {}) };
-  state.calendarOverviewAi = loadLocalJson("ppl_calendar_overview_ai", {});
-  state.manualCalendarEvents = loadLocalJson("ppl_manual_calendar_events", []);
+  state.calendarMonth = loadLocalJson("admiral_calendar_month", null) || currentOrDefaultCalendarMonth();
+  state.calendarFilters = { ...state.calendarFilters, ...loadLocalJson("admiral_calendar_filters", {}) };
+  state.calendarOverviewAi = loadLocalJson("admiral_calendar_overview_ai", {});
+  state.manualCalendarEvents = loadLocalJson("admiral_manual_calendar_events", []);
   state.weather = weather;
   state.monthlyRevisionData = monthlyRevisionData;
   state.agentConfig = agentConfig;
-  state.agentConfigOverrides = loadLocalJson("ppl_agent_config_overrides", {});
+  state.agentConfigOverrides = loadLocalJson("admiral_agent_config_overrides", {});
   state.agentTraces = agentTraces;
   state.logicEval = logicEval;
   state.planVersions = seedPlanVersions(state.plans);
-  state.approvalEvents = loadLocalJson("ppl_approval_events", []);
+  state.approvalEvents = loadLocalJson("admiral_approval_events", []);
   applyApprovalStatusToVersions();
-  state.approvalSelectedKey = loadLocalJson("ppl_approval_selected_key", null);
-  state.currentApprovedVersionId = loadLocalJson("ppl_current_approved_version_id", null);
-  state.preferredScenario = loadLocalJson("ppl_preferred_scenario", null);
+  state.approvalSelectedKey = loadLocalJson("admiral_approval_selected_key", null);
+  state.currentApprovedVersionId = loadLocalJson("admiral_current_approved_version_id", null);
+  state.preferredScenario = loadLocalJson("admiral_preferred_scenario", null);
   // Scenario Centre state (baseline + generated scenarios) persists across
   // reloads like everything else here - a planner mid-way through comparing
   // several scenarios shouldn't lose that work to an accidental refresh.
-  state.baselinePlanId = loadLocalJson("ppl_baseline_plan_id", null);
-  state.baselineVersionId = loadLocalJson("ppl_baseline_version_id", null);
-  state.baselinePlan = loadLocalJson("ppl_baseline_plan", null);
-  state.baselineBudgetTargets = loadLocalJson("ppl_baseline_budget_targets", null);
-  state.generatedScenarios = loadLocalJson("ppl_generated_scenarios", []);
-  state.briefingDrafts = loadLocalJson("ppl_briefing_drafts", {});
-  state.briefingDraftsMonthly = loadLocalJson("ppl_briefing_drafts_monthly", {});
-  state.sourceOverrides = loadLocalJson("ppl_source_overrides", {});
-  state.rolePeople = loadLocalJson("ppl_role_people", ROLE_PEOPLE_DEFAULT);
-  state.qaWarningOverrides = loadLocalJson("ppl_qa_warning_overrides", {});
-  state.adminWarningsSelectedKey = loadLocalJson("ppl_admin_warnings_selected_key", null);
-  state.logicFeedback = loadLocalJson("ppl_logic_feedback", {});
-  state.selectedRevisionMonth = loadLocalJson("ppl_selected_revision_month", "2026-07");
+  state.baselinePlanId = loadLocalJson("admiral_baseline_plan_id", null);
+  state.baselineVersionId = loadLocalJson("admiral_baseline_version_id", null);
+  state.baselinePlan = loadLocalJson("admiral_baseline_plan", null);
+  state.baselineBudgetTargets = loadLocalJson("admiral_baseline_budget_targets", null);
+  state.generatedScenarios = loadLocalJson("admiral_generated_scenarios", []);
+  state.briefingDrafts = loadLocalJson("admiral_briefing_drafts", {});
+  state.briefingDraftsMonthly = loadLocalJson("admiral_briefing_drafts_monthly", {});
+  state.sourceOverrides = loadLocalJson("admiral_source_overrides", {});
+  state.rolePeople = loadLocalJson("admiral_role_people", ROLE_PEOPLE_DEFAULT);
+  state.qaWarningOverrides = loadLocalJson("admiral_qa_warning_overrides", {});
+  state.adminWarningsSelectedKey = loadLocalJson("admiral_admin_warnings_selected_key", null);
+  state.logicFeedback = loadLocalJson("admiral_logic_feedback", {});
+  state.selectedRevisionMonth = loadLocalJson("admiral_selected_revision_month", "2026-07");
   // A persisted/default selection can point at a month that's no longer
   // eligible (e.g. it was current when last selected, but time has since
   // moved on) - fall back to the first eligible fixture month instead of
@@ -925,12 +899,12 @@ async function loadData() {
     const firstEligible = (state.monthlyRevisionData?.revision_months || []).find((item) => isRevisionMonthEligible(item.month));
     if (firstEligible) state.selectedRevisionMonth = firstEligible.month;
   }
-  state.revisionDraft = loadLocalJson("ppl_revision_draft", null);
-  state.revisionPlanNames = loadLocalJson("ppl_revision_plan_names", {});
-  state.monthlyRevisionContext = loadLocalJson("ppl_monthly_revision_context", {});
-  state.monthlyRevisionSubmissions = loadLocalJson("ppl_monthly_revision_submissions", []);
-  state.chatMessages = loadLocalJson("ppl_plan_chat_messages_v2", []);
-  state.chatInterrogationKey = loadLocalJson("ppl_chat_interrogation_key", null);
+  state.revisionDraft = loadLocalJson("admiral_revision_draft", null);
+  state.revisionPlanNames = loadLocalJson("admiral_revision_plan_names", {});
+  state.monthlyRevisionContext = loadLocalJson("admiral_monthly_revision_context", {});
+  state.monthlyRevisionSubmissions = loadLocalJson("admiral_monthly_revision_submissions", []);
+  state.chatMessages = loadLocalJson("admiral_plan_chat_messages_v2", []);
+  state.chatInterrogationKey = loadLocalJson("admiral_chat_interrogation_key", null);
 }
 
 function currentPlan() {
@@ -1807,7 +1781,7 @@ async function generateProposedScenario() {
   if (!state.scenarioProposal || !state.baselineVersionId) return;
   const label = document.querySelector("#proposalLabel")?.value.trim() || state.scenarioProposal.label;
   const weights = {
-    heartland_audience: Number(document.querySelector("#proposalHeartland")?.value),
+    regional_audience: Number(document.querySelector("#proposalRegional")?.value),
     urban_growth_audience: Number(document.querySelector("#proposalGrowth")?.value),
     reach_channels: Number(document.querySelector("#proposalReach")?.value),
     performance_channels: Number(document.querySelector("#proposalPerformance")?.value),
@@ -1882,7 +1856,7 @@ function renderScenarioProposalReview() {
       <label class="field-label" for="proposalLabel">Scenario name</label>
       <input id="proposalLabel" type="text" value="${label}" />
       <div class="builder-panel weights-grid">
-        <label><span>Heartland</span><input id="proposalHeartland" type="number" step="0.05" value="${config.weights.heartland_audience}" /></label>
+        <label><span>Regional</span><input id="proposalRegional" type="number" step="0.05" value="${config.weights.regional_audience}" /></label>
         <label><span>Urban growth</span><input id="proposalGrowth" type="number" step="0.05" value="${config.weights.urban_growth_audience}" /></label>
         <label><span>Reach</span><input id="proposalReach" type="number" step="0.05" value="${config.weights.reach_channels}" /></label>
         <label><span>Performance</span><input id="proposalPerformance" type="number" step="0.05" value="${config.weights.performance_channels}" /></label>
@@ -2496,11 +2470,11 @@ function currentChatOption() {
 function selectChatInterrogation(key) {
   if (key === state.chatInterrogationKey) return;
   state.chatInterrogationKey = key;
-  saveLocalJson("ppl_chat_interrogation_key", key);
+  saveLocalJson("admiral_chat_interrogation_key", key);
   // A different plan means prior answers no longer apply - start fresh
   // rather than mixing context across plans.
   state.chatMessages = [];
-  saveLocalJson("ppl_plan_chat_messages_v2", state.chatMessages);
+  saveLocalJson("admiral_plan_chat_messages_v2", state.chatMessages);
   renderPlanChat();
 }
 
@@ -2690,7 +2664,7 @@ async function askPlanChat() {
       source_readiness: [],
     });
   }
-  saveLocalJson("ppl_plan_chat_messages_v2", state.chatMessages);
+  saveLocalJson("admiral_plan_chat_messages_v2", state.chatMessages);
   renderPlanChat();
   document.querySelector("#chatTranscript")?.scrollTo({ top: 99999 });
 }
@@ -2715,7 +2689,7 @@ async function runChatScenario(index) {
     message.runError = error.message;
     message.runningScenario = false;
   }
-  saveLocalJson("ppl_plan_chat_messages_v2", state.chatMessages);
+  saveLocalJson("admiral_plan_chat_messages_v2", state.chatMessages);
   renderPlanChat();
 }
 
@@ -2724,7 +2698,7 @@ function storeChatScenario(index) {
   if (!message?.runResult) return;
   addGeneratedScenario({ plan: message.runResult.plan, stored: message.runResult.stored, rationale: message.proposal.rationale });
   message.stored = true;
-  saveLocalJson("ppl_plan_chat_messages_v2", state.chatMessages);
+  saveLocalJson("admiral_plan_chat_messages_v2", state.chatMessages);
   renderPlanChat();
   // Scenario Centre isn't the active tab right now, but its DOM should
   // still be current the moment the planner switches to it - tab-switching
@@ -2736,7 +2710,7 @@ function discardChatScenario(index) {
   const message = state.chatMessages[index];
   if (!message) return;
   message.discarded = true;
-  saveLocalJson("ppl_plan_chat_messages_v2", state.chatMessages);
+  saveLocalJson("admiral_plan_chat_messages_v2", state.chatMessages);
   renderPlanChat();
 }
 
@@ -2763,7 +2737,7 @@ async function generateCalendarAiOverview() {
       validated: data.validated,
       generated_at: nowStamp(),
     };
-    saveLocalJson("ppl_calendar_overview_ai", state.calendarOverviewAi);
+    saveLocalJson("admiral_calendar_overview_ai", state.calendarOverviewAi);
     state.calendarGenerateStatus = null;
   } catch (error) {
     state.calendarGenerateStatus = `Could not generate AI overview (${error.message}).`;
@@ -3575,7 +3549,7 @@ function renderCurrentPlan() {
 
 function selectApprovalPlan(key) {
   state.approvalSelectedKey = key;
-  saveLocalJson("ppl_approval_selected_key", key);
+  saveLocalJson("admiral_approval_selected_key", key);
   renderApproval();
 }
 
@@ -3590,7 +3564,7 @@ function approvePlan(comment) {
   const versionId = approvalVersionId(option);
   recordApprovalEvent(versionId, "approved", comment);
   state.currentApprovedVersionId = versionId;
-  saveLocalJson("ppl_current_approved_version_id", versionId);
+  saveLocalJson("admiral_current_approved_version_id", versionId);
   renderApproval();
   renderCurrentPlan();
 }
@@ -3603,7 +3577,7 @@ function removeGeneratedScenario(versionId) {
   saveGeneratedScenarios();
   if (state.preferredScenario?.scenario_id === versionId) {
     state.preferredScenario = null;
-    saveLocalJson("ppl_preferred_scenario", null);
+    saveLocalJson("admiral_preferred_scenario", null);
   }
   if (state.scenarioDrilldown && state.scenarioDrilldownKey === versionId) {
     state.scenarioDrilldown = null;
@@ -3620,12 +3594,12 @@ function removeStoredPlan(key) {
     state.baselinePlanId = null;
     state.baselineVersionId = null;
     state.baselinePlan = null;
-    saveLocalJson("ppl_baseline_plan_id", null);
-    saveLocalJson("ppl_baseline_version_id", null);
-    saveLocalJson("ppl_baseline_plan", null);
+    saveLocalJson("admiral_baseline_plan_id", null);
+    saveLocalJson("admiral_baseline_version_id", null);
+    saveLocalJson("admiral_baseline_plan", null);
   } else if (state.monthlyRevisionSubmissions.some((item) => item.version_id === key)) {
     state.monthlyRevisionSubmissions = state.monthlyRevisionSubmissions.filter((item) => item.version_id !== key);
-    saveLocalJson("ppl_monthly_revision_submissions", state.monthlyRevisionSubmissions);
+    saveLocalJson("admiral_monthly_revision_submissions", state.monthlyRevisionSubmissions);
   } else {
     removeGeneratedScenario(key);
   }
@@ -3639,19 +3613,19 @@ function addRolePerson(name, email, org, role) {
   const trimmedName = name.trim();
   if (!trimmedName || state.rolePeople.some((person) => person.name === trimmedName)) return;
   state.rolePeople = [...state.rolePeople, { name: trimmedName, email: email.trim(), org: org.trim() || "Admiral", role }];
-  saveLocalJson("ppl_role_people", state.rolePeople);
+  saveLocalJson("admiral_role_people", state.rolePeople);
   renderAdmin();
 }
 
 function removeRolePerson(name) {
   state.rolePeople = state.rolePeople.filter((person) => person.name !== name);
-  saveLocalJson("ppl_role_people", state.rolePeople);
+  saveLocalJson("admiral_role_people", state.rolePeople);
   renderAdmin();
 }
 
 function updateRolePersonRole(name, role) {
   state.rolePeople = state.rolePeople.map((person) => (person.name === name ? { ...person, role } : person));
-  saveLocalJson("ppl_role_people", state.rolePeople);
+  saveLocalJson("admiral_role_people", state.rolePeople);
   renderAdmin();
 }
 
@@ -3667,12 +3641,12 @@ function setWarningOverride(key, warnings) {
   const option = chatInterrogationOptions().find((item) => item.key === key);
   if (!option) return;
   state.qaWarningOverrides[approvalVersionId(option)] = warnings;
-  saveLocalJson("ppl_qa_warning_overrides", state.qaWarningOverrides);
+  saveLocalJson("admiral_qa_warning_overrides", state.qaWarningOverrides);
 }
 
 function selectAdminWarningsPlan(key) {
   state.adminWarningsSelectedKey = key;
-  saveLocalJson("ppl_admin_warnings_selected_key", key);
+  saveLocalJson("admiral_admin_warnings_selected_key", key);
   renderAdmin();
 }
 
@@ -3875,7 +3849,7 @@ function attachEvents() {
     const preferButton = event.target.closest("[data-prefer-scenario]");
     if (preferButton) {
       state.preferredScenario = { scenario_id: preferButton.dataset.preferScenario, label: preferButton.dataset.preferLabel, selected_at: nowStamp() };
-      saveLocalJson("ppl_preferred_scenario", state.preferredScenario);
+      saveLocalJson("admiral_preferred_scenario", state.preferredScenario);
       renderScenarioComparison();
       return;
     }
@@ -3952,7 +3926,7 @@ function attachEvents() {
   document.querySelector("#preferredScenarioPanel")?.addEventListener("click", (event) => {
     if (!event.target.closest("#clearPreferredScenario")) return;
     state.preferredScenario = null;
-    saveLocalJson("ppl_preferred_scenario", null);
+    saveLocalJson("admiral_preferred_scenario", null);
     renderScenarioComparison();
   });
 
@@ -3961,8 +3935,8 @@ function attachEvents() {
     if (!select) return;
     state.selectedRevisionMonth = select.value;
     state.revisionDraft = null;
-    saveLocalJson("ppl_selected_revision_month", state.selectedRevisionMonth);
-    saveLocalJson("ppl_revision_draft", state.revisionDraft);
+    saveLocalJson("admiral_selected_revision_month", state.selectedRevisionMonth);
+    saveLocalJson("admiral_revision_draft", state.revisionDraft);
     renderMonthlyRevision();
   });
 
@@ -3971,20 +3945,20 @@ function attachEvents() {
     const nameInput = event.target.closest("#revisionPlanName");
     if (nameInput) {
       state.revisionPlanNames[fixture.month] = nameInput.value;
-      saveLocalJson("ppl_revision_plan_names", state.revisionPlanNames);
+      saveLocalJson("admiral_revision_plan_names", state.revisionPlanNames);
       return;
     }
     const contextInput = event.target.closest("#monthlyRevisionFreeText");
     if (contextInput) {
       state.monthlyRevisionContext[fixture.month] = contextInput.value;
-      saveLocalJson("ppl_monthly_revision_context", state.monthlyRevisionContext);
+      saveLocalJson("admiral_monthly_revision_context", state.monthlyRevisionContext);
     }
   });
 
   document.querySelector("#monthlyRevision")?.addEventListener("click", (event) => {
     if (event.target.closest("#runRevision")) {
       state.revisionDraft = buildMonthlyRevisionCandidate();
-      saveLocalJson("ppl_revision_draft", state.revisionDraft);
+      saveLocalJson("admiral_revision_draft", state.revisionDraft);
       renderMonthlyRevision();
       return;
     }
@@ -3993,9 +3967,9 @@ function attachEvents() {
       const nameInput = document.querySelector("#revisionPlanName");
       candidate.version_label = nameInput?.value?.trim() || `${formatMonth(candidate.revision_month)} Revised`;
       state.revisionPlanNames[candidate.revision_month] = candidate.version_label;
-      saveLocalJson("ppl_revision_plan_names", state.revisionPlanNames);
+      saveLocalJson("admiral_revision_plan_names", state.revisionPlanNames);
       state.revisionDraft = candidate;
-      saveLocalJson("ppl_revision_draft", state.revisionDraft);
+      saveLocalJson("admiral_revision_draft", state.revisionDraft);
 
       // Submitting makes this a first-class "stored plan" - selectable on
       // Approval/Chat/Admin like any other, via the same pool
@@ -4004,7 +3978,7 @@ function attachEvents() {
         candidate,
         ...state.monthlyRevisionSubmissions.filter((item) => item.version_id !== candidate.version_id),
       ];
-      saveLocalJson("ppl_monthly_revision_submissions", state.monthlyRevisionSubmissions);
+      saveLocalJson("admiral_monthly_revision_submissions", state.monthlyRevisionSubmissions);
 
       const version = {
         version_id: candidate.version_id,
@@ -4037,7 +4011,7 @@ function attachEvents() {
   document.querySelector("#planChat")?.addEventListener("click", (event) => {
     if (event.target.closest("#newChatConversation")) {
       state.chatMessages = [];
-      saveLocalJson("ppl_plan_chat_messages_v2", state.chatMessages);
+      saveLocalJson("admiral_plan_chat_messages_v2", state.chatMessages);
       renderPlanChat();
       return;
     }
@@ -4079,7 +4053,7 @@ function attachEvents() {
       const nextIndex = Math.min(Math.max(currentIndex + Number(navButton.dataset.calendarNav), 0), MONTHS.length - 1);
       state.calendarMonth = MONTHS[nextIndex];
       state.calendarGenerateStatus = null;
-      saveLocalJson("ppl_calendar_month", state.calendarMonth);
+      saveLocalJson("admiral_calendar_month", state.calendarMonth);
       renderEventsCalendar();
       return;
     }
@@ -4087,7 +4061,7 @@ function attachEvents() {
     if (filterButton) {
       const key = filterButton.dataset.calendarFilter;
       state.calendarFilters[key] = !state.calendarFilters[key];
-      saveLocalJson("ppl_calendar_filters", state.calendarFilters);
+      saveLocalJson("admiral_calendar_filters", state.calendarFilters);
       renderEventsCalendar();
       return;
     }
@@ -4119,7 +4093,7 @@ function attachEvents() {
         ...state.manualCalendarEvents,
         { id: `manual-${nowStamp()}-${Math.round(Math.random() * 1e6)}`, name, date_start: dateStart, date_end: dateEnd, impact, created_at: nowStamp() },
       ];
-      saveLocalJson("ppl_manual_calendar_events", state.manualCalendarEvents);
+      saveLocalJson("admiral_manual_calendar_events", state.manualCalendarEvents);
       renderEventsCalendar();
       return;
     }
@@ -4127,7 +4101,7 @@ function attachEvents() {
     if (removeButton) {
       const eventId = removeButton.dataset.removeManualEvent;
       state.manualCalendarEvents = state.manualCalendarEvents.filter((item) => item.id !== eventId);
-      saveLocalJson("ppl_manual_calendar_events", state.manualCalendarEvents);
+      saveLocalJson("admiral_manual_calendar_events", state.manualCalendarEvents);
       renderEventsCalendar();
     }
   });
@@ -4163,7 +4137,7 @@ function attachEvents() {
       });
       state.agentConfigOverrides[agentId] = override;
     }
-    saveLocalJson("ppl_agent_config_overrides", state.agentConfigOverrides);
+    saveLocalJson("admiral_agent_config_overrides", state.agentConfigOverrides);
     renderAgentConfigurator();
     if (window.lucide) window.lucide.createIcons();
   });
@@ -4181,7 +4155,7 @@ function attachEvents() {
       current[action.dataset.logicFeedback] = (current[action.dataset.logicFeedback] || 0) + 1;
       state.logicFeedback[logicId] = current;
     }
-    saveLocalJson("ppl_logic_feedback", state.logicFeedback);
+    saveLocalJson("admiral_logic_feedback", state.logicFeedback);
     renderLogicChallenges();
   });
 
@@ -4204,7 +4178,7 @@ function attachEvents() {
       draft[field.dataset.briefField] = field.value;
     });
     draftStore[channel] = draft;
-    saveLocalJson(isMonthly ? "ppl_briefing_drafts_monthly" : "ppl_briefing_drafts", isMonthly ? state.briefingDraftsMonthly : state.briefingDrafts);
+    saveLocalJson(isMonthly ? "admiral_briefing_drafts_monthly" : "admiral_briefing_drafts", isMonthly ? state.briefingDraftsMonthly : state.briefingDrafts);
     renderBriefingForms();
   });
 
@@ -4230,7 +4204,7 @@ function attachEvents() {
     if (sourceField) {
       const sourceId = sourceField.dataset.sourceId;
       state.sourceOverrides[sourceId] = { ...(state.sourceOverrides[sourceId] || {}), [sourceField.dataset.sourceField]: sourceField.value };
-      saveLocalJson("ppl_source_overrides", state.sourceOverrides);
+      saveLocalJson("admiral_source_overrides", state.sourceOverrides);
       renderAdmin();
       return;
     }
@@ -4248,7 +4222,7 @@ function attachEvents() {
   document.querySelector("#adminPage")?.addEventListener("click", (event) => {
     if (event.target.closest("#resetAdminReadiness")) {
       state.sourceOverrides = {};
-      saveLocalJson("ppl_source_overrides", state.sourceOverrides);
+      saveLocalJson("admiral_source_overrides", state.sourceOverrides);
       renderAdmin();
       return;
     }
@@ -4296,13 +4270,13 @@ function attachEvents() {
       ...(state.channelGuardrailOverrides[channel] || {}),
       [field.dataset.guardrailField]: Number(field.value),
     };
-    saveLocalJson("ppl_channel_guardrail_overrides", state.channelGuardrailOverrides);
+    saveLocalJson("admiral_channel_guardrail_overrides", state.channelGuardrailOverrides);
     renderChannelGuardrails();
   });
 
   document.querySelector("#resetChannelGuardrails")?.addEventListener("click", () => {
     state.channelGuardrailOverrides = {};
-    saveLocalJson("ppl_channel_guardrail_overrides", state.channelGuardrailOverrides);
+    saveLocalJson("admiral_channel_guardrail_overrides", state.channelGuardrailOverrides);
     renderChannelGuardrails();
   });
 
@@ -4382,7 +4356,7 @@ function attachEvents() {
 // an upload, loading the last created one, or importing a downloaded one -
 // each returns the same {plan, stored, [budget_targets]} shape.
 function saveGeneratedScenarios() {
-  saveLocalJson("ppl_generated_scenarios", state.generatedScenarios);
+  saveLocalJson("admiral_generated_scenarios", state.generatedScenarios);
 }
 
 // One-in-one-out cap on stored scenarios (~5-10 requested, 8 chosen as the
@@ -4415,10 +4389,10 @@ function applyBaselineResponse(data) {
   state.scenarioProposal = null;
   state.scenarioDrilldown = null;
   state.scenarioDrilldownKey = null;
-  saveLocalJson("ppl_baseline_plan_id", state.baselinePlanId);
-  saveLocalJson("ppl_baseline_version_id", state.baselineVersionId);
-  saveLocalJson("ppl_baseline_plan", state.baselinePlan);
-  saveLocalJson("ppl_baseline_budget_targets", state.baselineBudgetTargets);
+  saveLocalJson("admiral_baseline_plan_id", state.baselinePlanId);
+  saveLocalJson("admiral_baseline_version_id", state.baselineVersionId);
+  saveLocalJson("admiral_baseline_plan", state.baselinePlan);
+  saveLocalJson("admiral_baseline_budget_targets", state.baselineBudgetTargets);
   saveGeneratedScenarios();
 }
 

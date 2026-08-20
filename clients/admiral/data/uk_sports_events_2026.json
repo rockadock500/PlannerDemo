@@ -1,6 +1,6 @@
 {
   "source_id": "uk_sports_events_2026_curated",
-  "note": "Hand-curated list of major UK-relevant sports events for 2026, deliberately maintained by hand rather than pulled from a live sports API - low cardinality and stability make a live feed poor value versus a short maintained list (see conversation). Verified against public event calendars 2026-07-13. Does not duplicate the FIFA World Cup 2026 windows already covered in ppl_enriched_calendar_2026.json.",
+  "note": "Hand-curated list of major UK-relevant sports events for 2026, deliberately maintained by hand rather than pulled from a live sports API - low cardinality and stability make a live feed poor value versus a short maintained list (see conversation). Verified against public event calendars 2026-07-13. Does not duplicate the FIFA World Cup 2026 windows already covered in admiral_enriched_calendar_2026.json.",
   "curated_on": "2026-07-13",
   "events": [
     {

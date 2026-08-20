@@ -5,52 +5,52 @@
   "policy_sales_target": 1000000,
   "brief_budget_gbp": 65000000,
   "brief_cost_per_policy_gbp": 65,
-  "targeting": "RTN plus growth personas",
+  "targeting": "MultiCar, EV, telematics and brand-trust growth personas",
   "planning_priorities": [
     {
-      "priority_id": "april_december_tentpoles",
-      "label": "April and December draw tentpoles",
-      "brief_text_summary": "Maximise sales impact of April and December draw tentpole campaigns; plan activations early and focus on efficiency, attention and incremental sales."
+      "priority_id": "march_september_plate_change_peaks",
+      "label": "1 March and 1 September plate-change peaks",
+      "brief_text_summary": "Maximise sales impact of the March and September plate-change campaigns; plan activations early and focus on efficiency, attention and incremental new policy sales."
     },
     {
-      "priority_id": "july_august_football_context",
-      "label": "July/August football-themed context",
-      "brief_text_summary": "No third FIFA World Cup tentpole; combine July and August budgets/prize plan with contextual football-themed TV creative and prize message."
+      "priority_id": "world_cup_context",
+      "label": "World Cup summer context",
+      "brief_text_summary": "No incremental tentpole budget for the World Cup; combine June/July budgets with contextual, fixture-aware TV and CTV creative rather than blanket inflation."
     },
     {
-      "priority_id": "may_new_creative_platform",
-      "label": "May new creative platform",
-      "brief_text_summary": "Support launch without fundamental media strategy change; maintain phasing towards deadline week and proven campaign tactics."
+      "priority_id": "brand_trust_creative_platform",
+      "label": "'Always Looking Out For You' creative platform",
+      "brief_text_summary": "Support the brand-trust platform launch without a fundamental media strategy change; maintain phasing towards proven campaign tactics while building consideration and trust."
     },
     {
-      "priority_id": "greater_london_growth",
-      "label": "Greater London growth opportunity",
-      "brief_text_summary": "Demonstrate a combined strategic comms and media approach for incremental ticket sales in Greater London within the existing budget."
+      "priority_id": "multicar_household_growth",
+      "label": "MultiCar household growth opportunity",
+      "brief_text_summary": "Demonstrate a combined strategic comms and media approach for incremental MultiCar household growth within the existing budget."
     },
     {
-      "priority_id": "gameshow_series_two",
-      "label": "Gameshow return",
-      "brief_text_summary": "Series two is planned as incremental budget above the media budget, with in-break BAU activation; consider improvements for 2026."
+      "priority_id": "ev_growth_opportunity",
+      "label": "EV growth opportunity",
+      "brief_text_summary": "Support Admiral's publicly stated EV strength around switching and plate-change moments; incremental budget considered above the base media budget where the case is strong."
     },
     {
-      "priority_id": "free_ticket_tactical_only",
-      "label": "Free ticket tactical use only",
-      "brief_text_summary": "No broad free ticket promotion expected in 2026, but can be used tactically within high-profile partnerships such as Amazon or Google."
+      "priority_id": "pcw_conversion_defence",
+      "label": "PCW conversion defence",
+      "brief_text_summary": "No broad above-the-line promotional push planned for 2026, but paid search and journey investment can be used tactically to defend quote-to-policy conversion if aggregator CPC rises."
     },
     {
       "priority_id": "channel_role_clarity",
       "label": "Channel role clarity",
-      "brief_text_summary": "Provide clarity on OOH, audio, cinema, Sky Sports, Amazon, Display, Social and Search roles."
+      "brief_text_summary": "Provide clarity on OOH, audio, CTV, Paid Search, Paid Social, Display and partnerships/content roles."
     },
     {
       "priority_id": "commercial_deals",
       "label": "Commercial opportunity strategy",
-      "brief_text_summary": "Review media savings/value beyond guarantees and consider Global, Channel 4 and direct ITV deal opportunities."
+      "brief_text_summary": "Review media savings/value beyond guarantees and consider direct media-owner deal opportunities."
     },
     {
       "priority_id": "testing_framework",
       "label": "2026 testing framework",
-      "brief_text_summary": "Agree a testing framework based on growth opportunities in collaboration with media investment and insight teams."
+      "brief_text_summary": "Agree a testing framework based on MultiCar, EV and telematics growth opportunities in collaboration with media investment and insight teams."
     }
   ]
 }

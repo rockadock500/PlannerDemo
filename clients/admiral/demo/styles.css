@@ -8,9 +8,9 @@
   --wash: #f5f7fb;
   --wash-2: #edf1f7;
   /* Admiral brand palette: magenta and navy lifted directly from Admiral's
-     logo SVG (admiral.com). --red/--red-dark keep their original names from
-     the PPL layout this was built on (primary brand colour + a darker
-     supportive tint for text use) - only the values changed. */
+     logo SVG (admiral.com). --red/--red-dark keep their original variable
+     names from the prototype layout this was built on (primary brand colour
+     + a darker supportive tint for text use) - only the values changed. */
   --red: #c20060;
   --red-dark: #87003f;
   --nav-active: #2350a0; /* Admiral dark blue, used for the sidebar navigation only */
@@ -20,10 +20,8 @@
   --blue: #005fb8;
   --purple: #6b5ca5;
   --shadow: 0 14px 40px rgba(29, 41, 64, 0.09);
-  /* PostcodeLottery is the brand's own licensed typeface - its files
-     aren't available here, so this follows the guide's own sanctioned
-     fallback ("Please use Segoe UI until further notice") ahead of
-     system-default sans-serifs. */
+  /* Admiral's own typeface files aren't available here, so this uses a
+     Segoe UI-led system-font fallback stack instead. */
   font-family: "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Roboto, Arial, sans-serif;
 }
 

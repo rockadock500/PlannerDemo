@@ -2,7 +2,7 @@
   "dictionary_version": "v1",
   "source_file": "PL Media Planner Data.xlsx (Data Dictionary_Current sheet)",
   "status": "work_in_progress",
-  "note": "This is the client's canonical list of data sources for the planner, not yet reconciled with the live-ingested Postgres source_records. Most Description/Data-quality fields are still blank in the source file - only Prior Month Draw Analysis, Event Calendar and Kanso have Description filled in so far. How-used fields have now been added by Claude for every source: they describe how each source WOULD feed the deterministic engine if it were fully wired in, grounded in the engine's existing mechanics (channel scoring, response curves, MMM evidence, brief-hooks tagging, guardrails). They are forward-looking / intended-use descriptions, not confirmations that the source is live today - as of this writing only Kanso (MMM reports), the Step 1 budget upload and the Step 1 strategy text actually drive the plan's numbers; Draw Analysis, Strategic Responses, ThinkBox and ActiveVoice have real documents ingested into Postgres but are not yet consumed by the engine's calculations; everything else has no live document at all. Categories below are Claude's own grouping (not present in the source spreadsheet, which is a flat list). The source spreadsheet had two near-duplicate rows, 'Historic Media Plans' and 'Historical Media Plans' - merged into the single 'Historic Media Plans' entry below.",
+  "note": "This is the client's canonical list of data sources for the planner, not yet reconciled with the live-ingested Postgres source_records. Most Description/Data-quality fields are still blank in the source file - only Prior Month Renewal & Plate-Change Analysis, Event Calendar and Kanso have Description filled in so far. How-used fields have now been added by Claude for every source: they describe how each source WOULD feed the deterministic engine if it were fully wired in, grounded in the engine's existing mechanics (channel scoring, response curves, MMM evidence, brief-hooks tagging, guardrails). They are forward-looking / intended-use descriptions, not confirmations that the source is live today - as of this writing only Kanso (MMM reports), the Step 1 budget upload and the Step 1 strategy text actually drive the plan's numbers; Renewal & Plate-Change Analysis, Strategic Responses, ThinkBox and ActiveVoice have real documents ingested into Postgres but are not yet consumed by the engine's calculations; everything else has no live document at all. Categories below are Claude's own grouping (not present in the source spreadsheet, which is a flat list). The source spreadsheet had two near-duplicate rows, 'Historic Media Plans' and 'Historical Media Plans' - merged into the single 'Historic Media Plans' entry below.",
   "categories": [
     {
       "category_id": "effectiveness_modelling",
@@ -54,25 +54,25 @@
       "label": "Quote, Policy & Renewal Performance",
       "sources": [
         {
-          "name": "Prior Month Draw Analysis",
-          "description": "Powerpoint document containing analysis of the previous months draw",
-          "how_used": "Would feed the month-by-month draw_weight used to phase budget and channel scoring across the year - today that phasing comes from the static draw_calendar_2026 fixture, so real analysis of what drove the prior month's draw would let phasing react to actual recent performance instead of a fixed annual calendar.",
+          "name": "Prior Month Renewal & Plate-Change Analysis",
+          "description": "Powerpoint document containing analysis of the previous month's renewal and plate-change demand",
+          "how_used": "Would feed the month-by-month demand_weight used to phase budget and channel scoring across the year - today that phasing comes from the static synthetic fixture, so real analysis of the prior month's renewal and plate-change performance would let phasing react to actual recent performance instead of a fixed annual calendar.",
           "data_quality": "Most recent document no older than 2 months, full coverage for the prior full year (Jan-Jan)",
           "match_hints": [
-            "draw analysis"
+            "renewal analysis"
           ]
         },
         {
-          "name": "Annual Draw Calendar",
+          "name": "Annual Plate-Change & Renewal Calendar",
           "description": "",
-          "how_used": "Would replace the draw_calendar_2026 fixture directly, supplying the real per-month draw weight/importance figure used to scale channel scores by month.",
+          "how_used": "Would replace the synthetic fixture directly, supplying the real per-month demand weight/importance figure used to scale channel scores by month.",
           "data_quality": "",
           "match_hints": []
         },
         {
           "name": "Sales by day + postcode",
           "description": "",
-          "how_used": "Would build a genuine geo/audience response signal in place of the synthetic geo_audience_proxy.csv, letting plans tilt toward postcodes and regions with the strongest current sales response - directly useful for scenarios like a Greater London growth tilt.",
+          "how_used": "Would build a genuine geo/audience response signal in place of the synthetic geo_audience_proxy.csv, letting plans tilt toward postcodes and regions with the strongest current sales response - directly useful for scenarios like MultiCar household growth.",
           "data_quality": "",
           "match_hints": []
         }
@@ -107,7 +107,7 @@
         {
           "name": "Campaign Cycle",
           "description": "",
-          "how_used": "Would define the client's actual recurring draw/campaign rhythm (e.g. weekly vs rollover draws) so month-level phasing reflects the real campaign calendar rather than a generic monthly draw weight.",
+          "how_used": "Would define the client's actual recurring renewal/plate-change rhythm so month-level phasing reflects the real campaign calendar rather than a generic monthly demand weight.",
           "data_quality": "",
           "match_hints": []
         },
@@ -177,7 +177,7 @@
         {
           "name": "Event Calendar",
           "description": "API which provides visibility on events",
-          "how_used": "Would adjust month-level channel scoring around known event dates (e.g. major news cycles or sporting events affecting AV inventory and cost), letting the plan anticipate and route around or into high-attention periods - today phasing only accounts for draw_calendar weighting, not external events.",
+          "how_used": "Would adjust month-level channel scoring around known event dates (e.g. major news cycles or sporting events affecting AV inventory and cost), letting the plan anticipate and route around or into high-attention periods - today phasing only accounts for the synthetic plate-change/renewal weighting, not external events.",
           "data_quality": "Updated within the last 2 weeks",
           "match_hints": [],
           "flagged_in_source": true

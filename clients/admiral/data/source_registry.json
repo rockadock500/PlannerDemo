@@ -40,7 +40,7 @@
       "used_for": [
         "MMM channel recommendations",
         "CPS evidence",
-        "draw month phasing",
+        "plate-change month phasing",
         "planning logic"
       ],
       "readiness_group": "effectiveness_modelling"
@@ -182,12 +182,12 @@
     },
     {
       "source_id": "competitor_campaign_news_monitor",
-      "name": "National Lottery competitor campaign news monitor (Google News RSS)",
-      "path": "https://news.google.com/rss/search?q=%22National+Lottery%22+UK+campaign",
-      "status": "external_proxy_reference",
+      "name": "UK motor-insurance competitor campaign news monitor (not yet connected)",
+      "path": "Not yet connected - would be a news/RSS monitor scoped to UK motor-insurance competitors and aggregators.",
+      "status": "not_connected",
       "strength": "monitoring_signal",
       "used_for": [
-        "flagging possible National Lottery (Camelot/Allwyn) campaign activity for human review",
+        "flagging possible competitor or aggregator campaign activity for human review",
         "not a confirmed-fact source - headlines only, unverified"
       ],
       "readiness_group": "market_competitor_context"
@@ -718,7 +718,7 @@
     {
       "source_id": "synthetic_mmm_v1",
       "name": "Synthetic Kanso-style MMM response proxy, now superseded by client MMM for next iteration",
-      "path": "ppl_prototype_v1/data/channel_performance_benchmarks.json",
+      "path": "admiral_prototype_v1/data/channel_performance_benchmarks.json",
       "status": "synthetic_assumption",
       "strength": "placeholder",
       "used_for": [
@@ -779,18 +779,6 @@
         "test criteria"
       ],
       "readiness_group": "plans_budgets_creative_approvals"
-    },
-    {
-      "source_id": "synthetic_draw_calendar_v1",
-      "name": "Synthetic draw calendar",
-      "path": "admiral_demo_fixtures/data/draw_calendar_2026.json",
-      "status": "synthetic_assumption",
-      "strength": "placeholder",
-      "used_for": [
-        "monthly draw weight",
-        "phasing"
-      ],
-      "readiness_group": "market_competitor_context"
     },
     {
       "source_id": "media_owner_benchmarks_v1",

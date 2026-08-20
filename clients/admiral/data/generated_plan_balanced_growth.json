@@ -5,7 +5,7 @@
     "label": "Balanced Growth",
     "freeform_prompt": "Balance brand building, quote demand and new policy sales across the year within every commercial guardrail. No extreme channel shifts; the strongest evidence gets the most weight.",
     "weights": {
-      "heartland_audience": 1.05,
+      "regional_audience": 1.05,
       "urban_growth_audience": 0.95,
       "reach_channels": 1,
       "performance_channels": 1,
@@ -6076,7 +6076,7 @@
       "channel": "OOH",
       "owner": "Talon/large format proxy",
       "budget_gbp": 107752,
-      "role": "heartland salience",
+      "role": "regional salience",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -6188,7 +6188,7 @@
       "channel": "Audio",
       "owner": "Regional radio proxy",
       "budget_gbp": 169578,
-      "role": "heartland commuter reach",
+      "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -6257,7 +6257,7 @@
       "channel": "OOH",
       "owner": "Talon/large format proxy",
       "budget_gbp": 107752,
-      "role": "heartland salience",
+      "role": "regional salience",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -6369,7 +6369,7 @@
       "channel": "Audio",
       "owner": "Regional radio proxy",
       "budget_gbp": 169578,
-      "role": "heartland commuter reach",
+      "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -6438,7 +6438,7 @@
       "channel": "OOH",
       "owner": "Talon/large format proxy",
       "budget_gbp": 198428,
-      "role": "heartland salience",
+      "role": "regional salience",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -6550,7 +6550,7 @@
       "channel": "Audio",
       "owner": "Regional radio proxy",
       "budget_gbp": 294607,
-      "role": "heartland commuter reach",
+      "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -6619,7 +6619,7 @@
       "channel": "OOH",
       "owner": "Talon/large format proxy",
       "budget_gbp": 109778,
-      "role": "heartland salience",
+      "role": "regional salience",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -6731,7 +6731,7 @@
       "channel": "Audio",
       "owner": "Regional radio proxy",
       "budget_gbp": 164540,
-      "role": "heartland commuter reach",
+      "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -6800,7 +6800,7 @@
       "channel": "OOH",
       "owner": "Talon/large format proxy",
       "budget_gbp": 73172,
-      "role": "heartland salience",
+      "role": "regional salience",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -6912,7 +6912,7 @@
       "channel": "Audio",
       "owner": "Regional radio proxy",
       "budget_gbp": 115157,
-      "role": "heartland commuter reach",
+      "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -6981,7 +6981,7 @@
       "channel": "OOH",
       "owner": "Talon/large format proxy",
       "budget_gbp": 115510,
-      "role": "heartland salience",
+      "role": "regional salience",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -7093,7 +7093,7 @@
       "channel": "Audio",
       "owner": "Regional radio proxy",
       "budget_gbp": 181788,
-      "role": "heartland commuter reach",
+      "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -7162,7 +7162,7 @@
       "channel": "OOH",
       "owner": "Talon/large format proxy",
       "budget_gbp": 41362,
-      "role": "heartland salience",
+      "role": "regional salience",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -7274,7 +7274,7 @@
       "channel": "Audio",
       "owner": "Regional radio proxy",
       "budget_gbp": 65096,
-      "role": "heartland commuter reach",
+      "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -7343,7 +7343,7 @@
       "channel": "OOH",
       "owner": "Talon/large format proxy",
       "budget_gbp": 62043,
-      "role": "heartland salience",
+      "role": "regional salience",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -7455,7 +7455,7 @@
       "channel": "Audio",
       "owner": "Regional radio proxy",
       "budget_gbp": 97643,
-      "role": "heartland commuter reach",
+      "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -7524,7 +7524,7 @@
       "channel": "OOH",
       "owner": "Talon/large format proxy",
       "budget_gbp": 107752,
-      "role": "heartland salience",
+      "role": "regional salience",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -7636,7 +7636,7 @@
       "channel": "Audio",
       "owner": "Regional radio proxy",
       "budget_gbp": 169578,
-      "role": "heartland commuter reach",
+      "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -7705,7 +7705,7 @@
       "channel": "OOH",
       "owner": "Talon/large format proxy",
       "budget_gbp": 107752,
-      "role": "heartland salience",
+      "role": "regional salience",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -7817,7 +7817,7 @@
       "channel": "Audio",
       "owner": "Regional radio proxy",
       "budget_gbp": 169578,
-      "role": "heartland commuter reach",
+      "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -7886,7 +7886,7 @@
       "channel": "OOH",
       "owner": "Talon/large format proxy",
       "budget_gbp": 341612,
-      "role": "heartland salience",
+      "role": "regional salience",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -7998,7 +7998,7 @@
       "channel": "Audio",
       "owner": "Regional radio proxy",
       "budget_gbp": 507193,
-      "role": "heartland commuter reach",
+      "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -8067,7 +8067,7 @@
       "channel": "OOH",
       "owner": "Talon/large format proxy",
       "budget_gbp": 38976,
-      "role": "heartland salience",
+      "role": "regional salience",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"
@@ -8179,7 +8179,7 @@
       "channel": "Audio",
       "owner": "Regional radio proxy",
       "budget_gbp": 63180,
-      "role": "heartland commuter reach",
+      "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
         "media_owner_benchmarks_v1"

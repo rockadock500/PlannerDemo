@@ -1,5 +1,5 @@
 {
-  "config_id": "ppl_agent_logic_config_v1",
+  "config_id": "admiral_agent_logic_config_v1",
   "config_status": "demo_editable",
   "storage_model": "Static defaults with browser localStorage overrides in the prototype. Production should store immutable config versions.",
   "one_way_door_rules": [

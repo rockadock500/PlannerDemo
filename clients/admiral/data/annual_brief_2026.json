@@ -1,9 +1,9 @@
 {
-  "brief_id": "annual_brief_2026_ppl_source_v1",
-  "client": "Postcode Lottery Group",
+  "brief_id": "annual_brief_2026_admiral_source_v1",
+  "client": "Admiral UK Motor",
   "planning_year": 2026,
   "brief_type": "annual",
-  "prototype_status": "ppl_source_plus_synthetic_v1",
+  "prototype_status": "admiral_source_plus_synthetic_v1",
   "total_budget_gbp": 65674851,
   "brief_stated_budget_gbp": 65000000,
   "primary_kpi": "new_policy_sales",
@@ -18,26 +18,26 @@
   "required_inputs": [
     "budget_by_month",
     "new_policy_sales_targets_by_month",
-    "draw_calendar",
+    "plate_change_and_renewal_calendar",
     "brand_guardrails",
     "strategy_prompt"
   ],
   "brand_guardrails": [
-    "No under-25 skewed environments",
-    "Avoid gambling adjacency",
+    "No under-25 skewed environments without safety-first, consent-led creative",
+    "Avoid unsubstantiated 'save' or 'cheapest' price claims",
     "Avoid sensitive political adjacency",
     "Avoid children's content adjacency",
-    "Maintain charitable/community positioning"
+    "Maintain 'Always Looking Out For You' trust-and-care positioning"
   ],
-  "default_strategy_prompt": "Create an annual plan that exceeds the ticket sales target, reduces CPA, protects RTN performance, and develops growth personas with specific attention to April/December tentpoles and Greater London.",
+  "default_strategy_prompt": "Create an annual plan that grows qualified new policy sales, protects cost per new policy sale, defends PCW conversion, and develops MultiCar, EV and telematics growth personas with specific attention to the March/September plate-change peaks and brand trust building.",
   "brief_priorities": [
-    "April and December draw tentpoles",
-    "Greater London incremental ticket opportunity",
-    "July/August football-themed TV creative and prize plan context",
-    "May new creative platform",
-    "OOH, audio, cinema, Sky Sports, Amazon, Display, Social and Search role clarity",
-    "Global, Channel 4 and ITV direct commercial opportunities",
-    "2026 growth testing framework"
+    "1 March and 1 September plate-change peaks",
+    "MultiCar household growth opportunity",
+    "Young Driver & Telematics safety-led creator content",
+    "May new creative platform ('Always Looking Out For You')",
+    "OOH, audio, CTV, Paid Social, Display and Search role clarity",
+    "PCW conversion defence against aggregator CPC pressure",
+    "2026 EV and telematics growth testing framework"
   ],
   "source_ids": [
     "adm_annual_media_brief",
@@ -49,9 +49,9 @@
     "user_clarification_2026_06_26"
   ],
   "caveats": [
-    "PPL sample brief, budget workbook and MMM deck are now connected as local extracted sources.",
+    "Admiral sample brief, budget workbook and MMM deck are now connected as local extracted sources.",
     "Roivenue, Redshift, Snowflake, Experian, live Kanso updates and ratecard data are not connected.",
-    "Draw calendar remains synthetic beyond the month/draw labels in the budget workbook.",
+    "Plate-change and renewal-demand calendar remains synthetic beyond the confirmed 1 March/1 September dates.",
     "Media-owner cost and response assumptions are synthetic.",
     "Prototype should be used to test workflow, architecture and evidence mechanics, not final investment advice."
   ],

@@ -1,6 +1,6 @@
 {
-  "weather_id": "ppl_weather_intelligence_v1",
-  "created_for": "Postcode Lottery Group 2026 planning prototype",
+  "weather_id": "admiral_weather_intelligence_v1",
+  "created_for": "Admiral UK Motor 2026 planning prototype",
   "source_status": "long_term_average_proxy_not_live_weather",
   "source_ids": ["met_office_climate_averages", "adm_brief_priorities_2026", "adm_planning_evidence_rules_2026"],
   "principles": [
@@ -56,8 +56,8 @@
   "agent_questions": [
     "Which weather conditions should change creative only versus phasing or budget?",
     "Which geographies need weather-sensitive OOH rules?",
-    "Who approves a weather-triggered change during a live draw window?",
+    "Who approves a weather-triggered change during a plate-change peak window?",
     "What live weather source and threshold should production use?",
-    "How should weather effects be measured without confusing them with draw timing?"
+    "How should weather effects be measured without confusing them with plate-change timing?"
   ]
 }
