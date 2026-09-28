@@ -1,6 +1,6 @@
 {
   "brief_id": "annual_brief_2026_admiral_source_v1",
-  "client": "Admiral UK Motor",
+  "client": "Freemans",
   "planning_year": 2026,
   "brief_type": "annual",
   "prototype_status": "admiral_source_plus_synthetic_v1",
@@ -17,27 +17,27 @@
   },
   "required_inputs": [
     "budget_by_month",
-    "new_policy_sales_targets_by_month",
-    "plate_change_and_renewal_calendar",
+    "new_customer_order_targets_by_month",
+    "seasonal_trading_calendar",
     "brand_guardrails",
     "strategy_prompt"
   ],
   "brand_guardrails": [
-    "No under-25 skewed environments without safety-first, consent-led creative",
+    "No under-18 skewed environments without family-appropriate, consent-led creative",
     "Avoid unsubstantiated 'save' or 'cheapest' price claims",
     "Avoid sensitive political adjacency",
-    "Avoid children's content adjacency",
-    "Maintain 'Always Looking Out For You' trust-and-care positioning"
+    "Avoid children's content adjacency outside licensed kidswear ranges",
+    "Maintain 'Make a Statement' affordable-style-for-the-family positioning"
   ],
-  "default_strategy_prompt": "Create an annual plan that grows qualified new policy sales, protects cost per new policy sale, defends PCW conversion, and develops MultiCar, EV and telematics growth personas with specific attention to the March/September plate-change peaks and brand trust building.",
+  "default_strategy_prompt": "Create an annual plan that grows qualified new customer orders, protects cost per new order, defends Affiliate/Cashback conversion, and develops Multi-Category, Electricals & Home Tech and Flexi Pay growth personas with specific attention to the Autumn/Winter launch and Black Friday-Christmas trading peaks and brand trust building.",
   "brief_priorities": [
-    "1 March and 1 September plate-change peaks",
-    "MultiCar household growth opportunity",
-    "Young Driver & Telematics safety-led creator content",
-    "May new creative platform ('Always Looking Out For You')",
+    "Autumn/Winter launch and Black Friday-Christmas trading peaks",
+    "Multi-Category household growth opportunity (fashion, home and electricals)",
+    "New Customer Growth via Flexi Pay account sign-ups",
+    "September new-season creative platform ('Make a Statement')",
     "OOH, audio, CTV, Paid Social, Display and Search role clarity",
-    "PCW conversion defence against aggregator CPC pressure",
-    "2026 EV and telematics growth testing framework"
+    "Affiliate/Cashback conversion defence against affiliate CPC pressure",
+    "2026 Electricals & Home Tech and Flexi Pay growth testing framework"
   ],
   "source_ids": [
     "adm_annual_media_brief",
@@ -49,9 +49,9 @@
     "user_clarification_2026_06_26"
   ],
   "caveats": [
-    "Admiral sample brief, budget workbook and MMM deck are now connected as local extracted sources.",
+    "Freemans sample brief, budget workbook and MMM deck are now connected as local extracted sources.",
     "Roivenue, Redshift, Snowflake, Experian, live Kanso updates and ratecard data are not connected.",
-    "Plate-change and renewal-demand calendar remains synthetic beyond the confirmed 1 March/1 September dates.",
+    "Seasonal trading calendar remains synthetic beyond the confirmed Black Friday and Christmas trading dates.",
     "Media-owner cost and response assumptions are synthetic.",
     "Prototype should be used to test workflow, architecture and evidence mechanics, not final investment advice."
   ],

@@ -24,20 +24,19 @@ const CHANNEL_ORDER = [
   "Display/Programmatic",
 ];
 
-// Admiral scenario library (research brief section 5). Each id has a
-// matching data/generated_plan_<id>.json fixture with the full month x
-// channel plan for that scenario.
+// Freemans scenario library. Each id has a matching
+// data/generated_plan_<id>.json fixture with the full month x channel plan
+// for that scenario.
 const SCENARIOS = ["balanced_growth", "brand_trust_build", "pcw_conversion_defence", "multicar_household_growth", "young_driver_telematics", "ev_growth"];
 
-// Qualitative scenario card facts (research brief section 5): objective,
-// what's changed vs the baseline guardrails, which channels move, the
-// EXPECTED DIRECTION (not a number) of brand and sales outcomes, and the key
-// risk a marketing approver should hold in mind. These are deliberately
-// directional/plain-English, not modelled figures - see brief section 2 on
-// avoiding false precision.
+// Qualitative scenario card facts: objective, what's changed vs the baseline
+// guardrails, which channels move, the EXPECTED DIRECTION (not a number) of
+// brand and sales outcomes, and the key risk a marketing approver should hold
+// in mind. These are deliberately directional/plain-English, not modelled
+// figures.
 const SCENARIO_META = {
   balanced_growth: {
-    objective: "Base plan balancing brand building, quote demand and new policy sales across the year, within every commercial guardrail.",
+    objective: "Base plan balancing brand building, checkout demand and new customer orders across the year, within every commercial guardrail.",
     changed_constraints: "None beyond the approved Step 2 guardrails - baseline floors, caps and Strategic Index carry forward unchanged.",
     affected_channels: "No channel is deliberately over- or under-weighted; the MMM-derived channel prior is followed closely.",
     expected_brand_direction: "Steady - no deliberate shift up or down.",
@@ -45,62 +44,62 @@ const SCENARIO_META = {
     key_risk: "Read this as an evidence-led balance, not a lack of a point of view - the strongest evidence still gets the most weight.",
   },
   brand_trust_build: {
-    objective: "Build trust and consideration around 'Always Looking Out For You', shifting weight from pure demand capture towards brand-building channels.",
+    objective: "Build trust and consideration around 'Make a Statement', shifting weight from pure demand capture towards brand-building channels.",
     changed_constraints: "Raised floors/weighting on brand-reach channels; paid search and paid social performance weighting held back within their existing guardrail ranges.",
     affected_channels: "Up: Linear TV, BVOD/CTV, OOH, radio/digital audio, online video. Held back: paid search, paid social performance.",
     expected_brand_direction: "Up - broader reach and stronger consideration/trust signal expected.",
-    expected_sales_direction: "Flat to slightly down near-term - less budget is chasing active quote shoppers while brand investment builds.",
+    expected_sales_direction: "Flat to slightly down near-term - less budget is chasing active checkout shoppers while brand investment builds.",
     key_risk: "Needs brand-tracker and consideration evidence to justify sustaining this over multiple months, not just an assumption that brand spend works.",
   },
   pcw_conversion_defence: {
-    objective: "Protect new-business quote and policy volumes if price-comparison-site competition or paid-search CPC rises.",
-    changed_constraints: "Paid search and journey-conversion channels weighted up; forecast cost-per-policy factor allowed to flex upward to reflect a tougher CPC environment.",
-    affected_channels: "Up: paid search, retargeting/programmatic. Distribution: PCW visibility monitored separately, not folded into the media mix.",
+    objective: "Protect new-customer basket and order volumes if affiliate/cashback-site competition or paid-search CPC rises.",
+    changed_constraints: "Paid search and journey-conversion channels weighted up; forecast cost-per-order factor allowed to flex upward to reflect a tougher CPC environment.",
+    affected_channels: "Up: paid search, retargeting/programmatic. Distribution: affiliate/cashback visibility monitored separately, not folded into the media mix.",
     expected_brand_direction: "Broadly unchanged.",
-    expected_sales_direction: "Quote-to-policy conversion defended, but likely at a higher cost per new policy sale than the balanced plan.",
-    key_risk: "PCW economics are distribution, not reach media - any 'improvement' shown here is visibility/conversion, never an unsupported price or savings claim.",
+    expected_sales_direction: "Basket-to-order conversion defended, but likely at a higher cost per new order than the balanced plan.",
+    key_risk: "Affiliate/cashback economics are distribution, not reach media - any 'improvement' shown here is visibility/conversion, never an unsupported price or savings claim.",
   },
   multicar_household_growth: {
-    objective: "Grow qualified demand from households with more than one vehicle or risk (Multi), supporting retention and customer lifetime value.",
+    objective: "Grow qualified demand from households shopping more than one category (fashion, home and electricals), supporting retention and customer lifetime value.",
     changed_constraints: "CRM/email kept as an owned-activation overlay (not counted as paid media spend); household-relevant reach and search weighted up.",
     affected_channels: "Up: household-relevant TV/BVOD/OOH, paid search. Overlay: CRM/email (owned, unpaid unless explicitly costed).",
     expected_brand_direction: "Modest uplift in relevance among family/household audiences.",
-    expected_sales_direction: "Gradual growth in qualified Multi quote starts and retention-linked policy sales, not an immediate spike.",
+    expected_sales_direction: "Gradual growth in qualified multi-category checkout starts and retention-linked orders, not an immediate spike.",
     key_risk: "Must use only approved aggregate household segments - never infer specific household composition or other sensitive attributes.",
   },
   young_driver_telematics: {
-    objective: "Grow qualified demand for telematics and young-driver cover using safety-led, creator-style content (see 'Your Ride Your Rules').",
-    changed_constraints: "Creator/social content and online video weighted up; strict data, consent and vulnerability controls apply to this audience.",
-    affected_channels: "Up: creators/partnerships content, online video, paid search (young-driver terms).",
-    expected_brand_direction: "Improved relevance and trust with under-25s.",
-    expected_sales_direction: "Gradual growth in qualified young-driver/telematics quote starts - not an immediate volume spike.",
-    key_risk: "Under-24 audience needs careful consent and vulnerability handling; safety-first creative must not read as a price promotion.",
+    objective: "Grow qualified new-customer demand via the Flexi Pay account (pay-in-3 / buy now pay later) using value-led, creator-style content.",
+    changed_constraints: "Creator/social content and online video weighted up; strict data and consent controls apply to this audience, including affordability messaging.",
+    affected_channels: "Up: creators/partnerships content, online video, paid search (Flexi Pay/new-account terms).",
+    expected_brand_direction: "Improved relevance and trust with value-conscious and younger new customers.",
+    expected_sales_direction: "Gradual growth in qualified new-customer/Flexi Pay checkout starts - not an immediate volume spike.",
+    key_risk: "Credit/BNPL messaging needs careful affordability and consent handling; value-first creative must not read as an irresponsible-lending promotion.",
   },
   ev_growth: {
-    objective: "Support Admiral's stated EV strength around switching moments and the March/September plate-change peaks.",
-    changed_constraints: "Search, online video and social weighted up around EV-relevant and plate-change windows; contextual partnerships considered.",
+    objective: "Support Freemans' Electricals & Home Tech range around new-season browsing moments and the Black Friday/Christmas trading peaks.",
+    changed_constraints: "Search, online video and social weighted up around Electricals-relevant and seasonal trading windows; contextual partnerships considered.",
     affected_channels: "Up: paid search, online video, paid social, contextual partnerships/content.",
-    expected_brand_direction: "Reinforces perception of Admiral's EV leadership.",
-    expected_sales_direction: "Higher EV-related quote starts expected around plate-change peaks.",
-    key_risk: "Must explain EV cover accurately without greenwashing, and must not present estimated market share as a guarantee of future performance.",
+    expected_brand_direction: "Reinforces perception of Freemans' Electricals & Home Tech range as a genuine destination, not just an add-on category.",
+    expected_sales_direction: "Higher Electricals & Home Tech-related checkout starts expected around seasonal trading peaks.",
+    key_risk: "Must describe product specs and warranties accurately without greenwashing, and must not present estimated category share as a guarantee of future performance.",
   },
 };
 const LIVE_API_BASE = "https://ppl-planner-api-production.up.railway.app";
 
-// Admiral planning taxonomy (research brief section 4). This groups each
-// engine channel by MEDIA ROLE - reach vs consideration vs demand capture,
-// etc - which is a different axis from the display-hierarchy CHANNEL_GROUPS
-// further down (parent/child labelling like "AV" -> "TV / BVOD / Cinema").
-// Distribution (PCW) deliberately has no engine channel here: it is measured
-// and reported separately (plan.distribution_summary) rather than folded
-// into the channel budget/media-mix chart, per the brief.
+// Freemans planning taxonomy. This groups each engine channel by MEDIA ROLE -
+// reach vs consideration vs demand capture, etc - which is a different axis
+// from the display-hierarchy CHANNEL_GROUPS further down (parent/child
+// labelling like "AV" -> "TV / BVOD / Cinema"). Distribution (Affiliate &
+// Cashback) deliberately has no engine channel here: it is measured and
+// reported separately (plan.distribution_summary) rather than folded into
+// the channel budget/media-mix chart.
 const CHANNEL_ROLE_GROUP_LABELS = {
   brand_reach: "Brand reach",
   video_consideration: "Video and consideration",
   demand_capture: "Demand capture",
   partnerships_content: "Partnerships and content",
   owned_activation: "Owned activation",
-  distribution: "Distribution (PCW - reported separately from media)",
+  distribution: "Distribution (Affiliate & Cashback - reported separately from media)",
 };
 const CHANNEL_ROLE_GROUP = {
   "AV": "brand_reach",
@@ -121,9 +120,9 @@ const CHANNEL_ROLE_GROUP = {
 // directly rather than hard-coding totals here.
 const DATA_READINESS_GROUP_LABELS = {
   effectiveness_modelling: "Effectiveness & Modelling",
-  quote_policy_renewal: "Quote, Policy & Renewal Performance",
-  pcw_distribution: "PCW & Distribution Performance",
-  customer_vehicle_audience: "Customer, Vehicle & Audience Data",
+  quote_policy_renewal: "Checkout, Order & Retention Performance",
+  pcw_distribution: "Affiliate/Cashback & Distribution Performance",
+  customer_vehicle_audience: "Customer & Audience Data",
   pricing_risk_guardrails: "Pricing, Risk & Commercial Guardrails",
   plans_budgets_creative_approvals: "Plans, Budgets, Creative & Approvals",
   digital_crm_platform: "Digital, CRM & Platform Data",
@@ -146,7 +145,7 @@ const PLAN_INTERROGATION_SEED_QUESTIONS = [
 // it can explain from the configured plan evidence, and what it must refuse
 // regardless of how the question is phrased. Written for a marketing
 // approver to act on, not as technical confidence language.
-const PLAN_INTERROGATION_BOUNDARY_COPY = "This assistant can explain the budget, channel and month choices already in the selected plan, using the sources and rationale stored against it. It will not use, reveal or guess at any customer-level data, individual risk or pricing/underwriting detail, and it will not make savings or 'cheapest price' claims. It also won't share confidential model or prompt details - if a question needs any of that, it will say so instead of guessing.";
+const PLAN_INTERROGATION_BOUNDARY_COPY = "This assistant can explain the budget, channel and month choices already in the selected plan, using the sources and rationale stored against it. It will not use, reveal or guess at any customer-level data, individual credit-risk or Flexi Pay credit-decision detail, and it will not make savings or 'cheapest price' claims. It also won't share confidential model or prompt details - if a question needs any of that, it will say so instead of guessing.";
 
 const CALENDAR_FILTER_DEFS = [
   { key: "bank_holiday", label: "Bank holidays", color: "var(--blue)" },
@@ -162,7 +161,7 @@ const logicChallenges = [
   {
     area: "Objective Function",
     title: "What is the plan really optimising?",
-    body: "V1 balances new policy sales, cost per policy, CLV proxy and strategic audience weight. Admiral needs to confirm whether final optimisation is new policy sales, cost per policy, CLV-weighted value, quote-to-policy conversion or a blended score.",
+    body: "V1 balances new customer orders, cost per order, CLV proxy and strategic audience weight. Freemans needs to confirm whether final optimisation is new customer orders, cost per order, CLV-weighted value, basket-to-order conversion or a blended score.",
     status: "big",
   },
   {
@@ -216,7 +215,7 @@ const agentNodes = [
   {
     name: "Deterministic Planner",
     type: "code",
-    body: "Allocates budget, rescales totals, forecasts cost-per-policy ranges and validates arithmetic.",
+    body: "Allocates budget, rescales totals, forecasts cost-per-order ranges and validates arithmetic.",
   },
   {
     name: "Rationale Agent",
@@ -829,20 +828,20 @@ async function loadData() {
     load("../data/annual_brief_2026.json"),
     load("../data/source_registry.json"),
     load("../data/brief_priorities_2026.json"),
-    load("../data/admiral_enriched_calendar_2026.json"),
+    load("../data/freemans_enriched_calendar_2026.json"),
     load("../data/uk_bank_holidays_2026.json"),
     load("../data/uk_sports_events_2026.json"),
     load("../data/uk_school_holidays_2026.json"),
     loadOptional("../data/competitor_campaign_signals_2026.json", null),
     loadOptionalFromApi("/api/weather/live-warnings", null),
-    load("../data/admiral_weather_intelligence_2026.json"),
+    load("../data/freemans_weather_intelligence_2026.json"),
     load("../data/monthly_revision_fixture_2026.json"),
     load("../data/agent_logic_config.json"),
     loadOptional("../data/agent_demo_traces.json", null),
     loadOptional("../output/evals/logic_option_eval_latest.json", null),
     load("../data/planning_evidence_rules_2026.json"),
     load("../data/data_source_dictionary.json"),
-    load("../data/admiral_synthetic_fixture_2026.json"),
+    load("../data/freemans_synthetic_fixture_2026.json"),
   ]);
 
   state.plans = Object.fromEntries(SCENARIOS.map((scenario, index) => [scenario, plans[index]]));
@@ -1204,8 +1203,8 @@ function renderTable() {
   // Answers "if I'm giving you this budget, how are you optimising that by
   // month?" directly in the table, rather than only as a single annual
   // figure elsewhere on the page - always shows budget £ regardless of
-  // the current Budget/Cost per Policy/Confidence/Share % toggle, since
-  // summing a cost-per-policy figure or a confidence label across channels
+  // the current Budget/Cost per Order/Confidence/Share % toggle, since
+  // summing a cost-per-order figure or a confidence label across channels
   // isn't meaningful.
   const monthTotals = MONTHS.map((month) =>
     plan.monthly_allocations.filter((item) => item.month === month).reduce((sum, item) => sum + item.budget_gbp, 0)
@@ -1303,7 +1302,7 @@ function renderBubbleChart(plan) {
     const y = topPadding + i * rowHeight + rowHeight / 2;
     const x = xScale(row.spend);
     const r = rScale(row.policySales);
-    const tooltip = `${row.label}: ${money.format(row.spend)} annual spend, ${number.format(row.policySales)} forecast new policy sales.${row.note ? " " + row.note : ""}`;
+    const tooltip = `${row.label}: ${money.format(row.spend)} annual spend, ${number.format(row.policySales)} forecast new customer orders.${row.note ? " " + row.note : ""}`;
     return `
       <g>
         <line x1="${labelWidth}" y1="${y}" x2="${viewBoxWidth - rightPadding}" y2="${y}" class="bubble-guide" />
@@ -1323,8 +1322,8 @@ function renderBubbleChart(plan) {
   }).join("");
 
   return `
-    <p class="table-hint">Bubble position (left to right) shows annual spend. Bubble size shows forecast new policy sales. Hover a bubble for exact figures.</p>
-    <svg viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}" class="bubble-chart" role="img" aria-label="Annual spend and forecast new policy sales by channel">
+    <p class="table-hint">Bubble position (left to right) shows annual spend. Bubble size shows forecast new customer orders. Hover a bubble for exact figures.</p>
+    <svg viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}" class="bubble-chart" role="img" aria-label="Annual spend and forecast new customer orders by channel">
       ${rowEls}
       ${axisEls}
     </svg>
@@ -1484,7 +1483,7 @@ function renderEvidence() {
       <div class="metric"><span>Monthly Budget</span><strong>${money.format(row.budget_gbp)}</strong></div>
       <div class="metric"><span>Annual Channel Budget</span><strong>${channelTotal ? money.format(channelTotal.budget_gbp) : "Not available"}</strong></div>
       <div class="metric"><span>% of Monthly Spend</span><strong>${row.budget_share_pct}%</strong></div>
-      <div class="metric"><span>Forecast Cost per Policy</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
+      <div class="metric"><span>Forecast Cost per Order</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
       <div class="metric"><span>Confidence</span><strong class="confidence-${row.confidence.replace(" ", "-")}">${row.confidence}</strong></div>
     </div>
     <div>
@@ -1541,7 +1540,7 @@ function renderLogicChallenges() {
         <div>
           <span>Best achievable forecast</span>
           <strong>${number.format(feasibility.best_new_policy_sales)} at ${costPerPolicyMoney.format(feasibility.best_cost_per_policy_gbp)}</strong>
-          <p>Gap: ${number.format(feasibility.policy_sales_gap)} new policy sales and £${feasibility.cost_per_policy_gap_gbp} cost per policy.</p>
+          <p>Gap: ${number.format(feasibility.policy_sales_gap)} new customer orders and £${feasibility.cost_per_policy_gap_gbp} cost per order.</p>
         </div>
         <div>
           <span>Current top logic</span>
@@ -1605,7 +1604,7 @@ function renderLogicChallenges() {
     area: "Brief Priority",
     title: priority.label,
     body: priority.brief_text_summary,
-    status: ["april_december_tentpoles", "greater_london_growth", "channel_role_clarity"].includes(priority.priority_id) ? "big" : "medium",
+    status: ["autumn_winter_bf_christmas_peaks", "multicar_household_growth", "channel_role_clarity"].includes(priority.priority_id) ? "big" : "medium",
   }));
 
   document.querySelector("#logicChallenges").innerHTML = [...logicChallenges, ...priorityChallenges]
@@ -1862,7 +1861,7 @@ function renderScenarioProposalReview() {
         <label><span>Performance</span><input id="proposalPerformance" type="number" step="0.05" value="${config.weights.performance_channels}" /></label>
         <label><span>Test budget</span><input id="proposalTest" type="number" step="0.05" value="${config.weights.test_budget}" /></label>
       </div>
-      <label class="field-label" for="proposalCpaFactor">Forecast cost-per-policy factor (1.0 = neutral, lower = more efficient)</label>
+      <label class="field-label" for="proposalCpaFactor">Forecast cost-per-order factor (1.0 = neutral, lower = more efficient)</label>
       <input id="proposalCpaFactor" type="number" step="0.01" class="short-input" value="${config.forecast_cost_per_policy_factor ?? 1.0}" />
       <label class="field-label">Channel guardrails (already include the baseline's own Step 2 settings, carried forward - change any value to override it for this scenario)</label>
       <div class="source-table-wrap">
@@ -1917,7 +1916,7 @@ function renderScenarioBuilder() {
       </div>
       <div>
         <label class="field-label" for="scenarioFreeText">Additional scenario (free text)</label>
-        <textarea id="scenarioFreeText" rows="3" placeholder="e.g. Grow EV and telematics quote demand hard this year, protect brand-search share, cap OOH at 8%."></textarea>
+        <textarea id="scenarioFreeText" rows="3" placeholder="e.g. Grow Electricals & Home Tech and Flexi Pay checkout demand hard this year, protect brand-search share, cap OOH at 8%."></textarea>
         <button class="secondary-button" type="button" id="proposeScenario" ${disabled}>Propose scenario</button>
       </div>
     </div>
@@ -1952,7 +1951,7 @@ function scenarioCard({ key, label, plan, pass, body, isBaseline }) {
       </div>
       <div class="scenario-metrics">
         <div><span>Forecast</span><strong>${number.format(plan.forecast_new_policy_sales)}</strong></div>
-        <div><span>Cost per Policy</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
+        <div><span>Cost per Order</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
         <div><span>Gap</span><strong>${number.format(Math.max(0, plan.brief_test.policy_sales_target - plan.forecast_new_policy_sales))}</strong></div>
       </div>
       <div class="scenario-body">${body}</div>
@@ -2123,7 +2122,7 @@ function renderScenarioDrilldownEvidence() {
       <div class="metric"><span>Monthly Budget</span><strong>${money.format(row.budget_gbp)}</strong></div>
       <div class="metric"><span>Annual Channel Budget</span><strong>${channelTotal ? money.format(channelTotal.budget_gbp) : "Not available"}</strong></div>
       <div class="metric"><span>% of Monthly Spend</span><strong>${row.budget_share_pct}%</strong></div>
-      <div class="metric"><span>Forecast Cost per Policy</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
+      <div class="metric"><span>Forecast Cost per Order</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
       <div class="metric"><span>Confidence</span><strong class="confidence-${row.confidence.replace(" ", "-")}">${row.confidence}</strong></div>
     </div>
     <div>
@@ -2170,12 +2169,10 @@ function isRevisionMonthEligible(month) {
 // sentence per month.
 function monthlyRevisionCalendarContext(month) {
   const items = calendarItemsForMonth(month, CALENDAR_ALL_FILTERS_ON);
-  // "draw" is the legacy lottery draw/deadline category from the calendar
-  // data source this demo was cloned from - it has no place in a car
-  // insurance media revision (see brief master acceptance criteria: no
-  // draw/lottery references visible anywhere), so it's excluded here
-  // regardless of what the Events Calendar page itself does with that
-  // category/data source.
+  // "draw" is a legacy category from an earlier version of this calendar
+  // data source - it has no place in a retail media revision, so it's
+  // excluded here regardless of what the Events Calendar page itself does
+  // with that category/data source.
   const eligible = items.filter((item) => item.category !== "draw");
   return {
     weather: eligible.filter((item) => item.category === "weather"),
@@ -2412,15 +2409,15 @@ function renderMonthlyRevision() {
       <div class="revision-card">
         <strong>Prior-month rolling performance</strong>
         <dl class="revision-dl">
-          <div><dt>New policy sales (actual)</dt><dd>${number.format(fixture.sales_actuals.new_policy_sales)} vs ${number.format(fixture.sales_actuals.target_new_policy_sales)}</dd></div>
-          <div><dt>Actual Cost per Policy</dt><dd>${costPerPolicyMoney.format(fixture.sales_actuals.cost_per_policy_gbp)} vs ${costPerPolicyMoney.format(fixture.sales_actuals.target_cost_per_policy_gbp)}</dd></div>
+          <div><dt>New customer orders (actual)</dt><dd>${number.format(fixture.sales_actuals.new_policy_sales)} vs ${number.format(fixture.sales_actuals.target_new_policy_sales)}</dd></div>
+          <div><dt>Actual Cost per Order</dt><dd>${costPerPolicyMoney.format(fixture.sales_actuals.cost_per_policy_gbp)} vs ${costPerPolicyMoney.format(fixture.sales_actuals.target_cost_per_policy_gbp)}</dd></div>
           <div><dt>Delivery index</dt><dd>${fixture.sales_actuals.delivery_index}</dd></div>
-          ${fixture.sales_actuals.quote_starts ? `<div><dt>Quote starts</dt><dd>${number.format(fixture.sales_actuals.quote_starts)}</dd></div>` : ""}
-          ${fixture.sales_actuals.quote_to_policy_conversion_pct ? `<div><dt>Quote-to-policy conversion</dt><dd>${fixture.sales_actuals.quote_to_policy_conversion_pct}%</dd></div>` : ""}
-          ${fixture.sales_actuals.pcw_visibility_index ? `<div><dt>PCW visibility index (context only)</dt><dd>${fixture.sales_actuals.pcw_visibility_index}</dd></div>` : ""}
+          ${fixture.sales_actuals.quote_starts ? `<div><dt>Checkout starts</dt><dd>${number.format(fixture.sales_actuals.quote_starts)}</dd></div>` : ""}
+          ${fixture.sales_actuals.quote_to_policy_conversion_pct ? `<div><dt>Basket-to-order conversion</dt><dd>${fixture.sales_actuals.quote_to_policy_conversion_pct}%</dd></div>` : ""}
+          ${fixture.sales_actuals.pcw_visibility_index ? `<div><dt>Affiliate/Cashback visibility index (context only)</dt><dd>${fixture.sales_actuals.pcw_visibility_index}</dd></div>` : ""}
           ${fixture.sales_actuals.brand_search_index ? `<div><dt>Brand search index (context only)</dt><dd>${fixture.sales_actuals.brand_search_index}</dd></div>` : ""}
         </dl>
-        <p class="table-hint">Quote starts, conversion, PCW visibility and brand-search index are context signals for planner judgement here - they do not feed the revision calculation itself unless a source/rule is explicitly configured.</p>
+        <p class="table-hint">Checkout starts, conversion, affiliate/cashback visibility and brand-search index are context signals for planner judgement here - they do not feed the revision calculation itself unless a source/rule is explicitly configured.</p>
       </div>
       <div class="revision-card">
         <strong>Monthly context</strong>
@@ -2493,7 +2490,7 @@ function chatMessageHtml(message, index) {
           <p class="table-hint">${proposal.rationale || ""}</p>
           <div class="scenario-metrics">
             <div><span>Forecast</span><strong>${number.format(plan.forecast_new_policy_sales)}</strong></div>
-            <div><span>Cost per Policy</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
+            <div><span>Cost per Order</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
             <div><span>vs baseline forecast</span><strong>${plan.forecast_new_policy_sales >= baseline.forecast_new_policy_sales ? "+" : ""}${number.format(plan.forecast_new_policy_sales - baseline.forecast_new_policy_sales)}</strong></div>
           </div>
           ${message.stored
@@ -2562,10 +2559,10 @@ function renderPlanChat() {
             ${current ? `
               <div class="scenario-metrics">
                 <div><span>Forecast</span><strong>${number.format(current.plan.forecast_new_policy_sales)}</strong></div>
-                <div><span>Cost per Policy</span><strong>${costPerPolicyMoney.format(current.plan.forecast_cost_per_policy_gbp)}</strong></div>
+                <div><span>Cost per Order</span><strong>${costPerPolicyMoney.format(current.plan.forecast_cost_per_policy_gbp)}</strong></div>
                 <div><span>Total Budget</span><strong>${money.format(current.plan.total_budget_gbp)}</strong></div>
-                ${current.plan.forecast_quote_starts ? `<div><span>Quote Starts</span><strong>${number.format(current.plan.forecast_quote_starts)}</strong></div>` : ""}
-                ${current.plan.quote_to_policy_conversion_pct ? `<div><span>Quote-to-Policy Conversion</span><strong>${current.plan.quote_to_policy_conversion_pct}%</strong></div>` : ""}
+                ${current.plan.forecast_quote_starts ? `<div><span>Checkout Starts</span><strong>${number.format(current.plan.forecast_quote_starts)}</strong></div>` : ""}
+                ${current.plan.quote_to_policy_conversion_pct ? `<div><span>Basket-to-Order Conversion</span><strong>${current.plan.quote_to_policy_conversion_pct}%</strong></div>` : ""}
               </div>
               <p class="table-hint">${current.label} - ${current.plan.scenario.scenario_assumption || current.plan.scenario.freeform_prompt || ""}</p>
             ` : `<p class="table-hint warning-text">No plan available yet - generate a base plan in Annual Planning first.</p>`}
@@ -3058,7 +3055,7 @@ function renderChannelGuardrails() {
         <tbody>${groupRowsHtml}</tbody>
       </table>
     </div>
-    <p class="table-hint">Strategic Index (0-100, 50 = neutral) is a qualitative channel-value score - e.g. a halo effect or brand-confidence signal - that cost-per-policy and reach evidence don't capture. It tilts the model's own weighting rather than forcing an outcome, unlike Min/Max %. This is entered by a media agency strategist, drawing on the agency's own institutional planning experience and client history for this account - it is deliberately not derived from MMM or cost-per-policy data. Defaults to 50 (neutral) until a strategist overrides it.</p>
+    <p class="table-hint">Strategic Index (0-100, 50 = neutral) is a qualitative channel-value score - e.g. a halo effect or brand-confidence signal - that cost-per-order and reach evidence don't capture. It tilts the model's own weighting rather than forcing an outcome, unlike Min/Max %. This is entered by a media agency strategist, drawing on the agency's own institutional planning experience and client history for this account - it is deliberately not derived from MMM or cost-per-order data. Defaults to 50 (neutral) until a strategist overrides it.</p>
   `;
   renderGenerateGate();
 }
@@ -3218,7 +3215,7 @@ function renderAdminPlansSection() {
       ${rows.length ? `
         <div class="source-table-wrap">
           <table class="source-table">
-            <thead><tr><th>Plan</th><th>Forecast</th><th>Cost per Policy</th><th></th></tr></thead>
+            <thead><tr><th>Plan</th><th>Forecast</th><th>Cost per Order</th><th></th></tr></thead>
             <tbody>
               ${rows.map((row) => `
                 <tr>
@@ -3377,7 +3374,7 @@ function renderCurrentPlanEvidence(plan, selected) {
         <div class="metric"><span>Monthly Budget</span><strong>${money.format(row.budget_gbp)}</strong></div>
         <div class="metric"><span>Annual Channel Budget</span><strong>${channelTotal ? money.format(channelTotal.budget_gbp) : "Not available"}</strong></div>
         <div class="metric"><span>% of Monthly Spend</span><strong>${row.budget_share_pct}%</strong></div>
-        <div class="metric"><span>Forecast Cost per Policy</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
+        <div class="metric"><span>Forecast Cost per Order</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
         <div class="metric"><span>Confidence</span><strong class="confidence-${row.confidence.replace(" ", "-")}">${row.confidence}</strong></div>
       </div>
       <div>
@@ -3439,7 +3436,7 @@ function downloadCurrentPlanExcel(plan) {
     ["Scenario", plan.scenario.label],
     ["Total Budget (GBP)", plan.total_budget_gbp],
     ["Forecast New Policy Sales", plan.forecast_new_policy_sales],
-    ["Forecast Cost per Policy (GBP)", plan.forecast_cost_per_policy_gbp],
+    ["Forecast Cost per Order (GBP)", plan.forecast_cost_per_policy_gbp],
   ];
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(summaryRows), "Summary");
   const budgetRows = [["Channel", ...MONTHS.map(formatMonth), "Total"]];
@@ -3462,7 +3459,7 @@ function renderCurrentPlan() {
     container.innerHTML = `
       <div class="approval-card wide">
         <strong>No plan has been approved yet</strong>
-        <p class="table-hint">Approve a scenario to see its budget, policy-sales forecast, cost per new policy sale, evidence and audit trail here.</p>
+        <p class="table-hint">Approve a scenario to see its budget, sales forecast, cost per new order, evidence and audit trail here.</p>
       </div>
     `;
     return;
@@ -3488,21 +3485,21 @@ function renderCurrentPlan() {
 
     <section class="status-strip" aria-label="Current plan status">
       <div><span>Total Budget</span><strong>${money.format(plan.total_budget_gbp)}</strong></div>
-      <div><span>Forecast New Policy Sales</span><strong>${number.format(policySales)}</strong></div>
-      <div><span>Forecast Cost per Policy</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
-      ${plan.forecast_quote_starts ? `<div><span>Forecast Quote Starts</span><strong>${number.format(plan.forecast_quote_starts)}</strong></div>` : ""}
-      ${plan.quote_to_policy_conversion_pct ? `<div><span>Quote-to-Policy Conversion</span><strong>${plan.quote_to_policy_conversion_pct}%</strong></div>` : ""}
+      <div><span>Forecast New Customer Orders</span><strong>${number.format(policySales)}</strong></div>
+      <div><span>Forecast Cost per Order</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
+      ${plan.forecast_quote_starts ? `<div><span>Forecast Checkout Starts</span><strong>${number.format(plan.forecast_quote_starts)}</strong></div>` : ""}
+      ${plan.quote_to_policy_conversion_pct ? `<div><span>Basket-to-Order Conversion</span><strong>${plan.quote_to_policy_conversion_pct}%</strong></div>` : ""}
       <div><span>Budget Check</span><strong>${plan.qa.budget_balanced && plan.qa.months_balanced ? "Balanced" : "Needs review"}</strong></div>
       <div><span>Brief &amp; Compliance Check</span><strong>${briefPassed ? "Pass" : "Needs work"}</strong></div>
     </section>
     ${dist ? `
     <div class="approval-card wide">
-      <strong>Distribution (PCW) - reported separately from media</strong>
+      <strong>Distribution (Affiliate &amp; Cashback) - reported separately from media</strong>
       <p class="table-hint">${dist.note} <em>${dist.generated_data_banner}</em></p>
-      <section class="status-strip" aria-label="PCW distribution status">
-        <div><span>PCW Visibility Index</span><strong>${dist.pcw_visibility_index}</strong></div>
-        <div><span>PCW Quote Share</span><strong>${dist.quote_share_pct}%</strong></div>
-        <div><span>PCW-to-Sale Conversion</span><strong>${dist.pcw_to_sale_conversion_pct}%</strong></div>
+      <section class="status-strip" aria-label="Affiliate/Cashback distribution status">
+        <div><span>Affiliate/Cashback Visibility Index</span><strong>${dist.pcw_visibility_index}</strong></div>
+        <div><span>Affiliate/Cashback Order Share</span><strong>${dist.quote_share_pct}%</strong></div>
+        <div><span>Affiliate/Cashback-to-Order Conversion</span><strong>${dist.pcw_to_sale_conversion_pct}%</strong></div>
       </section>
     </div>` : ""}
 
@@ -3521,7 +3518,7 @@ function renderCurrentPlan() {
       </div>
       <div class="view-toggle" aria-label="Table display">
         <button class="toggle ${mode === "budget" ? "active" : ""}" type="button" data-current-plan-mode="budget">Budget</button>
-        <button class="toggle ${mode === "cost_per_policy" ? "active" : ""}" type="button" data-current-plan-mode="cost_per_policy">Cost per Policy</button>
+        <button class="toggle ${mode === "cost_per_policy" ? "active" : ""}" type="button" data-current-plan-mode="cost_per_policy">Cost per Order</button>
         <button class="toggle ${mode === "confidence" ? "active" : ""}" type="button" data-current-plan-mode="confidence">Confidence</button>
       </div>
       <button class="secondary-button" type="button" id="exportCurrentPlan">Export plan (CSV)</button>
@@ -3729,7 +3726,7 @@ function renderApproval() {
 
     <div class="approval-card ${isCurrentApproved ? "ready" : ""}">
       <strong>${statusLabels[approvalStatus] || approvalStatus}${isCurrentApproved ? " · This is the current approved plan" : ""}</strong>
-      <p>${plan.scenario.label} (${current.kind === "fixture" ? "demo fixture" : "live"}) · ${number.format(plan.forecast_new_policy_sales)} forecast new policy sales · ${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)} cost per policy · ${money.format(plan.total_budget_gbp)} budget.</p>
+      <p>${plan.scenario.label} (${current.kind === "fixture" ? "demo fixture" : "live"}) · ${number.format(plan.forecast_new_policy_sales)} forecast new customer orders · ${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)} cost per order · ${money.format(plan.total_budget_gbp)} budget.</p>
     </div>
 
     <div class="approval-card">
@@ -3740,8 +3737,8 @@ function renderApproval() {
     <div class="approval-card wide">
       <strong>Active warnings</strong>
       <div class="config-actions" style="margin-bottom:10px;">
-        <span class="status-pill ${clearsPolicySalesTarget ? "good" : "warning"}">${clearsPolicySalesTarget ? "Clears" : "Does not clear"} policy sales target</span>
-        <span class="status-pill ${clearsBriefCostPerPolicy ? "good" : "warning"}">${clearsBriefCostPerPolicy ? "Clears" : "Does not clear"} brief cost per policy</span>
+        <span class="status-pill ${clearsPolicySalesTarget ? "good" : "warning"}">${clearsPolicySalesTarget ? "Clears" : "Does not clear"} customer orders target</span>
+        <span class="status-pill ${clearsBriefCostPerPolicy ? "good" : "warning"}">${clearsBriefCostPerPolicy ? "Clears" : "Does not clear"} brief cost per order</span>
         <span class="status-pill ${plan.state_model?.status === "warning" ? "warning" : "good"}">${plan.state_model?.status || "unknown"} readiness</span>
       </div>
       ${effectiveWarnings(current).length ? `
@@ -4444,12 +4441,12 @@ function downloadPlanExcel() {
     ["Scenario", plan.scenario.label],
     ["Total Budget (GBP)", plan.total_budget_gbp],
     ["Forecast New Policy Sales", plan.forecast_new_policy_sales],
-    ["Forecast Cost per Policy (GBP)", plan.forecast_cost_per_policy_gbp],
+    ["Forecast Cost per Order (GBP)", plan.forecast_cost_per_policy_gbp],
     [],
-    ["Policy Sales Target", plan.brief_test.policy_sales_target],
-    ["Brief Cost per Policy Target (GBP)", plan.brief_test.brief_cost_per_policy_gbp],
-    ["Clears Policy Sales Target", plan.brief_test.clears_policy_sales_target ? "Yes" : "No"],
-    ["Clears Brief Cost per Policy", plan.brief_test.clears_brief_cost_per_policy ? "Yes" : "No"],
+    ["Customer Orders Target", plan.brief_test.policy_sales_target],
+    ["Brief Cost per Order Target (GBP)", plan.brief_test.brief_cost_per_policy_gbp],
+    ["Clears Customer Orders Target", plan.brief_test.clears_policy_sales_target ? "Yes" : "No"],
+    ["Clears Brief Cost per Order", plan.brief_test.clears_brief_cost_per_policy ? "Yes" : "No"],
     [],
     ["Scenario Assumption", plan.scenario.scenario_assumption || plan.scenario.freeform_prompt || ""],
   ];
@@ -4473,7 +4470,7 @@ function downloadPlanExcel() {
     });
     acquisitionRows.push([channel, ...values, values.reduce((a, b) => a + b, 0)]);
   });
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(acquisitionRows), "New Policy Sales by Channel-Month");
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(acquisitionRows), "New Customer Orders by Channel-Month");
 
   const evidenceRows = [["Month", "Channel", "Budget (GBP)", "Confidence", "Rationale", "Brief Hooks", "Sources"]];
   plan.monthly_allocations.forEach((row) => {
@@ -4517,7 +4514,7 @@ function downloadRevisionExcel(candidate) {
     ["Prior Month (actuals basis)", formatMonth(candidate.prior_month)],
     ["Total Budget (GBP)", candidate.total_budget_gbp],
     ["Forecast New Policy Sales", candidate.forecast_new_policy_sales],
-    ["Forecast Cost per Policy (GBP)", candidate.forecast_cost_per_policy_gbp],
+    ["Forecast Cost per Order (GBP)", candidate.forecast_cost_per_policy_gbp],
     [],
     ["Status", "Draft revision candidate - requires approval before becoming plan truth."],
   ];

@@ -1,16 +1,16 @@
 {
-  "generated_data_banner": "SYNTHETIC DEMO DATA - illustrative only, does not represent Admiral's actual budget, forecasts or performance",
+  "generated_data_banner": "SYNTHETIC DEMO DATA - illustrative only, does not represent Freemans' actual budget, forecasts or performance",
   "generated_on": "2026-08-19",
   "status": "synthetic_fixture",
   "source_id": "synthetic_admiral_motor_demo",
-  "description": "Single source-of-truth synthetic fixture for headline planning numbers used across this demo (annual budget, forecast new policy sales, cost per new policy sale, monthly budget weights, channel taxonomy). All figures here are clearly-labelled illustrative placeholders, not Admiral performance data - see brief section 5.",
+  "description": "Single source-of-truth synthetic fixture for headline planning numbers used across this demo (annual budget, forecast new customer orders, cost per new order, monthly budget weights, channel taxonomy). All figures here are clearly-labelled illustrative placeholders, not Freemans performance data - see brief section 5.",
   "annual_summary": {
     "total_media_budget_gbp": 48000000,
     "forecast_new_policy_sales": 240000,
     "cost_per_new_policy_sale_gbp": 200,
     "forecast_quote_starts": 2000000,
     "quote_to_policy_conversion_pct": 12,
-    "note": "cost_per_new_policy_sale_gbp = total_media_budget_gbp / forecast_new_policy_sales. forecast_quote_starts = forecast_new_policy_sales / (quote_to_policy_conversion_pct / 100). Media budget excludes PCW distribution spend, which is measured separately - see distribution_summary."
+    "note": "cost_per_new_policy_sale_gbp = total_media_budget_gbp / forecast_new_policy_sales. forecast_quote_starts = forecast_new_policy_sales / (quote_to_policy_conversion_pct / 100). Media budget excludes affiliate/cashback distribution spend, which is measured separately - see distribution_summary."
   },
   "monthly_budget_weights_pct": {
     "2026-01": 9,
@@ -26,7 +26,7 @@
     "2026-11": 7,
     "2026-12": 8
   },
-  "monthly_budget_weights_note": "March and September are illustrative UK plate-change peaks (1 March / 1 September registration changes are a real public UK motoring fact) - the specific weight values are a synthetic planning assumption for this demo, not evidence of Admiral's actual phasing.",
+  "monthly_budget_weights_note": "March and September are illustrative UK seasonal trading peaks (1 March / 1 September registration changes are a real public UK retail trading fact) - the specific weight values are a synthetic planning assumption for this demo, not evidence of Freemans' actual phasing.",
   "channel_annual_share_pct": {
     "AV": 30,
     "OOH": 8,
@@ -57,7 +57,7 @@
     },
     "demand_capture": {
       "label": "Demand capture",
-      "description": "Capture active shoppers and move them into the quote journey.",
+      "description": "Capture active shoppers and move them into the checkout journey.",
       "channels": [
         "Paid Search",
         "Paid Social"
@@ -77,7 +77,7 @@
     },
     "distribution": {
       "label": "Distribution",
-      "description": "Price-comparison websites and approved affiliates. Measured on ranking, quote share and sale conversion - kept separate from impression-based media budget and the media-mix chart.",
+      "description": "Affiliate and cashback sites and approved affiliates. Measured on ranking, order share and sale conversion - kept separate from impression-based media budget and the media-mix chart.",
       "channels": []
     }
   },
@@ -218,33 +218,33 @@
     "2026-12": 3840000
   },
   "distribution_summary": {
-    "generated_data_banner": "SYNTHETIC DEMO DATA - illustrative only, not Admiral PCW performance",
+    "generated_data_banner": "SYNTHETIC DEMO DATA - illustrative only, not Freemans affiliate/cashback performance",
     "channel_group": "distribution",
     "source_id": "adm_pcw_performance",
-    "note": "Price-comparison websites are a distribution channel, not impression-based media - reported separately from the media budget/mix above and measured on ranking, quote share and sale conversion.",
+    "note": "Affiliate and cashback sites are a distribution channel, not impression-based media - reported separately from the media budget/mix above and measured on ranking, order share and sale conversion.",
     "pcw_visibility_index": 1,
     "quote_share_pct": 38.5,
     "pcw_to_sale_conversion_pct": 9.4,
     "approved_partners_illustrative": [
-      "PCW Partner A",
-      "PCW Partner B",
-      "PCW Partner C"
+      "Affiliate Partner A",
+      "Affiliate Partner B",
+      "Affiliate Partner C"
     ]
   },
   "data_readiness_groups": {
     "effectiveness_modelling": "Effectiveness & Modelling - MMM, incrementality tests, experiments, response curves, attribution, brand lift.",
-    "quote_policy_renewal": "Quote, Policy & Renewal Performance - quote starts, completions, policy sales, cost per policy, product, vehicle, geography, renewals, cancellations.",
-    "pcw_distribution": "PCW & Distribution Performance - position, click, quote and sale feeds, commissions, attribution rules, freshness.",
-    "customer_vehicle_audience": "Customer, Vehicle & Audience Data - approved aggregate segments for MultiCar, young/new drivers, telematics, EV/ICE, life stage, geography.",
-    "pricing_risk_guardrails": "Pricing, Risk & Commercial Guardrails - only approved aggregate constraints or value bands; detailed pricing/underwriting logic stays outside the planner and LLM.",
+    "quote_policy_renewal": "Quote, Policy & Renewal Performance - checkout starts, completions, customer orders, cost per policy, product, vehicle, geography, renewals, cancellations.",
+    "pcw_distribution": "Affiliate/Cashback & Distribution Performance - position, click, quote and sale feeds, commissions, attribution rules, freshness.",
+    "customer_vehicle_audience": "Customer & Audience Data - approved aggregate segments for Multi-Category, new customers, Flexi Pay, Electricals/Home Tech, life stage, geography.",
+    "pricing_risk_guardrails": "Pricing, Risk & Commercial Guardrails - only approved aggregate constraints or value bands; detailed pricing/credit-risk logic stays outside the planner and LLM.",
     "plans_budgets_creative_approvals": "Plans, Budgets, Creative & Approvals - annual brief, media budget, channel plans, creative matrix, claims substantiation, promotion approvals.",
     "digital_crm_platform": "Digital, CRM & Platform Data - paid-search, social, programmatic, website analytics, CRM, app reporting.",
-    "market_competitor_context": "Market, Competitor & Context Signals - premiums, search interest, plate changes, weather, road safety, competitor bursts, regulatory changes.",
+    "market_competitor_context": "Market, Competitor & Context Signals - prices, search interest, seasonal trading peaks, weather, retail safety, competitor bursts, regulatory changes.",
     "media_owner_channel": "Media Owner & Channel Data - reach, frequency, delivery, rate cards, inventory, audience availability."
   },
   "caveats": [
-    "All figures in this file are synthetic and illustrative. They do not represent Admiral's actual budget, forecasts, quote volumes or cost-per-policy performance.",
+    "All figures in this file are synthetic and illustrative. They do not represent Freemans' actual budget, forecasts, quote volumes or cost-per-order performance.",
     "The six generated_plan_*.json scenario files carry their own (separately-scaled) synthetic numbers pending the Scenarios workstream's full regeneration onto this fixture's basis.",
-    "PCW distribution figures are illustrative placeholders and must not be read as validated Admiral PCW economics."
+    "affiliate/cashback distribution figures are illustrative placeholders and must not be read as validated Freemans affiliate/cashback economics."
   ]
 }

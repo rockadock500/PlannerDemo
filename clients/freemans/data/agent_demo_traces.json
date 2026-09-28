@@ -53,7 +53,7 @@
         {
           "type": "risk",
           "title": "Forecasts do not meet brief acquisition or CPA targets",
-          "detail": "Despite efficiency efforts, the plan's forecast acquisitions (984,492) are below the 1,000,000 target, and the forecast CPA (GBP 66.71) exceeds the GBP 65 brief CPA.",
+          "detail": "Despite efficiency efforts, the plan's forecast orders (984,492) are below the 1,000,000 target, and the forecast CPA (GBP 66.71) exceeds the GBP 65 brief CPA.",
           "source_ids": [
             "agent_demo_trace_v1"
           ],
@@ -77,7 +77,7 @@
         {
           "type": "risk",
           "title": "Plan Fails to Meet Brief CPA and Acquisition Targets",
-          "detail": "The forecast CPA of GBP 66.71 exceeds the brief target of GBP 65.00, and forecast acquisitions of 984,492 fall short of the 1,000,000 target.",
+          "detail": "The forecast CPA of GBP 66.71 exceeds the brief target of GBP 65.00, and forecast orders of 984,492 fall short of the 1,000,000 target.",
           "source_ids": [
             "adm_planning_evidence_rules_2026"
           ],
@@ -131,7 +131,7 @@
         {
           "type": "risk",
           "title": "Efficiency Recovery Scenario Misses Brief Targets",
-          "detail": "The current plan's forecast acquisitions (984,492) and CPA (GBP 66.71) do not meet the brief's target of 1,000,000 acquisitions and GBP 65 CPA.",
+          "detail": "The current plan's forecast orders (984,492) and CPA (GBP 66.71) do not meet the brief's target of 1,000,000 acquisitions and GBP 65 CPA.",
           "source_ids": [
             "adm_planning_evidence_rules_2026"
           ],

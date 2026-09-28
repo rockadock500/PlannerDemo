@@ -1,11 +1,11 @@
 {
-  "registry_version": "v2_admiral_synthetic",
-  "created_for": "Admiral AI Media Planner - Synthetic Demo",
+  "registry_version": "v2_freemans_synthetic",
+  "created_for": "Freemans AI Media Planner - Synthetic Demo",
   "created_on": "2026-06-26",
   "sources": [
     {
       "source_id": "adm_annual_media_brief",
-      "name": "Admiral 2026 Media Briefing",
+      "name": "Freemans 2026 Media Briefing",
       "path": "sample-docs/admiral/2026-media-briefing.docx",
       "status": "client_supplied",
       "strength": "primary",
@@ -19,35 +19,35 @@
     },
     {
       "source_id": "adm_media_budget",
-      "name": "Admiral 2026 Budget-Targets workbook",
+      "name": "Freemans 2026 Budget-Targets workbook",
       "path": "sample-docs/admiral/2026-budget-targets.xlsx",
       "status": "client_supplied",
       "strength": "primary",
       "used_for": [
         "monthly budgets",
-        "monthly new policy sales targets",
-        "cost-per-policy targets",
+        "monthly new customer orders targets",
+        "cost-per-order targets",
         "campaign calendar labels"
       ],
       "readiness_group": "plans_budgets_creative_approvals"
     },
     {
       "source_id": "adm_mmm_deck_2026",
-      "name": "Admiral MMM readout, June 2025 to April 2026 (synthetic demo deck)",
+      "name": "Freemans MMM readout, June 2025 to April 2026 (synthetic demo deck)",
       "path": "sample-docs/admiral/mmm-jun25-apr26.pptx",
       "status": "client_supplied",
       "strength": "primary",
       "used_for": [
         "MMM channel recommendations",
         "CPS evidence",
-        "plate-change month phasing",
+        "peak trading month phasing",
         "planning logic"
       ],
       "readiness_group": "effectiveness_modelling"
     },
     {
       "source_id": "scope_pdf_page_15",
-      "name": "Admiral Media Planner Scope Overview - Future State Annual Planning Workflow",
+      "name": "Freemans Media Planner Scope Overview - Future State Annual Planning Workflow",
       "path": "sample-docs/admiral/media-planner-scope-overview-v1.pdf",
       "status": "client_supplied",
       "strength": "primary",
@@ -65,14 +65,14 @@
       "strength": "primary",
       "used_for": [
         "monthly budgets",
-        "monthly new policy sales targets",
-        "cost-per-policy targets"
+        "monthly new customer orders targets",
+        "cost-per-order targets"
       ],
       "readiness_group": "plans_budgets_creative_approvals"
     },
     {
       "source_id": "scope_pdf_page_22",
-      "name": "Admiral Scope Overview - Annual Planning Workspace (p.22)",
+      "name": "Freemans Scope Overview - Annual Planning Workspace (p.22)",
       "path": "sample-docs/admiral/media-planner-scope-overview-v1.pdf",
       "status": "client_supplied",
       "strength": "primary",
@@ -85,7 +85,7 @@
     },
     {
       "source_id": "agent_architecture_blueprint",
-      "name": "Admiral AI Media Planner Agent Architecture Blueprint",
+      "name": "Freemans AI Media Planner Agent Architecture Blueprint",
       "path": "sample-docs/admiral/ai-planner-agent-architecture.html",
       "status": "internal_blueprint",
       "strength": "supporting",
@@ -97,9 +97,9 @@
       "readiness_group": "digital_crm_platform"
     },
     {
-      "source_id": "signal_admiral_motor_scan",
-      "name": "Signal V2 Admiral Motor scan",
-      "path": "sample-docs/signal-v2/marketing/scans/admiral-motor-competitor-scan.html",
+      "source_id": "signal_freemans_competitor_scan",
+      "name": "Signal V2 Freemans competitor scan",
+      "path": "sample-docs/signal-v2/marketing/scans/freemans-competitor-scan.html",
       "status": "external_proxy_reference",
       "strength": "supporting",
       "used_for": [
@@ -182,8 +182,8 @@
     },
     {
       "source_id": "competitor_campaign_news_monitor",
-      "name": "UK motor-insurance competitor campaign news monitor (not yet connected)",
-      "path": "Not yet connected - would be a news/RSS monitor scoped to UK motor-insurance competitors and aggregators.",
+      "name": "UK retail competitor campaign news monitor (not yet connected)",
+      "path": "Not yet connected - would be a news/RSS monitor scoped to UK fashion/home/electricals retail competitors and affiliates.",
       "status": "not_connected",
       "strength": "monitoring_signal",
       "used_for": [
@@ -387,7 +387,7 @@
     {
       "source_id": "agent_demo_trace_v1",
       "name": "Experimental LLM agent trace",
-      "path": "admiral_demo_fixtures/data/agent_demo_traces.json",
+      "path": "freemans_demo_fixtures/data/agent_demo_traces.json",
       "status": "experimental_agent_output",
       "strength": "non_authoritative",
       "used_for": [
@@ -399,8 +399,8 @@
     },
     {
       "source_id": "agent_logic_config_v1",
-      "name": "Admiral agent logic configuration",
-      "path": "admiral_demo_fixtures/data/agent_logic_config.json",
+      "name": "Freemans agent logic configuration",
+      "path": "freemans_demo_fixtures/data/agent_logic_config.json",
       "status": "demo_configuration",
       "strength": "non_authoritative",
       "used_for": [
@@ -413,8 +413,8 @@
     },
     {
       "source_id": "adm_api_contract_v1",
-      "name": "Admiral API and Postgres contract proposal",
-      "path": "admiral_demo_fixtures/data/adm_api_contract_v1.json",
+      "name": "Freemans API and Postgres contract proposal",
+      "path": "freemans_demo_fixtures/data/adm_api_contract_v1.json",
       "status": "architecture_proposal",
       "strength": "non_authoritative",
       "used_for": [
@@ -427,8 +427,8 @@
     },
     {
       "source_id": "adm_logic_options_v1",
-      "name": "Admiral logic option test configuration",
-      "path": "admiral_demo_fixtures/data/logic_options_v1.json",
+      "name": "Freemans logic option test configuration",
+      "path": "freemans_demo_fixtures/data/logic_options_v1.json",
       "status": "demo_test_config",
       "strength": "non_authoritative",
       "used_for": [
@@ -466,8 +466,8 @@
     },
     {
       "source_id": "adm_response_curve_priors_2026",
-      "name": "Admiral response curve priors 2026 (synthetic demo)",
-      "path": "admiral_demo_fixtures/data/response_curve_priors_2026.json",
+      "name": "Freemans response curve priors 2026 (synthetic demo)",
+      "path": "freemans_demo_fixtures/data/response_curve_priors_2026.json",
       "status": "derived_from_client_source_plus_external_research",
       "strength": "supporting",
       "used_for": [
@@ -578,8 +578,8 @@
     },
     {
       "source_id": "adm_mmm_audit_2026",
-      "name": "Admiral MMM audit and response curve site data (synthetic demo)",
-      "path": "admiral_demo_fixtures/data/mmm_audit_2026.json",
+      "name": "Freemans MMM audit and response curve site data (synthetic demo)",
+      "path": "freemans_demo_fixtures/data/mmm_audit_2026.json",
       "status": "derived_from_client_source_plus_external_research",
       "strength": "supporting",
       "used_for": [
@@ -718,7 +718,7 @@
     {
       "source_id": "synthetic_mmm_v1",
       "name": "Synthetic Kanso-style MMM response proxy, now superseded by client MMM for next iteration",
-      "path": "admiral_prototype_v1/data/channel_performance_benchmarks.json",
+      "path": "freemans_prototype_v1/data/channel_performance_benchmarks.json",
       "status": "synthetic_assumption",
       "strength": "placeholder",
       "used_for": [
@@ -731,7 +731,7 @@
     {
       "source_id": "adm_mmm_channel_mix_2023",
       "name": "Extracted MMM optimal channel mix table (synthetic demo)",
-      "path": "admiral_demo_fixtures/data/mmm_optimal_channel_mix_2023.csv",
+      "path": "freemans_demo_fixtures/data/mmm_optimal_channel_mix_2023.csv",
       "status": "client_supplied_extract",
       "strength": "primary",
       "used_for": [
@@ -744,7 +744,7 @@
     {
       "source_id": "adm_mmm_broad_channel_rollup_2023",
       "name": "Mapped broad-channel rollup of MMM table (synthetic demo)",
-      "path": "admiral_demo_fixtures/data/mmm_broad_channel_rollup_2023.csv",
+      "path": "freemans_demo_fixtures/data/mmm_broad_channel_rollup_2023.csv",
       "status": "derived_from_client_source",
       "strength": "supporting",
       "used_for": [
@@ -756,7 +756,7 @@
     {
       "source_id": "adm_brief_priorities_2026",
       "name": "Extracted 2026 brief priorities (synthetic demo)",
-      "path": "admiral_demo_fixtures/data/brief_priorities_2026.json",
+      "path": "freemans_demo_fixtures/data/brief_priorities_2026.json",
       "status": "client_supplied_extract",
       "strength": "primary",
       "used_for": [
@@ -769,7 +769,7 @@
     {
       "source_id": "adm_planning_evidence_rules_2026",
       "name": "2026 brief plus MMM planning evidence rules (synthetic demo)",
-      "path": "admiral_demo_fixtures/data/planning_evidence_rules_2026.json",
+      "path": "freemans_demo_fixtures/data/planning_evidence_rules_2026.json",
       "status": "derived_from_client_source",
       "strength": "supporting",
       "used_for": [
@@ -783,7 +783,7 @@
     {
       "source_id": "media_owner_benchmarks_v1",
       "name": "Synthetic media owner/platform benchmarks",
-      "path": "admiral_demo_fixtures/data/media_owner_benchmarks.json",
+      "path": "freemans_demo_fixtures/data/media_owner_benchmarks.json",
       "status": "synthetic_assumption",
       "strength": "placeholder",
       "used_for": [
@@ -809,7 +809,7 @@
     {
       "source_id": "synthetic_monthly_revision_actuals_2026",
       "name": "Synthetic monthly revision actuals fixture",
-      "path": "admiral_demo_fixtures/data/monthly_revision_fixture_2026.json",
+      "path": "freemans_demo_fixtures/data/monthly_revision_fixture_2026.json",
       "status": "synthetic_fixture",
       "strength": "placeholder",
       "used_for": [
@@ -822,50 +822,50 @@
     },
     {
       "source_id": "adm_quote_policy_funnel",
-      "name": "Admiral quote-to-policy funnel fixture (synthetic demo)",
-      "path": "data/admiral_synthetic_fixture_2026.json",
+      "name": "Freemans basket-to-order funnel fixture (synthetic demo)",
+      "path": "data/freemans_synthetic_fixture_2026.json",
       "status": "synthetic_fixture",
       "strength": "primary_for_scope",
       "used_for": [
-        "quote starts",
-        "quote-to-policy conversion",
-        "forecast new policy sales",
-        "cost per new policy sale"
+        "checkout starts",
+        "basket-to-order conversion",
+        "forecast new customer orders",
+        "cost per new order"
       ],
       "readiness_group": "quote_policy_renewal"
     },
     {
       "source_id": "adm_pcw_performance",
-      "name": "Admiral PCW distribution performance fixture (synthetic demo)",
-      "path": "data/admiral_synthetic_fixture_2026.json",
+      "name": "Freemans affiliate/cashback distribution performance fixture (synthetic demo)",
+      "path": "data/freemans_synthetic_fixture_2026.json",
       "status": "synthetic_fixture",
       "strength": "placeholder",
       "used_for": [
-        "PCW visibility index",
-        "PCW quote share",
-        "PCW sale conversion",
+        "affiliate/cashback visibility index",
+        "affiliate/cashback order share",
+        "Affiliate/Cashback sale conversion",
         "distribution vs media separation"
       ],
       "readiness_group": "pcw_distribution"
     },
     {
       "source_id": "adm_customer_segments",
-      "name": "Admiral aggregate customer segment fixture (synthetic demo)",
-      "path": "data/admiral_synthetic_fixture_2026.json",
+      "name": "Freemans aggregate customer segment fixture (synthetic demo)",
+      "path": "data/freemans_synthetic_fixture_2026.json",
       "status": "synthetic_assumption",
       "strength": "supporting",
       "used_for": [
-        "MultiCar household aggregate segment",
-        "young/new driver aggregate segment",
-        "telematics aggregate segment",
+        "Multi-Category household aggregate segment",
+        "young/new customer aggregate segment",
+        "Flexi Pay aggregate segment",
         "EV/ICE aggregate segment"
       ],
       "readiness_group": "customer_vehicle_audience"
     },
     {
       "source_id": "adm_brand_tracker",
-      "name": "Admiral brand tracker fixture (synthetic demo)",
-      "path": "data/admiral_synthetic_fixture_2026.json",
+      "name": "Freemans brand tracker fixture (synthetic demo)",
+      "path": "data/freemans_synthetic_fixture_2026.json",
       "status": "synthetic_assumption",
       "strength": "supporting",
       "used_for": [
@@ -877,8 +877,8 @@
     },
     {
       "source_id": "adm_promotion_approvals",
-      "name": "Admiral financial-promotion approvals log (synthetic demo)",
-      "path": "data/admiral_synthetic_fixture_2026.json",
+      "name": "Freemans financial-promotion approvals log (synthetic demo)",
+      "path": "data/freemans_synthetic_fixture_2026.json",
       "status": "working_assumption",
       "strength": "supporting",
       "used_for": [
@@ -889,14 +889,14 @@
     },
     {
       "source_id": "synthetic_admiral_motor_demo",
-      "name": "Synthetic Admiral Motor demo fixture (annual budget, forecast policy sales, monthly weights)",
-      "path": "data/admiral_synthetic_fixture_2026.json",
+      "name": "Synthetic Freemans demo fixture (annual budget, forecast customer orders, monthly weights)",
+      "path": "data/freemans_synthetic_fixture_2026.json",
       "status": "synthetic_fixture",
       "strength": "placeholder",
       "used_for": [
         "illustrative annual media budget",
-        "illustrative forecast new policy sales",
-        "illustrative cost per new policy sale",
+        "illustrative forecast new customer orders",
+        "illustrative cost per new order",
         "illustrative monthly budget weights"
       ],
       "readiness_group": "plans_budgets_creative_approvals"
