@@ -1,0 +1,56 @@
+{
+  "source_id": "adm_annual_media_brief",
+  "source_file": "sample-docs/admiral/2026-media-briefing.docx",
+  "objective": "Exceed annual new policy sales target and reduce cost per new policy sale",
+  "policy_sales_target": 1000000,
+  "brief_budget_gbp": 65000000,
+  "brief_cost_per_policy_gbp": 65,
+  "targeting": "MultiCar, EV, telematics and brand-trust growth personas",
+  "planning_priorities": [
+    {
+      "priority_id": "march_september_plate_change_peaks",
+      "label": "1 March and 1 September plate-change peaks",
+      "brief_text_summary": "Maximise sales impact of the March and September plate-change campaigns; plan activations early and focus on efficiency, attention and incremental new policy sales."
+    },
+    {
+      "priority_id": "world_cup_context",
+      "label": "World Cup summer context",
+      "brief_text_summary": "No incremental tentpole budget for the World Cup; combine June/July budgets with contextual, fixture-aware TV and CTV creative rather than blanket inflation."
+    },
+    {
+      "priority_id": "brand_trust_creative_platform",
+      "label": "'Always Looking Out For You' creative platform",
+      "brief_text_summary": "Support the brand-trust platform launch without a fundamental media strategy change; maintain phasing towards proven campaign tactics while building consideration and trust."
+    },
+    {
+      "priority_id": "multicar_household_growth",
+      "label": "MultiCar household growth opportunity",
+      "brief_text_summary": "Demonstrate a combined strategic comms and media approach for incremental MultiCar household growth within the existing budget."
+    },
+    {
+      "priority_id": "ev_growth_opportunity",
+      "label": "EV growth opportunity",
+      "brief_text_summary": "Support Admiral's publicly stated EV strength around switching and plate-change moments; incremental budget considered above the base media budget where the case is strong."
+    },
+    {
+      "priority_id": "pcw_conversion_defence",
+      "label": "PCW conversion defence",
+      "brief_text_summary": "No broad above-the-line promotional push planned for 2026, but paid search and journey investment can be used tactically to defend quote-to-policy conversion if aggregator CPC rises."
+    },
+    {
+      "priority_id": "channel_role_clarity",
+      "label": "Channel role clarity",
+      "brief_text_summary": "Provide clarity on OOH, audio, CTV, Paid Search, Paid Social, Display and partnerships/content roles."
+    },
+    {
+      "priority_id": "commercial_deals",
+      "label": "Commercial opportunity strategy",
+      "brief_text_summary": "Review media savings/value beyond guarantees and consider direct media-owner deal opportunities."
+    },
+    {
+      "priority_id": "testing_framework",
+      "label": "2026 testing framework",
+      "brief_text_summary": "Agree a testing framework based on MultiCar, EV and telematics growth opportunities in collaboration with media investment and insight teams."
+    }
+  ]
+}

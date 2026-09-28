@@ -1,0 +1,11 @@
+{
+  "source_id": "competitor_campaign_news_monitor",
+  "source": "Not yet connected - would be a news/RSS monitor scoped to UK motor-insurance competitor and aggregator campaign activity (e.g. Direct Line, Aviva, LV=, Hastings Direct, Compare the Market, GoCompare, Confused.com).",
+  "note": "Placeholder for the demo. No live feed is connected, so there are no unclassified or notable signals to show yet. When wired up, results should be LLM-filtered down to genuinely distinct competitor or aggregator campaign moments and still get a quick human glance before being treated as planning evidence - do not infer competitor spend as fact from headline volume alone.",
+  "refreshed_at": null,
+  "headlines_scanned": 0,
+  "classification": "not_connected",
+  "needs_human_review": true,
+  "unclassified_signals": [],
+  "notable_campaigns": []
+}
