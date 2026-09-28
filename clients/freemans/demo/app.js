@@ -230,7 +230,7 @@ const agentNodes = [
   {
     name: "Approval",
     type: "state",
-    body: "Tracks Admiral sign-off now, with room for finance or the media agency later.",
+    body: "Tracks Freemans sign-off now, with room for finance or the media agency later.",
   },
   {
     name: "Future Channel Agents",
@@ -1927,7 +1927,7 @@ function renderScenarioBuilder() {
 
 function scenarioCard({ key, label, plan, pass, body, isBaseline }) {
   const preferred = state.preferredScenario?.scenario_id === key;
-  // The 6 stored Admiral scenarios (brief section 5) carry a qualitative
+  // The 6 stored Freemans scenarios (brief section 5) carry a qualitative
   // facts block - objective, changed constraints, affected channels,
   // expected direction of brand/sales outcomes, key risk. Free-text/chat
   // proposed scenarios don't have a matching entry, so this is skipped for
@@ -2017,7 +2017,7 @@ function renderScenarioComparison() {
     // urban growth...") is more useful here than the generic templated
     // scenario_assumption every generated scenario otherwise gets - show it
     // when we have it, falling back to the generic sentence for the 6 stored
-    // Admiral scenario templates (Balanced Growth/Brand Trust Build/...),
+    // Freemans scenario templates (Balanced Growth/Brand Trust Build/...),
     // which don't have one.
     const assumption = entry.rationale || entry.plan.scenario.scenario_assumption || entry.plan.scenario.freeform_prompt;
     const body = `${assumption}
