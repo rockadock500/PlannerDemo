@@ -2,7 +2,7 @@
   "dictionary_version": "v1",
   "source_file": "Freemans Media Planner Data.xlsx (Data Dictionary_Current sheet)",
   "status": "work_in_progress",
-  "note": "This is the client's canonical list of data sources for the planner, not yet reconciled with the live-ingested Postgres source_records. Most Description/Data-quality fields are still blank in the source file - only Event Calendar and MMM have Description filled in so far. How-used fields have now been added by Claude for every source: they describe how each source WOULD feed the deterministic engine if it were fully wired in, grounded in the engine's existing mechanics (channel scoring, response curves, MMM evidence, brief-hooks tagging, guardrails). They are forward-looking / intended-use descriptions, not confirmations that the source is live today - as of this writing only MMM, the Step 1 budget upload and the Step 1 strategy text actually drive the plan's numbers; ThinkBox and ActiveVoice have real documents ingested into Postgres but are not yet consumed by the engine's calculations; everything else has no live document at all. Categories below are Claude's own grouping (not present in the source spreadsheet, which is a flat list). The source spreadsheet had two near-duplicate rows, 'Historic Media Plans' and 'Historical Media Plans' - merged into the single 'Historic Media Plans' entry below.",
+  "note": "This is the client's canonical list of data sources for the planner, not yet reconciled with the live-ingested Postgres source_records. Description fields are left blank by design; the source name plus the How Used and Data Quality columns carry the detail. How-used fields have now been added by Claude for every source: they describe how each source WOULD feed the deterministic engine if it were fully wired in, grounded in the engine's existing mechanics (channel scoring, response curves, MMM evidence, brief-hooks tagging, guardrails). They are forward-looking / intended-use descriptions, not confirmations that the source is live today - as of this writing only MMM, the Step 1 budget upload and the Step 1 strategy text actually drive the plan's numbers; ThinkBox and ActiveVoice have real documents ingested into Postgres but are not yet consumed by the engine's calculations; everything else has no live document at all. Categories below are Claude's own grouping (not present in the source spreadsheet, which is a flat list). The source spreadsheet had two near-duplicate rows, 'Historic Media Plans' and 'Historical Media Plans' - merged into the single 'Historic Media Plans' entry below.",
   "categories": [
     {
       "category_id": "effectiveness_modelling",
@@ -10,7 +10,7 @@
       "sources": [
         {
           "name": "MMM",
-          "description": "Mixed Media Modelling for Freemans",
+          "description": "",
           "how_used": "Live today. Used to create the initial base plan, taking the high-level figures for a breakdown of budget per channel, and to add context to the LLM's and agents. Concretely: refresh_mmm_notes.py reads the newest report and writes mmm_note (analyst commentary) and mmm_optimal_share_pct (per-channel target share) into channel_evidence_notes, which the engine pulls live on every plan generation.",
           "data_quality": "Most recent document no older than 6 months old, contains channel level granularity exported.",
           "match_hints": [
@@ -121,7 +121,7 @@
       "sources": [
         {
           "name": "Event Calendar",
-          "description": "API which provides visibility on events",
+          "description": "",
           "how_used": "Would adjust month-level channel scoring around known event dates (e.g. major news cycles or sporting events affecting AV inventory and cost), letting the plan anticipate and route around or into high-attention periods - today phasing only accounts for the synthetic seasonal trading peak/renewal weighting, not external events.",
           "data_quality": "Updated within the last 2 weeks",
           "match_hints": [],
@@ -194,7 +194,7 @@
         },
         {
           "name": "Touchpoints",
-          "description": "Data from every interaction a customer has with the brand, revealing what a customer responds to at each stage. Key interaction types: Paid Media (ad clicks, video views, sponsored social posts), Owned Assets (website visits, app opens, email newsletters), Earned/Organic (organic search, word-of-mouth, reviews), Direct/In-Store (cash register scans, customer service calls, physical visits).",
+          "description": "",
           "how_used": "Would map which touchpoints acquirers pass through before converting, letting the engine weight channels by their role in the acquisition path (upper-funnel reach vs direct-response close) instead of treating every channel as an independent, direct driver of acquisitions.",
           "data_quality": "",
           "match_hints": []
@@ -224,7 +224,7 @@
         },
         {
           "name": "BARB",
-          "description": "TV audience measurement data.",
+          "description": "",
           "how_used": "Currently only cited as a static fixture source_id (barb_local_predict_2025_2026) attached to AV and CTV/YouTube evidence rows. Live BARB data would replace that fixture citation with real, current audience measurement, recalibrating the AV and CTV/YouTube response curves and confidence ratings run over run instead of a fixed citation.",
           "data_quality": "",
           "match_hints": []
