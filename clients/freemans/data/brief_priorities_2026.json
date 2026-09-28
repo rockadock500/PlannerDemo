@@ -3,7 +3,7 @@
   "source_file": "sample-docs/admiral/2026-media-briefing.docx",
   "objective": "Exceed annual new policy sales target and reduce cost per new policy sale",
   "policy_sales_target": 1000000,
-  "brief_budget_gbp": 65000000,
+  "brief_budget_gbp": 35500000,
   "brief_cost_per_policy_gbp": 65,
   "targeting": "MultiCar, EV, telematics and brand-trust growth personas",
   "planning_priorities": [

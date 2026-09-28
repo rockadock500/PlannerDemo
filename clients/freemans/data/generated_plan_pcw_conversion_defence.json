@@ -31,18 +31,18 @@
     "channel_index": {}
   },
   "brief_id": "annual_brief_2026_admiral_source_v1",
-  "total_budget_gbp": 65674851,
-  "total_allocated_gbp": 65674851,
-  "forecast_new_policy_sales": 984492,
+  "total_budget_gbp": 35562832,
+  "total_allocated_gbp": 35562832,
+  "forecast_new_policy_sales": 533101,
   "forecast_cost_per_policy_gbp": 66.71,
-  "forecast_quote_starts": 8204100,
+  "forecast_quote_starts": 4442508,
   "quote_to_policy_conversion_pct": 12,
   "channel_totals": [
     {
       "channel": "AV",
-      "budget_gbp": 31279838,
+      "budget_gbp": 16937985,
       "share_pct": 47.63,
-      "forecast_new_policy_sales": 438202,
+      "forecast_new_policy_sales": 237286,
       "confidence": "medium-high",
       "mmm_optimal_share_pct": 49.2,
       "mmm_share_source": "fixture_default",
@@ -70,9 +70,9 @@
     },
     {
       "channel": "Audio",
-      "budget_gbp": 2993212,
+      "budget_gbp": 1620820,
       "share_pct": 4.56,
-      "forecast_new_policy_sales": 40096,
+      "forecast_new_policy_sales": 21712,
       "confidence": "medium",
       "mmm_optimal_share_pct": 5.95,
       "mmm_share_source": "fixture_default",
@@ -99,9 +99,9 @@
     },
     {
       "channel": "CTV/YouTube",
-      "budget_gbp": 1120771,
+      "budget_gbp": 606896,
       "share_pct": 1.71,
-      "forecast_new_policy_sales": 17332,
+      "forecast_new_policy_sales": 9385,
       "confidence": "low-medium",
       "mmm_optimal_share_pct": 1.11,
       "mmm_share_source": "fixture_default",
@@ -128,9 +128,9 @@
     },
     {
       "channel": "Direct Mail",
-      "budget_gbp": 22070502,
+      "budget_gbp": 11951143,
       "share_pct": 33.61,
-      "forecast_new_policy_sales": 362324,
+      "forecast_new_policy_sales": 196198,
       "confidence": "medium-high",
       "mmm_optimal_share_pct": 28.33,
       "mmm_share_source": "fixture_default",
@@ -157,9 +157,9 @@
     },
     {
       "channel": "Display/Programmatic",
-      "budget_gbp": 2252319,
+      "budget_gbp": 1219627,
       "share_pct": 3.43,
-      "forecast_new_policy_sales": 27533,
+      "forecast_new_policy_sales": 14909,
       "confidence": "low-medium",
       "mmm_optimal_share_pct": 5.02,
       "mmm_share_source": "fixture_default",
@@ -186,9 +186,9 @@
     },
     {
       "channel": "OOH",
-      "budget_gbp": 1659113,
+      "budget_gbp": 898407,
       "share_pct": 2.53,
-      "forecast_new_policy_sales": 23266,
+      "forecast_new_policy_sales": 12599,
       "confidence": "low",
       "mmm_optimal_share_pct": 0,
       "mmm_share_source": "fixture_default",
@@ -214,9 +214,9 @@
     },
     {
       "channel": "Paid Search",
-      "budget_gbp": 1928936,
+      "budget_gbp": 1044516,
       "share_pct": 2.94,
-      "forecast_new_policy_sales": 37437,
+      "forecast_new_policy_sales": 20272,
       "confidence": "medium",
       "mmm_optimal_share_pct": 1.51,
       "mmm_share_source": "fixture_default",
@@ -243,9 +243,9 @@
     },
     {
       "channel": "Paid Social",
-      "budget_gbp": 2370160,
+      "budget_gbp": 1283438,
       "share_pct": 3.61,
-      "forecast_new_policy_sales": 38302,
+      "forecast_new_policy_sales": 20740,
       "confidence": "medium",
       "mmm_optimal_share_pct": 4.21,
       "mmm_share_source": "fixture_default",
@@ -275,9 +275,9 @@
     {
       "month": "2026-01",
       "channel": "AV",
-      "budget_gbp": 2350735,
+      "budget_gbp": 1272920,
       "budget_share_pct": 47.01,
-      "forecast_new_policy_sales": 33198,
+      "forecast_new_policy_sales": 17977,
       "forecast_cost_per_policy_gbp": 70.81,
       "forecast_cost_per_policy_range_gbp": [
         60.19,
@@ -339,10 +339,10 @@
     {
       "month": "2026-01",
       "channel": "OOH",
-      "budget_gbp": 126474,
+      "budget_gbp": 68486,
       "budget_share_pct": 2.53,
-      "forecast_new_policy_sales": 1738,
-      "forecast_cost_per_policy_gbp": 72.75,
+      "forecast_new_policy_sales": 941,
+      "forecast_cost_per_policy_gbp": 72.78,
       "forecast_cost_per_policy_range_gbp": [
         52.38,
         93.12
@@ -399,9 +399,9 @@
     {
       "month": "2026-01",
       "channel": "Direct Mail",
-      "budget_gbp": 1701594,
+      "budget_gbp": 921411,
       "budget_share_pct": 34.03,
-      "forecast_new_policy_sales": 29237,
+      "forecast_new_policy_sales": 15832,
       "forecast_cost_per_policy_gbp": 58.2,
       "forecast_cost_per_policy_range_gbp": [
         47.72,
@@ -458,10 +458,10 @@
     {
       "month": "2026-01",
       "channel": "CTV/YouTube",
-      "budget_gbp": 85370,
+      "budget_gbp": 46228,
       "budget_share_pct": 1.71,
-      "forecast_new_policy_sales": 1294,
-      "forecast_cost_per_policy_gbp": 65.96,
+      "forecast_new_policy_sales": 701,
+      "forecast_cost_per_policy_gbp": 65.95,
       "forecast_cost_per_policy_range_gbp": [
         50.13,
         81.79
@@ -519,9 +519,9 @@
     {
       "month": "2026-01",
       "channel": "Paid Search",
-      "budget_gbp": 144994,
+      "budget_gbp": 78514,
       "budget_share_pct": 2.9,
-      "forecast_new_policy_sales": 2768,
+      "forecast_new_policy_sales": 1499,
       "forecast_cost_per_policy_gbp": 52.38,
       "forecast_cost_per_policy_range_gbp": [
         44,
@@ -578,10 +578,10 @@
     {
       "month": "2026-01",
       "channel": "Paid Social",
-      "budget_gbp": 183311,
+      "budget_gbp": 99263,
       "budget_share_pct": 3.67,
-      "forecast_new_policy_sales": 2907,
-      "forecast_cost_per_policy_gbp": 63.05,
+      "forecast_new_policy_sales": 1574,
+      "forecast_cost_per_policy_gbp": 63.06,
       "forecast_cost_per_policy_range_gbp": [
         51.7,
         74.4
@@ -637,10 +637,10 @@
     {
       "month": "2026-01",
       "channel": "Audio",
-      "budget_gbp": 233919,
+      "budget_gbp": 126667,
       "budget_share_pct": 4.68,
-      "forecast_new_policy_sales": 3092,
-      "forecast_cost_per_policy_gbp": 75.66,
+      "forecast_new_policy_sales": 1674,
+      "forecast_cost_per_policy_gbp": 75.67,
       "forecast_cost_per_policy_range_gbp": [
         60.53,
         90.79
@@ -696,10 +696,10 @@
     {
       "month": "2026-01",
       "channel": "Display/Programmatic",
-      "budget_gbp": 173603,
+      "budget_gbp": 94006,
       "budget_share_pct": 3.47,
-      "forecast_new_policy_sales": 2081,
-      "forecast_cost_per_policy_gbp": 83.42,
+      "forecast_new_policy_sales": 1127,
+      "forecast_cost_per_policy_gbp": 83.41,
       "forecast_cost_per_policy_range_gbp": [
         63.4,
         103.44
@@ -756,9 +756,9 @@
     {
       "month": "2026-02",
       "channel": "AV",
-      "budget_gbp": 2350735,
+      "budget_gbp": 1272919,
       "budget_share_pct": 47.01,
-      "forecast_new_policy_sales": 33198,
+      "forecast_new_policy_sales": 17977,
       "forecast_cost_per_policy_gbp": 70.81,
       "forecast_cost_per_policy_range_gbp": [
         60.19,
@@ -820,10 +820,10 @@
     {
       "month": "2026-02",
       "channel": "OOH",
-      "budget_gbp": 126474,
+      "budget_gbp": 68485,
       "budget_share_pct": 2.53,
-      "forecast_new_policy_sales": 1738,
-      "forecast_cost_per_policy_gbp": 72.75,
+      "forecast_new_policy_sales": 941,
+      "forecast_cost_per_policy_gbp": 72.78,
       "forecast_cost_per_policy_range_gbp": [
         52.38,
         93.12
@@ -880,9 +880,9 @@
     {
       "month": "2026-02",
       "channel": "Direct Mail",
-      "budget_gbp": 1701594,
+      "budget_gbp": 921411,
       "budget_share_pct": 34.03,
-      "forecast_new_policy_sales": 29237,
+      "forecast_new_policy_sales": 15832,
       "forecast_cost_per_policy_gbp": 58.2,
       "forecast_cost_per_policy_range_gbp": [
         47.72,
@@ -939,10 +939,10 @@
     {
       "month": "2026-02",
       "channel": "CTV/YouTube",
-      "budget_gbp": 85370,
+      "budget_gbp": 46228,
       "budget_share_pct": 1.71,
-      "forecast_new_policy_sales": 1294,
-      "forecast_cost_per_policy_gbp": 65.96,
+      "forecast_new_policy_sales": 701,
+      "forecast_cost_per_policy_gbp": 65.95,
       "forecast_cost_per_policy_range_gbp": [
         50.13,
         81.79
@@ -1000,9 +1000,9 @@
     {
       "month": "2026-02",
       "channel": "Paid Search",
-      "budget_gbp": 144994,
+      "budget_gbp": 78514,
       "budget_share_pct": 2.9,
-      "forecast_new_policy_sales": 2768,
+      "forecast_new_policy_sales": 1499,
       "forecast_cost_per_policy_gbp": 52.38,
       "forecast_cost_per_policy_range_gbp": [
         44,
@@ -1059,10 +1059,10 @@
     {
       "month": "2026-02",
       "channel": "Paid Social",
-      "budget_gbp": 183311,
+      "budget_gbp": 99263,
       "budget_share_pct": 3.67,
-      "forecast_new_policy_sales": 2907,
-      "forecast_cost_per_policy_gbp": 63.05,
+      "forecast_new_policy_sales": 1574,
+      "forecast_cost_per_policy_gbp": 63.06,
       "forecast_cost_per_policy_range_gbp": [
         51.7,
         74.4
@@ -1118,10 +1118,10 @@
     {
       "month": "2026-02",
       "channel": "Audio",
-      "budget_gbp": 233919,
+      "budget_gbp": 126667,
       "budget_share_pct": 4.68,
-      "forecast_new_policy_sales": 3092,
-      "forecast_cost_per_policy_gbp": 75.66,
+      "forecast_new_policy_sales": 1674,
+      "forecast_cost_per_policy_gbp": 75.67,
       "forecast_cost_per_policy_range_gbp": [
         60.53,
         90.79
@@ -1177,10 +1177,10 @@
     {
       "month": "2026-02",
       "channel": "Display/Programmatic",
-      "budget_gbp": 173603,
+      "budget_gbp": 94006,
       "budget_share_pct": 3.47,
-      "forecast_new_policy_sales": 2081,
-      "forecast_cost_per_policy_gbp": 83.42,
+      "forecast_new_policy_sales": 1127,
+      "forecast_cost_per_policy_gbp": 83.41,
       "forecast_cost_per_policy_range_gbp": [
         63.4,
         103.44
@@ -1237,9 +1237,9 @@
     {
       "month": "2026-03",
       "channel": "AV",
-      "budget_gbp": 4344061,
+      "budget_gbp": 2352302,
       "budget_share_pct": 48.27,
-      "forecast_new_policy_sales": 62664,
+      "forecast_new_policy_sales": 33932,
       "forecast_cost_per_policy_gbp": 69.32,
       "forecast_cost_per_policy_range_gbp": [
         58.92,
@@ -1301,10 +1301,10 @@
     {
       "month": "2026-03",
       "channel": "OOH",
-      "budget_gbp": 233719,
+      "budget_gbp": 126559,
       "budget_share_pct": 2.6,
-      "forecast_new_policy_sales": 3315,
-      "forecast_cost_per_policy_gbp": 70.49,
+      "forecast_new_policy_sales": 1795,
+      "forecast_cost_per_policy_gbp": 70.51,
       "forecast_cost_per_policy_range_gbp": [
         50.76,
         90.23
@@ -1361,9 +1361,9 @@
     {
       "month": "2026-03",
       "channel": "Direct Mail",
-      "budget_gbp": 2966486,
+      "budget_gbp": 1606348,
       "budget_share_pct": 32.96,
-      "forecast_new_policy_sales": 48826,
+      "forecast_new_policy_sales": 26439,
       "forecast_cost_per_policy_gbp": 60.76,
       "forecast_cost_per_policy_range_gbp": [
         49.82,
@@ -1420,10 +1420,10 @@
     {
       "month": "2026-03",
       "channel": "CTV/YouTube",
-      "budget_gbp": 157760,
+      "budget_gbp": 85427,
       "budget_share_pct": 1.75,
-      "forecast_new_policy_sales": 2468,
-      "forecast_cost_per_policy_gbp": 63.91,
+      "forecast_new_policy_sales": 1336,
+      "forecast_cost_per_policy_gbp": 63.94,
       "forecast_cost_per_policy_range_gbp": [
         48.58,
         79.25
@@ -1481,10 +1481,10 @@
     {
       "month": "2026-03",
       "channel": "Paid Search",
-      "budget_gbp": 267942,
+      "budget_gbp": 145090,
       "budget_share_pct": 2.98,
-      "forecast_new_policy_sales": 5279,
-      "forecast_cost_per_policy_gbp": 50.76,
+      "forecast_new_policy_sales": 2858,
+      "forecast_cost_per_policy_gbp": 50.77,
       "forecast_cost_per_policy_range_gbp": [
         42.63,
         58.88
@@ -1540,10 +1540,10 @@
     {
       "month": "2026-03",
       "channel": "Paid Social",
-      "budget_gbp": 319576,
+      "budget_gbp": 173050,
       "budget_share_pct": 3.55,
-      "forecast_new_policy_sales": 5231,
-      "forecast_cost_per_policy_gbp": 61.09,
+      "forecast_new_policy_sales": 2833,
+      "forecast_cost_per_policy_gbp": 61.08,
       "forecast_cost_per_policy_range_gbp": [
         50.1,
         72.09
@@ -1599,10 +1599,10 @@
     {
       "month": "2026-03",
       "channel": "Audio",
-      "budget_gbp": 407804,
+      "budget_gbp": 220825,
       "budget_share_pct": 4.53,
-      "forecast_new_policy_sales": 5562,
-      "forecast_cost_per_policy_gbp": 73.31,
+      "forecast_new_policy_sales": 3012,
+      "forecast_cost_per_policy_gbp": 73.32,
       "forecast_cost_per_policy_range_gbp": [
         58.65,
         87.98
@@ -1658,10 +1658,10 @@
     {
       "month": "2026-03",
       "channel": "Display/Programmatic",
-      "budget_gbp": 302652,
+      "budget_gbp": 163885,
       "budget_share_pct": 3.36,
-      "forecast_new_policy_sales": 3744,
-      "forecast_cost_per_policy_gbp": 80.83,
+      "forecast_new_policy_sales": 2027,
+      "forecast_cost_per_policy_gbp": 80.85,
       "forecast_cost_per_policy_range_gbp": [
         61.43,
         100.23
@@ -1718,9 +1718,9 @@
     {
       "month": "2026-04",
       "channel": "AV",
-      "budget_gbp": 2401141,
+      "budget_gbp": 1300214,
       "budget_share_pct": 48.02,
-      "forecast_new_policy_sales": 33910,
+      "forecast_new_policy_sales": 18362,
       "forecast_cost_per_policy_gbp": 70.81,
       "forecast_cost_per_policy_range_gbp": [
         60.19,
@@ -1782,10 +1782,10 @@
     {
       "month": "2026-04",
       "channel": "OOH",
-      "budget_gbp": 129186,
+      "budget_gbp": 69954,
       "budget_share_pct": 2.58,
-      "forecast_new_policy_sales": 1776,
-      "forecast_cost_per_policy_gbp": 72.75,
+      "forecast_new_policy_sales": 962,
+      "forecast_cost_per_policy_gbp": 72.72,
       "forecast_cost_per_policy_range_gbp": [
         52.38,
         93.12
@@ -1842,9 +1842,9 @@
     {
       "month": "2026-04",
       "channel": "Direct Mail",
-      "budget_gbp": 1655315,
+      "budget_gbp": 896350,
       "budget_share_pct": 33.11,
-      "forecast_new_policy_sales": 28442,
+      "forecast_new_policy_sales": 15401,
       "forecast_cost_per_policy_gbp": 58.2,
       "forecast_cost_per_policy_range_gbp": [
         47.72,
@@ -1901,10 +1901,10 @@
     {
       "month": "2026-04",
       "channel": "CTV/YouTube",
-      "budget_gbp": 83048,
+      "budget_gbp": 44970,
       "budget_share_pct": 1.66,
-      "forecast_new_policy_sales": 1259,
-      "forecast_cost_per_policy_gbp": 65.96,
+      "forecast_new_policy_sales": 682,
+      "forecast_cost_per_policy_gbp": 65.94,
       "forecast_cost_per_policy_range_gbp": [
         50.13,
         81.79
@@ -1962,9 +1962,9 @@
     {
       "month": "2026-04",
       "channel": "Paid Search",
-      "budget_gbp": 148103,
+      "budget_gbp": 80198,
       "budget_share_pct": 2.96,
-      "forecast_new_policy_sales": 2827,
+      "forecast_new_policy_sales": 1531,
       "forecast_cost_per_policy_gbp": 52.38,
       "forecast_cost_per_policy_range_gbp": [
         44,
@@ -2021,10 +2021,10 @@
     {
       "month": "2026-04",
       "channel": "Paid Social",
-      "budget_gbp": 178325,
+      "budget_gbp": 96563,
       "budget_share_pct": 3.57,
-      "forecast_new_policy_sales": 2828,
-      "forecast_cost_per_policy_gbp": 63.05,
+      "forecast_new_policy_sales": 1531,
+      "forecast_cost_per_policy_gbp": 63.07,
       "forecast_cost_per_policy_range_gbp": [
         51.7,
         74.4
@@ -2080,10 +2080,10 @@
     {
       "month": "2026-04",
       "channel": "Audio",
-      "budget_gbp": 227557,
+      "budget_gbp": 123222,
       "budget_share_pct": 4.55,
-      "forecast_new_policy_sales": 3008,
-      "forecast_cost_per_policy_gbp": 75.66,
+      "forecast_new_policy_sales": 1629,
+      "forecast_cost_per_policy_gbp": 75.64,
       "forecast_cost_per_policy_range_gbp": [
         60.53,
         90.79
@@ -2139,9 +2139,9 @@
     {
       "month": "2026-04",
       "channel": "Display/Programmatic",
-      "budget_gbp": 177325,
+      "budget_gbp": 96021,
       "budget_share_pct": 3.55,
-      "forecast_new_policy_sales": 2126,
+      "forecast_new_policy_sales": 1151,
       "forecast_cost_per_policy_gbp": 83.42,
       "forecast_cost_per_policy_range_gbp": [
         63.4,
@@ -2199,9 +2199,9 @@
     {
       "month": "2026-05",
       "channel": "AV",
-      "budget_gbp": 1641554,
+      "budget_gbp": 888899,
       "budget_share_pct": 46.9,
-      "forecast_new_policy_sales": 22812,
+      "forecast_new_policy_sales": 12353,
       "forecast_cost_per_policy_gbp": 71.96,
       "forecast_cost_per_policy_range_gbp": [
         61.17,
@@ -2263,10 +2263,10 @@
     {
       "month": "2026-05",
       "channel": "OOH",
-      "budget_gbp": 85747,
+      "budget_gbp": 46432,
       "budget_share_pct": 2.45,
-      "forecast_new_policy_sales": 1160,
-      "forecast_cost_per_policy_gbp": 73.93,
+      "forecast_new_policy_sales": 628,
+      "forecast_cost_per_policy_gbp": 73.94,
       "forecast_cost_per_policy_range_gbp": [
         53.23,
         94.63
@@ -2323,9 +2323,9 @@
     {
       "month": "2026-05",
       "channel": "Direct Mail",
-      "budget_gbp": 1199786,
+      "budget_gbp": 649682,
       "budget_share_pct": 34.28,
-      "forecast_new_policy_sales": 20285,
+      "forecast_new_policy_sales": 10984,
       "forecast_cost_per_policy_gbp": 59.15,
       "forecast_cost_per_policy_range_gbp": [
         48.5,
@@ -2382,10 +2382,10 @@
     {
       "month": "2026-05",
       "channel": "CTV/YouTube",
-      "budget_gbp": 57879,
+      "budget_gbp": 31341,
       "budget_share_pct": 1.65,
-      "forecast_new_policy_sales": 863,
-      "forecast_cost_per_policy_gbp": 67.03,
+      "forecast_new_policy_sales": 467,
+      "forecast_cost_per_policy_gbp": 67.11,
       "forecast_cost_per_policy_range_gbp": [
         50.94,
         83.12
@@ -2443,9 +2443,9 @@
     {
       "month": "2026-05",
       "channel": "Paid Search",
-      "budget_gbp": 102234,
+      "budget_gbp": 55360,
       "budget_share_pct": 2.92,
-      "forecast_new_policy_sales": 1921,
+      "forecast_new_policy_sales": 1040,
       "forecast_cost_per_policy_gbp": 53.23,
       "forecast_cost_per_policy_range_gbp": [
         44.71,
@@ -2502,10 +2502,10 @@
     {
       "month": "2026-05",
       "channel": "Paid Social",
-      "budget_gbp": 132980,
+      "budget_gbp": 72008,
       "budget_share_pct": 3.8,
-      "forecast_new_policy_sales": 2075,
-      "forecast_cost_per_policy_gbp": 64.08,
+      "forecast_new_policy_sales": 1124,
+      "forecast_cost_per_policy_gbp": 64.06,
       "forecast_cost_per_policy_range_gbp": [
         52.54,
         75.61
@@ -2561,10 +2561,10 @@
     {
       "month": "2026-05",
       "channel": "Audio",
-      "budget_gbp": 158591,
+      "budget_gbp": 85877,
       "budget_share_pct": 4.53,
-      "forecast_new_policy_sales": 2063,
-      "forecast_cost_per_policy_gbp": 76.89,
+      "forecast_new_policy_sales": 1117,
+      "forecast_cost_per_policy_gbp": 76.88,
       "forecast_cost_per_policy_range_gbp": [
         61.51,
         92.27
@@ -2620,10 +2620,10 @@
     {
       "month": "2026-05",
       "channel": "Display/Programmatic",
-      "budget_gbp": 121229,
+      "budget_gbp": 65645,
       "budget_share_pct": 3.46,
-      "forecast_new_policy_sales": 1430,
-      "forecast_cost_per_policy_gbp": 84.78,
+      "forecast_new_policy_sales": 774,
+      "forecast_cost_per_policy_gbp": 84.81,
       "forecast_cost_per_policy_range_gbp": [
         64.43,
         105.12
@@ -2680,9 +2680,9 @@
     {
       "month": "2026-06",
       "channel": "AV",
-      "budget_gbp": 2519988,
+      "budget_gbp": 1364570,
       "budget_share_pct": 47.01,
-      "forecast_new_policy_sales": 35303,
+      "forecast_new_policy_sales": 19116,
       "forecast_cost_per_policy_gbp": 71.38,
       "forecast_cost_per_policy_range_gbp": [
         60.67,
@@ -2744,9 +2744,9 @@
     {
       "month": "2026-06",
       "channel": "OOH",
-      "budget_gbp": 135581,
+      "budget_gbp": 73417,
       "budget_share_pct": 2.53,
-      "forecast_new_policy_sales": 1849,
+      "forecast_new_policy_sales": 1001,
       "forecast_cost_per_policy_gbp": 73.34,
       "forecast_cost_per_policy_range_gbp": [
         52.8,
@@ -2804,9 +2804,9 @@
     {
       "month": "2026-06",
       "channel": "Direct Mail",
-      "budget_gbp": 1824109,
+      "budget_gbp": 987752,
       "budget_share_pct": 34.03,
-      "forecast_new_policy_sales": 31091,
+      "forecast_new_policy_sales": 16836,
       "forecast_cost_per_policy_gbp": 58.67,
       "forecast_cost_per_policy_range_gbp": [
         48.11,
@@ -2863,10 +2863,10 @@
     {
       "month": "2026-06",
       "channel": "CTV/YouTube",
-      "budget_gbp": 91517,
+      "budget_gbp": 49556,
       "budget_share_pct": 1.71,
-      "forecast_new_policy_sales": 1376,
-      "forecast_cost_per_policy_gbp": 66.49,
+      "forecast_new_policy_sales": 745,
+      "forecast_cost_per_policy_gbp": 66.52,
       "forecast_cost_per_policy_range_gbp": [
         50.53,
         82.45
@@ -2924,9 +2924,9 @@
     {
       "month": "2026-06",
       "channel": "Paid Search",
-      "budget_gbp": 155433,
+      "budget_gbp": 84167,
       "budget_share_pct": 2.9,
-      "forecast_new_policy_sales": 2944,
+      "forecast_new_policy_sales": 1594,
       "forecast_cost_per_policy_gbp": 52.8,
       "forecast_cost_per_policy_range_gbp": [
         44.35,
@@ -2983,10 +2983,10 @@
     {
       "month": "2026-06",
       "channel": "Paid Social",
-      "budget_gbp": 196509,
+      "budget_gbp": 106409,
       "budget_share_pct": 3.67,
-      "forecast_new_policy_sales": 3092,
-      "forecast_cost_per_policy_gbp": 63.56,
+      "forecast_new_policy_sales": 1674,
+      "forecast_cost_per_policy_gbp": 63.57,
       "forecast_cost_per_policy_range_gbp": [
         52.12,
         75
@@ -3042,10 +3042,10 @@
     {
       "month": "2026-06",
       "channel": "Audio",
-      "budget_gbp": 250761,
+      "budget_gbp": 135787,
       "budget_share_pct": 4.68,
-      "forecast_new_policy_sales": 3288,
-      "forecast_cost_per_policy_gbp": 76.27,
+      "forecast_new_policy_sales": 1781,
+      "forecast_cost_per_policy_gbp": 76.24,
       "forecast_cost_per_policy_range_gbp": [
         61.02,
         91.52
@@ -3101,10 +3101,10 @@
     {
       "month": "2026-06",
       "channel": "Display/Programmatic",
-      "budget_gbp": 186102,
+      "budget_gbp": 100774,
       "budget_share_pct": 3.47,
-      "forecast_new_policy_sales": 2213,
-      "forecast_cost_per_policy_gbp": 84.09,
+      "forecast_new_policy_sales": 1198,
+      "forecast_cost_per_policy_gbp": 84.12,
       "forecast_cost_per_policy_range_gbp": [
         63.91,
         104.28
@@ -3161,9 +3161,9 @@
     {
       "month": "2026-07",
       "channel": "AV",
-      "budget_gbp": 947119,
+      "budget_gbp": 512864,
       "budget_share_pct": 47.36,
-      "forecast_new_policy_sales": 13054,
+      "forecast_new_policy_sales": 7069,
       "forecast_cost_per_policy_gbp": 72.55,
       "forecast_cost_per_policy_range_gbp": [
         61.67,
@@ -3225,10 +3225,10 @@
     {
       "month": "2026-07",
       "channel": "OOH",
-      "budget_gbp": 48530,
+      "budget_gbp": 26279,
       "budget_share_pct": 2.43,
-      "forecast_new_policy_sales": 651,
-      "forecast_cost_per_policy_gbp": 74.54,
+      "forecast_new_policy_sales": 353,
+      "forecast_cost_per_policy_gbp": 74.44,
       "forecast_cost_per_policy_range_gbp": [
         53.67,
         95.41
@@ -3285,9 +3285,9 @@
     {
       "month": "2026-07",
       "channel": "Direct Mail",
-      "budget_gbp": 679049,
+      "budget_gbp": 367704,
       "budget_share_pct": 33.95,
-      "forecast_new_policy_sales": 11387,
+      "forecast_new_policy_sales": 6166,
       "forecast_cost_per_policy_gbp": 59.63,
       "forecast_cost_per_policy_range_gbp": [
         48.9,
@@ -3344,10 +3344,10 @@
     {
       "month": "2026-07",
       "channel": "CTV/YouTube",
-      "budget_gbp": 34396,
+      "budget_gbp": 18625,
       "budget_share_pct": 1.72,
-      "forecast_new_policy_sales": 509,
-      "forecast_cost_per_policy_gbp": 67.58,
+      "forecast_new_policy_sales": 276,
+      "forecast_cost_per_policy_gbp": 67.48,
       "forecast_cost_per_policy_range_gbp": [
         51.36,
         83.8
@@ -3405,10 +3405,10 @@
     {
       "month": "2026-07",
       "channel": "Paid Search",
-      "budget_gbp": 57862,
+      "budget_gbp": 31332,
       "budget_share_pct": 2.89,
-      "forecast_new_policy_sales": 1078,
-      "forecast_cost_per_policy_gbp": 53.67,
+      "forecast_new_policy_sales": 584,
+      "forecast_cost_per_policy_gbp": 53.65,
       "forecast_cost_per_policy_range_gbp": [
         45.08,
         62.25
@@ -3464,10 +3464,10 @@
     {
       "month": "2026-07",
       "channel": "Paid Social",
-      "budget_gbp": 76670,
+      "budget_gbp": 41517,
       "budget_share_pct": 3.83,
-      "forecast_new_policy_sales": 1187,
-      "forecast_cost_per_policy_gbp": 64.6,
+      "forecast_new_policy_sales": 643,
+      "forecast_cost_per_policy_gbp": 64.57,
       "forecast_cost_per_policy_range_gbp": [
         52.97,
         76.23
@@ -3523,9 +3523,9 @@
     {
       "month": "2026-07",
       "channel": "Audio",
-      "budget_gbp": 89759,
+      "budget_gbp": 48604,
       "budget_share_pct": 4.49,
-      "forecast_new_policy_sales": 1158,
+      "forecast_new_policy_sales": 627,
       "forecast_cost_per_policy_gbp": 77.52,
       "forecast_cost_per_policy_range_gbp": [
         62.02,
@@ -3582,10 +3582,10 @@
     {
       "month": "2026-07",
       "channel": "Display/Programmatic",
-      "budget_gbp": 66615,
+      "budget_gbp": 36072,
       "budget_share_pct": 3.33,
-      "forecast_new_policy_sales": 779,
-      "forecast_cost_per_policy_gbp": 85.47,
+      "forecast_new_policy_sales": 422,
+      "forecast_cost_per_policy_gbp": 85.48,
       "forecast_cost_per_policy_range_gbp": [
         64.96,
         105.98
@@ -3642,10 +3642,10 @@
     {
       "month": "2026-08",
       "channel": "AV",
-      "budget_gbp": 1420679,
+      "budget_gbp": 769296,
       "budget_share_pct": 47.36,
-      "forecast_new_policy_sales": 19662,
-      "forecast_cost_per_policy_gbp": 72.26,
+      "forecast_new_policy_sales": 10647,
+      "forecast_cost_per_policy_gbp": 72.25,
       "forecast_cost_per_policy_range_gbp": [
         61.42,
         83.09
@@ -3706,10 +3706,10 @@
     {
       "month": "2026-08",
       "channel": "OOH",
-      "budget_gbp": 72796,
+      "budget_gbp": 39419,
       "budget_share_pct": 2.43,
-      "forecast_new_policy_sales": 981,
-      "forecast_cost_per_policy_gbp": 74.23,
+      "forecast_new_policy_sales": 531,
+      "forecast_cost_per_policy_gbp": 74.24,
       "forecast_cost_per_policy_range_gbp": [
         53.45,
         95.02
@@ -3766,9 +3766,9 @@
     {
       "month": "2026-08",
       "channel": "Direct Mail",
-      "budget_gbp": 1018573,
+      "budget_gbp": 551556,
       "budget_share_pct": 33.95,
-      "forecast_new_policy_sales": 17151,
+      "forecast_new_policy_sales": 9287,
       "forecast_cost_per_policy_gbp": 59.39,
       "forecast_cost_per_policy_range_gbp": [
         48.7,
@@ -3825,10 +3825,10 @@
     {
       "month": "2026-08",
       "channel": "CTV/YouTube",
-      "budget_gbp": 51594,
+      "budget_gbp": 27938,
       "budget_share_pct": 1.72,
-      "forecast_new_policy_sales": 767,
-      "forecast_cost_per_policy_gbp": 67.31,
+      "forecast_new_policy_sales": 415,
+      "forecast_cost_per_policy_gbp": 67.32,
       "forecast_cost_per_policy_range_gbp": [
         51.15,
         83.46
@@ -3886,10 +3886,10 @@
     {
       "month": "2026-08",
       "channel": "Paid Search",
-      "budget_gbp": 86793,
+      "budget_gbp": 46998,
       "budget_share_pct": 2.89,
-      "forecast_new_policy_sales": 1624,
-      "forecast_cost_per_policy_gbp": 53.45,
+      "forecast_new_policy_sales": 879,
+      "forecast_cost_per_policy_gbp": 53.47,
       "forecast_cost_per_policy_range_gbp": [
         44.9,
         62
@@ -3945,10 +3945,10 @@
     {
       "month": "2026-08",
       "channel": "Paid Social",
-      "budget_gbp": 115005,
+      "budget_gbp": 62275,
       "budget_share_pct": 3.83,
-      "forecast_new_policy_sales": 1788,
-      "forecast_cost_per_policy_gbp": 64.34,
+      "forecast_new_policy_sales": 968,
+      "forecast_cost_per_policy_gbp": 64.33,
       "forecast_cost_per_policy_range_gbp": [
         52.76,
         75.92
@@ -4004,10 +4004,10 @@
     {
       "month": "2026-08",
       "channel": "Audio",
-      "budget_gbp": 134638,
+      "budget_gbp": 72906,
       "budget_share_pct": 4.49,
-      "forecast_new_policy_sales": 1744,
-      "forecast_cost_per_policy_gbp": 77.2,
+      "forecast_new_policy_sales": 945,
+      "forecast_cost_per_policy_gbp": 77.15,
       "forecast_cost_per_policy_range_gbp": [
         61.76,
         92.64
@@ -4063,10 +4063,10 @@
     {
       "month": "2026-08",
       "channel": "Display/Programmatic",
-      "budget_gbp": 99922,
+      "budget_gbp": 54108,
       "budget_share_pct": 3.33,
-      "forecast_new_policy_sales": 1174,
-      "forecast_cost_per_policy_gbp": 85.12,
+      "forecast_new_policy_sales": 636,
+      "forecast_cost_per_policy_gbp": 85.08,
       "forecast_cost_per_policy_range_gbp": [
         64.69,
         105.55
@@ -4123,9 +4123,9 @@
     {
       "month": "2026-09",
       "channel": "AV",
-      "budget_gbp": 2350735,
+      "budget_gbp": 1272919,
       "budget_share_pct": 47.01,
-      "forecast_new_policy_sales": 33065,
+      "forecast_new_policy_sales": 17905,
       "forecast_cost_per_policy_gbp": 71.09,
       "forecast_cost_per_policy_range_gbp": [
         60.43,
@@ -4187,10 +4187,10 @@
     {
       "month": "2026-09",
       "channel": "OOH",
-      "budget_gbp": 126474,
+      "budget_gbp": 68485,
       "budget_share_pct": 2.53,
-      "forecast_new_policy_sales": 1732,
-      "forecast_cost_per_policy_gbp": 73.04,
+      "forecast_new_policy_sales": 938,
+      "forecast_cost_per_policy_gbp": 73.01,
       "forecast_cost_per_policy_range_gbp": [
         52.59,
         93.49
@@ -4247,9 +4247,9 @@
     {
       "month": "2026-09",
       "channel": "Direct Mail",
-      "budget_gbp": 1701594,
+      "budget_gbp": 921411,
       "budget_share_pct": 34.03,
-      "forecast_new_policy_sales": 29120,
+      "forecast_new_policy_sales": 15769,
       "forecast_cost_per_policy_gbp": 58.43,
       "forecast_cost_per_policy_range_gbp": [
         47.92,
@@ -4306,10 +4306,10 @@
     {
       "month": "2026-09",
       "channel": "CTV/YouTube",
-      "budget_gbp": 85370,
+      "budget_gbp": 46228,
       "budget_share_pct": 1.71,
-      "forecast_new_policy_sales": 1289,
-      "forecast_cost_per_policy_gbp": 66.22,
+      "forecast_new_policy_sales": 698,
+      "forecast_cost_per_policy_gbp": 66.23,
       "forecast_cost_per_policy_range_gbp": [
         50.33,
         82.12
@@ -4367,9 +4367,9 @@
     {
       "month": "2026-09",
       "channel": "Paid Search",
-      "budget_gbp": 144994,
+      "budget_gbp": 78514,
       "budget_share_pct": 2.9,
-      "forecast_new_policy_sales": 2757,
+      "forecast_new_policy_sales": 1493,
       "forecast_cost_per_policy_gbp": 52.59,
       "forecast_cost_per_policy_range_gbp": [
         44.18,
@@ -4426,10 +4426,10 @@
     {
       "month": "2026-09",
       "channel": "Paid Social",
-      "budget_gbp": 183311,
+      "budget_gbp": 99263,
       "budget_share_pct": 3.67,
-      "forecast_new_policy_sales": 2896,
-      "forecast_cost_per_policy_gbp": 63.3,
+      "forecast_new_policy_sales": 1568,
+      "forecast_cost_per_policy_gbp": 63.31,
       "forecast_cost_per_policy_range_gbp": [
         51.91,
         74.7
@@ -4485,10 +4485,10 @@
     {
       "month": "2026-09",
       "channel": "Audio",
-      "budget_gbp": 233919,
+      "budget_gbp": 126667,
       "budget_share_pct": 4.68,
-      "forecast_new_policy_sales": 3079,
-      "forecast_cost_per_policy_gbp": 75.96,
+      "forecast_new_policy_sales": 1667,
+      "forecast_cost_per_policy_gbp": 75.99,
       "forecast_cost_per_policy_range_gbp": [
         60.77,
         91.16
@@ -4544,10 +4544,10 @@
     {
       "month": "2026-09",
       "channel": "Display/Programmatic",
-      "budget_gbp": 173603,
+      "budget_gbp": 94006,
       "budget_share_pct": 3.47,
-      "forecast_new_policy_sales": 2073,
-      "forecast_cost_per_policy_gbp": 83.76,
+      "forecast_new_policy_sales": 1123,
+      "forecast_cost_per_policy_gbp": 83.71,
       "forecast_cost_per_policy_range_gbp": [
         63.65,
         103.86
@@ -4604,9 +4604,9 @@
     {
       "month": "2026-10",
       "channel": "AV",
-      "budget_gbp": 2350735,
+      "budget_gbp": 1272919,
       "budget_share_pct": 47.01,
-      "forecast_new_policy_sales": 33198,
+      "forecast_new_policy_sales": 17977,
       "forecast_cost_per_policy_gbp": 70.81,
       "forecast_cost_per_policy_range_gbp": [
         60.19,
@@ -4668,10 +4668,10 @@
     {
       "month": "2026-10",
       "channel": "OOH",
-      "budget_gbp": 126474,
+      "budget_gbp": 68485,
       "budget_share_pct": 2.53,
-      "forecast_new_policy_sales": 1738,
-      "forecast_cost_per_policy_gbp": 72.75,
+      "forecast_new_policy_sales": 941,
+      "forecast_cost_per_policy_gbp": 72.78,
       "forecast_cost_per_policy_range_gbp": [
         52.38,
         93.12
@@ -4728,9 +4728,9 @@
     {
       "month": "2026-10",
       "channel": "Direct Mail",
-      "budget_gbp": 1701594,
+      "budget_gbp": 921410,
       "budget_share_pct": 34.03,
-      "forecast_new_policy_sales": 29237,
+      "forecast_new_policy_sales": 15832,
       "forecast_cost_per_policy_gbp": 58.2,
       "forecast_cost_per_policy_range_gbp": [
         47.72,
@@ -4787,10 +4787,10 @@
     {
       "month": "2026-10",
       "channel": "CTV/YouTube",
-      "budget_gbp": 85370,
+      "budget_gbp": 46228,
       "budget_share_pct": 1.71,
-      "forecast_new_policy_sales": 1294,
-      "forecast_cost_per_policy_gbp": 65.96,
+      "forecast_new_policy_sales": 701,
+      "forecast_cost_per_policy_gbp": 65.95,
       "forecast_cost_per_policy_range_gbp": [
         50.13,
         81.79
@@ -4848,9 +4848,9 @@
     {
       "month": "2026-10",
       "channel": "Paid Search",
-      "budget_gbp": 144994,
+      "budget_gbp": 78514,
       "budget_share_pct": 2.9,
-      "forecast_new_policy_sales": 2768,
+      "forecast_new_policy_sales": 1499,
       "forecast_cost_per_policy_gbp": 52.38,
       "forecast_cost_per_policy_range_gbp": [
         44,
@@ -4907,10 +4907,10 @@
     {
       "month": "2026-10",
       "channel": "Paid Social",
-      "budget_gbp": 183311,
+      "budget_gbp": 99262,
       "budget_share_pct": 3.67,
-      "forecast_new_policy_sales": 2907,
-      "forecast_cost_per_policy_gbp": 63.05,
+      "forecast_new_policy_sales": 1574,
+      "forecast_cost_per_policy_gbp": 63.06,
       "forecast_cost_per_policy_range_gbp": [
         51.7,
         74.4
@@ -4966,10 +4966,10 @@
     {
       "month": "2026-10",
       "channel": "Audio",
-      "budget_gbp": 233919,
+      "budget_gbp": 126667,
       "budget_share_pct": 4.68,
-      "forecast_new_policy_sales": 3092,
-      "forecast_cost_per_policy_gbp": 75.66,
+      "forecast_new_policy_sales": 1674,
+      "forecast_cost_per_policy_gbp": 75.67,
       "forecast_cost_per_policy_range_gbp": [
         60.53,
         90.79
@@ -5025,10 +5025,10 @@
     {
       "month": "2026-10",
       "channel": "Display/Programmatic",
-      "budget_gbp": 173603,
+      "budget_gbp": 94006,
       "budget_share_pct": 3.47,
-      "forecast_new_policy_sales": 2081,
-      "forecast_cost_per_policy_gbp": 83.42,
+      "forecast_new_policy_sales": 1127,
+      "forecast_cost_per_policy_gbp": 83.41,
       "forecast_cost_per_policy_range_gbp": [
         63.4,
         103.44
@@ -5085,9 +5085,9 @@
     {
       "month": "2026-11",
       "channel": "AV",
-      "budget_gbp": 7751674,
+      "budget_gbp": 4197520,
       "budget_share_pct": 48.45,
-      "forecast_new_policy_sales": 106269,
+      "forecast_new_policy_sales": 57544,
       "forecast_cost_per_policy_gbp": 72.94,
       "forecast_cost_per_policy_range_gbp": [
         62,
@@ -5149,10 +5149,10 @@
     {
       "month": "2026-11",
       "channel": "OOH",
-      "budget_gbp": 401890,
+      "budget_gbp": 217623,
       "budget_share_pct": 2.51,
-      "forecast_new_policy_sales": 5966,
-      "forecast_cost_per_policy_gbp": 67.36,
+      "forecast_new_policy_sales": 3231,
+      "forecast_cost_per_policy_gbp": 67.35,
       "forecast_cost_per_policy_range_gbp": [
         48.5,
         86.22
@@ -5209,9 +5209,9 @@
     {
       "month": "2026-11",
       "channel": "Direct Mail",
-      "budget_gbp": 5305037,
+      "budget_gbp": 2872669,
       "budget_share_pct": 33.16,
-      "forecast_new_policy_sales": 77858,
+      "forecast_new_policy_sales": 42160,
       "forecast_cost_per_policy_gbp": 68.14,
       "forecast_cost_per_policy_range_gbp": [
         55.87,
@@ -5268,10 +5268,10 @@
     {
       "month": "2026-11",
       "channel": "CTV/YouTube",
-      "budget_gbp": 271276,
+      "budget_gbp": 146896,
       "budget_share_pct": 1.7,
-      "forecast_new_policy_sales": 4442,
-      "forecast_cost_per_policy_gbp": 61.07,
+      "forecast_new_policy_sales": 2405,
+      "forecast_cost_per_policy_gbp": 61.08,
       "forecast_cost_per_policy_range_gbp": [
         46.42,
         75.73
@@ -5329,10 +5329,10 @@
     {
       "month": "2026-11",
       "channel": "Paid Search",
-      "budget_gbp": 478123,
+      "budget_gbp": 258903,
       "budget_share_pct": 2.99,
-      "forecast_new_policy_sales": 9713,
-      "forecast_cost_per_policy_gbp": 49.23,
+      "forecast_new_policy_sales": 5260,
+      "forecast_cost_per_policy_gbp": 49.22,
       "forecast_cost_per_policy_range_gbp": [
         41.35,
         57.1
@@ -5388,9 +5388,9 @@
     {
       "month": "2026-11",
       "channel": "Paid Social",
-      "budget_gbp": 549525,
+      "budget_gbp": 297567,
       "budget_share_pct": 3.43,
-      "forecast_new_policy_sales": 9413,
+      "forecast_new_policy_sales": 5097,
       "forecast_cost_per_policy_gbp": 58.38,
       "forecast_cost_per_policy_range_gbp": [
         47.87,
@@ -5447,9 +5447,9 @@
     {
       "month": "2026-11",
       "channel": "Audio",
-      "budget_gbp": 701236,
+      "budget_gbp": 379718,
       "budget_share_pct": 4.38,
-      "forecast_new_policy_sales": 9779,
+      "forecast_new_policy_sales": 5295,
       "forecast_cost_per_policy_gbp": 71.71,
       "forecast_cost_per_policy_range_gbp": [
         57.37,
@@ -5506,10 +5506,10 @@
     {
       "month": "2026-11",
       "channel": "Display/Programmatic",
-      "budget_gbp": 541239,
+      "budget_gbp": 293080,
       "budget_share_pct": 3.38,
-      "forecast_new_policy_sales": 7007,
-      "forecast_cost_per_policy_gbp": 77.24,
+      "forecast_new_policy_sales": 3794,
+      "forecast_cost_per_policy_gbp": 77.25,
       "forecast_cost_per_policy_range_gbp": [
         58.7,
         95.78
@@ -5566,9 +5566,9 @@
     {
       "month": "2026-12",
       "channel": "AV",
-      "budget_gbp": 850682,
+      "budget_gbp": 460643,
       "budget_share_pct": 46.87,
-      "forecast_new_policy_sales": 11869,
+      "forecast_new_policy_sales": 6427,
       "forecast_cost_per_policy_gbp": 71.67,
       "forecast_cost_per_policy_range_gbp": [
         60.92,
@@ -5630,10 +5630,10 @@
     {
       "month": "2026-12",
       "channel": "OOH",
-      "budget_gbp": 45768,
+      "budget_gbp": 24783,
       "budget_share_pct": 2.52,
-      "forecast_new_policy_sales": 622,
-      "forecast_cost_per_policy_gbp": 73.63,
+      "forecast_new_policy_sales": 337,
+      "forecast_cost_per_policy_gbp": 73.54,
       "forecast_cost_per_policy_range_gbp": [
         53.02,
         94.25
@@ -5690,9 +5690,9 @@
     {
       "month": "2026-12",
       "channel": "Direct Mail",
-      "budget_gbp": 615771,
+      "budget_gbp": 333439,
       "budget_share_pct": 33.93,
-      "forecast_new_policy_sales": 10453,
+      "forecast_new_policy_sales": 5660,
       "forecast_cost_per_policy_gbp": 58.91,
       "forecast_cost_per_policy_range_gbp": [
         48.3,
@@ -5749,10 +5749,10 @@
     {
       "month": "2026-12",
       "channel": "CTV/YouTube",
-      "budget_gbp": 31821,
+      "budget_gbp": 17231,
       "budget_share_pct": 1.75,
-      "forecast_new_policy_sales": 477,
-      "forecast_cost_per_policy_gbp": 66.76,
+      "forecast_new_policy_sales": 258,
+      "forecast_cost_per_policy_gbp": 66.79,
       "forecast_cost_per_policy_range_gbp": [
         50.74,
         82.78
@@ -5810,10 +5810,10 @@
     {
       "month": "2026-12",
       "channel": "Paid Search",
-      "budget_gbp": 52470,
+      "budget_gbp": 28412,
       "budget_share_pct": 2.89,
-      "forecast_new_policy_sales": 990,
-      "forecast_cost_per_policy_gbp": 53.02,
+      "forecast_new_policy_sales": 536,
+      "forecast_cost_per_policy_gbp": 53.01,
       "forecast_cost_per_policy_range_gbp": [
         44.53,
         61.5
@@ -5869,10 +5869,10 @@
     {
       "month": "2026-12",
       "channel": "Paid Social",
-      "budget_gbp": 68326,
+      "budget_gbp": 36998,
       "budget_share_pct": 3.76,
-      "forecast_new_policy_sales": 1071,
-      "forecast_cost_per_policy_gbp": 63.82,
+      "forecast_new_policy_sales": 580,
+      "forecast_cost_per_policy_gbp": 63.79,
       "forecast_cost_per_policy_range_gbp": [
         52.33,
         75.3
@@ -5928,10 +5928,10 @@
     {
       "month": "2026-12",
       "channel": "Audio",
-      "budget_gbp": 87190,
+      "budget_gbp": 47213,
       "budget_share_pct": 4.8,
-      "forecast_new_policy_sales": 1139,
-      "forecast_cost_per_policy_gbp": 76.58,
+      "forecast_new_policy_sales": 617,
+      "forecast_cost_per_policy_gbp": 76.52,
       "forecast_cost_per_policy_range_gbp": [
         61.26,
         91.89
@@ -5987,10 +5987,10 @@
     {
       "month": "2026-12",
       "channel": "Display/Programmatic",
-      "budget_gbp": 62823,
+      "budget_gbp": 34018,
       "budget_share_pct": 3.46,
-      "forecast_new_policy_sales": 744,
-      "forecast_cost_per_policy_gbp": 84.43,
+      "forecast_new_policy_sales": 403,
+      "forecast_cost_per_policy_gbp": 84.41,
       "forecast_cost_per_policy_range_gbp": [
         64.17,
         104.7
@@ -6050,7 +6050,7 @@
       "month": "2026-01",
       "channel": "AV",
       "owner": "ITV",
-      "budget_gbp": 1121942,
+      "budget_gbp": 607530,
       "role": "broad commercial reach",
       "confidence": "medium",
       "source_ids": [
@@ -6062,7 +6062,7 @@
       "month": "2026-01",
       "channel": "AV",
       "owner": "Channel 4",
-      "budget_gbp": 641109,
+      "budget_gbp": 347160,
       "role": "incremental reach and lighter-viewer support",
       "confidence": "medium",
       "source_ids": [
@@ -6074,7 +6074,7 @@
       "month": "2026-01",
       "channel": "AV",
       "owner": "Sky/Other Broadcasters",
-      "budget_gbp": 587684,
+      "budget_gbp": 318230,
       "role": "targeted reach extension",
       "confidence": "low",
       "source_ids": [
@@ -6086,7 +6086,7 @@
       "month": "2026-01",
       "channel": "OOH",
       "owner": "Talon/large format proxy",
-      "budget_gbp": 69561,
+      "budget_gbp": 37667,
       "role": "regional salience",
       "confidence": "low",
       "source_ids": [
@@ -6097,7 +6097,7 @@
       "month": "2026-01",
       "channel": "OOH",
       "owner": "6-sheet/proximity proxy",
-      "budget_gbp": 56913,
+      "budget_gbp": 30819,
       "role": "retail and local presence",
       "confidence": "low",
       "source_ids": [
@@ -6108,7 +6108,7 @@
       "month": "2026-01",
       "channel": "Direct Mail",
       "owner": "Propensity postcode selection",
-      "budget_gbp": 1701594,
+      "budget_gbp": 921411,
       "role": "high-propensity household conversion",
       "confidence": "low",
       "source_ids": [
@@ -6119,7 +6119,7 @@
       "month": "2026-01",
       "channel": "CTV/YouTube",
       "owner": "YouTube",
-      "budget_gbp": 51222,
+      "budget_gbp": 27737,
       "role": "incremental video reach",
       "confidence": "medium",
       "source_ids": [
@@ -6131,7 +6131,7 @@
       "month": "2026-01",
       "channel": "CTV/YouTube",
       "owner": "ITVX/C4 Streaming proxy",
-      "budget_gbp": 34148,
+      "budget_gbp": 18491,
       "role": "BVOD quality reach",
       "confidence": "low",
       "source_ids": [
@@ -6143,7 +6143,7 @@
       "month": "2026-01",
       "channel": "Paid Search",
       "owner": "Google Search",
-      "budget_gbp": 133394,
+      "budget_gbp": 72233,
       "role": "brand and high-intent capture",
       "confidence": "medium",
       "source_ids": [
@@ -6154,7 +6154,7 @@
       "month": "2026-01",
       "channel": "Paid Search",
       "owner": "Microsoft Search",
-      "budget_gbp": 11600,
+      "budget_gbp": 6281,
       "role": "older desktop skew and efficiency test",
       "confidence": "low",
       "source_ids": [
@@ -6165,7 +6165,7 @@
       "month": "2026-01",
       "channel": "Paid Social",
       "owner": "Meta",
-      "budget_gbp": 128318,
+      "budget_gbp": 69484,
       "role": "scaled acquisition and retargeting",
       "confidence": "medium",
       "source_ids": [
@@ -6176,7 +6176,7 @@
       "month": "2026-01",
       "channel": "Paid Social",
       "owner": "TikTok",
-      "budget_gbp": 27496,
+      "budget_gbp": 14889,
       "role": "growth test only with compliance guardrails",
       "confidence": "low",
       "source_ids": [
@@ -6187,7 +6187,7 @@
       "month": "2026-01",
       "channel": "Paid Social",
       "owner": "Pinterest/Snap proxy",
-      "budget_gbp": 27497,
+      "budget_gbp": 14890,
       "role": "small test budget",
       "confidence": "low",
       "source_ids": [
@@ -6198,7 +6198,7 @@
       "month": "2026-01",
       "channel": "Audio",
       "owner": "Regional radio proxy",
-      "budget_gbp": 152047,
+      "budget_gbp": 82333,
       "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
@@ -6209,7 +6209,7 @@
       "month": "2026-01",
       "channel": "Audio",
       "owner": "Podcast/digital audio proxy",
-      "budget_gbp": 81872,
+      "budget_gbp": 44334,
       "role": "test and incremental reach",
       "confidence": "low",
       "source_ids": [
@@ -6220,7 +6220,7 @@
       "month": "2026-01",
       "channel": "Display/Programmatic",
       "owner": "DSP retargeting proxy",
-      "budget_gbp": 173603,
+      "budget_gbp": 94006,
       "role": "retargeting and controlled tests",
       "confidence": "low",
       "source_ids": [
@@ -6231,7 +6231,7 @@
       "month": "2026-02",
       "channel": "AV",
       "owner": "ITV",
-      "budget_gbp": 1121942,
+      "budget_gbp": 607530,
       "role": "broad commercial reach",
       "confidence": "medium",
       "source_ids": [
@@ -6243,7 +6243,7 @@
       "month": "2026-02",
       "channel": "AV",
       "owner": "Channel 4",
-      "budget_gbp": 641109,
+      "budget_gbp": 347159,
       "role": "incremental reach and lighter-viewer support",
       "confidence": "medium",
       "source_ids": [
@@ -6255,7 +6255,7 @@
       "month": "2026-02",
       "channel": "AV",
       "owner": "Sky/Other Broadcasters",
-      "budget_gbp": 587684,
+      "budget_gbp": 318230,
       "role": "targeted reach extension",
       "confidence": "low",
       "source_ids": [
@@ -6267,7 +6267,7 @@
       "month": "2026-02",
       "channel": "OOH",
       "owner": "Talon/large format proxy",
-      "budget_gbp": 69561,
+      "budget_gbp": 37667,
       "role": "regional salience",
       "confidence": "low",
       "source_ids": [
@@ -6278,7 +6278,7 @@
       "month": "2026-02",
       "channel": "OOH",
       "owner": "6-sheet/proximity proxy",
-      "budget_gbp": 56913,
+      "budget_gbp": 30818,
       "role": "retail and local presence",
       "confidence": "low",
       "source_ids": [
@@ -6289,7 +6289,7 @@
       "month": "2026-02",
       "channel": "Direct Mail",
       "owner": "Propensity postcode selection",
-      "budget_gbp": 1701594,
+      "budget_gbp": 921411,
       "role": "high-propensity household conversion",
       "confidence": "low",
       "source_ids": [
@@ -6300,7 +6300,7 @@
       "month": "2026-02",
       "channel": "CTV/YouTube",
       "owner": "YouTube",
-      "budget_gbp": 51222,
+      "budget_gbp": 27737,
       "role": "incremental video reach",
       "confidence": "medium",
       "source_ids": [
@@ -6312,7 +6312,7 @@
       "month": "2026-02",
       "channel": "CTV/YouTube",
       "owner": "ITVX/C4 Streaming proxy",
-      "budget_gbp": 34148,
+      "budget_gbp": 18491,
       "role": "BVOD quality reach",
       "confidence": "low",
       "source_ids": [
@@ -6324,7 +6324,7 @@
       "month": "2026-02",
       "channel": "Paid Search",
       "owner": "Google Search",
-      "budget_gbp": 133394,
+      "budget_gbp": 72233,
       "role": "brand and high-intent capture",
       "confidence": "medium",
       "source_ids": [
@@ -6335,7 +6335,7 @@
       "month": "2026-02",
       "channel": "Paid Search",
       "owner": "Microsoft Search",
-      "budget_gbp": 11600,
+      "budget_gbp": 6281,
       "role": "older desktop skew and efficiency test",
       "confidence": "low",
       "source_ids": [
@@ -6346,7 +6346,7 @@
       "month": "2026-02",
       "channel": "Paid Social",
       "owner": "Meta",
-      "budget_gbp": 128318,
+      "budget_gbp": 69484,
       "role": "scaled acquisition and retargeting",
       "confidence": "medium",
       "source_ids": [
@@ -6357,7 +6357,7 @@
       "month": "2026-02",
       "channel": "Paid Social",
       "owner": "TikTok",
-      "budget_gbp": 27496,
+      "budget_gbp": 14889,
       "role": "growth test only with compliance guardrails",
       "confidence": "low",
       "source_ids": [
@@ -6368,7 +6368,7 @@
       "month": "2026-02",
       "channel": "Paid Social",
       "owner": "Pinterest/Snap proxy",
-      "budget_gbp": 27497,
+      "budget_gbp": 14890,
       "role": "small test budget",
       "confidence": "low",
       "source_ids": [
@@ -6379,7 +6379,7 @@
       "month": "2026-02",
       "channel": "Audio",
       "owner": "Regional radio proxy",
-      "budget_gbp": 152047,
+      "budget_gbp": 82333,
       "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
@@ -6390,7 +6390,7 @@
       "month": "2026-02",
       "channel": "Audio",
       "owner": "Podcast/digital audio proxy",
-      "budget_gbp": 81872,
+      "budget_gbp": 44334,
       "role": "test and incremental reach",
       "confidence": "low",
       "source_ids": [
@@ -6401,7 +6401,7 @@
       "month": "2026-02",
       "channel": "Display/Programmatic",
       "owner": "DSP retargeting proxy",
-      "budget_gbp": 173603,
+      "budget_gbp": 94006,
       "role": "retargeting and controlled tests",
       "confidence": "low",
       "source_ids": [
@@ -6412,7 +6412,7 @@
       "month": "2026-03",
       "channel": "AV",
       "owner": "ITV",
-      "budget_gbp": 2073302,
+      "budget_gbp": 1122690,
       "role": "broad commercial reach",
       "confidence": "medium",
       "source_ids": [
@@ -6424,7 +6424,7 @@
       "month": "2026-03",
       "channel": "AV",
       "owner": "Channel 4",
-      "budget_gbp": 1184744,
+      "budget_gbp": 641537,
       "role": "incremental reach and lighter-viewer support",
       "confidence": "medium",
       "source_ids": [
@@ -6436,7 +6436,7 @@
       "month": "2026-03",
       "channel": "AV",
       "owner": "Sky/Other Broadcasters",
-      "budget_gbp": 1086015,
+      "budget_gbp": 588075,
       "role": "targeted reach extension",
       "confidence": "low",
       "source_ids": [
@@ -6448,7 +6448,7 @@
       "month": "2026-03",
       "channel": "OOH",
       "owner": "Talon/large format proxy",
-      "budget_gbp": 128545,
+      "budget_gbp": 69607,
       "role": "regional salience",
       "confidence": "low",
       "source_ids": [
@@ -6459,7 +6459,7 @@
       "month": "2026-03",
       "channel": "OOH",
       "owner": "6-sheet/proximity proxy",
-      "budget_gbp": 105174,
+      "budget_gbp": 56952,
       "role": "retail and local presence",
       "confidence": "low",
       "source_ids": [
@@ -6470,7 +6470,7 @@
       "month": "2026-03",
       "channel": "Direct Mail",
       "owner": "Propensity postcode selection",
-      "budget_gbp": 2966486,
+      "budget_gbp": 1606348,
       "role": "high-propensity household conversion",
       "confidence": "low",
       "source_ids": [
@@ -6481,7 +6481,7 @@
       "month": "2026-03",
       "channel": "CTV/YouTube",
       "owner": "YouTube",
-      "budget_gbp": 94656,
+      "budget_gbp": 51256,
       "role": "incremental video reach",
       "confidence": "medium",
       "source_ids": [
@@ -6493,7 +6493,7 @@
       "month": "2026-03",
       "channel": "CTV/YouTube",
       "owner": "ITVX/C4 Streaming proxy",
-      "budget_gbp": 63104,
+      "budget_gbp": 34171,
       "role": "BVOD quality reach",
       "confidence": "low",
       "source_ids": [
@@ -6505,7 +6505,7 @@
       "month": "2026-03",
       "channel": "Paid Search",
       "owner": "Google Search",
-      "budget_gbp": 246507,
+      "budget_gbp": 133483,
       "role": "brand and high-intent capture",
       "confidence": "medium",
       "source_ids": [
@@ -6516,7 +6516,7 @@
       "month": "2026-03",
       "channel": "Paid Search",
       "owner": "Microsoft Search",
-      "budget_gbp": 21435,
+      "budget_gbp": 11607,
       "role": "older desktop skew and efficiency test",
       "confidence": "low",
       "source_ids": [
@@ -6527,7 +6527,7 @@
       "month": "2026-03",
       "channel": "Paid Social",
       "owner": "Meta",
-      "budget_gbp": 223703,
+      "budget_gbp": 121135,
       "role": "scaled acquisition and retargeting",
       "confidence": "medium",
       "source_ids": [
@@ -6538,7 +6538,7 @@
       "month": "2026-03",
       "channel": "Paid Social",
       "owner": "TikTok",
-      "budget_gbp": 47937,
+      "budget_gbp": 25958,
       "role": "growth test only with compliance guardrails",
       "confidence": "low",
       "source_ids": [
@@ -6549,7 +6549,7 @@
       "month": "2026-03",
       "channel": "Paid Social",
       "owner": "Pinterest/Snap proxy",
-      "budget_gbp": 47936,
+      "budget_gbp": 25957,
       "role": "small test budget",
       "confidence": "low",
       "source_ids": [
@@ -6560,7 +6560,7 @@
       "month": "2026-03",
       "channel": "Audio",
       "owner": "Regional radio proxy",
-      "budget_gbp": 265073,
+      "budget_gbp": 143537,
       "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
@@ -6571,7 +6571,7 @@
       "month": "2026-03",
       "channel": "Audio",
       "owner": "Podcast/digital audio proxy",
-      "budget_gbp": 142731,
+      "budget_gbp": 77288,
       "role": "test and incremental reach",
       "confidence": "low",
       "source_ids": [
@@ -6582,7 +6582,7 @@
       "month": "2026-03",
       "channel": "Display/Programmatic",
       "owner": "DSP retargeting proxy",
-      "budget_gbp": 302652,
+      "budget_gbp": 163885,
       "role": "retargeting and controlled tests",
       "confidence": "low",
       "source_ids": [
@@ -6593,7 +6593,7 @@
       "month": "2026-04",
       "channel": "AV",
       "owner": "ITV",
-      "budget_gbp": 1145999,
+      "budget_gbp": 620557,
       "role": "broad commercial reach",
       "confidence": "medium",
       "source_ids": [
@@ -6605,7 +6605,7 @@
       "month": "2026-04",
       "channel": "AV",
       "owner": "Channel 4",
-      "budget_gbp": 654857,
+      "budget_gbp": 354604,
       "role": "incremental reach and lighter-viewer support",
       "confidence": "medium",
       "source_ids": [
@@ -6617,7 +6617,7 @@
       "month": "2026-04",
       "channel": "AV",
       "owner": "Sky/Other Broadcasters",
-      "budget_gbp": 600285,
+      "budget_gbp": 325053,
       "role": "targeted reach extension",
       "confidence": "low",
       "source_ids": [
@@ -6629,7 +6629,7 @@
       "month": "2026-04",
       "channel": "OOH",
       "owner": "Talon/large format proxy",
-      "budget_gbp": 71052,
+      "budget_gbp": 38475,
       "role": "regional salience",
       "confidence": "low",
       "source_ids": [
@@ -6640,7 +6640,7 @@
       "month": "2026-04",
       "channel": "OOH",
       "owner": "6-sheet/proximity proxy",
-      "budget_gbp": 58134,
+      "budget_gbp": 31479,
       "role": "retail and local presence",
       "confidence": "low",
       "source_ids": [
@@ -6651,7 +6651,7 @@
       "month": "2026-04",
       "channel": "Direct Mail",
       "owner": "Propensity postcode selection",
-      "budget_gbp": 1655315,
+      "budget_gbp": 896350,
       "role": "high-propensity household conversion",
       "confidence": "low",
       "source_ids": [
@@ -6662,7 +6662,7 @@
       "month": "2026-04",
       "channel": "CTV/YouTube",
       "owner": "YouTube",
-      "budget_gbp": 49829,
+      "budget_gbp": 26982,
       "role": "incremental video reach",
       "confidence": "medium",
       "source_ids": [
@@ -6674,7 +6674,7 @@
       "month": "2026-04",
       "channel": "CTV/YouTube",
       "owner": "ITVX/C4 Streaming proxy",
-      "budget_gbp": 33219,
+      "budget_gbp": 17988,
       "role": "BVOD quality reach",
       "confidence": "low",
       "source_ids": [
@@ -6686,7 +6686,7 @@
       "month": "2026-04",
       "channel": "Paid Search",
       "owner": "Google Search",
-      "budget_gbp": 136255,
+      "budget_gbp": 73782,
       "role": "brand and high-intent capture",
       "confidence": "medium",
       "source_ids": [
@@ -6697,7 +6697,7 @@
       "month": "2026-04",
       "channel": "Paid Search",
       "owner": "Microsoft Search",
-      "budget_gbp": 11848,
+      "budget_gbp": 6416,
       "role": "older desktop skew and efficiency test",
       "confidence": "low",
       "source_ids": [
@@ -6708,7 +6708,7 @@
       "month": "2026-04",
       "channel": "Paid Social",
       "owner": "Meta",
-      "budget_gbp": 124827,
+      "budget_gbp": 67594,
       "role": "scaled acquisition and retargeting",
       "confidence": "medium",
       "source_ids": [
@@ -6719,7 +6719,7 @@
       "month": "2026-04",
       "channel": "Paid Social",
       "owner": "TikTok",
-      "budget_gbp": 26749,
+      "budget_gbp": 14485,
       "role": "growth test only with compliance guardrails",
       "confidence": "low",
       "source_ids": [
@@ -6730,7 +6730,7 @@
       "month": "2026-04",
       "channel": "Paid Social",
       "owner": "Pinterest/Snap proxy",
-      "budget_gbp": 26749,
+      "budget_gbp": 14484,
       "role": "small test budget",
       "confidence": "low",
       "source_ids": [
@@ -6741,7 +6741,7 @@
       "month": "2026-04",
       "channel": "Audio",
       "owner": "Regional radio proxy",
-      "budget_gbp": 147912,
+      "budget_gbp": 80094,
       "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
@@ -6752,7 +6752,7 @@
       "month": "2026-04",
       "channel": "Audio",
       "owner": "Podcast/digital audio proxy",
-      "budget_gbp": 79645,
+      "budget_gbp": 43128,
       "role": "test and incremental reach",
       "confidence": "low",
       "source_ids": [
@@ -6763,7 +6763,7 @@
       "month": "2026-04",
       "channel": "Display/Programmatic",
       "owner": "DSP retargeting proxy",
-      "budget_gbp": 177325,
+      "budget_gbp": 96021,
       "role": "retargeting and controlled tests",
       "confidence": "low",
       "source_ids": [
@@ -6774,7 +6774,7 @@
       "month": "2026-05",
       "channel": "AV",
       "owner": "ITV",
-      "budget_gbp": 783469,
+      "budget_gbp": 424247,
       "role": "broad commercial reach",
       "confidence": "medium",
       "source_ids": [
@@ -6786,7 +6786,7 @@
       "month": "2026-05",
       "channel": "AV",
       "owner": "Channel 4",
-      "budget_gbp": 447697,
+      "budget_gbp": 242427,
       "role": "incremental reach and lighter-viewer support",
       "confidence": "medium",
       "source_ids": [
@@ -6798,7 +6798,7 @@
       "month": "2026-05",
       "channel": "AV",
       "owner": "Sky/Other Broadcasters",
-      "budget_gbp": 410388,
+      "budget_gbp": 222225,
       "role": "targeted reach extension",
       "confidence": "low",
       "source_ids": [
@@ -6810,7 +6810,7 @@
       "month": "2026-05",
       "channel": "OOH",
       "owner": "Talon/large format proxy",
-      "budget_gbp": 47161,
+      "budget_gbp": 25538,
       "role": "regional salience",
       "confidence": "low",
       "source_ids": [
@@ -6821,7 +6821,7 @@
       "month": "2026-05",
       "channel": "OOH",
       "owner": "6-sheet/proximity proxy",
-      "budget_gbp": 38586,
+      "budget_gbp": 20894,
       "role": "retail and local presence",
       "confidence": "low",
       "source_ids": [
@@ -6832,7 +6832,7 @@
       "month": "2026-05",
       "channel": "Direct Mail",
       "owner": "Propensity postcode selection",
-      "budget_gbp": 1199786,
+      "budget_gbp": 649682,
       "role": "high-propensity household conversion",
       "confidence": "low",
       "source_ids": [
@@ -6843,7 +6843,7 @@
       "month": "2026-05",
       "channel": "CTV/YouTube",
       "owner": "YouTube",
-      "budget_gbp": 34727,
+      "budget_gbp": 18804,
       "role": "incremental video reach",
       "confidence": "medium",
       "source_ids": [
@@ -6855,7 +6855,7 @@
       "month": "2026-05",
       "channel": "CTV/YouTube",
       "owner": "ITVX/C4 Streaming proxy",
-      "budget_gbp": 23152,
+      "budget_gbp": 12537,
       "role": "BVOD quality reach",
       "confidence": "low",
       "source_ids": [
@@ -6867,7 +6867,7 @@
       "month": "2026-05",
       "channel": "Paid Search",
       "owner": "Google Search",
-      "budget_gbp": 94055,
+      "budget_gbp": 50931,
       "role": "brand and high-intent capture",
       "confidence": "medium",
       "source_ids": [
@@ -6878,7 +6878,7 @@
       "month": "2026-05",
       "channel": "Paid Search",
       "owner": "Microsoft Search",
-      "budget_gbp": 8179,
+      "budget_gbp": 4429,
       "role": "older desktop skew and efficiency test",
       "confidence": "low",
       "source_ids": [
@@ -6889,7 +6889,7 @@
       "month": "2026-05",
       "channel": "Paid Social",
       "owner": "Meta",
-      "budget_gbp": 93086,
+      "budget_gbp": 50406,
       "role": "scaled acquisition and retargeting",
       "confidence": "medium",
       "source_ids": [
@@ -6900,7 +6900,7 @@
       "month": "2026-05",
       "channel": "Paid Social",
       "owner": "TikTok",
-      "budget_gbp": 19947,
+      "budget_gbp": 10801,
       "role": "growth test only with compliance guardrails",
       "confidence": "low",
       "source_ids": [
@@ -6911,7 +6911,7 @@
       "month": "2026-05",
       "channel": "Paid Social",
       "owner": "Pinterest/Snap proxy",
-      "budget_gbp": 19947,
+      "budget_gbp": 10801,
       "role": "small test budget",
       "confidence": "low",
       "source_ids": [
@@ -6922,7 +6922,7 @@
       "month": "2026-05",
       "channel": "Audio",
       "owner": "Regional radio proxy",
-      "budget_gbp": 103084,
+      "budget_gbp": 55820,
       "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
@@ -6933,7 +6933,7 @@
       "month": "2026-05",
       "channel": "Audio",
       "owner": "Podcast/digital audio proxy",
-      "budget_gbp": 55507,
+      "budget_gbp": 30057,
       "role": "test and incremental reach",
       "confidence": "low",
       "source_ids": [
@@ -6944,7 +6944,7 @@
       "month": "2026-05",
       "channel": "Display/Programmatic",
       "owner": "DSP retargeting proxy",
-      "budget_gbp": 121229,
+      "budget_gbp": 65645,
       "role": "retargeting and controlled tests",
       "confidence": "low",
       "source_ids": [
@@ -6955,7 +6955,7 @@
       "month": "2026-06",
       "channel": "AV",
       "owner": "ITV",
-      "budget_gbp": 1202722,
+      "budget_gbp": 651272,
       "role": "broad commercial reach",
       "confidence": "medium",
       "source_ids": [
@@ -6967,7 +6967,7 @@
       "month": "2026-06",
       "channel": "AV",
       "owner": "Channel 4",
-      "budget_gbp": 687269,
+      "budget_gbp": 372155,
       "role": "incremental reach and lighter-viewer support",
       "confidence": "medium",
       "source_ids": [
@@ -6979,7 +6979,7 @@
       "month": "2026-06",
       "channel": "AV",
       "owner": "Sky/Other Broadcasters",
-      "budget_gbp": 629997,
+      "budget_gbp": 341143,
       "role": "targeted reach extension",
       "confidence": "low",
       "source_ids": [
@@ -6991,7 +6991,7 @@
       "month": "2026-06",
       "channel": "OOH",
       "owner": "Talon/large format proxy",
-      "budget_gbp": 74570,
+      "budget_gbp": 40380,
       "role": "regional salience",
       "confidence": "low",
       "source_ids": [
@@ -7002,7 +7002,7 @@
       "month": "2026-06",
       "channel": "OOH",
       "owner": "6-sheet/proximity proxy",
-      "budget_gbp": 61011,
+      "budget_gbp": 33037,
       "role": "retail and local presence",
       "confidence": "low",
       "source_ids": [
@@ -7013,7 +7013,7 @@
       "month": "2026-06",
       "channel": "Direct Mail",
       "owner": "Propensity postcode selection",
-      "budget_gbp": 1824109,
+      "budget_gbp": 987752,
       "role": "high-propensity household conversion",
       "confidence": "low",
       "source_ids": [
@@ -7024,7 +7024,7 @@
       "month": "2026-06",
       "channel": "CTV/YouTube",
       "owner": "YouTube",
-      "budget_gbp": 54910,
+      "budget_gbp": 29734,
       "role": "incremental video reach",
       "confidence": "medium",
       "source_ids": [
@@ -7036,7 +7036,7 @@
       "month": "2026-06",
       "channel": "CTV/YouTube",
       "owner": "ITVX/C4 Streaming proxy",
-      "budget_gbp": 36607,
+      "budget_gbp": 19822,
       "role": "BVOD quality reach",
       "confidence": "low",
       "source_ids": [
@@ -7048,7 +7048,7 @@
       "month": "2026-06",
       "channel": "Paid Search",
       "owner": "Google Search",
-      "budget_gbp": 142998,
+      "budget_gbp": 77433,
       "role": "brand and high-intent capture",
       "confidence": "medium",
       "source_ids": [
@@ -7059,7 +7059,7 @@
       "month": "2026-06",
       "channel": "Paid Search",
       "owner": "Microsoft Search",
-      "budget_gbp": 12435,
+      "budget_gbp": 6734,
       "role": "older desktop skew and efficiency test",
       "confidence": "low",
       "source_ids": [
@@ -7070,7 +7070,7 @@
       "month": "2026-06",
       "channel": "Paid Social",
       "owner": "Meta",
-      "budget_gbp": 137556,
+      "budget_gbp": 74486,
       "role": "scaled acquisition and retargeting",
       "confidence": "medium",
       "source_ids": [
@@ -7081,7 +7081,7 @@
       "month": "2026-06",
       "channel": "Paid Social",
       "owner": "TikTok",
-      "budget_gbp": 29477,
+      "budget_gbp": 15962,
       "role": "growth test only with compliance guardrails",
       "confidence": "low",
       "source_ids": [
@@ -7092,7 +7092,7 @@
       "month": "2026-06",
       "channel": "Paid Social",
       "owner": "Pinterest/Snap proxy",
-      "budget_gbp": 29476,
+      "budget_gbp": 15961,
       "role": "small test budget",
       "confidence": "low",
       "source_ids": [
@@ -7103,7 +7103,7 @@
       "month": "2026-06",
       "channel": "Audio",
       "owner": "Regional radio proxy",
-      "budget_gbp": 162995,
+      "budget_gbp": 88262,
       "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
@@ -7114,7 +7114,7 @@
       "month": "2026-06",
       "channel": "Audio",
       "owner": "Podcast/digital audio proxy",
-      "budget_gbp": 87766,
+      "budget_gbp": 47525,
       "role": "test and incremental reach",
       "confidence": "low",
       "source_ids": [
@@ -7125,7 +7125,7 @@
       "month": "2026-06",
       "channel": "Display/Programmatic",
       "owner": "DSP retargeting proxy",
-      "budget_gbp": 186102,
+      "budget_gbp": 100774,
       "role": "retargeting and controlled tests",
       "confidence": "low",
       "source_ids": [
@@ -7136,7 +7136,7 @@
       "month": "2026-07",
       "channel": "AV",
       "owner": "ITV",
-      "budget_gbp": 452034,
+      "budget_gbp": 244776,
       "role": "broad commercial reach",
       "confidence": "medium",
       "source_ids": [
@@ -7148,7 +7148,7 @@
       "month": "2026-07",
       "channel": "AV",
       "owner": "Channel 4",
-      "budget_gbp": 258305,
+      "budget_gbp": 139872,
       "role": "incremental reach and lighter-viewer support",
       "confidence": "medium",
       "source_ids": [
@@ -7160,7 +7160,7 @@
       "month": "2026-07",
       "channel": "AV",
       "owner": "Sky/Other Broadcasters",
-      "budget_gbp": 236780,
+      "budget_gbp": 128216,
       "role": "targeted reach extension",
       "confidence": "low",
       "source_ids": [
@@ -7172,7 +7172,7 @@
       "month": "2026-07",
       "channel": "OOH",
       "owner": "Talon/large format proxy",
-      "budget_gbp": 26691,
+      "budget_gbp": 14453,
       "role": "regional salience",
       "confidence": "low",
       "source_ids": [
@@ -7183,7 +7183,7 @@
       "month": "2026-07",
       "channel": "OOH",
       "owner": "6-sheet/proximity proxy",
-      "budget_gbp": 21839,
+      "budget_gbp": 11826,
       "role": "retail and local presence",
       "confidence": "low",
       "source_ids": [
@@ -7194,7 +7194,7 @@
       "month": "2026-07",
       "channel": "Direct Mail",
       "owner": "Propensity postcode selection",
-      "budget_gbp": 679049,
+      "budget_gbp": 367704,
       "role": "high-propensity household conversion",
       "confidence": "low",
       "source_ids": [
@@ -7205,7 +7205,7 @@
       "month": "2026-07",
       "channel": "CTV/YouTube",
       "owner": "YouTube",
-      "budget_gbp": 20638,
+      "budget_gbp": 11175,
       "role": "incremental video reach",
       "confidence": "medium",
       "source_ids": [
@@ -7217,7 +7217,7 @@
       "month": "2026-07",
       "channel": "CTV/YouTube",
       "owner": "ITVX/C4 Streaming proxy",
-      "budget_gbp": 13758,
+      "budget_gbp": 7450,
       "role": "BVOD quality reach",
       "confidence": "low",
       "source_ids": [
@@ -7229,7 +7229,7 @@
       "month": "2026-07",
       "channel": "Paid Search",
       "owner": "Google Search",
-      "budget_gbp": 53233,
+      "budget_gbp": 28825,
       "role": "brand and high-intent capture",
       "confidence": "medium",
       "source_ids": [
@@ -7240,7 +7240,7 @@
       "month": "2026-07",
       "channel": "Paid Search",
       "owner": "Microsoft Search",
-      "budget_gbp": 4629,
+      "budget_gbp": 2507,
       "role": "older desktop skew and efficiency test",
       "confidence": "low",
       "source_ids": [
@@ -7251,7 +7251,7 @@
       "month": "2026-07",
       "channel": "Paid Social",
       "owner": "Meta",
-      "budget_gbp": 53669,
+      "budget_gbp": 29062,
       "role": "scaled acquisition and retargeting",
       "confidence": "medium",
       "source_ids": [
@@ -7262,7 +7262,7 @@
       "month": "2026-07",
       "channel": "Paid Social",
       "owner": "TikTok",
-      "budget_gbp": 11500,
+      "budget_gbp": 6227,
       "role": "growth test only with compliance guardrails",
       "confidence": "low",
       "source_ids": [
@@ -7273,7 +7273,7 @@
       "month": "2026-07",
       "channel": "Paid Social",
       "owner": "Pinterest/Snap proxy",
-      "budget_gbp": 11501,
+      "budget_gbp": 6228,
       "role": "small test budget",
       "confidence": "low",
       "source_ids": [
@@ -7284,7 +7284,7 @@
       "month": "2026-07",
       "channel": "Audio",
       "owner": "Regional radio proxy",
-      "budget_gbp": 58343,
+      "budget_gbp": 31592,
       "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
@@ -7295,7 +7295,7 @@
       "month": "2026-07",
       "channel": "Audio",
       "owner": "Podcast/digital audio proxy",
-      "budget_gbp": 31416,
+      "budget_gbp": 17012,
       "role": "test and incremental reach",
       "confidence": "low",
       "source_ids": [
@@ -7306,7 +7306,7 @@
       "month": "2026-07",
       "channel": "Display/Programmatic",
       "owner": "DSP retargeting proxy",
-      "budget_gbp": 66615,
+      "budget_gbp": 36072,
       "role": "retargeting and controlled tests",
       "confidence": "low",
       "source_ids": [
@@ -7317,7 +7317,7 @@
       "month": "2026-08",
       "channel": "AV",
       "owner": "ITV",
-      "budget_gbp": 678051,
+      "budget_gbp": 367164,
       "role": "broad commercial reach",
       "confidence": "medium",
       "source_ids": [
@@ -7329,7 +7329,7 @@
       "month": "2026-08",
       "channel": "AV",
       "owner": "Channel 4",
-      "budget_gbp": 387458,
+      "budget_gbp": 209808,
       "role": "incremental reach and lighter-viewer support",
       "confidence": "medium",
       "source_ids": [
@@ -7341,7 +7341,7 @@
       "month": "2026-08",
       "channel": "AV",
       "owner": "Sky/Other Broadcasters",
-      "budget_gbp": 355170,
+      "budget_gbp": 192324,
       "role": "targeted reach extension",
       "confidence": "low",
       "source_ids": [
@@ -7353,7 +7353,7 @@
       "month": "2026-08",
       "channel": "OOH",
       "owner": "Talon/large format proxy",
-      "budget_gbp": 40038,
+      "budget_gbp": 21681,
       "role": "regional salience",
       "confidence": "low",
       "source_ids": [
@@ -7364,7 +7364,7 @@
       "month": "2026-08",
       "channel": "OOH",
       "owner": "6-sheet/proximity proxy",
-      "budget_gbp": 32758,
+      "budget_gbp": 17738,
       "role": "retail and local presence",
       "confidence": "low",
       "source_ids": [
@@ -7375,7 +7375,7 @@
       "month": "2026-08",
       "channel": "Direct Mail",
       "owner": "Propensity postcode selection",
-      "budget_gbp": 1018573,
+      "budget_gbp": 551556,
       "role": "high-propensity household conversion",
       "confidence": "low",
       "source_ids": [
@@ -7386,7 +7386,7 @@
       "month": "2026-08",
       "channel": "CTV/YouTube",
       "owner": "YouTube",
-      "budget_gbp": 30956,
+      "budget_gbp": 16763,
       "role": "incremental video reach",
       "confidence": "medium",
       "source_ids": [
@@ -7398,7 +7398,7 @@
       "month": "2026-08",
       "channel": "CTV/YouTube",
       "owner": "ITVX/C4 Streaming proxy",
-      "budget_gbp": 20638,
+      "budget_gbp": 11175,
       "role": "BVOD quality reach",
       "confidence": "low",
       "source_ids": [
@@ -7410,7 +7410,7 @@
       "month": "2026-08",
       "channel": "Paid Search",
       "owner": "Google Search",
-      "budget_gbp": 79850,
+      "budget_gbp": 43239,
       "role": "brand and high-intent capture",
       "confidence": "medium",
       "source_ids": [
@@ -7421,7 +7421,7 @@
       "month": "2026-08",
       "channel": "Paid Search",
       "owner": "Microsoft Search",
-      "budget_gbp": 6943,
+      "budget_gbp": 3759,
       "role": "older desktop skew and efficiency test",
       "confidence": "low",
       "source_ids": [
@@ -7432,7 +7432,7 @@
       "month": "2026-08",
       "channel": "Paid Social",
       "owner": "Meta",
-      "budget_gbp": 80503,
+      "budget_gbp": 43592,
       "role": "scaled acquisition and retargeting",
       "confidence": "medium",
       "source_ids": [
@@ -7443,7 +7443,7 @@
       "month": "2026-08",
       "channel": "Paid Social",
       "owner": "TikTok",
-      "budget_gbp": 17251,
+      "budget_gbp": 9342,
       "role": "growth test only with compliance guardrails",
       "confidence": "low",
       "source_ids": [
@@ -7454,7 +7454,7 @@
       "month": "2026-08",
       "channel": "Paid Social",
       "owner": "Pinterest/Snap proxy",
-      "budget_gbp": 17251,
+      "budget_gbp": 9341,
       "role": "small test budget",
       "confidence": "low",
       "source_ids": [
@@ -7465,7 +7465,7 @@
       "month": "2026-08",
       "channel": "Audio",
       "owner": "Regional radio proxy",
-      "budget_gbp": 87515,
+      "budget_gbp": 47389,
       "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
@@ -7476,7 +7476,7 @@
       "month": "2026-08",
       "channel": "Audio",
       "owner": "Podcast/digital audio proxy",
-      "budget_gbp": 47123,
+      "budget_gbp": 25517,
       "role": "test and incremental reach",
       "confidence": "low",
       "source_ids": [
@@ -7487,7 +7487,7 @@
       "month": "2026-08",
       "channel": "Display/Programmatic",
       "owner": "DSP retargeting proxy",
-      "budget_gbp": 99922,
+      "budget_gbp": 54108,
       "role": "retargeting and controlled tests",
       "confidence": "low",
       "source_ids": [
@@ -7498,7 +7498,7 @@
       "month": "2026-09",
       "channel": "AV",
       "owner": "ITV",
-      "budget_gbp": 1121942,
+      "budget_gbp": 607530,
       "role": "broad commercial reach",
       "confidence": "medium",
       "source_ids": [
@@ -7510,7 +7510,7 @@
       "month": "2026-09",
       "channel": "AV",
       "owner": "Channel 4",
-      "budget_gbp": 641109,
+      "budget_gbp": 347159,
       "role": "incremental reach and lighter-viewer support",
       "confidence": "medium",
       "source_ids": [
@@ -7522,7 +7522,7 @@
       "month": "2026-09",
       "channel": "AV",
       "owner": "Sky/Other Broadcasters",
-      "budget_gbp": 587684,
+      "budget_gbp": 318230,
       "role": "targeted reach extension",
       "confidence": "low",
       "source_ids": [
@@ -7534,7 +7534,7 @@
       "month": "2026-09",
       "channel": "OOH",
       "owner": "Talon/large format proxy",
-      "budget_gbp": 69561,
+      "budget_gbp": 37667,
       "role": "regional salience",
       "confidence": "low",
       "source_ids": [
@@ -7545,7 +7545,7 @@
       "month": "2026-09",
       "channel": "OOH",
       "owner": "6-sheet/proximity proxy",
-      "budget_gbp": 56913,
+      "budget_gbp": 30818,
       "role": "retail and local presence",
       "confidence": "low",
       "source_ids": [
@@ -7556,7 +7556,7 @@
       "month": "2026-09",
       "channel": "Direct Mail",
       "owner": "Propensity postcode selection",
-      "budget_gbp": 1701594,
+      "budget_gbp": 921411,
       "role": "high-propensity household conversion",
       "confidence": "low",
       "source_ids": [
@@ -7567,7 +7567,7 @@
       "month": "2026-09",
       "channel": "CTV/YouTube",
       "owner": "YouTube",
-      "budget_gbp": 51222,
+      "budget_gbp": 27737,
       "role": "incremental video reach",
       "confidence": "medium",
       "source_ids": [
@@ -7579,7 +7579,7 @@
       "month": "2026-09",
       "channel": "CTV/YouTube",
       "owner": "ITVX/C4 Streaming proxy",
-      "budget_gbp": 34148,
+      "budget_gbp": 18491,
       "role": "BVOD quality reach",
       "confidence": "low",
       "source_ids": [
@@ -7591,7 +7591,7 @@
       "month": "2026-09",
       "channel": "Paid Search",
       "owner": "Google Search",
-      "budget_gbp": 133394,
+      "budget_gbp": 72233,
       "role": "brand and high-intent capture",
       "confidence": "medium",
       "source_ids": [
@@ -7602,7 +7602,7 @@
       "month": "2026-09",
       "channel": "Paid Search",
       "owner": "Microsoft Search",
-      "budget_gbp": 11600,
+      "budget_gbp": 6281,
       "role": "older desktop skew and efficiency test",
       "confidence": "low",
       "source_ids": [
@@ -7613,7 +7613,7 @@
       "month": "2026-09",
       "channel": "Paid Social",
       "owner": "Meta",
-      "budget_gbp": 128318,
+      "budget_gbp": 69484,
       "role": "scaled acquisition and retargeting",
       "confidence": "medium",
       "source_ids": [
@@ -7624,7 +7624,7 @@
       "month": "2026-09",
       "channel": "Paid Social",
       "owner": "TikTok",
-      "budget_gbp": 27496,
+      "budget_gbp": 14889,
       "role": "growth test only with compliance guardrails",
       "confidence": "low",
       "source_ids": [
@@ -7635,7 +7635,7 @@
       "month": "2026-09",
       "channel": "Paid Social",
       "owner": "Pinterest/Snap proxy",
-      "budget_gbp": 27497,
+      "budget_gbp": 14890,
       "role": "small test budget",
       "confidence": "low",
       "source_ids": [
@@ -7646,7 +7646,7 @@
       "month": "2026-09",
       "channel": "Audio",
       "owner": "Regional radio proxy",
-      "budget_gbp": 152047,
+      "budget_gbp": 82333,
       "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
@@ -7657,7 +7657,7 @@
       "month": "2026-09",
       "channel": "Audio",
       "owner": "Podcast/digital audio proxy",
-      "budget_gbp": 81872,
+      "budget_gbp": 44334,
       "role": "test and incremental reach",
       "confidence": "low",
       "source_ids": [
@@ -7668,7 +7668,7 @@
       "month": "2026-09",
       "channel": "Display/Programmatic",
       "owner": "DSP retargeting proxy",
-      "budget_gbp": 173603,
+      "budget_gbp": 94006,
       "role": "retargeting and controlled tests",
       "confidence": "low",
       "source_ids": [
@@ -7679,7 +7679,7 @@
       "month": "2026-10",
       "channel": "AV",
       "owner": "ITV",
-      "budget_gbp": 1121942,
+      "budget_gbp": 607530,
       "role": "broad commercial reach",
       "confidence": "medium",
       "source_ids": [
@@ -7691,7 +7691,7 @@
       "month": "2026-10",
       "channel": "AV",
       "owner": "Channel 4",
-      "budget_gbp": 641109,
+      "budget_gbp": 347159,
       "role": "incremental reach and lighter-viewer support",
       "confidence": "medium",
       "source_ids": [
@@ -7703,7 +7703,7 @@
       "month": "2026-10",
       "channel": "AV",
       "owner": "Sky/Other Broadcasters",
-      "budget_gbp": 587684,
+      "budget_gbp": 318230,
       "role": "targeted reach extension",
       "confidence": "low",
       "source_ids": [
@@ -7715,7 +7715,7 @@
       "month": "2026-10",
       "channel": "OOH",
       "owner": "Talon/large format proxy",
-      "budget_gbp": 69561,
+      "budget_gbp": 37667,
       "role": "regional salience",
       "confidence": "low",
       "source_ids": [
@@ -7726,7 +7726,7 @@
       "month": "2026-10",
       "channel": "OOH",
       "owner": "6-sheet/proximity proxy",
-      "budget_gbp": 56913,
+      "budget_gbp": 30818,
       "role": "retail and local presence",
       "confidence": "low",
       "source_ids": [
@@ -7737,7 +7737,7 @@
       "month": "2026-10",
       "channel": "Direct Mail",
       "owner": "Propensity postcode selection",
-      "budget_gbp": 1701594,
+      "budget_gbp": 921410,
       "role": "high-propensity household conversion",
       "confidence": "low",
       "source_ids": [
@@ -7748,7 +7748,7 @@
       "month": "2026-10",
       "channel": "CTV/YouTube",
       "owner": "YouTube",
-      "budget_gbp": 51222,
+      "budget_gbp": 27737,
       "role": "incremental video reach",
       "confidence": "medium",
       "source_ids": [
@@ -7760,7 +7760,7 @@
       "month": "2026-10",
       "channel": "CTV/YouTube",
       "owner": "ITVX/C4 Streaming proxy",
-      "budget_gbp": 34148,
+      "budget_gbp": 18491,
       "role": "BVOD quality reach",
       "confidence": "low",
       "source_ids": [
@@ -7772,7 +7772,7 @@
       "month": "2026-10",
       "channel": "Paid Search",
       "owner": "Google Search",
-      "budget_gbp": 133394,
+      "budget_gbp": 72233,
       "role": "brand and high-intent capture",
       "confidence": "medium",
       "source_ids": [
@@ -7783,7 +7783,7 @@
       "month": "2026-10",
       "channel": "Paid Search",
       "owner": "Microsoft Search",
-      "budget_gbp": 11600,
+      "budget_gbp": 6281,
       "role": "older desktop skew and efficiency test",
       "confidence": "low",
       "source_ids": [
@@ -7794,7 +7794,7 @@
       "month": "2026-10",
       "channel": "Paid Social",
       "owner": "Meta",
-      "budget_gbp": 128318,
+      "budget_gbp": 69484,
       "role": "scaled acquisition and retargeting",
       "confidence": "medium",
       "source_ids": [
@@ -7805,7 +7805,7 @@
       "month": "2026-10",
       "channel": "Paid Social",
       "owner": "TikTok",
-      "budget_gbp": 27496,
+      "budget_gbp": 14889,
       "role": "growth test only with compliance guardrails",
       "confidence": "low",
       "source_ids": [
@@ -7816,7 +7816,7 @@
       "month": "2026-10",
       "channel": "Paid Social",
       "owner": "Pinterest/Snap proxy",
-      "budget_gbp": 27497,
+      "budget_gbp": 14889,
       "role": "small test budget",
       "confidence": "low",
       "source_ids": [
@@ -7827,7 +7827,7 @@
       "month": "2026-10",
       "channel": "Audio",
       "owner": "Regional radio proxy",
-      "budget_gbp": 152047,
+      "budget_gbp": 82333,
       "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
@@ -7838,7 +7838,7 @@
       "month": "2026-10",
       "channel": "Audio",
       "owner": "Podcast/digital audio proxy",
-      "budget_gbp": 81872,
+      "budget_gbp": 44334,
       "role": "test and incremental reach",
       "confidence": "low",
       "source_ids": [
@@ -7849,7 +7849,7 @@
       "month": "2026-10",
       "channel": "Display/Programmatic",
       "owner": "DSP retargeting proxy",
-      "budget_gbp": 173603,
+      "budget_gbp": 94006,
       "role": "retargeting and controlled tests",
       "confidence": "low",
       "source_ids": [
@@ -7860,7 +7860,7 @@
       "month": "2026-11",
       "channel": "AV",
       "owner": "ITV",
-      "budget_gbp": 3699663,
+      "budget_gbp": 2003362,
       "role": "broad commercial reach",
       "confidence": "medium",
       "source_ids": [
@@ -7872,7 +7872,7 @@
       "month": "2026-11",
       "channel": "AV",
       "owner": "Channel 4",
-      "budget_gbp": 2114093,
+      "budget_gbp": 1144778,
       "role": "incremental reach and lighter-viewer support",
       "confidence": "medium",
       "source_ids": [
@@ -7884,7 +7884,7 @@
       "month": "2026-11",
       "channel": "AV",
       "owner": "Sky/Other Broadcasters",
-      "budget_gbp": 1937918,
+      "budget_gbp": 1049380,
       "role": "targeted reach extension",
       "confidence": "low",
       "source_ids": [
@@ -7896,7 +7896,7 @@
       "month": "2026-11",
       "channel": "OOH",
       "owner": "Talon/large format proxy",
-      "budget_gbp": 221039,
+      "budget_gbp": 119692,
       "role": "regional salience",
       "confidence": "low",
       "source_ids": [
@@ -7907,7 +7907,7 @@
       "month": "2026-11",
       "channel": "OOH",
       "owner": "6-sheet/proximity proxy",
-      "budget_gbp": 180851,
+      "budget_gbp": 97931,
       "role": "retail and local presence",
       "confidence": "low",
       "source_ids": [
@@ -7918,7 +7918,7 @@
       "month": "2026-11",
       "channel": "Direct Mail",
       "owner": "Propensity postcode selection",
-      "budget_gbp": 5305037,
+      "budget_gbp": 2872669,
       "role": "high-propensity household conversion",
       "confidence": "low",
       "source_ids": [
@@ -7929,7 +7929,7 @@
       "month": "2026-11",
       "channel": "CTV/YouTube",
       "owner": "YouTube",
-      "budget_gbp": 162766,
+      "budget_gbp": 88138,
       "role": "incremental video reach",
       "confidence": "medium",
       "source_ids": [
@@ -7941,7 +7941,7 @@
       "month": "2026-11",
       "channel": "CTV/YouTube",
       "owner": "ITVX/C4 Streaming proxy",
-      "budget_gbp": 108510,
+      "budget_gbp": 58758,
       "role": "BVOD quality reach",
       "confidence": "low",
       "source_ids": [
@@ -7953,7 +7953,7 @@
       "month": "2026-11",
       "channel": "Paid Search",
       "owner": "Google Search",
-      "budget_gbp": 439873,
+      "budget_gbp": 238191,
       "role": "brand and high-intent capture",
       "confidence": "medium",
       "source_ids": [
@@ -7964,7 +7964,7 @@
       "month": "2026-11",
       "channel": "Paid Search",
       "owner": "Microsoft Search",
-      "budget_gbp": 38250,
+      "budget_gbp": 20712,
       "role": "older desktop skew and efficiency test",
       "confidence": "low",
       "source_ids": [
@@ -7975,7 +7975,7 @@
       "month": "2026-11",
       "channel": "Paid Social",
       "owner": "Meta",
-      "budget_gbp": 384667,
+      "budget_gbp": 208297,
       "role": "scaled acquisition and retargeting",
       "confidence": "medium",
       "source_ids": [
@@ -7986,7 +7986,7 @@
       "month": "2026-11",
       "channel": "Paid Social",
       "owner": "TikTok",
-      "budget_gbp": 82429,
+      "budget_gbp": 44635,
       "role": "growth test only with compliance guardrails",
       "confidence": "low",
       "source_ids": [
@@ -7997,7 +7997,7 @@
       "month": "2026-11",
       "channel": "Paid Social",
       "owner": "Pinterest/Snap proxy",
-      "budget_gbp": 82429,
+      "budget_gbp": 44635,
       "role": "small test budget",
       "confidence": "low",
       "source_ids": [
@@ -8008,7 +8008,7 @@
       "month": "2026-11",
       "channel": "Audio",
       "owner": "Regional radio proxy",
-      "budget_gbp": 455803,
+      "budget_gbp": 246817,
       "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
@@ -8019,7 +8019,7 @@
       "month": "2026-11",
       "channel": "Audio",
       "owner": "Podcast/digital audio proxy",
-      "budget_gbp": 245433,
+      "budget_gbp": 132901,
       "role": "test and incremental reach",
       "confidence": "low",
       "source_ids": [
@@ -8030,7 +8030,7 @@
       "month": "2026-11",
       "channel": "Display/Programmatic",
       "owner": "DSP retargeting proxy",
-      "budget_gbp": 541239,
+      "budget_gbp": 293080,
       "role": "retargeting and controlled tests",
       "confidence": "low",
       "source_ids": [
@@ -8041,7 +8041,7 @@
       "month": "2026-12",
       "channel": "AV",
       "owner": "ITV",
-      "budget_gbp": 406007,
+      "budget_gbp": 219852,
       "role": "broad commercial reach",
       "confidence": "medium",
       "source_ids": [
@@ -8053,7 +8053,7 @@
       "month": "2026-12",
       "channel": "AV",
       "owner": "Channel 4",
-      "budget_gbp": 232004,
+      "budget_gbp": 125630,
       "role": "incremental reach and lighter-viewer support",
       "confidence": "medium",
       "source_ids": [
@@ -8065,7 +8065,7 @@
       "month": "2026-12",
       "channel": "AV",
       "owner": "Sky/Other Broadcasters",
-      "budget_gbp": 212671,
+      "budget_gbp": 115161,
       "role": "targeted reach extension",
       "confidence": "low",
       "source_ids": [
@@ -8077,7 +8077,7 @@
       "month": "2026-12",
       "channel": "OOH",
       "owner": "Talon/large format proxy",
-      "budget_gbp": 25172,
+      "budget_gbp": 13630,
       "role": "regional salience",
       "confidence": "low",
       "source_ids": [
@@ -8088,7 +8088,7 @@
       "month": "2026-12",
       "channel": "OOH",
       "owner": "6-sheet/proximity proxy",
-      "budget_gbp": 20596,
+      "budget_gbp": 11153,
       "role": "retail and local presence",
       "confidence": "low",
       "source_ids": [
@@ -8099,7 +8099,7 @@
       "month": "2026-12",
       "channel": "Direct Mail",
       "owner": "Propensity postcode selection",
-      "budget_gbp": 615771,
+      "budget_gbp": 333439,
       "role": "high-propensity household conversion",
       "confidence": "low",
       "source_ids": [
@@ -8110,7 +8110,7 @@
       "month": "2026-12",
       "channel": "CTV/YouTube",
       "owner": "YouTube",
-      "budget_gbp": 19093,
+      "budget_gbp": 10339,
       "role": "incremental video reach",
       "confidence": "medium",
       "source_ids": [
@@ -8122,7 +8122,7 @@
       "month": "2026-12",
       "channel": "CTV/YouTube",
       "owner": "ITVX/C4 Streaming proxy",
-      "budget_gbp": 12728,
+      "budget_gbp": 6892,
       "role": "BVOD quality reach",
       "confidence": "low",
       "source_ids": [
@@ -8134,7 +8134,7 @@
       "month": "2026-12",
       "channel": "Paid Search",
       "owner": "Google Search",
-      "budget_gbp": 48272,
+      "budget_gbp": 26139,
       "role": "brand and high-intent capture",
       "confidence": "medium",
       "source_ids": [
@@ -8145,7 +8145,7 @@
       "month": "2026-12",
       "channel": "Paid Search",
       "owner": "Microsoft Search",
-      "budget_gbp": 4198,
+      "budget_gbp": 2273,
       "role": "older desktop skew and efficiency test",
       "confidence": "low",
       "source_ids": [
@@ -8156,7 +8156,7 @@
       "month": "2026-12",
       "channel": "Paid Social",
       "owner": "Meta",
-      "budget_gbp": 47828,
+      "budget_gbp": 25898,
       "role": "scaled acquisition and retargeting",
       "confidence": "medium",
       "source_ids": [
@@ -8167,7 +8167,7 @@
       "month": "2026-12",
       "channel": "Paid Social",
       "owner": "TikTok",
-      "budget_gbp": 10249,
+      "budget_gbp": 5550,
       "role": "growth test only with compliance guardrails",
       "confidence": "low",
       "source_ids": [
@@ -8178,7 +8178,7 @@
       "month": "2026-12",
       "channel": "Paid Social",
       "owner": "Pinterest/Snap proxy",
-      "budget_gbp": 10249,
+      "budget_gbp": 5550,
       "role": "small test budget",
       "confidence": "low",
       "source_ids": [
@@ -8189,7 +8189,7 @@
       "month": "2026-12",
       "channel": "Audio",
       "owner": "Regional radio proxy",
-      "budget_gbp": 56673,
+      "budget_gbp": 30688,
       "role": "regional commuter reach",
       "confidence": "low",
       "source_ids": [
@@ -8200,7 +8200,7 @@
       "month": "2026-12",
       "channel": "Audio",
       "owner": "Podcast/digital audio proxy",
-      "budget_gbp": 30517,
+      "budget_gbp": 16525,
       "role": "test and incremental reach",
       "confidence": "low",
       "source_ids": [
@@ -8211,7 +8211,7 @@
       "month": "2026-12",
       "channel": "Display/Programmatic",
       "owner": "DSP retargeting proxy",
-      "budget_gbp": 62823,
+      "budget_gbp": 34018,
       "role": "retargeting and controlled tests",
       "confidence": "low",
       "source_ids": [
@@ -8224,7 +8224,7 @@
     "policy_sales_target": 1000000,
     "brief_cost_per_policy_gbp": 65,
     "objective_source": "fixture_default",
-    "forecast_new_policy_sales": 984492,
+    "forecast_new_policy_sales": 533101,
     "forecast_cost_per_policy_gbp": 66.71,
     "clears_policy_sales_target": false,
     "clears_brief_cost_per_policy": false,

@@ -4,8 +4,8 @@
   "planning_year": 2026,
   "brief_type": "annual",
   "prototype_status": "admiral_source_plus_synthetic_v1",
-  "total_budget_gbp": 65674851,
-  "brief_stated_budget_gbp": 65000000,
+  "total_budget_gbp": 35562832,
+  "brief_stated_budget_gbp": 35500000,
   "primary_kpi": "new_policy_sales",
   "secondary_kpi": "cost_per_new_policy_sale",
   "plan_scope": {
