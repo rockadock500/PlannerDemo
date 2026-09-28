@@ -2,7 +2,7 @@
   "dictionary_version": "v1",
   "source_file": "Freemans Media Planner Data.xlsx (Data Dictionary_Current sheet)",
   "status": "work_in_progress",
-  "note": "This is the client's canonical list of data sources for the planner, not yet reconciled with the live-ingested Postgres source_records. Most Description/Data-quality fields are still blank in the source file - only Prior Month Renewal & Plate-Change Analysis, Event Calendar and MMM have Description filled in so far. How-used fields have now been added by Claude for every source: they describe how each source WOULD feed the deterministic engine if it were fully wired in, grounded in the engine's existing mechanics (channel scoring, response curves, MMM evidence, brief-hooks tagging, guardrails). They are forward-looking / intended-use descriptions, not confirmations that the source is live today - as of this writing only MMM, the Step 1 budget upload and the Step 1 strategy text actually drive the plan's numbers; Renewal & Plate-Change Analysis, ThinkBox and ActiveVoice have real documents ingested into Postgres but are not yet consumed by the engine's calculations; everything else has no live document at all. Categories below are Claude's own grouping (not present in the source spreadsheet, which is a flat list). The source spreadsheet had two near-duplicate rows, 'Historic Media Plans' and 'Historical Media Plans' - merged into the single 'Historic Media Plans' entry below.",
+  "note": "This is the client's canonical list of data sources for the planner, not yet reconciled with the live-ingested Postgres source_records. Most Description/Data-quality fields are still blank in the source file - only Event Calendar and MMM have Description filled in so far. How-used fields have now been added by Claude for every source: they describe how each source WOULD feed the deterministic engine if it were fully wired in, grounded in the engine's existing mechanics (channel scoring, response curves, MMM evidence, brief-hooks tagging, guardrails). They are forward-looking / intended-use descriptions, not confirmations that the source is live today - as of this writing only MMM, the Step 1 budget upload and the Step 1 strategy text actually drive the plan's numbers; ThinkBox and ActiveVoice have real documents ingested into Postgres but are not yet consumed by the engine's calculations; everything else has no live document at all. Categories below are Claude's own grouping (not present in the source spreadsheet, which is a flat list). The source spreadsheet had two near-duplicate rows, 'Historic Media Plans' and 'Historical Media Plans' - merged into the single 'Historic Media Plans' entry below.",
   "categories": [
     {
       "category_id": "effectiveness_modelling",
@@ -10,7 +10,7 @@
       "sources": [
         {
           "name": "MMM",
-          "description": "Mixed Media Modelling for Freemans in PDF or PowerPoint",
+          "description": "Mixed Media Modelling for Freemans",
           "how_used": "Live today. Used to create the initial base plan, taking the high-level figures for a breakdown of budget per channel, and to add context to the LLM's and agents. Concretely: refresh_mmm_notes.py reads the newest report and writes mmm_note (analyst commentary) and mmm_optimal_share_pct (per-channel target share) into channel_evidence_notes, which the engine pulls live on every plan generation.",
           "data_quality": "Most recent document no older than 6 months old, contains channel level granularity exported.",
           "match_hints": [
@@ -50,24 +50,8 @@
     },
     {
       "category_id": "quote_policy_renewal",
-      "label": "Checkout, Order & Retention Performance",
+      "label": "Checkout and Order Performance",
       "sources": [
-        {
-          "name": "Prior Month Renewal & Plate-Change Analysis",
-          "description": "Powerpoint document containing analysis of the previous month's renewal and seasonal trading peak demand",
-          "how_used": "Would feed the month-by-month demand_weight used to phase budget and channel scoring across the year - today that phasing comes from the static synthetic fixture, so real analysis of the prior month's renewal and seasonal trading peak performance would let phasing react to actual recent performance instead of a fixed annual calendar.",
-          "data_quality": "Most recent document no older than 2 months, full coverage for the prior full year (Jan-Jan)",
-          "match_hints": [
-            "renewal analysis"
-          ]
-        },
-        {
-          "name": "Annual Plate-Change & Renewal Calendar",
-          "description": "",
-          "how_used": "Would replace the synthetic fixture directly, supplying the real per-month demand weight/importance figure used to scale channel scores by month.",
-          "data_quality": "",
-          "match_hints": []
-        },
         {
           "name": "Sales by day + postcode",
           "description": "",

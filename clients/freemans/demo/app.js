@@ -120,7 +120,7 @@ const CHANNEL_ROLE_GROUP = {
 // directly rather than hard-coding totals here.
 const DATA_READINESS_GROUP_LABELS = {
   effectiveness_modelling: "Effectiveness & Modelling",
-  quote_policy_renewal: "Checkout, Order & Retention Performance",
+  quote_policy_renewal: "Checkout and Order Performance",
   pcw_distribution: "Affiliate/Cashback & Distribution Performance",
   customer_vehicle_audience: "Customer & Audience Data",
   pricing_risk_guardrails: "Pricing, Risk & Commercial Guardrails",

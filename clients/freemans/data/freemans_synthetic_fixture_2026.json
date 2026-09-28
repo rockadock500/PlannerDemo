@@ -233,7 +233,7 @@
   },
   "data_readiness_groups": {
     "effectiveness_modelling": "Effectiveness & Modelling - MMM, incrementality tests, experiments, response curves, attribution, brand lift.",
-    "quote_policy_renewal": "Checkout, Order & Retention Performance - checkout starts, completions, customer orders, cost per order, product, geography, renewals, cancellations.",
+    "quote_policy_renewal": "Checkout and Order Performance - checkout starts, completions, customer orders, cost per order, product, geography, renewals, cancellations.",
     "pcw_distribution": "Affiliate/Cashback & Distribution Performance - position, click, quote and sale feeds, commissions, attribution rules, freshness.",
     "customer_vehicle_audience": "Customer & Audience Data - approved aggregate segments for Multi-Category, new customers, Flexi Pay, Electricals/Home Tech, life stage, geography.",
     "pricing_risk_guardrails": "Pricing, Risk & Commercial Guardrails - only approved aggregate constraints or value bands; detailed pricing/credit-risk logic stays outside the planner and LLM.",
