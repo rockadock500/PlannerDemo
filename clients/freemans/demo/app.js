@@ -155,7 +155,7 @@ const logicChallenges = [
   {
     area: "Objective Function",
     title: "What is the plan really optimising?",
-    body: "V1 balances new customer orders, cost per order, CLV proxy and strategic audience weight. Freemans needs to confirm whether final optimisation is new customer orders, cost per order, CLV-weighted value, basket-to-order conversion or a blended score.",
+    body: "V1 balances new customer orders, CPA, CLV proxy and strategic audience weight. Freemans needs to confirm whether final optimisation is new customer orders, CPA, CLV-weighted value, basket-to-order conversion or a blended score.",
     status: "big",
   },
   {
@@ -1131,7 +1131,7 @@ function renderTable() {
   // Answers "if I'm giving you this budget, how are you optimising that by
   // month?" directly in the table, rather than only as a single annual
   // figure elsewhere on the page - always shows budget £ regardless of
-  // the current Budget/Cost per Order/Confidence/Share % toggle, since
+  // the current Budget/CPA/Confidence/Share % toggle, since
   // summing a cost-per-order figure or a confidence label across channels
   // isn't meaningful.
   const monthTotals = MONTHS.map((month) =>
@@ -1411,7 +1411,7 @@ function renderEvidence() {
       <div class="metric"><span>Monthly Budget</span><strong>${money.format(row.budget_gbp)}</strong></div>
       <div class="metric"><span>Annual Channel Budget</span><strong>${channelTotal ? money.format(channelTotal.budget_gbp) : "Not available"}</strong></div>
       <div class="metric"><span>% of Monthly Spend</span><strong>${row.budget_share_pct}%</strong></div>
-      <div class="metric"><span>Forecast Cost per Order</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
+      <div class="metric"><span>Forecast CPA</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
       <div class="metric"><span>Confidence</span><strong class="confidence-${row.confidence.replace(" ", "-")}">${row.confidence}</strong></div>
     </div>
     <div>
@@ -1468,7 +1468,7 @@ function renderLogicChallenges() {
         <div>
           <span>Best achievable forecast</span>
           <strong>${number.format(feasibility.best_new_policy_sales)} at ${costPerPolicyMoney.format(feasibility.best_cost_per_policy_gbp)}</strong>
-          <p>Gap: ${number.format(feasibility.policy_sales_gap)} new customer orders and £${feasibility.cost_per_policy_gap_gbp} cost per order.</p>
+          <p>Gap: ${number.format(feasibility.policy_sales_gap)} new customer orders and £${feasibility.cost_per_policy_gap_gbp} CPA.</p>
         </div>
         <div>
           <span>Current top logic</span>
@@ -1879,7 +1879,7 @@ function scenarioCard({ key, label, plan, pass, body, isBaseline }) {
       </div>
       <div class="scenario-metrics">
         <div><span>Forecast</span><strong>${number.format(plan.forecast_new_policy_sales)}</strong></div>
-        <div><span>Cost per Order</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
+        <div><span>CPA</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
         <div><span>Gap</span><strong>${number.format(Math.max(0, plan.brief_test.policy_sales_target - plan.forecast_new_policy_sales))}</strong></div>
       </div>
       <div class="scenario-body">${body}</div>
@@ -2050,7 +2050,7 @@ function renderScenarioDrilldownEvidence() {
       <div class="metric"><span>Monthly Budget</span><strong>${money.format(row.budget_gbp)}</strong></div>
       <div class="metric"><span>Annual Channel Budget</span><strong>${channelTotal ? money.format(channelTotal.budget_gbp) : "Not available"}</strong></div>
       <div class="metric"><span>% of Monthly Spend</span><strong>${row.budget_share_pct}%</strong></div>
-      <div class="metric"><span>Forecast Cost per Order</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
+      <div class="metric"><span>Forecast CPA</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
       <div class="metric"><span>Confidence</span><strong class="confidence-${row.confidence.replace(" ", "-")}">${row.confidence}</strong></div>
     </div>
     <div>
@@ -2338,7 +2338,7 @@ function renderMonthlyRevision() {
         <strong>Prior-month rolling performance</strong>
         <dl class="revision-dl">
           <div><dt>New customer orders (actual)</dt><dd>${number.format(fixture.sales_actuals.new_policy_sales)} vs ${number.format(fixture.sales_actuals.target_new_policy_sales)}</dd></div>
-          <div><dt>Actual Cost per Order</dt><dd>${costPerPolicyMoney.format(fixture.sales_actuals.cost_per_policy_gbp)} vs ${costPerPolicyMoney.format(fixture.sales_actuals.target_cost_per_policy_gbp)}</dd></div>
+          <div><dt>Actual CPA</dt><dd>${costPerPolicyMoney.format(fixture.sales_actuals.cost_per_policy_gbp)} vs ${costPerPolicyMoney.format(fixture.sales_actuals.target_cost_per_policy_gbp)}</dd></div>
           <div><dt>Delivery index</dt><dd>${fixture.sales_actuals.delivery_index}</dd></div>
           ${fixture.sales_actuals.quote_starts ? `<div><dt>Checkout starts</dt><dd>${number.format(fixture.sales_actuals.quote_starts)}</dd></div>` : ""}
           ${fixture.sales_actuals.quote_to_policy_conversion_pct ? `<div><dt>Basket-to-order conversion</dt><dd>${fixture.sales_actuals.quote_to_policy_conversion_pct}%</dd></div>` : ""}
@@ -2418,7 +2418,7 @@ function chatMessageHtml(message, index) {
           <p class="table-hint">${proposal.rationale || ""}</p>
           <div class="scenario-metrics">
             <div><span>Forecast</span><strong>${number.format(plan.forecast_new_policy_sales)}</strong></div>
-            <div><span>Cost per Order</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
+            <div><span>CPA</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
             <div><span>vs baseline forecast</span><strong>${plan.forecast_new_policy_sales >= baseline.forecast_new_policy_sales ? "+" : ""}${number.format(plan.forecast_new_policy_sales - baseline.forecast_new_policy_sales)}</strong></div>
           </div>
           ${message.stored
@@ -2487,7 +2487,7 @@ function renderPlanChat() {
             ${current ? `
               <div class="scenario-metrics">
                 <div><span>Forecast</span><strong>${number.format(current.plan.forecast_new_policy_sales)}</strong></div>
-                <div><span>Cost per Order</span><strong>${costPerPolicyMoney.format(current.plan.forecast_cost_per_policy_gbp)}</strong></div>
+                <div><span>CPA</span><strong>${costPerPolicyMoney.format(current.plan.forecast_cost_per_policy_gbp)}</strong></div>
                 <div><span>Total Budget</span><strong>${money.format(current.plan.total_budget_gbp)}</strong></div>
                 ${current.plan.forecast_quote_starts ? `<div><span>Checkout Starts</span><strong>${number.format(current.plan.forecast_quote_starts)}</strong></div>` : ""}
                 ${current.plan.quote_to_policy_conversion_pct ? `<div><span>Basket-to-Order Conversion</span><strong>${current.plan.quote_to_policy_conversion_pct}%</strong></div>` : ""}
@@ -2790,7 +2790,7 @@ function renderEventsCalendar() {
             <strong>Monthly overview: ${monthLabel}</strong>
             <button class="secondary-button" type="button" id="generateCalendarOverview">${state.calendarOverviewAi[monthStr] ? "Regenerate" : "Generate"} AI overview</button>
           </div>
-          <p class="table-hint">Deterministic summary of scheduled motoring moments, holidays and context for this month, filtered to the categories selected above.</p>
+          <p class="table-hint">Deterministic summary of scheduled retail moments, holidays and context for this month, filtered to the categories selected above.</p>
           ${renderCalendarAiOverview(monthStr)}
           ${renderCalendarOverviewGroups(monthItems)}
         </div>
@@ -3143,7 +3143,7 @@ function renderAdminPlansSection() {
       ${rows.length ? `
         <div class="source-table-wrap">
           <table class="source-table">
-            <thead><tr><th>Plan</th><th>Forecast</th><th>Cost per Order</th><th></th></tr></thead>
+            <thead><tr><th>Plan</th><th>Forecast</th><th>CPA</th><th></th></tr></thead>
             <tbody>
               ${rows.map((row) => `
                 <tr>
@@ -3302,7 +3302,7 @@ function renderCurrentPlanEvidence(plan, selected) {
         <div class="metric"><span>Monthly Budget</span><strong>${money.format(row.budget_gbp)}</strong></div>
         <div class="metric"><span>Annual Channel Budget</span><strong>${channelTotal ? money.format(channelTotal.budget_gbp) : "Not available"}</strong></div>
         <div class="metric"><span>% of Monthly Spend</span><strong>${row.budget_share_pct}%</strong></div>
-        <div class="metric"><span>Forecast Cost per Order</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
+        <div class="metric"><span>Forecast CPA</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
         <div class="metric"><span>Confidence</span><strong class="confidence-${row.confidence.replace(" ", "-")}">${row.confidence}</strong></div>
       </div>
       <div>
@@ -3363,8 +3363,8 @@ function downloadCurrentPlanExcel(plan) {
     ["Plan ID", plan.plan_id],
     ["Scenario", plan.scenario.label],
     ["Total Budget (GBP)", plan.total_budget_gbp],
-    ["Forecast New Policy Sales", plan.forecast_new_policy_sales],
-    ["Forecast Cost per Order (GBP)", plan.forecast_cost_per_policy_gbp],
+    ["Forecast New Customer Orders", plan.forecast_new_policy_sales],
+    ["Forecast CPA (GBP)", plan.forecast_cost_per_policy_gbp],
   ];
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(summaryRows), "Summary");
   const budgetRows = [["Channel", ...MONTHS.map(formatMonth), "Total"]];
@@ -3414,7 +3414,7 @@ function renderCurrentPlan() {
     <section class="status-strip" aria-label="Current plan status">
       <div><span>Total Budget</span><strong>${money.format(plan.total_budget_gbp)}</strong></div>
       <div><span>Forecast New Customer Orders</span><strong>${number.format(policySales)}</strong></div>
-      <div><span>Forecast Cost per Order</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
+      <div><span>Forecast CPA</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
       ${plan.forecast_quote_starts ? `<div><span>Forecast Checkout Starts</span><strong>${number.format(plan.forecast_quote_starts)}</strong></div>` : ""}
       ${plan.quote_to_policy_conversion_pct ? `<div><span>Basket-to-Order Conversion</span><strong>${plan.quote_to_policy_conversion_pct}%</strong></div>` : ""}
       <div><span>Budget Check</span><strong>${plan.qa.budget_balanced && plan.qa.months_balanced ? "Balanced" : "Needs review"}</strong></div>
@@ -3446,7 +3446,7 @@ function renderCurrentPlan() {
       </div>
       <div class="view-toggle" aria-label="Table display">
         <button class="toggle ${mode === "budget" ? "active" : ""}" type="button" data-current-plan-mode="budget">Budget</button>
-        <button class="toggle ${mode === "cost_per_policy" ? "active" : ""}" type="button" data-current-plan-mode="cost_per_policy">Cost per Order</button>
+        <button class="toggle ${mode === "cost_per_policy" ? "active" : ""}" type="button" data-current-plan-mode="cost_per_policy">CPA</button>
         <button class="toggle ${mode === "confidence" ? "active" : ""}" type="button" data-current-plan-mode="confidence">Confidence</button>
       </div>
       <button class="secondary-button" type="button" id="exportCurrentPlan">Export plan (CSV)</button>
@@ -3654,7 +3654,7 @@ function renderApproval() {
 
     <div class="approval-card ${isCurrentApproved ? "ready" : ""}">
       <strong>${statusLabels[approvalStatus] || approvalStatus}${isCurrentApproved ? " · This is the current approved plan" : ""}</strong>
-      <p>${plan.scenario.label} (${current.kind === "fixture" ? "demo fixture" : "live"}) · ${number.format(plan.forecast_new_policy_sales)} forecast new customer orders · ${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)} cost per order · ${money.format(plan.total_budget_gbp)} budget.</p>
+      <p>${plan.scenario.label} (${current.kind === "fixture" ? "demo fixture" : "live"}) · ${number.format(plan.forecast_new_policy_sales)} forecast new customer orders · ${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)} CPA · ${money.format(plan.total_budget_gbp)} budget.</p>
     </div>
 
     <div class="approval-card">
@@ -3666,7 +3666,7 @@ function renderApproval() {
       <strong>Active warnings</strong>
       <div class="config-actions" style="margin-bottom:10px;">
         <span class="status-pill ${clearsPolicySalesTarget ? "good" : "warning"}">${clearsPolicySalesTarget ? "Clears" : "Does not clear"} customer orders target</span>
-        <span class="status-pill ${clearsBriefCostPerPolicy ? "good" : "warning"}">${clearsBriefCostPerPolicy ? "Clears" : "Does not clear"} brief cost per order</span>
+        <span class="status-pill ${clearsBriefCostPerPolicy ? "good" : "warning"}">${clearsBriefCostPerPolicy ? "Clears" : "Does not clear"} brief CPA</span>
         <span class="status-pill ${plan.state_model?.status === "warning" ? "warning" : "good"}">${plan.state_model?.status || "unknown"} readiness</span>
       </div>
       ${effectiveWarnings(current).length ? `
@@ -4368,13 +4368,13 @@ function downloadPlanExcel() {
     ["Plan ID", plan.plan_id],
     ["Scenario", plan.scenario.label],
     ["Total Budget (GBP)", plan.total_budget_gbp],
-    ["Forecast New Policy Sales", plan.forecast_new_policy_sales],
-    ["Forecast Cost per Order (GBP)", plan.forecast_cost_per_policy_gbp],
+    ["Forecast New Customer Orders", plan.forecast_new_policy_sales],
+    ["Forecast CPA (GBP)", plan.forecast_cost_per_policy_gbp],
     [],
     ["Customer Orders Target", plan.brief_test.policy_sales_target],
-    ["Brief Cost per Order Target (GBP)", plan.brief_test.brief_cost_per_policy_gbp],
+    ["Brief CPA Target (GBP)", plan.brief_test.brief_cost_per_policy_gbp],
     ["Clears Customer Orders Target", plan.brief_test.clears_policy_sales_target ? "Yes" : "No"],
-    ["Clears Brief Cost per Order", plan.brief_test.clears_brief_cost_per_policy ? "Yes" : "No"],
+    ["Clears Brief CPA", plan.brief_test.clears_brief_cost_per_policy ? "Yes" : "No"],
     [],
     ["Scenario Assumption", plan.scenario.scenario_assumption || plan.scenario.freeform_prompt || ""],
   ];
@@ -4441,8 +4441,8 @@ function downloadRevisionExcel(candidate) {
     ["Revision Month", formatMonth(candidate.revision_month)],
     ["Prior Month (actuals basis)", formatMonth(candidate.prior_month)],
     ["Total Budget (GBP)", candidate.total_budget_gbp],
-    ["Forecast New Policy Sales", candidate.forecast_new_policy_sales],
-    ["Forecast Cost per Order (GBP)", candidate.forecast_cost_per_policy_gbp],
+    ["Forecast New Customer Orders", candidate.forecast_new_policy_sales],
+    ["Forecast CPA (GBP)", candidate.forecast_cost_per_policy_gbp],
     [],
     ["Status", "Draft revision candidate - requires approval before becoming plan truth."],
   ];
