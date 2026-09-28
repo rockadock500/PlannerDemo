@@ -50,7 +50,7 @@
   ],
   "caveats": [
     "Freemans sample brief, budget workbook and MMM deck are now connected as local extracted sources.",
-    "Roivenue, Redshift, Snowflake, Experian, live Kanso updates and ratecard data are not connected.",
+    "Roivenue, Redshift, Snowflake, Experian, live MMM updates and ratecard data are not connected.",
     "Seasonal trading calendar remains synthetic beyond the confirmed Black Friday and Christmas trading dates.",
     "Media-owner cost and response assumptions are synthetic.",
     "Prototype should be used to test workflow, architecture and evidence mechanics, not final investment advice."

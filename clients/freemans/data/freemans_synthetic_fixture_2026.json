@@ -233,12 +233,12 @@
   },
   "data_readiness_groups": {
     "effectiveness_modelling": "Effectiveness & Modelling - MMM, incrementality tests, experiments, response curves, attribution, brand lift.",
-    "quote_policy_renewal": "Quote, Policy & Renewal Performance - checkout starts, completions, customer orders, cost per policy, product, vehicle, geography, renewals, cancellations.",
+    "quote_policy_renewal": "Checkout, Order & Retention Performance - checkout starts, completions, customer orders, cost per order, product, geography, renewals, cancellations.",
     "pcw_distribution": "Affiliate/Cashback & Distribution Performance - position, click, quote and sale feeds, commissions, attribution rules, freshness.",
     "customer_vehicle_audience": "Customer & Audience Data - approved aggregate segments for Multi-Category, new customers, Flexi Pay, Electricals/Home Tech, life stage, geography.",
     "pricing_risk_guardrails": "Pricing, Risk & Commercial Guardrails - only approved aggregate constraints or value bands; detailed pricing/credit-risk logic stays outside the planner and LLM.",
     "plans_budgets_creative_approvals": "Plans, Budgets, Creative & Approvals - annual brief, media budget, channel plans, creative matrix, claims substantiation, promotion approvals.",
-    "digital_crm_platform": "Digital, CRM & Platform Data - paid-search, social, programmatic, website analytics, CRM, app reporting.",
+    "digital_crm_platform": "Digital & Platform Data - paid-search, social, programmatic, website analytics, CRM, app reporting.",
     "market_competitor_context": "Market, Competitor & Context Signals - prices, search interest, seasonal trading peaks, weather, retail safety, competitor bursts, regulatory changes.",
     "media_owner_channel": "Media Owner & Channel Data - reach, frequency, delivery, rate cards, inventory, audience availability."
   },

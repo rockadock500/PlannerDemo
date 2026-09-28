@@ -1,21 +1,20 @@
 {
   "dictionary_version": "v1",
-  "source_file": "PL Media Planner Data.xlsx (Data Dictionary_Current sheet)",
+  "source_file": "Freemans Media Planner Data.xlsx (Data Dictionary_Current sheet)",
   "status": "work_in_progress",
-  "note": "This is the client's canonical list of data sources for the planner, not yet reconciled with the live-ingested Postgres source_records. Most Description/Data-quality fields are still blank in the source file - only Prior Month Renewal & Plate-Change Analysis, Event Calendar and Kanso have Description filled in so far. How-used fields have now been added by Claude for every source: they describe how each source WOULD feed the deterministic engine if it were fully wired in, grounded in the engine's existing mechanics (channel scoring, response curves, MMM evidence, brief-hooks tagging, guardrails). They are forward-looking / intended-use descriptions, not confirmations that the source is live today - as of this writing only Kanso (MMM reports), the Step 1 budget upload and the Step 1 strategy text actually drive the plan's numbers; Renewal & Plate-Change Analysis, Strategic Responses, ThinkBox and ActiveVoice have real documents ingested into Postgres but are not yet consumed by the engine's calculations; everything else has no live document at all. Categories below are Claude's own grouping (not present in the source spreadsheet, which is a flat list). The source spreadsheet had two near-duplicate rows, 'Historic Media Plans' and 'Historical Media Plans' - merged into the single 'Historic Media Plans' entry below.",
+  "note": "This is the client's canonical list of data sources for the planner, not yet reconciled with the live-ingested Postgres source_records. Most Description/Data-quality fields are still blank in the source file - only Prior Month Renewal & Plate-Change Analysis, Event Calendar and MMM have Description filled in so far. How-used fields have now been added by Claude for every source: they describe how each source WOULD feed the deterministic engine if it were fully wired in, grounded in the engine's existing mechanics (channel scoring, response curves, MMM evidence, brief-hooks tagging, guardrails). They are forward-looking / intended-use descriptions, not confirmations that the source is live today - as of this writing only MMM, the Step 1 budget upload and the Step 1 strategy text actually drive the plan's numbers; Renewal & Plate-Change Analysis, ThinkBox and ActiveVoice have real documents ingested into Postgres but are not yet consumed by the engine's calculations; everything else has no live document at all. Categories below are Claude's own grouping (not present in the source spreadsheet, which is a flat list). The source spreadsheet had two near-duplicate rows, 'Historic Media Plans' and 'Historical Media Plans' - merged into the single 'Historic Media Plans' entry below.",
   "categories": [
     {
       "category_id": "effectiveness_modelling",
       "label": "Effectiveness & Modelling",
       "sources": [
         {
-          "name": "Kanso",
+          "name": "MMM",
           "description": "Mixed Media Modelling for Freemans in PDF or PowerPoint",
           "how_used": "Live today. Used to create the initial base plan, taking the high-level figures for a breakdown of budget per channel, and to add context to the LLM's and agents. Concretely: refresh_mmm_notes.py reads the newest report and writes mmm_note (analyst commentary) and mmm_optimal_share_pct (per-channel target share) into channel_evidence_notes, which the engine pulls live on every plan generation.",
           "data_quality": "Most recent document no older than 6 months old, contains channel level granularity exported.",
           "match_hints": [
             "mmm",
-            "kanso",
             "ooh mmm data"
           ]
         },
@@ -27,7 +26,7 @@
           "match_hints": []
         },
         {
-          "name": "Aquisition Model (see above)",
+          "name": "Acquisition Model",
           "description": "",
           "how_used": "Would replace the response_curve_priors_2026 fixture as the live budget-to-acquisitions and budget-to-CPA transformation per channel and month, giving forecasts grounded in the client's own acquisition model instead of a static saturation curve.",
           "data_quality": "",
@@ -51,7 +50,7 @@
     },
     {
       "category_id": "quote_policy_renewal",
-      "label": "Quote, Policy & Renewal Performance",
+      "label": "Checkout, Order & Retention Performance",
       "sources": [
         {
           "name": "Prior Month Renewal & Plate-Change Analysis",
@@ -97,55 +96,17 @@
           "match_hints": []
         },
         {
-          "name": "Current Annual Budget by Channel",
-          "description": "",
-          "how_used": "Live today, per run. This is what the user uploads in Step 1 of Annual Planning; plan_upload.py parses it directly into the plan's total budget, monthly split and (where present) acquisition/CPA targets.",
-          "data_quality": "",
-          "match_hints": [],
-          "flagged_in_source": true
-        },
-        {
-          "name": "Campaign Cycle",
-          "description": "",
-          "how_used": "Would define the client's actual recurring renewal/seasonal trading peak rhythm so month-level phasing reflects the real campaign calendar rather than a generic monthly demand weight.",
-          "data_quality": "",
-          "match_hints": []
-        },
-        {
-          "name": "Budget Targets/Campaign Pillars",
-          "description": "",
-          "how_used": "The budget/target half is live today via the Step 1 upload's new_policy_sales_target and cost_per_policy_target_gbp columns, which set the plan's objective. The campaign-pillars half would give the brief-hooks tagger the client's own authoritative pillar names to match against, instead of inferring them from free text alone.",
-          "data_quality": "",
-          "match_hints": []
-        },
-        {
           "name": "Sales Targets (incl stretch targets)",
           "description": "",
           "how_used": "Would set the plan's policy_sales_target and any stretch objective from a formal source - today that target is derived only from whichever new_policy_sales_target column happens to be present in the uploaded budget file.",
           "data_quality": "",
           "match_hints": []
-        },
-        {
-          "name": "Briefing Form",
-          "description": "",
-          "how_used": "Live today, per run. This is the Step 1 strategy field (typed text or uploaded brief file); its text is sent to Gemini each generate to produce the brief_hooks tags attached to every channel/month row.",
-          "data_quality": "",
-          "match_hints": []
-        },
-        {
-          "name": "Previous Stategic Responses",
-          "description": "",
-          "how_used": "Documents already ingested (2025 and 2026 strategic media response) but not yet consumed by the engine. Would give the brief-hooks tagger real examples of how similar priorities were interpreted into channel tags in previous planning cycles, improving tag consistency year over year.",
-          "data_quality": "",
-          "match_hints": [
-            "strategic media response"
-          ]
         }
       ]
     },
     {
       "category_id": "customer_vehicle_audience",
-      "label": "Customer, Vehicle & Audience Data",
+      "label": "Customer & Audience Data",
       "sources": [
         {
           "name": "Mosaic Descriptors",
@@ -162,9 +123,9 @@
           "match_hints": []
         },
         {
-          "name": "MacCode",
-          "description": "Persona data.",
-          "how_used": "Would supply the postcode-to-persona lookup underlying the geo/audience proxy used in scenario tilts (e.g. Greater London growth), replacing the synthetic geo_audience_proxy.csv with the client's real persona distribution by postcode.",
+          "name": "CRM Data",
+          "description": "",
+          "how_used": "Would supply real customer purchase history, order recency/frequency and Flexi Pay account status to ground audience segments and household/Multi-Category targeting in actual CRM records instead of inferred personas.",
           "data_quality": "",
           "match_hints": []
         }
@@ -186,7 +147,7 @@
     },
     {
       "category_id": "digital_crm_platform",
-      "label": "Digital, CRM & Platform Data",
+      "label": "Digital & Platform Data",
       "sources": [
         {
           "name": "Google Analytics",

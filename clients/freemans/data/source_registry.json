@@ -717,7 +717,7 @@
     },
     {
       "source_id": "synthetic_mmm_v1",
-      "name": "Synthetic Kanso-style MMM response proxy, now superseded by client MMM for next iteration",
+      "name": "Synthetic MMM response proxy, now superseded by client MMM for next iteration",
       "path": "freemans_prototype_v1/data/channel_performance_benchmarks.json",
       "status": "synthetic_assumption",
       "strength": "placeholder",
@@ -816,7 +816,7 @@
         "monthly revision demo",
         "prior-month sales actuals interface",
         "monthly context interface",
-        "future Kanso/sales feed placeholder"
+        "future MMM/sales feed placeholder"
       ],
       "readiness_group": "quote_policy_renewal"
     },

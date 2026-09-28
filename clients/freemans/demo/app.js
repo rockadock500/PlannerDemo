@@ -125,7 +125,7 @@ const DATA_READINESS_GROUP_LABELS = {
   customer_vehicle_audience: "Customer & Audience Data",
   pricing_risk_guardrails: "Pricing, Risk & Commercial Guardrails",
   plans_budgets_creative_approvals: "Plans, Budgets, Creative & Approvals",
-  digital_crm_platform: "Digital, CRM & Platform Data",
+  digital_crm_platform: "Digital & Platform Data",
   market_competitor_context: "Market, Competitor & Context Signals",
   media_owner_channel: "Media Owner & Channel Data",
 };
@@ -173,7 +173,7 @@ const logicChallenges = [
   {
     area: "Evidence Standard",
     title: "What evidence is enough for sign-off?",
-    body: "Every cell has named sources and rationale, but real confidence depends on Kanso, Roivenue, Redshift, Snowflake, Mosaic and ratecard quality.",
+    body: "Every cell has named sources and rationale, but real confidence depends on MMM, Roivenue, Redshift, Snowflake, Mosaic and ratecard quality.",
     status: "big",
   },
   {
@@ -1035,16 +1035,6 @@ function renderDataReadiness() {
     return;
   }
 
-  // Zero live sources in this environment's database looks, row for row,
-  // identical to "this specific source hasn't been matched yet" - every
-  // category shows all-red either way. Surfaced this distinctly after a
-  // report that Railway's environment (a separate DB from local dev, never
-  // populated by scripts/ingest_documents.py) showed every source as "not
-  // yet connected" and read as a matching bug rather than an empty database.
-  const emptyEnvironmentBanner = state.liveSources.length === 0
-    ? `<p class="table-hint warning-text">This environment's database has 0 sources ingested (checked at ${LIVE_API_BASE}) - every row below will show "not yet connected" until <code>scripts/ingest_documents.py</code> is run against it. This is a data/ops gap, not a matching problem, if other environments show these as connected.</p>`
-    : "";
-
   // The canonical list (all 33 known data sources, grouped by type) is the
   // client's own data dictionary, not just whatever happens to be ingested -
   // most rows will show as not yet connected, which is the honest picture.
@@ -1077,7 +1067,7 @@ function renderDataReadiness() {
     </div>
   `;
 
-  wrap.innerHTML = overallSummary + emptyEnvironmentBanner + categories.map((category) => {
+  wrap.innerHTML = overallSummary + categories.map((category) => {
     const expanded = !!state.dataReadinessExpanded[category.category_id];
     return `
       <div class="source-category ${expanded ? "expanded" : ""}">
@@ -1102,7 +1092,7 @@ function renderDataReadiness() {
                       </tr>
                     `;
                   }
-                  // A single canonical source (e.g. Kanso) commonly matches
+                  // A single canonical source (e.g. MMM) commonly matches
                   // several ingested datasets/documents - group those under
                   // one summary row with its own expand arrow, rather than
                   // always listing every dataset inline.
