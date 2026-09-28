@@ -10,8 +10,8 @@
       "sales_actuals": {
         "new_policy_sales": 51400,
         "target_new_policy_sales": 55000,
-        "cost_per_policy_gbp": 104.28,
-        "target_cost_per_policy_gbp": 97.45,
+        "cost_per_policy_gbp": 62.28,
+        "target_cost_per_policy_gbp": 58.45,
         "delivery_index": 0.94,
         "quote_starts": 436000,
         "quote_to_policy_conversion_pct": 11.8,
@@ -20,57 +20,45 @@
       },
       "channel_performance": [
         {
-          "channel": "AV",
-          "delivery_index": 0.96,
-          "sales_index": 0.98,
-          "context": "Reach delivery broadly on plan but late-month response softened."
-        },
-        {
-          "channel": "OOH",
-          "delivery_index": 0.88,
-          "sales_index": 0.82,
-          "context": "London panels underdelivered against booked impression proxy."
-        },
-        {
-          "channel": "Direct Mail",
-          "delivery_index": 1.02,
-          "sales_index": 1.08,
-          "context": "Door drops and lapsed segments beat forecast."
-        },
-        {
-          "channel": "CTV/YouTube",
-          "delivery_index": 0.91,
-          "sales_index": 0.86,
-          "context": "Video test delivery under target; keep as capped test."
-        },
-        {
-          "channel": "Paid Search",
+          "channel": "Google Search",
           "delivery_index": 1.04,
           "sales_index": 1.07,
           "context": "Search captured demand efficiently but query volume remains capped."
         },
         {
-          "channel": "Paid Social",
+          "channel": "Meta",
           "delivery_index": 0.97,
           "sales_index": 0.93,
-          "context": "Prospecting cost per policy drifted high."
+          "context": "Prospecting cost per order drifted high."
         },
         {
-          "channel": "Audio",
+          "channel": "Affiliates",
+          "delivery_index": 1.02,
+          "sales_index": 1.08,
+          "context": "Cashback and voucher-code partners beat forecast."
+        },
+        {
+          "channel": "Linear Radio",
           "delivery_index": 1,
           "sales_index": 1.01,
           "context": "Stable delivery and response."
         },
         {
-          "channel": "Display/Programmatic",
-          "delivery_index": 0.95,
-          "sales_index": 0.9,
-          "context": "Prospecting weaker than retargeting; needs split before production."
+          "channel": "YouTube",
+          "delivery_index": 0.91,
+          "sales_index": 0.86,
+          "context": "Video test delivery under target; keep as capped test."
+        },
+        {
+          "channel": "Pinterest",
+          "delivery_index": 0.88,
+          "sales_index": 0.82,
+          "context": "Underdelivered against booked impression proxy - still measurement-led."
         }
       ],
       "user_context": [
         "Planner note: June was weaker than expected after school term and travel disruption affected local response.",
-        "Client note: protect March/September seasonal trading peak tentpole logic, but avoid scaling weak June digital tests without measurement."
+        "Client note: protect the Autumn/Winter and Black Friday-Christmas trading peak tentpole logic, but avoid scaling weak June digital tests without measurement."
       ],
       "monthly_context": {
         "weather": "Warmer, drier summer weeks; outdoor attention improves but response attribution is weak.",
@@ -82,7 +70,7 @@
         "Use the approved annual plan as the baseline.",
         "Reallocate the selected and remaining months only.",
         "Prior-month underperformance reduces weak-evidence test channels unless user context explicitly protects them.",
-        "Direct Mail and Paid Search can receive modest uplift when prior-month sales index is strong, subject to saturation/cap warnings.",
+        "Affiliates and Google Search can receive modest uplift when prior-month sales index is strong, subject to saturation/cap warnings.",
         "Revision output is a new plan version candidate requiring human approval."
       ]
     },
@@ -103,66 +91,54 @@
       },
       "channel_performance": [
         {
-          "channel": "AV",
-          "delivery_index": 1.04,
-          "sales_index": 1.06,
-          "context": "AV demand generation running ahead of target."
-        },
-        {
-          "channel": "OOH",
-          "delivery_index": 0.99,
-          "sales_index": 0.95,
-          "context": "Useful salience but still measurement-led."
-        },
-        {
-          "channel": "Direct Mail",
-          "delivery_index": 1.07,
-          "sales_index": 1.12,
-          "context": "Mail response strong ahead of the winter renewal peak."
-        },
-        {
-          "channel": "CTV/YouTube",
-          "delivery_index": 0.98,
-          "sales_index": 0.94,
-          "context": "Keep video test controlled."
-        },
-        {
-          "channel": "Paid Search",
+          "channel": "Google Search",
           "delivery_index": 1.02,
           "sales_index": 1.04,
           "context": "Demand capture efficient but capped by query volume."
         },
         {
-          "channel": "Paid Social",
+          "channel": "Meta",
           "delivery_index": 1.01,
           "sales_index": 0.98,
           "context": "Creative fatigue risk."
         },
         {
-          "channel": "Audio",
+          "channel": "Affiliates",
+          "delivery_index": 1.07,
+          "sales_index": 1.12,
+          "context": "Cashback and voucher-code response strong ahead of the Black Friday/Christmas peak."
+        },
+        {
+          "channel": "Linear Radio",
           "delivery_index": 1.03,
           "sales_index": 1.02,
           "context": "Steady contextual support."
         },
         {
-          "channel": "Display/Programmatic",
-          "delivery_index": 0.96,
-          "sales_index": 0.92,
-          "context": "Retargeting likely better than prospecting."
+          "channel": "YouTube",
+          "delivery_index": 0.98,
+          "sales_index": 0.94,
+          "context": "Keep video test controlled."
+        },
+        {
+          "channel": "Pinterest",
+          "delivery_index": 0.99,
+          "sales_index": 0.95,
+          "context": "Useful salience but still measurement-led."
         }
       ],
       "user_context": [
-        "Planner note: protect December renewal-season support and avoid stripping AV too aggressively.",
+        "Planner note: protect Christmas trading-peak support and avoid stripping Google Search too aggressively.",
         "Client note: approvals must preserve brand safety and Freemans' trust-led \"Make a Statement\" positioning."
       ],
       "monthly_context": {
         "weather": "Colder, wetter evenings likely increase home media consumption.",
-        "sports": "Winter sport context supports AV/audio adjacency checks.",
-        "calendar": "Christmas and December renewal-season preparation; higher attention and higher clutter."
+        "sports": "Winter sport context supports Linear Radio/YouTube adjacency checks.",
+        "calendar": "Christmas and Black Friday trading-peak preparation; higher attention and higher clutter."
       },
       "revision_rules": [
         "Freeze months before November.",
-        "Protect December renewal-season support.",
+        "Protect the December Christmas trading peak.",
         "Use stronger prior-month performance to support proven channels, but keep evidence gaps visible.",
         "Revision output is a new plan version candidate requiring human approval."
       ]

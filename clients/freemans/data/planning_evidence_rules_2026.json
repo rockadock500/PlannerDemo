@@ -8,110 +8,82 @@
   },
   "channel_rules": [
     {
-      "channel": "AV",
-      "mmm_optimal_share_pct": 49.2,
+      "channel": "Google Search",
+      "mmm_optimal_share_pct": 45,
       "strategic_floor_pct": 35,
-      "planning_role": "National reach, trust, seasonal trading peak storytelling and response bedrock.",
-      "mmm_note": "MMM recommends reversing the drift from AV into Print/Digital. TV is the bedrock, DRTV has the strongest cost per order, and final-week TV can overheat.",
-      "phasing_rule": "Use across the seasonal peak trading month, with stronger support in first, second and penultimate weeks rather than over-concentrating in the final week.",
+      "planning_role": "Intent-led demand capture; the largest and most efficient channel in the mix, and the primary driver of checkout starts.",
+      "mmm_note": "MMM shows Search as consistently the most efficient demand-capture channel, with strong incremental return at current spend but diminishing returns once brand and top generic terms are fully covered.",
+      "phasing_rule": "Keep always-on brand and generic coverage year-round; add tactical upweights around Black Friday, Christmas and the new-season launch moments.",
       "brief_hooks": [
-        "march_september_plate_change_peaks",
-        "world_cup_context",
-        "brand_trust_creative_platform"
+        "autumn_winter_bf_christmas_peaks",
+        "channel_role_clarity"
       ],
       "evidence_strength": "primary_mmm"
     },
     {
-      "channel": "OOH",
-      "mmm_optimal_share_pct": 0,
-      "strategic_floor_pct": 4,
-      "planning_role": "Local salience, Multi-Category/household opportunity support and community visibility.",
-      "mmm_note": "OOH is not present in the MMM optimal channel table, so the prototype should treat it as a brief-led strategic layer requiring measurement design.",
-      "phasing_rule": "Concentrate around priority geographies and seasonal peak trading windows rather than spreading thinly across all months.",
+      "channel": "Meta",
+      "mmm_optimal_share_pct": 18,
+      "strategic_floor_pct": 12,
+      "planning_role": "Demand capture and retargeting with strong creative flexibility across fashion, home and electricals.",
+      "mmm_note": "MMM shows Meta delivering solid demand-capture and retargeting performance, with response flattening faster than broadcast channels once category audience saturation is reached.",
+      "phasing_rule": "Maintain always-on prospecting and retargeting; avoid over-weighting the final week of any peak without separating the two audiences.",
       "brief_hooks": [
         "multicar_household_growth",
-        "channel_role_clarity",
-        "testing_framework"
-      ],
-      "evidence_strength": "brief_required_gap"
-    },
-    {
-      "channel": "Direct Mail",
-      "mmm_optimal_share_pct": 28.33,
-      "strategic_floor_pct": 18,
-      "planning_role": "Propensity-led conversion and renewal-window response.",
-      "mmm_note": "Door drops are strong due to low cost per mailing; partially addressed is weaker on cost per order; lapsed-customer mail performs well but is constrained by available volume.",
-      "phasing_rule": "Avoid immediate post-peak mailing. Use door drops heavily in the penultimate week and lapsed-customer priority in the final week.",
-      "brief_hooks": [
-        "march_september_plate_change_peaks"
+        "channel_role_clarity"
       ],
       "evidence_strength": "primary_mmm"
     },
     {
-      "channel": "CTV/YouTube",
-      "mmm_optimal_share_pct": 1.11,
-      "strategic_floor_pct": 3,
-      "planning_role": "Incremental video reach and controlled growth testing.",
-      "mmm_note": "YouTube investment was too low for confident MMM conclusions and early evidence suggested worse-than-average cost per order, so this should remain a test rather than a large default allocation.",
-      "phasing_rule": "Use as measured test support around AV brand moments and growth audiences.",
+      "channel": "Affiliates",
+      "mmm_optimal_share_pct": 12,
+      "strategic_floor_pct": 8,
+      "planning_role": "Commission-based distribution through cashback and voucher-code partners; efficient but capacity-limited by the active publisher network.",
+      "mmm_note": "MMM and commission-based affiliate evidence agree performance is efficient but capacity-limited by the size of the active affiliate/cashback network, with limited headroom to scale materially without recruiting new publishers.",
+      "phasing_rule": "Keep a stable always-on commission base; add incremental publisher activity and featured placements around Black Friday and January Sale.",
       "brief_hooks": [
-        "world_cup_context",
-        "testing_framework"
-      ],
-      "evidence_strength": "test_required"
-    },
-    {
-      "channel": "Paid Search",
-      "mmm_optimal_share_pct": 1.51,
-      "strategic_floor_pct": 2,
-      "planning_role": "Intent harvesting and tactical response to quote-demand triggers.",
-      "mmm_note": "Generic PPC is reasonably good but limited in scalable scope; brand search is close to maxed out.",
-      "phasing_rule": "Keep always-on coverage and add tactical upweights around Electricals, seasonal trading peaks and news-trigger moments.",
-      "brief_hooks": [
-        "channel_role_clarity",
-        "pcw_conversion_defence"
-      ],
-      "evidence_strength": "primary_mmm_limited_scale"
-    },
-    {
-      "channel": "Paid Social",
-      "mmm_optimal_share_pct": 4.21,
-      "strategic_floor_pct": 4,
-      "planning_role": "Audience growth, social proof, retargeting and creative learning.",
-      "mmm_note": "Maintain but avoid over-weighting the final week without separating prospecting and retargeting logic.",
-      "phasing_rule": "Prospecting can work earlier in the seasonal peak trading month; warm audiences should rise nearer the monthly peak.",
-      "brief_hooks": [
-        "channel_role_clarity",
-        "testing_framework"
-      ],
-      "evidence_strength": "primary_mmm"
-    },
-    {
-      "channel": "Audio",
-      "mmm_optimal_share_pct": 5.95,
-      "strategic_floor_pct": 4,
-      "planning_role": "Regional reinforcement, attention and efficient reach extension.",
-      "mmm_note": "Radio cost per order is steady and better than average; MMM recommends testing an earlier upweight before the penultimate week.",
-      "phasing_rule": "Do not leave all audio to the final two weeks; test earlier-month support.",
-      "brief_hooks": [
-        "channel_role_clarity",
+        "pcw_conversion_defence",
         "commercial_deals"
       ],
       "evidence_strength": "primary_mmm"
     },
     {
-      "channel": "Display/Programmatic",
-      "mmm_optimal_share_pct": 5.02,
-      "strategic_floor_pct": 3.5,
-      "planning_role": "Prospecting, warm retargeting and partnership-led digital value.",
-      "mmm_note": "Prospecting should start two to three weeks before the monthly peak; retargeting is more effective nearer the peak.",
-      "phasing_rule": "Split cold prospecting earlier and warm retargeting later; do not treat display as one undifferentiated last-week pot.",
+      "channel": "Linear Radio",
+      "mmm_optimal_share_pct": 10,
+      "strategic_floor_pct": 6,
+      "planning_role": "Broad reach and frequency at efficient cost per listener-hour; a stable brand-presence channel rather than a growth lever.",
+      "mmm_note": "MMM shows Radio delivering steady incremental reach at a stable cost per order, with limited headroom to scale materially beyond current levels before diminishing returns set in.",
+      "phasing_rule": "Hold a steady weekly presence; add modest weight around January Sale and the Black Friday/Christmas peak rather than concentrating spend narrowly.",
       "brief_hooks": [
-        "channel_role_clarity",
-        "pcw_conversion_defence",
-        "testing_framework"
+        "brand_trust_creative_platform",
+        "channel_role_clarity"
       ],
       "evidence_strength": "primary_mmm"
+    },
+    {
+      "channel": "YouTube",
+      "mmm_optimal_share_pct": 10,
+      "strategic_floor_pct": 6,
+      "planning_role": "Incremental video reach and consideration; controlled growth testing rather than a proven default allocation.",
+      "mmm_note": "YouTube investment was historically small, so MMM evidence remains lower-confidence than Search or Meta - early signs are reasonable but not yet enough history for a confident optimal share.",
+      "phasing_rule": "Use as measured test support around new-season launches and Black Friday/Christmas, rather than a large default allocation.",
+      "brief_hooks": [
+        "ev_growth_opportunity",
+        "testing_framework"
+      ],
+      "evidence_strength": "test_required"
+    },
+    {
+      "channel": "Pinterest",
+      "mmm_optimal_share_pct": 5,
+      "strategic_floor_pct": 2,
+      "planning_role": "Visual discovery and inspiration for fashion and home ranges; brief-led strategic layer, not an MMM-proven channel.",
+      "mmm_note": "Pinterest is not present in the MMM optimal channel table, so it should be treated as a brief-led strategic/measurement layer rather than a proven recommendation.",
+      "phasing_rule": "Concentrate around new-season launch and gifting moments (Mother's Day, Christmas) rather than spreading thinly across all months.",
+      "brief_hooks": [
+        "multicar_household_growth",
+        "testing_framework"
+      ],
+      "evidence_strength": "brief_required_gap"
     }
   ],
   "brief_test_criteria": [
@@ -133,7 +105,7 @@
     {
       "criterion_id": "measurement",
       "label": "Separates evidence gaps from confident recommendations",
-      "requirement": "OOH, YouTube/CTV and new partnership opportunities should be tagged as tests or measurement-led choices rather than treated as proven MMM recommendations."
+      "requirement": "Pinterest, YouTube and new partnership opportunities should be tagged as tests or measurement-led choices rather than treated as proven MMM recommendations."
     }
   ]
 }

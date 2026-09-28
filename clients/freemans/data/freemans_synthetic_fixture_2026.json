@@ -10,7 +10,7 @@
     "cost_per_new_policy_sale_gbp": 200,
     "forecast_quote_starts": 2000000,
     "quote_to_policy_conversion_pct": 12,
-    "note": "cost_per_new_policy_sale_gbp = total_media_budget_gbp / forecast_new_policy_sales. forecast_quote_starts = forecast_new_policy_sales / (quote_to_policy_conversion_pct / 100). Media budget excludes affiliate/cashback distribution spend, which is measured separately - see distribution_summary."
+    "note": "cost_per_new_policy_sale_gbp = total_media_budget_gbp / forecast_new_policy_sales. forecast_quote_starts = forecast_new_policy_sales / (quote_to_policy_conversion_pct / 100). Affiliates is budgeted as a normal channel in this taxonomy, alongside the other five."
   },
   "monthly_budget_weights_pct": {
     "2026-01": 9,
@@ -28,179 +28,151 @@
   },
   "monthly_budget_weights_note": "March and September are illustrative UK seasonal trading peaks (1 March / 1 September registration changes are a real public UK retail trading fact) - the specific weight values are a synthetic planning assumption for this demo, not evidence of Freemans' actual phasing.",
   "channel_annual_share_pct": {
-    "AV": 30,
-    "OOH": 8,
-    "Audio": 6,
-    "CTV/YouTube": 12,
-    "Display/Programmatic": 10,
-    "Paid Search": 20,
-    "Paid Social": 10,
-    "Direct Mail": 4
+    "Google Search": 45,
+    "Meta": 18,
+    "Affiliates": 12,
+    "Linear Radio": 10,
+    "YouTube": 10,
+    "Pinterest": 5
   },
   "channel_groups": {
     "brand_reach": {
       "label": "Brand reach",
       "description": "Build broad reach, trust and mental availability.",
       "channels": [
-        "AV",
-        "OOH",
-        "Audio"
+        "Linear Radio"
       ]
     },
     "video_consideration": {
       "label": "Video and consideration",
       "description": "Explain the proposition and create qualified demand.",
       "channels": [
-        "CTV/YouTube",
-        "Display/Programmatic"
+        "YouTube",
+        "Pinterest"
       ]
     },
     "demand_capture": {
       "label": "Demand capture",
       "description": "Capture active shoppers and move them into the checkout journey.",
       "channels": [
-        "Paid Search",
-        "Paid Social"
+        "Google Search",
+        "Meta"
       ]
     },
     "partnerships_content": {
       "label": "Partnerships and content",
-      "description": "Creators, road-safety content, sponsorships, PR amplification. No channel in this demo's base media mix carries budget under this group yet.",
+      "description": "Creators, sponsorships, PR amplification. No channel in this demo's base media mix carries budget under this group yet.",
       "channels": []
     },
     "owned_activation": {
       "label": "Owned activation",
-      "description": "CRM, email, app, website and SEO/content - shown separately from paid media unless paid activation cost is explicitly in scope. Direct Mail is mapped here as the closest addressable/CRM-adjacent channel in this demo's existing taxonomy; it is not one of section 4's named examples.",
-      "channels": [
-        "Direct Mail"
-      ]
+      "description": "CRM, email, app, website and SEO/content - shown separately from paid media unless paid activation cost is explicitly in scope.",
+      "channels": []
     },
     "distribution": {
       "label": "Distribution",
-      "description": "Affiliate and cashback sites and approved affiliates. Measured on ranking, order share and sale conversion - kept separate from impression-based media budget and the media-mix chart.",
-      "channels": []
+      "description": "Affiliates: cashback and voucher-code partners. Commission-based distribution, budgeted like any other channel in this taxonomy.",
+      "channels": [
+        "Affiliates"
+      ]
     }
   },
   "monthly_channel_budget_gbp": {
     "2026-01": {
-      "AV": 1296000,
-      "OOH": 345600,
-      "Audio": 259200,
-      "CTV/YouTube": 518400,
-      "Display/Programmatic": 432000,
-      "Paid Search": 864000,
-      "Paid Social": 432000,
-      "Direct Mail": 172800
+      "Google Search": 1944000,
+      "Meta": 777600,
+      "Affiliates": 518400,
+      "Linear Radio": 432000,
+      "YouTube": 432000,
+      "Pinterest": 216000
     },
     "2026-02": {
-      "AV": 1008000,
-      "OOH": 268800,
-      "Audio": 201600,
-      "CTV/YouTube": 403200,
-      "Display/Programmatic": 336000,
-      "Paid Search": 672000,
-      "Paid Social": 336000,
-      "Direct Mail": 134400
+      "Google Search": 1512000,
+      "Meta": 604800,
+      "Affiliates": 403200,
+      "Linear Radio": 336000,
+      "YouTube": 336000,
+      "Pinterest": 168000
     },
     "2026-03": {
-      "AV": 1728000,
-      "OOH": 460800,
-      "Audio": 345600,
-      "CTV/YouTube": 691200,
-      "Display/Programmatic": 576000,
-      "Paid Search": 1152000,
-      "Paid Social": 576000,
-      "Direct Mail": 230400
+      "Google Search": 2592000,
+      "Meta": 1036800,
+      "Affiliates": 691200,
+      "Linear Radio": 576000,
+      "YouTube": 576000,
+      "Pinterest": 288000
     },
     "2026-04": {
-      "AV": 1008000,
-      "OOH": 268800,
-      "Audio": 201600,
-      "CTV/YouTube": 403200,
-      "Display/Programmatic": 336000,
-      "Paid Search": 672000,
-      "Paid Social": 336000,
-      "Direct Mail": 134400
+      "Google Search": 1512000,
+      "Meta": 604800,
+      "Affiliates": 403200,
+      "Linear Radio": 336000,
+      "YouTube": 336000,
+      "Pinterest": 168000
     },
     "2026-05": {
-      "AV": 1008000,
-      "OOH": 268800,
-      "Audio": 201600,
-      "CTV/YouTube": 403200,
-      "Display/Programmatic": 336000,
-      "Paid Search": 672000,
-      "Paid Social": 336000,
-      "Direct Mail": 134400
+      "Google Search": 1512000,
+      "Meta": 604800,
+      "Affiliates": 403200,
+      "Linear Radio": 336000,
+      "YouTube": 336000,
+      "Pinterest": 168000
     },
     "2026-06": {
-      "AV": 1008000,
-      "OOH": 268800,
-      "Audio": 201600,
-      "CTV/YouTube": 403200,
-      "Display/Programmatic": 336000,
-      "Paid Search": 672000,
-      "Paid Social": 336000,
-      "Direct Mail": 134400
+      "Google Search": 1512000,
+      "Meta": 604800,
+      "Affiliates": 403200,
+      "Linear Radio": 336000,
+      "YouTube": 336000,
+      "Pinterest": 168000
     },
     "2026-07": {
-      "AV": 1008000,
-      "OOH": 268800,
-      "Audio": 201600,
-      "CTV/YouTube": 403200,
-      "Display/Programmatic": 336000,
-      "Paid Search": 672000,
-      "Paid Social": 336000,
-      "Direct Mail": 134400
+      "Google Search": 1512000,
+      "Meta": 604800,
+      "Affiliates": 403200,
+      "Linear Radio": 336000,
+      "YouTube": 336000,
+      "Pinterest": 168000
     },
     "2026-08": {
-      "AV": 1296000,
-      "OOH": 345600,
-      "Audio": 259200,
-      "CTV/YouTube": 518400,
-      "Display/Programmatic": 432000,
-      "Paid Search": 864000,
-      "Paid Social": 432000,
-      "Direct Mail": 172800
+      "Google Search": 1944000,
+      "Meta": 777600,
+      "Affiliates": 518400,
+      "Linear Radio": 432000,
+      "YouTube": 432000,
+      "Pinterest": 216000
     },
     "2026-09": {
-      "AV": 1728000,
-      "OOH": 460800,
-      "Audio": 345600,
-      "CTV/YouTube": 691200,
-      "Display/Programmatic": 576000,
-      "Paid Search": 1152000,
-      "Paid Social": 576000,
-      "Direct Mail": 230400
+      "Google Search": 2592000,
+      "Meta": 1036800,
+      "Affiliates": 691200,
+      "Linear Radio": 576000,
+      "YouTube": 576000,
+      "Pinterest": 288000
     },
     "2026-10": {
-      "AV": 1152000,
-      "OOH": 307200,
-      "Audio": 230400,
-      "CTV/YouTube": 460800,
-      "Display/Programmatic": 384000,
-      "Paid Search": 768000,
-      "Paid Social": 384000,
-      "Direct Mail": 153600
+      "Google Search": 1728000,
+      "Meta": 691200,
+      "Affiliates": 460800,
+      "Linear Radio": 384000,
+      "YouTube": 384000,
+      "Pinterest": 192000
     },
     "2026-11": {
-      "AV": 1008000,
-      "OOH": 268800,
-      "Audio": 201600,
-      "CTV/YouTube": 403200,
-      "Display/Programmatic": 336000,
-      "Paid Search": 672000,
-      "Paid Social": 336000,
-      "Direct Mail": 134400
+      "Google Search": 1512000,
+      "Meta": 604800,
+      "Affiliates": 403200,
+      "Linear Radio": 336000,
+      "YouTube": 336000,
+      "Pinterest": 168000
     },
     "2026-12": {
-      "AV": 1152000,
-      "OOH": 307200,
-      "Audio": 230400,
-      "CTV/YouTube": 460800,
-      "Display/Programmatic": 384000,
-      "Paid Search": 768000,
-      "Paid Social": 384000,
-      "Direct Mail": 153600
+      "Google Search": 1728000,
+      "Meta": 691200,
+      "Affiliates": 460800,
+      "Linear Radio": 384000,
+      "YouTube": 384000,
+      "Pinterest": 192000
     }
   },
   "monthly_total_budget_gbp": {

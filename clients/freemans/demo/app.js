@@ -14,14 +14,12 @@ const MONTHS = [
 ];
 
 const CHANNEL_ORDER = [
-  "AV",
-  "OOH",
-  "Direct Mail",
-  "CTV/YouTube",
-  "Paid Search",
-  "Paid Social",
-  "Audio",
-  "Display/Programmatic",
+  "Google Search",
+  "Meta",
+  "Affiliates",
+  "Linear Radio",
+  "YouTube",
+  "Pinterest",
 ];
 
 // Freemans scenario library. Each id has a matching
@@ -46,7 +44,7 @@ const SCENARIO_META = {
   brand_trust_build: {
     objective: "Build trust and consideration around 'Make a Statement', shifting weight from pure demand capture towards brand-building channels.",
     changed_constraints: "Raised floors/weighting on brand-reach channels; paid search and paid social performance weighting held back within their existing guardrail ranges.",
-    affected_channels: "Up: Linear TV, BVOD/CTV, OOH, radio/digital audio, online video. Held back: paid search, paid social performance.",
+    affected_channels: "Up: Linear Radio, YouTube, Pinterest. Held back: Google Search, Meta performance.",
     expected_brand_direction: "Up - broader reach and stronger consideration/trust signal expected.",
     expected_sales_direction: "Flat to slightly down near-term - less budget is chasing active checkout shoppers while brand investment builds.",
     key_risk: "Needs brand-tracker and consideration evidence to justify sustaining this over multiple months, not just an assumption that brand spend works.",
@@ -54,7 +52,7 @@ const SCENARIO_META = {
   pcw_conversion_defence: {
     objective: "Protect new-customer basket and order volumes if affiliate/cashback-site competition or paid-search CPC rises.",
     changed_constraints: "Paid search and journey-conversion channels weighted up; forecast cost-per-order factor allowed to flex upward to reflect a tougher CPC environment.",
-    affected_channels: "Up: paid search, retargeting/programmatic. Distribution: affiliate/cashback visibility monitored separately, not folded into the media mix.",
+    affected_channels: "Up: Google Search, Affiliates. Down: Linear Radio, Pinterest test exposure.",
     expected_brand_direction: "Broadly unchanged.",
     expected_sales_direction: "Basket-to-order conversion defended, but likely at a higher cost per new order than the balanced plan.",
     key_risk: "Affiliate/cashback economics are distribution, not reach media - any 'improvement' shown here is visibility/conversion, never an unsupported price or savings claim.",
@@ -62,7 +60,7 @@ const SCENARIO_META = {
   multicar_household_growth: {
     objective: "Grow qualified demand from households shopping more than one category (fashion, home and electricals), supporting retention and customer lifetime value.",
     changed_constraints: "CRM/email kept as an owned-activation overlay (not counted as paid media spend); household-relevant reach and search weighted up.",
-    affected_channels: "Up: household-relevant TV/BVOD/OOH, paid search. Overlay: CRM/email (owned, unpaid unless explicitly costed).",
+    affected_channels: "Up: household-relevant Linear Radio, YouTube, Meta. Overlay: CRM/email (owned, unpaid unless explicitly costed).",
     expected_brand_direction: "Modest uplift in relevance among family/household audiences.",
     expected_sales_direction: "Gradual growth in qualified multi-category checkout starts and retention-linked orders, not an immediate spike.",
     key_risk: "Must use only approved aggregate household segments - never infer specific household composition or other sensitive attributes.",
@@ -70,7 +68,7 @@ const SCENARIO_META = {
   young_driver_telematics: {
     objective: "Grow qualified new-customer demand via the Flexi Pay account (pay-in-3 / buy now pay later) using value-led, creator-style content.",
     changed_constraints: "Creator/social content and online video weighted up; strict data and consent controls apply to this audience, including affordability messaging.",
-    affected_channels: "Up: creators/partnerships content, online video, paid search (Flexi Pay/new-account terms).",
+    affected_channels: "Up: Meta, Pinterest, YouTube (Flexi Pay/new-account terms).",
     expected_brand_direction: "Improved relevance and trust with value-conscious and younger new customers.",
     expected_sales_direction: "Gradual growth in qualified new-customer/Flexi Pay checkout starts - not an immediate volume spike.",
     key_risk: "Credit/BNPL messaging needs careful affordability and consent handling; value-first creative must not read as an irresponsible-lending promotion.",
@@ -78,7 +76,7 @@ const SCENARIO_META = {
   ev_growth: {
     objective: "Support Freemans' Electricals & Home Tech range around new-season browsing moments and the Black Friday/Christmas trading peaks.",
     changed_constraints: "Search, online video and social weighted up around Electricals-relevant and seasonal trading windows; contextual partnerships considered.",
-    affected_channels: "Up: paid search, online video, paid social, contextual partnerships/content.",
+    affected_channels: "Up: Google Search, YouTube, Pinterest.",
     expected_brand_direction: "Reinforces perception of Freemans' Electricals & Home Tech range as a genuine destination, not just an add-on category.",
     expected_sales_direction: "Higher Electricals & Home Tech-related checkout starts expected around seasonal trading peaks.",
     key_risk: "Must describe product specs and warranties accurately without greenwashing, and must not present estimated category share as a guarantee of future performance.",
@@ -89,29 +87,25 @@ const LIVE_API_BASE = "https://ppl-planner-api-production.up.railway.app";
 // Freemans planning taxonomy. This groups each engine channel by MEDIA ROLE -
 // reach vs consideration vs demand capture, etc - which is a different axis
 // from the display-hierarchy CHANNEL_GROUPS further down (parent/child
-// labelling like "AV" -> "TV / BVOD / Cinema"). Distribution (Affiliate &
-// Cashback) deliberately has no engine channel here: it is measured and
-// reported separately (plan.distribution_summary) rather than folded into
-// the channel budget/media-mix chart.
+// labelling like "Google Search" -> "Search"). Affiliates is its own engine
+// channel with real budget (channel_totals etc.), same as every other
+// channel here - plan.distribution_summary is a separate, additional
+// performance metric (visibility/conversion), not a substitute for it.
 const CHANNEL_ROLE_GROUP_LABELS = {
   brand_reach: "Brand reach",
   video_consideration: "Video and consideration",
   demand_capture: "Demand capture",
   partnerships_content: "Partnerships and content",
   owned_activation: "Owned activation",
-  distribution: "Distribution (Affiliate & Cashback - reported separately from media)",
+  distribution: "Distribution (Affiliate & Cashback)",
 };
 const CHANNEL_ROLE_GROUP = {
-  "AV": "brand_reach",
-  "OOH": "brand_reach",
-  "Audio": "brand_reach",
-  "CTV/YouTube": "video_consideration",
-  "Display/Programmatic": "video_consideration",
-  "Paid Search": "demand_capture",
-  "Paid Social": "demand_capture",
-  // Direct Mail isn't one of section 4's named examples; mapped here as the
-  // closest addressable/CRM-adjacent analogue in this demo's 8-channel model.
-  "Direct Mail": "owned_activation",
+  "Linear Radio": "brand_reach",
+  "YouTube": "video_consideration",
+  "Pinterest": "video_consideration",
+  "Google Search": "demand_capture",
+  "Meta": "demand_capture",
+  "Affiliates": "distribution",
 };
 
 // Data-readiness groups (research brief section 4) - used to classify
@@ -317,73 +311,17 @@ const state = {
   adminWarningsSelectedKey: null,
 };
 
-// Confirmed channel hierarchy (client-provided breakdown, 2026-07-22): 8
-// parent groups, each with named leaf channels. The engine still only
-// allocates budget at the old 8-channel granularity (CHANNEL_ORDER above),
-// so each group's `rows` map its pictured leaf channels to whichever old
-// engine channel actually backs them, with a `share` of that channel's
-// real budget (defaults to 1 = the whole thing). Three old channels each
-// had to cover two new leaves since the engine only produces one number
-// for each - per client instruction, these are split an even 50/50 rather
-// than assigning the whole number to one side and zeroing the other:
-// CTV/YouTube -> AV's SVOD/CTV + Brand Digital's YouTube (50/50);
-// Display/Programmatic -> Brand Digital's OLV/Display Upper + Performance
-// Digital's Display & OLV Retargeting (50/50, also finally giving this
-// channel a home instead of "Unmapped"); Direct Mail -> Mail's own line +
-// Print's Inserts/Press Ads (50/50, Print's only budget line at all).
-// This 50/50 split is a display convention, not a real measured split -
-// the engine has no actual upper-funnel/retargeting or CTV/YouTube-only
-// breakdown to draw on yet.
+// Display hierarchy: one parent group per engine channel (CHANNEL_ORDER
+// above). Every channel here is a single, whole line - no 50/50 splitting
+// needed, unlike the previous 8-channel model where a few display leaves had
+// to share one engine number.
 const CHANNEL_GROUPS = [
-  {
-    parent: "AV",
-    rows: [
-      { label: "TV / BVOD / Cinema", engineChannel: "AV", share: 1 },
-      { label: "SVOD / CTV", engineChannel: "CTV/YouTube", share: 0.5 },
-    ],
-    note: "TV, BVOD and Cinema are not yet split within AV. SVOD/CTV is an even 50/50 display split of the CTV/YouTube channel total with Brand Digital's YouTube line below - the engine doesn't track these as separate budgets.",
-  },
-  {
-    parent: "Brand Digital",
-    rows: [
-      { label: "YouTube", engineChannel: "CTV/YouTube", share: 0.5 },
-      { label: "OLV / Display (Upper)", engineChannel: "Display/Programmatic", share: 0.5 },
-    ],
-    note: "YouTube is an even 50/50 display split of the CTV/YouTube channel total with AV's SVOD/CTV line above. OLV/Display (Upper) is an even 50/50 display split of the Display/Programmatic channel total with Performance Digital's Display & OLV Retargeting line below.",
-  },
-  {
-    parent: "OOH",
-    rows: [{ label: "OOH", engineChannel: "OOH", share: 1 }],
-    note: null,
-  },
-  {
-    parent: "Audio",
-    rows: [{ label: "Radio / Digital Audio", engineChannel: "Audio", share: 1 }],
-    note: "Radio and Digital Audio are not yet split.",
-  },
-  {
-    parent: "Mail",
-    rows: [{ label: "Door Drops / Direct Mail", engineChannel: "Direct Mail", share: 0.5 }],
-    note: "Door Drops and Direct Mail are not yet split within this line. It's an even 50/50 display split of the Direct Mail channel total with Print below.",
-  },
-  {
-    parent: "Print",
-    rows: [{ label: "Inserts / Press Ads (Print Display)", engineChannel: "Direct Mail", share: 0.5 }],
-    note: "An even 50/50 display split of the Direct Mail channel total with Mail above - the engine doesn't track Print as its own budget line.",
-  },
-  {
-    parent: "Social",
-    rows: [{ label: "Upper Funnel / Boosting / Conversion", engineChannel: "Paid Social", share: 1 }],
-    note: "Upper funnel, boosting and conversion stages are not yet split.",
-  },
-  {
-    parent: "Performance Digital",
-    rows: [
-      { label: "Search", engineChannel: "Paid Search", share: 1 },
-      { label: "Display & OLV Retargeting", engineChannel: "Display/Programmatic", share: 0.5 },
-    ],
-    note: "Display & OLV Retargeting is an even 50/50 display split of the Display/Programmatic channel total with Brand Digital's OLV/Display (Upper) line above.",
-  },
+  { parent: "Google Search", rows: [{ label: "Google Search", engineChannel: "Google Search", share: 1 }], note: null },
+  { parent: "Meta", rows: [{ label: "Meta (Facebook/Instagram)", engineChannel: "Meta", share: 1 }], note: null },
+  { parent: "Affiliates", rows: [{ label: "Affiliates", engineChannel: "Affiliates", share: 1 }], note: null },
+  { parent: "Linear Radio", rows: [{ label: "Linear Radio", engineChannel: "Linear Radio", share: 1 }], note: null },
+  { parent: "YouTube", rows: [{ label: "YouTube", engineChannel: "YouTube", share: 1 }], note: null },
+  { parent: "Pinterest", rows: [{ label: "Pinterest", engineChannel: "Pinterest", share: 1 }], note: null },
 ].map((group) => ({
   ...group,
   rows: group.rows.map((row) => ({ ...row, share: row.share ?? 1 })),
@@ -2197,10 +2135,10 @@ function allocateRevisionMonth(month, baselineRows, fixture, plan) {
     const evidencePenalty = ["brief_required_gap", "test_required"].includes(baseRow.evidence_strength) ? 0.94 : 1;
     const confidencePenalty = ["low", "low-medium"].includes(baseRow.confidence) ? 0.97 : 1;
     let multiplier = (0.72 + (Number(perf.sales_index) * 0.2) + (Number(perf.delivery_index) * 0.08)) * evidencePenalty * confidencePenalty;
-    if (channel === "Direct Mail" && Number(perf.sales_index) > 1.05) multiplier += 0.04;
-    if (channel === "Paid Search" && Number(perf.sales_index) > 1.03) multiplier += 0.025;
-    if (channel === "AV" && monthlyClimate?.rainfall_band === "wet") multiplier += 0.025;
-    if (["OOH", "CTV/YouTube"].includes(channel) && Number(perf.sales_index) < 0.95) multiplier -= 0.05;
+    if (channel === "Affiliates" && Number(perf.sales_index) > 1.05) multiplier += 0.04;
+    if (channel === "Google Search" && Number(perf.sales_index) > 1.03) multiplier += 0.025;
+    if (channel === "Linear Radio" && monthlyClimate?.rainfall_band === "wet") multiplier += 0.025;
+    if (["Pinterest", "YouTube"].includes(channel) && Number(perf.sales_index) < 0.95) multiplier -= 0.05;
     rawScores[channel] = Math.max(0.01, baseRow.budget_gbp * multiplier);
   });
 
@@ -2888,7 +2826,7 @@ function renderCalendarAiOverview(monthStr) {
 
 function renderBriefingForms() {
   const plan = currentPlan();
-  const featured = ["AV", "OOH", "Direct Mail", "Paid Search", "Paid Social", "Display/Programmatic"];
+  const featured = CHANNEL_ORDER;
   const isMonthly = state.briefingFormMode === "monthly";
   if (isMonthly && !state.briefingFormMonth) state.briefingFormMonth = MONTHS[0];
   const month = state.briefingFormMonth;
