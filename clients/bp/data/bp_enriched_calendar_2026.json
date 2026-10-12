@@ -1,0 +1,335 @@
+{
+  "calendar_id": "bp_2026_enriched_calendar_v1",
+  "created_for": "bp 2026 Investment Communications planning prototype",
+  "source_ids": [
+    "bp_brief_priorities_2026",
+    "bp_planning_evidence_rules_2026",
+    "bp_results_calendar_2026",
+    "energy_conference_calendar_2026",
+    "bp_signal_feed",
+    "gov_uk_bank_holidays_2026",
+    "fifa_world_cup_2026",
+    "london_major_events_2026"
+  ],
+  "source_status": "mixed_confirmed_and_proxy",
+  "calendar_principles": [
+    "Treat bp's quarterly results and AGM as the primary planning triggers; dates here are illustrative until confirmed against bp's published financial calendar.",
+    "Observe market-sensitive quiet periods before results - no new investor-facing creative in the closed period.",
+    "Treat energy and business conferences as GBE attention moments that justify phasing and contextual targeting, not automatic budget increases.",
+    "Use premium sport (Wimbledon, The Open, British Grand Prix) only as high-attention CTV context for the GBE, never as a messaging hook.",
+    "Flag unconfirmed or proxy events visibly so agents cannot overclaim source truth."
+  ],
+  "events": [
+    {
+      "event_id": "jan_davos_wef",
+      "date_start": "2026-01-19",
+      "date_end": "2026-01-23",
+      "month": "2026-01",
+      "name": "World Economic Forum Annual Meeting, Davos",
+      "event_type": "energy_business_conference",
+      "confidence": "confirmed",
+      "planning_implication": "Davos concentrates global business and policy attention on energy security and the transition. A strong moment for premium financial news CTV and contextual display around energy and markets coverage, ahead of the February results quiet period.",
+      "channel_actions": [
+        "Financial news CTV burst",
+        "Contextual display on energy and markets coverage",
+        "Meta amplification to financial professionals"
+      ],
+      "audience_geo_hooks": [
+        "Global Business Elite",
+        "policymakers",
+        "C-suite"
+      ],
+      "source_ids": [
+        "energy_conference_calendar_2026",
+        "bp_signal_feed"
+      ]
+    },
+    {
+      "event_id": "feb_fy_results_strategy",
+      "date_start": "2026-02-10",
+      "date_end": "2026-02-24",
+      "month": "2026-02",
+      "name": "Full-year 2025 results and strategy update (illustrative date)",
+      "event_type": "results_announcement",
+      "confidence": "proxy",
+      "planning_implication": "The year's most important investor moment: full-year results and the strategy update. Hold investor-facing creative until the announcement, then concentrate CTV and online video to carry the equity story, with PMP display on financial publishers for analysts.",
+      "channel_actions": [
+        "CTV & Streaming peak weight",
+        "Online Video explainer content",
+        "Financial publisher PMPs",
+        "Respect pre-results quiet period"
+      ],
+      "audience_geo_hooks": [
+        "institutional investors",
+        "sell-side analysts",
+        "Global Business Elite"
+      ],
+      "source_ids": [
+        "bp_results_calendar_2026",
+        "bp_brief_priorities_2026"
+      ]
+    },
+    {
+      "event_id": "feb_international_energy_week",
+      "date_start": "2026-02-24",
+      "date_end": "2026-02-26",
+      "month": "2026-02",
+      "name": "International Energy Week, London",
+      "event_type": "energy_business_conference",
+      "confidence": "proxy",
+      "planning_implication": "London's flagship energy industry gathering lands straight after full-year results, extending the window in which UK GBE audiences are reading about energy strategy.",
+      "channel_actions": [
+        "Contextual display around energy coverage",
+        "Meta amplification",
+        "Publisher video"
+      ],
+      "audience_geo_hooks": [
+        "Greater London",
+        "energy policymakers",
+        "Global Business Elite"
+      ],
+      "source_ids": [
+        "energy_conference_calendar_2026",
+        "london_major_events_2026"
+      ]
+    },
+    {
+      "event_id": "mar_ceraweek",
+      "date_start": "2026-03-23",
+      "date_end": "2026-03-27",
+      "month": "2026-03",
+      "name": "CERAWeek, Houston",
+      "event_type": "energy_business_conference",
+      "confidence": "proxy",
+      "planning_implication": "The leading global energy executive conference. Coverage drives GBE attention on capital allocation and upstream strategy; a good fit for financial news CTV and contextual targeting, with the US audience flagged for the future US data pipeline.",
+      "channel_actions": [
+        "Financial news CTV",
+        "Contextual energy and markets display",
+        "Online Video on business content"
+      ],
+      "audience_geo_hooks": [
+        "Global Business Elite",
+        "C-suite",
+        "US readiness"
+      ],
+      "source_ids": [
+        "energy_conference_calendar_2026",
+        "bp_signal_feed"
+      ]
+    },
+    {
+      "event_id": "apr_agm_q1_results",
+      "date_start": "2026-04-16",
+      "date_end": "2026-04-30",
+      "month": "2026-04",
+      "name": "AGM and first-quarter results window (illustrative dates)",
+      "event_type": "agm_and_results",
+      "confidence": "proxy",
+      "planning_implication": "The AGM gives shareholders a direct moment with the board, followed by Q1 results at the end of the month. Use premium video for shareholder-facing content and keep display focused on financial publishers.",
+      "channel_actions": [
+        "CTV & Streaming shareholder reach",
+        "Online Video AGM content",
+        "Financial publisher PMPs",
+        "Respect pre-results quiet period"
+      ],
+      "audience_geo_hooks": [
+        "shareholders",
+        "institutional investors",
+        "analysts"
+      ],
+      "source_ids": [
+        "bp_results_calendar_2026",
+        "gov_uk_bank_holidays_2026"
+      ]
+    },
+    {
+      "event_id": "may_bank_holidays_lull",
+      "date_start": "2026-05-04",
+      "date_end": "2026-05-29",
+      "month": "2026-05",
+      "name": "May bank holidays and post-results follow-through",
+      "event_type": "bank_holiday_and_follow_through",
+      "confidence": "confirmed",
+      "planning_implication": "A lighter month after Q1 results. Use it for measurement - test Online Video and Meta GBE match quality against IPSOS IGI before the Q2 window.",
+      "channel_actions": [
+        "Online Video measured test",
+        "Meta GBE match-quality test",
+        "Always-on contextual display"
+      ],
+      "audience_geo_hooks": [
+        "Global Business Elite",
+        "measurement"
+      ],
+      "source_ids": [
+        "gov_uk_bank_holidays_2026",
+        "bp_brief_priorities_2026"
+      ]
+    },
+    {
+      "event_id": "jun_world_cup_lull",
+      "date_start": "2026-06-11",
+      "date_end": "2026-06-30",
+      "month": "2026-06",
+      "name": "FIFA World Cup opening weeks",
+      "event_type": "sport_context",
+      "confidence": "confirmed",
+      "planning_implication": "Football fragments broadcast attention and inflates CTV pricing. Keep investor activity light and avoid overpaying for CTV around fixtures; this is context, not a planning trigger for bp Investment Communications.",
+      "channel_actions": [
+        "Hold CTV weight down around fixtures",
+        "Always-on contextual display"
+      ],
+      "audience_geo_hooks": [
+        "national",
+        "Global Business Elite"
+      ],
+      "source_ids": [
+        "fifa_world_cup_2026"
+      ]
+    },
+    {
+      "event_id": "jul_premium_sport_q2_build",
+      "date_start": "2026-07-01",
+      "date_end": "2026-07-31",
+      "month": "2026-07",
+      "name": "Wimbledon, The Open and British Grand Prix; Q2 results build",
+      "event_type": "premium_sport_and_build",
+      "confidence": "confirmed",
+      "planning_implication": "Premium summer sport over-indexes with the GBE and offers high-attention, brand-safe CTV context. Build presence late in the month ahead of the early-August Q2 results.",
+      "channel_actions": [
+        "Premium sport CTV context",
+        "Financial publisher PMPs late month",
+        "Respect pre-results quiet period"
+      ],
+      "audience_geo_hooks": [
+        "Global Business Elite",
+        "C-suite"
+      ],
+      "source_ids": [
+        "uk_sports_events_2026_curated",
+        "bp_results_calendar_2026"
+      ]
+    },
+    {
+      "event_id": "aug_q2_results",
+      "date_start": "2026-08-04",
+      "date_end": "2026-08-18",
+      "month": "2026-08",
+      "name": "Second-quarter results (illustrative date) and summer lull",
+      "event_type": "results_announcement",
+      "confidence": "proxy",
+      "planning_implication": "Q2 results fall in the quietest month for GBE media consumption. Concentrate spend in results week and keep the rest of the month lean.",
+      "channel_actions": [
+        "CTV & Streaming results-week burst",
+        "Financial publisher PMPs",
+        "Lean outside results week"
+      ],
+      "audience_geo_hooks": [
+        "institutional investors",
+        "analysts"
+      ],
+      "source_ids": [
+        "bp_results_calendar_2026",
+        "gov_uk_bank_holidays_2026"
+      ]
+    },
+    {
+      "event_id": "sep_gastech",
+      "date_start": "2026-09-08",
+      "date_end": "2026-09-11",
+      "month": "2026-09",
+      "name": "Gastech conference",
+      "event_type": "energy_business_conference",
+      "confidence": "proxy",
+      "planning_implication": "The major global gas and LNG conference, as GBE audiences return from summer. A good moment for contextual display and Meta amplification around gas and LNG coverage.",
+      "channel_actions": [
+        "Contextual display on gas and LNG coverage",
+        "Meta amplification",
+        "Online Video"
+      ],
+      "audience_geo_hooks": [
+        "Global Business Elite",
+        "energy policymakers"
+      ],
+      "source_ids": [
+        "energy_conference_calendar_2026",
+        "bp_signal_feed"
+      ]
+    },
+    {
+      "event_id": "oct_q3_results_build",
+      "date_start": "2026-10-20",
+      "date_end": "2026-10-31",
+      "month": "2026-10",
+      "name": "Q3 results build and annual-plan sign-off window",
+      "event_type": "results_build_and_governance",
+      "confidence": "proxy",
+      "planning_implication": "Build presence ahead of early-November Q3 results and use the window as a governance checkpoint before the November push.",
+      "channel_actions": [
+        "Approval gate",
+        "QA agent review",
+        "Respect pre-results quiet period"
+      ],
+      "audience_geo_hooks": [
+        "planning team",
+        "Global Business Elite"
+      ],
+      "source_ids": [
+        "bp_results_calendar_2026",
+        "user_clarification_2026_06_26"
+      ]
+    },
+    {
+      "event_id": "nov_q3_results_adipec_cop",
+      "date_start": "2026-11-02",
+      "date_end": "2026-11-20",
+      "month": "2026-11",
+      "name": "Q3 results (illustrative date), ADIPEC and COP31",
+      "event_type": "results_and_conferences",
+      "confidence": "proxy",
+      "planning_implication": "The busiest month of the year: Q3 results coincide with ADIPEC in Abu Dhabi and COP31, putting energy strategy at the centre of GBE coverage. Rationale must show where spend avoids year-end CPM inflation.",
+      "channel_actions": [
+        "CTV & Streaming peak weight",
+        "Contextual display around ADIPEC and COP31 coverage",
+        "Meta amplification",
+        "Online Video explainer content"
+      ],
+      "audience_geo_hooks": [
+        "Global Business Elite",
+        "policymakers",
+        "institutional investors"
+      ],
+      "source_ids": [
+        "bp_results_calendar_2026",
+        "energy_conference_calendar_2026",
+        "bp_signal_feed"
+      ]
+    },
+    {
+      "event_id": "dec_year_end_lull",
+      "date_start": "2026-12-01",
+      "date_end": "2026-12-23",
+      "month": "2026-12",
+      "name": "Year-end lull and Christmas bank holidays",
+      "event_type": "bank_holiday_lull",
+      "confidence": "confirmed",
+      "planning_implication": "GBE attention falls away and year-end CPMs are inflated. Keep a light always-on contextual presence and prepare for the February full-year results quiet period.",
+      "channel_actions": [
+        "Always-on contextual display",
+        "Low CTV weight"
+      ],
+      "audience_geo_hooks": [
+        "Global Business Elite"
+      ],
+      "source_ids": [
+        "gov_uk_bank_holidays_2026"
+      ]
+    }
+  ],
+  "agent_calendar_questions": [
+    "Which bp financial calendar dates are confirmed, and which are still illustrative?",
+    "How long is the pre-results quiet period, and which creative is restricted during it?",
+    "Which energy conferences justify incremental budget rather than just contextual targeting?",
+    "Should US conferences (CERAWeek) be planned now or held for the US data pipeline?",
+    "Which calendar claims require BP Signal confirmation before they can appear in the executive summary?"
+  ]
+}

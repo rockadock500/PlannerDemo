@@ -1,0 +1,4039 @@
+{
+  "plan_id": "bp_annual_2026_brand_trust_build_ic_v1",
+  "scenario": {
+    "scenario_id": "brand_trust_build",
+    "label": "Brand Awareness",
+    "freeform_prompt": "Maximise awareness of bp's equity story among the Global Business Elite, shifting weight into premium CTV and online video for broad, high-attention reach.",
+    "weights": {
+      "regional_audience": 0.95,
+      "urban_growth_audience": 1.05,
+      "reach_channels": 1.25,
+      "performance_channels": 0.8,
+      "test_budget": 0.5
+    },
+    "channel_multipliers": {},
+    "monthly_multipliers": {},
+    "channel_floors": {},
+    "channel_caps": {},
+    "forecast_cost_per_policy_factor": 1.04,
+    "scenario_assumption": "Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+    "channel_index": {}
+  },
+  "brief_id": "annual_brief_2026_bp_ic_v1",
+  "total_budget_gbp": 4800000,
+  "total_allocated_gbp": 4800000,
+  "forecast_new_policy_sales": 3110866,
+  "forecast_cost_per_policy_gbp": 1.54,
+  "forecast_quote_starts": 161854197,
+  "quote_to_policy_conversion_pct": 1.92,
+  "channel_totals": [
+    {
+      "channel": "CTV & Streaming",
+      "budget_gbp": 2160000,
+      "share_pct": 45.0,
+      "forecast_new_policy_sales": 1170409,
+      "confidence": "high",
+      "mmm_optimal_share_pct": 35,
+      "mmm_share_source": "fixture_default",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_ctv_streaming",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
+        "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
+        "source_ids": [
+          "t7s_bigquery_ctv",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "external_trade_desk_ctv_inputs_2025"
+        ]
+      },
+      "channel_group": "brand_reach"
+    },
+    {
+      "channel": "Programmatic Display",
+      "budget_gbp": 720000,
+      "share_pct": 15.0,
+      "forecast_new_policy_sales": 315881,
+      "confidence": "high",
+      "mmm_optimal_share_pct": 25,
+      "mmm_share_source": "fixture_default",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_programmatic_display",
+        "curve_type": "slow-saturation linear-to-concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
+        "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
+        "source_ids": [
+          "t7s_bigquery_display",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "media_owner_benchmarks_v1"
+        ]
+      },
+      "channel_group": "precision_targeting"
+    },
+    {
+      "channel": "Online Video",
+      "budget_gbp": 1344000,
+      "share_pct": 28.0,
+      "forecast_new_policy_sales": 960874,
+      "confidence": "medium",
+      "mmm_optimal_share_pct": 25,
+      "mmm_share_source": "fixture_default",
+      "evidence_strength": "test_required",
+      "response_curve": {
+        "curve_id": "response_curve_2026_online_video",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
+        "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "1 to 2, modest carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
+        "source_ids": [
+          "t7s_bigquery_video",
+          "bp_historical_media_plans",
+          "external_google_meridian_hill_2026"
+        ]
+      },
+      "channel_group": "video_consideration"
+    },
+    {
+      "channel": "Meta",
+      "budget_gbp": 576000,
+      "share_pct": 12.0,
+      "forecast_new_policy_sales": 663702,
+      "confidence": "medium",
+      "mmm_optimal_share_pct": 15,
+      "mmm_share_source": "fixture_default",
+      "evidence_strength": "brief_required_gap",
+      "response_curve": {
+        "curve_id": "response_curve_2026_meta",
+        "curve_type": "quick-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
+        "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
+        "soft_saturation_threshold_monthly_gbp": 130000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
+        "source_ids": [
+          "t7s_bigquery_meta",
+          "ipsos_igi_gbe_2026",
+          "external_meta_robyn_mmm_docs"
+        ]
+      },
+      "channel_group": "social_amplification"
+    }
+  ],
+  "monthly_allocations": [
+    {
+      "month": "2026-01",
+      "channel": "CTV & Streaming",
+      "budget_gbp": 174624,
+      "budget_share_pct": 45.48,
+      "forecast_new_policy_sales": 97528,
+      "forecast_cost_per_policy_gbp": 1.79,
+      "forecast_cost_per_policy_range_gbp": [
+        1.52,
+        2.06
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_ctv",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "external_trade_desk_ctv_inputs_2025"
+      ],
+      "rationale": "CTV & Streaming allocation uses the Brand Awareness strategy, the7stars historical performance prior (35% blended share; primary_mmm), the January budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "results_season",
+        "brand_awareness"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_ctv_streaming",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
+        "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
+        "source_ids": [
+          "t7s_bigquery_ctv",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "external_trade_desk_ctv_inputs_2025"
+        ]
+      },
+      "channel_group": "brand_reach",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-02",
+      "channel": "CTV & Streaming",
+      "budget_gbp": 216370,
+      "budget_share_pct": 40.98,
+      "forecast_new_policy_sales": 110599,
+      "forecast_cost_per_policy_gbp": 1.96,
+      "forecast_cost_per_policy_range_gbp": [
+        1.67,
+        2.25
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_ctv",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "external_trade_desk_ctv_inputs_2025"
+      ],
+      "rationale": "CTV & Streaming allocation uses the Brand Awareness strategy, the7stars historical performance prior (35% blended share; primary_mmm), the February budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "results_season",
+        "brand_awareness"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_ctv_streaming",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
+        "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
+        "source_ids": [
+          "t7s_bigquery_ctv",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "external_trade_desk_ctv_inputs_2025"
+        ]
+      },
+      "channel_group": "brand_reach",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-03",
+      "channel": "CTV & Streaming",
+      "budget_gbp": 193603,
+      "budget_share_pct": 44.82,
+      "forecast_new_policy_sales": 102534,
+      "forecast_cost_per_policy_gbp": 1.89,
+      "forecast_cost_per_policy_range_gbp": [
+        1.61,
+        2.17
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_ctv",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "external_trade_desk_ctv_inputs_2025"
+      ],
+      "rationale": "CTV & Streaming allocation uses the Brand Awareness strategy, the7stars historical performance prior (35% blended share; primary_mmm), the March budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "results_season",
+        "brand_awareness"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_ctv_streaming",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
+        "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
+        "source_ids": [
+          "t7s_bigquery_ctv",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "external_trade_desk_ctv_inputs_2025"
+        ]
+      },
+      "channel_group": "brand_reach",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-04",
+      "channel": "CTV & Streaming",
+      "budget_gbp": 212525,
+      "budget_share_pct": 44.28,
+      "forecast_new_policy_sales": 109971,
+      "forecast_cost_per_policy_gbp": 1.93,
+      "forecast_cost_per_policy_range_gbp": [
+        1.64,
+        2.22
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_ctv",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "external_trade_desk_ctv_inputs_2025"
+      ],
+      "rationale": "CTV & Streaming allocation uses the Brand Awareness strategy, the7stars historical performance prior (35% blended share; primary_mmm), the April budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "results_season",
+        "brand_awareness"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_ctv_streaming",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
+        "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
+        "source_ids": [
+          "t7s_bigquery_ctv",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "external_trade_desk_ctv_inputs_2025"
+        ]
+      },
+      "channel_group": "brand_reach",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-05",
+      "channel": "CTV & Streaming",
+      "budget_gbp": 175368,
+      "budget_share_pct": 45.67,
+      "forecast_new_policy_sales": 97890,
+      "forecast_cost_per_policy_gbp": 1.79,
+      "forecast_cost_per_policy_range_gbp": [
+        1.52,
+        2.06
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_ctv",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "external_trade_desk_ctv_inputs_2025"
+      ],
+      "rationale": "CTV & Streaming allocation uses the Brand Awareness strategy, the7stars historical performance prior (35% blended share; primary_mmm), the May budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "results_season",
+        "brand_awareness"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_ctv_streaming",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
+        "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
+        "source_ids": [
+          "t7s_bigquery_ctv",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "external_trade_desk_ctv_inputs_2025"
+        ]
+      },
+      "channel_group": "brand_reach",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-06",
+      "channel": "CTV & Streaming",
+      "budget_gbp": 131841,
+      "budget_share_pct": 45.78,
+      "forecast_new_policy_sales": 79200,
+      "forecast_cost_per_policy_gbp": 1.66,
+      "forecast_cost_per_policy_range_gbp": [
+        1.41,
+        1.91
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_ctv",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "external_trade_desk_ctv_inputs_2025"
+      ],
+      "rationale": "CTV & Streaming allocation uses the Brand Awareness strategy, the7stars historical performance prior (35% blended share; primary_mmm), the June budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "results_season",
+        "brand_awareness"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_ctv_streaming",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
+        "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
+        "source_ids": [
+          "t7s_bigquery_ctv",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "external_trade_desk_ctv_inputs_2025"
+        ]
+      },
+      "channel_group": "brand_reach",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-07",
+      "channel": "CTV & Streaming",
+      "budget_gbp": 184564,
+      "budget_share_pct": 48.06,
+      "forecast_new_policy_sales": 104418,
+      "forecast_cost_per_policy_gbp": 1.77,
+      "forecast_cost_per_policy_range_gbp": [
+        1.5,
+        2.04
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_ctv",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "external_trade_desk_ctv_inputs_2025"
+      ],
+      "rationale": "CTV & Streaming allocation uses the Brand Awareness strategy, the7stars historical performance prior (35% blended share; primary_mmm), the July budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "results_season",
+        "brand_awareness"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_ctv_streaming",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
+        "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
+        "source_ids": [
+          "t7s_bigquery_ctv",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "external_trade_desk_ctv_inputs_2025"
+        ]
+      },
+      "channel_group": "brand_reach",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-08",
+      "channel": "CTV & Streaming",
+      "budget_gbp": 123387,
+      "budget_share_pct": 42.84,
+      "forecast_new_policy_sales": 77845,
+      "forecast_cost_per_policy_gbp": 1.59,
+      "forecast_cost_per_policy_range_gbp": [
+        1.35,
+        1.83
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_ctv",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "external_trade_desk_ctv_inputs_2025"
+      ],
+      "rationale": "CTV & Streaming allocation uses the Brand Awareness strategy, the7stars historical performance prior (35% blended share; primary_mmm), the August budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "results_season",
+        "brand_awareness"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_ctv_streaming",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
+        "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
+        "source_ids": [
+          "t7s_bigquery_ctv",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "external_trade_desk_ctv_inputs_2025"
+        ]
+      },
+      "channel_group": "brand_reach",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-09",
+      "channel": "CTV & Streaming",
+      "budget_gbp": 177614,
+      "budget_share_pct": 46.25,
+      "forecast_new_policy_sales": 98980,
+      "forecast_cost_per_policy_gbp": 1.79,
+      "forecast_cost_per_policy_range_gbp": [
+        1.52,
+        2.06
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_ctv",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "external_trade_desk_ctv_inputs_2025"
+      ],
+      "rationale": "CTV & Streaming allocation uses the Brand Awareness strategy, the7stars historical performance prior (35% blended share; primary_mmm), the September budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "results_season",
+        "brand_awareness"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_ctv_streaming",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
+        "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
+        "source_ids": [
+          "t7s_bigquery_ctv",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "external_trade_desk_ctv_inputs_2025"
+        ]
+      },
+      "channel_group": "brand_reach",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-10",
+      "channel": "CTV & Streaming",
+      "budget_gbp": 200724,
+      "budget_share_pct": 46.46,
+      "forecast_new_policy_sales": 105758,
+      "forecast_cost_per_policy_gbp": 1.9,
+      "forecast_cost_per_policy_range_gbp": [
+        1.61,
+        2.18
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_ctv",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "external_trade_desk_ctv_inputs_2025"
+      ],
+      "rationale": "CTV & Streaming allocation uses the Brand Awareness strategy, the7stars historical performance prior (35% blended share; primary_mmm), the October budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "results_season",
+        "brand_awareness"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_ctv_streaming",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
+        "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
+        "source_ids": [
+          "t7s_bigquery_ctv",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "external_trade_desk_ctv_inputs_2025"
+        ]
+      },
+      "channel_group": "brand_reach",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-11",
+      "channel": "CTV & Streaming",
+      "budget_gbp": 237177,
+      "budget_share_pct": 44.92,
+      "forecast_new_policy_sales": 115113,
+      "forecast_cost_per_policy_gbp": 2.06,
+      "forecast_cost_per_policy_range_gbp": [
+        1.75,
+        2.37
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_ctv",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "external_trade_desk_ctv_inputs_2025"
+      ],
+      "rationale": "CTV & Streaming allocation uses the Brand Awareness strategy, the7stars historical performance prior (35% blended share; primary_mmm), the November budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "results_season",
+        "brand_awareness"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_ctv_streaming",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
+        "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
+        "source_ids": [
+          "t7s_bigquery_ctv",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "external_trade_desk_ctv_inputs_2025"
+        ]
+      },
+      "channel_group": "brand_reach",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-12",
+      "channel": "CTV & Streaming",
+      "budget_gbp": 132203,
+      "budget_share_pct": 45.9,
+      "forecast_new_policy_sales": 70573,
+      "forecast_cost_per_policy_gbp": 1.87,
+      "forecast_cost_per_policy_range_gbp": [
+        1.59,
+        2.15
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_ctv",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "external_trade_desk_ctv_inputs_2025"
+      ],
+      "rationale": "CTV & Streaming allocation uses the Brand Awareness strategy, the7stars historical performance prior (35% blended share; primary_mmm), the December budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "results_season",
+        "brand_awareness"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_ctv_streaming",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
+        "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
+        "soft_saturation_threshold_monthly_gbp": 260000,
+        "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
+        "source_ids": [
+          "t7s_bigquery_ctv",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "external_trade_desk_ctv_inputs_2025"
+        ]
+      },
+      "channel_group": "brand_reach",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-01",
+      "channel": "Programmatic Display",
+      "budget_gbp": 56492,
+      "budget_share_pct": 14.71,
+      "forecast_new_policy_sales": 25571,
+      "forecast_cost_per_policy_gbp": 2.21,
+      "forecast_cost_per_policy_range_gbp": [
+        1.88,
+        2.54
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_display",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "media_owner_benchmarks_v1"
+      ],
+      "rationale": "Programmatic Display allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; primary_mmm), the January budget target, timing weight and a cited response-curve prior. Historical bp display delivery shows financial-publisher PMPs reaching GBE at the highest audience quality in the mix, with viewability well above open-exchange benchmarks but a lower engagement rate than video. Curve: slow-saturation linear-to-concave response; Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget. Phasing rule: Keep an always-on contextual layer; lift PMP weight in results weeks and around energy conferences when financial-publisher readership peaks. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "gbe_precision",
+        "results_season"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_programmatic_display",
+        "curve_type": "slow-saturation linear-to-concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
+        "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
+        "source_ids": [
+          "t7s_bigquery_display",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "media_owner_benchmarks_v1"
+        ]
+      },
+      "channel_group": "precision_targeting",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-02",
+      "channel": "Programmatic Display",
+      "budget_gbp": 90316,
+      "budget_share_pct": 17.11,
+      "forecast_new_policy_sales": 37262,
+      "forecast_cost_per_policy_gbp": 2.42,
+      "forecast_cost_per_policy_range_gbp": [
+        2.06,
+        2.78
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_display",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "media_owner_benchmarks_v1"
+      ],
+      "rationale": "Programmatic Display allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; primary_mmm), the February budget target, timing weight and a cited response-curve prior. Historical bp display delivery shows financial-publisher PMPs reaching GBE at the highest audience quality in the mix, with viewability well above open-exchange benchmarks but a lower engagement rate than video. Curve: slow-saturation linear-to-concave response; Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget. Phasing rule: Keep an always-on contextual layer; lift PMP weight in results weeks and around energy conferences when financial-publisher readership peaks. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "gbe_precision",
+        "results_season"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_programmatic_display",
+        "curve_type": "slow-saturation linear-to-concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
+        "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
+        "source_ids": [
+          "t7s_bigquery_display",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "media_owner_benchmarks_v1"
+        ]
+      },
+      "channel_group": "precision_targeting",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-03",
+      "channel": "Programmatic Display",
+      "budget_gbp": 59704,
+      "budget_share_pct": 13.82,
+      "forecast_new_policy_sales": 25899,
+      "forecast_cost_per_policy_gbp": 2.31,
+      "forecast_cost_per_policy_range_gbp": [
+        1.96,
+        2.66
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_display",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "media_owner_benchmarks_v1"
+      ],
+      "rationale": "Programmatic Display allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; primary_mmm), the March budget target, timing weight and a cited response-curve prior. Historical bp display delivery shows financial-publisher PMPs reaching GBE at the highest audience quality in the mix, with viewability well above open-exchange benchmarks but a lower engagement rate than video. Curve: slow-saturation linear-to-concave response; Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget. Phasing rule: Keep an always-on contextual layer; lift PMP weight in results weeks and around energy conferences when financial-publisher readership peaks. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "gbe_precision",
+        "results_season"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_programmatic_display",
+        "curve_type": "slow-saturation linear-to-concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
+        "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
+        "source_ids": [
+          "t7s_bigquery_display",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "media_owner_benchmarks_v1"
+        ]
+      },
+      "channel_group": "precision_targeting",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-04",
+      "channel": "Programmatic Display",
+      "budget_gbp": 77001,
+      "budget_share_pct": 16.04,
+      "forecast_new_policy_sales": 32504,
+      "forecast_cost_per_policy_gbp": 2.37,
+      "forecast_cost_per_policy_range_gbp": [
+        2.01,
+        2.73
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_display",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "media_owner_benchmarks_v1"
+      ],
+      "rationale": "Programmatic Display allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; primary_mmm), the April budget target, timing weight and a cited response-curve prior. Historical bp display delivery shows financial-publisher PMPs reaching GBE at the highest audience quality in the mix, with viewability well above open-exchange benchmarks but a lower engagement rate than video. Curve: slow-saturation linear-to-concave response; Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget. Phasing rule: Keep an always-on contextual layer; lift PMP weight in results weeks and around energy conferences when financial-publisher readership peaks. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "gbe_precision",
+        "results_season"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_programmatic_display",
+        "curve_type": "slow-saturation linear-to-concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
+        "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
+        "source_ids": [
+          "t7s_bigquery_display",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "media_owner_benchmarks_v1"
+        ]
+      },
+      "channel_group": "precision_targeting",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-05",
+      "channel": "Programmatic Display",
+      "budget_gbp": 53206,
+      "budget_share_pct": 13.86,
+      "forecast_new_policy_sales": 24165,
+      "forecast_cost_per_policy_gbp": 2.2,
+      "forecast_cost_per_policy_range_gbp": [
+        1.87,
+        2.53
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_display",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "media_owner_benchmarks_v1"
+      ],
+      "rationale": "Programmatic Display allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; primary_mmm), the May budget target, timing weight and a cited response-curve prior. Historical bp display delivery shows financial-publisher PMPs reaching GBE at the highest audience quality in the mix, with viewability well above open-exchange benchmarks but a lower engagement rate than video. Curve: slow-saturation linear-to-concave response; Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget. Phasing rule: Keep an always-on contextual layer; lift PMP weight in results weeks and around energy conferences when financial-publisher readership peaks. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "gbe_precision",
+        "results_season"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_programmatic_display",
+        "curve_type": "slow-saturation linear-to-concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
+        "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
+        "source_ids": [
+          "t7s_bigquery_display",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "media_owner_benchmarks_v1"
+        ]
+      },
+      "channel_group": "precision_targeting",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-06",
+      "channel": "Programmatic Display",
+      "budget_gbp": 44537,
+      "budget_share_pct": 15.46,
+      "forecast_new_policy_sales": 21263,
+      "forecast_cost_per_policy_gbp": 2.09,
+      "forecast_cost_per_policy_range_gbp": [
+        1.78,
+        2.4
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_display",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "media_owner_benchmarks_v1"
+      ],
+      "rationale": "Programmatic Display allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; primary_mmm), the June budget target, timing weight and a cited response-curve prior. Historical bp display delivery shows financial-publisher PMPs reaching GBE at the highest audience quality in the mix, with viewability well above open-exchange benchmarks but a lower engagement rate than video. Curve: slow-saturation linear-to-concave response; Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget. Phasing rule: Keep an always-on contextual layer; lift PMP weight in results weeks and around energy conferences when financial-publisher readership peaks. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "gbe_precision",
+        "results_season"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_programmatic_display",
+        "curve_type": "slow-saturation linear-to-concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
+        "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
+        "source_ids": [
+          "t7s_bigquery_display",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "media_owner_benchmarks_v1"
+        ]
+      },
+      "channel_group": "precision_targeting",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-07",
+      "channel": "Programmatic Display",
+      "budget_gbp": 49246,
+      "budget_share_pct": 12.82,
+      "forecast_new_policy_sales": 22918,
+      "forecast_cost_per_policy_gbp": 2.15,
+      "forecast_cost_per_policy_range_gbp": [
+        1.83,
+        2.47
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_display",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "media_owner_benchmarks_v1"
+      ],
+      "rationale": "Programmatic Display allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; primary_mmm), the July budget target, timing weight and a cited response-curve prior. Historical bp display delivery shows financial-publisher PMPs reaching GBE at the highest audience quality in the mix, with viewability well above open-exchange benchmarks but a lower engagement rate than video. Curve: slow-saturation linear-to-concave response; Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget. Phasing rule: Keep an always-on contextual layer; lift PMP weight in results weeks and around energy conferences when financial-publisher readership peaks. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "gbe_precision",
+        "results_season"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_programmatic_display",
+        "curve_type": "slow-saturation linear-to-concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
+        "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
+        "source_ids": [
+          "t7s_bigquery_display",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "media_owner_benchmarks_v1"
+        ]
+      },
+      "channel_group": "precision_targeting",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-08",
+      "channel": "Programmatic Display",
+      "budget_gbp": 47204,
+      "budget_share_pct": 16.39,
+      "forecast_new_policy_sales": 23450,
+      "forecast_cost_per_policy_gbp": 2.01,
+      "forecast_cost_per_policy_range_gbp": [
+        1.71,
+        2.31
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_display",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "media_owner_benchmarks_v1"
+      ],
+      "rationale": "Programmatic Display allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; primary_mmm), the August budget target, timing weight and a cited response-curve prior. Historical bp display delivery shows financial-publisher PMPs reaching GBE at the highest audience quality in the mix, with viewability well above open-exchange benchmarks but a lower engagement rate than video. Curve: slow-saturation linear-to-concave response; Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget. Phasing rule: Keep an always-on contextual layer; lift PMP weight in results weeks and around energy conferences when financial-publisher readership peaks. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "gbe_precision",
+        "results_season"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_programmatic_display",
+        "curve_type": "slow-saturation linear-to-concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
+        "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
+        "source_ids": [
+          "t7s_bigquery_display",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "media_owner_benchmarks_v1"
+        ]
+      },
+      "channel_group": "precision_targeting",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-09",
+      "channel": "Programmatic Display",
+      "budget_gbp": 54606,
+      "budget_share_pct": 14.22,
+      "forecast_new_policy_sales": 24765,
+      "forecast_cost_per_policy_gbp": 2.2,
+      "forecast_cost_per_policy_range_gbp": [
+        1.87,
+        2.53
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_display",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "media_owner_benchmarks_v1"
+      ],
+      "rationale": "Programmatic Display allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; primary_mmm), the September budget target, timing weight and a cited response-curve prior. Historical bp display delivery shows financial-publisher PMPs reaching GBE at the highest audience quality in the mix, with viewability well above open-exchange benchmarks but a lower engagement rate than video. Curve: slow-saturation linear-to-concave response; Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget. Phasing rule: Keep an always-on contextual layer; lift PMP weight in results weeks and around energy conferences when financial-publisher readership peaks. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "gbe_precision",
+        "results_season"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_programmatic_display",
+        "curve_type": "slow-saturation linear-to-concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
+        "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
+        "source_ids": [
+          "t7s_bigquery_display",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "media_owner_benchmarks_v1"
+        ]
+      },
+      "channel_group": "precision_targeting",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-10",
+      "channel": "Programmatic Display",
+      "budget_gbp": 54600,
+      "budget_share_pct": 12.64,
+      "forecast_new_policy_sales": 23810,
+      "forecast_cost_per_policy_gbp": 2.29,
+      "forecast_cost_per_policy_range_gbp": [
+        1.95,
+        2.63
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_display",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "media_owner_benchmarks_v1"
+      ],
+      "rationale": "Programmatic Display allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; primary_mmm), the October budget target, timing weight and a cited response-curve prior. Historical bp display delivery shows financial-publisher PMPs reaching GBE at the highest audience quality in the mix, with viewability well above open-exchange benchmarks but a lower engagement rate than video. Curve: slow-saturation linear-to-concave response; Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget. Phasing rule: Keep an always-on contextual layer; lift PMP weight in results weeks and around energy conferences when financial-publisher readership peaks. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "gbe_precision",
+        "results_season"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_programmatic_display",
+        "curve_type": "slow-saturation linear-to-concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
+        "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
+        "source_ids": [
+          "t7s_bigquery_display",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "media_owner_benchmarks_v1"
+        ]
+      },
+      "channel_group": "precision_targeting",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-11",
+      "channel": "Programmatic Display",
+      "budget_gbp": 85857,
+      "budget_share_pct": 16.26,
+      "forecast_new_policy_sales": 34287,
+      "forecast_cost_per_policy_gbp": 2.5,
+      "forecast_cost_per_policy_range_gbp": [
+        2.12,
+        2.88
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_display",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "media_owner_benchmarks_v1"
+      ],
+      "rationale": "Programmatic Display allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; primary_mmm), the November budget target, timing weight and a cited response-curve prior. Historical bp display delivery shows financial-publisher PMPs reaching GBE at the highest audience quality in the mix, with viewability well above open-exchange benchmarks but a lower engagement rate than video. Curve: slow-saturation linear-to-concave response; Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget. Phasing rule: Keep an always-on contextual layer; lift PMP weight in results weeks and around energy conferences when financial-publisher readership peaks. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "gbe_precision",
+        "results_season"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_programmatic_display",
+        "curve_type": "slow-saturation linear-to-concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
+        "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
+        "source_ids": [
+          "t7s_bigquery_display",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "media_owner_benchmarks_v1"
+        ]
+      },
+      "channel_group": "precision_targeting",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-12",
+      "channel": "Programmatic Display",
+      "budget_gbp": 47231,
+      "budget_share_pct": 16.4,
+      "forecast_new_policy_sales": 19987,
+      "forecast_cost_per_policy_gbp": 2.36,
+      "forecast_cost_per_policy_range_gbp": [
+        2.01,
+        2.71
+      ],
+      "confidence": "high",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_display",
+        "bp_historical_media_plans",
+        "ipsos_igi_gbe_2026",
+        "media_owner_benchmarks_v1"
+      ],
+      "rationale": "Programmatic Display allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; primary_mmm), the December budget target, timing weight and a cited response-curve prior. Historical bp display delivery shows financial-publisher PMPs reaching GBE at the highest audience quality in the mix, with viewability well above open-exchange benchmarks but a lower engagement rate than video. Curve: slow-saturation linear-to-concave response; Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget. Phasing rule: Keep an always-on contextual layer; lift PMP weight in results weeks and around energy conferences when financial-publisher readership peaks. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "gbe_precision",
+        "results_season"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "primary_mmm",
+      "response_curve": {
+        "curve_id": "response_curve_2026_programmatic_display",
+        "curve_type": "slow-saturation linear-to-concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "high",
+        "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
+        "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
+        "agree_conflict": "agree",
+        "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
+        "source_ids": [
+          "t7s_bigquery_display",
+          "bp_historical_media_plans",
+          "ipsos_igi_gbe_2026",
+          "media_owner_benchmarks_v1"
+        ]
+      },
+      "channel_group": "precision_targeting",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-01",
+      "channel": "Online Video",
+      "budget_gbp": 103290,
+      "budget_share_pct": 26.9,
+      "forecast_new_policy_sales": 76444,
+      "forecast_cost_per_policy_gbp": 1.35,
+      "forecast_cost_per_policy_range_gbp": [
+        1.15,
+        1.55
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_video",
+        "bp_historical_media_plans",
+        "external_google_meridian_hill_2026"
+      ],
+      "rationale": "Online Video allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; test_required), the January budget target, timing weight and a cited response-curve prior. Online video has a shorter bp history than CTV, so the evidence is reasonable but lower-confidence - completion rates are strong on financial publisher video, weaker on broad YouTube placements. Curve: moderate-saturation concave response; Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight. Phasing rule: Use around results and the strategy update to carry longer-form explainer content; keep as a measured test outside those windows. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "agm_strategy_update",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "test_required",
+      "response_curve": {
+        "curve_id": "response_curve_2026_online_video",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
+        "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "1 to 2, modest carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
+        "source_ids": [
+          "t7s_bigquery_video",
+          "bp_historical_media_plans",
+          "external_google_meridian_hill_2026"
+        ]
+      },
+      "channel_group": "video_consideration",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-02",
+      "channel": "Online Video",
+      "budget_gbp": 157888,
+      "budget_share_pct": 29.9,
+      "forecast_new_policy_sales": 104596,
+      "forecast_cost_per_policy_gbp": 1.51,
+      "forecast_cost_per_policy_range_gbp": [
+        1.28,
+        1.74
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_video",
+        "bp_historical_media_plans",
+        "external_google_meridian_hill_2026"
+      ],
+      "rationale": "Online Video allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; test_required), the February budget target, timing weight and a cited response-curve prior. Online video has a shorter bp history than CTV, so the evidence is reasonable but lower-confidence - completion rates are strong on financial publisher video, weaker on broad YouTube placements. Curve: moderate-saturation concave response; Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight. Phasing rule: Use around results and the strategy update to carry longer-form explainer content; keep as a measured test outside those windows. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "agm_strategy_update",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "test_required",
+      "response_curve": {
+        "curve_id": "response_curve_2026_online_video",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
+        "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "1 to 2, modest carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
+        "source_ids": [
+          "t7s_bigquery_video",
+          "bp_historical_media_plans",
+          "external_google_meridian_hill_2026"
+        ]
+      },
+      "channel_group": "video_consideration",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-03",
+      "channel": "Online Video",
+      "budget_gbp": 129996,
+      "budget_share_pct": 30.09,
+      "forecast_new_policy_sales": 90131,
+      "forecast_cost_per_policy_gbp": 1.44,
+      "forecast_cost_per_policy_range_gbp": [
+        1.22,
+        1.66
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_video",
+        "bp_historical_media_plans",
+        "external_google_meridian_hill_2026"
+      ],
+      "rationale": "Online Video allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; test_required), the March budget target, timing weight and a cited response-curve prior. Online video has a shorter bp history than CTV, so the evidence is reasonable but lower-confidence - completion rates are strong on financial publisher video, weaker on broad YouTube placements. Curve: moderate-saturation concave response; Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight. Phasing rule: Use around results and the strategy update to carry longer-form explainer content; keep as a measured test outside those windows. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "agm_strategy_update",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "test_required",
+      "response_curve": {
+        "curve_id": "response_curve_2026_online_video",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
+        "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "1 to 2, modest carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
+        "source_ids": [
+          "t7s_bigquery_video",
+          "bp_historical_media_plans",
+          "external_google_meridian_hill_2026"
+        ]
+      },
+      "channel_group": "video_consideration",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-04",
+      "channel": "Online Video",
+      "budget_gbp": 128849,
+      "budget_share_pct": 26.84,
+      "forecast_new_policy_sales": 88582,
+      "forecast_cost_per_policy_gbp": 1.45,
+      "forecast_cost_per_policy_range_gbp": [
+        1.23,
+        1.67
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_video",
+        "bp_historical_media_plans",
+        "external_google_meridian_hill_2026"
+      ],
+      "rationale": "Online Video allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; test_required), the April budget target, timing weight and a cited response-curve prior. Online video has a shorter bp history than CTV, so the evidence is reasonable but lower-confidence - completion rates are strong on financial publisher video, weaker on broad YouTube placements. Curve: moderate-saturation concave response; Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight. Phasing rule: Use around results and the strategy update to carry longer-form explainer content; keep as a measured test outside those windows. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "agm_strategy_update",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "test_required",
+      "response_curve": {
+        "curve_id": "response_curve_2026_online_video",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
+        "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "1 to 2, modest carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
+        "source_ids": [
+          "t7s_bigquery_video",
+          "bp_historical_media_plans",
+          "external_google_meridian_hill_2026"
+        ]
+      },
+      "channel_group": "video_consideration",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-05",
+      "channel": "Online Video",
+      "budget_gbp": 107338,
+      "budget_share_pct": 27.95,
+      "forecast_new_policy_sales": 79123,
+      "forecast_cost_per_policy_gbp": 1.36,
+      "forecast_cost_per_policy_range_gbp": [
+        1.16,
+        1.56
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_video",
+        "bp_historical_media_plans",
+        "external_google_meridian_hill_2026"
+      ],
+      "rationale": "Online Video allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; test_required), the May budget target, timing weight and a cited response-curve prior. Online video has a shorter bp history than CTV, so the evidence is reasonable but lower-confidence - completion rates are strong on financial publisher video, weaker on broad YouTube placements. Curve: moderate-saturation concave response; Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight. Phasing rule: Use around results and the strategy update to carry longer-form explainer content; keep as a measured test outside those windows. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "agm_strategy_update",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "test_required",
+      "response_curve": {
+        "curve_id": "response_curve_2026_online_video",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
+        "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "1 to 2, modest carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
+        "source_ids": [
+          "t7s_bigquery_video",
+          "bp_historical_media_plans",
+          "external_google_meridian_hill_2026"
+        ]
+      },
+      "channel_group": "video_consideration",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-06",
+      "channel": "Online Video",
+      "budget_gbp": 81769,
+      "budget_share_pct": 28.39,
+      "forecast_new_policy_sales": 64407,
+      "forecast_cost_per_policy_gbp": 1.27,
+      "forecast_cost_per_policy_range_gbp": [
+        1.08,
+        1.46
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_video",
+        "bp_historical_media_plans",
+        "external_google_meridian_hill_2026"
+      ],
+      "rationale": "Online Video allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; test_required), the June budget target, timing weight and a cited response-curve prior. Online video has a shorter bp history than CTV, so the evidence is reasonable but lower-confidence - completion rates are strong on financial publisher video, weaker on broad YouTube placements. Curve: moderate-saturation concave response; Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight. Phasing rule: Use around results and the strategy update to carry longer-form explainer content; keep as a measured test outside those windows. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "agm_strategy_update",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "test_required",
+      "response_curve": {
+        "curve_id": "response_curve_2026_online_video",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
+        "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "1 to 2, modest carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
+        "source_ids": [
+          "t7s_bigquery_video",
+          "bp_historical_media_plans",
+          "external_google_meridian_hill_2026"
+        ]
+      },
+      "channel_group": "video_consideration",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-07",
+      "channel": "Online Video",
+      "budget_gbp": 102132,
+      "budget_share_pct": 26.6,
+      "forecast_new_policy_sales": 77218,
+      "forecast_cost_per_policy_gbp": 1.32,
+      "forecast_cost_per_policy_range_gbp": [
+        1.12,
+        1.52
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_video",
+        "bp_historical_media_plans",
+        "external_google_meridian_hill_2026"
+      ],
+      "rationale": "Online Video allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; test_required), the July budget target, timing weight and a cited response-curve prior. Online video has a shorter bp history than CTV, so the evidence is reasonable but lower-confidence - completion rates are strong on financial publisher video, weaker on broad YouTube placements. Curve: moderate-saturation concave response; Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight. Phasing rule: Use around results and the strategy update to carry longer-form explainer content; keep as a measured test outside those windows. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "agm_strategy_update",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "test_required",
+      "response_curve": {
+        "curve_id": "response_curve_2026_online_video",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
+        "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "1 to 2, modest carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
+        "source_ids": [
+          "t7s_bigquery_video",
+          "bp_historical_media_plans",
+          "external_google_meridian_hill_2026"
+        ]
+      },
+      "channel_group": "video_consideration",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-08",
+      "channel": "Online Video",
+      "budget_gbp": 85893,
+      "budget_share_pct": 29.82,
+      "forecast_new_policy_sales": 70304,
+      "forecast_cost_per_policy_gbp": 1.22,
+      "forecast_cost_per_policy_range_gbp": [
+        1.04,
+        1.4
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_video",
+        "bp_historical_media_plans",
+        "external_google_meridian_hill_2026"
+      ],
+      "rationale": "Online Video allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; test_required), the August budget target, timing weight and a cited response-curve prior. Online video has a shorter bp history than CTV, so the evidence is reasonable but lower-confidence - completion rates are strong on financial publisher video, weaker on broad YouTube placements. Curve: moderate-saturation concave response; Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight. Phasing rule: Use around results and the strategy update to carry longer-form explainer content; keep as a measured test outside those windows. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "agm_strategy_update",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "test_required",
+      "response_curve": {
+        "curve_id": "response_curve_2026_online_video",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
+        "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "1 to 2, modest carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
+        "source_ids": [
+          "t7s_bigquery_video",
+          "bp_historical_media_plans",
+          "external_google_meridian_hill_2026"
+        ]
+      },
+      "channel_group": "video_consideration",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-09",
+      "channel": "Online Video",
+      "budget_gbp": 107241,
+      "budget_share_pct": 27.93,
+      "forecast_new_policy_sales": 79059,
+      "forecast_cost_per_policy_gbp": 1.36,
+      "forecast_cost_per_policy_range_gbp": [
+        1.16,
+        1.56
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_video",
+        "bp_historical_media_plans",
+        "external_google_meridian_hill_2026"
+      ],
+      "rationale": "Online Video allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; test_required), the September budget target, timing weight and a cited response-curve prior. Online video has a shorter bp history than CTV, so the evidence is reasonable but lower-confidence - completion rates are strong on financial publisher video, weaker on broad YouTube placements. Curve: moderate-saturation concave response; Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight. Phasing rule: Use around results and the strategy update to carry longer-form explainer content; keep as a measured test outside those windows. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "agm_strategy_update",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "test_required",
+      "response_curve": {
+        "curve_id": "response_curve_2026_online_video",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
+        "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "1 to 2, modest carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
+        "source_ids": [
+          "t7s_bigquery_video",
+          "bp_historical_media_plans",
+          "external_google_meridian_hill_2026"
+        ]
+      },
+      "channel_group": "video_consideration",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-10",
+      "channel": "Online Video",
+      "budget_gbp": 125131,
+      "budget_share_pct": 28.97,
+      "forecast_new_policy_sales": 87166,
+      "forecast_cost_per_policy_gbp": 1.44,
+      "forecast_cost_per_policy_range_gbp": [
+        1.22,
+        1.66
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_video",
+        "bp_historical_media_plans",
+        "external_google_meridian_hill_2026"
+      ],
+      "rationale": "Online Video allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; test_required), the October budget target, timing weight and a cited response-curve prior. Online video has a shorter bp history than CTV, so the evidence is reasonable but lower-confidence - completion rates are strong on financial publisher video, weaker on broad YouTube placements. Curve: moderate-saturation concave response; Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight. Phasing rule: Use around results and the strategy update to carry longer-form explainer content; keep as a measured test outside those windows. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "agm_strategy_update",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "test_required",
+      "response_curve": {
+        "curve_id": "response_curve_2026_online_video",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
+        "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "1 to 2, modest carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
+        "source_ids": [
+          "t7s_bigquery_video",
+          "bp_historical_media_plans",
+          "external_google_meridian_hill_2026"
+        ]
+      },
+      "channel_group": "video_consideration",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-11",
+      "channel": "Online Video",
+      "budget_gbp": 134987,
+      "budget_share_pct": 25.57,
+      "forecast_new_policy_sales": 88063,
+      "forecast_cost_per_policy_gbp": 1.53,
+      "forecast_cost_per_policy_range_gbp": [
+        1.3,
+        1.76
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_video",
+        "bp_historical_media_plans",
+        "external_google_meridian_hill_2026"
+      ],
+      "rationale": "Online Video allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; test_required), the November budget target, timing weight and a cited response-curve prior. Online video has a shorter bp history than CTV, so the evidence is reasonable but lower-confidence - completion rates are strong on financial publisher video, weaker on broad YouTube placements. Curve: moderate-saturation concave response; Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight. Phasing rule: Use around results and the strategy update to carry longer-form explainer content; keep as a measured test outside those windows. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "agm_strategy_update",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "test_required",
+      "response_curve": {
+        "curve_id": "response_curve_2026_online_video",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
+        "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "1 to 2, modest carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
+        "source_ids": [
+          "t7s_bigquery_video",
+          "bp_historical_media_plans",
+          "external_google_meridian_hill_2026"
+        ]
+      },
+      "channel_group": "video_consideration",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-12",
+      "channel": "Online Video",
+      "budget_gbp": 79486,
+      "budget_share_pct": 27.6,
+      "forecast_new_policy_sales": 55781,
+      "forecast_cost_per_policy_gbp": 1.42,
+      "forecast_cost_per_policy_range_gbp": [
+        1.21,
+        1.63
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_video",
+        "bp_historical_media_plans",
+        "external_google_meridian_hill_2026"
+      ],
+      "rationale": "Online Video allocation uses the Brand Awareness strategy, the7stars historical performance prior (25% blended share; test_required), the December budget target, timing weight and a cited response-curve prior. Online video has a shorter bp history than CTV, so the evidence is reasonable but lower-confidence - completion rates are strong on financial publisher video, weaker on broad YouTube placements. Curve: moderate-saturation concave response; Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight. Phasing rule: Use around results and the strategy update to carry longer-form explainer content; keep as a measured test outside those windows. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "agm_strategy_update",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "test_required",
+      "response_curve": {
+        "curve_id": "response_curve_2026_online_video",
+        "curve_type": "moderate-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
+        "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
+        "soft_saturation_threshold_monthly_gbp": 200000,
+        "adstock_half_life_weeks": "1 to 2, modest carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
+        "source_ids": [
+          "t7s_bigquery_video",
+          "bp_historical_media_plans",
+          "external_google_meridian_hill_2026"
+        ]
+      },
+      "channel_group": "video_consideration",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-01",
+      "channel": "Meta",
+      "budget_gbp": 49594,
+      "budget_share_pct": 12.92,
+      "forecast_new_policy_sales": 58659,
+      "forecast_cost_per_policy_gbp": 0.85,
+      "forecast_cost_per_policy_range_gbp": [
+        0.72,
+        0.98
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_meta",
+        "ipsos_igi_gbe_2026",
+        "external_meta_robyn_mmm_docs"
+      ],
+      "rationale": "Meta allocation uses the Brand Awareness strategy, the7stars historical performance prior (15% blended share; brief_required_gap), the January budget target, timing weight and a cited response-curve prior. Meta is brief-required but GBE targeting relies on interest and professional proxies, so it is treated as a measurement-led amplification layer rather than a proven GBE channel. Curve: quick-saturation concave response; Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling. Phasing rule: Concentrate around results days, the AGM and major energy conferences; avoid thin always-on spend that drifts outside the GBE audience. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "energy_conferences",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "brief_required_gap",
+      "response_curve": {
+        "curve_id": "response_curve_2026_meta",
+        "curve_type": "quick-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
+        "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
+        "soft_saturation_threshold_monthly_gbp": 130000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
+        "source_ids": [
+          "t7s_bigquery_meta",
+          "ipsos_igi_gbe_2026",
+          "external_meta_robyn_mmm_docs"
+        ]
+      },
+      "channel_group": "social_amplification",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-02",
+      "channel": "Meta",
+      "budget_gbp": 63426,
+      "budget_share_pct": 12.01,
+      "forecast_new_policy_sales": 69277,
+      "forecast_cost_per_policy_gbp": 0.92,
+      "forecast_cost_per_policy_range_gbp": [
+        0.78,
+        1.06
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_meta",
+        "ipsos_igi_gbe_2026",
+        "external_meta_robyn_mmm_docs"
+      ],
+      "rationale": "Meta allocation uses the Brand Awareness strategy, the7stars historical performance prior (15% blended share; brief_required_gap), the February budget target, timing weight and a cited response-curve prior. Meta is brief-required but GBE targeting relies on interest and professional proxies, so it is treated as a measurement-led amplification layer rather than a proven GBE channel. Curve: quick-saturation concave response; Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling. Phasing rule: Concentrate around results days, the AGM and major energy conferences; avoid thin always-on spend that drifts outside the GBE audience. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "energy_conferences",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "brief_required_gap",
+      "response_curve": {
+        "curve_id": "response_curve_2026_meta",
+        "curve_type": "quick-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
+        "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
+        "soft_saturation_threshold_monthly_gbp": 130000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
+        "source_ids": [
+          "t7s_bigquery_meta",
+          "ipsos_igi_gbe_2026",
+          "external_meta_robyn_mmm_docs"
+        ]
+      },
+      "channel_group": "social_amplification",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-03",
+      "channel": "Meta",
+      "budget_gbp": 48697,
+      "budget_share_pct": 11.27,
+      "forecast_new_policy_sales": 55460,
+      "forecast_cost_per_policy_gbp": 0.88,
+      "forecast_cost_per_policy_range_gbp": [
+        0.75,
+        1.01
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_meta",
+        "ipsos_igi_gbe_2026",
+        "external_meta_robyn_mmm_docs"
+      ],
+      "rationale": "Meta allocation uses the Brand Awareness strategy, the7stars historical performance prior (15% blended share; brief_required_gap), the March budget target, timing weight and a cited response-curve prior. Meta is brief-required but GBE targeting relies on interest and professional proxies, so it is treated as a measurement-led amplification layer rather than a proven GBE channel. Curve: quick-saturation concave response; Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling. Phasing rule: Concentrate around results days, the AGM and major energy conferences; avoid thin always-on spend that drifts outside the GBE audience. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "energy_conferences",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "brief_required_gap",
+      "response_curve": {
+        "curve_id": "response_curve_2026_meta",
+        "curve_type": "quick-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
+        "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
+        "soft_saturation_threshold_monthly_gbp": 130000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
+        "source_ids": [
+          "t7s_bigquery_meta",
+          "ipsos_igi_gbe_2026",
+          "external_meta_robyn_mmm_docs"
+        ]
+      },
+      "channel_group": "social_amplification",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-04",
+      "channel": "Meta",
+      "budget_gbp": 61625,
+      "budget_share_pct": 12.84,
+      "forecast_new_policy_sales": 68138,
+      "forecast_cost_per_policy_gbp": 0.9,
+      "forecast_cost_per_policy_range_gbp": [
+        0.77,
+        1.03
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_meta",
+        "ipsos_igi_gbe_2026",
+        "external_meta_robyn_mmm_docs"
+      ],
+      "rationale": "Meta allocation uses the Brand Awareness strategy, the7stars historical performance prior (15% blended share; brief_required_gap), the April budget target, timing weight and a cited response-curve prior. Meta is brief-required but GBE targeting relies on interest and professional proxies, so it is treated as a measurement-led amplification layer rather than a proven GBE channel. Curve: quick-saturation concave response; Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling. Phasing rule: Concentrate around results days, the AGM and major energy conferences; avoid thin always-on spend that drifts outside the GBE audience. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "energy_conferences",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "brief_required_gap",
+      "response_curve": {
+        "curve_id": "response_curve_2026_meta",
+        "curve_type": "quick-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
+        "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
+        "soft_saturation_threshold_monthly_gbp": 130000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
+        "source_ids": [
+          "t7s_bigquery_meta",
+          "ipsos_igi_gbe_2026",
+          "external_meta_robyn_mmm_docs"
+        ]
+      },
+      "channel_group": "social_amplification",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-05",
+      "channel": "Meta",
+      "budget_gbp": 48088,
+      "budget_share_pct": 12.52,
+      "forecast_new_policy_sales": 57012,
+      "forecast_cost_per_policy_gbp": 0.84,
+      "forecast_cost_per_policy_range_gbp": [
+        0.71,
+        0.97
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_meta",
+        "ipsos_igi_gbe_2026",
+        "external_meta_robyn_mmm_docs"
+      ],
+      "rationale": "Meta allocation uses the Brand Awareness strategy, the7stars historical performance prior (15% blended share; brief_required_gap), the May budget target, timing weight and a cited response-curve prior. Meta is brief-required but GBE targeting relies on interest and professional proxies, so it is treated as a measurement-led amplification layer rather than a proven GBE channel. Curve: quick-saturation concave response; Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling. Phasing rule: Concentrate around results days, the AGM and major energy conferences; avoid thin always-on spend that drifts outside the GBE audience. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "energy_conferences",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "brief_required_gap",
+      "response_curve": {
+        "curve_id": "response_curve_2026_meta",
+        "curve_type": "quick-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
+        "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
+        "soft_saturation_threshold_monthly_gbp": 130000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
+        "source_ids": [
+          "t7s_bigquery_meta",
+          "ipsos_igi_gbe_2026",
+          "external_meta_robyn_mmm_docs"
+        ]
+      },
+      "channel_group": "social_amplification",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-06",
+      "channel": "Meta",
+      "budget_gbp": 29853,
+      "budget_share_pct": 10.37,
+      "forecast_new_policy_sales": 37951,
+      "forecast_cost_per_policy_gbp": 0.79,
+      "forecast_cost_per_policy_range_gbp": [
+        0.67,
+        0.91
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_meta",
+        "ipsos_igi_gbe_2026",
+        "external_meta_robyn_mmm_docs"
+      ],
+      "rationale": "Meta allocation uses the Brand Awareness strategy, the7stars historical performance prior (15% blended share; brief_required_gap), the June budget target, timing weight and a cited response-curve prior. Meta is brief-required but GBE targeting relies on interest and professional proxies, so it is treated as a measurement-led amplification layer rather than a proven GBE channel. Curve: quick-saturation concave response; Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling. Phasing rule: Concentrate around results days, the AGM and major energy conferences; avoid thin always-on spend that drifts outside the GBE audience. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "energy_conferences",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "brief_required_gap",
+      "response_curve": {
+        "curve_id": "response_curve_2026_meta",
+        "curve_type": "quick-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
+        "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
+        "soft_saturation_threshold_monthly_gbp": 130000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
+        "source_ids": [
+          "t7s_bigquery_meta",
+          "ipsos_igi_gbe_2026",
+          "external_meta_robyn_mmm_docs"
+        ]
+      },
+      "channel_group": "social_amplification",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-07",
+      "channel": "Meta",
+      "budget_gbp": 48058,
+      "budget_share_pct": 12.52,
+      "forecast_new_policy_sales": 58142,
+      "forecast_cost_per_policy_gbp": 0.83,
+      "forecast_cost_per_policy_range_gbp": [
+        0.71,
+        0.95
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_meta",
+        "ipsos_igi_gbe_2026",
+        "external_meta_robyn_mmm_docs"
+      ],
+      "rationale": "Meta allocation uses the Brand Awareness strategy, the7stars historical performance prior (15% blended share; brief_required_gap), the July budget target, timing weight and a cited response-curve prior. Meta is brief-required but GBE targeting relies on interest and professional proxies, so it is treated as a measurement-led amplification layer rather than a proven GBE channel. Curve: quick-saturation concave response; Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling. Phasing rule: Concentrate around results days, the AGM and major energy conferences; avoid thin always-on spend that drifts outside the GBE audience. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "energy_conferences",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "brief_required_gap",
+      "response_curve": {
+        "curve_id": "response_curve_2026_meta",
+        "curve_type": "quick-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
+        "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
+        "soft_saturation_threshold_monthly_gbp": 130000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
+        "source_ids": [
+          "t7s_bigquery_meta",
+          "ipsos_igi_gbe_2026",
+          "external_meta_robyn_mmm_docs"
+        ]
+      },
+      "channel_group": "social_amplification",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-08",
+      "channel": "Meta",
+      "budget_gbp": 31516,
+      "budget_share_pct": 10.94,
+      "forecast_new_policy_sales": 41695,
+      "forecast_cost_per_policy_gbp": 0.76,
+      "forecast_cost_per_policy_range_gbp": [
+        0.65,
+        0.87
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_meta",
+        "ipsos_igi_gbe_2026",
+        "external_meta_robyn_mmm_docs"
+      ],
+      "rationale": "Meta allocation uses the Brand Awareness strategy, the7stars historical performance prior (15% blended share; brief_required_gap), the August budget target, timing weight and a cited response-curve prior. Meta is brief-required but GBE targeting relies on interest and professional proxies, so it is treated as a measurement-led amplification layer rather than a proven GBE channel. Curve: quick-saturation concave response; Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling. Phasing rule: Concentrate around results days, the AGM and major energy conferences; avoid thin always-on spend that drifts outside the GBE audience. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "energy_conferences",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "brief_required_gap",
+      "response_curve": {
+        "curve_id": "response_curve_2026_meta",
+        "curve_type": "quick-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
+        "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
+        "soft_saturation_threshold_monthly_gbp": 130000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
+        "source_ids": [
+          "t7s_bigquery_meta",
+          "ipsos_igi_gbe_2026",
+          "external_meta_robyn_mmm_docs"
+        ]
+      },
+      "channel_group": "social_amplification",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-09",
+      "channel": "Meta",
+      "budget_gbp": 44539,
+      "budget_share_pct": 11.6,
+      "forecast_new_policy_sales": 53099,
+      "forecast_cost_per_policy_gbp": 0.84,
+      "forecast_cost_per_policy_range_gbp": [
+        0.71,
+        0.97
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_meta",
+        "ipsos_igi_gbe_2026",
+        "external_meta_robyn_mmm_docs"
+      ],
+      "rationale": "Meta allocation uses the Brand Awareness strategy, the7stars historical performance prior (15% blended share; brief_required_gap), the September budget target, timing weight and a cited response-curve prior. Meta is brief-required but GBE targeting relies on interest and professional proxies, so it is treated as a measurement-led amplification layer rather than a proven GBE channel. Curve: quick-saturation concave response; Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling. Phasing rule: Concentrate around results days, the AGM and major energy conferences; avoid thin always-on spend that drifts outside the GBE audience. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "energy_conferences",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "brief_required_gap",
+      "response_curve": {
+        "curve_id": "response_curve_2026_meta",
+        "curve_type": "quick-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
+        "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
+        "soft_saturation_threshold_monthly_gbp": 130000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
+        "source_ids": [
+          "t7s_bigquery_meta",
+          "ipsos_igi_gbe_2026",
+          "external_meta_robyn_mmm_docs"
+        ]
+      },
+      "channel_group": "social_amplification",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-10",
+      "channel": "Meta",
+      "budget_gbp": 51545,
+      "budget_share_pct": 11.93,
+      "forecast_new_policy_sales": 58444,
+      "forecast_cost_per_policy_gbp": 0.88,
+      "forecast_cost_per_policy_range_gbp": [
+        0.75,
+        1.01
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_meta",
+        "ipsos_igi_gbe_2026",
+        "external_meta_robyn_mmm_docs"
+      ],
+      "rationale": "Meta allocation uses the Brand Awareness strategy, the7stars historical performance prior (15% blended share; brief_required_gap), the October budget target, timing weight and a cited response-curve prior. Meta is brief-required but GBE targeting relies on interest and professional proxies, so it is treated as a measurement-led amplification layer rather than a proven GBE channel. Curve: quick-saturation concave response; Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling. Phasing rule: Concentrate around results days, the AGM and major energy conferences; avoid thin always-on spend that drifts outside the GBE audience. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "energy_conferences",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "brief_required_gap",
+      "response_curve": {
+        "curve_id": "response_curve_2026_meta",
+        "curve_type": "quick-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
+        "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
+        "soft_saturation_threshold_monthly_gbp": 130000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
+        "source_ids": [
+          "t7s_bigquery_meta",
+          "ipsos_igi_gbe_2026",
+          "external_meta_robyn_mmm_docs"
+        ]
+      },
+      "channel_group": "social_amplification",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-11",
+      "channel": "Meta",
+      "budget_gbp": 69979,
+      "budget_share_pct": 13.25,
+      "forecast_new_policy_sales": 72924,
+      "forecast_cost_per_policy_gbp": 0.96,
+      "forecast_cost_per_policy_range_gbp": [
+        0.82,
+        1.1
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_meta",
+        "ipsos_igi_gbe_2026",
+        "external_meta_robyn_mmm_docs"
+      ],
+      "rationale": "Meta allocation uses the Brand Awareness strategy, the7stars historical performance prior (15% blended share; brief_required_gap), the November budget target, timing weight and a cited response-curve prior. Meta is brief-required but GBE targeting relies on interest and professional proxies, so it is treated as a measurement-led amplification layer rather than a proven GBE channel. Curve: quick-saturation concave response; Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling. Phasing rule: Concentrate around results days, the AGM and major energy conferences; avoid thin always-on spend that drifts outside the GBE audience. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "energy_conferences",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "brief_required_gap",
+      "response_curve": {
+        "curve_id": "response_curve_2026_meta",
+        "curve_type": "quick-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
+        "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
+        "soft_saturation_threshold_monthly_gbp": 130000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
+        "source_ids": [
+          "t7s_bigquery_meta",
+          "ipsos_igi_gbe_2026",
+          "external_meta_robyn_mmm_docs"
+        ]
+      },
+      "channel_group": "social_amplification",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    },
+    {
+      "month": "2026-12",
+      "channel": "Meta",
+      "budget_gbp": 29080,
+      "budget_share_pct": 10.1,
+      "forecast_new_policy_sales": 32901,
+      "forecast_cost_per_policy_gbp": 0.88,
+      "forecast_cost_per_policy_range_gbp": [
+        0.75,
+        1.01
+      ],
+      "confidence": "medium",
+      "source_ids": [
+        "bp_media_budget",
+        "bp_planning_evidence_rules_2026",
+        "bp_response_curve_priors_2026",
+        "bp_results_calendar_2026",
+        "t7s_bigquery_meta",
+        "ipsos_igi_gbe_2026",
+        "external_meta_robyn_mmm_docs"
+      ],
+      "rationale": "Meta allocation uses the Brand Awareness strategy, the7stars historical performance prior (15% blended share; brief_required_gap), the December budget target, timing weight and a cited response-curve prior. Meta is brief-required but GBE targeting relies on interest and professional proxies, so it is treated as a measurement-led amplification layer rather than a proven GBE channel. Curve: quick-saturation concave response; Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling. Phasing rule: Concentrate around results days, the AGM and major energy conferences; avoid thin always-on spend that drifts outside the GBE audience. Scenario assumption: Brand Awareness weights premium video reach above precision display, accepting a lower share of PMP-qualified impressions in exchange for broader GBE reach and recall.",
+      "mmm_note_source": "fixture_default",
+      "brief_hooks": [
+        "energy_conferences",
+        "measurement_framework"
+      ],
+      "brief_hooks_source": "fixture_default",
+      "mmm_share_source": "fixture_default",
+      "real_performance": null,
+      "real_performance_source": null,
+      "industry_benchmark_note": null,
+      "channel_index_score": 50,
+      "channel_index_multiplier": 1,
+      "channel_index_source": "default_neutral",
+      "evidence_strength": "brief_required_gap",
+      "response_curve": {
+        "curve_id": "response_curve_2026_meta",
+        "curve_type": "quick-saturation concave response",
+        "classification": "History-anchored, externally-informed shape",
+        "confidence": "medium",
+        "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
+        "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
+        "soft_saturation_threshold_monthly_gbp": 130000,
+        "adstock_half_life_weeks": "0 to 1, minimal carryover",
+        "agree_conflict": "partial",
+        "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
+        "source_ids": [
+          "t7s_bigquery_meta",
+          "ipsos_igi_gbe_2026",
+          "external_meta_robyn_mmm_docs"
+        ]
+      },
+      "channel_group": "social_amplification",
+      "real_seasonal_performance": null,
+      "real_seasonal_performance_source": null
+    }
+  ],
+  "media_owner_allocations": [
+    {
+      "month": "2026-01",
+      "channel": "CTV & Streaming",
+      "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
+      "budget_gbp": 101282,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "CTV & Streaming",
+      "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
+      "budget_gbp": 73342,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "CTV & Streaming",
+      "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
+      "budget_gbp": 125495,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "CTV & Streaming",
+      "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
+      "budget_gbp": 90875,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "CTV & Streaming",
+      "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
+      "budget_gbp": 112290,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "CTV & Streaming",
+      "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
+      "budget_gbp": 81313,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "CTV & Streaming",
+      "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
+      "budget_gbp": 123264,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "CTV & Streaming",
+      "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
+      "budget_gbp": 89261,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "CTV & Streaming",
+      "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
+      "budget_gbp": 101713,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "CTV & Streaming",
+      "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
+      "budget_gbp": 73655,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "CTV & Streaming",
+      "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
+      "budget_gbp": 76468,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "CTV & Streaming",
+      "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
+      "budget_gbp": 55373,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "CTV & Streaming",
+      "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
+      "budget_gbp": 107047,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "CTV & Streaming",
+      "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
+      "budget_gbp": 77517,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "CTV & Streaming",
+      "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
+      "budget_gbp": 71564,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "CTV & Streaming",
+      "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
+      "budget_gbp": 51823,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "CTV & Streaming",
+      "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
+      "budget_gbp": 103016,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "CTV & Streaming",
+      "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
+      "budget_gbp": 74598,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "CTV & Streaming",
+      "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
+      "budget_gbp": 116420,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "CTV & Streaming",
+      "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
+      "budget_gbp": 84304,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "CTV & Streaming",
+      "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
+      "budget_gbp": 137563,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "CTV & Streaming",
+      "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
+      "budget_gbp": 99614,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "CTV & Streaming",
+      "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
+      "budget_gbp": 76678,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "CTV & Streaming",
+      "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
+      "budget_gbp": 55525,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Programmatic Display",
+      "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
+      "budget_gbp": 35025,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Programmatic Display",
+      "owner": "Contextual energy and markets targeting",
+      "budget_gbp": 21467,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Programmatic Display",
+      "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
+      "budget_gbp": 55996,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Programmatic Display",
+      "owner": "Contextual energy and markets targeting",
+      "budget_gbp": 34320,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Programmatic Display",
+      "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
+      "budget_gbp": 37016,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Programmatic Display",
+      "owner": "Contextual energy and markets targeting",
+      "budget_gbp": 22688,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Programmatic Display",
+      "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
+      "budget_gbp": 47741,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Programmatic Display",
+      "owner": "Contextual energy and markets targeting",
+      "budget_gbp": 29260,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Programmatic Display",
+      "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
+      "budget_gbp": 32988,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Programmatic Display",
+      "owner": "Contextual energy and markets targeting",
+      "budget_gbp": 20218,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Programmatic Display",
+      "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
+      "budget_gbp": 27613,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Programmatic Display",
+      "owner": "Contextual energy and markets targeting",
+      "budget_gbp": 16924,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Programmatic Display",
+      "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
+      "budget_gbp": 30533,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Programmatic Display",
+      "owner": "Contextual energy and markets targeting",
+      "budget_gbp": 18713,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Programmatic Display",
+      "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
+      "budget_gbp": 29266,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Programmatic Display",
+      "owner": "Contextual energy and markets targeting",
+      "budget_gbp": 17938,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Programmatic Display",
+      "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
+      "budget_gbp": 33856,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Programmatic Display",
+      "owner": "Contextual energy and markets targeting",
+      "budget_gbp": 20750,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Programmatic Display",
+      "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
+      "budget_gbp": 33852,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Programmatic Display",
+      "owner": "Contextual energy and markets targeting",
+      "budget_gbp": 20748,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Programmatic Display",
+      "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
+      "budget_gbp": 53231,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Programmatic Display",
+      "owner": "Contextual energy and markets targeting",
+      "budget_gbp": 32626,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Programmatic Display",
+      "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
+      "budget_gbp": 29283,
+      "role": "primary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Programmatic Display",
+      "owner": "Contextual energy and markets targeting",
+      "budget_gbp": 17948,
+      "role": "secondary partner",
+      "confidence": "high",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Online Video",
+      "owner": "YouTube (business and finance content)",
+      "budget_gbp": 56810,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Online Video",
+      "owner": "Publisher video (FT, Bloomberg, Reuters)",
+      "budget_gbp": 46480,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Online Video",
+      "owner": "YouTube (business and finance content)",
+      "budget_gbp": 86838,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Online Video",
+      "owner": "Publisher video (FT, Bloomberg, Reuters)",
+      "budget_gbp": 71050,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Online Video",
+      "owner": "YouTube (business and finance content)",
+      "budget_gbp": 71498,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Online Video",
+      "owner": "Publisher video (FT, Bloomberg, Reuters)",
+      "budget_gbp": 58498,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Online Video",
+      "owner": "YouTube (business and finance content)",
+      "budget_gbp": 70867,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Online Video",
+      "owner": "Publisher video (FT, Bloomberg, Reuters)",
+      "budget_gbp": 57982,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Online Video",
+      "owner": "YouTube (business and finance content)",
+      "budget_gbp": 59036,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Online Video",
+      "owner": "Publisher video (FT, Bloomberg, Reuters)",
+      "budget_gbp": 48302,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Online Video",
+      "owner": "YouTube (business and finance content)",
+      "budget_gbp": 44973,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Online Video",
+      "owner": "Publisher video (FT, Bloomberg, Reuters)",
+      "budget_gbp": 36796,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Online Video",
+      "owner": "YouTube (business and finance content)",
+      "budget_gbp": 56173,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Online Video",
+      "owner": "Publisher video (FT, Bloomberg, Reuters)",
+      "budget_gbp": 45959,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Online Video",
+      "owner": "YouTube (business and finance content)",
+      "budget_gbp": 47241,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Online Video",
+      "owner": "Publisher video (FT, Bloomberg, Reuters)",
+      "budget_gbp": 38652,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Online Video",
+      "owner": "YouTube (business and finance content)",
+      "budget_gbp": 58983,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Online Video",
+      "owner": "Publisher video (FT, Bloomberg, Reuters)",
+      "budget_gbp": 48258,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Online Video",
+      "owner": "YouTube (business and finance content)",
+      "budget_gbp": 68822,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Online Video",
+      "owner": "Publisher video (FT, Bloomberg, Reuters)",
+      "budget_gbp": 56309,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Online Video",
+      "owner": "YouTube (business and finance content)",
+      "budget_gbp": 74243,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Online Video",
+      "owner": "Publisher video (FT, Bloomberg, Reuters)",
+      "budget_gbp": 60744,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Online Video",
+      "owner": "YouTube (business and finance content)",
+      "budget_gbp": 43717,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Online Video",
+      "owner": "Publisher video (FT, Bloomberg, Reuters)",
+      "budget_gbp": 35769,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Meta",
+      "owner": "Facebook (financial professional audiences)",
+      "budget_gbp": 22317,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-01",
+      "channel": "Meta",
+      "owner": "Instagram (business and markets content)",
+      "budget_gbp": 27277,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Meta",
+      "owner": "Facebook (financial professional audiences)",
+      "budget_gbp": 28542,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-02",
+      "channel": "Meta",
+      "owner": "Instagram (business and markets content)",
+      "budget_gbp": 34884,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Meta",
+      "owner": "Facebook (financial professional audiences)",
+      "budget_gbp": 21914,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-03",
+      "channel": "Meta",
+      "owner": "Instagram (business and markets content)",
+      "budget_gbp": 26783,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Meta",
+      "owner": "Facebook (financial professional audiences)",
+      "budget_gbp": 27731,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-04",
+      "channel": "Meta",
+      "owner": "Instagram (business and markets content)",
+      "budget_gbp": 33894,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Meta",
+      "owner": "Facebook (financial professional audiences)",
+      "budget_gbp": 21640,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-05",
+      "channel": "Meta",
+      "owner": "Instagram (business and markets content)",
+      "budget_gbp": 26448,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Meta",
+      "owner": "Facebook (financial professional audiences)",
+      "budget_gbp": 13434,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-06",
+      "channel": "Meta",
+      "owner": "Instagram (business and markets content)",
+      "budget_gbp": 16419,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Meta",
+      "owner": "Facebook (financial professional audiences)",
+      "budget_gbp": 21626,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-07",
+      "channel": "Meta",
+      "owner": "Instagram (business and markets content)",
+      "budget_gbp": 26432,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Meta",
+      "owner": "Facebook (financial professional audiences)",
+      "budget_gbp": 14182,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-08",
+      "channel": "Meta",
+      "owner": "Instagram (business and markets content)",
+      "budget_gbp": 17334,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Meta",
+      "owner": "Facebook (financial professional audiences)",
+      "budget_gbp": 20043,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-09",
+      "channel": "Meta",
+      "owner": "Instagram (business and markets content)",
+      "budget_gbp": 24496,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Meta",
+      "owner": "Facebook (financial professional audiences)",
+      "budget_gbp": 23195,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-10",
+      "channel": "Meta",
+      "owner": "Instagram (business and markets content)",
+      "budget_gbp": 28350,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Meta",
+      "owner": "Facebook (financial professional audiences)",
+      "budget_gbp": 31491,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-11",
+      "channel": "Meta",
+      "owner": "Instagram (business and markets content)",
+      "budget_gbp": 38488,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Meta",
+      "owner": "Facebook (financial professional audiences)",
+      "budget_gbp": 13086,
+      "role": "secondary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    },
+    {
+      "month": "2026-12",
+      "channel": "Meta",
+      "owner": "Instagram (business and markets content)",
+      "budget_gbp": 15994,
+      "role": "primary partner",
+      "confidence": "medium",
+      "source_ids": [
+        "media_owner_benchmarks_v1"
+      ]
+    }
+  ],
+  "brief_test": {
+    "source_id": "bp_planning_evidence_rules_2026",
+    "policy_sales_target": 3400000,
+    "brief_cost_per_policy_gbp": 1.55,
+    "objective_source": "fixture_default",
+    "forecast_new_policy_sales": 3110866,
+    "forecast_cost_per_policy_gbp": 1.54,
+    "clears_policy_sales_target": false,
+    "clears_brief_cost_per_policy": true,
+    "criteria": [
+      {
+        "criterion_id": "target_and_budget",
+        "label": "Hits the brief target frame",
+        "requirement": "Generated plan should balance to the supplied 2026 budget and show whether forecast GBE engagements clear 3,400,000 at or below the £1.55 brief cost per engagement."
+      },
+      {
+        "criterion_id": "mmm_alignment",
+        "label": "Uses campaign history where available",
+        "requirement": "Channel rationales should cite the7stars BigQuery campaign history and identify any channel where the brief asks for more than the historical evidence supports."
+      },
+      {
+        "criterion_id": "brief_priorities",
+        "label": "Responds to named brief priorities",
+        "requirement": "Plan QA should flag priority areas requiring explicit treatment: results season, AGM and strategy update, energy conferences, GBE precision, channel role clarity and measurement."
+      },
+      {
+        "criterion_id": "measurement",
+        "label": "Separates evidence gaps from confident recommendations",
+        "requirement": "Online Video and Meta should be tagged as measurement-led choices until IPSOS IGI validation confirms GBE match quality."
+      }
+    ]
+  },
+  "state_model": {
+    "status": "warning",
+    "status_meaning": "warning is terminal and usable with caveats; blocked would require user or source data",
+    "llm_authoritative_state": false,
+    "deterministic_math_owner": "generate_synthetic_plan.py"
+  },
+  "qa": {
+    "budget_balanced": true,
+    "months_balanced": true,
+    "all_allocations_have_sources": true,
+    "warnings": [
+      "Response curves are anchored on the7stars campaign history and externally shaped, but remain confidence-band priors until the BigQuery pipeline refresh is live.",
+      "Results, AGM and conference dates are illustrative for the demo and must be confirmed against bp's published financial calendar before client sign-off.",
+      "GBE audience sizing is a synthetic placeholder until IPSOS IGI data is connected via the S3 integration.",
+      "Meta is brief-required but GBE targeting relies on professional-interest proxies, so it is treated as a measurement-led amplification layer.",
+      "Online Video remains a measured test because bp's video history is shorter and lower-confidence than CTV."
+    ]
+  }
+}

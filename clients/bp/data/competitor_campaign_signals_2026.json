@@ -1,0 +1,11 @@
+{
+  "source_id": "competitor_campaign_news_monitor",
+  "source": "Not yet connected - would be fed by BP Signal: energy-sector news, competitor capital announcements and corporate campaign activity from peers (e.g. Shell, ExxonMobil, Chevron, TotalEnergies, Equinor).",
+  "note": "Placeholder for the demo. No live feed is connected, so there are no signals to show yet. When wired up, results should be LLM-filtered down to genuinely distinct competitor corporate or investor campaign moments and still get a human glance before being treated as planning evidence - do not infer competitor spend as fact from headline volume alone.",
+  "refreshed_at": null,
+  "headlines_scanned": 0,
+  "classification": "not_connected",
+  "needs_human_review": true,
+  "unclassified_signals": [],
+  "notable_campaigns": []
+}

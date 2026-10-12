@@ -1,0 +1,58 @@
+{
+  "brief_id": "annual_brief_2026_bp_ic_v1",
+  "client": "bp",
+  "planning_year": 2026,
+  "brief_type": "annual",
+  "prototype_status": "bp_investment_communications_synthetic_v1",
+  "total_budget_gbp": 4800000,
+  "brief_stated_budget_gbp": 4800000,
+  "primary_kpi": "gbe_engagements",
+  "secondary_kpi": "cost_per_gbe_engagement",
+  "plan_scope": {
+    "dr_and_atl": "digital_only",
+    "annual_plan": true,
+    "future_month_revisions_allowed": true,
+    "monthly_planner_in_scope_v1": false,
+    "excel_export_in_scope_v1": false
+  },
+  "required_inputs": [
+    "budget_by_month",
+    "gbe_engagement_targets_by_month",
+    "financial_calendar",
+    "brand_safety_guardrails",
+    "strategy_prompt"
+  ],
+  "brand_guardrails": [
+    "Premium, brand-safe environments only - no user-generated or unmoderated inventory",
+    "Avoid adjacency to sensitive political, conflict or disaster content",
+    "No forward-looking financial claims or share-price references outside approved disclosure language",
+    "Observe market-sensitive quiet periods ahead of results announcements",
+    "All targeting and messaging reviewed by the7stars legal and compliance before activation"
+  ],
+  "default_strategy_prompt": "Create an annual Investment Communications plan that reaches the Global Business Elite across CTV & Streaming, Programmatic Display, Online Video and Meta, grows GBE engagements while protecting cost per engagement, and times activity to bp's quarterly results, the AGM and strategy update, and the major energy conferences.",
+  "brief_priorities": [
+    "Quarterly results season coverage (Feb, Apr-May, Jul-Aug, Oct-Nov)",
+    "AGM and strategy update support (February to April)",
+    "Energy conference moments (Davos, International Energy Week, CERAWeek, Gastech, ADIPEC, COP31)",
+    "GBE precision targeting through financial publisher PMPs",
+    "CTV & Streaming, Programmatic Display, Online Video and Meta role clarity",
+    "Measurement framework: view-through, viewability and GBE match quality via IPSOS IGI"
+  ],
+  "source_ids": [
+    "bp_annual_media_brief",
+    "bp_media_budget",
+    "bp_historical_media_plans",
+    "scope_pdf_page_17",
+    "scope_pdf_page_22",
+    "agent_architecture_blueprint",
+    "user_clarification_2026_06_26"
+  ],
+  "caveats": [
+    "bp Investment Communications brief, budget and the7stars campaign history are represented by synthetic demo extracts.",
+    "the7stars BigQuery pipeline, IPSOS IGI, BP Signal and Digital Twins feeds are not yet connected.",
+    "Results, AGM and conference dates are illustrative and must be confirmed against bp's published financial calendar.",
+    "Media-owner cost and response assumptions are synthetic.",
+    "Prototype should be used to test workflow, architecture and evidence mechanics, not final investment advice."
+  ],
+  "total_new_policy_sales_target": 3400000
+}

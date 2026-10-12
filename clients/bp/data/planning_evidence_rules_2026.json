@@ -1,0 +1,85 @@
+{
+  "source_id": "bp_planning_evidence_rules_2026",
+  "description": "Per-channel planning priors and rules derived from the bp 2026 Investment Communications brief and the7stars historical bp campaign performance (BigQuery). Synthetic demo values for prototype reasoning, not final investment advice.",
+  "objective": {
+    "policy_sales_target": 3400000,
+    "brief_cost_per_policy_gbp": 1.55,
+    "budget_guardrail": "Every pound must reach the Global Business Elite in brand-safe, premium environments; plans should show audience-quality rationale and test risk separately."
+  },
+  "channel_rules": [
+    {
+      "channel": "CTV & Streaming",
+      "mmm_optimal_share_pct": 35,
+      "strategic_floor_pct": 25,
+      "planning_role": "Premium, brand-safe reach into the Global Business Elite at home: financial news and premium broadcaster VOD, where bp's investment story gets full-screen, sound-on attention.",
+      "mmm_note": "the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach.",
+      "phasing_rule": "Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly.",
+      "brief_hooks": [
+        "results_season",
+        "brand_awareness"
+      ],
+      "evidence_strength": "primary_mmm"
+    },
+    {
+      "channel": "Programmatic Display",
+      "mmm_optimal_share_pct": 25,
+      "strategic_floor_pct": 15,
+      "planning_role": "Precision targeting of GBE readers through private marketplace deals with financial publishers and contextual keyword targeting around energy, markets and capital allocation.",
+      "mmm_note": "Historical bp display delivery shows financial-publisher PMPs reaching GBE at the highest audience quality in the mix, with viewability well above open-exchange benchmarks but a lower engagement rate than video.",
+      "phasing_rule": "Keep an always-on contextual layer; lift PMP weight in results weeks and around energy conferences when financial-publisher readership peaks.",
+      "brief_hooks": [
+        "gbe_precision",
+        "results_season"
+      ],
+      "evidence_strength": "primary_mmm"
+    },
+    {
+      "channel": "Online Video",
+      "mmm_optimal_share_pct": 25,
+      "strategic_floor_pct": 15,
+      "planning_role": "Explain the equity story in more depth: pre-roll on business and financial content and publisher video, building consideration among investors and analysts.",
+      "mmm_note": "Online video has a shorter bp history than CTV, so the evidence is reasonable but lower-confidence - completion rates are strong on financial publisher video, weaker on broad YouTube placements.",
+      "phasing_rule": "Use around results and the strategy update to carry longer-form explainer content; keep as a measured test outside those windows.",
+      "brief_hooks": [
+        "agm_strategy_update",
+        "measurement_framework"
+      ],
+      "evidence_strength": "test_required"
+    },
+    {
+      "channel": "Meta",
+      "mmm_optimal_share_pct": 15,
+      "strategic_floor_pct": 8,
+      "planning_role": "Amplify results, AGM and conference moments to financial professionals with interest- and job-title-proxy audiences; cheapest reach but the least precise GBE targeting.",
+      "mmm_note": "Meta is brief-required but GBE targeting relies on interest and professional proxies, so it is treated as a measurement-led amplification layer rather than a proven GBE channel.",
+      "phasing_rule": "Concentrate around results days, the AGM and major energy conferences; avoid thin always-on spend that drifts outside the GBE audience.",
+      "brief_hooks": [
+        "energy_conferences",
+        "measurement_framework"
+      ],
+      "evidence_strength": "brief_required_gap"
+    }
+  ],
+  "brief_test_criteria": [
+    {
+      "criterion_id": "target_and_budget",
+      "label": "Hits the brief target frame",
+      "requirement": "Generated plan should balance to the supplied 2026 budget and show whether forecast GBE engagements clear 3,400,000 at or below the £1.55 brief cost per engagement."
+    },
+    {
+      "criterion_id": "mmm_alignment",
+      "label": "Uses campaign history where available",
+      "requirement": "Channel rationales should cite the7stars BigQuery campaign history and identify any channel where the brief asks for more than the historical evidence supports."
+    },
+    {
+      "criterion_id": "brief_priorities",
+      "label": "Responds to named brief priorities",
+      "requirement": "Plan QA should flag priority areas requiring explicit treatment: results season, AGM and strategy update, energy conferences, GBE precision, channel role clarity and measurement."
+    },
+    {
+      "criterion_id": "measurement",
+      "label": "Separates evidence gaps from confident recommendations",
+      "requirement": "Online Video and Meta should be tagged as measurement-led choices until IPSOS IGI validation confirms GBE match quality."
+    }
+  ]
+}

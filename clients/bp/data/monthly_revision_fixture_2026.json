@@ -1,0 +1,61 @@
+{
+  "source_id": "synthetic_monthly_revision_actuals_2026",
+  "status": "synthetic_fixture_real_interface_shape",
+  "description": "Synthetic mid-flight actuals in the shape the reallocation engine expects. Production should replace this with the7stars BigQuery delivery data.",
+  "revision_months": [
+    {
+      "month": "2026-08",
+      "prior_month": "2026-07",
+      "actuals_status": "synthetic",
+      "sales_actuals": {
+        "new_policy_sales": 271000,
+        "target_new_policy_sales": 290000,
+        "cost_per_policy_gbp": 1.42,
+        "target_cost_per_policy_gbp": 1.32,
+        "delivery_index": 0.95,
+        "quote_starts": 16800000,
+        "quote_to_policy_conversion_pct": 1.61,
+        "brand_search_index": 104
+      },
+      "channel_performance": [
+        {
+          "channel": "CTV & Streaming",
+          "delivery_index": 1.02,
+          "sales_index": 1.05,
+          "context": "Financial news CTV beat completed-view forecast in Q2 results week."
+        },
+        {
+          "channel": "Programmatic Display",
+          "delivery_index": 0.97,
+          "sales_index": 0.98,
+          "context": "PMP fill slightly under plan on two financial publishers."
+        },
+        {
+          "channel": "Online Video",
+          "delivery_index": 0.92,
+          "sales_index": 0.9,
+          "context": "Broad YouTube placements under-completed; keep as capped test."
+        },
+        {
+          "channel": "Meta",
+          "delivery_index": 1.0,
+          "sales_index": 0.94,
+          "context": "Cheap engagement but GBE match rate below proxy."
+        }
+      ],
+      "user_context": [
+        "Planner note: Q2 results landed well; protect CTV weight into the Q3 window.",
+        "Client note: avoid scaling Meta further until IPSOS IGI validation is in."
+      ],
+      "monthly_context": {
+        "calendar": "Q2 results early August; summer lull in GBE media consumption."
+      },
+      "revision_rules": [
+        "Freeze months before the selected revision month.",
+        "Use the approved annual plan as the baseline.",
+        "Reallocate the selected and remaining months only.",
+        "Revision output is a new plan version candidate requiring human approval."
+      ]
+    }
+  ]
+}

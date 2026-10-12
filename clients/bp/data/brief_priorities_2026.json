@@ -1,0 +1,51 @@
+{
+  "source_id": "bp_annual_media_brief",
+  "source_file": "sample-docs/bp/2026-investment-communications-brief.docx",
+  "objective": "Reach the Global Business Elite with bp's equity story, exceeding the GBE engagement target at or below the brief cost per engagement",
+  "policy_sales_target": 3400000,
+  "brief_budget_gbp": 4800000,
+  "brief_cost_per_policy_gbp": 1.55,
+  "targeting": "Global Business Elite: institutional investors, analysts, C-suite decision-makers and energy policymakers (UK)",
+  "planning_priorities": [
+    {
+      "priority_id": "results_season",
+      "label": "Quarterly results season",
+      "brief_text_summary": "Be present and visible in the two weeks around each quarterly results announcement, when investor and analyst attention on bp is highest; respect market-sensitive quiet periods beforehand."
+    },
+    {
+      "priority_id": "agm_strategy_update",
+      "label": "AGM and strategy update",
+      "brief_text_summary": "Carry the full-year results and strategy update from February through to the AGM in April, using premium video to explain strategy and capital-allocation priorities to shareholders."
+    },
+    {
+      "priority_id": "energy_conferences",
+      "label": "Energy conference moments",
+      "brief_text_summary": "Align activity with Davos, International Energy Week, CERAWeek, Gastech, ADIPEC and COP31, when GBE attention on energy policy and capital allocation peaks."
+    },
+    {
+      "priority_id": "gbe_precision",
+      "label": "GBE precision targeting",
+      "brief_text_summary": "Prioritise verified GBE inventory: financial publisher PMPs, contextual energy and markets keywords, and premium financial news CTV."
+    },
+    {
+      "priority_id": "brand_awareness",
+      "label": "Brand awareness and reputation",
+      "brief_text_summary": "Build awareness and favourability of bp's equity story among the GBE without a fundamental change to channel strategy."
+    },
+    {
+      "priority_id": "channel_role_clarity",
+      "label": "Channel role clarity",
+      "brief_text_summary": "Provide clarity on the roles of CTV & Streaming (premium reach), Programmatic Display (precision), Online Video (consideration) and Meta (amplification)."
+    },
+    {
+      "priority_id": "measurement_framework",
+      "label": "Measurement framework",
+      "brief_text_summary": "Agree per-channel KPIs - view-through and frequency for CTV and video, viewability and engagement for display, reach and engagement for Meta - and validate GBE match quality with IPSOS IGI."
+    },
+    {
+      "priority_id": "us_expansion_readiness",
+      "label": "US market readiness",
+      "brief_text_summary": "Structure the plan so US investment communications can be added once the US data pipeline is available via the7stars BigQuery."
+    }
+  ]
+}

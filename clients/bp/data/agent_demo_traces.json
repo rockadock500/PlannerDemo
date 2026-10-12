@@ -1,0 +1,138 @@
+{
+  "trace_set_id": "bp_agent_demo_blended_bp-agent-demo-bounded-v1",
+  "scenario_id": "balanced_growth",
+  "plan_id": "bp_annual_2026_balanced_growth_ic_v1",
+  "created_at": "2026-10-12T09:58:34+00:00",
+  "prompt_version": "bp-agent-demo-bounded-v1",
+  "one_way_door_guards": [
+    "LLM agents cannot mutate numeric state",
+    "LLM agents cannot mark approval complete",
+    "Suggested changes require deterministic re-planning",
+    "Every claim needs source_ids or missing status",
+    "Warnings are terminal and must not loop"
+  ],
+  "traces": [
+    {
+      "agent_id": "rationale_agent",
+      "mode": "structured_fallback",
+      "model": "deterministic_fallback",
+      "prompt_version": "bp-agent-demo-bounded-v1",
+      "plan_id": "bp_annual_2026_balanced_growth_ic_v1",
+      "scenario_id": "balanced_growth",
+      "status": "warning",
+      "summary": "The Blended plan leads with CTV & Streaming (35%) as the premium GBE reach backbone, supported by financial-publisher PMPs (25%), Online Video (25%) and Meta amplification (15%). Budget peaks in February and November around full-year and Q3 results, the strategy update, ADIPEC and COP31.",
+      "findings": [
+        {
+          "type": "rationale",
+          "title": "CTV carries the equity story",
+          "detail": "CTV & Streaming holds the largest share because the7stars campaign history shows it as bp's strongest driver of GBE completed views and view-through.",
+          "source_ids": [
+            "t7s_bigquery_ctv",
+            "bp_historical_media_plans"
+          ],
+          "source_status": "synthetic"
+        },
+        {
+          "type": "rationale",
+          "title": "Phasing follows the financial calendar",
+          "detail": "February and November carry 11% of budget each, matching full-year results and the strategy update, and Q3 results alongside ADIPEC and COP31.",
+          "source_ids": [
+            "bp_results_calendar_2026",
+            "energy_conference_calendar_2026"
+          ],
+          "source_status": "proxy"
+        },
+        {
+          "type": "risk",
+          "title": "Engagement target not cleared",
+          "detail": "Forecast GBE engagements sit below the 3,400,000 brief target, although cost per engagement clears the £1.55 ceiling.",
+          "source_ids": [
+            "bp_planning_evidence_rules_2026"
+          ],
+          "source_status": "synthetic"
+        }
+      ],
+      "forbidden_state_change_attempted": false
+    },
+    {
+      "agent_id": "qa_agent",
+      "mode": "structured_fallback",
+      "model": "deterministic_fallback",
+      "prompt_version": "bp-agent-demo-bounded-v1",
+      "plan_id": "bp_annual_2026_balanced_growth_ic_v1",
+      "scenario_id": "balanced_growth",
+      "status": "warning",
+      "summary": "The plan balances and every allocation is sourced, but GBE audience sizing and Meta match quality rest on placeholders until IPSOS IGI is connected, and results dates are illustrative.",
+      "findings": [
+        {
+          "type": "missing_data",
+          "title": "IPSOS IGI not connected",
+          "detail": "GBE reach and Meta match quality cannot be validated until the IPSOS IGI S3 integration is live.",
+          "source_ids": [
+            "ipsos_igi_gbe_2026"
+          ],
+          "source_status": "missing"
+        },
+        {
+          "type": "risk",
+          "title": "Results dates are illustrative",
+          "detail": "Quiet periods and results weeks must be confirmed against bp's published financial calendar before sign-off.",
+          "source_ids": [
+            "bp_results_calendar_2026"
+          ],
+          "source_status": "proxy"
+        },
+        {
+          "type": "suggested_change",
+          "title": "Cap Meta until validated",
+          "detail": "Hold Meta at its 15% blended share rather than scaling it, until GBE match quality is confirmed.",
+          "source_ids": [
+            "t7s_bigquery_meta"
+          ],
+          "source_status": "synthetic"
+        }
+      ],
+      "forbidden_state_change_attempted": false
+    },
+    {
+      "agent_id": "question_agent",
+      "mode": "structured_fallback",
+      "model": "deterministic_fallback",
+      "prompt_version": "bp-agent-demo-bounded-v1",
+      "plan_id": "bp_annual_2026_balanced_growth_ic_v1",
+      "scenario_id": "balanced_growth",
+      "status": "warning",
+      "summary": "Three decisions would most improve this plan before sign-off.",
+      "findings": [
+        {
+          "type": "question",
+          "title": "How long is the quiet period?",
+          "detail": "bp Corporate Comms to confirm how many days before each results announcement investor-facing creative must pause.",
+          "source_ids": [
+            "bp_results_calendar_2026"
+          ],
+          "source_status": "proxy"
+        },
+        {
+          "type": "question",
+          "title": "Is engagement the right primary KPI?",
+          "detail": "Confirm whether the plan should optimise GBE engagements, view-through or verified GBE reach.",
+          "source_ids": [
+            "bp_annual_media_brief"
+          ],
+          "source_status": "synthetic"
+        },
+        {
+          "type": "question",
+          "title": "Plan US conferences now?",
+          "detail": "Decide whether CERAWeek should carry UK budget now or wait for the US data pipeline.",
+          "source_ids": [
+            "energy_conference_calendar_2026"
+          ],
+          "source_status": "secondary"
+        }
+      ],
+      "forbidden_state_change_attempted": false
+    }
+  ]
+}

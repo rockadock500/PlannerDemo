@@ -1,0 +1,16 @@
+{
+  "weather_id": "bp_weather_intelligence_v1",
+  "created_for": "bp 2026 planning prototype",
+  "source_status": "long_term_average_proxy_not_live_weather",
+  "source_ids": [
+    "met_office_climate_averages",
+    "bp_brief_priorities_2026",
+    "bp_planning_evidence_rules_2026"
+  ],
+  "principles": [
+    "Weather is not a planning driver for bp Investment Communications; this file is intentionally empty so no weather context appears in the calendar."
+  ],
+  "monthly_averages": [],
+  "live_weather_triggers": [],
+  "agent_questions": []
+}

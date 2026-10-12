@@ -1,0 +1,184 @@
+{
+  "dictionary_version": "v1",
+  "source_file": "bp AI Media Planner PRD (Mar 2026) - data dependencies",
+  "status": "work_in_progress",
+  "note": "Canonical list of data sources for the bp Investment Communications planner, drawn from the PRD's data pipeline and integration scope. How-used fields describe how each source WOULD feed the deterministic engine once wired in; they are intended-use descriptions, not confirmations that a source is live. All digital channel data arrives via the7stars BigQuery - no direct bp platform API connections.",
+  "categories": [
+    {
+      "category_id": "effectiveness_modelling",
+      "label": "Effectiveness & Modelling",
+      "sources": [
+        {
+          "name": "Historical campaign performance (the7stars)",
+          "description": "",
+          "how_used": "Would replace the response-curve priors with bp's own campaign history: spend, impressions, completed views and engagement per channel and month, used to set each channel's starting share and saturation point.",
+          "data_quality": "Refreshed on the BigQuery schedule; channel-level granularity.",
+          "match_hints": [
+            "campaign history",
+            "bigquery"
+          ]
+        },
+        {
+          "name": "Brand lift and attention studies",
+          "description": "",
+          "how_used": "Would calibrate CTV and Online Video response curves against measured recall and attention among GBE panels, rather than completed views alone.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Channel attribution framework",
+          "description": "",
+          "how_used": "Innovation phase. Would apply per-channel KPIs - view-through and frequency for CTV and video, viewability for display, reach for Meta - to weight channels by their measured contribution.",
+          "data_quality": "",
+          "match_hints": []
+        }
+      ]
+    },
+    {
+      "category_id": "quote_policy_renewal",
+      "label": "Engagement & Delivery Performance",
+      "sources": [
+        {
+          "name": "Delivery and engagement by day",
+          "description": "",
+          "how_used": "Would power mid-flight reallocation: actual viewable impressions, completed views and engagement against plan benchmarks, surfacing budget shifts for human approval.",
+          "data_quality": "",
+          "match_hints": []
+        }
+      ]
+    },
+    {
+      "category_id": "plans_budgets_creative_approvals",
+      "label": "Plans, Budgets, Creative & Approvals",
+      "sources": [
+        {
+          "name": "Historical bp media plans",
+          "description": "",
+          "how_used": "Would ground plan generation through the RAG pipeline, and let each new plan's channel mix be checked against what was approved and run in prior years.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Historical Investment Communications briefs",
+          "description": "",
+          "how_used": "Would give the brief-hooks tagger a taxonomy of recurring bp priorities (results, AGM, conferences) drawn from real past briefs.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Engagement targets",
+          "description": "",
+          "how_used": "Would set the plan's GBE engagement target and cost-per-engagement ceiling from a formal source rather than the uploaded budget file.",
+          "data_quality": "",
+          "match_hints": []
+        }
+      ]
+    },
+    {
+      "category_id": "customer_vehicle_audience",
+      "label": "GBE Audience Data",
+      "sources": [
+        {
+          "name": "IPSOS Global Influentials (IGI)",
+          "description": "",
+          "how_used": "Would provide third-party validated GBE audience sizing, channel preference benchmarks and media consumption data, and confirm GBE match quality for Meta and Online Video.",
+          "data_quality": "Delivered via S3; commercial terms via the7stars.",
+          "match_hints": []
+        },
+        {
+          "name": "Digital Twins personas",
+          "description": "",
+          "how_used": "Would let audience persona detail (investor, analyst, policymaker, C-suite) feed channel weighting and creative scoring.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Applecart audience graph",
+          "description": "",
+          "how_used": "Would enrich GBE targeting with professional network signals for precision display and social audiences.",
+          "data_quality": "",
+          "match_hints": []
+        }
+      ]
+    },
+    {
+      "category_id": "market_competitor_context",
+      "label": "Market, Calendar & Context Signals",
+      "sources": [
+        {
+          "name": "BP Signal intelligence feed",
+          "description": "",
+          "how_used": "Would feed financial market signals, the policy event calendar, energy-sector news and competitor capital announcements into plan generation, so plans adjust as conditions change.",
+          "data_quality": "Updated within the last 2 weeks",
+          "match_hints": [],
+          "flagged_in_source": true
+        },
+        {
+          "name": "bp financial calendar",
+          "description": "",
+          "how_used": "Would confirm results, AGM and strategy-update dates and quiet periods, replacing the illustrative dates in the demo calendar.",
+          "data_quality": "",
+          "match_hints": []
+        }
+      ]
+    },
+    {
+      "category_id": "digital_crm_platform",
+      "label": "Platform & Pipeline Data",
+      "sources": [
+        {
+          "name": "the7stars BigQuery - CTV & Streaming",
+          "description": "",
+          "how_used": "Would feed live CTV delivery, completion and frequency data into that channel's benchmark and response curve.",
+          "data_quality": "",
+          "match_hints": [
+            "ctv"
+          ]
+        },
+        {
+          "name": "the7stars BigQuery - Programmatic Display",
+          "description": "",
+          "how_used": "Would feed live PMP and contextual display delivery, viewability and engagement into that channel's benchmark.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "the7stars BigQuery - Online Video",
+          "description": "",
+          "how_used": "Would feed live online video delivery and completion data into that channel's benchmark.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "the7stars BigQuery - Meta",
+          "description": "",
+          "how_used": "Would feed live Meta delivery, reach and engagement into that channel's benchmark and response curve.",
+          "data_quality": "",
+          "match_hints": [
+            "meta"
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "media_owner_channel",
+      "label": "Media Owner & Channel Data",
+      "sources": [
+        {
+          "name": "Financial publisher PMP deals",
+          "description": "",
+          "how_used": "Would supply deal terms, floor prices and available GBE inventory on financial publishers to cap Programmatic Display at real PMP supply.",
+          "data_quality": "",
+          "match_hints": []
+        },
+        {
+          "name": "Premium CTV inventory packages",
+          "description": "",
+          "how_used": "Would supply financial news and broadcaster VOD package pricing and availability to calibrate the CTV saturation point.",
+          "data_quality": "",
+          "match_hints": []
+        }
+      ]
+    }
+  ]
+}
