@@ -4,8 +4,11 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta http-equiv="Cache-Control" content="no-store" />
-    <title>bp AI Media Planner Prototype</title>
-    <link rel="icon" href="./favicon.svg?v=3" type="image/svg+xml" />
+    <title>BP Planner</title>
+    <link rel="icon" href="./assets/bp-helios.svg" type="image/svg+xml" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css?v=26" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script defer src="https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
@@ -13,57 +16,40 @@
   </head>
   <body>
     <div class="app-shell">
-      <aside class="sidebar">
-        <div class="brand">
-          <div>
-            <strong>bp</strong>
-            <span>Investment Comms Media Planner &middot; Synthetic Demo</span>
-          </div>
+      <div class="proto-banner">Prototype · synthetic data. Budgets, forecasts and performance figures are illustrative and do not represent bp plans or results.</div>
+      <header class="app-header">
+        <div class="app-header-inner">
+          <button class="icon-button menu-button" type="button" id="openMenu" aria-label="Open menu" aria-expanded="false" aria-controls="mobileNav">
+            <i data-lucide="menu"></i>
+          </button>
+          <a class="brand" href="?view=annual" aria-label="BP Planner home">
+            <img src="./assets/bp-helios.svg" alt="" width="28" height="28" />
+            <span>BP Planner</span>
+          </a>
+          <nav class="nav-list" aria-label="Main">
+            <button class="nav-item active" type="button" data-view="annual">Campaign Planning</button>
+            <button class="nav-item" type="button" data-view="scenarios">Scenarios</button>
+            <button class="nav-item" type="button" data-view="chat">Plan Chat</button>
+            <button class="nav-item" type="button" data-view="events">Events Calendar</button>
+            <button class="nav-item" type="button" data-view="approval">Approval</button>
+            <button class="nav-item" type="button" data-view="admin">Admin</button>
+          </nav>
         </div>
-
-        <nav class="nav-list" aria-label="Prototype views">
-          <button class="nav-item active" type="button" data-view="annual">
-            <i data-lucide="calendar-range"></i>
-            Campaign Planning
-          </button>
-          <button class="nav-item" type="button" data-view="scenarios">
-            <i data-lucide="split"></i>
-            Scenarios
-          </button>
-          <button class="nav-item" type="button" data-view="chat">
-            <i data-lucide="message-square-text"></i>
-            Planner Chat
-          </button>
-          <button class="nav-item" type="button" data-view="events">
-            <i data-lucide="calendar-days"></i>
-            Events Calendar
-          </button>
-          <button class="nav-item" type="button" data-view="approval">
-            <i data-lucide="badge-check"></i>
-            Approval
-          </button>
-          <button class="nav-item" type="button" data-view="admin">
-            <i data-lucide="settings"></i>
-            Admin
-          </button>
+        <nav class="mobile-nav" id="mobileNav" aria-label="Main" hidden>
+          <button class="nav-item active" type="button" data-view="annual">Campaign Planning</button>
+          <button class="nav-item" type="button" data-view="scenarios">Scenarios</button>
+          <button class="nav-item" type="button" data-view="chat">Plan Chat</button>
+          <button class="nav-item" type="button" data-view="events">Events Calendar</button>
+          <button class="nav-item" type="button" data-view="approval">Approval</button>
+          <button class="nav-item" type="button" data-view="admin">Admin</button>
         </nav>
-
-        <div class="sidebar-note">
-          <span>Synthetic Demo</span>
-          <p>Budgets, forecasts and performance figures are illustrative and do not represent bp plans or results.</p>
-        </div>
-      </aside>
+      </header>
 
       <main class="workspace">
-        <header class="topbar">
-          <div>
-            <p class="eyebrow">bp</p>
-            <h1>Media Planning Workspace</h1>
-          </div>
-          <div class="header-brand-logo">
-            <img src="./assets/bp-logo.svg" alt="bp" />
-          </div>
-        </header>
+        <div class="page-head">
+          <h1 id="pageTitle">Campaign Planning</h1>
+          <p id="pageHeadline">Brief, channel guardrails, data readiness and the base plan by channel and month.</p>
+        </div>
 
 
         <section class="view active" id="view-annual">

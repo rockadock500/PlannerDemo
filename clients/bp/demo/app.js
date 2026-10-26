@@ -2773,7 +2773,7 @@ function renderEventsCalendar() {
         <div class="calendar-overview-panel">
           <div class="calendar-overview-header">
             <strong>Monthly overview: ${monthLabel}</strong>
-            <button class="secondary-button" type="button" id="generateCalendarOverview">${state.calendarOverviewAi[monthStr] ? "Regenerate" : "Generate"} AI overview</button>
+            <button class="secondary-button" type="button" id="generateCalendarOverview">${state.calendarOverviewAi[monthStr] ? "Refresh summary" : "Summarise this month"}</button>
           </div>
           <p class="table-hint">Deterministic summary of scheduled financial calendar moments, holidays and context for this month, filtered to the categories selected above.</p>
           ${renderCalendarAiOverview(monthStr)}
@@ -2787,9 +2787,6 @@ function renderEventsCalendar() {
 }
 
 function renderCalendarAiOverview(monthStr) {
-  if (state.calendarGenerateStatus === "Generating AI overview…") {
-    return `<p class="status-loading">⏳ Generating AI overview…</p>`;
-  }
   if (state.calendarGenerateStatus) {
     return `<p class="warning-text">${state.calendarGenerateStatus}</p>`;
   }
@@ -3684,17 +3681,35 @@ function renderApproval() {
   `;
 }
 
+const VIEW_META = {
+  annual: ["Campaign Planning", "Brief, channel guardrails, data readiness and the base plan by channel and month."],
+  scenarios: ["Scenarios", "Move budget between channels and see the likely effect on revenue and new customers before it goes into the plan."],
+  chat: ["Plan Chat", "Ask about the budget, channel and month choices in the plan."],
+  events: ["Events Calendar", "bp's financial calendar, holidays, sport and market context for each month."],
+  approval: ["Approval", "Review a stored plan's checks and warnings, and approve it."],
+  admin: ["Admin", "Users, sources, stored plans and warnings."],
+};
+
 function activateView(view) {
+  if (!VIEW_META[view]) view = "annual";
   document.querySelectorAll(".nav-item").forEach((item) => {
-    item.classList.toggle("active", item.dataset.view === view);
+    const active = item.dataset.view === view;
+    item.classList.toggle("active", active);
+    if (active) item.setAttribute("aria-current", "page");
+    else item.removeAttribute("aria-current");
   });
-  const devNav = document.querySelector(".dev-nav");
-  if (devNav) {
-    devNav.open = ["logic", "architecture"].includes(view);
-  }
   document.querySelectorAll(".view").forEach((item) => {
     item.classList.toggle("active", item.id === `view-${view}`);
   });
+  const [title, headline] = VIEW_META[view];
+  document.querySelector("#pageTitle").textContent = title;
+  document.querySelector("#pageHeadline").textContent = headline;
+  document.title = `${title} · BP Planner`;
+}
+
+function setMobileMenu(open) {
+  document.querySelector("#mobileNav").hidden = !open;
+  document.querySelector("#openMenu").setAttribute("aria-expanded", String(open));
 }
 
 function applyInitialRoute() {
@@ -3741,14 +3756,18 @@ function renderAll() {
 function attachEvents() {
   document.querySelectorAll(".nav-item[data-view]").forEach((button) => {
     button.addEventListener("click", () => {
-      document.querySelectorAll(".nav-item").forEach((item) => item.classList.remove("active"));
-      document.querySelectorAll(".view").forEach((item) => item.classList.remove("active"));
-      button.classList.add("active");
-      const devNav = document.querySelector(".dev-nav");
-      if (devNav && ["logic", "architecture"].includes(button.dataset.view)) devNav.open = true;
-      document.querySelector(`#view-${button.dataset.view}`).classList.add("active");
+      const view = button.dataset.view;
+      activateView(view);
+      setMobileMenu(false);
+      const url = new URL(window.location.href);
+      url.searchParams.set("view", view);
+      window.history.replaceState(null, "", url);
+      window.scrollTo(0, 0);
       if (window.lucide) window.lucide.createIcons();
     });
+  });
+  document.querySelector("#openMenu").addEventListener("click", () => {
+    setMobileMenu(document.querySelector("#mobileNav").hidden);
   });
 
   document.querySelector("#scenarioComparison")?.addEventListener("click", (event) => {
