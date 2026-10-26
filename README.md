@@ -79,3 +79,27 @@ Colors and logo pulled directly from admiral.com:
 2. Add a password gate before sharing the link externally.
 3. Decide whether the live planning/chat API is worth building, and if so, scope it separately —
    it's a real backend service, not a small addition.
+
+## bp planner on Vercel
+
+The bp Investment Comms planner (`clients/bp/demo/`) is served at
+https://taums.vercel.app/client/demo/planner/BP/, behind the same password as BP Intelligence v2
+(user `bp-uat`; Vercel env vars `BP_V2_USER` / `BP_V2_PASSWORD`). The Railway copy is no longer used.
+
+- **Static only.** The demo folder is self-contained (data in `clients/bp/demo/data/`) and makes no API
+  calls: Generate base plan shows the stored Blended plan, Data readiness reads `source_registry.json`,
+  Plan Chat answers from the plan's own figures, and the calendar summary is built from the calendar.
+- **Look** matches BP Intelligence v2 (header, top menu, Inter, bp green, cards).
+- **Scenarios** (`scenarios.js`) is ported from the Freemans copilot: £200k base across Google Search,
+  Meta, Affiliates, CTV, YouTube and LinkedIn. **Plan Chat** is `chat.js`.
+- Spec: `clients/bp/SPEC-vercel-v2.md`.
+
+taums.vercel.app is the Vercel project `freemans-copilot-demo`, a static site deployed from
+`~/Desktop/Freemans/copilot-demo-vercel`, which also serves the Freemans demo and BP Intelligence v2:
+always deploy the whole folder. `middleware.js` there holds the BP password gate.
+
+```bash
+bash clients/bp/scripts/build-vercel.sh
+cd ~/Desktop/Freemans/copilot-demo-vercel && npx vercel@latest deploy --prod --yes
+```
+
