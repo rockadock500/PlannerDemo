@@ -2295,7 +2295,7 @@ function renderApproval() {
 }
 
 const VIEW_META = {
-  annual: ["Campaign Planning", "Set the dates, budget and brief, the channel guardrails and the Strategic Index, then generate and edit the base plan."],
+  annual: ["Campaign Planning", "Set the dates, budget and brief, spread the budget and targets by month, set the Strategic Index and guardrails, then generate the base plan by channel."],
   scenarios: ["Scenarios", "Reshape the base plan into the stored strategic options and compare them side by side."],
   curves: ["Curves", "Illustrative what-if: move a £200k budget between channels and see how diminishing returns change revenue, new customers, ROAS and CPA."],
   chat: ["Planner Chat", "Ask about the budget, channel and month choices in the base plan."],

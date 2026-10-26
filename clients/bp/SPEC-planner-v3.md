@@ -85,3 +85,18 @@ Mark preferred, Remove, and View full plan (read-only channel × month table).
 - Always: static only; keep synthetic-data honesty; keep Events, Admin users/sources, Curves unchanged.
 - Ask first: removing any other page or control.
 - Never: call an API; present synthetic CPCs as real.
+
+## Change, 26 Oct 2026: two tables
+
+David asked for Campaign Planning to have two tables. The flow is now:
+
+1. **Brief and budget**: dates, total budget, brief.
+2. **Budget and targets by month**: the total budget spread across the months (phasing, pro rata) and target
+   visitors per month. Totals only, no channels. Edited in the cell: text boxes with no spinner arrows.
+   Editing a target updates the base plan at once; editing a budget asks for a regenerate. Changing the dates
+   or budget re-spreads the table (with a confirmation if it was edited); "Reset to phasing" restores it.
+3. **Strategic Index**: Low / Medium / High by channel for the months in the month table only.
+4. **Channel guardrails**.
+5. **Base plan**: each month's budget from step 2 allocated by channel (month totals equal the month table
+   exactly); targets come from step 2; channel figures can still be fine-tuned.
+

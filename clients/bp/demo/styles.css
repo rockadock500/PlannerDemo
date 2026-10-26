@@ -2828,7 +2828,7 @@ input[type="file"] {
   width: 88px;
 }
 
-.pl-table input[type="number"] {
+.pl-table input[type="text"] {
   width: 68px;
   min-height: 30px;
   padding: 0 6px;
@@ -2841,14 +2841,25 @@ input[type="file"] {
   background: var(--wash-2);
 }
 
-.pl-table input[type="number"]:hover {
+.pl-table input[type="text"]:hover {
   border-color: #8f8f86;
 }
 
-.pl-table input[type="number"]:focus {
+.pl-table input[type="text"]:focus {
   background: #fff;
   outline: 2px solid var(--bp-green);
   outline-offset: 1px;
+}
+
+/* No spinner arrows on any number box in the planner. */
+.pl-table input::-webkit-outer-spin-button,
+.pl-table input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.pl-months th:first-child {
+  min-width: 150px;
 }
 
 .pl-table input[readonly] {
@@ -2856,7 +2867,7 @@ input[type="file"] {
   background: transparent;
 }
 
-.pl-guardrails input[type="number"] {
+.pl-guardrails input[type="text"] {
   background: #fff;
   border-color: var(--line);
   text-align: left;

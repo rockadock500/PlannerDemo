@@ -190,26 +190,45 @@ function peClicks(channel, spend, costFactor = 1) {
 // ── Plans ──────────────────────────────────────────────────────────────────
 
 /**
- * Generates a base plan. inputs: { start, end, budget, brief }. config: { rules: {channel: {optimal}},
- * phasing: {1..12: weight} }. guardrails: {channel: {min, max}}. strategicIndex: {channel: {monthKey: "L"|"M"|"H"}}.
+ * The budget-by-month table: the brief budget spread across the months in the date range by bp's
+ * phasing (pro rata for part months), with default target visitors. Returns { months, budgets, targets }.
  */
-function peGeneratePlan(inputs, config, guardrails, strategicIndex) {
+function pePhaseMonths(inputs, config) {
   const months = peMonths(inputs.start, inputs.end);
-  const budget = Math.round(Number(inputs.budget));
-  const monthWeights = months.map((mo) => (config.phasing?.[mo.month] ?? 1) * mo.fraction);
-  const monthTotals = peApportion(budget, monthWeights);
+  const budget = Math.max(0, Math.round(Number(inputs.budget) || 0));
+  const amounts = peApportion(budget, months.map((mo) => (config.phasing?.[mo.month] ?? 1) * mo.fraction));
+  return {
+    months,
+    budgets: Object.fromEntries(months.map((mo, i) => [mo.key, amounts[i]])),
+    targets: Object.fromEntries(months.map((mo, i) => [mo.key, Math.round(amounts[i] / PE_TARGET_COST_PER_VISITOR)])),
+  };
+}
+
+/**
+ * Generates a base plan: each month's budget (from the budget-by-month table) allocated by channel.
+ * inputs: { start, end, budget, brief }. config: { rules: {channel: {optimal}}, phasing: {1..12: weight} }.
+ * guardrails: {channel: {min, max}}. strategicIndex: {channel: {monthKey: "L"|"M"|"H"}}.
+ * monthly: the budget-by-month table ({ months, budgets, targets }); defaults to pePhaseMonths(inputs).
+ */
+function peGeneratePlan(inputs, config, guardrails, strategicIndex, monthly) {
+  const table = monthly || pePhaseMonths(inputs, config);
+  const months = table.months;
+  const monthTotals = months.map((mo) => Math.max(0, Math.round(Number(table.budgets[mo.key]) || 0)));
+  const budget = monthTotals.reduce((a, b) => a + b, 0);
+  const monthWeights = monthTotals.some((v) => v > 0) ? monthTotals : months.map((mo) => mo.fraction);
   const { shares, feasible } = peChannelShares(config.rules, strategicIndex, guardrails, months, monthWeights);
   const channelTotals = peApportion(budget, shares);
   const seed = months.map((mo, i) => PE_CHANNELS.map((c, j) => monthTotals[i] * shares[j] * PE_SI[strategicIndex?.[c]?.[mo.key] || "M"]));
   const cells = peRoundMatrix(peFit(seed, monthTotals, channelTotals), monthTotals, channelTotals);
   const monthly_allocations = months.flatMap((mo, i) => PE_CHANNELS.map((c, j) => ({ month: mo.key, channel: c, budget_gbp: cells[i][j] })));
-  const monthly_targets = Object.fromEntries(months.map((mo, i) => [mo.key, Math.round(monthTotals[i] / PE_TARGET_COST_PER_VISITOR)]));
+  const monthly_targets = Object.fromEntries(months.map((mo, i) => [mo.key, Math.max(0, Math.round(Number(table.targets?.[mo.key] ?? monthTotals[i] / PE_TARGET_COST_PER_VISITOR) || 0))]));
   const plan = {
     plan_id: `bp_base_plan_${Date.now()}`,
     kind: "base",
     created_at: new Date().toISOString(),
     scenario: { scenario_id: "base", label: "Base plan", scenario_assumption: "Generated from the brief, channel guardrails and Strategic Index." },
-    inputs: { ...inputs, budget },
+    inputs: { ...inputs, budget: Math.round(Number(inputs.budget)) },
+    monthly_basis: Object.fromEntries(months.map((mo, i) => [mo.key, monthTotals[i]])),
     guardrails: JSON.parse(JSON.stringify(guardrails || {})),
     strategic_index: JSON.parse(JSON.stringify(strategicIndex || {})),
     guardrails_feasible: feasible,
@@ -317,5 +336,5 @@ function peScenarioFromPlan(base, scenarioId) {
 }
 
 if (typeof module !== "undefined") {
-  module.exports = { PE_CHANNELS, PE_SI, PE_SI_LABELS, PE_CURVES, PE_SCENARIOS, peMonths, peChannelShares, peGuardrailsFeasible, peClicks, peGeneratePlan, peRecalc, peScenarioFromPlan, peFingerprint, peApportion, peRoundMatrix };
+  module.exports = { PE_CHANNELS, PE_SI, PE_SI_LABELS, PE_CURVES, PE_SCENARIOS, PE_TARGET_COST_PER_VISITOR, peMonths, pePhaseMonths, peChannelShares, peGuardrailsFeasible, peClicks, peGeneratePlan, peRecalc, peScenarioFromPlan, peFingerprint, peApportion, peRoundMatrix };
 }

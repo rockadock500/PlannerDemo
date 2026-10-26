@@ -121,6 +121,22 @@ check("leap-year February is whole", leap.length === 1 && leap[0].fraction === 1
 const crossPartial = pe.peGeneratePlan({ ...inputs, start: "2026-12-20", end: "2027-03-10" }, config, guardrails, {});
 check("cross-year partial plan sums exactly", crossPartial.total_budget_gbp === 200000 && crossPartial.months.length === 4 && finite(crossPartial));
 
+// ── Budget-by-month table drives the base plan ─────────────────────────────
+const table = pe.pePhaseMonths(inputs, config);
+check("month table spreads the budget exactly", sum(Object.values(table.budgets)) === 200000 && table.months.length === 12);
+check("month table matches the generated plan's months", JSON.stringify(table.budgets) === JSON.stringify(base.monthly_basis));
+const editedTable = JSON.parse(JSON.stringify(table));
+editedTable.budgets["2026-03"] = 30000;
+editedTable.targets["2026-03"] = 25000;
+const fromTable = pe.peGeneratePlan(inputs, config, guardrails, {}, editedTable);
+check("base plan months equal the edited month table exactly", fromTable.month_totals.every((m) => m.budget_gbp === editedTable.budgets[m.month]));
+check("base plan uses the month table's targets", fromTable.monthly_targets["2026-03"] === 25000);
+check("an over-brief month table is flagged against the brief", fromTable.total_budget_gbp === 212000 && fromTable.qa.budget_matches_brief === false);
+const zeroTable = JSON.parse(JSON.stringify(table));
+Object.keys(zeroTable.budgets).forEach((k) => { zeroTable.budgets[k] = 0; });
+const fromZeroTable = pe.peGeneratePlan(inputs, config, guardrails, {}, zeroTable);
+check("an all-zero month table gives a zero plan, not NaN", finite(fromZeroTable) && fromZeroTable.total_budget_gbp === 0);
+
 console.log(`\nBase plan: £${base.total_budget_gbp.toLocaleString("en-GB")} · ${base.forecast_clicks.toLocaleString("en-GB")} clicks · £${base.cost_per_click.toFixed(2)} CPC · target ${base.target_visitors.toLocaleString("en-GB")} visitors · months short: ${base.qa.months_short.length}`);
 console.log(base.channel_totals.map((c) => `${c.channel} £${c.budget_gbp} ${c.forecast_clicks} clicks £${(c.budget_gbp / c.forecast_clicks).toFixed(2)}`).join("\n"));
 console.log(base.month_totals.map((m) => `${m.month} £${m.budget_gbp} clicks ${m.forecast_clicks} target ${m.target_visitors}`).join("\n"));
