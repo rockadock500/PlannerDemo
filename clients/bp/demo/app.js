@@ -192,18 +192,8 @@ const state = {
   monthlyRevisionSubmissions: [],
   scenario: "balanced_growth",
   demoMode: "deterministic",
-  tableMode: "budget",
-  summaryChartMode: "monthly",
-  selected: null,
   currentPlanTableMode: "budget",
   currentPlanSelected: null,
-  annualUploadedPlan: null,
-  annualChannelGrouping: null,
-  annualCompleteness: null,
-  annualBriefPreview: null,
-  annualBriefFilename: null,
-  annualGenerateStatus: "idle",
-  annualGenerateError: null,
   viewingAs: "bp Planner",
   liveSources: null,
   dataSourceDictionary: null,
@@ -229,7 +219,6 @@ const CHANNEL_GROUPS = [
   rows: group.rows.map((row) => ({ ...row, share: row.share ?? 1 })),
   sourceChannels: [...new Set(group.rows.map((row) => row.engineChannel).filter(Boolean))],
 }));
-const MAPPED_SOURCE_CHANNELS = new Set(CHANNEL_GROUPS.flatMap((g) => g.sourceChannels));
 
 // Per PL_Weekly_Update_260626_v1.pdf "Proposed User Permissions" - the latest
 // agreed scope, which supersedes the scope doc's PL/Channel-Heads/the7stars
@@ -527,9 +516,10 @@ function planSummary(plan) {
   };
 }
 
-// Versions are created when a planner plan is first looked at on Approval (ensurePlanVersion).
+// Versions are created when a plan is approved (ensurePlanVersion); only those with approval events are kept.
 function seedPlanVersions() {
-  return loadLocalJson("bp_plan_versions", []);
+  const events = loadLocalJson("bp_approval_events", []);
+  return loadLocalJson("bp_plan_versions", []).filter((version) => events.some((event) => event.version_id === version.version_id));
 }
 
 function approvalEventsForVersion(versionId = currentVersionId()) {
@@ -653,7 +643,6 @@ async function loadData() {
   state.evidenceRules = evidenceRules;
   state.dataSourceDictionary = dataSourceDictionary;
   state.syntheticFixture = syntheticFixture;
-  state.channelGuardrailOverrides = loadLocalJson("bp_channel_guardrail_overrides", {});
   state.briefPriorities = briefPriorities;
   state.enrichedCalendar = enrichedCalendar;
   state.bankHolidays = bankHolidays;
@@ -706,9 +695,6 @@ function escapeHtml(text) {
 function currentPlan() {
   return state.plans[state.scenario];
 }
-
-
-
 
 // Static demo: the source registry file stands in for the live ingestion API.
 // Green only for client-supplied or official data; synthetic, vendor,
@@ -875,7 +861,6 @@ function renderDataReadiness() {
   }).join("");
 }
 
-
 function tableChannelGroups() {
   // Same category -> sub-category grouping as the Annual Channel Summary
   // panel (agreed v1 channel granularity), applied here so the detailed
@@ -888,20 +873,6 @@ function tableChannelGroups() {
     rows: group.rows.filter((row) => CHANNEL_ORDER.includes(row.engineChannel)),
   })).filter((group) => group.rows.length);
 }
-
-
-
-
-
-// Colour-per-group palette for the monthly stacked bar, reusing the brand
-// palette from styles.css :root so this chart matches the rest of the app;
-// a separate grey covers "Unmapped" (channels not yet placed in the v1
-// channel granularity - currently always Display/Programmatic).
-const SUMMARY_CHART_COLORS = ["#e30027", "#005fb8", "#49a300", "#f7941d", "#9e001b", "#6b5ca5", "#f9b000", "#1f8a8a"];
-const SUMMARY_CHART_UNMAPPED_COLOR = "#8a94a6";
-
-
-
 
 // Plain-English glossary for the response-curve-provenance fields, since
 // "MMM point"/"external shape prior"/"soft saturation" etc. are internal
@@ -916,7 +887,6 @@ const CURVE_PROVENANCE_GLOSSARY = {
   "Carryover prior": "How many weeks a burst of spend keeps having an effect (adstock/carryover), before it fades out.",
 };
 
-
 // If a channel is one of the three split 50/50 across two groups in the
 // plan table (see CHANNEL_GROUPS comment), the Evidence Inspector shows the
 // channel's real, unhalved total - flag that so it doesn't look
@@ -927,7 +897,6 @@ function splitChannelNoteHtml(channel) {
     ? `<p class="table-hint">This is the real, full ${channel} total. The plan table splits it 50/50 for display between ${splitRows.map((s) => `${s.group} (${s.label})`).join(" and ")}.</p>`
     : "";
 }
-
 
 function renderLogicChallenges() {
   const logicEval = state.logicEval;
@@ -1665,9 +1634,6 @@ function renderBriefingForms() {
   document.querySelector("#briefingForms").innerHTML = `${modeToggle}<div class="briefing-grid">${cards}</div>`;
 }
 
-
-
-
 function sourceStatusClass(status) {
   if (status.includes("client") || status.includes("derived")) return "good";
   if (status.includes("synthetic") || status.includes("placeholder")) return "warning";
@@ -2130,6 +2096,11 @@ function approvePlan(comment) {
   if (!option) return;
   ensurePlanVersion(option);
   const versionId = approvalVersionId(option);
+  // Remember exactly what was approved, so later edits show as "edited since approval".
+  state.planVersions = state.planVersions.map((version) => (version.version_id === versionId
+    ? { ...version, approved_fingerprint: peFingerprint(option.plan), summary: planSummary(option.plan), approved_label: option.label }
+    : version));
+  persistPlanVersions();
   recordApprovalEvent(versionId, "approved", comment);
   state.currentApprovedVersionId = versionId;
   saveLocalJson("bp_current_approved_version_id", versionId);
@@ -2139,6 +2110,8 @@ function approvePlan(comment) {
 // Admin-only "Remove stored plans": scenarios can be removed; the base plan is replaced by regenerating it.
 function removeStoredPlan(key) {
   if (currentRole() !== "admin") return;
+  const target = plannerState.scenarios.find((plan) => plan.plan_id === key);
+  if (target && state.currentApprovedVersionId === `plan_version_${key}` && !window.confirm(`${target.scenario.label} is the approved plan. Remove it anyway? Its approval record is kept.`)) return;
   plannerState.scenarios = plannerState.scenarios.filter((plan) => plan.plan_id !== key);
   if (plannerState.preferredScenarioId === key) plannerState.preferredScenarioId = null;
   plannerSave();
@@ -2168,15 +2141,24 @@ function updateRolePersonRole(name, role) {
 // "Active warnings" for a plan default to whatever qa.warnings shipped with
 // it, but an admin-edited list overrides that - keyed by the same version id
 // the Approval page uses, so an edit here is what Approval sees too.
+// Admin warning edits apply to the plan as it was when edited; once the plan changes, the engine's warnings return.
+const warningOverrideKey = (option) => `${approvalVersionId(option)}:${peFingerprint(option.plan)}`;
+
 function effectiveWarnings(option) {
-  const versionId = approvalVersionId(option);
-  return state.qaWarningOverrides[versionId] || option.plan.qa?.warnings || [];
+  return state.qaWarningOverrides[warningOverrideKey(option)] || option.plan.qa?.warnings || [];
+}
+
+/** True when this option is the approved plan and hasn't been edited since. */
+function isApprovedAsIs(option) {
+  if (approvalVersionId(option) !== state.currentApprovedVersionId) return false;
+  const version = state.planVersions.find((item) => item.version_id === state.currentApprovedVersionId);
+  return version?.approved_fingerprint === peFingerprint(option.plan);
 }
 
 function setWarningOverride(key, warnings) {
   const option = storedPlanOptions().find((item) => item.key === key);
   if (!option) return;
-  state.qaWarningOverrides[approvalVersionId(option)] = warnings;
+  state.qaWarningOverrides[warningOverrideKey(option)] = warnings;
   saveLocalJson("bp_qa_warning_overrides", state.qaWarningOverrides);
 }
 
@@ -2226,12 +2208,14 @@ function renderApproval() {
     return;
   }
 
-  ensurePlanVersion(current);
   const versionId = approvalVersionId(current);
   const version = state.planVersions.find((item) => item.version_id === versionId);
   const plan = current.plan;
-  const isCurrentApproved = versionId === state.currentApprovedVersionId;
-  const approvalStatus = version?.approval_status || "draft";
+  const isCurrentApproved = isApprovedAsIs(current);
+  const editedSinceApproval = versionId === state.currentApprovedVersionId && !isCurrentApproved;
+  const approvalStatus = editedSinceApproval ? "draft" : version?.approval_status || "draft";
+  const approvedVersion = state.planVersions.find((item) => item.version_id === state.currentApprovedVersionId);
+  const approvedGone = state.currentApprovedVersionId && !options.some((option) => approvalVersionId(option) === state.currentApprovedVersionId);
   const statusLabels = { draft: "Draft plan", review: "Ready for bp review", approved: "Approved version" };
   const events = approvalEventsForVersion(versionId);
   const isAdmin = currentRole() === "admin";
@@ -2244,18 +2228,25 @@ function renderApproval() {
       <div class="stored-scenario-buttons">
         ${options.map((option) => {
           const optionVersionId = approvalVersionId(option);
-          const isApproved = optionVersionId === state.currentApprovedVersionId;
+          const approvedAsIs = isApprovedAsIs(option);
+          const edited = optionVersionId === state.currentApprovedVersionId && !approvedAsIs;
           return `
             <button class="secondary-button chat-scenario-btn ${option.key === current.key ? "active" : ""}" type="button" data-approval-select="${option.key}">
-              ${option.label}${isApproved ? " · current plan" : ""}${option.key === plannerState.preferredScenarioId ? " · preferred" : ""}
+              ${option.label}${approvedAsIs ? " · current plan" : edited ? " · edited since approval" : ""}${option.key === plannerState.preferredScenarioId ? " · preferred" : ""}
             </button>
           `;
         }).join("")}
       </div>
     </div>
 
+    ${approvedGone ? `
+      <div class="approval-card wide">
+        <strong>The approved plan has been replaced</strong>
+        <p class="table-hint warning-text">${escapeHtml(approvedVersion?.approved_label || "The approved plan")} was approved, then regenerated or removed. Its approval record is kept; approve one of the current plans to replace it.</p>
+      </div>
+    ` : ""}
     <div class="approval-card ${isCurrentApproved ? "ready" : ""}">
-      <strong>${statusLabels[approvalStatus] || approvalStatus}${isCurrentApproved ? " · This is the current approved plan" : ""}</strong>
+      <strong>${statusLabels[approvalStatus] || approvalStatus}${isCurrentApproved ? " · This is the current approved plan" : ""}${editedSinceApproval ? " · Edited since approval, re-approve to confirm" : ""}</strong>
       <p>${current.label}${isPreferred ? " (preferred scenario)" : ""} · ${money.format(plan.total_budget_gbp)} budget, ${plDate(plan.inputs.start)} to ${plDate(plan.inputs.end)} · ${number.format(plan.forecast_clicks)} forecast clicks at ${costPerPolicyMoney.format(plan.cost_per_click)} per click · ${number.format(plan.target_visitors)} target visitors.</p>
     </div>
 
@@ -2270,6 +2261,7 @@ function renderApproval() {
         <span class="status-pill ${plan.qa.clears_visitor_target ? "good" : "warning"}">${plan.qa.clears_visitor_target ? "Clears" : "Short of"} the visitor target (${vsTarget >= 0 ? "+" : "−"}${Math.abs(vsTarget * 100).toFixed(1)}%)</span>
         <span class="status-pill ${plan.qa.budget_matches_brief ? "good" : "warning"}">Budget ${plan.qa.budget_matches_brief ? "matches" : "differs from"} the brief</span>
         <span class="status-pill ${plan.qa.guardrails_respected ? "good" : "warning"}">Guardrails ${plan.qa.guardrails_respected ? "respected" : "breached"}</span>
+        ${plan.kind === "scenario" && plan.base_fingerprint !== peFingerprint(plannerState.basePlan) ? `<span class="status-pill warning">Built from an earlier base plan: rebuild it in Scenarios</span>` : ""}
       </div>
       ${effectiveWarnings(current).length ? `
         <ul class="approval-warning-list">
@@ -2316,6 +2308,15 @@ const VIEW_META = {
   architecture: ["Agent traces", "Experimental mode: agent traces and logic guardrails."],
 };
 
+// Pages that read the base plan are redrawn when opened; others keep their state (drafts, open panels).
+const VIEW_RENDER = {
+  annual: () => renderCampaignPlanning(),
+  scenarios: () => renderScenarioCentre(),
+  chat: () => renderPlanChat(),
+  approval: () => renderApproval(),
+  admin: () => renderAdmin(),
+};
+
 function activateView(view) {
   if (!VIEW_META[view]) view = "annual";
   document.querySelectorAll(".nav-item").forEach((item) => {
@@ -2343,19 +2344,7 @@ function setMobileMenu(open, { returnFocus = false } = {}) {
 
 function applyInitialRoute() {
   const params = new URLSearchParams(window.location.search);
-  const scenario = params.get("scenario");
-  const tableMode = params.get("mode");
-  const selected = params.get("select");
   const view = params.get("view") || "annual";
-
-  if (scenario && state.plans[scenario]) state.scenario = scenario;
-  if (["budget", "cost_per_policy", "share", "confidence"].includes(tableMode)) state.tableMode = tableMode;
-  if (selected && selected.includes("|")) {
-    const [month, channel] = selected.split("|");
-    if (MONTHS.includes(month) && CHANNEL_ORDER.includes(channel)) {
-      state.selected = { month, channel };
-    }
-  }
   if (params.get("demo") === "agent") state.demoMode = "agent";
   activateView(view);
 }
@@ -2379,7 +2368,7 @@ function attachEvents() {
     button.addEventListener("click", () => {
       const view = button.dataset.view;
       const fromMobileMenu = Boolean(button.closest("#mobileNav"));
-      if (view !== "annual") renderAll(); // other pages read the base plan, which may have been edited
+      VIEW_RENDER[view]?.(); // the page may read a base plan edited since it was last drawn
       activateView(view);
       setMobileMenu(false, { returnFocus: fromMobileMenu });
       const url = new URL(window.location.href);
@@ -2721,7 +2710,6 @@ function attachEvents() {
   });
 }
 
-
 // A revision candidate isn't a full plan object (no brief_test, no
 // media_owner_allocations), so this is a smaller export than downloadPlanExcel().
 function downloadRevisionExcel(candidate) {
@@ -2764,8 +2752,6 @@ function downloadRevisionExcel(candidate) {
 
   XLSX.writeFile(wb, `${candidate.plan_id}.xlsx`);
 }
-
-
 
 loadData()
   .then(() => {

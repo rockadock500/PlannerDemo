@@ -44,7 +44,7 @@ const SC_FACTS = {
 
 // Words that point a free-text request at a stored scenario.
 const SC_KEYWORDS = {
-  brand_trust_build: ["brand", "awareness", "reach", "ctv", "video", "premium", "trust", "recall"],
+  brand_trust_build: ["brand", "awareness", "ctv", "video", "premium", "trust", "recall"],
   pcw_conversion_defence: ["precision", "precise", "quality", "pmp", "display", "contextual", "targeting", "professional"],
   multicar_household_growth: ["results", "earnings", "quarterly", "quarter", "burst", "q1", "q2", "q3", "q4"],
   young_driver_telematics: ["conference", "conferences", "ceraweek", "davos", "cop31", "cop", "adipec", "gastech", "events"],
@@ -52,27 +52,38 @@ const SC_KEYWORDS = {
   balanced_growth: ["balanced", "blended", "even", "steady", "baseline"],
 };
 
-const scCentre = { proposal: null, drilldownId: null, status: null };
+const scCentre = { proposal: null, drilldownId: null, status: null, freeText: "" };
 
+// Closest stored scenario for a free-text request: a scenario's own name wins outright;
+// otherwise the most keyword hits. A tie is reported as ambiguous with both options.
 function scClosestScenario(text) {
-  const words = String(text).toLowerCase().match(/[a-z0-9-]+/g) || [];
-  let best = { id: "balanced_growth", hits: [] };
-  Object.entries(SC_KEYWORDS).forEach(([id, keys]) => {
-    const hits = [...new Set(words.filter((w) => keys.includes(w)))];
-    if (hits.length > best.hits.length) best = { id, hits };
-  });
-  return best;
+  const lower = String(text).toLowerCase();
+  const named = Object.entries(PE_SCENARIOS).find(([, def]) => lower.includes(def.label.toLowerCase()));
+  if (named) return { id: named[0], hits: [named[1].label], alternative: null };
+  const words = lower.match(/[a-z0-9-]+/g) || [];
+  const scored = Object.entries(SC_KEYWORDS)
+    .map(([id, keys]) => ({ id, hits: [...new Set(words.filter((w) => keys.includes(w)))] }))
+    .sort((a, b) => b.hits.length - a.hits.length);
+  if (!scored[0].hits.length) return { id: "balanced_growth", hits: [], alternative: null };
+  const tie = scored[1].hits.length === scored[0].hits.length ? scored[1] : null;
+  return { id: scored[0].id, hits: tie ? [...scored[0].hits, ...tie.hits] : scored[0].hits, alternative: tie?.id || null };
 }
+
+const scIsStale = (plan) => plan.kind === "scenario" && plan.base_fingerprint !== peFingerprint(plannerState.basePlan);
+const scIsApproved = (plan) => state.currentApprovedVersionId === `plan_version_${plan.plan_id}`;
 
 function scGenerate(scenarioId) {
   const base = plannerState.basePlan;
-  if (!base) return;
+  if (!base) return false;
+  const current = plannerState.scenarios.find((p) => p.scenario.scenario_id === scenarioId);
+  if (current && scIsApproved(current) && !window.confirm(`${current.scenario.label} is the approved plan. Rebuilding it replaces the approved version (its approval record is kept). Continue?`)) return false;
   const plan = peScenarioFromPlan(base, scenarioId);
   const existing = plannerState.scenarios.find((p) => p.scenario.scenario_id === scenarioId);
   plannerState.scenarios = [...plannerState.scenarios.filter((p) => p.scenario.scenario_id !== scenarioId), plan];
   if (existing && plannerState.preferredScenarioId === existing.plan_id) plannerState.preferredScenarioId = plan.plan_id;
   scCentre.status = `${plan.scenario.label} ${existing ? "rebuilt" : "added"} from the current base plan.`;
   plannerSave();
+  return true;
 }
 
 function scDeltaList(plan, base) {
@@ -94,6 +105,7 @@ function scCard(plan, base) {
         <h3>${plEscape(plan.scenario.label)}</h3>
         <span class="status-pill ${pill[0]}">${pill[1]}</span>
       </div>
+      ${scIsStale(plan) ? `<p class="sc-stale">Built from an earlier base plan, so these figures are out of date. <button class="secondary-button" type="button" data-sc-generate="${plan.scenario.scenario_id}">Rebuild</button></p>` : ""}
       <dl class="sc-metrics">
         <div><dt>Budget</dt><dd>${plGbp(plan.total_budget_gbp)}</dd></div>
         <div><dt>Forecast clicks</dt><dd>${plNum(plan.forecast_clicks)}</dd></div>
@@ -186,20 +198,20 @@ function renderScenarioCentre() {
         </div>
         <div>
           <label class="field-label" for="scFreeText">Describe a scenario</label>
-          <textarea id="scFreeText" rows="3" placeholder="e.g. Go heavier on financial news CTV around results weeks and keep Meta light."></textarea>
+          <textarea id="scFreeText" rows="3" placeholder="e.g. Go heavier on financial news CTV around results weeks and keep Meta light.">${plEscape(scCentre.freeText)}</textarea>
           <button class="secondary-button" type="button" id="scPropose">Find the closest scenario</button>
         </div>
       </div>
       ${proposal ? `
         <div class="pl-banner">
-          <span>Closest stored scenario: <strong>${PE_SCENARIOS[proposal.id].label}</strong>${proposal.hits.length ? ` (matched on ${proposal.hits.map((h) => `“${plEscape(h)}”`).join(", ")})` : " (no strong match, so the blended option)"}. Free-text scenarios need the planning engine; this demo uses the closest stored one.</span>
+          <span>${proposal.alternative ? `Your request matches <strong>${PE_SCENARIOS[proposal.id].label}</strong> and <strong>${PE_SCENARIOS[proposal.alternative].label}</strong> equally` : `Closest stored scenario: <strong>${PE_SCENARIOS[proposal.id].label}</strong>`}${proposal.hits.length ? ` (matched on ${proposal.hits.map((h) => `“${plEscape(h)}”`).join(", ")})` : " (no strong match, so the blended option)"}. Free-text scenarios need the planning engine; this demo uses the closest stored one.</span>
           <span class="sc-proposal-actions">
             <button class="primary-button" type="button" data-sc-generate="${proposal.id}">Add ${PE_SCENARIOS[proposal.id].label}</button>
+            ${proposal.alternative ? `<button class="secondary-button" type="button" data-sc-generate="${proposal.alternative}">Add ${PE_SCENARIOS[proposal.alternative].label}</button>` : ""}
             <button class="secondary-button" type="button" id="scCancelProposal">Cancel</button>
           </span>
         </div>
       ` : ""}
-      <p class="table-hint" role="status">${scCentre.status ? plEscape(scCentre.status) : ""}</p>
       <div class="sc-preferred">
         ${preferred ? `<strong>Preferred:</strong> ${plEscape(preferred.scenario.label)} <button class="secondary-button" type="button" id="scClearPreferred">Clear</button>` : `<span class="table-hint">No preferred scenario yet. The preferred one is offered first on Approval.</span>`}
       </div>
@@ -212,22 +224,34 @@ function renderScenarioCentre() {
   `;
 }
 
+// Announces an outcome in the page's persistent live region (outside the re-rendered area).
+function scAnnounce(message) {
+  scCentre.status = message;
+  const region = document.querySelector("#scStatus");
+  if (region) region.textContent = message || "";
+}
+
 function scenarioCentreAttachEvents() {
   const root = document.querySelector("#scenarioCentre");
   if (!root) return;
+  root.addEventListener("input", (event) => {
+    if (event.target.id === "scFreeText") scCentre.freeText = event.target.value; // keep typed text across re-renders
+  });
   root.addEventListener("click", (event) => {
     const t = event.target.closest("button");
     if (!t) return;
     if (t.dataset.scGenerate) {
-      scGenerate(t.dataset.scGenerate);
+      if (!scGenerate(t.dataset.scGenerate)) return;
       scCentre.proposal = null;
       renderAll();
-      document.querySelector(`[data-sc-generate="${t.dataset.scGenerate}"]`)?.focus();
+      scAnnounce(scCentre.status);
+      root.querySelector(`.stored-scenario-buttons [data-sc-generate="${t.dataset.scGenerate}"]`)?.focus();
       return;
     }
     if (t.id === "scPropose") {
       const text = root.querySelector("#scFreeText").value.trim();
       if (!text) return;
+      scCentre.freeText = text;
       scCentre.proposal = scClosestScenario(text);
       renderScenarioCentre();
       root.querySelector(".sc-proposal-actions .primary-button")?.focus();
@@ -253,12 +277,14 @@ function scenarioCentreAttachEvents() {
       return;
     }
     if (t.dataset.scRemove) {
+      const target = plannerState.scenarios.find((p) => p.plan_id === t.dataset.scRemove);
+      if (target && scIsApproved(target) && !window.confirm(`${target.scenario.label} is the approved plan. Remove it anyway? Its approval record is kept.`)) return;
       plannerState.scenarios = plannerState.scenarios.filter((p) => p.plan_id !== t.dataset.scRemove);
       if (plannerState.preferredScenarioId === t.dataset.scRemove) plannerState.preferredScenarioId = null;
       if (scCentre.drilldownId === t.dataset.scRemove) scCentre.drilldownId = null;
-      scCentre.status = "Scenario removed.";
       plannerSave();
       renderAll();
+      scAnnounce("Scenario removed.");
       root.querySelector("[data-sc-generate]")?.focus();
       return;
     }

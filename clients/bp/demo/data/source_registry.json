@@ -637,7 +637,7 @@
     },
     {
       "source_id": "synthetic_bp_ic_demo",
-      "name": "Synthetic bp demo fixture (annual budget, forecast GBE engagements, monthly weights)",
+      "name": "Synthetic bp demo fixture (monthly weights and planning assumptions)",
       "path": "data/bp_synthetic_fixture_2026.json",
       "status": "synthetic_fixture",
       "strength": "placeholder",

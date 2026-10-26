@@ -2835,19 +2835,25 @@ input[type="file"] {
   text-align: right;
   font: inherit;
   font-variant-numeric: tabular-nums;
-  border-color: transparent;
-  background: var(--wash);
+  /* Editable cells: a tinted fill and a darker underline (over 3:1 on white) mark them as inputs. */
+  border: 1px solid var(--line-strong);
+  border-bottom-color: #8f8f86;
+  background: var(--wash-2);
 }
 
 .pl-table input[type="number"]:hover {
-  border-color: var(--line-strong);
+  border-color: #8f8f86;
 }
 
 .pl-table input[type="number"]:focus {
-  border-color: var(--bp-green);
   background: #fff;
-  outline: none;
-  box-shadow: 0 0 0 2px var(--bp-tint);
+  outline: 2px solid var(--bp-green);
+  outline-offset: 1px;
+}
+
+.pl-table input[readonly] {
+  border-color: transparent;
+  background: transparent;
 }
 
 .pl-guardrails input[type="number"] {
@@ -3149,6 +3155,24 @@ input[type="file"] {
   margin: 0;
 }
 
+.sc-stale {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  margin: 0;
+  padding: 8px 10px;
+  border: 1px solid #fcd9a8;
+  border-radius: var(--radius);
+  background: #fffbeb;
+  color: #92400e;
+  font-size: 12px;
+}
+
+.sc-status:empty {
+  display: none;
+}
+
 .sc-card-actions {
   display: flex;
   flex-wrap: wrap;
@@ -3192,7 +3216,9 @@ input[type="file"] {
   }
 
   .pl-table th:first-child {
-    min-width: 130px;
+    min-width: 100px;
+    max-width: 120px;
+    white-space: normal;
   }
 
   /* Event name and dates stack on phones, and date inputs fill their cell. */

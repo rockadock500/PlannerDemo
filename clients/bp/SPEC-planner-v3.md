@@ -35,7 +35,9 @@ Campaign Planning · Scenarios · Curves · Planner Chat · Events Calendar · A
 
 - **Months** in the date range; each gets `fraction` = days covered / days in month.
 - **Month budgets** ∝ bp phasing weight for that calendar month (fixture weights: results windows heavier) × fraction.
-- **Channel shares** ∝ evidence-rule optimal share × mean Strategic Index multiplier, clamped to the guardrails.
+- **Channel shares** ∝ evidence-rule optimal share × Strategic Index multiplier averaged over the months (weighted by
+  month budget), held inside the guardrails (solved for a scale factor, so feasible guardrails always hold).
+  Guardrails with a minimum above its maximum, minimums over 100% or maximums under 100% block Generate.
 - **Cells**: channel weight × Strategic Index multiplier for that month, fitted so months and channels both hit
   their totals (iterative proportional fitting), rounded to whole pounds with exact totals.
 - **Forecast clicks** per cell from a per-channel diminishing-returns curve: clicks = (ref ÷ CPC₀) × (spend ÷ ref)^b.
@@ -51,12 +53,15 @@ Mark preferred, Remove, and View full plan (read-only channel × month table).
 
 - A stored scenario reshapes the **base plan as edited**: channel multipliers (reach vs performance weights),
   month multipliers (results months, Feb–Apr, conference months) and a cost factor, rescaled to the same total.
-- Free text picks the closest stored scenario by keywords and says so (no AI in the demo).
+- Free text picks the closest stored scenario (its name first, then keywords) and says so; a tie offers both.
+- A scenario built from an earlier version of the base plan is flagged "out of date" with Rebuild.
 - The preferred scenario is offered first on Approval.
 
 ## Other pages
 
-- **Approval / Admin**: stored plans are the base plan and generated scenarios. Approval shows clicks, CPC,
+- **Approval / Admin**: stored plans are the base plan and generated scenarios. Approval remembers exactly what
+  was approved: a later edit shows "Edited since approval, re-approve", and a regenerated or removed approved plan
+  is reported as replaced (with a confirmation before it happens). Approval shows clicks, CPC,
   target visitors, budget; QA checks (budget matches brief, guardrails respected, months covered); warnings
   (months below target, budget mismatch, synthetic-curve caveat). Admin lists and removes scenarios.
 - **Planner Chat**: answers about the base plan in visitors and clicks (months, channels, Strategic Index,

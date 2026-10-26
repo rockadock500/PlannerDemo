@@ -20,6 +20,7 @@ const plGbp = (n) => `£${Math.round(n).toLocaleString("en-GB")}`;
 const plNum = (n) => Math.round(n).toLocaleString("en-GB");
 const plCpc = (n) => (n == null ? "–" : `£${n.toFixed(2)}`);
 const plDate = (iso) => new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
+const PE_SI_SHORT = { L: "Low", M: "Med", H: "High" };
 const plEscape = (text) => String(text).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]);
 
 function plannerConfig() {
@@ -33,20 +34,38 @@ function plannerDefaultGuardrails() {
   return Object.fromEntries(state.evidenceRules.channel_rules.map((r) => [r.channel, { min: r.strategic_floor_pct, max: 100 }]));
 }
 
+const PLANNER_VERSION = 3;
+
 function plannerSave() {
   const { status, ...rest } = plannerState;
   try {
-    localStorage.setItem(PLANNER_STORE, JSON.stringify(rest));
+    localStorage.setItem(PLANNER_STORE, JSON.stringify({ v: PLANNER_VERSION, ...rest }));
   } catch {
     // Storage can be unavailable (private mode); the planner still works for this visit.
   }
+}
+
+// A saved plan is usable only if its shape is intact (older or hand-edited saves are discarded).
+function plannerPlanIsValid(plan) {
+  return Boolean(plan)
+    && Array.isArray(plan.months) && plan.months.length > 0
+    && Array.isArray(plan.channels) && plan.channels.length === PE_CHANNELS.length
+    && Array.isArray(plan.monthly_allocations) && plan.monthly_allocations.length === plan.months.length * plan.channels.length
+    && plan.monthly_allocations.every((r) => Number.isFinite(r.budget_gbp) && r.budget_gbp >= 0)
+    && plan.monthly_targets && typeof plan.monthly_targets === "object"
+    && plan.inputs && Number.isFinite(Number(plan.inputs.budget));
 }
 
 // Restores saved work, or builds the demo plan from the prefilled brief so every page has a plan on first visit.
 function plannerInit() {
   try {
     const saved = JSON.parse(localStorage.getItem(PLANNER_STORE) || "null");
-    if (saved?.basePlan) Object.assign(plannerState, saved);
+    if (saved?.v === PLANNER_VERSION && plannerPlanIsValid(saved.basePlan)) {
+      Object.assign(plannerState, saved);
+      delete plannerState.v;
+      plannerState.scenarios = Array.isArray(saved.scenarios) ? saved.scenarios.filter(plannerPlanIsValid) : [];
+      [plannerState.basePlan, ...plannerState.scenarios].forEach(peRecalc); // forecasts follow the current curves
+    }
   } catch {
     // Ignore unreadable saved state and start fresh.
   }
@@ -70,18 +89,31 @@ function plannerValidate(inputs) {
   if (inputs.start && inputs.end && peMonths(inputs.start, inputs.end).length > 24) errors.end = "Plan up to 24 months at a time.";
   if (!(Number(inputs.budget) >= 1000)) errors.budget = "Enter a budget of at least £1,000.";
   if (!String(inputs.brief || "").trim()) errors.brief = "Describe the brief so the plan has a strategy.";
+  const guardrailErrors = plannerGuardrailErrors(plannerState.guardrails);
+  if (guardrailErrors.length) errors.guardrails = guardrailErrors;
   return errors;
 }
 
-// True when the inputs, guardrails or Strategic Index differ from those the current base plan was built from.
+function plannerGuardrailErrors(g) {
+  const errors = PE_CHANNELS.filter((c) => Number(g?.[c]?.min ?? 0) > Number(g?.[c]?.max ?? 100)).map((c) => `${c}: the minimum is above the maximum.`);
+  const minSum = PE_CHANNELS.reduce((a, c) => a + Number(g?.[c]?.min ?? 0), 0);
+  const maxSum = PE_CHANNELS.reduce((a, c) => a + Number(g?.[c]?.max ?? 100), 0);
+  if (minSum > 100) errors.push(`The minimums add up to ${minSum}%, more than the whole budget.`);
+  if (maxSum < 100) errors.push(`The maximums add up to ${maxSum}%, so the budget can't all be placed.`);
+  return errors;
+}
+
+// True when the dates, budget, guardrails or Strategic Index differ from those the current base plan
+// was built from. The brief text isn't read by the engine, so editing it doesn't ask for a regenerate.
 function plannerInputsChanged() {
   const plan = plannerState.basePlan;
   if (!plan) return true;
   const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
-  const inputs = { ...plannerState.inputs, budget: Math.round(Number(plannerState.inputs.budget)) };
+  const pick = (i) => ({ start: i.start, end: i.end, budget: Math.round(Number(i.budget)) });
+  const inputs = pick(plannerState.inputs);
   const months = peMonths(inputs.start, inputs.end).map((m) => m.key);
   const si = (src) => Object.fromEntries(PE_CHANNELS.map((c) => [c, months.map((k) => src?.[c]?.[k] || "M")]));
-  return !same(inputs, plan.inputs) || !same(plannerState.guardrails, plan.guardrails) || !same(si(plannerState.strategicIndex), si(plan.strategic_index));
+  return !same(inputs, pick(plan.inputs)) || !same(plannerState.guardrails, plan.guardrails) || !same(si(plannerState.strategicIndex), si(plan.strategic_index));
 }
 
 // ── Rendering ──────────────────────────────────────────────────────────────
@@ -127,7 +159,6 @@ function plannerBriefStep(errors) {
 function plannerGuardrailStep() {
   const rules = plannerConfig().rules;
   const g = plannerState.guardrails;
-  const minSum = PE_CHANNELS.reduce((a, c) => a + (Number(g[c]?.min) || 0), 0);
   return `
     <section class="panel" id="pl-step-guardrails">
       ${plannerStepHead(2, "Channel guardrails", "The minimum and maximum share of budget each channel may take, whatever the model would otherwise do.", `<button class="secondary-button" type="button" id="plResetGuardrails">Reset</button>`)}
@@ -139,16 +170,20 @@ function plannerGuardrailStep() {
               <tr>
                 <th scope="row">${c}</th>
                 <td>${rules[c]?.optimal ?? "–"}%</td>
-                <td><input type="number" min="0" max="100" step="1" value="${g[c]?.min ?? 0}" data-pl-guard="${c}" data-pl-guard-field="min" aria-label="${c} minimum share" /></td>
-                <td><input type="number" min="0" max="100" step="1" value="${g[c]?.max ?? 100}" data-pl-guard="${c}" data-pl-guard-field="max" aria-label="${c} maximum share" /></td>
+                <td><input type="number" min="0" max="100" step="1" value="${g[c]?.min ?? 0}" data-pl-guard="${c}" data-pl-guard-field="min" aria-label="${c} minimum share" aria-describedby="plGuardErrors" /></td>
+                <td><input type="number" min="0" max="100" step="1" value="${g[c]?.max ?? 100}" data-pl-guard="${c}" data-pl-guard-field="max" aria-label="${c} maximum share" aria-describedby="plGuardErrors" /></td>
               </tr>
             `).join("")}
           </tbody>
         </table>
       </div>
-      ${minSum > 100 ? `<p class="pl-error">The minimums add up to ${minSum}%; they can't all be met.</p>` : ""}
+      <div id="plGuardErrors">${plannerGuardrailErrorsHtml()}</div>
     </section>
   `;
+}
+
+function plannerGuardrailErrorsHtml() {
+  return plannerGuardrailErrors(plannerState.guardrails).map((e) => `<p class="pl-error">${e}</p>`).join("");
 }
 
 function plannerStrategicStep(months) {
@@ -166,7 +201,7 @@ function plannerStrategicStep(months) {
                   <th scope="row">${c}</th>
                   ${months.map((m) => {
                     const v = si[c]?.[m.key] || "M";
-                    return `<td><select class="pl-si-select si-${v}" data-pl-si="${c}" data-pl-si-month="${m.key}" aria-label="${c}, ${m.label}">${["L", "M", "H"].map((o) => `<option value="${o}" ${o === v ? "selected" : ""}>${PE_SI_LABELS[o]}</option>`).join("")}</select></td>`;
+                    return `<td><select class="pl-si-select si-${v}" data-pl-si="${c}" data-pl-si-month="${m.key}" aria-label="${c}, ${m.label}">${["L", "M", "H"].map((o) => `<option value="${o}" ${o === v ? "selected" : ""}>${PE_SI_SHORT[o]}</option>`).join("")}</select></td>`;
                   }).join("")}
                   <td><select class="pl-si-row" data-pl-si-row="${c}" aria-label="Set every month for ${c}"><option value="">…</option>${["L", "M", "H"].map((o) => `<option value="${o}">All ${PE_SI_LABELS[o]}</option>`).join("")}</select></td>
                 </tr>
@@ -179,11 +214,54 @@ function plannerStrategicStep(months) {
   `;
 }
 
+function plannerNoteText() {
+  if (!canGeneratePlans()) return "Viewers can review the plan but not generate or edit one.";
+  if (Object.keys(plannerValidate(plannerState.inputs)).length) return "Fix the highlighted inputs above first.";
+  if (plannerInputsChanged()) return "Inputs have changed since this plan was generated. Regenerate to apply them.";
+  return plannerState.status || "The plan below reflects the current inputs.";
+}
+
+// After a step 1–3 change: refresh only what depends on it, so focus and the next click aren't lost.
+function plannerRefreshInputs({ monthsChanged = false } = {}) {
+  const root = document.querySelector("#campaignPlanning");
+  if (!root) return;
+  const errors = plannerValidate(plannerState.inputs);
+  [["plStart", "start"], ["plEnd", "end"], ["plBudget", "budget"], ["plBrief", "brief"]].forEach(([id, key]) => {
+    const input = root.querySelector(`#${id}`);
+    const field = input?.closest(".pl-field");
+    if (!field) return;
+    let message = field.querySelector(".pl-error");
+    if (errors[key]) {
+      if (!message) {
+        message = document.createElement("p");
+        message.className = "pl-error";
+        message.id = `${id}-error`;
+        field.appendChild(message);
+      }
+      message.textContent = errors[key];
+      input.setAttribute("aria-invalid", "true");
+      input.setAttribute("aria-describedby", message.id);
+    } else {
+      message?.remove();
+      input.removeAttribute("aria-invalid");
+      input.removeAttribute("aria-describedby");
+    }
+  });
+  const i = plannerState.inputs;
+  const months = errors.start || errors.end ? [] : peMonths(i.start, i.end);
+  const days = months.reduce((a, m) => a + m.covered, 0);
+  root.querySelector(".pl-summary").textContent = months.length ? `${months.length} month${months.length > 1 ? "s" : ""} · ${days} days · ${plGbp(Number(i.budget) || 0)}` : "Choose valid dates to see the months covered.";
+  root.querySelector("#plGuardErrors").innerHTML = plannerGuardrailErrorsHtml();
+  if (monthsChanged) root.querySelector("#pl-step-si").outerHTML = plannerStrategicStep(months);
+  const button = root.querySelector("#plGenerate");
+  button.disabled = Boolean(Object.keys(errors).length) || !canGeneratePlans();
+  root.querySelector("#plGenerateNote").textContent = plannerNoteText();
+}
+
 function plannerOutputStep() {
   const plan = plannerState.basePlan;
-  const changed = plannerInputsChanged();
-  const errors = plannerValidate(plannerState.inputs);
-  const canGenerate = !Object.keys(errors).length && canGeneratePlans();
+  const canGenerate = !Object.keys(plannerValidate(plannerState.inputs)).length && canGeneratePlans();
+  const readonly = canGeneratePlans() ? "" : "readonly";
   const head = plannerStepHead(4, "Base plan", "Budget by channel and month, with target visitors and forecast clicks. Edit any budget or target; totals and forecasts update as you type.", `
     <div class="pl-actions">
       <button class="secondary-button" type="button" id="plExportCsv">Export CSV</button>
@@ -193,7 +271,7 @@ function plannerOutputStep() {
   const generateBar = `
     <div class="pl-generate">
       <button class="primary-button" type="button" id="plGenerate" ${canGenerate ? "" : "disabled"}>${plan ? "Regenerate base plan" : "Generate base plan"}</button>
-      <p class="table-hint" id="plGenerateNote" role="status">${!canGeneratePlans() ? "Viewers can review the plan but not generate one." : Object.keys(errors).length ? "Fix the highlighted inputs above first." : changed ? "Inputs have changed since this plan was generated. Regenerate to apply them." : plannerState.status || "The plan below reflects the current inputs."}</p>
+      <p class="table-hint" id="plGenerateNote" role="status">${plannerNoteText()}</p>
     </div>
   `;
   if (!plan) return `<section class="panel" id="pl-step-plan">${head}${generateBar}</section>`;
@@ -213,13 +291,13 @@ function plannerOutputStep() {
                 <th scope="row">${c}<span class="pl-share" data-pl-share="${c}"></span></th>
                 ${plan.months.map((m) => {
                   const cell = plan.monthly_allocations.find((r) => r.month === m.key && r.channel === c);
-                  return `<td><input type="number" min="0" step="100" inputmode="numeric" value="${cell.budget_gbp}" data-pl-cell="${m.key}|${c}" aria-label="${c} budget, ${m.label}" /></td>`;
+                  return `<td><input type="number" min="0" step="100" inputmode="numeric" value="${cell.budget_gbp}" data-pl-cell="${m.key}|${c}" ${readonly} aria-label="${c} budget, ${m.label}" /></td>`;
                 }).join("")}
                 <td class="pl-total" data-pl-ctotal="${c}"></td>
               </tr>
             `).join("")}
             <tr class="pl-row-total"><th scope="row">Budget</th>${plan.months.map((m) => `<td data-pl-mtotal="${m.key}"></td>`).join("")}<td data-pl-gtotal="budget"></td></tr>
-            <tr class="pl-row-target"><th scope="row">Target visitors</th>${plan.months.map((m) => `<td><input type="number" min="0" step="100" inputmode="numeric" value="${plan.monthly_targets[m.key]}" data-pl-target="${m.key}" aria-label="Target visitors, ${m.label}" /></td>`).join("")}<td data-pl-gtotal="target"></td></tr>
+            <tr class="pl-row-target"><th scope="row">Target visitors</th>${plan.months.map((m) => `<td><input type="number" min="0" step="100" inputmode="numeric" value="${plan.monthly_targets[m.key]}" data-pl-target="${m.key}" ${readonly} aria-label="Target visitors, ${m.label}" /></td>`).join("")}<td data-pl-gtotal="target"></td></tr>
             <tr class="pl-row-kpi"><th scope="row">Forecast clicks</th>${plan.months.map((m) => `<td data-pl-mclicks="${m.key}"></td>`).join("")}<td data-pl-gtotal="clicks"></td></tr>
             <tr class="pl-row-kpi"><th scope="row">Cost per click</th>${plan.months.map((m) => `<td data-pl-mcpc="${m.key}"></td>`).join("")}<td data-pl-gtotal="cpc"></td></tr>
             <tr class="pl-row-kpi"><th scope="row">Clicks vs target</th>${plan.months.map((m) => `<td data-pl-mvs="${m.key}"></td>`).join("")}<td data-pl-gtotal="vs"></td></tr>
@@ -317,6 +395,12 @@ function plannerRerender() {
 function plannerGenerate() {
   const errors = plannerValidate(plannerState.inputs);
   if (Object.keys(errors).length || !canGeneratePlans()) return;
+  const losses = [
+    plannerState.basePlan?.edited ? "your edits to the base plan" : "",
+    plannerState.scenarios.length ? `${plannerState.scenarios.length} scenario${plannerState.scenarios.length > 1 ? "s" : ""}` : "",
+    plannerPlans().some((p) => state.currentApprovedVersionId === `plan_version_${p.plan_id}`) ? "the approved plan (its approval record is kept)" : "",
+  ].filter(Boolean);
+  if (losses.length && !window.confirm(`Regenerating replaces ${losses.join(", ")}. Continue?`)) return;
   plannerState.basePlan = peGeneratePlan(plannerState.inputs, plannerConfig(), plannerState.guardrails, plannerState.strategicIndex);
   const hadScenarios = plannerState.scenarios.length;
   plannerState.scenarios = [];
@@ -339,12 +423,13 @@ function plannerExportRows() {
 }
 
 function plannerExportCsv() {
-  const csv = plannerExportRows().map((row) => row.map((v) => (/[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : v)).join(",")).join("\n");
+  const rows = [...plannerExportRows(), [], ["Synthetic demo data: click curves, costs per click and default targets are planning assumptions."]];
+  const csv = rows.map((row) => row.map((v) => (/[",\n]/.test(String(v)) ? `"${String(v).replace(/"/g, '""')}"` : v)).join(",")).join("\n");
   const link = document.createElement("a");
   link.href = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
   link.download = "bp-base-plan.csv";
   link.click();
-  URL.revokeObjectURL(link.href);
+  setTimeout(() => URL.revokeObjectURL(link.href), 1000);
 }
 
 function plannerExportXlsx() {
@@ -390,36 +475,54 @@ function plannerAttachEvents() {
   });
   root.addEventListener("change", (event) => {
     const t = event.target;
-    if (t.dataset.plCell || t.dataset.plTarget) {
+    const plan = plannerState.basePlan;
+    if (t.dataset.plCell && plan) {
+      const [month, channel] = t.dataset.plCell.split("|");
+      t.value = plan.monthly_allocations.find((r) => r.month === month && r.channel === channel).budget_gbp; // show the clamped value
+      plannerSave();
+      return;
+    }
+    if (t.dataset.plTarget && plan) {
+      t.value = plan.monthly_targets[t.dataset.plTarget];
       plannerSave();
       return;
     }
     if (t.id === "plStart" || t.id === "plEnd" || t.id === "plBudget" || t.id === "plBrief") {
       const key = { plStart: "start", plEnd: "end", plBudget: "budget", plBrief: "brief" }[t.id];
+      const monthKeys = () => peMonths(plannerState.inputs.start, plannerState.inputs.end).map((m) => m.key).join();
+      const before = monthKeys();
       plannerState.inputs[key] = key === "budget" ? Number(t.value) : t.value;
       plannerState.status = null;
       plannerSave();
-      plannerRerender();
+      plannerRefreshInputs({ monthsChanged: monthKeys() !== before });
       return;
     }
     if (t.dataset.plGuard) {
-      const g = plannerState.guardrails[t.dataset.plGuard];
-      g[t.dataset.plGuardField] = Math.min(100, Math.max(0, Math.round(Number(t.value) || 0)));
+      const value = Math.min(100, Math.max(0, Math.round(Number(t.value) || 0)));
+      plannerState.guardrails[t.dataset.plGuard][t.dataset.plGuardField] = value;
+      t.value = value;
       plannerSave();
-      plannerRerender();
+      plannerRefreshInputs();
       return;
     }
     if (t.dataset.plSi) {
       plannerState.strategicIndex[t.dataset.plSi] = { ...(plannerState.strategicIndex[t.dataset.plSi] || {}), [t.dataset.plSiMonth]: t.value };
+      t.className = `pl-si-select si-${t.value}`;
       plannerSave();
-      plannerRerender();
+      plannerRefreshInputs();
       return;
     }
     if (t.dataset.plSiRow && t.value) {
+      const channel = t.dataset.plSiRow;
       const months = peMonths(plannerState.inputs.start, plannerState.inputs.end);
-      plannerState.strategicIndex[t.dataset.plSiRow] = Object.fromEntries(months.map((m) => [m.key, t.value]));
+      plannerState.strategicIndex[channel] = Object.fromEntries(months.map((m) => [m.key, t.value]));
+      root.querySelectorAll(`[data-pl-si="${CSS.escape(channel)}"]`).forEach((select) => {
+        select.value = t.value;
+        select.className = `pl-si-select si-${t.value}`;
+      });
+      t.value = "";
       plannerSave();
-      plannerRerender();
+      plannerRefreshInputs();
     }
   });
   root.addEventListener("click", (event) => {
