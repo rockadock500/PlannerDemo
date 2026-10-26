@@ -753,24 +753,24 @@ async function loadData() {
   };
 
   const [plans, brief, sources, briefPriorities, enrichedCalendar, bankHolidays, curatedSportsEvents, compositeSchoolHolidays, competitorCampaignSignals, liveWeatherWarnings, weather, monthlyRevisionData, agentConfig, agentTraces, logicEval, evidenceRules, dataSourceDictionary, syntheticFixture] = await Promise.all([
-    Promise.all(SCENARIOS.map((scenario) => load(`../data/generated_plan_${scenario}.json`))),
-    load("../data/annual_brief_2026.json"),
-    load("../data/source_registry.json"),
-    load("../data/brief_priorities_2026.json"),
-    load("../data/bp_enriched_calendar_2026.json"),
-    load("../data/uk_bank_holidays_2026.json"),
-    load("../data/uk_sports_events_2026.json"),
-    load("../data/uk_school_holidays_2026.json"),
-    loadOptional("../data/competitor_campaign_signals_2026.json", null),
+    Promise.all(SCENARIOS.map((scenario) => load(`./data/generated_plan_${scenario}.json`))),
+    load("./data/annual_brief_2026.json"),
+    load("./data/source_registry.json"),
+    load("./data/brief_priorities_2026.json"),
+    load("./data/bp_enriched_calendar_2026.json"),
+    load("./data/uk_bank_holidays_2026.json"),
+    load("./data/uk_sports_events_2026.json"),
+    load("./data/uk_school_holidays_2026.json"),
+    loadOptional("./data/competitor_campaign_signals_2026.json", null),
     Promise.resolve(null), // weather is not a bp Investment Comms planning input
-    load("../data/bp_weather_intelligence_2026.json"),
-    load("../data/monthly_revision_fixture_2026.json"),
-    load("../data/agent_logic_config.json"),
-    loadOptional("../data/agent_demo_traces.json", null),
-    loadOptional("../output/evals/logic_option_eval_latest.json", null),
-    load("../data/planning_evidence_rules_2026.json"),
-    load("../data/data_source_dictionary.json"),
-    load("../data/bp_synthetic_fixture_2026.json"),
+    load("./data/bp_weather_intelligence_2026.json"),
+    load("./data/monthly_revision_fixture_2026.json"),
+    load("./data/agent_logic_config.json"),
+    loadOptional("./data/agent_demo_traces.json", null),
+    Promise.resolve(null) /* no eval output in the static demo */,
+    load("./data/planning_evidence_rules_2026.json"),
+    load("./data/data_source_dictionary.json"),
+    load("./data/bp_synthetic_fixture_2026.json"),
   ]);
 
   state.plans = Object.fromEntries(SCENARIOS.map((scenario, index) => [scenario, plans[index]]));
@@ -907,20 +907,24 @@ function renderBrief() {
   }
 }
 
-async function fetchLiveSources() {
-  state.liveSourcesLoading = true;
+// Static demo: the source registry file stands in for the live ingestion API.
+// Not-connected sources are red, synthetic stand-ins amber, real inputs green.
+function sourceRegistryRag(status) {
+  if (status === "not_connected") return "red";
+  if (/synthetic|assumption|experimental|demo|proposal|blueprint/.test(status)) return "amber";
+  return "green";
+}
+
+function fetchLiveSources() {
   state.liveSourcesError = null;
+  state.liveSources = (state.sources?.sources || []).map((source) => ({
+    name: source.name,
+    filename: (source.path || source.name).split("/").pop(),
+    status: source.status,
+    rag: sourceRegistryRag(source.status),
+    last_updated: state.sources.created_on,
+  }));
   renderDataReadiness();
-  try {
-    const response = await fetch(`${LIVE_API_BASE}/api/sources`);
-    if (!response.ok) throw new Error(`${response.status} ${response.statusText}`);
-    state.liveSources = await response.json();
-  } catch (error) {
-    state.liveSourcesError = error.message;
-  } finally {
-    state.liveSourcesLoading = false;
-    renderDataReadiness();
-  }
 }
 
 function formatDate(isoString) {
@@ -2628,34 +2632,26 @@ function discardChatScenario(index) {
   renderPlanChat();
 }
 
-async function generateCalendarAiOverview() {
+// Static demo: the overview is assembled from the month's calendar items
+// rather than an AI call, and says so.
+function generateCalendarAiOverview() {
   const monthStr = state.calendarMonth;
   const monthLabel = new Date(`${monthStr}-01T00:00:00`).toLocaleString("en-GB", { month: "long", year: "numeric" });
   const items = calendarItemsForMonth(monthStr);
-  state.calendarGenerateStatus = "Generating AI overview…";
-  renderEventsCalendar();
-
-  try {
-    const response = await fetch(`${LIVE_API_BASE}/api/calendar/monthly-overview`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ month: monthStr, month_label: monthLabel, items }),
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.detail || `${response.status} ${response.statusText}`);
-    state.calendarOverviewAi[monthStr] = {
-      narrative: data.narrative,
-      source_ids: data.source_ids || [],
-      confidence: data.confidence,
-      confidence_reason: data.confidence_reason,
-      validated: data.validated,
-      generated_at: nowStamp(),
-    };
-    saveLocalJson("bp_calendar_overview_ai", state.calendarOverviewAi);
-    state.calendarGenerateStatus = null;
-  } catch (error) {
-    state.calendarGenerateStatus = `Could not generate AI overview (${error.message}).`;
-  }
+  const byCategory = items.reduce((acc, item) => ({ ...acc, [item.category]: [...(acc[item.category] || []), item] }), {});
+  const lead = items.filter((item) => item.detail).slice(0, 3);
+  const counts = Object.entries(byCategory).map(([category, list]) => `${list.length} ${category.replace(/_/g, " ")}`).join(", ");
+  state.calendarOverviewAi[monthStr] = {
+    narrative: items.length
+      ? `${monthLabel} has ${items.length} calendar items (${counts}). ${lead.map((item) => `${item.title}: ${item.detail}`).join(" ")}`
+      : `Nothing is scheduled in ${monthLabel} with the current filters.`,
+    source_ids: [...new Set(items.flatMap((item) => item.sourceIds || []))].slice(0, 6),
+    static: true,
+    confidence_reason: "Prototype: built from the calendar entries above, not by an AI model.",
+    generated_at: nowStamp(),
+  };
+  saveLocalJson("bp_calendar_overview_ai", state.calendarOverviewAi);
+  state.calendarGenerateStatus = null;
   renderEventsCalendar();
 }
 
@@ -2804,7 +2800,7 @@ function renderCalendarAiOverview(monthStr) {
   return `
     <div class="calendar-ai-overview">
       <div class="source-tags">
-        <span class="source-tag">${cached.confidence || "unknown"} confidence</span>
+        <span class="source-tag">${cached.static ? "Built from the calendar" : `${cached.confidence || "unknown"} confidence`}</span>
         ${cached.source_ids.map((id) => `<span class="source-tag" title="${sourceLabel(id)}">${id}</span>`).join("")}
       </div>
       <p>${cached.narrative}</p>
@@ -4507,14 +4503,16 @@ async function generateAnnualPlanFromUpload() {
   statusEl.className = "table-hint";
 
   try {
-    const response = await fetch(`${LIVE_API_BASE}/api/annual-plan/generate`, {
-      method: "POST",
-      body: formData,
-    });
-    const data = await response.json();
-    if (!response.ok) {
-      throw new Error(data.detail || `${response.status} ${response.statusText}`);
-    }
+    // Static demo: the planning engine isn't connected, so the stored Blended
+    // plan stands in for the generated one. formData shows what would be sent.
+    void formData;
+    const data = {
+      plan: state.plans.balanced_growth,
+      completeness: null,
+      brief_text_preview: briefTextInput.value.trim() || null,
+      brief_filename: briefInput.files[0]?.name || null,
+      stored: null,
+    };
 
     state.annualUploadedPlan = data.plan;
     state.annualCompleteness = data.completeness;
@@ -4527,7 +4525,7 @@ async function generateAnnualPlanFromUpload() {
     const briefNote = data.brief_filename
       ? ` + ${data.brief_filename}`
       : (data.brief_text_preview ? " + typed context" : "");
-    statusEl.textContent = `Generated from ${budgetInput.files[0].name}${briefNote}.`;
+    statusEl.textContent = `Prototype: showing the stored Blended plan for ${budgetInput.files[0].name}${briefNote}. The planning engine isn't connected in this demo.`;
     statusEl.className = "table-hint";
     renderAll();
   } catch (error) {
@@ -4563,13 +4561,13 @@ loadData()
     applyInitialRoute();
     renderAll();
     attachEvents();
-    fetchLiveSources(); // fire-and-forget: Data Readiness fills in once the API responds
+    fetchLiveSources();
   })
   .catch((error) => {
     document.body.innerHTML = `<main style="font-family: system-ui, sans-serif; padding: 32px; max-width: 760px;">
       <h1>Prototype failed to load</h1>
       <p><strong>${error.message}</strong></p>
-      <p>This usually means the page was opened directly as a file instead of served over <code>http://</code> - the demo fetches its data files (<code>../data/*.json</code>) and needs a local web server, not a <code>file://</code> URL.</p>
+      <p>This usually means the page was opened directly as a file instead of served over <code>http://</code> - the demo fetches its data files (<code>./data/*.json</code>) and needs a local web server, not a <code>file://</code> URL.</p>
       <p>Try the local URL provided for this demo, then hard refresh if needed.</p>
     </main>`;
   });

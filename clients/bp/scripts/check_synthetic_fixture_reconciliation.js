@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// Reconciliation check for data/admiral_synthetic_fixture_2026.json.
+// Reconciliation check for demo/data/bp_synthetic_fixture_2026.json.
 //
 // Confirms:
 //   1. cost per new policy sale = annual media budget / forecast new policy sales
@@ -16,7 +16,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const fixturePath = path.join(__dirname, "..", "data", "admiral_synthetic_fixture_2026.json");
+const fixturePath = path.join(__dirname, "..", "demo", "data", "bp_synthetic_fixture_2026.json");
 const f = JSON.parse(fs.readFileSync(fixturePath, "utf8"));
 
 let failed = false;
