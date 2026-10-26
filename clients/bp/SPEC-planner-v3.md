@@ -41,7 +41,7 @@ Campaign Planning · Scenarios · Curves · Planner Chat · Events Calendar · A
 - **Cells**: channel weight × Strategic Index multiplier for that month, fitted so months and channels both hit
   their totals (iterative proportional fitting), rounded to whole pounds with exact totals.
 - **Forecast clicks** per cell from a per-channel diminishing-returns curve: clicks = (ref ÷ CPC₀) × (spend ÷ ref)^b.
-- **Target visitors** default to month budget ÷ £1.30 target cost per visitor; editable.
+- **Target visitors** default to month budget ÷ £1.66 target cost per visitor (recalibrated for the Q4 flight; was £1.30 for Jan–Dec); editable.
 - A click counts as one visitor when comparing forecast with target.
 
 ## Scenarios (restored)

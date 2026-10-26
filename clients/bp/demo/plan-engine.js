@@ -17,7 +17,8 @@ const PE_CURVES = {
   "Online Video": { cpc0: 1.6, ref: 4000, b: 0.85 },
   "Meta": { cpc0: 0.7, ref: 2500, b: 0.75 },
 };
-const PE_TARGET_COST_PER_VISITOR = 1.3;
+// Default target cost per visitor, calibrated so the default Q4 2026 £200k plan lands just above target overall.
+const PE_TARGET_COST_PER_VISITOR = 1.66;
 const PE_MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 // Stored scenarios reshape a base plan. reach / performance multiply reach channels

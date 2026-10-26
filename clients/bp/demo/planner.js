@@ -38,8 +38,9 @@ function plannerDefaultGuardrails() {
   return Object.fromEntries(state.evidenceRules.channel_rules.map((r) => [r.channel, { min: r.strategic_floor_pct, max: 100 }]));
 }
 
-// Bumped when saved plans should be replaced by the defaults (5: default flight moved to 1 Oct–31 Dec 2026).
-const PLANNER_VERSION = 5;
+// Bumped when saved plans should be replaced by the defaults (5: default flight moved to 1 Oct–31 Dec 2026;
+// 6: default targets recalibrated to £1.66 per visitor).
+const PLANNER_VERSION = 6;
 
 function plannerSave() {
   const { status, ...rest } = plannerState;
