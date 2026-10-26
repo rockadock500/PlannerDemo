@@ -12,6 +12,9 @@
     <link rel="stylesheet" href="./styles.css" />
     <script defer src="https://unpkg.com/lucide@1.61.0/dist/umd/lucide.min.js"></script>
     <script defer src="https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script defer src="./plan-engine.js"></script>
+    <script defer src="./planner.js"></script>
+    <script defer src="./scenario-centre.js"></script>
     <script defer src="./scenarios.js"></script>
     <script defer src="./chat.js"></script>
     <script defer src="./app.js"></script>
@@ -31,18 +34,22 @@
           <nav class="nav-list" aria-label="Main">
             <button class="nav-item active" type="button" data-view="annual">Campaign Planning</button>
             <button class="nav-item" type="button" data-view="scenarios">Scenarios</button>
-            <button class="nav-item" type="button" data-view="chat">Plan Chat</button>
+            <button class="nav-item" type="button" data-view="curves">Curves</button>
+            <button class="nav-item" type="button" data-view="chat">Planner Chat</button>
             <button class="nav-item" type="button" data-view="events">Events Calendar</button>
             <button class="nav-item" type="button" data-view="approval">Approval</button>
+            <button class="nav-item" type="button" data-view="data">Data Readiness</button>
             <button class="nav-item" type="button" data-view="admin">Admin</button>
           </nav>
         </div>
         <nav class="mobile-nav" id="mobileNav" aria-label="Main menu" hidden>
           <button class="nav-item active" type="button" data-view="annual">Campaign Planning</button>
           <button class="nav-item" type="button" data-view="scenarios">Scenarios</button>
-          <button class="nav-item" type="button" data-view="chat">Plan Chat</button>
+          <button class="nav-item" type="button" data-view="curves">Curves</button>
+          <button class="nav-item" type="button" data-view="chat">Planner Chat</button>
           <button class="nav-item" type="button" data-view="events">Events Calendar</button>
           <button class="nav-item" type="button" data-view="approval">Approval</button>
+          <button class="nav-item" type="button" data-view="data">Data Readiness</button>
           <button class="nav-item" type="button" data-view="admin">Admin</button>
         </nav>
       </header>
@@ -55,138 +62,7 @@
 
 
         <section class="view active" id="view-annual">
-          <section class="panel brief-panel">
-            <div class="section-heading">
-              <div>
-                <p class="eyebrow">Step 1</p>
-                <h2>Brief &amp; Budget Intake</h2>
-              </div>
-              <span class="status-pill warning" id="briefStatusPill">Awaiting upload</span>
-            </div>
-
-            <p class="table-hint">Both a budget file <strong>and</strong> a strategy source are required to generate a plan - upload the annual budget file below, plus either an annual brief file or typed context. This applies even if your brief document already contains the budget figures; the budget still needs to be uploaded separately so the engine can read it as structured data.</p>
-
-            <div class="grid two-column" id="uploadControls">
-              <div>
-                <label class="field-label" for="budgetFileInput">Annual budget (.csv or .xlsx), required</label>
-                <input type="file" id="budgetFileInput" accept=".csv,.xlsx" />
-
-                <label class="field-label" for="briefFileInput">Annual brief (.docx, .pdf or .txt), strategy - one of brief file or context required</label>
-                <input type="file" id="briefFileInput" accept=".docx,.pdf,.txt" />
-
-                <div class="assumption-box" id="viewerRestrictedNotice" style="display:none;">
-                  <strong>Viewer access</strong>
-                  <p class="table-hint">Viewers can review the approved plan and ask questions in Plan Chat, but cannot upload a budget or generate a new plan. Switch to an Admin or User role to do that.</p>
-                </div>
-
-                <ul class="check-list" id="briefChecks"></ul>
-
-                <div class="assumption-box" id="briefContextBox" style="display:none;">
-                  <strong>Uploaded brief context</strong>
-                  <p class="table-hint" id="briefTextPreview"></p>
-                </div>
-              </div>
-              <div class="context-column">
-                <label class="field-label" for="briefTextContext">Additional context (free text), strategy - one of brief file or context required</label>
-                <textarea id="briefTextContext" placeholder="e.g. strategic priorities, guardrails, or notes not captured in an uploaded brief document"></textarea>
-              </div>
-            </div>
-          </section>
-
-          <section class="panel scenario-panel">
-            <div class="section-heading">
-              <div>
-                <p class="eyebrow">Step 2</p>
-                <h2>Channel Investment Guardrails</h2>
-              </div>
-              <button class="secondary-button" id="resetChannelGuardrails" type="button">Reset guardrails</button>
-            </div>
-            <p class="table-hint">Set a minimum and maximum share of budget each channel is allowed for this run, regardless of what the model would otherwise allocate.</p>
-            <div id="channelGuardrails" class="admin-readiness"></div>
-          </section>
-
-          <section class="panel">
-            <div class="section-heading">
-              <div>
-                <p class="eyebrow">Step 3</p>
-                <h2>Data Readiness</h2>
-              </div>
-              <button class="icon-button" id="refreshDataReadiness" type="button" title="Refresh">
-                <i data-lucide="refresh-cw"></i>
-              </button>
-            </div>
-            <div id="dataReadinessTableWrap"></div>
-          </section>
-
-          <section class="panel plan-panel">
-            <div class="section-heading">
-              <div>
-                <p class="eyebrow">Step 4</p>
-                <h2>Base Plan - Budget By Channel By Month</h2>
-              </div>
-              <div class="view-toggle" aria-label="Table display">
-                <button class="toggle active" type="button" data-table-mode="budget">Budget</button>
-                <button class="toggle" type="button" data-table-mode="cost_per_policy">CPE</button>
-                <button class="toggle" type="button" data-table-mode="share">Share %</button>
-                <button class="toggle" type="button" data-table-mode="confidence">Confidence</button>
-              </div>
-              <button class="secondary-button" id="exportAnnualPlan" type="button">Export plan (CSV)</button>
-              <button class="secondary-button" id="downloadPlanExcel" type="button">Download plan (Excel)</button>
-            </div>
-            <div id="generateControls">
-              <button class="primary-button" id="generateAnnualPlan" type="button">Generate base plan</button>
-              <p class="table-hint warning-text" id="generateGateMessage"></p>
-              <p class="table-hint" id="generateStatus"></p>
-            </div>
-            <section class="status-strip" aria-label="Current plan status">
-              <div>
-                <span>Total Budget</span>
-                <strong id="totalBudget">-</strong>
-              </div>
-              <div>
-                <span>Forecast GBE Engagements</span>
-                <strong id="totalPolicySales">-</strong>
-              </div>
-              <div>
-                <span>Forecast CPE</span>
-                <strong id="forecastCostPerPolicy">-</strong>
-              </div>
-              <div>
-                <span>Budget Check</span>
-                <strong id="budgetCheck">-</strong>
-              </div>
-              <div>
-                <span>Brief &amp; Compliance Check</span>
-                <strong id="briefTest">-</strong>
-              </div>
-            </section>
-            <div class="table-wrap">
-              <table class="plan-table" id="planTable"></table>
-            </div>
-            <p class="table-hint">Select a cell to inspect evidence, rationale and questions raised. Rows are still shown per the underlying planning channel; grouped totals are in the summary below.</p>
-          </section>
-
-          <section class="panel evidence-panel">
-            <div class="section-heading compact">
-              <h2>Evidence Inspector</h2>
-              <span id="selectedCellLabel" class="muted">No cell selected</span>
-            </div>
-            <div id="evidenceInspector" class="empty-state">
-              Select a month/channel cell to see the rationale.
-            </div>
-          </section>
-
-          <section class="panel">
-            <div class="section-heading compact">
-              <h2>Annual Channel Summary</h2>
-              <span class="muted">Grouped to v1 channel granularity</span>
-              <div class="view-toggle" id="summaryChartToggle" aria-label="Chart display">
-                <button class="toggle active" type="button" data-summary-chart-mode="monthly">Monthly bars</button>
-                <button class="toggle" type="button" data-summary-chart-mode="bubble">Bubble</button>
-              </div>
-            </div>
-            <div id="channelSummary" class="summary-list"></div>
-          </section>
+          <div id="campaignPlanning"></div>
         </section>
 
         <section class="view" id="view-logic">
@@ -203,11 +79,15 @@
         </section>
 
         <section class="view" id="view-scenarios">
+          <div id="scenarioCentre"></div>
+        </section>
+
+        <section class="view" id="view-curves">
           <div id="scenarioStudio"></div>
         </section>
 
         <section class="view" id="view-chat">
-          <section class="panel chat-panel" id="planChat" aria-label="Plan Chat"></section>
+          <section class="panel chat-panel" id="planChat" aria-label="Planner Chat"></section>
         </section>
 
         <section class="view" id="view-events">
@@ -223,6 +103,21 @@
           </section>
         </section>
 
+
+        <section class="view" id="view-data">
+          <section class="panel">
+            <div class="section-heading">
+              <div>
+                <p class="eyebrow">Sources</p>
+                <h2>Data readiness</h2>
+              </div>
+              <button class="icon-button" id="refreshDataReadiness" type="button" title="Refresh">
+                <i data-lucide="refresh-cw"></i>
+              </button>
+            </div>
+            <div id="dataReadinessTableWrap"></div>
+          </section>
+        </section>
 
         <section class="view" id="view-admin">
           <section class="panel">

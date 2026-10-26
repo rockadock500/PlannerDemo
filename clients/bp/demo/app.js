@@ -724,77 +724,13 @@ function escapeHtml(text) {
   return String(text).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]);
 }
 
+// The stored Blended demo plan; still read by the workshop-only monthly revision and briefing code.
 function currentPlan() {
-  return state.annualUploadedPlan || state.plans[state.scenario];
+  return state.plans[state.scenario];
 }
 
-function renderStatus() {
-  const plan = currentPlan();
-  const policySales = plan.channel_totals.reduce((sum, row) => sum + row.forecast_new_policy_sales, 0);
-  const briefPassed = plan.brief_test?.clears_policy_sales_target && plan.brief_test?.clears_brief_cost_per_policy;
-  const agentLive = state.agentTraces?.traces?.some((trace) => trace.mode === "live_llm");
-  document.querySelector("#totalBudget").textContent = money.format(plan.total_budget_gbp);
-  document.querySelector("#totalPolicySales").textContent = number.format(policySales);
-  document.querySelector("#forecastCostPerPolicy").textContent = `${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}`;
-  document.querySelector("#budgetCheck").textContent = plan.qa.budget_balanced && plan.qa.months_balanced ? "Balanced" : "Needs review";
-  document.querySelector("#briefTest").textContent = state.demoMode === "agent" ? (agentLive ? "Live agent" : "Agent fallback") : (briefPassed ? "Pass" : "Needs work");
-}
 
-function briefInputsStatus() {
-  const hasBudget = document.querySelector("#budgetFileInput")?.files.length > 0;
-  const hasBriefFile = document.querySelector("#briefFileInput")?.files.length > 0;
-  const hasBriefText = document.querySelector("#briefTextContext")?.value.trim().length > 0;
-  return { hasBudget, hasStrategy: hasBriefFile || hasBriefText };
-}
 
-function renderBrief() {
-  const allowed = canGeneratePlans();
-  document.querySelector("#uploadControls").style.display = allowed ? "" : "none";
-  document.querySelector("#viewerRestrictedNotice").style.display = allowed ? "none" : "";
-  const generateControls = document.querySelector("#generateControls");
-  if (generateControls) generateControls.style.display = allowed ? "" : "none";
-
-  // The pill is the single status indicator for Step 1 - no separate
-  // instructional text underneath it. It's live (checks the actual file
-  // inputs/textarea), not just the last generation's reported completeness,
-  // and only reads "Complete" once both the budget and a strategy (brief
-  // file or typed context) are present - budget alone is enough to
-  // generate a plan, but not enough for Step 1 to read as done.
-  const { hasBudget, hasStrategy } = briefInputsStatus();
-  const providedCount = (hasBudget ? 1 : 0) + (hasStrategy ? 1 : 0);
-  const pill = document.querySelector("#briefStatusPill");
-  if (providedCount === 2) {
-    pill.textContent = "Complete";
-    pill.className = "status-pill good";
-  } else if (providedCount === 1) {
-    pill.textContent = "Partial";
-    pill.className = "status-pill warning";
-  } else {
-    pill.textContent = "Awaiting upload";
-    pill.className = "status-pill warning";
-  }
-
-  const checks = [
-    ["Budget by month", hasBudget, "required"],
-    ["Strategy (brief file or typed context)", hasStrategy, "required"],
-  ];
-  document.querySelector("#briefChecks").innerHTML = checks
-    .map(([label, ok, kind]) => {
-      const statusText = ok === null ? "known once generated" : (ok ? "provided" : kind);
-      const dotClass = ok === null ? "unknown" : (ok ? "" : (kind === "required" ? "warning" : "unknown"));
-      return `<li><span class="check-dot ${dotClass}"></span>${label} <span class="muted">(${statusText})</span></li>`;
-    })
-    .join("");
-
-  const contextBox = document.querySelector("#briefContextBox");
-  if (state.annualBriefPreview) {
-    contextBox.style.display = "";
-    const prefix = state.annualBriefFilename ? `${state.annualBriefFilename}: ` : "Typed context: ";
-    document.querySelector("#briefTextPreview").textContent = `${prefix}${state.annualBriefPreview}`;
-  } else {
-    contextBox.style.display = "none";
-  }
-}
 
 // Static demo: the source registry file stands in for the live ingestion API.
 // Green only for client-supplied or official data; synthetic, vendor,
@@ -961,12 +897,6 @@ function renderDataReadiness() {
   }).join("");
 }
 
-function tableCellValue(row, share = 1) {
-  if (state.tableMode === "cost_per_policy") return `${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}`;
-  if (state.tableMode === "share") return `${Math.round(row.budget_share_pct * share * 100) / 100}%`;
-  if (state.tableMode === "confidence") return "";
-  return money.format(row.budget_gbp * share);
-}
 
 function tableChannelGroups() {
   // Same category -> sub-category grouping as the Annual Channel Summary
@@ -981,164 +911,9 @@ function tableChannelGroups() {
   })).filter((group) => group.rows.length);
 }
 
-function renderTable() {
-  const plan = currentPlan();
-  const labelAndMonthsColumnCount = MONTHS.length + 1;
-  const channelTotalMap = Object.fromEntries(plan.channel_totals.map((row) => [row.channel, row]));
 
-  const rows = tableChannelGroups().map((group) => {
-    const channelRows = group.rows.map((leafRow) => {
-      const channel = leafRow.engineChannel;
-      const share = leafRow.share;
-      const cells = MONTHS.map((month) => {
-        const row = plan.monthly_allocations.find((item) => item.month === month && item.channel === channel);
-        const selected = state.selected?.month === month && state.selected?.channel === channel;
-        const confidenceClass = state.tableMode === "confidence" ? `confidence-${row.confidence.replace(" ", "-")}` : "";
-        const confidenceTitle = state.tableMode === "confidence" ? ` title="Confidence: ${row.confidence}"` : "";
-        return `<td class="${selected ? "selected" : ""}">
-          <button class="${confidenceClass}" type="button" data-month="${month}" data-channel="${channel}"${confidenceTitle}>
-            ${tableCellValue(row, share)}
-          </button>
-        </td>`;
-      }).join("");
-      const channelTotal = channelTotalMap[channel];
-      const rowLabel = share < 1 ? `${leafRow.label} <span class="table-hint">(50% of ${channel})</span>` : leafRow.label;
-      return `<tr class="sub-category-row"><td title="${channel}">${rowLabel}</td>${cells}<td class="total-cell">${money.format(channelTotal.budget_gbp * share)}</td></tr>`;
-    }).join("");
 
-    const groupTotal = group.rows.reduce((sum, leafRow) => sum + channelTotalMap[leafRow.engineChannel].budget_gbp * leafRow.share, 0);
-    return `<tr class="category-row"><td colspan="${labelAndMonthsColumnCount}">${group.parent}</td><td class="total-cell category-total">${money.format(groupTotal)}</td></tr>${channelRows}`;
-  }).join("");
 
-  // Answers "if I'm giving you this budget, how are you optimising that by
-  // month?" directly in the table, rather than only as a single annual
-  // figure elsewhere on the page - always shows budget £ regardless of
-  // the current Budget/CPA/Confidence/Share % toggle, since
-  // summing a cost-per-engagement figure or a confidence label across channels
-  // isn't meaningful.
-  const monthTotals = MONTHS.map((month) =>
-    plan.monthly_allocations.filter((item) => item.month === month).reduce((sum, item) => sum + item.budget_gbp, 0)
-  );
-
-  document.querySelector("#planTable").innerHTML = `
-    <thead>
-      <tr>
-        <th>Category / Channel</th>
-        ${MONTHS.map((month) => `<th>${formatMonth(month)}</th>`).join("")}
-        <th>Total</th>
-      </tr>
-    </thead>
-    <tbody>${rows}</tbody>
-    <tfoot>
-      <tr class="table-total-row">
-        <td>Total (Budget)</td>
-        ${monthTotals.map((total) => `<td class="total-cell">${money.format(total)}</td>`).join("")}
-        <td class="total-cell grand-total">${money.format(plan.total_budget_gbp)}</td>
-      </tr>
-    </tfoot>
-  `;
-}
-
-function groupChannelTotals(channelTotals) {
-  const byChannel = Object.fromEntries(channelTotals.map((row) => [row.channel, row]));
-  // Groups with no backing engine channel yet still appear, at £0, rather
-  // than being silently dropped - the confirmed channel hierarchy is shown
-  // in full even where the engine has no data behind a group yet. Where a
-  // row's engine channel is shared with another group's row (see
-  // CHANNEL_GROUPS comment), `share` scales its contribution so the two
-  // groups split that channel's real total rather than double-counting it.
-  const groups = CHANNEL_GROUPS.map((group) => {
-    const members = group.rows
-      .filter((row) => row.engineChannel && byChannel[row.engineChannel])
-      .map((row) => {
-        const source = byChannel[row.engineChannel];
-        return {
-          channel: row.engineChannel,
-          label: row.label,
-          share: row.share,
-          budget_gbp: source.budget_gbp * row.share,
-          forecast_new_policy_sales: source.forecast_new_policy_sales * row.share,
-        };
-      });
-    return {
-      parent: group.parent,
-      note: group.note,
-      budget_gbp: members.reduce((sum, m) => sum + m.budget_gbp, 0),
-      forecast_new_policy_sales: members.reduce((sum, m) => sum + m.forecast_new_policy_sales, 0),
-      members,
-    };
-  });
-  const unmapped = channelTotals.filter((row) => !MAPPED_SOURCE_CHANNELS.has(row.channel));
-  return { groups, unmapped };
-}
-
-function summaryChartRows(channelTotals) {
-  const { groups, unmapped } = groupChannelTotals(channelTotals);
-  const rows = groups.map((g) => ({ label: g.parent, spend: g.budget_gbp, policySales: g.forecast_new_policy_sales, note: g.note }));
-  unmapped.forEach((u) => rows.push({
-    label: u.channel,
-    spend: u.budget_gbp,
-    policySales: u.forecast_new_policy_sales,
-    note: "Unmapped: not yet placed in the v1 channel granularity, flagged rather than dropped.",
-    unmapped: true,
-  }));
-  return rows.sort((a, b) => b.spend - a.spend);
-}
-
-function renderBubbleChart(plan) {
-  const rows = summaryChartRows(plan.channel_totals);
-
-  const labelWidth = 190;
-  const rightPadding = 56;
-  const chartWidth = 700;
-  const viewBoxWidth = labelWidth + chartWidth + rightPadding;
-  const rowHeight = 56;
-  const topPadding = 14;
-  const axisHeight = 30;
-  const viewBoxHeight = topPadding + rows.length * rowHeight + axisHeight;
-
-  const maxSpend = Math.max(...rows.map((r) => r.spend)) * 1.1;
-  const maxAcq = Math.max(...rows.map((r) => r.policySales));
-  const minR = 8;
-  const maxR = 26;
-
-  const xScale = (value) => labelWidth + (value / maxSpend) * chartWidth;
-  const rScale = (value) => minR + Math.sqrt(value / maxAcq) * (maxR - minR);
-
-  const axisY = topPadding + rows.length * rowHeight + 2;
-  const tickValues = Array.from({ length: 5 }, (_, i) => (maxSpend * i) / 4);
-
-  const rowEls = rows.map((row, i) => {
-    const y = topPadding + i * rowHeight + rowHeight / 2;
-    const x = xScale(row.spend);
-    const r = rScale(row.policySales);
-    const tooltip = `${row.label}: ${money.format(row.spend)} annual spend, ${number.format(row.policySales)} forecast GBE engagements.${row.note ? " " + row.note : ""}`;
-    return `
-      <g>
-        <line x1="${labelWidth}" y1="${y}" x2="${viewBoxWidth - rightPadding}" y2="${y}" class="bubble-guide" />
-        <text x="${labelWidth - 12}" y="${y}" class="bubble-label" text-anchor="end" dominant-baseline="middle">${row.label}</text>
-        <circle cx="${x}" cy="${y}" r="${r}" class="bubble-dot${row.unmapped ? " unmapped" : ""}"><title>${tooltip}</title></circle>
-        <text x="${x + r + 8}" y="${y}" class="bubble-value" dominant-baseline="middle">${number.format(row.policySales)}</text>
-      </g>
-    `;
-  }).join("");
-
-  const axisEls = tickValues.map((tick) => {
-    const x = xScale(tick);
-    return `
-      <line x1="${x}" y1="${topPadding - 6}" x2="${x}" y2="${axisY}" class="bubble-axis-grid" />
-      <text x="${x}" y="${axisY + 16}" class="bubble-axis-label" text-anchor="middle">${money.format(tick)}</text>
-    `;
-  }).join("");
-
-  return `
-    <p class="table-hint">Bubble position (left to right) shows annual spend. Bubble size shows forecast GBE engagements. Hover a bubble for exact figures.</p>
-    <svg viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}" class="bubble-chart" role="img" aria-label="Annual spend and forecast GBE engagements by channel">
-      ${rowEls}
-      ${axisEls}
-    </svg>
-  `;
-}
 
 // Colour-per-group palette for the monthly stacked bar, reusing the brand
 // palette from styles.css :root so this chart matches the rest of the app;
@@ -1147,98 +922,8 @@ function renderBubbleChart(plan) {
 const SUMMARY_CHART_COLORS = ["#e30027", "#005fb8", "#49a300", "#f7941d", "#9e001b", "#6b5ca5", "#f9b000", "#1f8a8a"];
 const SUMMARY_CHART_UNMAPPED_COLOR = "#8a94a6";
 
-function monthlyStackedBarSeries(plan) {
-  const { groups, unmapped } = groupChannelTotals(plan.channel_totals);
-  const series = groups.map((g, i) => ({
-    label: g.parent,
-    rows: CHANNEL_GROUPS.find((cg) => cg.parent === g.parent).rows.filter((row) => row.engineChannel),
-    color: SUMMARY_CHART_COLORS[i % SUMMARY_CHART_COLORS.length],
-  }));
-  if (unmapped.length) {
-    series.push({ label: "Unmapped", rows: unmapped.map((u) => ({ engineChannel: u.channel, share: 1 })), color: SUMMARY_CHART_UNMAPPED_COLOR });
-  }
-  return series;
-}
 
-function renderMonthlyStackedBar(plan) {
-  const series = monthlyStackedBarSeries(plan);
-  const monthData = MONTHS.map((month) => {
-    // A row's `share` scales its contribution when its engine channel is
-    // split across two groups (see CHANNEL_GROUPS comment) - without this,
-    // a split channel's monthly budget would be double-counted across
-    // both groups' bars instead of split 50/50 between them.
-    const values = series.map((s) =>
-      s.rows.reduce((sum, row) => {
-        const allocation = plan.monthly_allocations.find((item) => item.month === month && item.channel === row.engineChannel);
-        return sum + (allocation ? allocation.budget_gbp * row.share : 0);
-      }, 0)
-    );
-    return { month, values, total: values.reduce((a, b) => a + b, 0) };
-  });
 
-  const leftMargin = 64;
-  const rightPadding = 16;
-  const topPadding = 16;
-  const chartHeight = 260;
-  const axisHeight = 30;
-  const viewBoxWidth = 900;
-  const viewBoxHeight = topPadding + chartHeight + axisHeight;
-  const plotWidth = viewBoxWidth - leftMargin - rightPadding;
-  const slot = plotWidth / MONTHS.length;
-  const barWidth = slot * 0.62;
-
-  const maxTotal = Math.max(...monthData.map((m) => m.total)) * 1.08 || 1;
-  const yScale = (value) => (value / maxTotal) * chartHeight;
-
-  const tickValues = Array.from({ length: 5 }, (_, i) => (maxTotal * i) / 4);
-  const axisEls = tickValues.map((tick) => {
-    const y = topPadding + chartHeight - yScale(tick);
-    return `
-      <line x1="${leftMargin}" y1="${y}" x2="${viewBoxWidth - rightPadding}" y2="${y}" class="bar-axis-grid" />
-      <text x="${leftMargin - 8}" y="${y}" class="bar-axis-label" text-anchor="end" dominant-baseline="middle">${money.format(tick)}</text>
-    `;
-  }).join("");
-
-  const barEls = monthData.map((m, i) => {
-    const x = leftMargin + i * slot + (slot - barWidth) / 2;
-    let cursorY = topPadding + chartHeight;
-    const segments = m.values.map((value, si) => {
-      if (!value) return "";
-      const h = yScale(value);
-      cursorY -= h;
-      const pct = m.total ? Math.round((value / m.total) * 100) : 0;
-      const tooltip = `${series[si].label}, ${formatMonth(m.month)}: ${money.format(value)} (${pct}% of that month's budget)`;
-      return `<rect x="${x}" y="${cursorY}" width="${barWidth}" height="${h}" fill="${series[si].color}"><title>${tooltip}</title></rect>`;
-    }).join("");
-    return `
-      <g>
-        ${segments}
-        <text x="${x + barWidth / 2}" y="${topPadding + chartHeight + 18}" class="bar-axis-label" text-anchor="middle">${formatMonth(m.month)}</text>
-      </g>
-    `;
-  }).join("");
-
-  const legendEls = series.map((s) => `<span><i style="background:${s.color}"></i>${s.label}</span>`).join("");
-
-  return `
-    <p class="table-hint">Each bar is one month's total budget, split by channel group. Hover a segment for exact spend and share.</p>
-    <svg viewBox="0 0 ${viewBoxWidth} ${viewBoxHeight}" class="stacked-bar-chart" role="img" aria-label="Monthly budget split by channel group">
-      ${axisEls}
-      ${barEls}
-    </svg>
-    <div class="bar-legend">${legendEls}</div>
-  `;
-}
-
-function renderSummary() {
-  const plan = currentPlan();
-  document.querySelector("#channelSummary").innerHTML = state.summaryChartMode === "monthly"
-    ? renderMonthlyStackedBar(plan)
-    : renderBubbleChart(plan);
-  document.querySelectorAll("#summaryChartToggle .toggle").forEach((button) => {
-    button.classList.toggle("active", button.dataset.summaryChartMode === state.summaryChartMode);
-  });
-}
 
 // Plain-English glossary for the response-curve-provenance fields, since
 // "MMM point"/"external shape prior"/"soft saturation" etc. are internal
@@ -1253,10 +938,6 @@ const CURVE_PROVENANCE_GLOSSARY = {
   "Carryover prior": "How many weeks a burst of spend keeps having an effect (adstock/carryover), before it fades out.",
 };
 
-function curveProvenanceField(label, value) {
-  const help = CURVE_PROVENANCE_GLOSSARY[label] || "";
-  return `<div><dt title="${help}">${label}</dt><dd>${value}</dd></div>`;
-}
 
 // If a channel is one of the three split 50/50 across two groups in the
 // plan table (see CHANNEL_GROUPS comment), the Evidence Inspector shows the
@@ -1269,65 +950,6 @@ function splitChannelNoteHtml(channel) {
     : "";
 }
 
-function renderEvidence() {
-  const target = state.selected;
-  const inspector = document.querySelector("#evidenceInspector");
-  const label = document.querySelector("#selectedCellLabel");
-
-  if (!target) {
-    label.textContent = "No cell selected";
-    inspector.className = "empty-state";
-    inspector.textContent = "Select a month/channel cell to see the rationale.";
-    return;
-  }
-
-  const plan = currentPlan();
-  const row = plan.monthly_allocations.find((item) => item.month === target.month && item.channel === target.channel);
-  const channelTotal = plan.channel_totals.find((item) => item.channel === target.channel);
-  const curve = row.response_curve;
-  label.textContent = `${formatMonth(target.month)} / ${target.channel}`;
-  inspector.className = "evidence-block";
-  inspector.innerHTML = `
-    ${splitChannelNoteHtml(target.channel)}
-    <div class="evidence-metrics">
-      <div class="metric"><span>Monthly Budget</span><strong>${money.format(row.budget_gbp)}</strong></div>
-      <div class="metric"><span>Annual Channel Budget</span><strong>${channelTotal ? money.format(channelTotal.budget_gbp) : "Not available"}</strong></div>
-      <div class="metric"><span>% of Monthly Spend</span><strong>${row.budget_share_pct}%</strong></div>
-      <div class="metric"><span>Forecast CPE</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
-      <div class="metric"><span>Confidence</span><strong class="confidence-${row.confidence.replace(" ", "-")}">${row.confidence}</strong></div>
-    </div>
-    <div>
-      <strong>Rationale</strong>
-      <p class="table-hint">${row.rationale}</p>
-    </div>
-    ${curve ? `
-      <div class="curve-provenance">
-        <div class="curve-heading">
-          <strong>Response curve provenance</strong>
-          <span class="source-tag">${curve.confidence}</span>
-        </div>
-        <p class="table-hint">Where this channel's diminishing-returns curve came from, and how confident we are in it. Hover any label below for a plain-English explanation.</p>
-        <dl>
-          ${curveProvenanceField("Type", curve.curve_type)}
-          ${curveProvenanceField("Anchor", curve.classification)}
-          ${curveProvenanceField("MMM point", curve.mmm_anchor)}
-          ${curveProvenanceField("External shape", curve.external_shape_prior)}
-          ${curveProvenanceField("Conflict status", `${curve.agree_conflict}: ${curve.conflict_note}`)}
-          ${curveProvenanceField("Soft saturation", `${money.format(curve.soft_saturation_threshold_monthly_gbp)} monthly`)}
-          ${curveProvenanceField("Carryover prior", curve.adstock_half_life_weeks)}
-        </dl>
-      </div>
-    ` : ""}
-    <div>
-      <strong>Brief hooks</strong>
-      <div class="source-tags">${(row.brief_hooks || []).map((hook) => `<span class="source-tag">${hook}</span>`).join("")}</div>
-    </div>
-    <div>
-      <strong>Sources</strong>
-      <div class="source-tags">${row.source_ids.map((id) => `<span class="source-tag" title="${sourceLabel(id)}">${id}</span>`).join("")}</div>
-    </div>
-  `;
-}
 
 function renderLogicChallenges() {
   const logicEval = state.logicEval;
@@ -2067,126 +1689,8 @@ function renderBriefingForms() {
   document.querySelector("#briefingForms").innerHTML = `${modeToggle}<div class="briefing-grid">${cards}</div>`;
 }
 
-function channelGuardrailsFeasible() {
-  const channels = state.evidenceRules.channel_rules;
-  const totalMaxPct = channels.reduce(
-    (sum, rule) => sum + ((state.channelGuardrailOverrides[rule.channel] || {}).max_pct ?? 100),
-    0
-  );
-  return totalMaxPct >= 100;
-}
 
-function renderChannelGuardrails() {
-  const channels = state.evidenceRules.channel_rules;
-  const maxPcts = channels.map((rule) => (state.channelGuardrailOverrides[rule.channel] || {}).max_pct ?? 100);
-  const totalMaxPct = maxPcts.reduce((sum, value) => sum + value, 0);
-  const warning = totalMaxPct < 100
-    ? `<div class="guardrail-warning">
-        <strong>Ceilings sum to ${totalMaxPct.toFixed(1)}%, below 100%.</strong>
-        <p>The full budget can't be allocated without breaching at least one channel's ceiling. Raise one or more Max % values so they sum to at least 100%.</p>
-      </div>`
-    : "";
 
-  // Two-level hierarchy per the confirmed channel breakdown: a group row
-  // (the parent channel, e.g. AV) with its leaf channels beneath. Real
-  // min/max/strategic-index inputs only exist for leaves the engine
-  // actually allocates budget to (row.engineChannel) - the enforced
-  // guardrail today is still at that old-channel granularity, so a leaf
-  // with no engineChannel (e.g. Print) is shown disabled at 0%, not as a
-  // working control, since there's no budget line behind it to constrain.
-  // A true top-line "cap the group's combined %" control (e.g. capping
-  // Performance Digital's Search+Display total together) isn't built yet -
-  // that needs the allocator to support group-level constraints, not just
-  // per-channel ones; each leaf below still enforces independently.
-  const groupRowsHtml = CHANNEL_GROUPS.map((group) => {
-    const leafRow = (row) => {
-      if (!row.engineChannel) {
-        return `
-          <tr class="guardrail-row-disabled">
-            <td>${row.label}</td>
-            <td colspan="3"><span class="table-hint">No engine budget line yet - shown as £0, not independently configurable.</span></td>
-          </tr>
-        `;
-      }
-      const rule = channels.find((r) => r.channel === row.engineChannel);
-      const override = state.channelGuardrailOverrides[row.engineChannel] || {};
-      const minPct = override.min_pct ?? rule.strategic_floor_pct;
-      const maxPct = override.max_pct ?? 100;
-      const strategicIndex = override.strategic_index ?? 50;
-      return `
-        <tr>
-          <td>${row.label}</td>
-          <td><input type="number" min="0" max="100" step="0.5" value="${minPct}" data-guardrail-channel="${row.engineChannel}" data-guardrail-field="min_pct" /></td>
-          <td><input type="number" min="0" max="100" step="0.5" value="${maxPct}" data-guardrail-channel="${row.engineChannel}" data-guardrail-field="max_pct" /></td>
-          <td><input type="number" min="0" max="100" step="1" value="${strategicIndex}" data-guardrail-channel="${row.engineChannel}" data-guardrail-field="strategic_index" /></td>
-        </tr>
-      `;
-    };
-
-    if (group.rows.length === 1) {
-      const singleRow = group.rows[0];
-      if (!singleRow.engineChannel) {
-        return `
-          <tr class="category-row guardrail-row-disabled">
-            <td><strong>${group.parent}</strong></td>
-            <td colspan="3"><span class="table-hint">No engine budget line yet - shown as £0, not independently configurable.</span></td>
-          </tr>
-        `;
-      }
-      const rule = channels.find((r) => r.channel === singleRow.engineChannel);
-      const override = state.channelGuardrailOverrides[singleRow.engineChannel] || {};
-      const minPct = override.min_pct ?? rule.strategic_floor_pct;
-      const maxPct = override.max_pct ?? 100;
-      const strategicIndex = override.strategic_index ?? 50;
-      return `
-        <tr class="category-row">
-          <td><strong>${group.parent}</strong></td>
-          <td><input type="number" min="0" max="100" step="0.5" value="${minPct}" data-guardrail-channel="${singleRow.engineChannel}" data-guardrail-field="min_pct" /></td>
-          <td><input type="number" min="0" max="100" step="0.5" value="${maxPct}" data-guardrail-channel="${singleRow.engineChannel}" data-guardrail-field="max_pct" /></td>
-          <td><input type="number" min="0" max="100" step="1" value="${strategicIndex}" data-guardrail-channel="${singleRow.engineChannel}" data-guardrail-field="strategic_index" /></td>
-        </tr>
-      `;
-    }
-
-    return `
-      <tr class="category-row"><td colspan="4"><strong>${group.parent}</strong></td></tr>
-      ${group.rows.map(leafRow).join("")}
-    `;
-  }).join("");
-
-  document.querySelector("#channelGuardrails").innerHTML = `
-    ${warning}
-    <div class="source-table-wrap">
-      <table class="source-table guardrail-table">
-        <thead><tr><th>Channel</th><th>Min %</th><th>Max %</th><th>Strategic Index</th></tr></thead>
-        <tbody>${groupRowsHtml}</tbody>
-      </table>
-    </div>
-    <p class="table-hint">Strategic Index (0-100, 50 = neutral) is a qualitative channel-value score - e.g. a halo effect or brand-confidence signal - that cost-per-engagement and reach evidence don't capture. It tilts the model's own weighting rather than forcing an outcome, unlike Min/Max %. This is entered by a media agency strategist, drawing on the agency's own institutional planning experience and client history for this account - it is deliberately not derived from MMM or cost-per-engagement data. Defaults to 50 (neutral) until a strategist overrides it.</p>
-  `;
-  renderGenerateGate();
-}
-
-// Generation is blocked until Step 1 (budget AND strategy provided) and
-// Step 2 (channel guardrails feasible) are both satisfied. Step 3, Data
-// Readiness, is deliberately not a gate - it's a review/awareness step,
-// not a requirement.
-function renderGenerateGate() {
-  const button = document.querySelector("#generateAnnualPlan");
-  const gateMessage = document.querySelector("#generateGateMessage");
-  if (!button || !gateMessage) return;
-
-  const { hasBudget, hasStrategy } = briefInputsStatus();
-  const guardrailsOk = channelGuardrailsFeasible();
-  const blockers = [];
-  if (!hasBudget) blockers.push("Step 1: choose a budget file.");
-  if (!hasStrategy) blockers.push("Step 1: add a strategy (brief file or typed context).");
-  if (!guardrailsOk) blockers.push("Step 2: channel ceilings must sum to at least 100%.");
-
-  button.disabled = blockers.length > 0;
-  gateMessage.textContent = blockers.length ? `Complete before generating - ${blockers.join(" ")}` : "";
-  gateMessage.className = blockers.length ? "table-hint warning-text" : "table-hint";
-}
 
 function sourceStatusClass(status) {
   if (status.includes("client") || status.includes("derived")) return "good";
@@ -2827,11 +2331,13 @@ function renderApproval() {
 }
 
 const VIEW_META = {
-  annual: ["Campaign Planning", "Brief, channel guardrails, data readiness and the base plan by channel and month."],
-  scenarios: ["Scenarios", "Illustrative what-if: move a £200k budget between channels and see how diminishing returns change revenue, new customers, ROAS and CPA."],
-  chat: ["Plan Chat", "Ask about the budget, channel and month choices in the plan."],
+  annual: ["Campaign Planning", "Set the dates, budget and brief, the channel guardrails and the Strategic Index, then generate and edit the base plan."],
+  scenarios: ["Scenarios", "Reshape the base plan into the stored strategic options and compare them side by side."],
+  curves: ["Curves", "Illustrative what-if: move a £200k budget between channels and see how diminishing returns change revenue, new customers, ROAS and CPA."],
+  chat: ["Planner Chat", "Ask about the budget, channel and month choices in the base plan."],
   events: ["Events Calendar", "bp's financial calendar, holidays, sport and market context for each month."],
-  approval: ["Approval", "Review a stored plan's checks and warnings, and approve it."],
+  approval: ["Approval", "Review the base plan or a scenario's checks and warnings, and approve it."],
+  data: ["Data Readiness", "Which of the planner's data sources are connected, and which are demo stand-ins."],
   admin: ["Admin", "Users, sources, stored plans and warnings."],
   // Not in the menu; opened by URL (?view=logic, ?view=architecture) for workshops.
   logic: ["Logic workshop", "Questions this prototype is designed to lock down."],
@@ -2883,23 +2389,16 @@ function applyInitialRoute() {
 }
 
 function renderAll() {
-  renderStatus();
-  renderBrief();
+  renderCampaignPlanning();
+  renderScenarioCentre();
   renderDataReadiness();
-  renderTable();
-  renderSummary();
-  renderEvidence();
   renderLogicChallenges();
   renderArchitecture();
   renderScenarioStudio();
   renderPlanChat();
   renderEventsCalendar();
   renderAdmin();
-  renderChannelGuardrails();
   renderApproval();
-  document.querySelectorAll("#view-annual .toggle").forEach((button) => {
-    button.classList.toggle("active", button.dataset.tableMode === state.tableMode);
-  });
   if (window.lucide) window.lucide.createIcons();
 }
 
@@ -2908,6 +2407,7 @@ function attachEvents() {
     button.addEventListener("click", () => {
       const view = button.dataset.view;
       const fromMobileMenu = Boolean(button.closest("#mobileNav"));
+      if (view !== "annual") renderAll(); // other pages read the base plan, which may have been edited
       activateView(view);
       setMobileMenu(false, { returnFocus: fromMobileMenu });
       const url = new URL(window.location.href);
@@ -3062,23 +2562,6 @@ function attachEvents() {
     }
   });
 
-  document.querySelectorAll(".toggle[data-table-mode]").forEach((button) => {
-    button.addEventListener("click", () => {
-      document.querySelectorAll(".toggle[data-table-mode]").forEach((item) => item.classList.remove("active"));
-      button.classList.add("active");
-      state.tableMode = button.dataset.tableMode;
-      renderTable();
-      renderEvidence();
-    });
-  });
-
-  document.querySelectorAll(".toggle[data-summary-chart-mode]").forEach((button) => {
-    button.addEventListener("click", () => {
-      state.summaryChartMode = button.dataset.summaryChartMode;
-      renderSummary();
-    });
-  });
-
   document.querySelector("#agentLogicConfigurator")?.addEventListener("click", (event) => {
     const action = event.target.closest("[data-config-action]");
     if (!action) return;
@@ -3218,24 +2701,6 @@ function attachEvents() {
     }
   });
 
-  document.querySelector("#channelGuardrails")?.addEventListener("change", (event) => {
-    const field = event.target.closest("[data-guardrail-channel]");
-    if (!field) return;
-    const channel = field.dataset.guardrailChannel;
-    state.channelGuardrailOverrides[channel] = {
-      ...(state.channelGuardrailOverrides[channel] || {}),
-      [field.dataset.guardrailField]: Number(field.value),
-    };
-    saveLocalJson("bp_channel_guardrail_overrides", state.channelGuardrailOverrides);
-    renderChannelGuardrails();
-  });
-
-  document.querySelector("#resetChannelGuardrails")?.addEventListener("click", () => {
-    state.channelGuardrailOverrides = {};
-    saveLocalJson("bp_channel_guardrail_overrides", state.channelGuardrailOverrides);
-    renderChannelGuardrails();
-  });
-
   document.querySelector("#approvalState")?.addEventListener("click", (event) => {
     const selectButton = event.target.closest("[data-approval-select]");
     if (selectButton) {
@@ -3245,16 +2710,7 @@ function attachEvents() {
     if (event.target.closest("#submitApproval")) {
       const comment = document.querySelector("#approvalComment")?.value || "";
       approvePlan(comment);
-      renderStatus();
     }
-  });
-
-  document.querySelector("#planTable").addEventListener("click", (event) => {
-    const button = event.target.closest("button[data-month]");
-    if (!button) return;
-    state.selected = { month: button.dataset.month, channel: button.dataset.channel };
-    renderTable();
-    renderEvidence();
   });
 
   document.querySelector("#currentPlanView")?.addEventListener("click", (event) => {
@@ -3276,21 +2732,6 @@ function attachEvents() {
     if (event.target.closest("#downloadCurrentPlanExcel")) downloadCurrentPlanExcel(option.plan);
   });
 
-  document.querySelector("#generateAnnualPlan")?.addEventListener("click", generateAnnualPlanFromUpload);
-  document.querySelector("#budgetFileInput")?.addEventListener("change", () => {
-    renderGenerateGate();
-    renderBrief();
-  });
-  document.querySelector("#briefFileInput")?.addEventListener("change", () => {
-    renderBrief();
-    renderGenerateGate();
-  });
-  document.querySelector("#briefTextContext")?.addEventListener("input", () => {
-    renderBrief();
-    renderGenerateGate();
-  });
-  document.querySelector("#exportAnnualPlan")?.addEventListener("click", exportAnnualPlanCsv);
-  document.querySelector("#downloadPlanExcel")?.addEventListener("click", downloadPlanExcel);
   document.querySelector("#refreshDataReadiness")?.addEventListener("click", fetchLiveSources);
   document.querySelector("#dataReadinessTableWrap")?.addEventListener("click", (event) => {
     const sourceButton = event.target.closest("[data-toggle-source]");
@@ -3308,63 +2749,6 @@ function attachEvents() {
   });
 }
 
-// Exports the plan on screen as plain Excel tables.
-function downloadPlanExcel() {
-  const plan = currentPlan();
-  const wb = XLSX.utils.book_new();
-
-  const summaryRows = [
-    ["Plan ID", plan.plan_id],
-    ["Scenario", plan.scenario.label],
-    ["Total Budget (GBP)", plan.total_budget_gbp],
-    ["Forecast GBE Engagements", plan.forecast_new_policy_sales],
-    ["Forecast CPE (GBP)", plan.forecast_cost_per_policy_gbp],
-    [],
-    ["GBE Engagement Target", plan.brief_test.policy_sales_target],
-    ["Brief CPE Target (GBP)", plan.brief_test.brief_cost_per_policy_gbp],
-    ["Clears GBE Engagement Target", plan.brief_test.clears_policy_sales_target ? "Yes" : "No"],
-    ["Clears Brief CPE", plan.brief_test.clears_brief_cost_per_policy ? "Yes" : "No"],
-    [],
-    ["Scenario Assumption", plan.scenario.scenario_assumption || plan.scenario.freeform_prompt || ""],
-  ];
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(summaryRows), "Summary");
-
-  const budgetRows = [["Channel", ...MONTHS.map(formatMonth), "Total"]];
-  CHANNEL_ORDER.forEach((channel) => {
-    const values = MONTHS.map((month) => {
-      const row = plan.monthly_allocations.find((item) => item.month === month && item.channel === channel);
-      return row ? row.budget_gbp : 0;
-    });
-    budgetRows.push([channel, ...values, values.reduce((a, b) => a + b, 0)]);
-  });
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(budgetRows), "Budget by Channel-Month");
-
-  const acquisitionRows = [["Channel", ...MONTHS.map(formatMonth), "Total"]];
-  CHANNEL_ORDER.forEach((channel) => {
-    const values = MONTHS.map((month) => {
-      const row = plan.monthly_allocations.find((item) => item.month === month && item.channel === channel);
-      return row ? row.forecast_new_policy_sales : 0;
-    });
-    acquisitionRows.push([channel, ...values, values.reduce((a, b) => a + b, 0)]);
-  });
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(acquisitionRows), "GBE Engagements by Month");
-
-  const evidenceRows = [["Month", "Channel", "Budget (GBP)", "Confidence", "Rationale", "Brief Hooks", "Sources"]];
-  plan.monthly_allocations.forEach((row) => {
-    evidenceRows.push([
-      formatMonth(row.month),
-      row.channel,
-      row.budget_gbp,
-      row.confidence,
-      row.rationale,
-      (row.brief_hooks || []).join(", "),
-      (row.source_ids || []).join(", "),
-    ]);
-  });
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(evidenceRows), "Rationale & Evidence");
-
-  XLSX.writeFile(wb, `${plan.plan_id}.xlsx`);
-}
 
 // A revision candidate isn't a full plan object (no brief_test, no
 // media_owner_allocations), so this is a smaller export than downloadPlanExcel().
@@ -3409,83 +2793,16 @@ function downloadRevisionExcel(candidate) {
   XLSX.writeFile(wb, `${candidate.plan_id}.xlsx`);
 }
 
-async function generateAnnualPlanFromUpload() {
-  if (!canGeneratePlans()) return; // defense-in-depth; the control is already hidden for viewers
 
-  const budgetInput = document.querySelector("#budgetFileInput");
-  const briefInput = document.querySelector("#briefFileInput");
-  const briefTextInput = document.querySelector("#briefTextContext");
-  const statusEl = document.querySelector("#generateStatus");
-  const button = document.querySelector("#generateAnnualPlan");
-
-  const { hasBudget, hasStrategy } = briefInputsStatus();
-  if (!hasBudget || !hasStrategy) {
-    statusEl.textContent = "Add a budget file and a strategy (brief file or typed context) first.";
-    statusEl.className = "table-hint warning-text";
-    return;
-  }
-
-  button.disabled = true;
-  statusEl.textContent = "Generating base plan…";
-  statusEl.className = "table-hint";
-
-  try {
-    // Static demo: the planning engine isn't connected, so the stored Blended
-    // plan is shown on this page in place of a generated one. It isn't added
-    // to the stored plans on Approval or Admin, where it already appears as
-    // "Blended (demo)".
-    const data = {
-      plan: state.plans.balanced_growth,
-      completeness: null,
-      brief_text_preview: briefTextInput.value.trim() || null,
-      brief_filename: briefInput.files[0]?.name || null,
-    };
-
-    state.annualUploadedPlan = data.plan;
-    state.annualCompleteness = data.completeness;
-    state.annualBriefPreview = data.brief_text_preview;
-    state.annualBriefFilename = data.brief_filename;
-    state.selected = null;
-
-    const briefNote = data.brief_filename
-      ? ` + ${data.brief_filename}`
-      : (data.brief_text_preview ? " + typed context" : "");
-    statusEl.textContent = `Prototype: showing the stored Blended plan for ${budgetInput.files[0].name}${briefNote}. The planning engine isn't connected in this demo.`;
-    statusEl.className = "table-hint";
-    renderAll();
-  } catch (error) {
-    statusEl.textContent = `Could not generate a plan: ${error.message}`;
-    statusEl.className = "table-hint warning-text";
-  } finally {
-    button.disabled = false;
-  }
-}
-
-function exportAnnualPlanCsv() {
-  const plan = currentPlan();
-  const rows = [["Channel", ...MONTHS.map(formatMonth), "Total"]];
-  CHANNEL_ORDER.forEach((channel) => {
-    const values = MONTHS.map((month) => {
-      const row = plan.monthly_allocations.find((item) => item.month === month && item.channel === channel);
-      return row ? row.budget_gbp : 0;
-    });
-    rows.push([channel, ...values, values.reduce((a, b) => a + b, 0)]);
-  });
-  const csv = rows.map((row) => row.join(",")).join("\n");
-  const blob = new Blob([csv], { type: "text/csv" });
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement("a");
-  link.href = url;
-  link.download = `${plan.plan_id}.csv`;
-  link.click();
-  URL.revokeObjectURL(url);
-}
 
 loadData()
   .then(() => {
+    plannerInit();
     applyInitialRoute();
     renderAll();
     attachEvents();
+    plannerAttachEvents();
+    scenarioCentreAttachEvents();
     fetchLiveSources();
   })
   .catch((error) => {
