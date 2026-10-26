@@ -520,32 +520,16 @@ function planSummary(plan) {
   return {
     scenario_id: plan.scenario.scenario_id,
     scenario_label: plan.scenario.label,
-    forecast_new_policy_sales: plan.forecast_new_policy_sales,
-    forecast_cost_per_policy_gbp: plan.forecast_cost_per_policy_gbp,
+    forecast_clicks: plan.forecast_clicks,
+    target_visitors: plan.target_visitors,
+    cost_per_click_gbp: plan.cost_per_click,
     total_budget_gbp: plan.total_budget_gbp,
-    status: plan.state_model?.status || "warning",
   };
 }
 
-function seedPlanVersions(plansByScenario) {
-  const seeded = Object.values(plansByScenario).map((plan, index) => ({
-    version_id: `plan_version_${plan.scenario.scenario_id}`,
-    version_number: index + 1,
-    plan_id: plan.plan_id,
-    scenario_id: plan.scenario.scenario_id,
-    label: `${plan.scenario.label} scenario`,
-    created_at: "2026-06-26T00:00:00.000Z",
-    created_by: "deterministic_planner",
-    approval_status: "draft",
-    change_summary: index === 0 ? "Baseline generated from brief, MMM extract and calendar assumptions." : `Scenario comparison generated for ${plan.scenario.label}.`,
-    summary: planSummary(plan),
-  }));
-  const local = loadLocalJson("bp_plan_versions", []);
-  const merged = [...seeded];
-  local.forEach((version) => {
-    if (!merged.some((item) => item.version_id === version.version_id)) merged.push(version);
-  });
-  return merged;
+// Versions are created when a planner plan is first looked at on Approval (ensurePlanVersion).
+function seedPlanVersions() {
+  return loadLocalJson("bp_plan_versions", []);
 }
 
 function approvalEventsForVersion(versionId = currentVersionId()) {
@@ -573,21 +557,15 @@ function applyApprovalStatusToVersions() {
   });
 }
 
-function isFixtureVersionId(versionId) {
-  return SCENARIOS.some((scenario) => versionId === `plan_version_${scenario}`);
-}
-
 function persistPlanVersions() {
-  // Fixture versions are reconstructed fresh every load by seedPlanVersions(),
-  // so only versions it wouldn't otherwise recreate need to survive a reload.
-  saveLocalJson("bp_plan_versions", state.planVersions.filter((version) => !isFixtureVersionId(version.version_id)));
+  saveLocalJson("bp_plan_versions", state.planVersions);
 }
 
 // Every option storedPlanOptions() surfaces needs a stable version_id to
 // record approval events against. Revisions carry their own; fixtures fall
 // back to the same synthetic id seedPlanVersions() gave them.
 function approvalVersionId(option) {
-  return option.versionId || `plan_version_${option.plan.scenario.scenario_id}`;
+  return option.versionId;
 }
 
 // Submitted revisions don't automatically get a planVersions entry the way
@@ -605,9 +583,9 @@ function ensurePlanVersion(option) {
     scenario_id: option.plan.scenario.scenario_id,
     label: option.label,
     created_at: nowStamp(),
-    created_by: option.kind === "fixture" ? "deterministic_planner" : "monthly_revision",
+    created_by: option.kind === "base" ? "campaign_planning" : "scenario_centre",
     approval_status: "draft",
-    change_summary: option.kind === "fixture" ? "Demo fixture scenario." : "Submitted monthly revision.",
+    change_summary: option.kind === "base" ? "Generated in Campaign Planning." : `${option.label} built from the base plan.`,
     summary: planSummary(option.plan),
   };
   state.planVersions = [...state.planVersions, created];
@@ -693,7 +671,7 @@ async function loadData() {
   state.agentConfigOverrides = loadLocalJson("bp_agent_config_overrides", {});
   state.agentTraces = agentTraces;
   state.logicEval = logicEval;
-  state.planVersions = seedPlanVersions(state.plans);
+  state.planVersions = seedPlanVersions();
   state.approvalEvents = loadLocalJson("bp_approval_events", []);
   applyApprovalStatusToVersions();
   state.approvalSelectedKey = loadLocalJson("bp_approval_selected_key", null);
@@ -1440,15 +1418,13 @@ function renderMonthlyRevision() {
 // Every stored plan that can be approved or managed: submitted monthly
 // revisions plus the 6 stored demo plans.
 function storedPlanOptions() {
-  const options = [];
-  state.monthlyRevisionSubmissions.forEach((revisionCandidate) => {
-    options.push({ key: `live:${revisionCandidate.version_id}`, label: revisionCandidate.version_label, kind: "revision", plan: revisionCandidate, versionId: revisionCandidate.version_id });
-  });
-  SCENARIOS.forEach((scenarioId) => {
-    const plan = state.plans[scenarioId];
-    if (plan) options.push({ key: `fixture:${scenarioId}`, label: `${plan.scenario.label} (demo)`, kind: "fixture", plan, versionId: null });
-  });
-  return options;
+  return plannerPlans().map((plan) => ({
+    key: plan.plan_id,
+    label: plan.kind === "base" ? "Base plan" : plan.scenario.label,
+    kind: plan.kind,
+    plan,
+    versionId: `plan_version_${plan.plan_id}`,
+  }));
 }
 
 // Static demo: the overview is assembled from the month's calendar items
@@ -1809,31 +1785,29 @@ function renderAdminSourcesSection() {
 }
 
 function renderAdminPlansSection() {
-  const rows = [];
-  state.monthlyRevisionSubmissions.forEach((candidate) => {
-    rows.push({ key: candidate.version_id, label: candidate.version_label, plan: candidate });
-  });
+  const plans = plannerPlans();
   return `
     <div class="approval-card wide">
-      <strong>Stored Plans</strong>
-      <p class="table-hint">The 6 demo fixture scenarios are permanent reference plans and aren't removable here - only submitted monthly revisions are.</p>
-      ${rows.length ? `
+      <strong>Stored plans</strong>
+      <p class="table-hint">The base plan is replaced by regenerating it in Campaign Planning; scenarios can be removed here.</p>
+      ${plans.length ? `
         <div class="source-table-wrap">
           <table class="source-table">
-            <thead><tr><th>Plan</th><th>Forecast</th><th>CPE</th><th></th></tr></thead>
+            <thead><tr><th>Plan</th><th>Budget</th><th>Forecast clicks</th><th>Cost per click</th><th></th></tr></thead>
             <tbody>
-              ${rows.map((row) => `
+              ${plans.map((plan) => `
                 <tr>
-                  <td><strong>${row.label}</strong></td>
-                  <td>${number.format(row.plan.forecast_new_policy_sales)}</td>
-                  <td>${costPerPolicyMoney.format(row.plan.forecast_cost_per_policy_gbp)}</td>
-                  <td><button class="secondary-button" type="button" data-remove-plan="${row.key}">Remove</button></td>
+                  <td><strong>${plan.kind === "base" ? "Base plan" : escapeHtml(plan.scenario.label)}</strong></td>
+                  <td>${money.format(plan.total_budget_gbp)}</td>
+                  <td>${number.format(plan.forecast_clicks)}</td>
+                  <td>${costPerPolicyMoney.format(plan.cost_per_click)}</td>
+                  <td>${plan.kind === "base" ? "" : `<button class="secondary-button" type="button" data-remove-plan="${plan.plan_id}">Remove</button>`}</td>
                 </tr>
               `).join("")}
             </tbody>
           </table>
         </div>
-      ` : `<p class="table-hint warning-text">No live stored plans yet - generate or upload one in Campaign Planning, or create one in Scenarios.</p>`}
+      ` : `<p class="table-hint warning-text">No plans yet. Generate a base plan in Campaign Planning.</p>`}
     </div>
   `;
 }
@@ -1901,8 +1875,9 @@ function currentApprovalOption() {
   if (!options.length) return null;
   const selected = options.find((option) => option.key === state.approvalSelectedKey);
   if (selected) return selected;
+  const preferred = options.find((option) => option.key === plannerState.preferredScenarioId);
   const currentApproved = options.find((option) => approvalVersionId(option) === state.currentApprovedVersionId);
-  return currentApproved || options.find((option) => option.kind === "revision") || options[0];
+  return preferred || currentApproved || options[0];
 }
 
 // Unlike currentApprovalOption() (which falls back to a live/first plan so
@@ -2161,16 +2136,13 @@ function approvePlan(comment) {
   renderApproval();
 }
 
-// Admin-only "Remove stored plans": covers submitted monthly revisions. The 6
-// demo fixtures are permanent reference content, so they're excluded.
+// Admin-only "Remove stored plans": scenarios can be removed; the base plan is replaced by regenerating it.
 function removeStoredPlan(key) {
   if (currentRole() !== "admin") return;
-  if (state.monthlyRevisionSubmissions.some((item) => item.version_id === key)) {
-    state.monthlyRevisionSubmissions = state.monthlyRevisionSubmissions.filter((item) => item.version_id !== key);
-    saveLocalJson("bp_monthly_revision_submissions", state.monthlyRevisionSubmissions);
-  }
-  renderAdmin();
-  renderApproval();
+  plannerState.scenarios = plannerState.scenarios.filter((plan) => plan.plan_id !== key);
+  if (plannerState.preferredScenarioId === key) plannerState.preferredScenarioId = null;
+  plannerSave();
+  renderAll();
 }
 
 function addRolePerson(name, email, org, role) {
@@ -2250,7 +2222,7 @@ function renderApproval() {
   const current = currentApprovalOption();
 
   if (!current) {
-    document.querySelector("#approvalState").innerHTML = `<p class="table-hint warning-text">No stored plans available yet - generate or upload a plan first.</p>`;
+    document.querySelector("#approvalState").innerHTML = `<p class="table-hint warning-text">No plan yet. Generate a base plan in Campaign Planning first.</p>`;
     return;
   }
 
@@ -2263,8 +2235,8 @@ function renderApproval() {
   const statusLabels = { draft: "Draft plan", review: "Ready for bp review", approved: "Approved version" };
   const events = approvalEventsForVersion(versionId);
   const isAdmin = currentRole() === "admin";
-  const clearsPolicySalesTarget = Boolean(plan.brief_test?.clears_policy_sales_target);
-  const clearsBriefCostPerPolicy = Boolean(plan.brief_test?.clears_brief_cost_per_policy);
+  const vsTarget = plan.target_visitors ? plan.forecast_clicks / plan.target_visitors - 1 : 0;
+  const isPreferred = current.key === plannerState.preferredScenarioId;
 
   document.querySelector("#approvalState").innerHTML = `
     <div class="approval-card wide">
@@ -2275,7 +2247,7 @@ function renderApproval() {
           const isApproved = optionVersionId === state.currentApprovedVersionId;
           return `
             <button class="secondary-button chat-scenario-btn ${option.key === current.key ? "active" : ""}" type="button" data-approval-select="${option.key}">
-              ${option.label}${isApproved ? " · current plan" : ""}
+              ${option.label}${isApproved ? " · current plan" : ""}${option.key === plannerState.preferredScenarioId ? " · preferred" : ""}
             </button>
           `;
         }).join("")}
@@ -2284,20 +2256,20 @@ function renderApproval() {
 
     <div class="approval-card ${isCurrentApproved ? "ready" : ""}">
       <strong>${statusLabels[approvalStatus] || approvalStatus}${isCurrentApproved ? " · This is the current approved plan" : ""}</strong>
-      <p>${plan.scenario.label} (${current.kind === "fixture" ? "demo fixture" : "submitted revision"}) · ${number.format(plan.forecast_new_policy_sales)} forecast GBE engagements · ${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)} CPE · ${money.format(plan.total_budget_gbp)} budget.</p>
+      <p>${current.label}${isPreferred ? " (preferred scenario)" : ""} · ${money.format(plan.total_budget_gbp)} budget, ${plDate(plan.inputs.start)} to ${plDate(plan.inputs.end)} · ${number.format(plan.forecast_clicks)} forecast clicks at ${costPerPolicyMoney.format(plan.cost_per_click)} per click · ${number.format(plan.target_visitors)} target visitors.</p>
     </div>
 
     <div class="approval-card">
       <strong>QA checks</strong>
-      <p>Budget balanced: ${plan.qa.budget_balanced ? "yes" : "no"}. Months balanced: ${plan.qa.months_balanced ? "yes" : "no"}. Sources on every allocation: ${plan.qa.all_allocations_have_sources ? "yes" : "no"}.</p>
+      <p>Budget matches the brief: ${plan.qa.budget_matches_brief ? "yes" : "no"}. Guardrails respected: ${plan.qa.guardrails_respected ? "yes" : "no"}. Months on target: ${plan.months.length - plan.qa.months_short.length} of ${plan.months.length}.</p>
     </div>
 
     <div class="approval-card wide">
       <strong>Active warnings</strong>
       <div class="config-actions" style="margin-bottom:10px;">
-        <span class="status-pill ${clearsPolicySalesTarget ? "good" : "warning"}">${clearsPolicySalesTarget ? "Clears" : "Does not clear"} GBE engagement target</span>
-        <span class="status-pill ${clearsBriefCostPerPolicy ? "good" : "warning"}">${clearsBriefCostPerPolicy ? "Clears" : "Does not clear"} brief CPE</span>
-        <span class="status-pill ${plan.state_model?.status === "warning" ? "warning" : "good"}">${plan.state_model?.status || "unknown"} readiness</span>
+        <span class="status-pill ${plan.qa.clears_visitor_target ? "good" : "warning"}">${plan.qa.clears_visitor_target ? "Clears" : "Short of"} the visitor target (${vsTarget >= 0 ? "+" : "−"}${Math.abs(vsTarget * 100).toFixed(1)}%)</span>
+        <span class="status-pill ${plan.qa.budget_matches_brief ? "good" : "warning"}">Budget ${plan.qa.budget_matches_brief ? "matches" : "differs from"} the brief</span>
+        <span class="status-pill ${plan.qa.guardrails_respected ? "good" : "warning"}">Guardrails ${plan.qa.guardrails_respected ? "respected" : "breached"}</span>
       </div>
       ${effectiveWarnings(current).length ? `
         <ul class="approval-warning-list">
@@ -2324,7 +2296,7 @@ function renderApproval() {
       <div class="timeline-list">
         ${events.length ? events.map((event) => `
           <div><span>${event.event_type} / ${new Date(event.created_at).toLocaleString("en-GB", { dateStyle: "medium", timeStyle: "short" })}</span><p>${event.actor} (${event.role}): ${event.comment || "No comment"}</p></div>
-        `).join("") : `<div><span>Generated</span><p>${plan.scenario.label} scenario generated. No human approval events recorded yet.</p></div>`}
+        `).join("") : `<div><span>Generated</span><p>${current.label} ${current.kind === "base" ? "generated in Campaign Planning" : "built from the base plan"}. No approval events recorded yet.</p></div>`}
       </div>
     </div>
   `;

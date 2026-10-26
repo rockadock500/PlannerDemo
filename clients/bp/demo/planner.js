@@ -19,6 +19,7 @@ const plannerState = {
 const plGbp = (n) => `£${Math.round(n).toLocaleString("en-GB")}`;
 const plNum = (n) => Math.round(n).toLocaleString("en-GB");
 const plCpc = (n) => (n == null ? "–" : `£${n.toFixed(2)}`);
+const plDate = (iso) => new Date(`${iso}T00:00:00Z`).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
 const plEscape = (text) => String(text).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]);
 
 function plannerConfig() {
