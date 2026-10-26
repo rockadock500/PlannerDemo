@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="./styles.css" />
-    <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script defer src="https://unpkg.com/lucide@1.61.0/dist/umd/lucide.min.js"></script>
     <script defer src="https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script defer src="./scenarios.js"></script>
     <script defer src="./chat.js"></script>
@@ -37,7 +37,7 @@
             <button class="nav-item" type="button" data-view="admin">Admin</button>
           </nav>
         </div>
-        <nav class="mobile-nav" id="mobileNav" aria-label="Main" hidden>
+        <nav class="mobile-nav" id="mobileNav" aria-label="Main menu" hidden>
           <button class="nav-item active" type="button" data-view="annual">Campaign Planning</button>
           <button class="nav-item" type="button" data-view="scenarios">Scenarios</button>
           <button class="nav-item" type="button" data-view="chat">Plan Chat</button>
@@ -76,7 +76,7 @@
 
                 <div class="assumption-box" id="viewerRestrictedNotice" style="display:none;">
                   <strong>Viewer access</strong>
-                  <p class="table-hint">Viewers can review the approved plan and ask questions in Planner Chat, but cannot upload a budget or generate a new plan. Switch to an Admin or User role to do that.</p>
+                  <p class="table-hint">Viewers can review the approved plan and ask questions in Plan Chat, but cannot upload a budget or generate a new plan. Switch to an Admin or User role to do that.</p>
                 </div>
 
                 <ul class="check-list" id="briefChecks"></ul>

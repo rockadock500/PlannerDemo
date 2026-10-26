@@ -16,22 +16,22 @@ Requested by David (26 Oct 2026). Decisions confirmed:
 | --- | --- |
 | Campaign Planning | Restyle only. Content unchanged. |
 | Scenarios | Replace with the Freemans copilot Scenarios page, without its page header or "Start from" preset row. Show five KPIs (total spend, attributed revenue, new customers, ROAS, CPA), then budget-by-channel sliders, the response curve and the outcomes table. Total spend £200k. Channels: Google Search, Meta, Affiliates, **CTV** (was Linear Radio), YouTube, **LinkedIn** (was Pinterest). Keep Reset. Styled like the rest of the planner, not like Freemans. |
-| Plan Chat (was "Planner Chat"/"Plan Interrogation") | Rename. Remove the scenario selector and plan overview at the top. A chat window only (suggested questions inside the empty state). |
+| Plan Chat (was "Planner Chat"/"Plan Interrogation") | Rename. Remove the scenario selector and plan overview at the top. A chat window only (suggested questions inside the empty state); a one-line header names the plan it answers about. |
 | Events Calendar, Approval, Admin | Restyle only. |
 
 ### Static only
 
 The live planner API (`ppl-planner-api-production.up.railway.app`) is down and the BP demos are static.
 Every call to it is replaced with stored data:
-- Generate base plan → loads the stored Blended plan and says so.
-- Data readiness → reads `source_registry.json`.
-- Use last created plan → the stored Blended plan. Upload base plan → explained as not available in the demo.
-- Calendar "Generate AI overview" → the deterministic summary only.
+- Generate base plan → shows the stored Blended plan on Campaign Planning and says so (it is not added as a separate stored plan).
+- Data readiness → reads `source_registry.json`; green only for client-supplied or official data, amber for synthetic or third-party stand-ins.
+- "Use last created plan" and "Upload base plan" went with the old Scenario Centre.
+- Calendar "Generate AI overview" → "Summarise this month", built from the calendar entries.
 - Plan Chat → answers built from the stored Blended plan (like Ask in Intelligence v2). No AI call.
 
 ## Look (from BP Intelligence v2)
 
-- Green prototype banner, then a white sticky header: bp Helios logo, "BP Planner", top menu, Settings-style icons on the right. No sidebar.
+- Green prototype banner, then a white sticky header: bp Helios logo, "BP Planner", top menu. No sidebar.
 - Inter font; colours `--bp-green #009b00`, `--bp-green-dark`, `--bp-green-deeper #005800`, `--bp-yellow #ffe600`,
   `--bp-tint #eef7e8`, background `#fafaf7`, borders `#e5e5df`, radius 0.5rem.
 - White cards with thin borders, uppercase-free section titles, outline badges, green primary buttons, active menu item in tint.
@@ -94,5 +94,5 @@ No test framework exists. Verification per slice:
 ## Assumptions
 
 - "Remove the header" also removes the Freemans "Start from" preset buttons and "Suggest a better split"; Reset stays.
-- Scenario channel shares follow the Freemans base split (45/18/12/10/10/5), scaled to £200k.
+- Scenario channel shares follow the Freemans base split (45/18/12/10/10/5), scaled to £200k. The Scenarios headline calls it an illustrative what-if, since it is separate from the £4.8m four-channel plan.
 - The old Railway planner is left as it is.

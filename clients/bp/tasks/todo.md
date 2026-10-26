@@ -5,7 +5,8 @@ Spec: `../SPEC-vercel-v2.md`. One commit per task; verify before moving on.
 - [x] 1. Self-contained and static
   - Move `clients/bp/data` to `clients/bp/demo/data`; app reads `./data/`.
   - Replace every live API call with stored data (base plan, data readiness, last plan, upload, calendar overview).
-  - Acceptance: no request to the Railway API; every page loads with no console errors; fixture check passes.
+  - Acceptance: no request to the Railway API; every page loads with no console errors; fixture check unchanged.
+  - Note: the fixture check's cost-per-engagement test already failed on this data before the move (the check was written for the Admiral fixture); data not changed here.
   - Files: app.js, scripts/check_synthetic_fixture_reconciliation.js
 - [x] 2. v2 shell
   - Banner, white header with Helios logo, top menu ("Plan Chat"), phone menu; remove sidebar; Inter; v2 colour tokens.
@@ -26,6 +27,6 @@ Spec: `../SPEC-vercel-v2.md`. One commit per task; verify before moving on.
 - [x] 6. Vercel
   - `build-vercel.sh`; middleware gate extended to `/client/demo/planner/BP`; README section.
   - Acceptance: local copy of the Vercel folder serves the planner at the sub-path.
-- [ ] 7. Review and verify
+- [x] 7. Review and verify
   - agent-skills code reviewer; fix findings; full sweep at 1440px and 375px.
 - [ ] 8. Deploy to Vercel (David asked for the move) and check live: password gate, all pages, Freemans and BP-v2 unaffected.

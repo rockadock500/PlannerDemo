@@ -817,9 +817,6 @@ h2 {
   font-size: 17px;
 }
 
-@media (max-width: 720px) {
-}
-
 .delta-list {
   display: grid;
   gap: 8px;
@@ -1901,15 +1898,6 @@ select {
   box-shadow: inset 0 0 0 1px var(--red);
 }
 
-/* Mockup variant: Plan Overview + scenario picker as a full-width bar above
-   the chat {
-  display: grid;
-  gap: 14px;
-}
-
-@media (max-width: 900px) {
-}
-
 .calendar-page {
   display: grid;
   gap: 14px;
@@ -2366,12 +2354,6 @@ input[type="file"] {
   border-radius: var(--radius);
 }
 
-/* Wide tables scroll inside their card instead of the page. */
-.panel {
-  min-width: 0;
-  overflow-x: auto;
-}
-
 /* ── Scenarios ─────────────────────────────────────────────────────────── */
 .sc-kpis {
   margin-bottom: 16px;
@@ -2686,6 +2668,13 @@ input[type="file"] {
   margin: 0;
 }
 
+/* A phone menu left open while the window widens closes with the desktop menu showing. */
+@media (min-width: 1101px) {
+  .mobile-nav {
+    display: none !important;
+  }
+}
+
 @media (max-width: 1100px) {
   .nav-list {
     display: none;
@@ -2707,6 +2696,15 @@ input[type="file"] {
 
   .sc-row [data-sc-change] {
     display: none;
+  }
+
+  /* Event name and dates stack on phones, and date inputs fill their cell. */
+  .calendar-manual-form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .calendar-manual-form-grid input {
+    width: 100%;
   }
 
   /* The curve scales down with the screen; bigger axis text keeps it readable. */

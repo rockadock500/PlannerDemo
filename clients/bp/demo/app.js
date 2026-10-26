@@ -25,62 +25,6 @@ const CHANNEL_ORDER = [
 // for that scenario.
 const SCENARIOS = ["balanced_growth", "brand_trust_build", "pcw_conversion_defence", "multicar_household_growth", "young_driver_telematics", "ev_growth"];
 
-// Qualitative scenario card facts: objective, what's changed vs the baseline
-// guardrails, which channels move, the EXPECTED DIRECTION (not a number) of
-// brand and sales outcomes, and the key risk a marketing approver should hold
-// in mind. These are deliberately directional/plain-English, not modelled
-// figures.
-const SCENARIO_META = {
-  balanced_growth: {
-    objective: "Blended base plan balancing GBE reach, brand awareness and precision targeting across the year, timed to results season, the AGM and the major energy conferences.",
-    changed_constraints: "None beyond the approved Step 2 guardrails - baseline floors, caps and Strategic Index carry forward unchanged.",
-    affected_channels: "No channel is deliberately over- or under-weighted; the7stars historical performance prior is followed closely.",
-    expected_brand_direction: "Steady - no deliberate shift up or down.",
-    expected_sales_direction: "Steady - in line with the approved base plan.",
-    key_risk: "Read this as an evidence-led balance, not a lack of a point of view - the strongest campaign evidence still gets the most weight.",
-  },
-  brand_trust_build: {
-    objective: "Maximise awareness of bp's equity story among the Global Business Elite, shifting weight into premium CTV and online video.",
-    changed_constraints: "Raised weighting on premium video reach; precision display held back within its existing guardrail range.",
-    affected_channels: "Up: CTV & Streaming, Online Video. Down: Programmatic Display, Meta.",
-    expected_brand_direction: "Up - broader GBE reach and stronger recall of the equity story expected.",
-    expected_sales_direction: "Slightly fewer engagements and a higher cost per engagement - more budget is buying full-screen reach rather than clicks.",
-    key_risk: "Needs reputation-tracker and brand-lift evidence to justify sustaining this, not just an assumption that premium video works.",
-  },
-  pcw_conversion_defence: {
-    objective: "Concentrate spend on the most precisely targetable GBE inventory: financial publisher PMPs, contextual energy and markets targeting and professional social audiences.",
-    changed_constraints: "Programmatic Display weighted up into premium PMP deals; forecast cost-per-engagement factor allowed to flex upward to reflect premium inventory pricing.",
-    affected_channels: "Up: Programmatic Display, Meta. Down: CTV & Streaming, Online Video.",
-    expected_brand_direction: "Broadly unchanged, with a higher share of verified-GBE impressions.",
-    expected_sales_direction: "Fewer engagements at a higher cost per engagement, but a better GBE audience match.",
-    key_risk: "Precision is capped by PMP supply - spend that spills into open exchange dilutes GBE quality, and Meta match quality needs IPSOS IGI validation.",
-  },
-  multicar_household_growth: {
-    objective: "Concentrate budget around bp's four quarterly results announcements, when investor and analyst attention on bp is highest.",
-    changed_constraints: "Results months (Feb, Apr-May, Jul-Aug, Oct-Nov) weighted up; months between results reduced to a light always-on presence. Pre-results quiet periods respected.",
-    affected_channels: "All channels phased into results windows; CTV & Streaming and Programmatic Display carry the results-week peaks.",
-    expected_brand_direction: "Sharper salience in results weeks, lower presence between them.",
-    expected_sales_direction: "Engagement concentrated in results windows, broadly similar annual total to the blended plan.",
-    key_risk: "Results dates in the demo are illustrative - phasing must be re-run once bp's financial calendar is confirmed.",
-  },
-  young_driver_telematics: {
-    objective: "Align activity with Davos, International Energy Week, CERAWeek, Gastech, ADIPEC and COP31, when GBE attention on energy policy and capital allocation peaks.",
-    changed_constraints: "Conference months weighted up; contextual targeting around conference coverage and Meta amplification raised.",
-    affected_channels: "Up: Meta, Programmatic Display (contextual). Steady: CTV & Streaming, Online Video.",
-    expected_brand_direction: "Improved association of bp with energy-strategy conversations among the GBE.",
-    expected_sales_direction: "Engagement spikes around conference weeks, with a similar annual cost per engagement.",
-    key_risk: "Conference coverage carries political and policy sensitivity - brand-safety lists and compliance review are essential around COP31.",
-  },
-  ev_growth: {
-    objective: "Support the full-year results and strategy update in February through to the AGM in April, carrying the equity story to shareholders and analysts.",
-    changed_constraints: "February to April weighted up; longer-form online video raised to explain strategy and capital-allocation priorities.",
-    affected_channels: "Up: CTV & Streaming, Online Video. Down: Meta.",
-    expected_brand_direction: "Stronger understanding of bp's strategy among shareholders ahead of the AGM.",
-    expected_sales_direction: "Front-loaded engagement in Q1, lighter presence in the second half.",
-    key_risk: "Must stay within approved disclosure language - no forward-looking financial claims outside the published strategy materials.",
-  },
-};
-
 // bp planning taxonomy. This groups each engine channel by MEDIA ROLE -
 // reach vs consideration vs demand capture, etc - which is a different axis
 // from the display-hierarchy CHANNEL_GROUPS further down (parent/child
@@ -235,12 +179,6 @@ const state = {
   approvalEvents: [],
   approvalSelectedKey: null,
   currentApprovedVersionId: null,
-  preferredScenario: null,
-  baselinePlanId: null,
-  baselineVersionId: null,
-  baselinePlan: null,
-  baselineBudgetTargets: null,
-  generatedScenarios: [],
   briefingDrafts: {},
   briefingDraftsMonthly: {},
   briefingFormMode: "annual",
@@ -292,7 +230,6 @@ const CHANNEL_GROUPS = [
   sourceChannels: [...new Set(group.rows.map((row) => row.engineChannel).filter(Boolean))],
 }));
 const MAPPED_SOURCE_CHANNELS = new Set(CHANNEL_GROUPS.flatMap((g) => g.sourceChannels));
-
 
 // Per PL_Weekly_Update_260626_v1.pdf "Proposed User Permissions" - the latest
 // agreed scope, which supersedes the scope doc's PL/Channel-Heads/the7stars
@@ -646,17 +583,15 @@ function persistPlanVersions() {
   saveLocalJson("bp_plan_versions", state.planVersions.filter((version) => !isFixtureVersionId(version.version_id)));
 }
 
-// Every option storedPlanOptions() surfaces (the live baseline, a
-// generated scenario, or one of the 6 fixture demo plans) needs a stable
-// version_id to record approval events against. Live options already carry
-// a real backend-issued version id; fixtures never got one from the API, so
-// this falls back to the same synthetic id seedPlanVersions() gave them.
+// Every option storedPlanOptions() surfaces needs a stable version_id to
+// record approval events against. Revisions carry their own; fixtures fall
+// back to the same synthetic id seedPlanVersions() gave them.
 function approvalVersionId(option) {
   return option.versionId || `plan_version_${option.plan.scenario.scenario_id}`;
 }
 
-// Live plans (baseline/generated scenarios) don't automatically get a
-// planVersions entry the way the 6 fixtures do at bootstrap - this lazily
+// Submitted revisions don't automatically get a planVersions entry the way
+// the 6 fixtures do at bootstrap - this lazily
 // creates one the first time a plan is looked at on the Approval page, so
 // approval events always have a version record to attach to.
 function ensurePlanVersion(option) {
@@ -670,9 +605,9 @@ function ensurePlanVersion(option) {
     scenario_id: option.plan.scenario.scenario_id,
     label: option.label,
     created_at: nowStamp(),
-    created_by: option.kind === "fixture" ? "deterministic_planner" : "planner_generated",
+    created_by: option.kind === "fixture" ? "deterministic_planner" : "monthly_revision",
     approval_status: "draft",
-    change_summary: option.kind === "fixture" ? "Demo fixture scenario." : "Live generated or uploaded plan.",
+    change_summary: option.kind === "fixture" ? "Demo fixture scenario." : "Submitted monthly revision.",
     summary: planSummary(option.plan),
   };
   state.planVersions = [...state.planVersions, created];
@@ -763,15 +698,6 @@ async function loadData() {
   applyApprovalStatusToVersions();
   state.approvalSelectedKey = loadLocalJson("bp_approval_selected_key", null);
   state.currentApprovedVersionId = loadLocalJson("bp_current_approved_version_id", null);
-  state.preferredScenario = loadLocalJson("bp_preferred_scenario", null);
-  // Scenario Centre state (baseline + generated scenarios) persists across
-  // reloads like everything else here - a planner mid-way through comparing
-  // several scenarios shouldn't lose that work to an accidental refresh.
-  state.baselinePlanId = loadLocalJson("bp_baseline_plan_id", null);
-  state.baselineVersionId = loadLocalJson("bp_baseline_version_id", null);
-  state.baselinePlan = loadLocalJson("bp_baseline_plan", null);
-  state.baselineBudgetTargets = loadLocalJson("bp_baseline_budget_targets", null);
-  state.generatedScenarios = loadLocalJson("bp_generated_scenarios", []);
   state.briefingDrafts = loadLocalJson("bp_briefing_drafts", {});
   state.briefingDraftsMonthly = loadLocalJson("bp_briefing_drafts_monthly", {});
   state.sourceOverrides = loadLocalJson("bp_source_overrides", {});
@@ -792,6 +718,10 @@ async function loadData() {
   state.revisionPlanNames = loadLocalJson("bp_revision_plan_names", {});
   state.monthlyRevisionContext = loadLocalJson("bp_monthly_revision_context", {});
   state.monthlyRevisionSubmissions = loadLocalJson("bp_monthly_revision_submissions", []);
+}
+
+function escapeHtml(text) {
+  return String(text).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]);
 }
 
 function currentPlan() {
@@ -867,11 +797,12 @@ function renderBrief() {
 }
 
 // Static demo: the source registry file stands in for the live ingestion API.
-// Not-connected sources are red, synthetic stand-ins amber, real inputs green.
+// Green only for client-supplied or official data; synthetic, vendor,
+// methodology and derived stand-ins are amber; not-connected sources are red.
+const GREEN_SOURCE_STATUSES = /^(client_supplied.*|official_external_reference|public_reference|hand_curated)$/;
 function sourceRegistryRag(status) {
   if (status === "not_connected") return "red";
-  if (/synthetic|assumption|experimental|demo|proposal|blueprint/.test(status)) return "amber";
-  return "green";
+  return GREEN_SOURCE_STATUSES.test(status) ? "green" : "amber";
 }
 
 function fetchLiveSources() {
@@ -880,7 +811,7 @@ function fetchLiveSources() {
     filename: (source.path || source.name).split("/").pop(),
     status: source.status,
     rag: sourceRegistryRag(source.status),
-    last_updated: state.sources.created_on,
+    last_updated: null, // the registry records when it was compiled, not when each source last refreshed
   }));
   renderDataReadiness();
 }
@@ -926,7 +857,12 @@ function renderDataReadiness() {
       ...source,
       matches: matchLiveSources(source, state.liveSources),
     }));
-    return { ...category, sources, connectedCount: sources.filter((s) => s.matches.length).length };
+    return {
+      ...category,
+      sources,
+      connectedCount: sources.filter((s) => sourceEffectiveRag(s) === "green").length,
+      standInCount: sources.filter((s) => sourceEffectiveRag(s) === "amber").length,
+    };
   });
 
   // At-a-glance overall status, requested so a planner doesn't have to open
@@ -945,9 +881,10 @@ function renderDataReadiness() {
   const overallSummary = `
     <div class="data-readiness-overall">
       <span class="rag-dot rag-${overallRag}"></span>
-      <strong>${ragCounts.green + ragCounts.amber} of ${allSources.length} sources connected</strong>
+      <strong>${ragCounts.green} of ${allSources.length} sources connected${ragCounts.amber ? `, ${ragCounts.amber} with a demo stand-in` : ""}</strong>
       <span class="data-readiness-overall-breakdown">${ragCounts.green} green &middot; ${ragCounts.amber} amber &middot; ${ragCounts.red} red</span>
     </div>
+    <p class="table-hint">Green: client-supplied or official data. Amber: a synthetic, vendor or methodology stand-in for the demo. Red: not connected.</p>
   `;
 
   wrap.innerHTML = overallSummary + categories.map((category) => {
@@ -957,7 +894,7 @@ function renderDataReadiness() {
         <button class="source-category-head" type="button" data-toggle-category="${category.category_id}">
           <span class="source-category-chevron">${expanded ? "▾" : "▸"}</span>
           <strong>${category.label}</strong>
-          <span class="source-category-count">${category.connectedCount} of ${category.sources.length} connected</span>
+          <span class="source-category-count">${category.connectedCount} of ${category.sources.length} connected${category.standInCount ? ` · ${category.standInCount} stand-in` : ""}</span>
         </button>
         ${expanded ? `
           <div class="source-table-wrap">
@@ -1602,18 +1539,6 @@ function renderAgentConfigurator() {
   }).join("");
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
 // A month can only be revised once the month before it has fully closed -
 // "prior month actuals vs plan" isn't meaningful for a month still in
 // progress (see conversation: on 13 July, the earliest revisable month is
@@ -1890,22 +1815,12 @@ function renderMonthlyRevision() {
   `;
 }
 
-// Every selectable plan to interrogate: the live baseline/generated
-// scenarios from the Scenario Centre (real, if the planner has been
-// working there) plus the 6 stored demo scenarios (always available, for
-// exploring the tool without a live session). "live" options carry a real
-// version_id, so chat's proposed scenarios can actually be run against
-// them; "fixture" options can only be explained/proposed against, not run.
+// Every stored plan that can be approved or managed: submitted monthly
+// revisions plus the 6 stored demo plans.
 function storedPlanOptions() {
   const options = [];
-  if (state.baselinePlan) {
-    options.push({ key: "live:baseline", label: `${state.baselinePlan.scenario.label} (baseline)`, kind: "live", plan: state.baselinePlan, versionId: state.baselineVersionId });
-  }
-  state.generatedScenarios.forEach((entry) => {
-    options.push({ key: `live:${entry.stored.version_id}`, label: entry.plan.scenario.label, kind: "live", plan: entry.plan, versionId: entry.stored.version_id });
-  });
   state.monthlyRevisionSubmissions.forEach((revisionCandidate) => {
-    options.push({ key: `live:${revisionCandidate.version_id}`, label: revisionCandidate.version_label, kind: "live", plan: revisionCandidate, versionId: revisionCandidate.version_id });
+    options.push({ key: `live:${revisionCandidate.version_id}`, label: revisionCandidate.version_label, kind: "revision", plan: revisionCandidate, versionId: revisionCandidate.version_id });
   });
   SCENARIOS.forEach((scenarioId) => {
     const plan = state.plans[scenarioId];
@@ -1913,15 +1828,6 @@ function storedPlanOptions() {
   });
   return options;
 }
-
-
-
-
-
-
-
-
-
 
 // Static demo: the overview is assembled from the month's calendar items
 // rather than an AI call, and says so.
@@ -2091,7 +1997,7 @@ function renderCalendarAiOverview(monthStr) {
         <span class="source-tag">${cached.static ? "Built from the calendar" : `${cached.confidence || "unknown"} confidence`}</span>
         ${cached.source_ids.map((id) => `<span class="source-tag" title="${sourceLabel(id)}">${id}</span>`).join("")}
       </div>
-      <p>${cached.narrative}</p>
+      <p>${escapeHtml(cached.narrative)}</p>
       ${cached.confidence_reason ? `<p class="table-hint">${cached.confidence_reason}</p>` : ""}
     </div>
   `;
@@ -2400,19 +2306,13 @@ function renderAdminSourcesSection() {
 
 function renderAdminPlansSection() {
   const rows = [];
-  if (state.baselinePlan) {
-    rows.push({ key: "baseline", label: `${state.baselinePlan.scenario.label} (baseline)`, plan: state.baselinePlan });
-  }
-  state.generatedScenarios.forEach((entry) => {
-    rows.push({ key: entry.stored.version_id, label: entry.plan.scenario.label, plan: entry.plan });
-  });
   state.monthlyRevisionSubmissions.forEach((candidate) => {
     rows.push({ key: candidate.version_id, label: candidate.version_label, plan: candidate });
   });
   return `
     <div class="approval-card wide">
       <strong>Stored Plans</strong>
-      <p class="table-hint">The 6 demo fixture scenarios are permanent reference plans and aren't removable here - only the live baseline, generated scenarios and submitted monthly revisions are.</p>
+      <p class="table-hint">The 6 demo fixture scenarios are permanent reference plans and aren't removable here - only submitted monthly revisions are.</p>
       ${rows.length ? `
         <div class="source-table-wrap">
           <table class="source-table">
@@ -2490,24 +2390,15 @@ function renderAdmin() {
   if (window.lucide) window.lucide.createIcons();
 }
 
-// Same option shape/pool as Chat's plan picker (live baseline, generated
-// scenarios, the 6 fixture demo plans) - approving a plan is fundamentally
-// "pick which stored plan we're talking about", so this deliberately reuses
-// storedPlanOptions() rather than maintaining a second list.
+// Approving a plan is "pick which stored plan we're talking about", so this
+// reuses storedPlanOptions() rather than maintaining a second list.
 function currentApprovalOption() {
   const options = storedPlanOptions();
   if (!options.length) return null;
   const selected = options.find((option) => option.key === state.approvalSelectedKey);
   if (selected) return selected;
-  // A scenario marked "preferred" on the Scenario tab is the planner's
-  // explicit signal to move it into approval next - land here on it
-  // automatically rather than making them re-find it in the button list.
-  if (state.preferredScenario) {
-    const preferred = options.find((option) => option.key === state.preferredScenario.scenario_id);
-    if (preferred) return preferred;
-  }
   const currentApproved = options.find((option) => approvalVersionId(option) === state.currentApprovedVersionId);
-  return currentApproved || options.find((option) => option.kind === "live") || options[0];
+  return currentApproved || options.find((option) => option.kind === "revision") || options[0];
 }
 
 // Unlike currentApprovalOption() (which falls back to a live/first plan so
@@ -2766,35 +2657,13 @@ function approvePlan(comment) {
   renderApproval();
 }
 
-// Shared by the Scenario Centre's own remove button and the Admin page's
-// "Stored Plans" section, so there's one definition of what "removing a
-// generated scenario" means rather than two copies that could drift.
-function removeGeneratedScenario(versionId) {
-  state.generatedScenarios = state.generatedScenarios.filter((entry) => entry.stored.version_id !== versionId);
-  saveGeneratedScenarios();
-  if (state.preferredScenario?.scenario_id === versionId) {
-    state.preferredScenario = null;
-    saveLocalJson("bp_preferred_scenario", null);
-  }
-}
-
-// Admin-only "Remove stored plans": covers the live baseline plan and any
-// generated scenarios. The 6 demo fixtures are permanent reference content,
-// not something a real admin could delete, so they're deliberately excluded.
+// Admin-only "Remove stored plans": covers submitted monthly revisions. The 6
+// demo fixtures are permanent reference content, so they're excluded.
 function removeStoredPlan(key) {
   if (currentRole() !== "admin") return;
-  if (key === "baseline") {
-    state.baselinePlanId = null;
-    state.baselineVersionId = null;
-    state.baselinePlan = null;
-    saveLocalJson("bp_baseline_plan_id", null);
-    saveLocalJson("bp_baseline_version_id", null);
-    saveLocalJson("bp_baseline_plan", null);
-  } else if (state.monthlyRevisionSubmissions.some((item) => item.version_id === key)) {
+  if (state.monthlyRevisionSubmissions.some((item) => item.version_id === key)) {
     state.monthlyRevisionSubmissions = state.monthlyRevisionSubmissions.filter((item) => item.version_id !== key);
     saveLocalJson("bp_monthly_revision_submissions", state.monthlyRevisionSubmissions);
-  } else {
-    removeGeneratedScenario(key);
   }
   renderAdmin();
   renderApproval();
@@ -2893,25 +2762,16 @@ function renderApproval() {
   const clearsPolicySalesTarget = Boolean(plan.brief_test?.clears_policy_sales_target);
   const clearsBriefCostPerPolicy = Boolean(plan.brief_test?.clears_brief_cost_per_policy);
 
-  const isPreferred = state.preferredScenario?.scenario_id === current.key;
-
   document.querySelector("#approvalState").innerHTML = `
-    ${isPreferred ? `
-      <div class="approval-card wide preferred">
-        <strong>Showing the planner's preferred scenario</strong>
-        <p>${current.label} was marked "Preferred" on the Scenario tab, so it's shown here ready for review.</p>
-      </div>
-    ` : ""}
     <div class="approval-card wide">
       <strong>Select a stored plan to approve</strong>
       <div class="stored-scenario-buttons">
         ${options.map((option) => {
           const optionVersionId = approvalVersionId(option);
           const isApproved = optionVersionId === state.currentApprovedVersionId;
-          const isOptionPreferred = state.preferredScenario?.scenario_id === option.key;
           return `
             <button class="secondary-button chat-scenario-btn ${option.key === current.key ? "active" : ""}" type="button" data-approval-select="${option.key}">
-              ${option.label}${isApproved ? " · current plan" : ""}${isOptionPreferred ? " · preferred" : ""}
+              ${option.label}${isApproved ? " · current plan" : ""}
             </button>
           `;
         }).join("")}
@@ -2920,7 +2780,7 @@ function renderApproval() {
 
     <div class="approval-card ${isCurrentApproved ? "ready" : ""}">
       <strong>${statusLabels[approvalStatus] || approvalStatus}${isCurrentApproved ? " · This is the current approved plan" : ""}</strong>
-      <p>${plan.scenario.label} (${current.kind === "fixture" ? "demo fixture" : "live"}) · ${number.format(plan.forecast_new_policy_sales)} forecast GBE engagements · ${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)} CPE · ${money.format(plan.total_budget_gbp)} budget.</p>
+      <p>${plan.scenario.label} (${current.kind === "fixture" ? "demo fixture" : "submitted revision"}) · ${number.format(plan.forecast_new_policy_sales)} forecast GBE engagements · ${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)} CPE · ${money.format(plan.total_budget_gbp)} budget.</p>
     </div>
 
     <div class="approval-card">
@@ -2968,11 +2828,14 @@ function renderApproval() {
 
 const VIEW_META = {
   annual: ["Campaign Planning", "Brief, channel guardrails, data readiness and the base plan by channel and month."],
-  scenarios: ["Scenarios", "Move budget between channels and see the likely effect on revenue and new customers before it goes into the plan."],
+  scenarios: ["Scenarios", "Illustrative what-if: move a £200k budget between channels and see how diminishing returns change revenue, new customers, ROAS and CPA."],
   chat: ["Plan Chat", "Ask about the budget, channel and month choices in the plan."],
   events: ["Events Calendar", "bp's financial calendar, holidays, sport and market context for each month."],
   approval: ["Approval", "Review a stored plan's checks and warnings, and approve it."],
   admin: ["Admin", "Users, sources, stored plans and warnings."],
+  // Not in the menu; opened by URL (?view=logic, ?view=architecture) for workshops.
+  logic: ["Logic workshop", "Questions this prototype is designed to lock down."],
+  architecture: ["Agent traces", "Experimental mode: agent traces and logic guardrails."],
 };
 
 function activateView(view) {
@@ -2992,9 +2855,12 @@ function activateView(view) {
   document.title = `${title} · BP Planner`;
 }
 
-function setMobileMenu(open) {
+function setMobileMenu(open, { returnFocus = false } = {}) {
+  const button = document.querySelector("#openMenu");
   document.querySelector("#mobileNav").hidden = !open;
-  document.querySelector("#openMenu").setAttribute("aria-expanded", String(open));
+  button.setAttribute("aria-expanded", String(open));
+  button.setAttribute("aria-label", open ? "Close menu" : "Open menu");
+  if (returnFocus) button.focus();
 }
 
 function applyInitialRoute() {
@@ -3041,8 +2907,9 @@ function attachEvents() {
   document.querySelectorAll(".nav-item[data-view]").forEach((button) => {
     button.addEventListener("click", () => {
       const view = button.dataset.view;
+      const fromMobileMenu = Boolean(button.closest("#mobileNav"));
       activateView(view);
-      setMobileMenu(false);
+      setMobileMenu(false, { returnFocus: fromMobileMenu });
       const url = new URL(window.location.href);
       url.searchParams.set("view", view);
       window.history.replaceState(null, "", url);
@@ -3053,12 +2920,9 @@ function attachEvents() {
   document.querySelector("#openMenu").addEventListener("click", () => {
     setMobileMenu(document.querySelector("#mobileNav").hidden);
   });
-
-
-
-
-
-
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !document.querySelector("#mobileNav").hidden) setMobileMenu(false, { returnFocus: true });
+  });
 
   document.querySelector("#monthlyRevision")?.addEventListener("change", (event) => {
     const select = event.target.closest("#revisionMonth");
@@ -3137,7 +3001,6 @@ function attachEvents() {
       downloadRevisionExcel(state.revisionDraft || buildMonthlyRevisionCandidate());
     }
   });
-
 
   document.querySelector("#eventsCalendar")?.addEventListener("click", (event) => {
     const navButton = event.target.closest("[data-calendar-nav]");
@@ -3445,54 +3308,9 @@ function attachEvents() {
   });
 }
 
-// Shared by all three ways of establishing a base plan: generating one from
-// an upload, loading the last created one, or importing a downloaded one -
-// each returns the same {plan, stored, [budget_targets]} shape.
-function saveGeneratedScenarios() {
-  saveLocalJson("bp_generated_scenarios", state.generatedScenarios);
-}
-
-// One-in-one-out cap on stored scenarios (~5-10 requested, 8 chosen as the
-// midpoint) so the Scenario Centre doesn't grow unbounded. The scenario
-// marked "preferred" is protected from eviction; otherwise the oldest
-// generated scenario is dropped first.
-const MAX_STORED_SCENARIOS = 8;
-
-function addGeneratedScenario(entry) {
-  state.generatedScenarios = [...state.generatedScenarios, entry];
-  while (state.generatedScenarios.length > MAX_STORED_SCENARIOS) {
-    const evictIndex = state.generatedScenarios.findIndex(
-      (item) => item.stored.version_id !== state.preferredScenario?.scenario_id
-    );
-    state.generatedScenarios.splice(evictIndex === -1 ? 0 : evictIndex, 1);
-  }
-  saveGeneratedScenarios();
-}
-
-function applyBaselineResponse(data) {
-  state.baselinePlanId = data.stored?.plan_id ?? null;
-  state.baselineVersionId = data.stored?.version_id ?? null;
-  state.baselinePlan = data.plan;
-  state.baselineBudgetTargets = data.budget_targets ?? state.baselineBudgetTargets ?? null;
-  // A new baseline invalidates any scenarios generated from the previous one.
-  state.generatedScenarios = [];
-  saveLocalJson("bp_baseline_plan_id", state.baselinePlanId);
-  saveLocalJson("bp_baseline_version_id", state.baselineVersionId);
-  saveLocalJson("bp_baseline_plan", state.baselinePlan);
-  saveLocalJson("bp_baseline_budget_targets", state.baselineBudgetTargets);
-  saveGeneratedScenarios();
-}
-
-
-
-// Planners never need to see or edit JSON/code - the visible sheets below
-// are plain Excel tables. A hidden "_PlanData" sheet carries the full plan
-// losslessly (chunked across rows, since a single Excel cell is capped at
-// ~32,767 characters) purely so re-uploading this exact file on the
-// Scenarios page restores the exact plan, not a re-derived approximation.
+// Exports the plan on screen as plain Excel tables.
 function downloadPlanExcel() {
-  if (!state.baselinePlan || !state.baselineBudgetTargets) return;
-  const plan = state.baselinePlan;
+  const plan = currentPlan();
   const wb = XLSX.utils.book_new();
 
   const summaryRows = [
@@ -3529,7 +3347,7 @@ function downloadPlanExcel() {
     });
     acquisitionRows.push([channel, ...values, values.reduce((a, b) => a + b, 0)]);
   });
-  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(acquisitionRows), "GBE Engagements by Channel-Month");
+  XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(acquisitionRows), "GBE Engagements by Month");
 
   const evidenceRows = [["Month", "Channel", "Budget (GBP)", "Confidence", "Rationale", "Brief Hooks", "Sources"]];
   plan.monthly_allocations.forEach((row) => {
@@ -3545,24 +3363,11 @@ function downloadPlanExcel() {
   });
   XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet(evidenceRows), "Rationale & Evidence");
 
-  const payload = JSON.stringify({ plan, budget_targets: state.baselineBudgetTargets });
-  const chunkSize = 30000;
-  const chunks = [];
-  for (let i = 0; i < payload.length; i += chunkSize) chunks.push([payload.slice(i, i + chunkSize)]);
-  const dataSheet = XLSX.utils.aoa_to_sheet([["BP_PLAN_EXPORT_V1"], ...chunks]);
-  XLSX.utils.book_append_sheet(wb, dataSheet, "_PlanData");
-  const dataSheetIndex = wb.SheetNames.indexOf("_PlanData");
-  wb.Workbook = wb.Workbook || {};
-  wb.Workbook.Sheets = wb.Workbook.Sheets || [];
-  wb.Workbook.Sheets[dataSheetIndex] = { Hidden: 1 };
-
   XLSX.writeFile(wb, `${plan.plan_id}.xlsx`);
 }
 
 // A revision candidate isn't a full plan object (no brief_test, no
-// media_owner_allocations) and isn't meant to be re-uploaded as a base plan,
-// so this is a smaller, human-readable-only export rather than reusing
-// downloadPlanExcel()'s hidden round-trip data sheet.
+// media_owner_allocations), so this is a smaller export than downloadPlanExcel().
 function downloadRevisionExcel(candidate) {
   const wb = XLSX.utils.book_new();
 
@@ -3620,48 +3425,20 @@ async function generateAnnualPlanFromUpload() {
     return;
   }
 
-  const formData = new FormData();
-  formData.append("budget_file", budgetInput.files[0]);
-  if (briefInput.files.length) {
-    formData.append("brief_file", briefInput.files[0]);
-  }
-  if (briefTextInput.value.trim()) {
-    formData.append("brief_text", briefTextInput.value.trim());
-  }
-
-  // Channel guardrails are a per-run scenario setting (Step 2), not a
-  // silent default - only sent when this run's Min/Max % differ from the
-  // no-constraint baseline (min = fixture floor, max = 100).
-  const channelFloors = {};
-  const channelCaps = {};
-  const channelIndex = {};
-  state.evidenceRules.channel_rules.forEach((rule) => {
-    const override = state.channelGuardrailOverrides[rule.channel] || {};
-    const minPct = override.min_pct ?? rule.strategic_floor_pct;
-    const maxPct = override.max_pct ?? 100;
-    const strategicIndex = override.strategic_index ?? 50;
-    if (minPct !== rule.strategic_floor_pct) channelFloors[rule.channel] = minPct;
-    if (maxPct !== 100) channelCaps[rule.channel] = maxPct;
-    if (strategicIndex !== 50) channelIndex[rule.channel] = strategicIndex;
-  });
-  if (Object.keys(channelFloors).length) formData.append("channel_floors", JSON.stringify(channelFloors));
-  if (Object.keys(channelCaps).length) formData.append("channel_caps", JSON.stringify(channelCaps));
-  if (Object.keys(channelIndex).length) formData.append("channel_index", JSON.stringify(channelIndex));
-
   button.disabled = true;
   statusEl.textContent = "Generating base plan…";
   statusEl.className = "table-hint";
 
   try {
     // Static demo: the planning engine isn't connected, so the stored Blended
-    // plan stands in for the generated one. formData shows what would be sent.
-    void formData;
+    // plan is shown on this page in place of a generated one. It isn't added
+    // to the stored plans on Approval or Admin, where it already appears as
+    // "Blended (demo)".
     const data = {
       plan: state.plans.balanced_growth,
       completeness: null,
       brief_text_preview: briefTextInput.value.trim() || null,
       brief_filename: briefInput.files[0]?.name || null,
-      stored: null,
     };
 
     state.annualUploadedPlan = data.plan;
@@ -3669,8 +3446,6 @@ async function generateAnnualPlanFromUpload() {
     state.annualBriefPreview = data.brief_text_preview;
     state.annualBriefFilename = data.brief_filename;
     state.selected = null;
-
-    applyBaselineResponse(data);
 
     const briefNote = data.brief_filename
       ? ` + ${data.brief_filename}`

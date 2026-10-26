@@ -1,8 +1,6 @@
 // Scenarios: move budget between channels and see the modelled effect on revenue,
-// new customers, ROAS and cost per acquisition. Ported from the Freemans CMO
-// Copilot scenarios page (same diminishing-returns engine), rescaled to a £200k
-// base, with CTV in place of Linear Radio and LinkedIn in place of Pinterest.
-// Synthetic: return per pound and cost per new customer keep the Freemans ratios.
+// new customers, ROAS and cost per acquisition. An illustrative diminishing-returns
+// engine on a £200k base; every ratio below is synthetic demo data.
 
 const SC_TOTAL = 200000;
 
@@ -44,9 +42,9 @@ function scRun(mult) {
 }
 
 function scGbp(n) {
-  if (n >= 1e6) return `£${(n / 1e6).toFixed(2)}m`;
-  if (n >= 1e4) return `£${Math.round(n / 1e3)}k`;
-  if (n >= 1e3) return `£${(n / 1e3).toFixed(1)}k`;
+  if (n >= 999500) return `£${(n / 1e6).toFixed(2)}m`;
+  if (n >= 9950) return `£${Math.round(n / 1e3)}k`;
+  if (n >= 999.5) return `£${(n / 1e3).toFixed(1)}k`;
   return `£${Math.round(n)}`;
 }
 
@@ -59,7 +57,8 @@ function scDelta(now, base, good) {
   const flat = Math.abs(d) < 0.0005;
   const tone = flat || good === "flat" ? "flat" : (d > 0) === (good === "up") ? "good" : "bad";
   const arrow = flat ? "→" : d > 0 ? "▲" : "▼";
-  return `<span class="sc-delta ${tone}">${arrow} ${d > 0 ? "+" : ""}${(d * 100).toFixed(1)}%<span class="sc-delta-vs"> vs base</span></span>`;
+  const sign = flat ? "" : d > 0 ? "+" : "−";
+  return `<span class="sc-delta ${tone}">${arrow} ${sign}${Math.abs(d * 100).toFixed(1)}%<span class="sc-delta-vs"> vs base</span></span>`;
 }
 
 function scNiceMax(v) {
@@ -70,7 +69,7 @@ function scNiceMax(v) {
 function scCurveSvg(c, mult) {
   const w = 640;
   const h = 260;
-  const pad = { l: 56, r: 16, t: 14, b: 30 };
+  const pad = { l: 68, r: 16, t: 14, b: 30 };
   const iw = w - pad.l - pad.r;
   const ih = h - pad.t - pad.b;
   const maxS = c.s0 * 2;
