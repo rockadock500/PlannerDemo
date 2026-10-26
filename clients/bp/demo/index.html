@@ -9,10 +9,12 @@
     <meta name="robots" content="noindex, nofollow" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="./styles.css?v=26" />
+    <link rel="stylesheet" href="./styles.css" />
     <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
     <script defer src="https://unpkg.com/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
-    <script defer src="./app.js?v=54"></script>
+    <script defer src="./scenarios.js"></script>
+    <script defer src="./chat.js"></script>
+    <script defer src="./app.js"></script>
   </head>
   <body>
     <div class="app-shell">
@@ -201,34 +203,11 @@
         </section>
 
         <section class="view" id="view-scenarios">
-          <section class="panel">
-            <div class="section-heading">
-              <div>
-                <p class="eyebrow">Scenario Centre</p>
-                <h2>Compare Strategic Options</h2>
-              </div>
-              <span class="status-pill good">Deterministic</span>
-            </div>
-            <div id="scenarioBaselineNotice"></div>
-            <div id="scenarioBuilder" class="scenario-builder"></div>
-            <div id="preferredScenarioPanel" class="preferred-scenario-panel"></div>
-            <div id="scenarioComparison" class="scenario-comparison"></div>
-          </section>
-          <section class="panel" id="scenarioDrilldownPanel" style="display:none;"></section>
+          <div id="scenarioStudio"></div>
         </section>
 
-
         <section class="view" id="view-chat">
-          <section class="panel">
-            <div class="section-heading">
-              <div>
-                <p class="eyebrow">Planner Chat</p>
-                <h2>Planner Chat</h2>
-              </div>
-              <span class="status-pill warning">LLM explain boundary</span>
-            </div>
-            <div id="planChat" class="plan-chat"></div>
-          </section>
+          <section class="panel chat-panel" id="planChat" aria-label="Plan Chat"></section>
         </section>
 
         <section class="view" id="view-events">

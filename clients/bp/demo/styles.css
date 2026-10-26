@@ -269,8 +269,7 @@ h2 {
   padding: 14px 16px;
 }
 
-.status-strip span,
-.scenario-readout span {
+.status-strip span {
   display: block;
   color: var(--muted);
   font-size: 12px;
@@ -566,7 +565,6 @@ h2 {
   line-height: 1.45;
 }
 
-.scenario-comparison,
 .briefing-controls {
   display: flex;
   align-items: center;
@@ -624,7 +622,6 @@ h2 {
   color: var(--red-dark);
 }
 
-.scenario-card,
 .briefing-card {
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -792,7 +789,6 @@ h2 {
   margin-bottom: 12px;
 }
 
-.scenario-metrics,
 .readiness-summary {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -800,7 +796,6 @@ h2 {
   margin-bottom: 12px;
 }
 
-.scenario-metrics div,
 .readiness-summary div {
   border: 1px solid var(--line);
   background: var(--wash);
@@ -808,7 +803,6 @@ h2 {
   padding: 10px;
 }
 
-.scenario-metrics span,
 .readiness-summary span {
   display: block;
   color: var(--muted);
@@ -817,49 +811,13 @@ h2 {
   text-transform: uppercase;
 }
 
-.scenario-metrics strong,
 .readiness-summary strong {
   display: block;
   margin-top: 4px;
   font-size: 17px;
 }
 
-.scenario-card p {
-  color: var(--muted);
-  line-height: 1.45;
-}
-
-.scenario-facts {
-  display: grid;
-  gap: 8px;
-  margin: 12px 0 0;
-  padding-top: 12px;
-  border-top: 1px solid var(--line);
-}
-
-.scenario-facts div {
-  display: grid;
-  grid-template-columns: 160px 1fr;
-  gap: 10px;
-}
-
-.scenario-facts dt {
-  color: var(--muted);
-  font-size: 12px;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.scenario-facts dd {
-  margin: 0;
-  line-height: 1.4;
-}
-
 @media (max-width: 720px) {
-  .scenario-facts div {
-    grid-template-columns: 1fr;
-    gap: 2px;
-  }
 }
 
 .delta-list {
@@ -1336,11 +1294,6 @@ input[type="file"] {
   color: var(--amber);
 }
 
-.status-loading {
-  color: var(--blue);
-  font-weight: 700;
-}
-
 input,
 select {
   font: inherit;
@@ -1350,39 +1303,6 @@ select {
   padding: 0 9px;
   color: var(--ink);
   background: #fff;
-}
-
-.builder-panel {
-  display: grid;
-  grid-template-columns: minmax(220px, 1fr) repeat(3, minmax(120px, 0.7fr)) auto;
-  gap: 12px;
-  align-items: end;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--wash);
-  padding: 12px;
-  margin-bottom: 12px;
-}
-
-.builder-panel label {
-  display: grid;
-  gap: 6px;
-}
-
-.builder-panel label span {
-  color: var(--muted);
-  font-size: 11px;
-  font-weight: 800;
-  text-transform: uppercase;
-}
-
-.builder-panel.weights-grid {
-  grid-template-columns: repeat(5, 1fr);
-}
-
-.scenario-builder-panel {
-  grid-template-columns: minmax(220px, 1fr) minmax(260px, 1.4fr);
-  align-items: start;
 }
 
 .stored-scenario-buttons {
@@ -1401,27 +1321,9 @@ select {
   margin-top: 16px;
 }
 
-.preferred-strip {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: #fff;
-  padding: 10px 12px;
-  margin-bottom: 12px;
-}
-
-.scenario-card.preferred,
 .approval-card.preferred {
   border-color: #e1b94d;
   background: #fff9e8;
-}
-
-.scenario-body {
-  color: var(--muted);
-  line-height: 1.45;
 }
 
 .briefing-card input {
@@ -1436,26 +1338,6 @@ select {
 
 .source-table input[type="number"] {
   max-width: 90px;
-}
-
-.scenario-readout {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  margin-top: 12px;
-}
-
-.scenario-readout div {
-  border: 1px solid var(--line);
-  background: var(--wash);
-  border-radius: 8px;
-  padding: 12px;
-}
-
-.scenario-readout strong {
-  display: block;
-  margin-top: 4px;
-  font-size: 20px;
 }
 
 .plan-panel {
@@ -1883,15 +1765,13 @@ select {
   line-height: 1.45;
 }
 
-.monthly-revision,
-.plan-chat {
+.monthly-revision {
   display: grid;
   gap: 14px;
 }
 
 .revision-grid,
-.revision-delta-grid,
-.chat-layout {
+.revision-delta-grid {
   display: grid;
   gap: 14px;
 }
@@ -1900,26 +1780,20 @@ select {
   grid-template-columns: 1.1fr .9fr 1fr;
 }
 
-.revision-card,
-.chat-main,
-.chat-side,
-.chat-message {
+.revision-card {
   border: 1px solid var(--line);
   border-radius: 8px;
   background: var(--wash);
   padding: 13px;
 }
 
-.revision-card p,
-.chat-side li,
-.chat-message p {
+.revision-card p {
   color: var(--muted);
   line-height: 1.45;
 }
 
 .revision-card select,
-.revision-card input,
-.chat-input-row input {
+.revision-card input {
   width: 100%;
   min-height: 40px;
   border: 1px solid var(--line-strong);
@@ -2021,99 +1895,6 @@ select {
   text-transform: uppercase;
 }
 
-.chat-layout {
-  grid-template-columns: minmax(0, 1fr) 330px;
-}
-
-.chat-main {
-  display: grid;
-  gap: 12px;
-}
-
-.chat-transcript {
-  display: grid;
-  gap: 10px;
-  max-height: 560px;
-  min-height: 420px;
-  overflow: auto;
-}
-
-.chat-empty-state {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: 18px;
-  height: 100%;
-  min-height: 400px;
-  text-align: center;
-}
-
-.chat-empty-logo {
-  width: 72px;
-  height: auto;
-}
-
-.chat-empty-state h2 {
-  margin: 0;
-  color: var(--ink);
-  font-size: 22px;
-}
-
-.chat-message {
-  background: #fff;
-}
-
-.chat-message.user {
-  background: #eef7ff;
-}
-
-.chat-message span {
-  display: inline-flex;
-  color: var(--red-dark);
-  font-size: 12px;
-  font-weight: 850;
-  text-transform: uppercase;
-}
-
-.chat-message pre {
-  overflow-x: auto;
-  background: #111827;
-  color: #e5eefb;
-  border-radius: 7px;
-  padding: 10px;
-  font-size: 12px;
-}
-
-.chat-input-row {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 10px;
-}
-
-.chat-main-header {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.chat-side ul {
-  margin: 8px 0 14px;
-  padding-left: 18px;
-}
-
-.chat-side strong {
-  display: block;
-  margin: 16px 0 8px;
-}
-
-.chat-side strong:first-child {
-  margin-top: 0;
-}
-
-.chat-side .scenario-metrics {
-  margin-bottom: 8px;
-}
-
 .chat-scenario-btn.active {
   border-color: var(--red);
   color: var(--red-dark);
@@ -2121,48 +1902,12 @@ select {
 }
 
 /* Mockup variant: Plan Overview + scenario picker as a full-width bar above
-   the chat, instead of a side rail next to it - see conversation. */
-.chat-page {
+   the chat {
   display: grid;
   gap: 14px;
 }
 
-.chat-overview-panel {
-  border: 1px solid var(--line);
-  border-radius: 8px;
-  background: var(--wash);
-  padding: 13px;
-}
-
-.chat-overview-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 24px;
-}
-
-.chat-overview-row strong {
-  display: block;
-  margin-bottom: 8px;
-}
-
-.chat-overview-row .scenario-metrics {
-  margin-bottom: 8px;
-}
-
-.chat-overview-row-secondary {
-  margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
-}
-
 @media (max-width: 900px) {
-  .chat-overview-row {
-    grid-template-columns: 1fr;
-  }
-}
-
-.chat-proposal {
-  margin-top: 10px;
 }
 
 .calendar-page {
@@ -2508,7 +2253,6 @@ select {
 }
 
 .status-strip span,
-.scenario-readout span,
 .metric span,
 .field-label,
 .revision-dl dt {
@@ -2628,6 +2372,320 @@ input[type="file"] {
   overflow-x: auto;
 }
 
+/* ── Scenarios ─────────────────────────────────────────────────────────── */
+.sc-kpis {
+  margin-bottom: 16px;
+}
+
+.sc-kpis strong {
+  margin: 4px 0 2px;
+}
+
+.sc-split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 16px;
+  align-items: start;
+}
+
+.sc-split > .panel {
+  margin-bottom: 0;
+}
+
+.sc-row {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr) 64px 92px;
+  gap: 12px;
+  align-items: center;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--line);
+  font-size: 13px;
+}
+
+.sc-row label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 500;
+}
+
+.sc-row input[type="range"] {
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  border: 0;
+  accent-color: var(--bp-green);
+}
+
+.sc-spend {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.sc-swatch {
+  width: 10px;
+  height: 10px;
+  border-radius: 3px;
+  flex-shrink: 0;
+}
+
+.sc-delta {
+  display: inline-block;
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.sc-delta.flat {
+  color: var(--muted);
+}
+
+.sc-delta.good {
+  color: var(--bp-green-dark);
+}
+
+.sc-delta.bad {
+  color: #c2410c;
+}
+
+.sc-row .sc-delta-vs,
+.sc-table .sc-delta-vs {
+  display: none;
+}
+
+/* The KPI strip styles every span as a block label; deltas stay inline. */
+.sc-kpis span.sc-delta,
+.sc-kpis span.sc-delta-vs {
+  display: inline;
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.sc-kpis span.sc-delta.good {
+  color: var(--bp-green-dark);
+}
+
+.sc-kpis span.sc-delta.bad {
+  color: #c2410c;
+}
+
+.sc-delta-vs {
+  color: var(--muted);
+}
+
+.sc-table-wrap {
+  overflow-x: auto;
+  margin: 16px 0 8px;
+}
+
+.sc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.sc-table th,
+.sc-table td {
+  padding: 8px;
+  border-bottom: 1px solid var(--line);
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.sc-table th:first-child,
+.sc-table td:first-child {
+  text-align: left;
+}
+
+.sc-table tr:last-child td {
+  border-bottom: 0;
+}
+
+.sc-tag {
+  display: inline-block;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 1px 8px;
+  font-size: 12px;
+}
+
+.sc-tag.good {
+  border-color: #c6e6bd;
+  background: var(--bp-tint);
+  color: var(--bp-green-deeper);
+}
+
+.sc-tag.bad {
+  border-color: #fecaca;
+  background: #fef2f2;
+  color: #b91c1c;
+}
+
+.sc-legend {
+  display: flex;
+  gap: 16px;
+  font-size: 12px;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+.sc-legend span {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sc-legend i {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.sc-dot-base {
+  border: 2px solid var(--ink);
+  background: #fff;
+}
+
+.sc-curve {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.sc-axis line {
+  stroke: var(--line);
+}
+
+.sc-axis text {
+  fill: var(--muted);
+  font-size: 11px;
+}
+
+.sc-footnote {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+/* ── Plan Chat ──────────────────────────────────────────────────────────── */
+.chat-panel {
+  max-width: 860px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  overflow: visible;
+}
+
+.chat-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.chat-head p {
+  margin: 4px 0 0;
+}
+
+.chat-log {
+  height: min(60vh, 560px);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--wash);
+}
+
+.chat-empty {
+  margin: auto;
+  max-width: 560px;
+  text-align: center;
+}
+
+.chat-empty img {
+  display: block;
+  margin: 0 auto 8px;
+}
+
+.chat-empty-title {
+  margin: 0 0 4px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.chat-suggestions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.chat-suggestions .secondary-button {
+  height: auto;
+  min-height: 32px;
+  padding: 6px 12px;
+  text-align: left;
+}
+
+.chat-msg {
+  max-width: 85%;
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.chat-msg p {
+  margin: 0;
+  white-space: pre-line;
+}
+
+.chat-msg.user {
+  align-self: flex-end;
+  background: var(--bp-green);
+  color: #fff;
+}
+
+.chat-msg.assistant {
+  align-self: flex-start;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.chat-sources {
+  margin-top: 8px !important;
+  padding-top: 8px;
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.chat-form {
+  display: flex;
+  gap: 8px;
+}
+
+.chat-form input {
+  flex: 1;
+  min-width: 0;
+  min-height: 40px;
+}
+
+.chat-form .primary-button {
+  height: 40px;
+}
+
+.chat-note {
+  margin: 0;
+}
+
 @media (max-width: 1100px) {
   .nav-list {
     display: none;
@@ -2639,6 +2697,23 @@ input[type="file"] {
 }
 
 @media (max-width: 900px) {
+  .status-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .sc-row {
+    grid-template-columns: 110px minmax(0, 1fr) 56px;
+  }
+
+  .sc-row [data-sc-change] {
+    display: none;
+  }
+
+  /* The curve scales down with the screen; bigger axis text keeps it readable. */
+  .sc-axis text {
+    font-size: 16px;
+  }
+
   .app-header-inner {
     padding: 0 16px;
     gap: 8px;
@@ -2657,13 +2732,12 @@ input[type="file"] {
   }
 
   .two-column,
-  .status-strip,
-  .agent-flow,
-  .revision-grid,
-  .revision-delta-grid,
-  .chat-layout,
-  .calendar-layout,
-  .evidence-metrics {
+.sc-split,
+.agent-flow,
+.revision-grid,
+.revision-delta-grid,
+.calendar-layout,
+.evidence-metrics {
     grid-template-columns: 1fr;
   }
 

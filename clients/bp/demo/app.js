@@ -80,7 +80,6 @@ const SCENARIO_META = {
     key_risk: "Must stay within approved disclosure language - no forward-looking financial claims outside the published strategy materials.",
   },
 };
-const LIVE_API_BASE = "https://ppl-planner-api-production.up.railway.app";
 
 // bp planning taxonomy. This groups each engine channel by MEDIA ROLE -
 // reach vs consideration vs demand capture, etc - which is a different axis
@@ -117,23 +116,6 @@ const DATA_READINESS_GROUP_LABELS = {
   market_competitor_context: "Market, Calendar & Context Signals",
   media_owner_channel: "Media Owner & Channel Data",
 };
-
-// Plan Interrogation seed questions (research brief section 3) - a starting
-// point for planners who aren't sure what to ask yet. Clicking one fills the
-// question box and asks it straight away against whichever plan is selected.
-const PLAN_INTERROGATION_SEED_QUESTIONS = [
-  "Why is February weighted above January?",
-  "Which evidence supports the CTV & Streaming share?",
-  "How does the plan balance GBE reach and precision?",
-  "What changes if financial publisher PMP prices rise 15%?",
-  "Which guardrails are binding?",
-];
-
-// Plain-English boundary copy for the chat assistant (brief section 3): what
-// it can explain from the configured plan evidence, and what it must refuse
-// regardless of how the question is phrased. Written for a marketing
-// approver to act on, not as technical confidence language.
-const PLAN_INTERROGATION_BOUNDARY_COPY = "This assistant can explain the budget, channel and month choices already in the selected plan, using the sources and rationale stored against it. It will not use, reveal or guess at any customer-level data, individual investor or shareholder detail, or market-sensitive information, and it will not make forward-looking financial claims. It also won't share confidential model or prompt details - if a question needs any of that, it will say so instead of guessing.";
 
 const CALENDAR_FILTER_DEFS = [
   { key: "bank_holiday", label: "Bank holidays", color: "var(--blue)" },
@@ -259,11 +241,6 @@ const state = {
   baselinePlan: null,
   baselineBudgetTargets: null,
   generatedScenarios: [],
-  scenarioProposal: null,
-  scenarioGenerateStatus: null,
-  scenarioDrilldown: null,
-  scenarioDrilldownKey: null,
-  scenarioDrilldownSelected: null,
   briefingDrafts: {},
   briefingDraftsMonthly: {},
   briefingFormMode: "annual",
@@ -275,8 +252,6 @@ const state = {
   revisionPlanNames: {},
   monthlyRevisionContext: {},
   monthlyRevisionSubmissions: [],
-  chatMessages: [],
-  chatInterrogationKey: null,
   scenario: "balanced_growth",
   demoMode: "deterministic",
   tableMode: "budget",
@@ -293,8 +268,6 @@ const state = {
   annualGenerateError: null,
   viewingAs: "bp Planner",
   liveSources: null,
-  liveSourcesLoading: false,
-  liveSourcesError: null,
   dataSourceDictionary: null,
   syntheticFixture: null,
   dataReadinessExpanded: {},
@@ -673,7 +646,7 @@ function persistPlanVersions() {
   saveLocalJson("bp_plan_versions", state.planVersions.filter((version) => !isFixtureVersionId(version.version_id)));
 }
 
-// Every option chatInterrogationOptions() surfaces (the live baseline, a
+// Every option storedPlanOptions() surfaces (the live baseline, a
 // generated scenario, or one of the 6 fixture demo plans) needs a stable
 // version_id to record approval events against. Live options already carry
 // a real backend-issued version id; fixtures never got one from the API, so
@@ -739,18 +712,6 @@ async function loadData() {
   const loadOptional = (path, fallback) => fetch(`${path}?${cacheBust}`, { cache: "no-store" })
     .then((response) => (response.ok ? response.json() : fallback))
     .catch(() => fallback);
-  // The live-weather endpoint needs the FastAPI backend, which (unlike every
-  // other file loaded here) might not be running - this must never block or
-  // break the rest of the app's bootstrap, so it gets its own short timeout
-  // and a silent fallback to null rather than joining the strict `load`s above.
-  const loadOptionalFromApi = (path, fallback, timeoutMs = 5000) => {
-    const controller = new AbortController();
-    const timeout = setTimeout(() => controller.abort(), timeoutMs);
-    return fetch(`${LIVE_API_BASE}${path}`, { signal: controller.signal })
-      .then((response) => (response.ok ? response.json() : fallback))
-      .catch(() => fallback)
-      .finally(() => clearTimeout(timeout));
-  };
 
   const [plans, brief, sources, briefPriorities, enrichedCalendar, bankHolidays, curatedSportsEvents, compositeSchoolHolidays, competitorCampaignSignals, liveWeatherWarnings, weather, monthlyRevisionData, agentConfig, agentTraces, logicEval, evidenceRules, dataSourceDictionary, syntheticFixture] = await Promise.all([
     Promise.all(SCENARIOS.map((scenario) => load(`./data/generated_plan_${scenario}.json`))),
@@ -831,8 +792,6 @@ async function loadData() {
   state.revisionPlanNames = loadLocalJson("bp_revision_plan_names", {});
   state.monthlyRevisionContext = loadLocalJson("bp_monthly_revision_context", {});
   state.monthlyRevisionSubmissions = loadLocalJson("bp_monthly_revision_submissions", []);
-  state.chatMessages = loadLocalJson("bp_plan_chat_messages_v2", []);
-  state.chatInterrogationKey = loadLocalJson("bp_chat_interrogation_key", null);
 }
 
 function currentPlan() {
@@ -916,7 +875,6 @@ function sourceRegistryRag(status) {
 }
 
 function fetchLiveSources() {
-  state.liveSourcesError = null;
   state.liveSources = (state.sources?.sources || []).map((source) => ({
     name: source.name,
     filename: (source.path || source.name).split("/").pop(),
@@ -955,14 +913,6 @@ function renderDataReadiness() {
   const wrap = document.querySelector("#dataReadinessTableWrap");
   if (!wrap) return;
 
-  if (state.liveSourcesLoading && !state.liveSources) {
-    wrap.innerHTML = `<p class="table-hint">Loading data sources…</p>`;
-    return;
-  }
-  if (state.liveSourcesError) {
-    wrap.innerHTML = `<p class="table-hint warning-text">Could not reach the live source registry (${state.liveSourcesError}). Is the API running at ${LIVE_API_BASE}?</p>`;
-    return;
-  }
   if (!state.liveSources) {
     wrap.innerHTML = `<p class="table-hint">No sources ingested yet.</p>`;
     return;
@@ -1652,430 +1602,17 @@ function renderAgentConfigurator() {
   }).join("");
 }
 
-function scenarioDelta(plan, baseline, channel) {
-  const row = plan.channel_totals.find((item) => item.channel === channel);
-  const baseRow = baseline.channel_totals.find((item) => item.channel === channel);
-  return (row?.budget_gbp || 0) - (baseRow?.budget_gbp || 0);
-}
 
-async function generateStoredScenario(scenarioId, label) {
-  if (!state.baselineVersionId) return;
-  state.scenarioGenerateStatus = `Generating ${label}…`;
-  renderScenarioComparison();
-  try {
-    const response = await fetch(`${LIVE_API_BASE}/api/scenario/generate`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ version_id: state.baselineVersionId, label, stored_scenario_id: scenarioId }),
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.detail || `${response.status} ${response.statusText}`);
-    addGeneratedScenario({ plan: data.plan, stored: data.stored });
-    state.scenarioGenerateStatus = null;
-  } catch (error) {
-    state.scenarioGenerateStatus = `Could not generate ${label}: ${error.message}`;
-  }
-  renderScenarioComparison();
-}
 
-async function proposeScenarioFromText() {
-  const text = document.querySelector("#scenarioFreeText")?.value.trim();
-  if (!text) return;
-  state.scenarioGenerateStatus = "Preparing proposed scenario… this can take a few seconds.";
-  renderScenarioComparison();
-  try {
-    const response = await fetch(`${LIVE_API_BASE}/api/scenario/translate`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ freeform_prompt: text }),
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.detail || `${response.status} ${response.statusText}`);
-    state.scenarioProposal = { label: "Custom scenario", config: data.scenario_config, rationale: data.rationale };
-    state.scenarioGenerateStatus = null;
-  } catch (error) {
-    state.scenarioGenerateStatus = `Could not propose a scenario: ${error.message}`;
-  }
-  renderScenarioComparison();
-}
 
-async function generateProposedScenario() {
-  if (!state.scenarioProposal || !state.baselineVersionId) return;
-  const label = document.querySelector("#proposalLabel")?.value.trim() || state.scenarioProposal.label;
-  const weights = {
-    regional_audience: Number(document.querySelector("#proposalRegional")?.value),
-    urban_growth_audience: Number(document.querySelector("#proposalGrowth")?.value),
-    reach_channels: Number(document.querySelector("#proposalReach")?.value),
-    performance_channels: Number(document.querySelector("#proposalPerformance")?.value),
-    test_budget: Number(document.querySelector("#proposalTest")?.value),
-  };
-  const forecastCpaFactor = Number(document.querySelector("#proposalCpaFactor")?.value) || 1.0;
 
-  // Same "only send what differs from neutral" filtering as Step 2's own
-  // guardrail table (renderChannelGuardrails) - keeps the scenario config
-  // free of redundant entries for channels the planner didn't touch.
-  const channelFloors = {};
-  const channelCaps = {};
-  const channelIndex = {};
-  const channelMultipliers = {};
-  document.querySelectorAll("#scenarioProposalReview [data-proposal-channel]").forEach((input) => {
-    const channel = input.dataset.proposalChannel;
-    const field = input.dataset.proposalField;
-    const value = Number(input.value);
-    const rule = state.evidenceRules.channel_rules.find((item) => item.channel === channel);
-    if (field === "min_pct" && value !== rule.strategic_floor_pct) channelFloors[channel] = value;
-    if (field === "max_pct" && value !== 100) channelCaps[channel] = value;
-    if (field === "strategic_index" && value !== 50) channelIndex[channel] = value;
-    if (field === "multiplier" && value !== 1) channelMultipliers[channel] = value;
-  });
 
-  const scenario_config = {
-    ...state.scenarioProposal.config,
-    weights,
-    forecast_cost_per_policy_factor: forecastCpaFactor,
-    channel_floors: channelFloors,
-    channel_caps: channelCaps,
-    channel_index: channelIndex,
-    channel_multipliers: channelMultipliers,
-  };
-  const rationale = state.scenarioProposal.rationale;
-  state.scenarioGenerateStatus = `Generating ${label}…`;
-  renderScenarioComparison();
-  try {
-    const response = await fetch(`${LIVE_API_BASE}/api/scenario/generate`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ version_id: state.baselineVersionId, label, scenario_config }),
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.detail || `${response.status} ${response.statusText}`);
-    addGeneratedScenario({ plan: data.plan, stored: data.stored, rationale });
-    state.scenarioProposal = null;
-    state.scenarioGenerateStatus = null;
-  } catch (error) {
-    state.scenarioGenerateStatus = `Could not generate this scenario: ${error.message}`;
-  }
-  renderScenarioComparison();
-}
 
-function renderScenarioProposalReview() {
-  const { label, config, rationale } = state.scenarioProposal;
-  // Show the EFFECTIVE floors/caps/index (baseline's Step 2 guardrails plus
-  // whatever this proposal explicitly adds), not just this proposal's own
-  // - otherwise a blank row here reads as "no constraint", when the
-  // baseline's guardrails actually still carry forward and apply.
-  const baselineScenario = state.baselinePlan?.scenario || {};
-  const channelFloors = { ...baselineScenario.channel_floors, ...config.channel_floors };
-  const channelCaps = { ...baselineScenario.channel_caps, ...config.channel_caps };
-  const channelIndex = { ...baselineScenario.channel_index, ...config.channel_index };
-  const channelMultipliers = { ...config.channel_multipliers };
-  const channels = state.evidenceRules.channel_rules;
 
-  return `
-    <div class="assumption-box" id="scenarioProposalReview">
-      <strong>Proposed scenario, review before generating</strong>
-      <p class="table-hint">${rationale || "No specific rationale returned."}</p>
-      <label class="field-label" for="proposalLabel">Scenario name</label>
-      <input id="proposalLabel" type="text" value="${label}" />
-      <div class="builder-panel weights-grid">
-        <label><span>Decision-makers</span><input id="proposalRegional" type="number" step="0.05" value="${config.weights.regional_audience}" /></label>
-        <label><span>Investors &amp; analysts</span><input id="proposalGrowth" type="number" step="0.05" value="${config.weights.urban_growth_audience}" /></label>
-        <label><span>Reach</span><input id="proposalReach" type="number" step="0.05" value="${config.weights.reach_channels}" /></label>
-        <label><span>Performance</span><input id="proposalPerformance" type="number" step="0.05" value="${config.weights.performance_channels}" /></label>
-        <label><span>Test budget</span><input id="proposalTest" type="number" step="0.05" value="${config.weights.test_budget}" /></label>
-      </div>
-      <label class="field-label" for="proposalCpaFactor">Forecast cost-per-engagement factor (1.0 = neutral, lower = more efficient)</label>
-      <input id="proposalCpaFactor" type="number" step="0.01" class="short-input" value="${config.forecast_cost_per_policy_factor ?? 1.0}" />
-      <label class="field-label">Channel guardrails (already include the baseline's own Step 2 settings, carried forward - change any value to override it for this scenario)</label>
-      <div class="source-table-wrap">
-        <table class="source-table guardrail-table">
-          <thead><tr><th>Channel</th><th>Min %</th><th>Max %</th><th>Strategic Index</th><th>Multiplier</th></tr></thead>
-          <tbody>
-            ${channels.map((rule) => {
-              const minPct = channelFloors[rule.channel] ?? rule.strategic_floor_pct;
-              const maxPct = channelCaps[rule.channel] ?? 100;
-              const strategicIndex = channelIndex[rule.channel] ?? 50;
-              const multiplier = channelMultipliers[rule.channel] ?? 1;
-              return `
-                <tr>
-                  <td><strong>${rule.channel}</strong></td>
-                  <td><input type="number" min="0" max="100" step="0.5" value="${minPct}" data-proposal-channel="${rule.channel}" data-proposal-field="min_pct" /></td>
-                  <td><input type="number" min="0" max="100" step="0.5" value="${maxPct}" data-proposal-channel="${rule.channel}" data-proposal-field="max_pct" /></td>
-                  <td><input type="number" min="0" max="100" step="1" value="${strategicIndex}" data-proposal-channel="${rule.channel}" data-proposal-field="strategic_index" /></td>
-                  <td><input type="number" step="0.05" value="${multiplier}" data-proposal-channel="${rule.channel}" data-proposal-field="multiplier" /></td>
-                </tr>
-              `;
-            }).join("")}
-          </tbody>
-        </table>
-      </div>
-      <div class="config-actions">
-        <button class="secondary-button" type="button" id="cancelScenarioProposal">Discard</button>
-        <button class="primary-button" type="button" id="confirmScenarioProposal">Generate this scenario</button>
-      </div>
-    </div>
-  `;
-}
 
-function renderScenarioBuilder() {
-  const storedScenarios = SCENARIOS.map((scenarioId) => ({
-    scenario_id: scenarioId,
-    label: state.plans[scenarioId]?.scenario?.label || scenarioId,
-  }));
-  const disabled = state.baselineVersionId ? "" : "disabled";
-  // Error messages ("Could not...") keep the amber warning style; every
-  // other status here is a loading/in-progress message (Preparing,
-  // Generating...) and gets a neutral, non-alarming style instead so it
-  // doesn't read as something having gone wrong.
-  const isError = state.scenarioGenerateStatus?.startsWith("Could not");
-  document.querySelector("#scenarioBuilder").innerHTML = `
-    ${!state.baselineVersionId ? `<p class="table-hint warning-text">Select or load a base plan above before creating a scenario.</p>` : ""}
-    <div class="builder-panel scenario-builder-panel">
-      <div>
-        <label class="field-label">Stored scenarios</label>
-        <div class="stored-scenario-buttons">
-          ${storedScenarios.map((s) => `<button class="secondary-button" type="button" data-generate-stored="${s.scenario_id}" data-generate-label="${s.label}" ${disabled}>${s.label}</button>`).join("")}
-        </div>
-      </div>
-      <div>
-        <label class="field-label" for="scenarioFreeText">Additional scenario (free text)</label>
-        <textarea id="scenarioFreeText" rows="3" placeholder="e.g. Go heavier on financial news CTV around results weeks, keep Meta below 15%, add contextual display around COP31."></textarea>
-        <button class="secondary-button" type="button" id="proposeScenario" ${disabled}>Propose scenario</button>
-      </div>
-    </div>
-    ${state.scenarioGenerateStatus ? `<p class="table-hint ${isError ? "warning-text" : "status-loading"}">${isError ? "" : "⏳ "}${state.scenarioGenerateStatus}</p>` : ""}
-    ${state.scenarioProposal ? renderScenarioProposalReview() : ""}
-  `;
-}
 
-function scenarioCard({ key, label, plan, pass, body, isBaseline }) {
-  const preferred = state.preferredScenario?.scenario_id === key;
-  // The 6 stored bp scenarios (brief section 5) carry a qualitative
-  // facts block - objective, changed constraints, affected channels,
-  // expected direction of brand/sales outcomes, key risk. Free-text/chat
-  // proposed scenarios don't have a matching entry, so this is skipped for
-  // those rather than showing something misleading.
-  const meta = SCENARIO_META[plan.scenario?.scenario_id];
-  const factsBlock = meta ? `
-    <dl class="scenario-facts">
-      <div><dt>Objective</dt><dd>${meta.objective}</dd></div>
-      <div><dt>Changed constraints</dt><dd>${meta.changed_constraints}</dd></div>
-      <div><dt>Affected channels</dt><dd>${meta.affected_channels}</dd></div>
-      <div><dt>Expected direction - brand</dt><dd>${meta.expected_brand_direction}</dd></div>
-      <div><dt>Expected direction - engagement</dt><dd>${meta.expected_sales_direction}</dd></div>
-      <div><dt>Key risk</dt><dd>${meta.key_risk}</dd></div>
-    </dl>
-  ` : "";
-  return `
-    <div class="scenario-card ${preferred ? "preferred" : ""}">
-      <div class="scenario-card-head">
-        <strong>${label}</strong>
-        <span class="status-pill ${pass ? "good" : "warning"}">${preferred ? "Preferred" : isBaseline ? "Baseline" : pass ? "Pass" : "Needs work"}</span>
-      </div>
-      <div class="scenario-metrics">
-        <div><span>Forecast</span><strong>${number.format(plan.forecast_new_policy_sales)}</strong></div>
-        <div><span>CPE</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
-        <div><span>Gap</span><strong>${number.format(Math.max(0, plan.brief_test.policy_sales_target - plan.forecast_new_policy_sales))}</strong></div>
-      </div>
-      <div class="scenario-body">${body}</div>
-      ${factsBlock}
-      <div class="config-actions">
-        <button class="secondary-button" type="button" data-view-scenario="${key}">View full plan</button>
-        ${isBaseline ? "" : `<button class="secondary-button" type="button" data-prefer-scenario="${key}" data-prefer-label="${label}">Mark preferred</button>`}
-        ${isBaseline ? "" : `<button class="secondary-button" type="button" data-remove-scenario="${key}">Remove</button>`}
-      </div>
-    </div>
-  `;
-}
 
-function renderScenarioComparison() {
-  renderScenarioBuilder();
-  const preferredStrip = state.preferredScenario ? `
-    <div class="preferred-strip">
-      <strong>Preferred scenario</strong>
-      <span>${state.preferredScenario.label}</span>
-      <button class="secondary-button" type="button" id="clearPreferredScenario">Clear</button>
-    </div>
-  ` : `
-    <div class="preferred-strip muted">No preferred scenario selected yet.</div>
-  `;
-  const scenarioCountNote = `<p class="table-hint scenario-count-note">${state.generatedScenarios.length} of ${MAX_STORED_SCENARIOS} stored scenarios${state.generatedScenarios.length >= MAX_STORED_SCENARIOS ? " - saving another will remove the oldest non-preferred one" : ""}.</p>`;
-  document.querySelector("#preferredScenarioPanel").innerHTML = preferredStrip + scenarioCountNote;
 
-  document.querySelector("#scenarioBaselineNotice").innerHTML = `
-    <div class="builder-panel scenario-builder-panel">
-      <div>
-        <label class="field-label">Base plan</label>
-        <p class="table-hint">${state.baselinePlan ? `Using: ${state.baselinePlan.plan_id}` : "Generate a base plan in Campaign Planning, load the last one created, or upload a previously downloaded plan."}</p>
-        <button class="secondary-button" type="button" id="useLastCreatedPlan">Use last created plan</button>
-      </div>
-      <div>
-        <label class="field-label" for="uploadBasePlanInput">Upload base plan (.xlsx)</label>
-        <input type="file" id="uploadBasePlanInput" accept=".xlsx" />
-      </div>
-    </div>
-  `;
-
-  if (!state.baselinePlan) {
-    document.querySelector("#scenarioComparison").innerHTML = "";
-    return;
-  }
-
-  const baseline = state.baselinePlan;
-  const baselineCard = scenarioCard({
-    key: "baseline",
-    label: "Baseline (stored)",
-    plan: baseline,
-    pass: baseline.brief_test.clears_policy_sales_target && baseline.brief_test.clears_brief_cost_per_policy,
-    body: baseline.scenario.scenario_assumption || baseline.scenario.freeform_prompt,
-    isBaseline: true,
-  });
-
-  const scenarioCards = state.generatedScenarios.map((entry) => {
-    const deltas = CHANNEL_ORDER.map((channel) => ({
-      channel,
-      delta: scenarioDelta(entry.plan, baseline, channel),
-    })).sort((a, b) => Math.abs(b.delta) - Math.abs(a.delta)).slice(0, 3);
-    // A free-text scenario's specific Gemini rationale ("increased weight for
-    // urban growth...") is more useful here than the generic templated
-    // scenario_assumption every generated scenario otherwise gets - show it
-    // when we have it, falling back to the generic sentence for the 6 stored
-    // bp scenario templates (Balanced Growth/Brand Trust Build/...),
-    // which don't have one.
-    const assumption = entry.rationale || entry.plan.scenario.scenario_assumption || entry.plan.scenario.freeform_prompt;
-    const body = `${assumption}
-        <div class="delta-list">
-          ${deltas.map((item) => `
-            <div>
-              <span>${item.channel}</span>
-              <strong>${item.delta >= 0 ? "+" : ""}${money.format(item.delta)}</strong>
-            </div>
-          `).join("")}
-        </div>`;
-    return scenarioCard({
-      key: entry.stored.version_id,
-      label: entry.plan.scenario.label,
-      plan: entry.plan,
-      pass: entry.plan.brief_test.clears_policy_sales_target && entry.plan.brief_test.clears_brief_cost_per_policy,
-      body,
-      isBaseline: false,
-    });
-  });
-
-  document.querySelector("#scenarioComparison").innerHTML = [baselineCard, ...scenarioCards].join("");
-}
-
-function renderScenarioDrilldown() {
-  const panel = document.querySelector("#scenarioDrilldownPanel");
-  if (!state.scenarioDrilldown) {
-    panel.style.display = "none";
-    panel.innerHTML = "";
-    return;
-  }
-  const { label, plan } = state.scenarioDrilldown;
-  panel.style.display = "";
-  const channelTotalMap = Object.fromEntries(plan.channel_totals.map((row) => [row.channel, row]));
-  const selected = state.scenarioDrilldownSelected;
-  const rows = tableChannelGroups().map((group) => {
-    const channelRows = group.rows.map((leafRow) => {
-      const channel = leafRow.engineChannel;
-      const share = leafRow.share;
-      const cells = MONTHS.map((month) => {
-        const row = plan.monthly_allocations.find((item) => item.month === month && item.channel === channel);
-        const isSelected = selected?.month === month && selected?.channel === channel;
-        return `<td class="${isSelected ? "selected" : ""}">
-          <button type="button" data-scenario-month="${month}" data-scenario-channel="${channel}">
-            ${row ? money.format(row.budget_gbp * share) : "n/a"}
-          </button>
-        </td>`;
-      }).join("");
-      const total = channelTotalMap[channel];
-      const rowLabel = share < 1 ? `${leafRow.label} <span class="table-hint">(50% of ${channel})</span>` : leafRow.label;
-      return `<tr class="sub-category-row"><td title="${channel}">${rowLabel}</td>${cells}<td class="total-cell">${money.format(total.budget_gbp * share)}</td></tr>`;
-    }).join("");
-    const groupTotal = group.rows.reduce((sum, leafRow) => sum + channelTotalMap[leafRow.engineChannel].budget_gbp * leafRow.share, 0);
-    return `<tr class="category-row"><td colspan="${MONTHS.length + 1}">${group.parent}</td><td class="total-cell category-total">${money.format(groupTotal)}</td></tr>${channelRows}`;
-  }).join("");
-
-  panel.innerHTML = `
-    <div class="section-heading">
-      <div>
-        <p class="eyebrow">Scenario Detail</p>
-        <h2>${label}</h2>
-      </div>
-      <button class="secondary-button" type="button" id="closeScenarioDrilldown">Close</button>
-    </div>
-    <div class="table-wrap">
-      <table class="plan-table">
-        <thead><tr><th>Category / Channel</th>${MONTHS.map((month) => `<th>${formatMonth(month)}</th>`).join("")}<th>Total</th></tr></thead>
-        <tbody>${rows}</tbody>
-      </table>
-    </div>
-    <p class="table-hint">${plan.scenario.scenario_assumption || plan.scenario.freeform_prompt}</p>
-    <div class="section-heading compact">
-      <h2>Evidence Inspector</h2>
-      <span id="scenarioSelectedCellLabel" class="muted">${selected ? `${formatMonth(selected.month)} / ${selected.channel}` : "No cell selected"}</span>
-    </div>
-    <div id="scenarioEvidenceInspector" class="empty-state">Select a month/channel cell to see the rationale.</div>
-  `;
-  renderScenarioDrilldownEvidence();
-}
-
-function renderScenarioDrilldownEvidence() {
-  const inspector = document.querySelector("#scenarioEvidenceInspector");
-  if (!inspector) return;
-  const target = state.scenarioDrilldownSelected;
-  if (!target) {
-    inspector.className = "empty-state";
-    inspector.textContent = "Select a month/channel cell to see the rationale.";
-    return;
-  }
-  const plan = state.scenarioDrilldown.plan;
-  const row = plan.monthly_allocations.find((item) => item.month === target.month && item.channel === target.channel);
-  const channelTotal = plan.channel_totals.find((item) => item.channel === target.channel);
-  if (!row) {
-    inspector.className = "empty-state";
-    inspector.textContent = "No allocation for this cell.";
-    return;
-  }
-  inspector.className = "evidence-block";
-  inspector.innerHTML = `
-    ${splitChannelNoteHtml(target.channel)}
-    <div class="evidence-metrics">
-      <div class="metric"><span>Monthly Budget</span><strong>${money.format(row.budget_gbp)}</strong></div>
-      <div class="metric"><span>Annual Channel Budget</span><strong>${channelTotal ? money.format(channelTotal.budget_gbp) : "Not available"}</strong></div>
-      <div class="metric"><span>% of Monthly Spend</span><strong>${row.budget_share_pct}%</strong></div>
-      <div class="metric"><span>Forecast CPE</span><strong>${costPerPolicyMoney.format(row.forecast_cost_per_policy_gbp)}</strong></div>
-      <div class="metric"><span>Confidence</span><strong class="confidence-${row.confidence.replace(" ", "-")}">${row.confidence}</strong></div>
-    </div>
-    <div>
-      <strong>Rationale</strong>
-      <p class="table-hint">${row.rationale}</p>
-    </div>
-    <div>
-      <strong>Brief hooks</strong>
-      <div class="source-tags">${(row.brief_hooks || []).map((hook) => `<span class="source-tag">${hook}</span>`).join("")}</div>
-    </div>
-    <div>
-      <strong>Sources</strong>
-      <div class="source-tags">${row.source_ids.map((id) => `<span class="source-tag" title="${sourceLabel(id)}">${id}</span>`).join("")}</div>
-    </div>
-  `;
-}
-
-function sourceReadiness(sourceId) {
-  const source = state.sources?.sources?.find((item) => item.source_id === sourceId);
-  const override = state.sourceOverrides[sourceId] || {};
-  if (!source) return { source_id: sourceId, name: sourceId, status: "missing", strength: "missing" };
-  return { ...source, ...override };
-}
-
-function sourceReadinessTags(sourceIds = []) {
-  return sourceIds.map((id) => {
-    const source = sourceReadiness(id);
-    return `<span class="source-tag" title="${source.name}">${id}: ${source.status}</span>`;
-  }).join("");
-}
 
 // A month can only be revised once the month before it has fully closed -
 // "prior month actuals vs plan" isn't meaningful for a month still in
@@ -2359,7 +1896,7 @@ function renderMonthlyRevision() {
 // exploring the tool without a live session). "live" options carry a real
 // version_id, so chat's proposed scenarios can actually be run against
 // them; "fixture" options can only be explained/proposed against, not run.
-function chatInterrogationOptions() {
+function storedPlanOptions() {
   const options = [];
   if (state.baselinePlan) {
     options.push({ key: "live:baseline", label: `${state.baselinePlan.scenario.label} (baseline)`, kind: "live", plan: state.baselinePlan, versionId: state.baselineVersionId });
@@ -2377,260 +1914,14 @@ function chatInterrogationOptions() {
   return options;
 }
 
-function currentChatOption() {
-  const options = chatInterrogationOptions();
-  const found = options.find((option) => option.key === state.chatInterrogationKey);
-  if (found) return found;
-  // Default to the live baseline if one's loaded, otherwise the first demo scenario.
-  return options.find((option) => option.kind === "live") || options[0];
-}
 
-function selectChatInterrogation(key) {
-  if (key === state.chatInterrogationKey) return;
-  state.chatInterrogationKey = key;
-  saveLocalJson("bp_chat_interrogation_key", key);
-  // A different plan means prior answers no longer apply - start fresh
-  // rather than mixing context across plans.
-  state.chatMessages = [];
-  saveLocalJson("bp_plan_chat_messages_v2", state.chatMessages);
-  renderPlanChat();
-}
 
-function chatMessageHtml(message, index) {
-  const proposal = message.proposal;
-  let proposalHtml = "";
-  if (proposal) {
-    if (message.discarded) {
-      proposalHtml = `<div class="assumption-box chat-proposal"><strong>Proposed scenario config</strong><p class="table-hint">Discarded.</p></div>`;
-    } else if (message.runResult) {
-      const plan = message.runResult.plan;
-      const baseline = currentChatOption().plan;
-      proposalHtml = `
-        <div class="assumption-box chat-proposal">
-          <strong>Proposed scenario config</strong>
-          <p class="table-hint">${proposal.rationale || ""}</p>
-          <div class="scenario-metrics">
-            <div><span>Forecast</span><strong>${number.format(plan.forecast_new_policy_sales)}</strong></div>
-            <div><span>CPE</span><strong>${costPerPolicyMoney.format(plan.forecast_cost_per_policy_gbp)}</strong></div>
-            <div><span>vs baseline forecast</span><strong>${plan.forecast_new_policy_sales >= baseline.forecast_new_policy_sales ? "+" : ""}${number.format(plan.forecast_new_policy_sales - baseline.forecast_new_policy_sales)}</strong></div>
-          </div>
-          ${message.stored
-            ? `<p class="table-hint">Stored as "${plan.scenario.label}" - view it in Scenario Centre.</p>`
-            : `<div class="config-actions">
-                <button class="primary-button" type="button" data-store-chat-scenario="${index}">Store as scenario</button>
-                <button class="secondary-button" type="button" data-discard-chat-scenario="${index}">Discard</button>
-              </div>`}
-        </div>
-      `;
-    } else {
-      const canRun = currentChatOption().kind === "live";
-      proposalHtml = `
-        <div class="assumption-box chat-proposal">
-          <strong>Proposed scenario config</strong>
-          <p class="table-hint">${proposal.rationale || ""}</p>
-          ${canRun
-            ? `<div class="config-actions">
-                <button class="primary-button" type="button" data-run-chat-scenario="${index}" ${message.runningScenario ? "disabled" : ""}>${message.runningScenario ? "Running…" : "Run this scenario"}</button>
-              </div>`
-            : `<p class="table-hint warning-text">This is a demo scenario, not a live stored plan, so it can't be run or stored directly - load or generate a real base plan in Campaign Planning or Scenarios first.</p>`}
-          ${message.runError ? `<p class="table-hint warning-text">Could not run this scenario: ${message.runError}</p>` : ""}
-        </div>
-      `;
-    }
-  }
-  return `
-    <div class="chat-message ${message.role}">
-      <span>${message.type || message.role}</span>
-      <p>${message.role === "user" ? message.question : `${message.question ? `<strong>Q:</strong> ${message.question}<br>` : ""}${message.answer}`}</p>
-      <div class="source-tags">${(message.source_readiness || []).map((source) => `<span class="source-tag" title="${source.name || source.source_id}">${source.source_id}: ${source.status}</span>`).join("")}</div>
-      ${proposalHtml}
-    </div>
-  `;
-}
 
-function chatEmptyStateHtml() {
-  return `
-    <div class="chat-empty-state">
-      <img src="./assets/bp-logo.svg" alt="" class="chat-empty-logo" aria-hidden="true" />
-      <h2>How can I help you today?</h2>
-      <p class="table-hint">Ask about the plan shown on the left, or try one of the suggested questions there.</p>
-    </div>
-  `;
-}
 
-function renderPlanChat() {
-  const options = chatInterrogationOptions();
-  const current = currentChatOption();
-  if (current && state.chatInterrogationKey !== current.key) state.chatInterrogationKey = current.key;
 
-  document.querySelector("#planChat").innerHTML = `
-    <div class="chat-page">
-      <div class="chat-overview-panel">
-        <div class="chat-overview-row">
-          <div>
-            <strong>Select scenario to interrogate</strong>
-            <div class="stored-scenario-buttons">
-              ${options.map((option) => `
-                <button class="secondary-button chat-scenario-btn ${option.key === state.chatInterrogationKey ? "active" : ""}" type="button" data-chat-select="${option.key}">${option.label}</button>
-              `).join("")}
-            </div>
-          </div>
-          <div>
-            <strong>Plan Overview</strong>
-            ${current ? `
-              <div class="scenario-metrics">
-                <div><span>Forecast</span><strong>${number.format(current.plan.forecast_new_policy_sales)}</strong></div>
-                <div><span>CPE</span><strong>${costPerPolicyMoney.format(current.plan.forecast_cost_per_policy_gbp)}</strong></div>
-                <div><span>Total Budget</span><strong>${money.format(current.plan.total_budget_gbp)}</strong></div>
-                ${current.plan.forecast_quote_starts ? `<div><span>GBE Impressions</span><strong>${number.format(current.plan.forecast_quote_starts)}</strong></div>` : ""}
-                ${current.plan.quote_to_policy_conversion_pct ? `<div><span>Engagement Rate</span><strong>${current.plan.quote_to_policy_conversion_pct}%</strong></div>` : ""}
-              </div>
-              <p class="table-hint">${current.label} - ${current.plan.scenario.scenario_assumption || current.plan.scenario.freeform_prompt || ""}</p>
-            ` : `<p class="table-hint warning-text">No plan available yet - generate a base plan in Campaign Planning first.</p>`}
-          </div>
-        </div>
-        <div class="chat-overview-row chat-overview-row-secondary">
-          <div>
-            <strong>Suggested questions</strong>
-            <div class="stored-scenario-buttons">
-              ${PLAN_INTERROGATION_SEED_QUESTIONS.map((question) => `<button class="secondary-button" type="button" data-seed-question="${question.replace(/"/g, "&quot;")}" ${current ? "" : "disabled"}>${question}</button>`).join("")}
-            </div>
-          </div>
-          <div>
-            <strong>What this assistant will and won't do</strong>
-            <p class="table-hint">${PLAN_INTERROGATION_BOUNDARY_COPY}</p>
-          </div>
-        </div>
-      </div>
-      <div class="chat-main">
-        ${state.chatMessages.length ? `
-          <div class="chat-main-header">
-            <button class="secondary-button" type="button" id="newChatConversation">New chat</button>
-          </div>
-        ` : ""}
-        <div class="chat-transcript" id="chatTranscript">
-          ${state.chatMessages.length
-            ? state.chatMessages.map((message, index) => chatMessageHtml(message, index)).join("")
-            : chatEmptyStateHtml()}
-        </div>
-        <div class="chat-input-row">
-          <input id="chatQuestion" type="text" placeholder="e.g. Why have you spent so much on AV in January?" ${current ? "" : "disabled"} />
-          <button class="primary-button" type="button" id="askPlanChat" ${current ? "" : "disabled"}>Ask</button>
-        </div>
-      </div>
-    </div>
-  `;
-}
 
-async function askPlanChat() {
-  const input = document.querySelector("#chatQuestion");
-  const question = input?.value.trim();
-  const current = currentChatOption();
-  if (!question || !current) return;
-  input.value = "";
 
-  const conversation = state.chatMessages
-    .filter((message) => message.question || message.role === "assistant")
-    .flatMap((message) => message.question
-      ? [{ role: "user", content: message.question }, { role: "assistant", content: message.answer }]
-      : []);
 
-  const userMessage = { role: "user", type: "question", created_at: nowStamp(), question, answer: question, source_ids: [], source_readiness: [] };
-  const pending = {
-    role: "assistant",
-    type: "plan_interrogation",
-    created_at: nowStamp(),
-    question,
-    answer: "Thinking…",
-    source_ids: [],
-    source_readiness: [],
-  };
-  state.chatMessages = [...state.chatMessages, userMessage, pending].slice(-16);
-  renderPlanChat();
-  document.querySelector("#chatTranscript")?.scrollTo({ top: 99999 });
-
-  try {
-    const response = await fetch(`${LIVE_API_BASE}/api/chat/ask`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ question, plan: current.plan, conversation }),
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.detail || `${response.status} ${response.statusText}`);
-    const sourceIds = data.source_ids || [];
-    const answerMessage = {
-      role: "assistant",
-      type: "plan_interrogation",
-      created_at: nowStamp(),
-      question,
-      answer: data.answer,
-      source_ids: sourceIds,
-      source_readiness: sourceIds.map(sourceReadiness),
-      proposal: data.wants_scenario_proposal && data.proposed_scenario_config
-        ? { config: data.proposed_scenario_config, rationale: data.proposal_rationale, label: `Planner Chat: ${question}`.slice(0, 60) }
-        : null,
-    };
-    state.chatMessages = state.chatMessages.slice(0, -1).concat(answerMessage);
-  } catch (error) {
-    state.chatMessages = state.chatMessages.slice(0, -1).concat({
-      role: "assistant",
-      type: "plan_interrogation_error",
-      created_at: nowStamp(),
-      question,
-      answer: `Could not reach the plan chat API (${error.message}). Is it running at ${LIVE_API_BASE}?`,
-      source_ids: [],
-      source_readiness: [],
-    });
-  }
-  saveLocalJson("bp_plan_chat_messages_v2", state.chatMessages);
-  renderPlanChat();
-  document.querySelector("#chatTranscript")?.scrollTo({ top: 99999 });
-}
-
-async function runChatScenario(index) {
-  const message = state.chatMessages[index];
-  const current = currentChatOption();
-  if (!message?.proposal || !current || current.kind !== "live") return;
-  message.runningScenario = true;
-  renderPlanChat();
-  try {
-    const response = await fetch(`${LIVE_API_BASE}/api/scenario/generate`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ version_id: current.versionId, label: message.proposal.label, scenario_config: message.proposal.config }),
-    });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.detail || `${response.status} ${response.statusText}`);
-    message.runResult = { plan: data.plan, stored: data.stored };
-    message.runningScenario = false;
-  } catch (error) {
-    message.runError = error.message;
-    message.runningScenario = false;
-  }
-  saveLocalJson("bp_plan_chat_messages_v2", state.chatMessages);
-  renderPlanChat();
-}
-
-function storeChatScenario(index) {
-  const message = state.chatMessages[index];
-  if (!message?.runResult) return;
-  addGeneratedScenario({ plan: message.runResult.plan, stored: message.runResult.stored, rationale: message.proposal.rationale });
-  message.stored = true;
-  saveLocalJson("bp_plan_chat_messages_v2", state.chatMessages);
-  renderPlanChat();
-  // Scenario Centre isn't the active tab right now, but its DOM should
-  // still be current the moment the planner switches to it - tab-switching
-  // only toggles CSS visibility, it doesn't re-render (see attachEvents).
-  renderScenarioComparison();
-}
-
-function discardChatScenario(index) {
-  const message = state.chatMessages[index];
-  if (!message) return;
-  message.discarded = true;
-  saveLocalJson("bp_plan_chat_messages_v2", state.chatMessages);
-  renderPlanChat();
-}
 
 // Static demo: the overview is assembled from the month's calendar items
 // rather than an AI call, and says so.
@@ -3144,7 +2435,7 @@ function renderAdminPlansSection() {
 }
 
 function renderAdminWarningsSection() {
-  const options = chatInterrogationOptions();
+  const options = storedPlanOptions();
   const current = options.find((option) => option.key === state.adminWarningsSelectedKey) || options[0];
   if (!current) {
     return `<div class="approval-card wide"><strong>Active Warnings</strong><p class="table-hint warning-text">No stored plans available yet.</p></div>`;
@@ -3202,9 +2493,9 @@ function renderAdmin() {
 // Same option shape/pool as Chat's plan picker (live baseline, generated
 // scenarios, the 6 fixture demo plans) - approving a plan is fundamentally
 // "pick which stored plan we're talking about", so this deliberately reuses
-// chatInterrogationOptions() rather than maintaining a second list.
+// storedPlanOptions() rather than maintaining a second list.
 function currentApprovalOption() {
-  const options = chatInterrogationOptions();
+  const options = storedPlanOptions();
   if (!options.length) return null;
   const selected = options.find((option) => option.key === state.approvalSelectedKey);
   if (selected) return selected;
@@ -3225,7 +2516,7 @@ function currentApprovalOption() {
 // fallback, so an unapproved draft never gets mistaken for "the plan".
 function approvedPlanOption() {
   if (!state.currentApprovedVersionId) return null;
-  return chatInterrogationOptions().find((option) => approvalVersionId(option) === state.currentApprovedVersionId) || null;
+  return storedPlanOptions().find((option) => approvalVersionId(option) === state.currentApprovedVersionId) || null;
 }
 
 function currentPlanTableCellValue(row, mode, share = 1) {
@@ -3485,10 +2776,6 @@ function removeGeneratedScenario(versionId) {
     state.preferredScenario = null;
     saveLocalJson("bp_preferred_scenario", null);
   }
-  if (state.scenarioDrilldown && state.scenarioDrilldownKey === versionId) {
-    state.scenarioDrilldown = null;
-    renderScenarioDrilldown();
-  }
 }
 
 // Admin-only "Remove stored plans": covers the live baseline plan and any
@@ -3510,9 +2797,7 @@ function removeStoredPlan(key) {
     removeGeneratedScenario(key);
   }
   renderAdmin();
-  renderScenarioComparison();
   renderApproval();
-  renderPlanChat();
 }
 
 function addRolePerson(name, email, org, role) {
@@ -3544,7 +2829,7 @@ function effectiveWarnings(option) {
 }
 
 function setWarningOverride(key, warnings) {
-  const option = chatInterrogationOptions().find((item) => item.key === key);
+  const option = storedPlanOptions().find((item) => item.key === key);
   if (!option) return;
   state.qaWarningOverrides[approvalVersionId(option)] = warnings;
   saveLocalJson("bp_qa_warning_overrides", state.qaWarningOverrides);
@@ -3557,7 +2842,7 @@ function selectAdminWarningsPlan(key) {
 }
 
 function updateWarningText(key, index, text) {
-  const option = chatInterrogationOptions().find((item) => item.key === key);
+  const option = storedPlanOptions().find((item) => item.key === key);
   if (!option) return;
   const warnings = [...effectiveWarnings(option)];
   warnings[index] = text;
@@ -3569,7 +2854,7 @@ function updateWarningText(key, index, text) {
 }
 
 function removeWarning(key, index) {
-  const option = chatInterrogationOptions().find((item) => item.key === key);
+  const option = storedPlanOptions().find((item) => item.key === key);
   if (!option) return;
   const warnings = effectiveWarnings(option).filter((_, itemIndex) => itemIndex !== index);
   setWarningOverride(key, warnings);
@@ -3580,7 +2865,7 @@ function removeWarning(key, index) {
 function addWarning(key, text) {
   const trimmed = text.trim();
   if (!trimmed) return;
-  const option = chatInterrogationOptions().find((item) => item.key === key);
+  const option = storedPlanOptions().find((item) => item.key === key);
   if (!option) return;
   setWarningOverride(key, [...effectiveWarnings(option), trimmed]);
   renderAdmin();
@@ -3588,7 +2873,7 @@ function addWarning(key, text) {
 }
 
 function renderApproval() {
-  const options = chatInterrogationOptions();
+  const options = storedPlanOptions();
   const current = currentApprovalOption();
 
   if (!current) {
@@ -3740,8 +3025,7 @@ function renderAll() {
   renderEvidence();
   renderLogicChallenges();
   renderArchitecture();
-  renderScenarioComparison();
-  renderScenarioDrilldown();
+  renderScenarioStudio();
   renderPlanChat();
   renderEventsCalendar();
   renderAdmin();
@@ -3770,90 +3054,11 @@ function attachEvents() {
     setMobileMenu(document.querySelector("#mobileNav").hidden);
   });
 
-  document.querySelector("#scenarioComparison")?.addEventListener("click", (event) => {
-    const preferButton = event.target.closest("[data-prefer-scenario]");
-    if (preferButton) {
-      state.preferredScenario = { scenario_id: preferButton.dataset.preferScenario, label: preferButton.dataset.preferLabel, selected_at: nowStamp() };
-      saveLocalJson("bp_preferred_scenario", state.preferredScenario);
-      renderScenarioComparison();
-      return;
-    }
-    const removeButton = event.target.closest("[data-remove-scenario]");
-    if (removeButton) {
-      removeGeneratedScenario(removeButton.dataset.removeScenario);
-      renderScenarioComparison();
-      return;
-    }
-    const viewButton = event.target.closest("[data-view-scenario]");
-    if (viewButton) {
-      const key = viewButton.dataset.viewScenario;
-      state.scenarioDrilldownSelected = null;
-      if (key === "baseline") {
-        state.scenarioDrilldown = { label: "Baseline (stored)", plan: state.baselinePlan };
-        state.scenarioDrilldownKey = "baseline";
-      } else {
-        const entry = state.generatedScenarios.find((item) => item.stored.version_id === key);
-        if (entry) {
-          state.scenarioDrilldown = { label: entry.plan.scenario.label, plan: entry.plan };
-          state.scenarioDrilldownKey = key;
-        }
-      }
-      renderScenarioDrilldown();
-    }
-  });
 
-  document.querySelector("#scenarioBuilder")?.addEventListener("click", (event) => {
-    const storedButton = event.target.closest("[data-generate-stored]");
-    if (storedButton) {
-      generateStoredScenario(storedButton.dataset.generateStored, storedButton.dataset.generateLabel);
-      return;
-    }
-    if (event.target.closest("#proposeScenario")) {
-      proposeScenarioFromText();
-      return;
-    }
-    if (event.target.closest("#cancelScenarioProposal")) {
-      state.scenarioProposal = null;
-      renderScenarioComparison();
-      return;
-    }
-    if (event.target.closest("#confirmScenarioProposal")) {
-      generateProposedScenario();
-    }
-  });
 
-  document.querySelector("#scenarioDrilldownPanel")?.addEventListener("click", (event) => {
-    if (event.target.closest("#closeScenarioDrilldown")) {
-      state.scenarioDrilldown = null;
-      state.scenarioDrilldownKey = null;
-      state.scenarioDrilldownSelected = null;
-      renderScenarioDrilldown();
-      return;
-    }
-    const cellButton = event.target.closest("button[data-scenario-month]");
-    if (cellButton) {
-      state.scenarioDrilldownSelected = { month: cellButton.dataset.scenarioMonth, channel: cellButton.dataset.scenarioChannel };
-      renderScenarioDrilldown();
-    }
-  });
 
-  document.querySelector("#scenarioBaselineNotice")?.addEventListener("click", (event) => {
-    if (!event.target.closest("#useLastCreatedPlan")) return;
-    useLastCreatedPlan();
-  });
 
-  document.querySelector("#scenarioBaselineNotice")?.addEventListener("change", (event) => {
-    const input = event.target.closest("#uploadBasePlanInput");
-    if (!input || !input.files.length) return;
-    uploadBasePlanFile(input.files[0]);
-  });
 
-  document.querySelector("#preferredScenarioPanel")?.addEventListener("click", (event) => {
-    if (!event.target.closest("#clearPreferredScenario")) return;
-    state.preferredScenario = null;
-    saveLocalJson("bp_preferred_scenario", null);
-    renderScenarioComparison();
-  });
 
   document.querySelector("#monthlyRevision")?.addEventListener("change", (event) => {
     const select = event.target.closest("#revisionMonth");
@@ -3898,7 +3103,7 @@ function attachEvents() {
 
       // Submitting makes this a first-class "stored plan" - selectable on
       // Approval/Chat/Admin like any other, via the same pool
-      // chatInterrogationOptions() already builds for every other plan kind.
+      // storedPlanOptions() already builds for every other plan kind.
       state.monthlyRevisionSubmissions = [
         candidate,
         ...state.monthlyRevisionSubmissions.filter((item) => item.version_id !== candidate.version_id),
@@ -3933,43 +3138,6 @@ function attachEvents() {
     }
   });
 
-  document.querySelector("#planChat")?.addEventListener("click", (event) => {
-    if (event.target.closest("#newChatConversation")) {
-      state.chatMessages = [];
-      saveLocalJson("bp_plan_chat_messages_v2", state.chatMessages);
-      renderPlanChat();
-      return;
-    }
-    const selectButton = event.target.closest("[data-chat-select]");
-    if (selectButton) {
-      selectChatInterrogation(selectButton.dataset.chatSelect);
-      return;
-    }
-    const seedButton = event.target.closest("[data-seed-question]");
-    if (seedButton) {
-      const input = document.querySelector("#chatQuestion");
-      if (input) input.value = seedButton.dataset.seedQuestion;
-      askPlanChat();
-      return;
-    }
-    const runButton = event.target.closest("[data-run-chat-scenario]");
-    if (runButton) {
-      runChatScenario(Number(runButton.dataset.runChatScenario));
-      return;
-    }
-    const storeButton = event.target.closest("[data-store-chat-scenario]");
-    if (storeButton) {
-      storeChatScenario(Number(storeButton.dataset.storeChatScenario));
-      return;
-    }
-    const discardButton = event.target.closest("[data-discard-chat-scenario]");
-    if (discardButton) {
-      discardChatScenario(Number(discardButton.dataset.discardChatScenario));
-      return;
-    }
-    if (!event.target.closest("#askPlanChat")) return;
-    askPlanChat();
-  });
 
   document.querySelector("#eventsCalendar")?.addEventListener("click", (event) => {
     const navButton = event.target.closest("[data-calendar-nav]");
@@ -4306,14 +3474,8 @@ function applyBaselineResponse(data) {
   state.baselineVersionId = data.stored?.version_id ?? null;
   state.baselinePlan = data.plan;
   state.baselineBudgetTargets = data.budget_targets ?? state.baselineBudgetTargets ?? null;
-  // A new baseline invalidates any scenarios generated from the previous
-  // one (they're built on that old version_id), so the comparison list
-  // resets alongside it - same reasoning as clearing scenarioDrilldown/
-  // scenarioProposal below.
+  // A new baseline invalidates any scenarios generated from the previous one.
   state.generatedScenarios = [];
-  state.scenarioProposal = null;
-  state.scenarioDrilldown = null;
-  state.scenarioDrilldownKey = null;
   saveLocalJson("bp_baseline_plan_id", state.baselinePlanId);
   saveLocalJson("bp_baseline_version_id", state.baselineVersionId);
   saveLocalJson("bp_baseline_plan", state.baselinePlan);
@@ -4321,38 +3483,7 @@ function applyBaselineResponse(data) {
   saveGeneratedScenarios();
 }
 
-async function useLastCreatedPlan() {
-  state.scenarioGenerateStatus = "Loading the last created plan…";
-  renderScenarioComparison();
-  try {
-    const response = await fetch(`${LIVE_API_BASE}/api/plans/latest`);
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.detail || `${response.status} ${response.statusText}`);
-    applyBaselineResponse(data);
-    state.scenarioGenerateStatus = null;
-  } catch (error) {
-    state.scenarioGenerateStatus = `Could not load the last created plan: ${error.message}`;
-  }
-  renderScenarioComparison();
-}
 
-async function uploadBasePlanFile(file) {
-  if (!file) return;
-  state.scenarioGenerateStatus = `Importing ${file.name}…`;
-  renderScenarioComparison();
-  const formData = new FormData();
-  formData.append("plan_file", file);
-  try {
-    const response = await fetch(`${LIVE_API_BASE}/api/plans/import`, { method: "POST", body: formData });
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.detail || `${response.status} ${response.statusText}`);
-    applyBaselineResponse(data);
-    state.scenarioGenerateStatus = null;
-  } catch (error) {
-    state.scenarioGenerateStatus = `Could not import ${file.name}: ${error.message}`;
-  }
-  renderScenarioComparison();
-}
 
 // Planners never need to see or edit JSON/code - the visible sheets below
 // are plain Excel tables. A hidden "_PlanData" sheet carries the full plan
