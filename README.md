@@ -92,8 +92,15 @@ https://taums.vercel.app/client/demo/planner/BP/, behind the same password as BP
 - **Look** matches BP Intelligence v2 (header, top menu, Inter, bp green, cards).
 - **Budget:** £200k a year (rescaled from £4.8m with `clients/bp/scripts/rescale-budget.js`, which keeps every
   channel and month share).
-- **Scenarios** (`scenarios.js`) is ported from the Freemans copilot: £200k base across Google Search,
-  Meta, Affiliates, CTV, YouTube and LinkedIn. **Plan Chat** is `chat.js`.
+- **Pages:** Campaign Planning · Scenarios · Curves · Planner Chat · Events Calendar · Approval ·
+  Data Readiness · Admin (spec: `clients/bp/SPEC-planner-v3.md`).
+- **Campaign Planning** (`planner.js` on `plan-engine.js`): dates, budget and brief; channel guardrails; a
+  Low/Medium/High Strategic Index by channel by month; then a generated, editable channel × month base plan
+  with target visitors and forecast clicks. Saved in the browser (`localStorage` key `bp_planner_v3`).
+  Engine checks: `node clients/bp/scripts/check-plan-engine.js`.
+- **Scenarios** (`scenario-centre.js`) reshapes the base plan into the six stored scenarios.
+  **Curves** (`scenarios.js`) is the illustrative £200k what-if ported from the Freemans copilot.
+  **Planner Chat** (`chat.js`) answers from the base plan.
 - Spec: `clients/bp/SPEC-vercel-v2.md`.
 
 taums.vercel.app is the Vercel project `freemans-copilot-demo`, a static site deployed from

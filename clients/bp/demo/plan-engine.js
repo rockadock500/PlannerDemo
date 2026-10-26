@@ -76,7 +76,8 @@ function peRoundMatrix(values, rowTotals, colTotals) {
       colNeed[j] -= 1;
     }
   }
-  // Any leftover (rare, from rows and columns needing units in different places) goes to the largest cells.
+  // Any leftover (rare, from rows and columns needing units in different places) goes to the
+  // first column that still needs a unit.
   rowNeed.forEach((need, i) => {
     while (need > 0) {
       const j = colNeed.findIndex((n) => n > 0);
@@ -91,16 +92,18 @@ function peRoundMatrix(values, rowTotals, colTotals) {
 }
 
 // Fit a matrix to row and column totals by alternately rescaling rows and columns.
+// Rows and columns whose total is 0 are pinned to 0 (so 0 ÷ 0 never spreads NaN); the
+// others start from a small positive floor so a zero seed can still take budget.
 function peFit(seed, rowTotals, colTotals, rounds = 60) {
-  const m = seed.map((row) => row.map((v) => Math.max(v, 1e-9)));
+  const m = seed.map((row, i) => row.map((v, j) => (rowTotals[i] > 0 && colTotals[j] > 0 ? Math.max(Number(v) || 0, 1e-6) : 0)));
   for (let k = 0; k < rounds; k++) {
     m.forEach((row, i) => {
       const s = row.reduce((a, b) => a + b, 0);
-      row.forEach((_, j) => { row[j] *= rowTotals[i] / s; });
+      row.forEach((_, j) => { row[j] = s > 0 ? row[j] * (rowTotals[i] / s) : 0; });
     });
     colTotals.forEach((t, j) => {
       const s = m.reduce((a, row) => a + row[j], 0);
-      m.forEach((row) => { row[j] *= t / s; });
+      m.forEach((row) => { row[j] = s > 0 ? row[j] * (t / s) : 0; });
     });
   }
   return m;
@@ -137,29 +140,44 @@ function peMonths(start, end) {
   return months;
 }
 
-/** Channel shares (%) from the optimal shares and mean Strategic Index, clamped to the guardrails. */
-function peChannelShares(rules, strategicIndex, guardrails, months) {
+/** Guardrails can all be met: each min ≤ max, minimums total ≤ 100% and maximums ≥ 100%. */
+function peGuardrailsFeasible(guardrails) {
+  const min = PE_CHANNELS.map((c) => Number(guardrails?.[c]?.min ?? 0));
+  const max = PE_CHANNELS.map((c) => Number(guardrails?.[c]?.max ?? 100));
+  return min.every((v, i) => v <= max[i]) && min.reduce((a, b) => a + b, 0) <= 100 && max.reduce((a, b) => a + b, 0) >= 100;
+}
+
+/**
+ * Channel shares (%) from the optimal shares tilted by the Strategic Index (mean multiplier,
+ * weighted by each month's weight), held inside the guardrails. Clamping finds the scale λ
+ * where clamp(λ × raw, min, max) sums to 100, which always exists when the guardrails are feasible.
+ */
+function peChannelShares(rules, strategicIndex, guardrails, months, monthWeights) {
+  const weights = monthWeights || months.map(() => 1);
+  const totalWeight = weights.reduce((a, b) => a + b, 0) || 1;
   const raw = PE_CHANNELS.map((c) => {
     const optimal = rules[c]?.optimal ?? 25;
-    const mults = months.map((mo) => PE_SI[strategicIndex?.[c]?.[mo.key] || "M"]);
-    const mean = mults.length ? mults.reduce((a, b) => a + b, 0) / mults.length : 1;
-    return optimal * mean;
+    const mean = months.reduce((a, mo, i) => a + PE_SI[strategicIndex?.[c]?.[mo.key] || "M"] * weights[i], 0) / totalWeight;
+    return optimal * (months.length ? mean : 1);
   });
-  const sum = raw.reduce((a, b) => a + b, 0);
-  let shares = raw.map((r) => (r / sum) * 100);
-  const min = PE_CHANNELS.map((c) => guardrails?.[c]?.min ?? 0);
-  const max = PE_CHANNELS.map((c) => guardrails?.[c]?.max ?? 100);
-  const feasible = min.reduce((a, b) => a + b, 0) <= 100 && max.reduce((a, b) => a + b, 0) >= 100;
-  if (feasible) {
-    for (let k = 0; k < 20; k++) {
-      const fixed = shares.map((s, i) => (s < min[i] ? min[i] : s > max[i] ? max[i] : null));
-      if (fixed.every((f) => f === null)) break;
-      const fixedTotal = fixed.reduce((a, f) => a + (f ?? 0), 0);
-      const freeTotal = shares.reduce((a, s, i) => a + (fixed[i] === null ? s : 0), 0);
-      shares = shares.map((s, i) => (fixed[i] !== null ? fixed[i] : freeTotal > 0 ? (s / freeTotal) * (100 - fixedTotal) : 0));
-    }
+  const rawSum = raw.reduce((a, b) => a + b, 0) || 1;
+  const base = raw.map((r) => (r / rawSum) * 100);
+  const feasible = peGuardrailsFeasible(guardrails);
+  if (!feasible) return { shares: base, feasible };
+  const min = PE_CHANNELS.map((c) => Number(guardrails?.[c]?.min ?? 0));
+  const max = PE_CHANNELS.map((c) => Number(guardrails?.[c]?.max ?? 100));
+  const at = (lambda) => base.map((b, i) => Math.min(max[i], Math.max(min[i], lambda * b)));
+  let lo = 0;
+  let hi = 1;
+  while (at(hi).reduce((a, b) => a + b, 0) < 100 && hi < 1e6) hi *= 2;
+  for (let k = 0; k < 100; k++) {
+    const mid = (lo + hi) / 2;
+    if (at(mid).reduce((a, b) => a + b, 0) < 100) lo = mid;
+    else hi = mid;
   }
-  return { shares, feasible };
+  const shares = at(hi);
+  const sum = shares.reduce((a, b) => a + b, 0);
+  return { shares: shares.map((v) => (v / sum) * 100), feasible };
 }
 
 /** Forecast clicks for one channel's monthly spend. costFactor > 1 makes clicks dearer. */
@@ -180,7 +198,7 @@ function peGeneratePlan(inputs, config, guardrails, strategicIndex) {
   const budget = Math.round(Number(inputs.budget));
   const monthWeights = months.map((mo) => (config.phasing?.[mo.month] ?? 1) * mo.fraction);
   const monthTotals = peApportion(budget, monthWeights);
-  const { shares, feasible } = peChannelShares(config.rules, strategicIndex, guardrails, months);
+  const { shares, feasible } = peChannelShares(config.rules, strategicIndex, guardrails, months, monthWeights);
   const channelTotals = peApportion(budget, shares);
   const seed = months.map((mo, i) => PE_CHANNELS.map((c, j) => monthTotals[i] * shares[j] * PE_SI[strategicIndex?.[c]?.[mo.key] || "M"]));
   const cells = peRoundMatrix(peFit(seed, monthTotals, channelTotals), monthTotals, channelTotals);
@@ -238,7 +256,7 @@ function peRecalc(plan) {
   if (plan.total_budget_gbp !== plan.inputs.budget) {
     warnings.push(`Edited budget is £${plan.total_budget_gbp.toLocaleString("en-GB")}, ${plan.total_budget_gbp > plan.inputs.budget ? "over" : "under"} the £${plan.inputs.budget.toLocaleString("en-GB")} brief budget.`);
   }
-  if (!plan.guardrails_feasible) warnings.push("The channel guardrails can't all be met (minimums add up to more than 100%, or maximums to less); shares were left unclamped.");
+  if (!plan.guardrails_feasible) warnings.push("The channel guardrails can't all be met (a minimum above its maximum, minimums over 100% or maximums under 100%); shares were left unclamped.");
   outside.forEach((c) => {
     const g = plan.guardrails?.[c.channel] || {};
     warnings.push(`${c.channel} is at ${c.share_pct.toFixed(1)}% of budget, outside its ${g.min ?? 0}–${g.max ?? 100}% guardrail.`);
@@ -258,7 +276,15 @@ function peRecalc(plan) {
   return plan;
 }
 
-/** A stored scenario applied to a (possibly edited) base plan: same total budget, same targets. */
+/** A short fingerprint of a plan's budgets and targets, to tell when it has changed. */
+function peFingerprint(plan) {
+  const text = JSON.stringify([plan.monthly_allocations.map((r) => r.budget_gbp), Object.values(plan.monthly_targets), plan.inputs?.budget]);
+  let h = 2166136261;
+  for (let i = 0; i < text.length; i++) h = Math.imul(h ^ text.charCodeAt(i), 16777619);
+  return (h >>> 0).toString(36);
+}
+
+/** A stored scenario applied to a (possibly edited) base plan: same total budget, same targets and brief. */
 function peScenarioFromPlan(base, scenarioId) {
   const def = PE_SCENARIOS[scenarioId];
   const months = base.months;
@@ -285,11 +311,11 @@ function peScenarioFromPlan(base, scenarioId) {
     cost_factor: def.cost,
     generated: null,
   };
-  plan.inputs = { ...plan.inputs, budget: total };
+  plan.base_fingerprint = peFingerprint(base);
   plan.monthly_allocations = months.flatMap((mo, i) => base.channels.map((c, j) => ({ month: mo.key, channel: c, budget_gbp: cells[i][j] })));
   return peRecalc(plan);
 }
 
 if (typeof module !== "undefined") {
-  module.exports = { PE_CHANNELS, PE_SI, PE_SI_LABELS, PE_CURVES, PE_SCENARIOS, peMonths, peChannelShares, peClicks, peGeneratePlan, peRecalc, peScenarioFromPlan, peApportion, peRoundMatrix };
+  module.exports = { PE_CHANNELS, PE_SI, PE_SI_LABELS, PE_CURVES, PE_SCENARIOS, peMonths, peChannelShares, peGuardrailsFeasible, peClicks, peGeneratePlan, peRecalc, peScenarioFromPlan, peFingerprint, peApportion, peRoundMatrix };
 }

@@ -72,6 +72,55 @@ check("Results Season Burst raises results months", results.month_totals[1].budg
 const precision = pe.peScenarioFromPlan(base, "pcw_conversion_defence");
 check("Precision Reach raises cost per click", precision.cost_per_click > base.cost_per_click);
 
+// ── Edge cases ─────────────────────────────────────────────────────────────
+const finite = (p) => p.monthly_allocations.every((r) => Number.isFinite(r.budget_gbp) && r.budget_gbp >= 0 && Number.isFinite(r.forecast_clicks)) && Number.isFinite(p.total_budget_gbp);
+const maxZero = pe.peGeneratePlan(inputs, config, { ...guardrails, Meta: { min: 0, max: 0 } }, {});
+check("Max 0 gives the channel nothing and no NaN", finite(maxZero) && maxZero.total_budget_gbp === 200000 && maxZero.channel_totals[3].budget_gbp === 0);
+const pinned = pe.peGeneratePlan(inputs, config, { ...guardrails, "CTV & Streaming": { min: 40, max: 40 } }, {});
+check("min = max pins the share", Math.abs(pinned.channel_totals[0].share_pct - 40) < 0.5, pinned.channel_totals[0].share_pct.toFixed(1));
+const crossed = pe.peGeneratePlan(inputs, config, { ...guardrails, "CTV & Streaming": { min: 40, max: 20 } }, {});
+check("min above max is infeasible", crossed.guardrails_feasible === false && finite(crossed));
+check("reviewer's example is now held inside the guardrails", (() => {
+  const g = { "CTV & Streaming": { min: 0, max: 25 }, "Programmatic Display": { min: 26, max: 100 }, "Online Video": { min: 31, max: 100 }, Meta: { min: 29, max: 100 } };
+  const p = pe.peGeneratePlan(inputs, config, g, {});
+  return p.qa.guardrails_respected;
+})());
+let seed = 7;
+const rand = () => ((seed = (seed * 1103515245 + 12345) % 2147483648) / 2147483648);
+let sweepFails = 0;
+let sweepRuns = 0;
+for (let k = 0; k < 2000; k++) {
+  const g = Object.fromEntries(pe.PE_CHANNELS.map((c) => {
+    const min = Math.floor(rand() * 40);
+    return [c, { min, max: min + Math.floor(rand() * (100 - min + 1)) }];
+  }));
+  if (!pe.peGuardrailsFeasible(g)) continue;
+  sweepRuns += 1;
+  const si = Object.fromEntries(pe.PE_CHANNELS.map((c) => [c, Object.fromEntries(base.months.map((m) => [m.key, ["L", "M", "H"][Math.floor(rand() * 3)]]))]));
+  const p = pe.peGeneratePlan({ ...inputs, budget: 1000 + Math.floor(rand() * 500000) }, config, g, si);
+  if (!finite(p) || p.total_budget_gbp !== p.inputs.budget || !p.qa.guardrails_respected) sweepFails += 1;
+}
+check("random feasible guardrails and Strategic Index: exact totals, inside guardrails", sweepFails === 0, `${sweepRuns} plans, ${sweepFails} failures`);
+
+const zeroMonth = JSON.parse(JSON.stringify(base));
+zeroMonth.monthly_allocations.filter((r) => r.month === "2026-08").forEach((r) => { r.budget_gbp = 0; });
+zeroMonth.monthly_allocations.filter((r) => r.channel === "Meta").forEach((r) => { r.budget_gbp = 0; });
+pe.peRecalc(zeroMonth);
+const fromZero = pe.peScenarioFromPlan(zeroMonth, "brand_trust_build");
+check("scenario from a base with a zeroed month and channel has no NaN", finite(fromZero) && fromZero.total_budget_gbp === zeroMonth.total_budget_gbp);
+const offBrief = JSON.parse(JSON.stringify(base));
+offBrief.monthly_allocations[0].budget_gbp += 50000;
+pe.peRecalc(offBrief);
+const fromOff = pe.peScenarioFromPlan(offBrief, "multicar_household_growth");
+check("scenario from an off-brief base still flags the brief mismatch", fromOff.qa.budget_matches_brief === false);
+check("scenario records the base it was built from", fromOff.base_fingerprint === pe.peFingerprint(offBrief) && fromOff.base_fingerprint !== pe.peFingerprint(base));
+const oneDay = pe.peMonths("2026-03-15", "2026-03-15");
+check("one-day range", oneDay.length === 1 && oneDay[0].covered === 1);
+const leap = pe.peMonths("2028-02-01", "2028-02-29");
+check("leap-year February is whole", leap.length === 1 && leap[0].fraction === 1);
+const crossPartial = pe.peGeneratePlan({ ...inputs, start: "2026-12-20", end: "2027-03-10" }, config, guardrails, {});
+check("cross-year partial plan sums exactly", crossPartial.total_budget_gbp === 200000 && crossPartial.months.length === 4 && finite(crossPartial));
+
 console.log(`\nBase plan: £${base.total_budget_gbp.toLocaleString("en-GB")} · ${base.forecast_clicks.toLocaleString("en-GB")} clicks · £${base.cost_per_click.toFixed(2)} CPC · target ${base.target_visitors.toLocaleString("en-GB")} visitors · months short: ${base.qa.months_short.length}`);
 console.log(base.channel_totals.map((c) => `${c.channel} £${c.budget_gbp} ${c.forecast_clicks} clicks £${(c.budget_gbp / c.forecast_clicks).toFixed(2)}`).join("\n"));
 console.log(base.month_totals.map((m) => `${m.month} £${m.budget_gbp} clicks ${m.forecast_clicks} target ${m.target_visitors}`).join("\n"));
