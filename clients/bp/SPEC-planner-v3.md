@@ -21,7 +21,7 @@ Campaign Planning · Scenarios · Curves · Planner Chat · Events Calendar · A
 ## Campaign Planning flow
 
 1. **Brief and budget**: start date, end date, total budget (£), brief (free text, required). No file uploads.
-   Prefilled with a demo brief (1 Jan–31 Dec 2026, £200,000) so every page has a plan on first visit.
+   Prefilled with a demo brief (1 Oct–31 Dec 2026, £200,000; was Jan–Dec until 26 Oct) so every page has a plan on first visit.
 2. **Channel guardrails**: Min % / Max % per channel (CTV & Streaming, Programmatic Display, Online Video, Meta).
    Defaults: the evidence-rule floors (25/15/15/8), max 100.
 3. **Strategic Index**: channel × month grid, each cell Low / Medium / High (default Medium).

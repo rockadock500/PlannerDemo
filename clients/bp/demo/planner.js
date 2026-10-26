@@ -5,10 +5,10 @@
 // Uses plan-engine.js; reads `state` from app.js at call time.
 
 const PLANNER_STORE = "bp_planner_v3";
-const PLANNER_DEFAULT_BRIEF = "Build awareness of bp's investment case with the Global Business Elite through 2026: premium financial-news CTV and video for reach, contextual display on financial publishers for precision, and Meta to amplify results, AGM and conference moments. Drive qualified visits to bp's investor pages.";
+const PLANNER_DEFAULT_BRIEF = "Build awareness of bp's investment case with the Global Business Elite through Q4 2026, around the Q3 results and ADIPEC: premium financial-news CTV and video for reach, contextual display on financial publishers for precision, and Meta to amplify results, AGM and conference moments. Drive qualified visits to bp's investor pages.";
 
 const plannerState = {
-  inputs: { start: "2026-01-01", end: "2026-12-31", budget: 200000, brief: PLANNER_DEFAULT_BRIEF },
+  inputs: { start: "2026-10-01", end: "2026-12-31", budget: 200000, brief: PLANNER_DEFAULT_BRIEF },
   monthly: null, // the budget-by-month table: { months, budgets: {monthKey: £}, targets: {monthKey: visitors} }
   guardrails: null,
   strategicIndex: {},
@@ -38,7 +38,8 @@ function plannerDefaultGuardrails() {
   return Object.fromEntries(state.evidenceRules.channel_rules.map((r) => [r.channel, { min: r.strategic_floor_pct, max: 100 }]));
 }
 
-const PLANNER_VERSION = 4;
+// Bumped when saved plans should be replaced by the defaults (5: default flight moved to 1 Oct–31 Dec 2026).
+const PLANNER_VERSION = 5;
 
 function plannerSave() {
   const { status, ...rest } = plannerState;

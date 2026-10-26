@@ -4,7 +4,7 @@
 // detail, no forward-looking financial claims). Reads plannerState and `state` at call time.
 
 const CHAT_SUGGESTIONS = [
-  "Why is February weighted above January?",
+  "Why is November weighted above October?",
   "Which months fall short of the visitor target?",
   "Which evidence supports the CTV & Streaming share?",
   "What changes if Meta costs rise 15%?",
@@ -64,7 +64,9 @@ function chatAnswer(question) {
   const plan = chatPlan();
   if (!plan) return { text: "There's no base plan yet. Generate one in Campaign Planning first." };
   const q = question.toLowerCase();
-  const months = chatMonthsIn(question).map((i) => plan.months.find((m) => m.month === i + 1)).filter(Boolean);
+  const named = chatMonthsIn(question);
+  const months = named.map((i) => plan.months.find((m) => m.month === i + 1)).filter(Boolean);
+  const outside = named.filter((i) => !plan.months.some((m) => m.month === i + 1));
   const channel = chatChannelFrom(q, plan);
   const monthTotal = (key) => plan.month_totals.find((m) => m.month === key);
   const sources = (ids) => [...new Set(ids.filter(Boolean))].slice(0, 4).map(sourceLabel);
@@ -110,6 +112,12 @@ function chatAnswer(question) {
         `Targets start at each month's budget ÷ £${PE_TARGET_COST_PER_VISITOR.toFixed(2)} per visitor (a demo assumption) unless you've edited them.`,
       ].join("\n"),
       sources: sources(["synthetic_bp_ic_demo", "bp_response_curve_priors_2026"]),
+    };
+  }
+
+  if (outside.length) {
+    return {
+      text: `${outside.map(chatMonthName).join(" and ")} ${outside.length > 1 ? "aren't" : "isn't"} in the plan, which runs from ${plDate(plan.inputs.start)} to ${plDate(plan.inputs.end)} (${plan.months.map((m) => chatMonthName(m.month - 1)).join(", ")}). Change the dates in step 1 of Campaign Planning to plan other months.`,
     };
   }
 
