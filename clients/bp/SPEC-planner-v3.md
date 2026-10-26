@@ -41,7 +41,7 @@ Campaign Planning · Scenarios · Curves · Planner Chat · Events Calendar · A
 - **Cells**: channel weight × Strategic Index multiplier for that month, fitted so months and channels both hit
   their totals (iterative proportional fitting), rounded to whole pounds with exact totals.
 - **Forecast clicks** per cell from a per-channel diminishing-returns curve: clicks = (ref ÷ CPC₀) × (spend ÷ ref)^b.
-- **Target visitors** default to month budget ÷ £1.66 target cost per visitor (recalibrated for the Q4 flight; was £1.30 for Jan–Dec); editable.
+- **Target visitors** default to month budget ÷ £1.25 target cost per visitor (calibrated so the default plan lands just above target; was £1.30 for Jan–Dec on four channels, £1.66 for Q4 on four channels); editable.
 - A click counts as one visitor when comparing forecast with target.
 
 ## Scenarios (restored)
@@ -99,4 +99,11 @@ David asked for Campaign Planning to have two tables. The flow is now:
 4. **Channel guardrails**.
 5. **Base plan**: each month's budget from step 2 allocated by channel (month totals equal the month table
    exactly); targets come from step 2; channel figures can still be fine-tuned.
+
+## Change, 26 Oct 2026: six channels
+
+Campaign Planning, Scenarios, Approval and Planner Chat use the Curves page's channels: Google Search, Meta,
+Display (replacing Affiliates, also on Curves), CTV, YouTube and LinkedIn. Starting shares (45/18/12/10/10/5),
+guardrail floors, reach/performance groups (CTV and YouTube are reach) and click curves live in
+`data/planner_channels_2026.json`; each plan carries its curves. Default target recalibrated to £1.25 per visitor.
 

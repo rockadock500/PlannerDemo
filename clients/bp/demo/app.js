@@ -616,7 +616,7 @@ async function loadData() {
     .then((response) => (response.ok ? response.json() : fallback))
     .catch(() => fallback);
 
-  const [plans, brief, sources, briefPriorities, enrichedCalendar, bankHolidays, curatedSportsEvents, compositeSchoolHolidays, competitorCampaignSignals, liveWeatherWarnings, weather, monthlyRevisionData, agentConfig, agentTraces, logicEval, evidenceRules, dataSourceDictionary, syntheticFixture] = await Promise.all([
+  const [plans, brief, sources, briefPriorities, enrichedCalendar, bankHolidays, curatedSportsEvents, compositeSchoolHolidays, competitorCampaignSignals, liveWeatherWarnings, weather, monthlyRevisionData, agentConfig, agentTraces, logicEval, evidenceRules, dataSourceDictionary, syntheticFixture, plannerChannels] = await Promise.all([
     Promise.all(SCENARIOS.map((scenario) => load(`./data/generated_plan_${scenario}.json`))),
     load("./data/annual_brief_2026.json"),
     load("./data/source_registry.json"),
@@ -635,6 +635,7 @@ async function loadData() {
     load("./data/planning_evidence_rules_2026.json"),
     load("./data/data_source_dictionary.json"),
     load("./data/bp_synthetic_fixture_2026.json"),
+    load("./data/planner_channels_2026.json"),
   ]);
 
   state.plans = Object.fromEntries(SCENARIOS.map((scenario, index) => [scenario, plans[index]]));
@@ -643,6 +644,7 @@ async function loadData() {
   state.evidenceRules = evidenceRules;
   state.dataSourceDictionary = dataSourceDictionary;
   state.syntheticFixture = syntheticFixture;
+  state.plannerChannels = plannerChannels;
   state.briefPriorities = briefPriorities;
   state.enrichedCalendar = enrichedCalendar;
   state.bankHolidays = bankHolidays;

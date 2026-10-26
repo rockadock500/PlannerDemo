@@ -814,6 +814,19 @@
         "family calendar context"
       ],
       "readiness_group": "market_competitor_context"
+    },
+    {
+      "source_id": "planner_channel_assumptions_2026",
+      "name": "Planner channel assumptions 2026 (synthetic demo)",
+      "path": "clients/bp/demo/data/planner_channels_2026.json",
+      "status": "synthetic_assumption",
+      "strength": "supporting_proxy",
+      "used_for": [
+        "starting channel shares",
+        "default guardrail floors",
+        "click curves"
+      ],
+      "readiness_group": "plans_budgets_creative_approvals"
     }
   ]
 }

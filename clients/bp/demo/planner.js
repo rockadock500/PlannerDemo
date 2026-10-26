@@ -27,20 +27,25 @@ const plParse = (value) => Math.max(0, Math.round(Number(String(value).replace(/
 const PE_SI_SHORT = { L: "Low", M: "Med", H: "High" };
 const plEscape = (text) => String(text).replace(/[&<>"]/g, (ch) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[ch]);
 
+// Channel assumptions (starting shares, guardrail floors, groups, click curves) come from
+// data/planner_channels_2026.json; month phasing from the synthetic fixture.
 function plannerConfig() {
+  const channels = state.plannerChannels.channels;
   return {
-    rules: Object.fromEntries(state.evidenceRules.channel_rules.map((r) => [r.channel, { optimal: r.mmm_optimal_share_pct, floor: r.strategic_floor_pct }])),
+    rules: Object.fromEntries(channels.map((c) => [c.channel, { optimal: c.starting_share_pct, floor: c.floor_pct }])),
+    curves: Object.fromEntries(channels.map((c) => [c.channel, c.curve])),
+    groups: Object.fromEntries(channels.map((c) => [c.channel, c.group])),
     phasing: Object.fromEntries(Object.entries(state.syntheticFixture.monthly_budget_weights_pct).map(([k, v]) => [Number(k.slice(5)), v])),
   };
 }
 
 function plannerDefaultGuardrails() {
-  return Object.fromEntries(state.evidenceRules.channel_rules.map((r) => [r.channel, { min: r.strategic_floor_pct, max: 100 }]));
+  return Object.fromEntries(state.plannerChannels.channels.map((c) => [c.channel, { min: c.floor_pct, max: 100 }]));
 }
 
 // Bumped when saved plans should be replaced by the defaults (5: default flight moved to 1 Oct–31 Dec 2026;
-// 6: default targets recalibrated to £1.66 per visitor).
-const PLANNER_VERSION = 6;
+// 6: default targets recalibrated; 7: the six channels from the Curves page).
+const PLANNER_VERSION = 7;
 
 function plannerSave() {
   const { status, ...rest } = plannerState;
@@ -55,7 +60,8 @@ function plannerSave() {
 function plannerPlanIsValid(plan) {
   return Boolean(plan)
     && Array.isArray(plan.months) && plan.months.length > 0
-    && Array.isArray(plan.channels) && plan.channels.length === PE_CHANNELS.length
+    && Array.isArray(plan.channels) && plan.channels.join() === PE_CHANNELS.join()
+    && plan.curves && PE_CHANNELS.every((c) => plan.curves[c])
     && Array.isArray(plan.monthly_allocations) && plan.monthly_allocations.length === plan.months.length * plan.channels.length
     && plan.monthly_allocations.every((r) => Number.isFinite(r.budget_gbp) && r.budget_gbp >= 0)
     && plan.monthly_targets && typeof plan.monthly_targets === "object"
@@ -385,7 +391,7 @@ function plannerOutputStep() {
         <summary>How the plan is built</summary>
         <ul>
           <li>Each month's budget comes from the month table in step 2.</li>
-          <li>Channel shares start from the evidence rules' optimal shares, tilted by the Strategic Index and held inside the guardrails.</li>
+          <li>Channel shares start from the planner's channel assumptions (Google Search 45%, Meta 18%, Display 12%, CTV 10%, YouTube 10%, LinkedIn 5%), tilted by the Strategic Index and held inside the guardrails.</li>
           <li>Within each month, the Strategic Index moves money between channels; budgets are whole pounds and add up exactly to each month.</li>
           <li>Forecast clicks come from synthetic diminishing-returns curves per channel; each extra pound buys fewer clicks.</li>
           <li>A click counts as one visitor when comparing the forecast with the target.</li>

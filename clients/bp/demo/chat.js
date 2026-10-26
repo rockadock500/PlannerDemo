@@ -6,7 +6,7 @@
 const CHAT_SUGGESTIONS = [
   "Why is November weighted above October?",
   "Which months fall short of the visitor target?",
-  "Which evidence supports the CTV & Streaming share?",
+  "Why does Google Search get the biggest share?",
   "What changes if Meta costs rise 15%?",
   "Which guardrails are binding?",
 ];
@@ -21,8 +21,6 @@ const chatNumber = new Intl.NumberFormat("en-GB");
 const CHAT_MONTHS = ["january", "february", "march", "april", "may", "june", "july", "august", "september", "october", "november", "december"];
 // bp's quarterly results windows in the demo phasing (Feb, Apr-May, Jul-Aug, Oct-Nov), by calendar month.
 const CHAT_RESULTS_MONTHS = new Set([2, 4, 5, 7, 8, 10, 11]);
-// Which delivery source backs each channel's history.
-const CHAT_CHANNEL_SOURCE = { "CTV & Streaming": "t7s_bigquery_ctv", "Programmatic Display": "t7s_bigquery_display", "Online Video": "t7s_bigquery_video", "Meta": "t7s_bigquery_meta" };
 
 function chatPlan() {
   return plannerState.basePlan;
@@ -48,13 +46,14 @@ function chatMonthsIn(question) {
 }
 
 function chatChannelFrom(q, plan) {
-  const aliases = { "ctv": "CTV & Streaming", "streaming": "CTV & Streaming", "display": "Programmatic Display", "programmatic": "Programmatic Display", "pmp": "Programmatic Display", "video": "Online Video", "meta": "Meta", "facebook": "Meta", "instagram": "Meta" };
+  const aliases = { "google search": "Google Search", "search": "Google Search", "google": "Google Search", "ppc": "Google Search", "meta": "Meta", "facebook": "Meta", "instagram": "Meta", "display": "Display", "programmatic": "Display", "pmp": "Display", "ctv": "CTV", "streaming": "CTV", "tv": "CTV", "youtube": "YouTube", "video": "YouTube", "linkedin": "LinkedIn" };
   const hit = Object.keys(aliases).find((key) => new RegExp(`\\b${key}\\b`).test(q));
   return hit ? plan.channel_totals.find((c) => c.channel === aliases[hit]) : null;
 }
 
-function chatRule(channel) {
-  return state.evidenceRules.channel_rules.find((rule) => rule.channel === channel);
+// The planner's assumptions for a channel (starting share, floor, group, role, source) from data/planner_channels_2026.json.
+function chatChannelInfo(channel) {
+  return state.plannerChannels.channels.find((c) => c.channel === channel);
 }
 
 const chatSiOf = (plan, channel, monthKey) => plan.strategic_index?.[channel]?.[monthKey] || "M";
@@ -82,7 +81,7 @@ function chatAnswer(question) {
     const falling = /\b(fall|falls|drop|drops|cut|cuts|decrease|decreases|cheaper|lower|down)\b/.test(q);
     const change = (falling ? -1 : 1) * Number(costChange[1]) / 100;
     if (change <= -0.99) return { text: "A cost can't fall by 100% or more. Try a smaller change, such as 20%." };
-    const target = channel || plan.channel_totals.find((c) => c.channel === "Programmatic Display");
+    const target = channel || plan.channel_totals.find((c) => c.channel === "Display");
     const delta = target.forecast_clicks / (1 + change) - target.forecast_clicks;
     const clicks = plan.forecast_clicks + delta;
     const vs = plan.target_visitors ? clicks / plan.target_visitors - 1 : 0;
@@ -94,7 +93,7 @@ function chatAnswer(question) {
         : "";
     return {
       text: `If ${target.channel} costs ${falling ? "fall" : "rise"} ${Math.abs(Math.round(change * 100))}% and its ${chatMoney.format(target.budget_gbp)} stays the same, it buys about ${chatNumber.format(Math.round(Math.abs(delta)))} ${delta < 0 ? "fewer" : "more"} clicks. The plan moves from ${chatNumber.format(plan.forecast_clicks)} to about ${chatNumber.format(Math.round(clicks))} clicks, ${chatPct(vs)} against the ${chatNumber.format(plan.target_visitors)} visitor target, and cost per click from ${chatPence.format(plan.cost_per_click)} to ${chatPence.format(plan.total_budget_gbp / clicks)}. ${next}`,
-      sources: sources(["bp_response_curve_priors_2026", CHAT_CHANNEL_SOURCE[target.channel]]),
+      sources: sources(["planner_channel_assumptions_2026", chatChannelInfo(target.channel)?.source_id]),
     };
   }
 
@@ -162,7 +161,7 @@ function chatAnswer(question) {
     return {
       text: lines.length
         ? ["The Strategic Index tilts these channel months away from Medium (High ×1.3, Low ×0.7 on that channel's weight):", ...lines, "Change it in step 3 of Campaign Planning and regenerate."].join("\n")
-        : "Every channel is Medium in every month, so the shares follow the starting shares from the evidence rules. Set High or Low in step 3 of Campaign Planning to tilt them.",
+        : "Every channel is Medium in every month, so the shares follow the starting shares in the planner's channel assumptions. Set High or Low in step 3 of Campaign Planning to tilt them.",
     };
   }
 
@@ -182,22 +181,25 @@ function chatAnswer(question) {
   }
 
   if (channel) {
-    const rule = chatRule(channel.channel);
-    const starting = rule?.mmm_optimal_share_pct;
+    const info = chatChannelInfo(channel.channel);
+    const starting = info?.starting_share_pct;
     const gap = starting == null ? 0 : channel.share_pct - starting;
     const versus = Math.abs(gap) < 1 ? "in line with" : gap > 0 ? `${gap.toFixed(1)} points above` : `${(-gap).toFixed(1)} points below`;
     const tilted = plan.months.filter((m) => chatSiOf(plan, channel.channel, m.key) !== "M");
     return {
-      text: `${channel.channel} gets ${chatMoney.format(channel.budget_gbp)}, ${channel.share_pct.toFixed(1)}% of the plan, ${versus} its ${starting}% starting share in the evidence rules (synthetic demo). ${rule?.planning_role || ""} It's forecast to deliver ${chatNumber.format(channel.forecast_clicks)} clicks at ${chatPence.format(chatCpc(channel))} each.${tilted.length ? ` The Strategic Index tilts it in ${tilted.map((m) => `${m.label} (${PE_SI_LABELS[chatSiOf(plan, channel.channel, m.key)]})`).join(", ")}.` : ""}`,
-      sources: sources(["bp_planning_evidence_rules_2026", "bp_response_curve_priors_2026", CHAT_CHANNEL_SOURCE[channel.channel]]),
+      text: `${channel.channel} gets ${chatMoney.format(channel.budget_gbp)}, ${channel.share_pct.toFixed(1)}% of the plan, ${versus} its ${starting}% starting share in the planner's channel assumptions (synthetic demo). ${info?.role || ""} It's forecast to deliver ${chatNumber.format(channel.forecast_clicks)} clicks at ${chatPence.format(chatCpc(channel))} each.${tilted.length ? ` The Strategic Index tilts it in ${tilted.map((m) => `${m.label} (${PE_SI_LABELS[chatSiOf(plan, channel.channel, m.key)]})`).join(", ")}.` : ""}`,
+      sources: sources(["planner_channel_assumptions_2026", info?.source_id]),
     };
   }
 
   if (/\b(reach|precision|audiences?|balance)\b/.test(q)) {
-    const share = (names) => plan.channel_totals.filter((c) => names.includes(c.channel)).reduce((a, c) => a + c.share_pct, 0);
+    const inGroup = (group) => plan.channel_totals.filter((c) => (plan.groups?.[c.channel] || chatChannelInfo(c.channel)?.group) === group);
+    const share = (list) => list.reduce((a, c) => a + c.share_pct, 0);
+    const reach = inGroup("reach");
+    const performance = inGroup("performance");
     return {
-      text: [`The plan puts ${share(["CTV & Streaming", "Online Video"]).toFixed(1)}% into reach (CTV and online video) and ${share(["Programmatic Display", "Meta"]).toFixed(1)}% into precision and amplification (display on financial publishers and Meta):`, ...plan.channel_totals.map((c) => `• ${c.channel}: ${c.share_pct.toFixed(1)}%, ${chatMoney.format(c.budget_gbp)}, ${chatNumber.format(c.forecast_clicks)} clicks`)].join("\n"),
-      sources: sources(["bp_planning_evidence_rules_2026"]),
+      text: [`The plan puts ${share(reach).toFixed(1)}% into reach (${reach.map((c) => c.channel).join(" and ")}) and ${share(performance).toFixed(1)}% into precision and performance (${performance.map((c) => c.channel).join(", ")}):`, ...plan.channel_totals.map((c) => `• ${c.channel}: ${c.share_pct.toFixed(1)}%, ${chatMoney.format(c.budget_gbp)}, ${chatNumber.format(c.forecast_clicks)} clicks`)].join("\n"),
+      sources: sources(["planner_channel_assumptions_2026"]),
     };
   }
 

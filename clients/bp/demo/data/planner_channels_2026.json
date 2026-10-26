@@ -1,0 +1,61 @@
+{
+  "source_id": "planner_channel_assumptions_2026",
+  "status": "synthetic_assumption",
+  "note": "Synthetic planning assumptions for the demo: starting shares follow the Curves page base split; floors are the default minimum share in the channel guardrails; click curves give clicks = (ref ÷ cpc0) × (monthly spend ÷ ref)^b, so each extra pound buys fewer clicks.",
+  "channels": [
+    {
+      "channel": "Google Search",
+      "starting_share_pct": 45,
+      "floor_pct": 20,
+      "group": "performance",
+      "role": "Captures investors and analysts actively searching for bp's results, strategy and energy-transition plans, sending them to the investor pages.",
+      "curve": { "cpc0": 1.2, "ref": 20000, "b": 0.8 },
+      "source_id": "bp_response_curve_priors_2026"
+    },
+    {
+      "channel": "Meta",
+      "starting_share_pct": 18,
+      "floor_pct": 8,
+      "group": "performance",
+      "role": "Amplifies results, AGM and conference moments to financial professionals with interest- and job-title-proxy audiences; the cheapest clicks, with weaker audience precision.",
+      "curve": { "cpc0": 0.7, "ref": 6000, "b": 0.75 },
+      "source_id": "t7s_bigquery_meta"
+    },
+    {
+      "channel": "Display",
+      "starting_share_pct": 12,
+      "floor_pct": 5,
+      "group": "performance",
+      "role": "Contextual and PMP display on financial publishers for precise reach into the Global Business Elite.",
+      "curve": { "cpc0": 0.9, "ref": 5000, "b": 0.88 },
+      "source_id": "t7s_bigquery_display"
+    },
+    {
+      "channel": "CTV",
+      "starting_share_pct": 10,
+      "floor_pct": 5,
+      "group": "reach",
+      "role": "Premium, brand-safe reach on financial news and broadcaster VOD, where bp's investment story gets full-screen, sound-on attention; few direct clicks.",
+      "curve": { "cpc0": 2.4, "ref": 6000, "b": 0.8 },
+      "source_id": "t7s_bigquery_ctv"
+    },
+    {
+      "channel": "YouTube",
+      "starting_share_pct": 10,
+      "floor_pct": 5,
+      "group": "reach",
+      "role": "Longer-form video explaining strategy and capital allocation to investors, with reach beyond the financial-news audience.",
+      "curve": { "cpc0": 1.4, "ref": 5000, "b": 0.85 },
+      "source_id": "t7s_bigquery_video"
+    },
+    {
+      "channel": "LinkedIn",
+      "starting_share_pct": 5,
+      "floor_pct": 2,
+      "group": "performance",
+      "role": "Targets decision-makers and finance professionals by job title and company; the most precise and the most expensive clicks.",
+      "curve": { "cpc0": 3.2, "ref": 3000, "b": 0.8 },
+      "source_id": "bp_response_curve_priors_2026"
+    }
+  ]
+}

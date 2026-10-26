@@ -4,39 +4,31 @@
 // Static demo: every curve and cost below is a synthetic planning assumption.
 // Pure functions; runs in the browser (globals) and in Node (module.exports) for checks.
 
-const PE_CHANNELS = ["CTV & Streaming", "Programmatic Display", "Online Video", "Meta"];
-const PE_REACH_CHANNELS = ["CTV & Streaming", "Online Video"];
+// The planner's channels, in display order. Starting shares, guardrail floors, reach/performance
+// groups and click curves for each come from data/planner_channels_2026.json via the config.
+const PE_CHANNELS = ["Google Search", "Meta", "Display", "CTV", "YouTube", "LinkedIn"];
 const PE_SI = { L: 0.7, M: 1, H: 1.3 };
 const PE_SI_LABELS = { L: "Low", M: "Medium", H: "High" };
-
-// Diminishing-returns click curves: clicks = (ref ÷ cpc0) × (spend ÷ ref)^b, monthly.
-// cpc0 is the cost per click at the reference monthly spend; b < 1 means each extra pound buys fewer clicks.
-const PE_CURVES = {
-  "CTV & Streaming": { cpc0: 2.4, ref: 6000, b: 0.8 },
-  "Programmatic Display": { cpc0: 0.95, ref: 4000, b: 0.88 },
-  "Online Video": { cpc0: 1.6, ref: 4000, b: 0.85 },
-  "Meta": { cpc0: 0.7, ref: 2500, b: 0.75 },
-};
 // Default target cost per visitor, calibrated so the default Q4 2026 £200k plan lands just above target overall.
-const PE_TARGET_COST_PER_VISITOR = 1.66;
+const PE_TARGET_COST_PER_VISITOR = 1.25;
 const PE_MONTH_NAMES = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 // Stored scenarios reshape a base plan. reach / performance multiply reach channels
-// (CTV, Online Video) and performance channels (Display, Meta); months multiplies
+// (CTV, YouTube) and performance channels (Google Search, Meta, Display, LinkedIn); months multiplies
 // calendar months (1–12) and `otherMonths` the rest; cost multiplies cost per click.
 const PE_SCENARIOS = {
   balanced_growth: { label: "Blended", reach: 1, performance: 1, months: {}, otherMonths: 1, cost: 1,
     assumption: "Blended baseline: follows the base plan's split with no single objective overriding budget, brand-safety or audience guardrails." },
   brand_trust_build: { label: "Brand Awareness", reach: 1.25, performance: 0.8, months: {}, otherMonths: 1, cost: 1.04,
-    assumption: "Weights premium CTV and video reach above precision display, accepting fewer clicks for broader reach." },
+    assumption: "Weights premium CTV and YouTube reach above search, display and social, accepting fewer clicks for broader reach." },
   pcw_conversion_defence: { label: "GBE Precision Reach", reach: 0.85, performance: 1.25, months: {}, otherMonths: 1, cost: 1.08,
-    assumption: "Prioritises audience quality over scale, so cost per click rises as spend moves into premium PMP inventory." },
+    assumption: "Prioritises precisely targeted search, display, Meta and LinkedIn over broad reach, so cost per click rises for premium inventory." },
   multicar_household_growth: { label: "Results Season Burst", reach: 1, performance: 1.1, months: { 2: 1.35, 4: 1.35, 5: 1.35, 7: 1.35, 8: 1.35, 10: 1.35, 11: 1.35 }, otherMonths: 0.75, cost: 1.02,
     assumption: "Pulls budget into results months (Feb, Apr–May, Jul–Aug, Oct–Nov) and accepts thinner coverage in between." },
   young_driver_telematics: { label: "Energy Conference Moments", reach: 1, performance: 1.05, months: { 1: 1.35, 2: 1.35, 3: 1.35, 9: 1.35, 11: 1.35 }, otherMonths: 0.9, cost: 1.03,
     assumption: "Weights months with major energy and business conferences and uses contextual and social amplification around them." },
   ev_growth: { label: "AGM & Strategy Update", reach: 1.1, performance: 0.95, months: { 2: 1.5, 3: 1.5, 4: 1.5 }, otherMonths: 0.85, cost: 1.01,
-    assumption: "Front-loads budget into February–April and uses longer-form video to explain strategy ahead of the AGM." },
+    assumption: "Front-loads budget into February–April and uses longer-form CTV and YouTube to explain strategy ahead of the AGM." },
 };
 
 // ── Helpers ────────────────────────────────────────────────────────────────
@@ -181,10 +173,14 @@ function peChannelShares(rules, strategicIndex, guardrails, months, monthWeights
   return { shares: shares.map((v) => (v / sum) * 100), feasible };
 }
 
-/** Forecast clicks for one channel's monthly spend. costFactor > 1 makes clicks dearer. */
-function peClicks(channel, spend, costFactor = 1) {
-  if (!(spend > 0)) return 0;
-  const { cpc0, ref, b } = PE_CURVES[channel];
+/**
+ * Forecast clicks for one channel's monthly spend on its curve: clicks = (ref ÷ cpc0) × (spend ÷ ref)^b.
+ * cpc0 is the cost per click at the reference monthly spend; b < 1 means each extra pound buys fewer clicks.
+ * costFactor > 1 makes clicks dearer.
+ */
+function peClicks(curve, spend, costFactor = 1) {
+  if (!(spend > 0) || !curve) return 0;
+  const { cpc0, ref, b } = curve;
   return (ref / (cpc0 * costFactor)) * Math.pow(spend / ref, b);
 }
 
@@ -230,6 +226,8 @@ function peGeneratePlan(inputs, config, guardrails, strategicIndex, monthly) {
     scenario: { scenario_id: "base", label: "Base plan", scenario_assumption: "Generated from the brief, channel guardrails and Strategic Index." },
     inputs: { ...inputs, budget: Math.round(Number(inputs.budget)) },
     monthly_basis: Object.fromEntries(months.map((mo, i) => [mo.key, monthTotals[i]])),
+    curves: JSON.parse(JSON.stringify(config.curves || {})),
+    groups: { ...(config.groups || {}) },
     guardrails: JSON.parse(JSON.stringify(guardrails || {})),
     strategic_index: JSON.parse(JSON.stringify(strategicIndex || {})),
     guardrails_feasible: feasible,
@@ -247,7 +245,7 @@ function peGeneratePlan(inputs, config, guardrails, strategicIndex, monthly) {
 function peRecalc(plan) {
   const cf = plan.cost_factor || 1;
   plan.monthly_allocations.forEach((r) => {
-    r.forecast_clicks = Math.round(peClicks(r.channel, r.budget_gbp, cf));
+    r.forecast_clicks = Math.round(peClicks(plan.curves?.[r.channel], r.budget_gbp, cf));
     r.cpc = r.forecast_clicks ? r.budget_gbp / r.forecast_clicks : null;
   });
   const sumBy = (key, filter) => plan.monthly_allocations.filter(filter).reduce((a, r) => a + r[key], 0);
@@ -310,7 +308,7 @@ function peScenarioFromPlan(base, scenarioId) {
   const months = base.months;
   const values = months.map((mo) => base.channels.map((c) => {
     const cell = base.monthly_allocations.find((r) => r.month === mo.key && r.channel === c)?.budget_gbp || 0;
-    const channelFactor = PE_REACH_CHANNELS.includes(c) ? def.reach : def.performance;
+    const channelFactor = base.groups?.[c] === "reach" ? def.reach : def.performance;
     const monthFactor = def.months[mo.month] ?? def.otherMonths;
     return cell * channelFactor * monthFactor;
   }));
@@ -337,5 +335,5 @@ function peScenarioFromPlan(base, scenarioId) {
 }
 
 if (typeof module !== "undefined") {
-  module.exports = { PE_CHANNELS, PE_SI, PE_SI_LABELS, PE_CURVES, PE_SCENARIOS, PE_TARGET_COST_PER_VISITOR, peMonths, pePhaseMonths, peChannelShares, peGuardrailsFeasible, peClicks, peGeneratePlan, peRecalc, peScenarioFromPlan, peFingerprint, peApportion, peRoundMatrix };
+  module.exports = { PE_CHANNELS, PE_SI, PE_SI_LABELS, PE_SCENARIOS, PE_TARGET_COST_PER_VISITOR, peMonths, pePhaseMonths, peChannelShares, peGuardrailsFeasible, peClicks, peGeneratePlan, peRecalc, peScenarioFromPlan, peFingerprint, peApportion, peRoundMatrix };
 }

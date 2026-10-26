@@ -11,15 +11,15 @@ const SC_FACTS = {
     risk: "Read this as an evidence-led balance, not a lack of a point of view.",
   },
   brand_trust_build: {
-    objective: "Maximise awareness of bp's equity story among the Global Business Elite, shifting weight into premium CTV and online video.",
+    objective: "Maximise awareness of bp's equity story among the Global Business Elite, shifting weight into premium CTV and YouTube.",
     constraints: "Reach channels weighted up; precision display and Meta held back.",
-    channels: "Up: CTV & Streaming, Online Video. Down: Programmatic Display, Meta.",
+    channels: "Up: CTV, YouTube. Down: Google Search, Meta, Display, LinkedIn.",
     risk: "Fewer, dearer clicks; needs brand-lift evidence to justify sustaining it.",
   },
   pcw_conversion_defence: {
-    objective: "Concentrate spend on the most precisely targetable GBE inventory: financial publisher PMPs and professional social audiences.",
+    objective: "Concentrate spend on the most precisely targetable GBE audiences: investor search intent, financial publisher PMPs and professional social.",
     constraints: "Performance channels weighted up; cost per click allowed to rise for premium inventory.",
-    channels: "Up: Programmatic Display, Meta. Down: CTV & Streaming, Online Video.",
+    channels: "Up: Google Search, Meta, Display, LinkedIn. Down: CTV, YouTube.",
     risk: "Precision is capped by PMP supply; spend spilling into open exchange dilutes audience quality.",
   },
   multicar_household_growth: {
@@ -31,13 +31,13 @@ const SC_FACTS = {
   young_driver_telematics: {
     objective: "Align activity with Davos, International Energy Week, CERAWeek, Gastech, ADIPEC and COP31.",
     constraints: "Conference months weighted up; performance channels raised for contextual and social amplification.",
-    channels: "Up: Programmatic Display, Meta. Steady: CTV & Streaming, Online Video.",
+    channels: "Up: Google Search, Meta, Display, LinkedIn. Steady: CTV, YouTube.",
     risk: "Conference coverage carries policy sensitivity; brand-safety and compliance review are essential around COP31.",
   },
   ev_growth: {
     objective: "Support the full-year results and strategy update in February through to the AGM in April.",
     constraints: "February to April weighted up; longer-form video raised to explain strategy.",
-    channels: "Up: CTV & Streaming, Online Video. Down: Meta.",
+    channels: "Up: CTV, YouTube. Down: Google Search, Meta, Display, LinkedIn.",
     risk: "Must stay within approved disclosure language; no forward-looking financial claims.",
   },
 };

@@ -9,7 +9,7 @@ const SC_TOTAL = 200000;
 const SC_CHANNELS = [
   { id: "search", name: "Google Search", colour: "#005800", share: 0.45, roas: 6.71, cpa: 42, curve: 0.58 },
   { id: "meta", name: "Meta", colour: "#009b00", share: 0.18, roas: 3.88, cpa: 94, curve: 0.74 },
-  { id: "aff", name: "Affiliates", colour: "#7cb300", share: 0.12, roas: 9.37, cpa: 55, curve: 0.5 },
+  { id: "display", name: "Display", colour: "#7cb300", share: 0.12, roas: 2.6, cpa: 110, curve: 0.82 },
   { id: "ctv", name: "CTV", colour: "#1a6bb0", share: 0.1, roas: 1.9, cpa: 135, curve: 0.86 },
   { id: "youtube", name: "YouTube", colour: "#c8501f", share: 0.1, roas: 1.78, cpa: 135, curve: 0.8 },
   { id: "linkedin", name: "LinkedIn", colour: "#7a3e9d", share: 0.05, roas: 2.49, cpa: 100, curve: 0.78 },
@@ -205,5 +205,5 @@ function scUpdate() {
   root.querySelector("#scFocusName").textContent = focus.name;
   root.querySelector("#scLegendDot").style.background = focus.colour;
   root.querySelector("#scCurve").innerHTML = scCurveSvg(SC_CHANNELS.find((c) => c.id === scState.focus), scState.mult[scState.focus]);
-  root.querySelector("#scCurveNote").textContent = `Spend on the x-axis, attributed revenue on the y-axis. ${focus.name} returns ${scX(focus.mroas)} on the next pound at ${scGbp(focus.s)}.${focus.id === "aff" ? " Affiliates flatten quickly because partner commission caps bite." : ""}`;
+  root.querySelector("#scCurveNote").textContent = `Spend on the x-axis, attributed revenue on the y-axis. ${focus.name} returns ${scX(focus.mroas)} on the next pound at ${scGbp(focus.s)}.`;
 }
