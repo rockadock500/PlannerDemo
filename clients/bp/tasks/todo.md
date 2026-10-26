@@ -29,4 +29,4 @@ Spec: `../SPEC-vercel-v2.md`. One commit per task; verify before moving on.
   - Acceptance: local copy of the Vercel folder serves the planner at the sub-path.
 - [x] 7. Review and verify
   - agent-skills code reviewer; fix findings; full sweep at 1440px and 375px.
-- [ ] 8. Deploy to Vercel (David asked for the move) and check live: password gate, all pages, Freemans and BP-v2 unaffected.
+- [x] 8. Deploy to Vercel (David asked for the move) and check live: password gate, all pages, Freemans and BP-v2 unaffected.
