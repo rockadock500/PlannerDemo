@@ -90,6 +90,8 @@ https://taums.vercel.app/client/demo/planner/BP/, behind the same password as BP
   calls: Generate base plan shows the stored Blended plan, Data readiness reads `source_registry.json`,
   Plan Chat answers from the plan's own figures, and the calendar summary is built from the calendar.
 - **Look** matches BP Intelligence v2 (header, top menu, Inter, bp green, cards).
+- **Budget:** £200k a year (rescaled from £4.8m with `clients/bp/scripts/rescale-budget.js`, which keeps every
+  channel and month share).
 - **Scenarios** (`scenarios.js`) is ported from the Freemans copilot: £200k base across Google Search,
   Meta, Affiliates, CTV, YouTube and LinkedIn. **Plan Chat** is `chat.js`.
 - Spec: `clients/bp/SPEC-vercel-v2.md`.

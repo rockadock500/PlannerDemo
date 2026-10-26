@@ -94,5 +94,14 @@ No test framework exists. Verification per slice:
 ## Assumptions
 
 - "Remove the header" also removes the Freemans "Start from" preset buttons and "Suggest a better split"; Reset stays.
-- Scenario channel shares follow the Freemans base split (45/18/12/10/10/5), scaled to £200k. The Scenarios headline calls it an illustrative what-if, since it is separate from the £4.8m four-channel plan.
+- Scenario channel shares follow the Freemans base split (45/18/12/10/10/5), scaled to £200k. The Scenarios headline calls it an illustrative what-if, since its six channels differ from the plan's four.
 - The old Railway planner is left as it is.
+
+## Change, 26 Oct 2026: £200k plan budget
+
+David asked for the Campaign Planning budget to be £200k (was £4.8m) with the channel spread adjusted to match.
+`clients/bp/scripts/rescale-budget.js 200000` rescaled all six stored plans and the fixtures proportionally:
+every channel and month keeps its share (Blended: CTV £70k, Display £50k, Online Video £50k, Meta £30k);
+engagements, impressions and the brief target scale with the budget (target 141,667); rates such as cost per
+engagement and the £1.55 brief limit don't. Proportional scaling ignores diminishing returns.
+

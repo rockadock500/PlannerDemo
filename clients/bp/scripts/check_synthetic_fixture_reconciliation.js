@@ -28,8 +28,8 @@ function check(label, cond) {
 const { total_media_budget_gbp, forecast_new_policy_sales, cost_per_new_policy_sale_gbp } = f.annual_summary;
 
 check(
-  "cost_per_new_policy_sale_gbp == total_media_budget_gbp / forecast_new_policy_sales",
-  cost_per_new_policy_sale_gbp === total_media_budget_gbp / forecast_new_policy_sales
+  "cost_per_new_policy_sale_gbp == total_media_budget_gbp / forecast_new_policy_sales (to the penny)",
+  Math.abs(cost_per_new_policy_sale_gbp - total_media_budget_gbp / forecast_new_policy_sales) < 0.005
 );
 
 const weightSum = Object.values(f.monthly_budget_weights_pct).reduce((a, b) => a + b, 0);

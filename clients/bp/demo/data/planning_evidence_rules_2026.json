@@ -2,7 +2,7 @@
   "source_id": "bp_planning_evidence_rules_2026",
   "description": "Per-channel planning priors and rules derived from the bp 2026 Investment Communications brief and the7stars historical bp campaign performance (BigQuery). Synthetic demo values for prototype reasoning, not final investment advice.",
   "objective": {
-    "policy_sales_target": 3400000,
+    "policy_sales_target": 141667,
     "brief_cost_per_policy_gbp": 1.55,
     "budget_guardrail": "Every pound must reach the Global Business Elite in brand-safe, premium environments; plans should show audience-quality rationale and test risk separately."
   },
@@ -12,7 +12,7 @@
       "mmm_optimal_share_pct": 35,
       "strategic_floor_pct": 25,
       "planning_role": "Premium, brand-safe reach into the Global Business Elite at home: financial news and premium broadcaster VOD, where bp's investment story gets full-screen, sound-on attention.",
-      "mmm_note": "the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach.",
+      "mmm_note": "the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £11k a month before frequency builds faster than new GBE reach.",
       "phasing_rule": "Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly.",
       "brief_hooks": [
         "results_season",
@@ -64,7 +64,7 @@
     {
       "criterion_id": "target_and_budget",
       "label": "Hits the brief target frame",
-      "requirement": "Generated plan should balance to the supplied 2026 budget and show whether forecast GBE engagements clear 3,400,000 at or below the £1.55 brief cost per engagement."
+      "requirement": "Generated plan should balance to the supplied 2026 budget and show whether forecast GBE engagements clear 141,667 at or below the £1.55 brief cost per engagement."
     },
     {
       "criterion_id": "mmm_alignment",

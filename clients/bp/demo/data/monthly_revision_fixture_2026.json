@@ -8,12 +8,12 @@
       "prior_month": "2026-07",
       "actuals_status": "synthetic",
       "sales_actuals": {
-        "new_policy_sales": 271000,
-        "target_new_policy_sales": 290000,
+        "new_policy_sales": 11292,
+        "target_new_policy_sales": 12083,
         "cost_per_policy_gbp": 1.42,
         "target_cost_per_policy_gbp": 1.32,
         "delivery_index": 0.95,
-        "quote_starts": 16800000,
+        "quote_starts": 700000,
         "quote_to_policy_conversion_pct": 1.61,
         "brand_search_index": 104
       },
@@ -38,7 +38,7 @@
         },
         {
           "channel": "Meta",
-          "delivery_index": 1.0,
+          "delivery_index": 1,
           "sales_index": 0.94,
           "context": "Cheap engagement but GBE match rate below proxy."
         }

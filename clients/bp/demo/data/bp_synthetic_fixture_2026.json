@@ -5,10 +5,10 @@
   "source_id": "synthetic_bp_ic_demo",
   "description": "Single source-of-truth synthetic fixture for headline planning numbers used across this demo (annual Investment Communications budget, forecast GBE engagements, cost per engagement, monthly budget weights, channel taxonomy). All figures are clearly-labelled illustrative placeholders, not bp performance data.",
   "annual_summary": {
-    "total_media_budget_gbp": 4800000,
-    "forecast_new_policy_sales": 3252345,
+    "total_media_budget_gbp": 200000,
+    "forecast_new_policy_sales": 135514,
     "cost_per_new_policy_sale_gbp": 1.48,
-    "forecast_quote_starts": 181664098,
+    "forecast_quote_starts": 7569337,
     "quote_to_policy_conversion_pct": 1.79,
     "note": "Field names are inherited from the planner engine. new_policy_sales = GBE engagements; cost_per_new_policy_sale = cost per GBE engagement; quote_starts = viewable GBE impressions; quote_to_policy_conversion = impression-to-engagement rate."
   },
@@ -65,91 +65,91 @@
   },
   "monthly_channel_budget_gbp": {
     "2026-01": {
-      "CTV & Streaming": 122620,
-      "Programmatic Display": 96319,
-      "Online Video": 104655,
-      "Meta": 60406
+      "CTV & Streaming": 5109,
+      "Programmatic Display": 4013,
+      "Online Video": 4361,
+      "Meta": 2517
     },
     "2026-02": {
-      "CTV & Streaming": 190499,
-      "Programmatic Display": 135118,
-      "Online Video": 126018,
-      "Meta": 76365
+      "CTV & Streaming": 7937,
+      "Programmatic Display": 5630,
+      "Online Video": 5251,
+      "Meta": 3182
     },
     "2026-03": {
-      "CTV & Streaming": 150683,
-      "Programmatic Display": 113185,
-      "Online Video": 109066,
-      "Meta": 59066
+      "CTV & Streaming": 6279,
+      "Programmatic Display": 4716,
+      "Online Video": 4544,
+      "Meta": 2461
     },
     "2026-04": {
-      "CTV & Streaming": 169080,
-      "Programmatic Display": 107743,
-      "Online Video": 124454,
-      "Meta": 78723
+      "CTV & Streaming": 7045,
+      "Programmatic Display": 4489,
+      "Online Video": 5186,
+      "Meta": 3280
     },
     "2026-05": {
-      "CTV & Streaming": 123509,
-      "Programmatic Display": 102126,
-      "Online Video": 100983,
-      "Meta": 57382
+      "CTV & Streaming": 5146,
+      "Programmatic Display": 4255,
+      "Online Video": 4208,
+      "Meta": 2391
     },
     "2026-06": {
-      "CTV & Streaming": 94939,
-      "Programmatic Display": 79718,
-      "Online Video": 69086,
-      "Meta": 44257
+      "CTV & Streaming": 3956,
+      "Programmatic Display": 3322,
+      "Online Video": 2878,
+      "Meta": 1844
     },
     "2026-07": {
-      "CTV & Streaming": 140953,
-      "Programmatic Display": 99296,
-      "Online Video": 88246,
-      "Meta": 55505
+      "CTV & Streaming": 5874,
+      "Programmatic Display": 4137,
+      "Online Video": 3677,
+      "Meta": 2312
     },
     "2026-08": {
-      "CTV & Streaming": 100065,
-      "Programmatic Display": 67860,
-      "Online Video": 74956,
-      "Meta": 45119
+      "CTV & Streaming": 4169,
+      "Programmatic Display": 2828,
+      "Online Video": 3123,
+      "Meta": 1880
     },
     "2026-09": {
-      "CTV & Streaming": 133305,
-      "Programmatic Display": 85140,
-      "Online Video": 109180,
-      "Meta": 56375
+      "CTV & Streaming": 5554,
+      "Programmatic Display": 3548,
+      "Online Video": 4549,
+      "Meta": 2349
     },
     "2026-10": {
-      "CTV & Streaming": 163934,
-      "Programmatic Display": 109477,
-      "Online Video": 95736,
-      "Meta": 62853
+      "CTV & Streaming": 6831,
+      "Programmatic Display": 4561,
+      "Online Video": 3989,
+      "Meta": 2619
     },
     "2026-11": {
-      "CTV & Streaming": 189290,
-      "Programmatic Display": 127682,
-      "Online Video": 127129,
-      "Meta": 83899
+      "CTV & Streaming": 7887,
+      "Programmatic Display": 5320,
+      "Online Video": 5297,
+      "Meta": 3496
     },
     "2026-12": {
-      "CTV & Streaming": 101123,
-      "Programmatic Display": 76336,
-      "Online Video": 70491,
-      "Meta": 40050
+      "CTV & Streaming": 4213,
+      "Programmatic Display": 3181,
+      "Online Video": 2937,
+      "Meta": 1669
     }
   },
   "monthly_total_budget_gbp": {
-    "2026-01": 384000,
-    "2026-02": 528000,
-    "2026-03": 432000,
-    "2026-04": 480000,
-    "2026-05": 384000,
-    "2026-06": 288000,
-    "2026-07": 384000,
-    "2026-08": 288000,
-    "2026-09": 384000,
-    "2026-10": 432000,
-    "2026-11": 528000,
-    "2026-12": 288000
+    "2026-01": 16000,
+    "2026-02": 22000,
+    "2026-03": 18000,
+    "2026-04": 20000,
+    "2026-05": 16000,
+    "2026-06": 12000,
+    "2026-07": 16000,
+    "2026-08": 12000,
+    "2026-09": 16000,
+    "2026-10": 18000,
+    "2026-11": 22000,
+    "2026-12": 12000
   },
   "data_readiness_groups": {
     "effectiveness_modelling": "Effectiveness & Modelling - campaign history, brand lift, attention and view-through studies, response curves.",

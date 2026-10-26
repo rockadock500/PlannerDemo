@@ -45,7 +45,7 @@
         {
           "type": "risk",
           "title": "Engagement target not cleared",
-          "detail": "Forecast GBE engagements sit below the 3,400,000 brief target, although cost per engagement clears the £1.55 ceiling.",
+          "detail": "Forecast GBE engagements sit below the 141,667 brief target, although cost per engagement clears the £1.55 ceiling.",
           "source_ids": [
             "bp_planning_evidence_rules_2026"
           ],

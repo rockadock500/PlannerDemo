@@ -5,9 +5,9 @@
     "label": "Results Season Burst",
     "freeform_prompt": "Concentrate budget around bp's four quarterly results announcements, when investor and analyst attention on bp is highest, and keep a light always-on presence between them.",
     "weights": {
-      "regional_audience": 1.0,
+      "regional_audience": 1,
       "urban_growth_audience": 1.15,
-      "reach_channels": 1.0,
+      "reach_channels": 1,
       "performance_channels": 1.1,
       "test_budget": 0.4
     },
@@ -20,18 +20,18 @@
     "channel_index": {}
   },
   "brief_id": "annual_brief_2026_bp_ic_v1",
-  "total_budget_gbp": 4800000,
-  "total_allocated_gbp": 4800000,
-  "forecast_new_policy_sales": 3151890,
+  "total_budget_gbp": 200000,
+  "total_allocated_gbp": 200000,
+  "forecast_new_policy_sales": 131329,
   "forecast_cost_per_policy_gbp": 1.52,
-  "forecast_quote_starts": 185105720,
+  "forecast_quote_starts": 7712738,
   "quote_to_policy_conversion_pct": 1.7,
   "channel_totals": [
     {
       "channel": "CTV & Streaming",
-      "budget_gbp": 1536000,
-      "share_pct": 32.0,
-      "forecast_new_policy_sales": 870571,
+      "budget_gbp": 64000,
+      "share_pct": 32,
+      "forecast_new_policy_sales": 36274,
       "confidence": "high",
       "mmm_optimal_share_pct": 35,
       "mmm_share_source": "fixture_default",
@@ -43,7 +43,7 @@
         "confidence": "high",
         "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
         "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
-        "soft_saturation_threshold_monthly_gbp": 260000,
+        "soft_saturation_threshold_monthly_gbp": 10833,
         "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
@@ -58,9 +58,9 @@
     },
     {
       "channel": "Programmatic Display",
-      "budget_gbp": 1344000,
-      "share_pct": 28.0,
-      "forecast_new_policy_sales": 565162,
+      "budget_gbp": 56000,
+      "share_pct": 28,
+      "forecast_new_policy_sales": 23549,
       "confidence": "high",
       "mmm_optimal_share_pct": 25,
       "mmm_share_source": "fixture_default",
@@ -72,7 +72,7 @@
         "confidence": "high",
         "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
         "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
@@ -87,9 +87,9 @@
     },
     {
       "channel": "Online Video",
-      "budget_gbp": 1152000,
-      "share_pct": 24.0,
-      "forecast_new_policy_sales": 844735,
+      "budget_gbp": 48000,
+      "share_pct": 24,
+      "forecast_new_policy_sales": 35197,
       "confidence": "medium",
       "mmm_optimal_share_pct": 25,
       "mmm_share_source": "fixture_default",
@@ -101,7 +101,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
         "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "1 to 2, modest carryover",
         "agree_conflict": "partial",
         "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
@@ -115,9 +115,9 @@
     },
     {
       "channel": "Meta",
-      "budget_gbp": 768000,
-      "share_pct": 16.0,
-      "forecast_new_policy_sales": 871422,
+      "budget_gbp": 32000,
+      "share_pct": 16,
+      "forecast_new_policy_sales": 36309,
       "confidence": "medium",
       "mmm_optimal_share_pct": 15,
       "mmm_share_source": "fixture_default",
@@ -129,7 +129,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
         "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
-        "soft_saturation_threshold_monthly_gbp": 130000,
+        "soft_saturation_threshold_monthly_gbp": 5417,
         "adstock_half_life_weeks": "0 to 1, minimal carryover",
         "agree_conflict": "partial",
         "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
@@ -146,9 +146,9 @@
     {
       "month": "2026-01",
       "channel": "CTV & Streaming",
-      "budget_gbp": 91387,
+      "budget_gbp": 3808,
       "budget_share_pct": 32.53,
-      "forecast_new_policy_sales": 55443,
+      "forecast_new_policy_sales": 2310,
       "forecast_cost_per_policy_gbp": 1.65,
       "forecast_cost_per_policy_range_gbp": [
         1.4,
@@ -165,7 +165,7 @@
         "ipsos_igi_gbe_2026",
         "external_trade_desk_ctv_inputs_2025"
       ],
-      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the January budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
+      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the January budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £11k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
       "mmm_note_source": "fixture_default",
       "brief_hooks": [
         "results_season",
@@ -187,7 +187,7 @@
         "confidence": "high",
         "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
         "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
-        "soft_saturation_threshold_monthly_gbp": 260000,
+        "soft_saturation_threshold_monthly_gbp": 10833,
         "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
@@ -205,9 +205,9 @@
     {
       "month": "2026-02",
       "channel": "CTV & Streaming",
-      "budget_gbp": 222604,
+      "budget_gbp": 9275,
       "budget_share_pct": 32.93,
-      "forecast_new_policy_sales": 115502,
+      "forecast_new_policy_sales": 4813,
       "forecast_cost_per_policy_gbp": 1.93,
       "forecast_cost_per_policy_range_gbp": [
         1.64,
@@ -224,7 +224,7 @@
         "ipsos_igi_gbe_2026",
         "external_trade_desk_ctv_inputs_2025"
       ],
-      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the February budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
+      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the February budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £11k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
       "mmm_note_source": "fixture_default",
       "brief_hooks": [
         "results_season",
@@ -246,7 +246,7 @@
         "confidence": "high",
         "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
         "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
-        "soft_saturation_threshold_monthly_gbp": 260000,
+        "soft_saturation_threshold_monthly_gbp": 10833,
         "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
@@ -264,13 +264,13 @@
     {
       "month": "2026-03",
       "channel": "CTV & Streaming",
-      "budget_gbp": 107767,
+      "budget_gbp": 4490,
       "budget_share_pct": 34.1,
-      "forecast_new_policy_sales": 62067,
+      "forecast_new_policy_sales": 2586,
       "forecast_cost_per_policy_gbp": 1.74,
       "forecast_cost_per_policy_range_gbp": [
         1.48,
-        2.0
+        2
       ],
       "confidence": "high",
       "source_ids": [
@@ -283,7 +283,7 @@
         "ipsos_igi_gbe_2026",
         "external_trade_desk_ctv_inputs_2025"
       ],
-      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the March budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
+      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the March budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £11k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
       "mmm_note_source": "fixture_default",
       "brief_hooks": [
         "results_season",
@@ -305,7 +305,7 @@
         "confidence": "high",
         "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
         "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
-        "soft_saturation_threshold_monthly_gbp": 260000,
+        "soft_saturation_threshold_monthly_gbp": 10833,
         "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
@@ -323,9 +323,9 @@
     {
       "month": "2026-04",
       "channel": "CTV & Streaming",
-      "budget_gbp": 179765,
+      "budget_gbp": 7490,
       "budget_share_pct": 32.76,
-      "forecast_new_policy_sales": 97125,
+      "forecast_new_policy_sales": 4047,
       "forecast_cost_per_policy_gbp": 1.85,
       "forecast_cost_per_policy_range_gbp": [
         1.57,
@@ -342,7 +342,7 @@
         "ipsos_igi_gbe_2026",
         "external_trade_desk_ctv_inputs_2025"
       ],
-      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the April budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
+      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the April budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £11k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
       "mmm_note_source": "fixture_default",
       "brief_hooks": [
         "results_season",
@@ -364,7 +364,7 @@
         "confidence": "high",
         "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
         "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
-        "soft_saturation_threshold_monthly_gbp": 260000,
+        "soft_saturation_threshold_monthly_gbp": 10833,
         "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
@@ -382,9 +382,9 @@
     {
       "month": "2026-05",
       "channel": "CTV & Streaming",
-      "budget_gbp": 131537,
+      "budget_gbp": 5481,
       "budget_share_pct": 32.57,
-      "forecast_new_policy_sales": 77362,
+      "forecast_new_policy_sales": 3223,
       "forecast_cost_per_policy_gbp": 1.7,
       "forecast_cost_per_policy_range_gbp": [
         1.44,
@@ -401,7 +401,7 @@
         "ipsos_igi_gbe_2026",
         "external_trade_desk_ctv_inputs_2025"
       ],
-      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the May budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
+      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the May budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £11k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
       "mmm_note_source": "fixture_default",
       "brief_hooks": [
         "results_season",
@@ -423,7 +423,7 @@
         "confidence": "high",
         "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
         "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
-        "soft_saturation_threshold_monthly_gbp": 260000,
+        "soft_saturation_threshold_monthly_gbp": 10833,
         "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
@@ -441,9 +441,9 @@
     {
       "month": "2026-06",
       "channel": "CTV & Streaming",
-      "budget_gbp": 61959,
+      "budget_gbp": 2582,
       "budget_share_pct": 29.41,
-      "forecast_new_policy_sales": 40082,
+      "forecast_new_policy_sales": 1670,
       "forecast_cost_per_policy_gbp": 1.55,
       "forecast_cost_per_policy_range_gbp": [
         1.32,
@@ -460,7 +460,7 @@
         "ipsos_igi_gbe_2026",
         "external_trade_desk_ctv_inputs_2025"
       ],
-      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the June budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
+      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the June budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £11k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
       "mmm_note_source": "fixture_default",
       "brief_hooks": [
         "results_season",
@@ -482,7 +482,7 @@
         "confidence": "high",
         "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
         "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
-        "soft_saturation_threshold_monthly_gbp": 260000,
+        "soft_saturation_threshold_monthly_gbp": 10833,
         "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
@@ -500,9 +500,9 @@
     {
       "month": "2026-07",
       "channel": "CTV & Streaming",
-      "budget_gbp": 115448,
+      "budget_gbp": 4810,
       "budget_share_pct": 28.59,
-      "forecast_new_policy_sales": 70144,
+      "forecast_new_policy_sales": 2923,
       "forecast_cost_per_policy_gbp": 1.65,
       "forecast_cost_per_policy_range_gbp": [
         1.4,
@@ -519,7 +519,7 @@
         "ipsos_igi_gbe_2026",
         "external_trade_desk_ctv_inputs_2025"
       ],
-      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the July budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
+      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the July budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £11k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
       "mmm_note_source": "fixture_default",
       "brief_hooks": [
         "results_season",
@@ -541,7 +541,7 @@
         "confidence": "high",
         "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
         "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
-        "soft_saturation_threshold_monthly_gbp": 260000,
+        "soft_saturation_threshold_monthly_gbp": 10833,
         "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
@@ -559,9 +559,9 @@
     {
       "month": "2026-08",
       "channel": "CTV & Streaming",
-      "budget_gbp": 103150,
+      "budget_gbp": 4298,
       "budget_share_pct": 30.13,
-      "forecast_new_policy_sales": 67398,
+      "forecast_new_policy_sales": 2808,
       "forecast_cost_per_policy_gbp": 1.53,
       "forecast_cost_per_policy_range_gbp": [
         1.3,
@@ -578,7 +578,7 @@
         "ipsos_igi_gbe_2026",
         "external_trade_desk_ctv_inputs_2025"
       ],
-      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the August budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
+      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the August budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £11k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
       "mmm_note_source": "fixture_default",
       "brief_hooks": [
         "results_season",
@@ -600,7 +600,7 @@
         "confidence": "high",
         "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
         "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
-        "soft_saturation_threshold_monthly_gbp": 260000,
+        "soft_saturation_threshold_monthly_gbp": 10833,
         "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
@@ -618,9 +618,9 @@
     {
       "month": "2026-09",
       "channel": "CTV & Streaming",
-      "budget_gbp": 88263,
+      "budget_gbp": 3678,
       "budget_share_pct": 31.42,
-      "forecast_new_policy_sales": 53679,
+      "forecast_new_policy_sales": 2237,
       "forecast_cost_per_policy_gbp": 1.64,
       "forecast_cost_per_policy_range_gbp": [
         1.39,
@@ -637,7 +637,7 @@
         "ipsos_igi_gbe_2026",
         "external_trade_desk_ctv_inputs_2025"
       ],
-      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the September budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
+      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the September budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £11k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
       "mmm_note_source": "fixture_default",
       "brief_hooks": [
         "results_season",
@@ -659,7 +659,7 @@
         "confidence": "high",
         "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
         "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
-        "soft_saturation_threshold_monthly_gbp": 260000,
+        "soft_saturation_threshold_monthly_gbp": 10833,
         "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
@@ -677,9 +677,9 @@
     {
       "month": "2026-10",
       "channel": "CTV & Streaming",
-      "budget_gbp": 156972,
+      "budget_gbp": 6540,
       "budget_share_pct": 33.11,
-      "forecast_new_policy_sales": 87083,
+      "forecast_new_policy_sales": 3628,
       "forecast_cost_per_policy_gbp": 1.8,
       "forecast_cost_per_policy_range_gbp": [
         1.53,
@@ -696,7 +696,7 @@
         "ipsos_igi_gbe_2026",
         "external_trade_desk_ctv_inputs_2025"
       ],
-      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the October budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
+      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the October budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £11k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
       "mmm_note_source": "fixture_default",
       "brief_hooks": [
         "results_season",
@@ -718,7 +718,7 @@
         "confidence": "high",
         "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
         "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
-        "soft_saturation_threshold_monthly_gbp": 260000,
+        "soft_saturation_threshold_monthly_gbp": 10833,
         "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
@@ -736,9 +736,9 @@
     {
       "month": "2026-11",
       "channel": "CTV & Streaming",
-      "budget_gbp": 207455,
+      "budget_gbp": 8644,
       "budget_share_pct": 31.83,
-      "forecast_new_policy_sales": 104858,
+      "forecast_new_policy_sales": 4369,
       "forecast_cost_per_policy_gbp": 1.98,
       "forecast_cost_per_policy_range_gbp": [
         1.68,
@@ -755,7 +755,7 @@
         "ipsos_igi_gbe_2026",
         "external_trade_desk_ctv_inputs_2025"
       ],
-      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the November budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
+      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the November budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £11k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
       "mmm_note_source": "fixture_default",
       "brief_hooks": [
         "results_season",
@@ -777,7 +777,7 @@
         "confidence": "high",
         "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
         "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
-        "soft_saturation_threshold_monthly_gbp": 260000,
+        "soft_saturation_threshold_monthly_gbp": 10833,
         "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
@@ -795,9 +795,9 @@
     {
       "month": "2026-12",
       "channel": "CTV & Streaming",
-      "budget_gbp": 69693,
+      "budget_gbp": 2904,
       "budget_share_pct": 33.08,
-      "forecast_new_policy_sales": 39828,
+      "forecast_new_policy_sales": 1660,
       "forecast_cost_per_policy_gbp": 1.75,
       "forecast_cost_per_policy_range_gbp": [
         1.49,
@@ -814,7 +814,7 @@
         "ipsos_igi_gbe_2026",
         "external_trade_desk_ctv_inputs_2025"
       ],
-      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the December budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £260k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
+      "rationale": "CTV & Streaming allocation uses the Results Season Burst strategy, the7stars historical performance prior (35% blended share; primary_mmm), the December budget target, timing weight and a cited response-curve prior. the7stars campaign history shows CTV as bp's strongest driver of GBE view-through and completed views, with efficient reach up to roughly £11k a month before frequency builds faster than new GBE reach. Curve: moderate-saturation concave response; Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply. Phasing rule: Hold an always-on premium presence; concentrate weight in the two weeks around each results announcement, the AGM and the strategy update rather than spreading evenly. Scenario assumption: Results Season Burst pulls budget into results months (Feb, Apr-May, Jul-Aug, Oct-Nov) and accepts thinner coverage in between.",
       "mmm_note_source": "fixture_default",
       "brief_hooks": [
         "results_season",
@@ -836,7 +836,7 @@
         "confidence": "high",
         "mmm_anchor": "Historical bp CTV bursts show strong completed-view and GBE reach gains at current spend, flattening once the premium GBE-skewed inventory pool is fully reached.",
         "external_shape_prior": "Premium CTV saturates on available GBE-skewed inventory rather than budget; carryover is moderate, consistent with video brand-response literature.",
-        "soft_saturation_threshold_monthly_gbp": 260000,
+        "soft_saturation_threshold_monthly_gbp": 10833,
         "adstock_half_life_weeks": "2 to 4, moderate carryover - recall persists across a results window",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and external CTV evidence agree CTV is the reach backbone for GBE, capped by premium inventory supply.",
@@ -854,9 +854,9 @@
     {
       "month": "2026-01",
       "channel": "Programmatic Display",
-      "budget_gbp": 78456,
+      "budget_gbp": 3269,
       "budget_share_pct": 27.93,
-      "forecast_new_policy_sales": 35403,
+      "forecast_new_policy_sales": 1475,
       "forecast_cost_per_policy_gbp": 2.22,
       "forecast_cost_per_policy_range_gbp": [
         1.89,
@@ -895,7 +895,7 @@
         "confidence": "high",
         "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
         "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
@@ -913,9 +913,9 @@
     {
       "month": "2026-02",
       "channel": "Programmatic Display",
-      "budget_gbp": 183491,
+      "budget_gbp": 7645,
       "budget_share_pct": 27.14,
-      "forecast_new_policy_sales": 70604,
+      "forecast_new_policy_sales": 2942,
       "forecast_cost_per_policy_gbp": 2.6,
       "forecast_cost_per_policy_range_gbp": [
         2.21,
@@ -954,7 +954,7 @@
         "confidence": "high",
         "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
         "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
@@ -972,9 +972,9 @@
     {
       "month": "2026-03",
       "channel": "Programmatic Display",
-      "budget_gbp": 84156,
+      "budget_gbp": 3507,
       "budget_share_pct": 26.63,
-      "forecast_new_policy_sales": 36305,
+      "forecast_new_policy_sales": 1513,
       "forecast_cost_per_policy_gbp": 2.32,
       "forecast_cost_per_policy_range_gbp": [
         1.97,
@@ -1013,7 +1013,7 @@
         "confidence": "high",
         "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
         "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
@@ -1031,9 +1031,9 @@
     {
       "month": "2026-04",
       "channel": "Programmatic Display",
-      "budget_gbp": 138011,
+      "budget_gbp": 5750,
       "budget_share_pct": 25.15,
-      "forecast_new_policy_sales": 55939,
+      "forecast_new_policy_sales": 2331,
       "forecast_cost_per_policy_gbp": 2.47,
       "forecast_cost_per_policy_range_gbp": [
         2.1,
@@ -1072,7 +1072,7 @@
         "confidence": "high",
         "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
         "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
@@ -1090,9 +1090,9 @@
     {
       "month": "2026-05",
       "channel": "Programmatic Display",
-      "budget_gbp": 122075,
+      "budget_gbp": 5086,
       "budget_share_pct": 30.23,
-      "forecast_new_policy_sales": 52756,
+      "forecast_new_policy_sales": 2198,
       "forecast_cost_per_policy_gbp": 2.31,
       "forecast_cost_per_policy_range_gbp": [
         1.96,
@@ -1131,7 +1131,7 @@
         "confidence": "high",
         "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
         "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
@@ -1149,9 +1149,9 @@
     {
       "month": "2026-06",
       "channel": "Programmatic Display",
-      "budget_gbp": 60292,
+      "budget_gbp": 2512,
       "budget_share_pct": 28.62,
-      "forecast_new_policy_sales": 28872,
+      "forecast_new_policy_sales": 1203,
       "forecast_cost_per_policy_gbp": 2.09,
       "forecast_cost_per_policy_range_gbp": [
         1.78,
@@ -1190,7 +1190,7 @@
         "confidence": "high",
         "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
         "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
@@ -1208,9 +1208,9 @@
     {
       "month": "2026-07",
       "channel": "Programmatic Display",
-      "budget_gbp": 112368,
+      "budget_gbp": 4682,
       "budget_share_pct": 27.82,
-      "forecast_new_policy_sales": 50023,
+      "forecast_new_policy_sales": 2084,
       "forecast_cost_per_policy_gbp": 2.25,
       "forecast_cost_per_policy_range_gbp": [
         1.91,
@@ -1249,7 +1249,7 @@
         "confidence": "high",
         "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
         "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
@@ -1267,9 +1267,9 @@
     {
       "month": "2026-08",
       "channel": "Programmatic Display",
-      "budget_gbp": 104056,
+      "budget_gbp": 4336,
       "budget_share_pct": 30.39,
-      "forecast_new_policy_sales": 49749,
+      "forecast_new_policy_sales": 2073,
       "forecast_cost_per_policy_gbp": 2.09,
       "forecast_cost_per_policy_range_gbp": [
         1.78,
@@ -1308,7 +1308,7 @@
         "confidence": "high",
         "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
         "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
@@ -1326,9 +1326,9 @@
     {
       "month": "2026-09",
       "channel": "Programmatic Display",
-      "budget_gbp": 82690,
+      "budget_gbp": 3446,
       "budget_share_pct": 29.43,
-      "forecast_new_policy_sales": 37155,
+      "forecast_new_policy_sales": 1548,
       "forecast_cost_per_policy_gbp": 2.23,
       "forecast_cost_per_policy_range_gbp": [
         1.9,
@@ -1367,7 +1367,7 @@
         "confidence": "high",
         "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
         "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
@@ -1385,9 +1385,9 @@
     {
       "month": "2026-10",
       "channel": "Programmatic Display",
-      "budget_gbp": 132905,
+      "budget_gbp": 5538,
       "budget_share_pct": 28.03,
-      "forecast_new_policy_sales": 54654,
+      "forecast_new_policy_sales": 2277,
       "forecast_cost_per_policy_gbp": 2.43,
       "forecast_cost_per_policy_range_gbp": [
         2.07,
@@ -1426,7 +1426,7 @@
         "confidence": "high",
         "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
         "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
@@ -1444,9 +1444,9 @@
     {
       "month": "2026-11",
       "channel": "Programmatic Display",
-      "budget_gbp": 190732,
+      "budget_gbp": 7947,
       "budget_share_pct": 29.26,
-      "forecast_new_policy_sales": 70256,
+      "forecast_new_policy_sales": 2928,
       "forecast_cost_per_policy_gbp": 2.71,
       "forecast_cost_per_policy_range_gbp": [
         2.3,
@@ -1485,7 +1485,7 @@
         "confidence": "high",
         "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
         "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
@@ -1503,9 +1503,9 @@
     {
       "month": "2026-12",
       "channel": "Programmatic Display",
-      "budget_gbp": 54768,
+      "budget_gbp": 2282,
       "budget_share_pct": 25.99,
-      "forecast_new_policy_sales": 23446,
+      "forecast_new_policy_sales": 977,
       "forecast_cost_per_policy_gbp": 2.34,
       "forecast_cost_per_policy_range_gbp": [
         1.99,
@@ -1544,7 +1544,7 @@
         "confidence": "high",
         "mmm_anchor": "PMP inventory on financial publishers scales close to linearly until preferred deals are fully used, after which open-exchange fill dilutes GBE quality.",
         "external_shape_prior": "Display saturates slowly on impressions but quality falls when spend spills from PMPs into open exchange; response is largely same-period.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "0 to 1, minimal carryover - response is largely same-period",
         "agree_conflict": "agree",
         "conflict_note": "Campaign history and publisher benchmarks agree display is precise but low-engagement; the cap is PMP supply, not budget.",
@@ -1562,9 +1562,9 @@
     {
       "month": "2026-01",
       "channel": "Online Video",
-      "budget_gbp": 66155,
+      "budget_gbp": 2757,
       "budget_share_pct": 23.55,
-      "forecast_new_policy_sales": 51821,
+      "forecast_new_policy_sales": 2159,
       "forecast_cost_per_policy_gbp": 1.28,
       "forecast_cost_per_policy_range_gbp": [
         1.09,
@@ -1602,7 +1602,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
         "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "1 to 2, modest carryover",
         "agree_conflict": "partial",
         "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
@@ -1619,9 +1619,9 @@
     {
       "month": "2026-02",
       "channel": "Online Video",
-      "budget_gbp": 158306,
+      "budget_gbp": 6596,
       "budget_share_pct": 23.42,
-      "forecast_new_policy_sales": 106887,
+      "forecast_new_policy_sales": 4454,
       "forecast_cost_per_policy_gbp": 1.48,
       "forecast_cost_per_policy_range_gbp": [
         1.26,
@@ -1659,7 +1659,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
         "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "1 to 2, modest carryover",
         "agree_conflict": "partial",
         "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
@@ -1676,9 +1676,9 @@
     {
       "month": "2026-03",
       "channel": "Online Video",
-      "budget_gbp": 70626,
+      "budget_gbp": 2943,
       "budget_share_pct": 22.35,
-      "forecast_new_policy_sales": 52953,
+      "forecast_new_policy_sales": 2206,
       "forecast_cost_per_policy_gbp": 1.33,
       "forecast_cost_per_policy_range_gbp": [
         1.13,
@@ -1716,7 +1716,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
         "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "1 to 2, modest carryover",
         "agree_conflict": "partial",
         "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
@@ -1733,9 +1733,9 @@
     {
       "month": "2026-04",
       "channel": "Online Video",
-      "budget_gbp": 140774,
+      "budget_gbp": 5866,
       "budget_share_pct": 25.66,
-      "forecast_new_policy_sales": 97557,
+      "forecast_new_policy_sales": 4065,
       "forecast_cost_per_policy_gbp": 1.44,
       "forecast_cost_per_policy_range_gbp": [
         1.22,
@@ -1773,7 +1773,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
         "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "1 to 2, modest carryover",
         "agree_conflict": "partial",
         "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
@@ -1790,9 +1790,9 @@
     {
       "month": "2026-05",
       "channel": "Online Video",
-      "budget_gbp": 85862,
+      "budget_gbp": 3578,
       "budget_share_pct": 21.26,
-      "forecast_new_policy_sales": 65926,
+      "forecast_new_policy_sales": 2747,
       "forecast_cost_per_policy_gbp": 1.3,
       "forecast_cost_per_policy_range_gbp": [
         1.1,
@@ -1830,7 +1830,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
         "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "1 to 2, modest carryover",
         "agree_conflict": "partial",
         "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
@@ -1847,9 +1847,9 @@
     {
       "month": "2026-06",
       "channel": "Online Video",
-      "budget_gbp": 56319,
+      "budget_gbp": 2346,
       "budget_share_pct": 26.73,
-      "forecast_new_policy_sales": 46423,
+      "forecast_new_policy_sales": 1934,
       "forecast_cost_per_policy_gbp": 1.21,
       "forecast_cost_per_policy_range_gbp": [
         1.03,
@@ -1887,7 +1887,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
         "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "1 to 2, modest carryover",
         "agree_conflict": "partial",
         "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
@@ -1904,9 +1904,9 @@
     {
       "month": "2026-07",
       "channel": "Online Video",
-      "budget_gbp": 105739,
+      "budget_gbp": 4406,
       "budget_share_pct": 26.18,
-      "forecast_new_policy_sales": 81222,
+      "forecast_new_policy_sales": 3384,
       "forecast_cost_per_policy_gbp": 1.3,
       "forecast_cost_per_policy_range_gbp": [
         1.1,
@@ -1944,7 +1944,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
         "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "1 to 2, modest carryover",
         "agree_conflict": "partial",
         "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
@@ -1961,9 +1961,9 @@
     {
       "month": "2026-08",
       "channel": "Online Video",
-      "budget_gbp": 86016,
+      "budget_gbp": 3584,
       "budget_share_pct": 25.12,
-      "forecast_new_policy_sales": 71776,
+      "forecast_new_policy_sales": 2991,
       "forecast_cost_per_policy_gbp": 1.2,
       "forecast_cost_per_policy_range_gbp": [
         1.02,
@@ -2001,7 +2001,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
         "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "1 to 2, modest carryover",
         "agree_conflict": "partial",
         "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
@@ -2018,9 +2018,9 @@
     {
       "month": "2026-09",
       "channel": "Online Video",
-      "budget_gbp": 67618,
+      "budget_gbp": 2817,
       "budget_share_pct": 24.07,
-      "forecast_new_policy_sales": 52888,
+      "forecast_new_policy_sales": 2204,
       "forecast_cost_per_policy_gbp": 1.28,
       "forecast_cost_per_policy_range_gbp": [
         1.09,
@@ -2058,7 +2058,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
         "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "1 to 2, modest carryover",
         "agree_conflict": "partial",
         "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
@@ -2075,9 +2075,9 @@
     {
       "month": "2026-10",
       "channel": "Online Video",
-      "budget_gbp": 108665,
+      "budget_gbp": 4528,
       "budget_share_pct": 22.92,
-      "forecast_new_policy_sales": 78428,
+      "forecast_new_policy_sales": 3268,
       "forecast_cost_per_policy_gbp": 1.39,
       "forecast_cost_per_policy_range_gbp": [
         1.18,
@@ -2115,7 +2115,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
         "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "1 to 2, modest carryover",
         "agree_conflict": "partial",
         "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
@@ -2132,9 +2132,9 @@
     {
       "month": "2026-11",
       "channel": "Online Video",
-      "budget_gbp": 153755,
+      "budget_gbp": 6406,
       "budget_share_pct": 23.59,
-      "forecast_new_policy_sales": 100468,
+      "forecast_new_policy_sales": 4186,
       "forecast_cost_per_policy_gbp": 1.53,
       "forecast_cost_per_policy_range_gbp": [
         1.3,
@@ -2172,7 +2172,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
         "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "1 to 2, modest carryover",
         "agree_conflict": "partial",
         "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
@@ -2189,9 +2189,9 @@
     {
       "month": "2026-12",
       "channel": "Online Video",
-      "budget_gbp": 52165,
+      "budget_gbp": 2173,
       "budget_share_pct": 24.76,
-      "forecast_new_policy_sales": 38386,
+      "forecast_new_policy_sales": 1599,
       "forecast_cost_per_policy_gbp": 1.36,
       "forecast_cost_per_policy_range_gbp": [
         1.16,
@@ -2229,7 +2229,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's limited video history shows good completed-view rates on financial publisher video, with diminishing returns once business-content inventory is covered.",
         "external_shape_prior": "Online video typically saturates faster than CTV on narrow audiences; modest carryover.",
-        "soft_saturation_threshold_monthly_gbp": 200000,
+        "soft_saturation_threshold_monthly_gbp": 8333,
         "adstock_half_life_weeks": "1 to 2, modest carryover",
         "agree_conflict": "partial",
         "conflict_note": "Campaign history is thinner than external benchmarks suggest; treat the response curve as a prior to be validated in-flight.",
@@ -2246,9 +2246,9 @@
     {
       "month": "2026-01",
       "channel": "Meta",
-      "budget_gbp": 44935,
+      "budget_gbp": 1872,
       "budget_share_pct": 15.99,
-      "forecast_new_policy_sales": 54588,
+      "forecast_new_policy_sales": 2275,
       "forecast_cost_per_policy_gbp": 0.82,
       "forecast_cost_per_policy_range_gbp": [
         0.7,
@@ -2286,7 +2286,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
         "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
-        "soft_saturation_threshold_monthly_gbp": 130000,
+        "soft_saturation_threshold_monthly_gbp": 5417,
         "adstock_half_life_weeks": "0 to 1, minimal carryover",
         "agree_conflict": "partial",
         "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
@@ -2303,9 +2303,9 @@
     {
       "month": "2026-02",
       "channel": "Meta",
-      "budget_gbp": 111593,
+      "budget_gbp": 4650,
       "budget_share_pct": 16.51,
-      "forecast_new_policy_sales": 115756,
+      "forecast_new_policy_sales": 4823,
       "forecast_cost_per_policy_gbp": 0.96,
       "forecast_cost_per_policy_range_gbp": [
         0.82,
@@ -2343,7 +2343,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
         "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
-        "soft_saturation_threshold_monthly_gbp": 130000,
+        "soft_saturation_threshold_monthly_gbp": 5417,
         "adstock_half_life_weeks": "0 to 1, minimal carryover",
         "agree_conflict": "partial",
         "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
@@ -2360,13 +2360,13 @@
     {
       "month": "2026-03",
       "channel": "Meta",
-      "budget_gbp": 53500,
+      "budget_gbp": 2229,
       "budget_share_pct": 16.93,
-      "forecast_new_policy_sales": 61662,
+      "forecast_new_policy_sales": 2569,
       "forecast_cost_per_policy_gbp": 0.87,
       "forecast_cost_per_policy_range_gbp": [
         0.74,
-        1.0
+        1
       ],
       "confidence": "medium",
       "source_ids": [
@@ -2400,7 +2400,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
         "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
-        "soft_saturation_threshold_monthly_gbp": 130000,
+        "soft_saturation_threshold_monthly_gbp": 5417,
         "adstock_half_life_weeks": "0 to 1, minimal carryover",
         "agree_conflict": "partial",
         "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
@@ -2417,9 +2417,9 @@
     {
       "month": "2026-04",
       "channel": "Meta",
-      "budget_gbp": 90147,
+      "budget_gbp": 3756,
       "budget_share_pct": 16.43,
-      "forecast_new_policy_sales": 97373,
+      "forecast_new_policy_sales": 4057,
       "forecast_cost_per_policy_gbp": 0.93,
       "forecast_cost_per_policy_range_gbp": [
         0.79,
@@ -2457,7 +2457,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
         "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
-        "soft_saturation_threshold_monthly_gbp": 130000,
+        "soft_saturation_threshold_monthly_gbp": 5417,
         "adstock_half_life_weeks": "0 to 1, minimal carryover",
         "agree_conflict": "partial",
         "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
@@ -2474,9 +2474,9 @@
     {
       "month": "2026-05",
       "channel": "Meta",
-      "budget_gbp": 64367,
+      "budget_gbp": 2682,
       "budget_share_pct": 15.94,
-      "forecast_new_policy_sales": 75875,
+      "forecast_new_policy_sales": 3161,
       "forecast_cost_per_policy_gbp": 0.85,
       "forecast_cost_per_policy_range_gbp": [
         0.72,
@@ -2514,7 +2514,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
         "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
-        "soft_saturation_threshold_monthly_gbp": 130000,
+        "soft_saturation_threshold_monthly_gbp": 5417,
         "adstock_half_life_weeks": "0 to 1, minimal carryover",
         "agree_conflict": "partial",
         "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
@@ -2531,9 +2531,9 @@
     {
       "month": "2026-06",
       "channel": "Meta",
-      "budget_gbp": 32130,
+      "budget_gbp": 1339,
       "budget_share_pct": 15.25,
-      "forecast_new_policy_sales": 41494,
+      "forecast_new_policy_sales": 1729,
       "forecast_cost_per_policy_gbp": 0.77,
       "forecast_cost_per_policy_range_gbp": [
         0.65,
@@ -2571,7 +2571,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
         "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
-        "soft_saturation_threshold_monthly_gbp": 130000,
+        "soft_saturation_threshold_monthly_gbp": 5417,
         "adstock_half_life_weeks": "0 to 1, minimal carryover",
         "agree_conflict": "partial",
         "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
@@ -2588,9 +2588,9 @@
     {
       "month": "2026-07",
       "channel": "Meta",
-      "budget_gbp": 70286,
+      "budget_gbp": 2929,
       "budget_share_pct": 17.4,
-      "forecast_new_policy_sales": 83786,
+      "forecast_new_policy_sales": 3491,
       "forecast_cost_per_policy_gbp": 0.84,
       "forecast_cost_per_policy_range_gbp": [
         0.71,
@@ -2628,7 +2628,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
         "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
-        "soft_saturation_threshold_monthly_gbp": 130000,
+        "soft_saturation_threshold_monthly_gbp": 5417,
         "adstock_half_life_weeks": "0 to 1, minimal carryover",
         "agree_conflict": "partial",
         "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
@@ -2645,9 +2645,9 @@
     {
       "month": "2026-08",
       "channel": "Meta",
-      "budget_gbp": 49165,
+      "budget_gbp": 2048,
       "budget_share_pct": 14.36,
-      "forecast_new_policy_sales": 64491,
+      "forecast_new_policy_sales": 2687,
       "forecast_cost_per_policy_gbp": 0.76,
       "forecast_cost_per_policy_range_gbp": [
         0.65,
@@ -2685,7 +2685,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
         "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
-        "soft_saturation_threshold_monthly_gbp": 130000,
+        "soft_saturation_threshold_monthly_gbp": 5417,
         "adstock_half_life_weeks": "0 to 1, minimal carryover",
         "agree_conflict": "partial",
         "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
@@ -2702,9 +2702,9 @@
     {
       "month": "2026-09",
       "channel": "Meta",
-      "budget_gbp": 42362,
+      "budget_gbp": 1765,
       "budget_share_pct": 15.08,
-      "forecast_new_policy_sales": 51671,
+      "forecast_new_policy_sales": 2153,
       "forecast_cost_per_policy_gbp": 0.82,
       "forecast_cost_per_policy_range_gbp": [
         0.7,
@@ -2742,7 +2742,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
         "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
-        "soft_saturation_threshold_monthly_gbp": 130000,
+        "soft_saturation_threshold_monthly_gbp": 5417,
         "adstock_half_life_weeks": "0 to 1, minimal carryover",
         "agree_conflict": "partial",
         "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
@@ -2759,9 +2759,9 @@
     {
       "month": "2026-10",
       "channel": "Meta",
-      "budget_gbp": 75532,
+      "budget_gbp": 3147,
       "budget_share_pct": 15.93,
-      "forecast_new_policy_sales": 84177,
+      "forecast_new_policy_sales": 3507,
       "forecast_cost_per_policy_gbp": 0.9,
       "forecast_cost_per_policy_range_gbp": [
         0.77,
@@ -2799,7 +2799,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
         "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
-        "soft_saturation_threshold_monthly_gbp": 130000,
+        "soft_saturation_threshold_monthly_gbp": 5417,
         "adstock_half_life_weeks": "0 to 1, minimal carryover",
         "agree_conflict": "partial",
         "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
@@ -2816,9 +2816,9 @@
     {
       "month": "2026-11",
       "channel": "Meta",
-      "budget_gbp": 99910,
+      "budget_gbp": 4163,
       "budget_share_pct": 15.33,
-      "forecast_new_policy_sales": 101557,
+      "forecast_new_policy_sales": 4232,
       "forecast_cost_per_policy_gbp": 0.98,
       "forecast_cost_per_policy_range_gbp": [
         0.83,
@@ -2856,7 +2856,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
         "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
-        "soft_saturation_threshold_monthly_gbp": 130000,
+        "soft_saturation_threshold_monthly_gbp": 5417,
         "adstock_half_life_weeks": "0 to 1, minimal carryover",
         "agree_conflict": "partial",
         "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
@@ -2873,13 +2873,13 @@
     {
       "month": "2026-12",
       "channel": "Meta",
-      "budget_gbp": 34073,
+      "budget_gbp": 1420,
       "budget_share_pct": 16.17,
-      "forecast_new_policy_sales": 38992,
+      "forecast_new_policy_sales": 1625,
       "forecast_cost_per_policy_gbp": 0.87,
       "forecast_cost_per_policy_range_gbp": [
         0.74,
-        1.0
+        1
       ],
       "confidence": "medium",
       "source_ids": [
@@ -2913,7 +2913,7 @@
         "confidence": "medium",
         "mmm_anchor": "bp's Meta activity reaches financial-professional proxies cheaply, but GBE-qualified reach saturates quickly once the proxy audience is covered.",
         "external_shape_prior": "Narrow professional audiences on Meta saturate fast; frequency builds within days of a burst.",
-        "soft_saturation_threshold_monthly_gbp": 130000,
+        "soft_saturation_threshold_monthly_gbp": 5417,
         "adstock_half_life_weeks": "0 to 1, minimal carryover",
         "agree_conflict": "partial",
         "conflict_note": "Cheap engagement disagrees with uncertain GBE match quality; IPSOS IGI validation is needed before scaling.",
@@ -2933,7 +2933,7 @@
       "month": "2026-01",
       "channel": "CTV & Streaming",
       "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
-      "budget_gbp": 53004,
+      "budget_gbp": 2209,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -2944,7 +2944,7 @@
       "month": "2026-01",
       "channel": "CTV & Streaming",
       "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
-      "budget_gbp": 38383,
+      "budget_gbp": 1599,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -2955,7 +2955,7 @@
       "month": "2026-02",
       "channel": "CTV & Streaming",
       "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
-      "budget_gbp": 129110,
+      "budget_gbp": 5379,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -2966,7 +2966,7 @@
       "month": "2026-02",
       "channel": "CTV & Streaming",
       "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
-      "budget_gbp": 93494,
+      "budget_gbp": 3896,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -2977,7 +2977,7 @@
       "month": "2026-03",
       "channel": "CTV & Streaming",
       "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
-      "budget_gbp": 62505,
+      "budget_gbp": 2604,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -2988,7 +2988,7 @@
       "month": "2026-03",
       "channel": "CTV & Streaming",
       "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
-      "budget_gbp": 45262,
+      "budget_gbp": 1886,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -2999,7 +2999,7 @@
       "month": "2026-04",
       "channel": "CTV & Streaming",
       "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
-      "budget_gbp": 104264,
+      "budget_gbp": 4344,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3010,7 +3010,7 @@
       "month": "2026-04",
       "channel": "CTV & Streaming",
       "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
-      "budget_gbp": 75501,
+      "budget_gbp": 3146,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3021,7 +3021,7 @@
       "month": "2026-05",
       "channel": "CTV & Streaming",
       "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
-      "budget_gbp": 76291,
+      "budget_gbp": 3179,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3032,7 +3032,7 @@
       "month": "2026-05",
       "channel": "CTV & Streaming",
       "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
-      "budget_gbp": 55246,
+      "budget_gbp": 2302,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3043,7 +3043,7 @@
       "month": "2026-06",
       "channel": "CTV & Streaming",
       "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
-      "budget_gbp": 35936,
+      "budget_gbp": 1498,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3054,7 +3054,7 @@
       "month": "2026-06",
       "channel": "CTV & Streaming",
       "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
-      "budget_gbp": 26023,
+      "budget_gbp": 1084,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3065,7 +3065,7 @@
       "month": "2026-07",
       "channel": "CTV & Streaming",
       "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
-      "budget_gbp": 66960,
+      "budget_gbp": 2790,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3076,7 +3076,7 @@
       "month": "2026-07",
       "channel": "CTV & Streaming",
       "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
-      "budget_gbp": 48488,
+      "budget_gbp": 2020,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3087,7 +3087,7 @@
       "month": "2026-08",
       "channel": "CTV & Streaming",
       "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
-      "budget_gbp": 59827,
+      "budget_gbp": 2493,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3098,7 +3098,7 @@
       "month": "2026-08",
       "channel": "CTV & Streaming",
       "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
-      "budget_gbp": 43323,
+      "budget_gbp": 1805,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3109,7 +3109,7 @@
       "month": "2026-09",
       "channel": "CTV & Streaming",
       "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
-      "budget_gbp": 51193,
+      "budget_gbp": 2133,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3120,7 +3120,7 @@
       "month": "2026-09",
       "channel": "CTV & Streaming",
       "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
-      "budget_gbp": 37070,
+      "budget_gbp": 1545,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3131,7 +3131,7 @@
       "month": "2026-10",
       "channel": "CTV & Streaming",
       "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
-      "budget_gbp": 91044,
+      "budget_gbp": 3793,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3142,7 +3142,7 @@
       "month": "2026-10",
       "channel": "CTV & Streaming",
       "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
-      "budget_gbp": 65928,
+      "budget_gbp": 2747,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3153,7 +3153,7 @@
       "month": "2026-11",
       "channel": "CTV & Streaming",
       "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
-      "budget_gbp": 120324,
+      "budget_gbp": 5014,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3164,7 +3164,7 @@
       "month": "2026-11",
       "channel": "CTV & Streaming",
       "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
-      "budget_gbp": 87131,
+      "budget_gbp": 3630,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3175,7 +3175,7 @@
       "month": "2026-12",
       "channel": "CTV & Streaming",
       "owner": "Financial news CTV (Bloomberg, CNBC, Sky News)",
-      "budget_gbp": 40422,
+      "budget_gbp": 1684,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3186,7 +3186,7 @@
       "month": "2026-12",
       "channel": "CTV & Streaming",
       "owner": "Premium broadcaster VOD (ITVX, Channel 4, Sky)",
-      "budget_gbp": 29271,
+      "budget_gbp": 1220,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3197,7 +3197,7 @@
       "month": "2026-01",
       "channel": "Programmatic Display",
       "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
-      "budget_gbp": 48643,
+      "budget_gbp": 2027,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3208,7 +3208,7 @@
       "month": "2026-01",
       "channel": "Programmatic Display",
       "owner": "Contextual energy and markets targeting",
-      "budget_gbp": 29813,
+      "budget_gbp": 1242,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3219,7 +3219,7 @@
       "month": "2026-02",
       "channel": "Programmatic Display",
       "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
-      "budget_gbp": 113764,
+      "budget_gbp": 4740,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3230,7 +3230,7 @@
       "month": "2026-02",
       "channel": "Programmatic Display",
       "owner": "Contextual energy and markets targeting",
-      "budget_gbp": 69727,
+      "budget_gbp": 2905,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3241,7 +3241,7 @@
       "month": "2026-03",
       "channel": "Programmatic Display",
       "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
-      "budget_gbp": 52177,
+      "budget_gbp": 2174,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3252,7 +3252,7 @@
       "month": "2026-03",
       "channel": "Programmatic Display",
       "owner": "Contextual energy and markets targeting",
-      "budget_gbp": 31979,
+      "budget_gbp": 1333,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3263,7 +3263,7 @@
       "month": "2026-04",
       "channel": "Programmatic Display",
       "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
-      "budget_gbp": 85567,
+      "budget_gbp": 3565,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3274,7 +3274,7 @@
       "month": "2026-04",
       "channel": "Programmatic Display",
       "owner": "Contextual energy and markets targeting",
-      "budget_gbp": 52444,
+      "budget_gbp": 2185,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3285,7 +3285,7 @@
       "month": "2026-05",
       "channel": "Programmatic Display",
       "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
-      "budget_gbp": 75687,
+      "budget_gbp": 3153,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3296,7 +3296,7 @@
       "month": "2026-05",
       "channel": "Programmatic Display",
       "owner": "Contextual energy and markets targeting",
-      "budget_gbp": 46388,
+      "budget_gbp": 1933,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3307,7 +3307,7 @@
       "month": "2026-06",
       "channel": "Programmatic Display",
       "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
-      "budget_gbp": 37381,
+      "budget_gbp": 1557,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3318,7 +3318,7 @@
       "month": "2026-06",
       "channel": "Programmatic Display",
       "owner": "Contextual energy and markets targeting",
-      "budget_gbp": 22911,
+      "budget_gbp": 955,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3329,7 +3329,7 @@
       "month": "2026-07",
       "channel": "Programmatic Display",
       "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
-      "budget_gbp": 69668,
+      "budget_gbp": 2903,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3340,7 +3340,7 @@
       "month": "2026-07",
       "channel": "Programmatic Display",
       "owner": "Contextual energy and markets targeting",
-      "budget_gbp": 42700,
+      "budget_gbp": 1779,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3351,7 +3351,7 @@
       "month": "2026-08",
       "channel": "Programmatic Display",
       "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
-      "budget_gbp": 64515,
+      "budget_gbp": 2688,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3362,7 +3362,7 @@
       "month": "2026-08",
       "channel": "Programmatic Display",
       "owner": "Contextual energy and markets targeting",
-      "budget_gbp": 39541,
+      "budget_gbp": 1648,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3373,7 +3373,7 @@
       "month": "2026-09",
       "channel": "Programmatic Display",
       "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
-      "budget_gbp": 51268,
+      "budget_gbp": 2137,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3384,7 +3384,7 @@
       "month": "2026-09",
       "channel": "Programmatic Display",
       "owner": "Contextual energy and markets targeting",
-      "budget_gbp": 31422,
+      "budget_gbp": 1309,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3395,7 +3395,7 @@
       "month": "2026-10",
       "channel": "Programmatic Display",
       "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
-      "budget_gbp": 82401,
+      "budget_gbp": 3434,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3406,7 +3406,7 @@
       "month": "2026-10",
       "channel": "Programmatic Display",
       "owner": "Contextual energy and markets targeting",
-      "budget_gbp": 50504,
+      "budget_gbp": 2104,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3417,7 +3417,7 @@
       "month": "2026-11",
       "channel": "Programmatic Display",
       "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
-      "budget_gbp": 118254,
+      "budget_gbp": 4927,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3428,7 +3428,7 @@
       "month": "2026-11",
       "channel": "Programmatic Display",
       "owner": "Contextual energy and markets targeting",
-      "budget_gbp": 72478,
+      "budget_gbp": 3020,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3439,7 +3439,7 @@
       "month": "2026-12",
       "channel": "Programmatic Display",
       "owner": "Financial publisher PMPs (FT, The Economist, WSJ)",
-      "budget_gbp": 33956,
+      "budget_gbp": 1415,
       "role": "primary partner",
       "confidence": "high",
       "source_ids": [
@@ -3450,7 +3450,7 @@
       "month": "2026-12",
       "channel": "Programmatic Display",
       "owner": "Contextual energy and markets targeting",
-      "budget_gbp": 20812,
+      "budget_gbp": 867,
       "role": "secondary partner",
       "confidence": "high",
       "source_ids": [
@@ -3461,7 +3461,7 @@
       "month": "2026-01",
       "channel": "Online Video",
       "owner": "YouTube (business and finance content)",
-      "budget_gbp": 36385,
+      "budget_gbp": 1516,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3472,7 +3472,7 @@
       "month": "2026-01",
       "channel": "Online Video",
       "owner": "Publisher video (FT, Bloomberg, Reuters)",
-      "budget_gbp": 29770,
+      "budget_gbp": 1241,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3483,7 +3483,7 @@
       "month": "2026-02",
       "channel": "Online Video",
       "owner": "YouTube (business and finance content)",
-      "budget_gbp": 87068,
+      "budget_gbp": 3628,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3494,7 +3494,7 @@
       "month": "2026-02",
       "channel": "Online Video",
       "owner": "Publisher video (FT, Bloomberg, Reuters)",
-      "budget_gbp": 71238,
+      "budget_gbp": 2968,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3505,7 +3505,7 @@
       "month": "2026-03",
       "channel": "Online Video",
       "owner": "YouTube (business and finance content)",
-      "budget_gbp": 38844,
+      "budget_gbp": 1619,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3516,7 +3516,7 @@
       "month": "2026-03",
       "channel": "Online Video",
       "owner": "Publisher video (FT, Bloomberg, Reuters)",
-      "budget_gbp": 31782,
+      "budget_gbp": 1324,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3527,7 +3527,7 @@
       "month": "2026-04",
       "channel": "Online Video",
       "owner": "YouTube (business and finance content)",
-      "budget_gbp": 77426,
+      "budget_gbp": 3226,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3538,7 +3538,7 @@
       "month": "2026-04",
       "channel": "Online Video",
       "owner": "Publisher video (FT, Bloomberg, Reuters)",
-      "budget_gbp": 63348,
+      "budget_gbp": 2640,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3549,7 +3549,7 @@
       "month": "2026-05",
       "channel": "Online Video",
       "owner": "YouTube (business and finance content)",
-      "budget_gbp": 47224,
+      "budget_gbp": 1968,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3560,7 +3560,7 @@
       "month": "2026-05",
       "channel": "Online Video",
       "owner": "Publisher video (FT, Bloomberg, Reuters)",
-      "budget_gbp": 38638,
+      "budget_gbp": 1610,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3571,7 +3571,7 @@
       "month": "2026-06",
       "channel": "Online Video",
       "owner": "YouTube (business and finance content)",
-      "budget_gbp": 30975,
+      "budget_gbp": 1290,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3582,7 +3582,7 @@
       "month": "2026-06",
       "channel": "Online Video",
       "owner": "Publisher video (FT, Bloomberg, Reuters)",
-      "budget_gbp": 25344,
+      "budget_gbp": 1056,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3593,7 +3593,7 @@
       "month": "2026-07",
       "channel": "Online Video",
       "owner": "YouTube (business and finance content)",
-      "budget_gbp": 58156,
+      "budget_gbp": 2423,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3604,7 +3604,7 @@
       "month": "2026-07",
       "channel": "Online Video",
       "owner": "Publisher video (FT, Bloomberg, Reuters)",
-      "budget_gbp": 47583,
+      "budget_gbp": 1983,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3615,7 +3615,7 @@
       "month": "2026-08",
       "channel": "Online Video",
       "owner": "YouTube (business and finance content)",
-      "budget_gbp": 47309,
+      "budget_gbp": 1971,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3626,7 +3626,7 @@
       "month": "2026-08",
       "channel": "Online Video",
       "owner": "Publisher video (FT, Bloomberg, Reuters)",
-      "budget_gbp": 38707,
+      "budget_gbp": 1613,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3637,7 +3637,7 @@
       "month": "2026-09",
       "channel": "Online Video",
       "owner": "YouTube (business and finance content)",
-      "budget_gbp": 37190,
+      "budget_gbp": 1549,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3648,7 +3648,7 @@
       "month": "2026-09",
       "channel": "Online Video",
       "owner": "Publisher video (FT, Bloomberg, Reuters)",
-      "budget_gbp": 30428,
+      "budget_gbp": 1268,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3659,7 +3659,7 @@
       "month": "2026-10",
       "channel": "Online Video",
       "owner": "YouTube (business and finance content)",
-      "budget_gbp": 59766,
+      "budget_gbp": 2490,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3670,7 +3670,7 @@
       "month": "2026-10",
       "channel": "Online Video",
       "owner": "Publisher video (FT, Bloomberg, Reuters)",
-      "budget_gbp": 48899,
+      "budget_gbp": 2038,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3681,7 +3681,7 @@
       "month": "2026-11",
       "channel": "Online Video",
       "owner": "YouTube (business and finance content)",
-      "budget_gbp": 84565,
+      "budget_gbp": 3523,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3692,7 +3692,7 @@
       "month": "2026-11",
       "channel": "Online Video",
       "owner": "Publisher video (FT, Bloomberg, Reuters)",
-      "budget_gbp": 69190,
+      "budget_gbp": 2883,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3703,7 +3703,7 @@
       "month": "2026-12",
       "channel": "Online Video",
       "owner": "YouTube (business and finance content)",
-      "budget_gbp": 28691,
+      "budget_gbp": 1195,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3714,7 +3714,7 @@
       "month": "2026-12",
       "channel": "Online Video",
       "owner": "Publisher video (FT, Bloomberg, Reuters)",
-      "budget_gbp": 23474,
+      "budget_gbp": 978,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3725,7 +3725,7 @@
       "month": "2026-01",
       "channel": "Meta",
       "owner": "Facebook (financial professional audiences)",
-      "budget_gbp": 20221,
+      "budget_gbp": 842,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3736,7 +3736,7 @@
       "month": "2026-01",
       "channel": "Meta",
       "owner": "Instagram (business and markets content)",
-      "budget_gbp": 24714,
+      "budget_gbp": 1030,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3747,7 +3747,7 @@
       "month": "2026-02",
       "channel": "Meta",
       "owner": "Facebook (financial professional audiences)",
-      "budget_gbp": 50217,
+      "budget_gbp": 2093,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3758,7 +3758,7 @@
       "month": "2026-02",
       "channel": "Meta",
       "owner": "Instagram (business and markets content)",
-      "budget_gbp": 61376,
+      "budget_gbp": 2557,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3769,7 +3769,7 @@
       "month": "2026-03",
       "channel": "Meta",
       "owner": "Facebook (financial professional audiences)",
-      "budget_gbp": 24075,
+      "budget_gbp": 1003,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3780,7 +3780,7 @@
       "month": "2026-03",
       "channel": "Meta",
       "owner": "Instagram (business and markets content)",
-      "budget_gbp": 29425,
+      "budget_gbp": 1226,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3791,7 +3791,7 @@
       "month": "2026-04",
       "channel": "Meta",
       "owner": "Facebook (financial professional audiences)",
-      "budget_gbp": 40566,
+      "budget_gbp": 1690,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3802,7 +3802,7 @@
       "month": "2026-04",
       "channel": "Meta",
       "owner": "Instagram (business and markets content)",
-      "budget_gbp": 49581,
+      "budget_gbp": 2066,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3813,7 +3813,7 @@
       "month": "2026-05",
       "channel": "Meta",
       "owner": "Facebook (financial professional audiences)",
-      "budget_gbp": 28965,
+      "budget_gbp": 1207,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3824,7 +3824,7 @@
       "month": "2026-05",
       "channel": "Meta",
       "owner": "Instagram (business and markets content)",
-      "budget_gbp": 35402,
+      "budget_gbp": 1475,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3835,7 +3835,7 @@
       "month": "2026-06",
       "channel": "Meta",
       "owner": "Facebook (financial professional audiences)",
-      "budget_gbp": 14459,
+      "budget_gbp": 603,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3846,7 +3846,7 @@
       "month": "2026-06",
       "channel": "Meta",
       "owner": "Instagram (business and markets content)",
-      "budget_gbp": 17671,
+      "budget_gbp": 736,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3857,7 +3857,7 @@
       "month": "2026-07",
       "channel": "Meta",
       "owner": "Facebook (financial professional audiences)",
-      "budget_gbp": 31629,
+      "budget_gbp": 1318,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3868,7 +3868,7 @@
       "month": "2026-07",
       "channel": "Meta",
       "owner": "Instagram (business and markets content)",
-      "budget_gbp": 38657,
+      "budget_gbp": 1611,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3879,7 +3879,7 @@
       "month": "2026-08",
       "channel": "Meta",
       "owner": "Facebook (financial professional audiences)",
-      "budget_gbp": 22124,
+      "budget_gbp": 922,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3890,7 +3890,7 @@
       "month": "2026-08",
       "channel": "Meta",
       "owner": "Instagram (business and markets content)",
-      "budget_gbp": 27041,
+      "budget_gbp": 1126,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3901,7 +3901,7 @@
       "month": "2026-09",
       "channel": "Meta",
       "owner": "Facebook (financial professional audiences)",
-      "budget_gbp": 19063,
+      "budget_gbp": 794,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3912,7 +3912,7 @@
       "month": "2026-09",
       "channel": "Meta",
       "owner": "Instagram (business and markets content)",
-      "budget_gbp": 23299,
+      "budget_gbp": 971,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3923,7 +3923,7 @@
       "month": "2026-10",
       "channel": "Meta",
       "owner": "Facebook (financial professional audiences)",
-      "budget_gbp": 33989,
+      "budget_gbp": 1416,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3934,7 +3934,7 @@
       "month": "2026-10",
       "channel": "Meta",
       "owner": "Instagram (business and markets content)",
-      "budget_gbp": 41543,
+      "budget_gbp": 1731,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3945,7 +3945,7 @@
       "month": "2026-11",
       "channel": "Meta",
       "owner": "Facebook (financial professional audiences)",
-      "budget_gbp": 44959,
+      "budget_gbp": 1873,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3956,7 +3956,7 @@
       "month": "2026-11",
       "channel": "Meta",
       "owner": "Instagram (business and markets content)",
-      "budget_gbp": 54951,
+      "budget_gbp": 2290,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3967,7 +3967,7 @@
       "month": "2026-12",
       "channel": "Meta",
       "owner": "Facebook (financial professional audiences)",
-      "budget_gbp": 15333,
+      "budget_gbp": 639,
       "role": "secondary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3978,7 +3978,7 @@
       "month": "2026-12",
       "channel": "Meta",
       "owner": "Instagram (business and markets content)",
-      "budget_gbp": 18740,
+      "budget_gbp": 781,
       "role": "primary partner",
       "confidence": "medium",
       "source_ids": [
@@ -3988,10 +3988,10 @@
   ],
   "brief_test": {
     "source_id": "bp_planning_evidence_rules_2026",
-    "policy_sales_target": 3400000,
+    "policy_sales_target": 141667,
     "brief_cost_per_policy_gbp": 1.55,
     "objective_source": "fixture_default",
-    "forecast_new_policy_sales": 3151890,
+    "forecast_new_policy_sales": 131329,
     "forecast_cost_per_policy_gbp": 1.52,
     "clears_policy_sales_target": false,
     "clears_brief_cost_per_policy": true,
@@ -3999,7 +3999,7 @@
       {
         "criterion_id": "target_and_budget",
         "label": "Hits the brief target frame",
-        "requirement": "Generated plan should balance to the supplied 2026 budget and show whether forecast GBE engagements clear 3,400,000 at or below the £1.55 brief cost per engagement."
+        "requirement": "Generated plan should balance to the supplied 2026 budget and show whether forecast GBE engagements clear 141,667 at or below the £1.55 brief cost per engagement."
       },
       {
         "criterion_id": "mmm_alignment",
