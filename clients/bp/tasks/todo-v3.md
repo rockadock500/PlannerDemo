@@ -16,4 +16,4 @@ Spec: `../SPEC-planner-v3.md`. One commit per task; verify in the browser before
   - Stored scenario buttons, free text → closest scenario, cards with facts, preferred, remove, full plan.
 - [x] 5. Approval, Admin, Planner Chat on the base plan (visitors / clicks).
 - [x] 6. Independent review (agent-skills code reviewer); fix findings.
-- [ ] 7. Full sweep, commit, deploy, check live.
+- [x] 7. Full sweep, commit, deploy, check live.
